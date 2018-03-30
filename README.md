@@ -45,6 +45,7 @@ To publish the new version pass the `--publish` option:
 ## TODO
 
 - Integrate API docs with new website.
+- Setup some kind of automated git push -> deploy process. Can this be done with travis-ci?
 - Get algolia upgraded and change indexing to use proper structured data from the meta.php files that the rst builder outputs.
 - Build UX for switching between versions
 - Enhance the /projects/{project} path in to a combined page that lists install, github link and documentation in one? Goal, reduce clicks from initial entry.
