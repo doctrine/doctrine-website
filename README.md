@@ -2,11 +2,45 @@
 
 This is the Doctrine Sculpin website code.
 
+## Setup
+
+First clone the source code for the website to a directory like `/data`:
+
+    cd /data
+    git clone git@github.com:doctrine/doctrine-website-sculpin.git
+    composer install
+
+Next clone the repository which holds the built source code to `/data/doctrine-website-sculpin-build-prod`:
+
+    git clone git@github.com:doctrine/doctrine-website-sculpin-build.git /data/doctrine-website-sculpin-build-prod
+
+Create a development directory for you to create dev builds in `/data/doctrine-website-sculpin-build-dev` for testing:
+
+    mkdir /data/doctrine-website-sculpin-build-dev
+
 ## Prepare Docs for Sculpin Build
 
-This command accepts an argument where for the Doctrine repositories with the documentation will be cloned.
+This command accepts an argument for where the Doctrine repositories with the documentation will be cloned:
 
-    ./vendor/bin/sculpin prepare-docs /data/doctrine
+    ./vendor/bin/sculpin doctrine:prepare-docs /data/doctrine
+
+## Build the Website for Development
+
+Now you are ready to build the website for the first time:
+
+    ./vendor/bin/sculpin doctrine:build-website /data/doctrine-website-sculpin-build-dev --env=dev
+
+Setup `lcl.doctrine-project.org` locally and point your webserver at `/data/doctrine-website-sculpin-build-dev` to see the website:
+
+## Build the Website for Production
+
+Now to make a production build:
+
+    ./vendor/bin/sculpin doctrine:build-website /data/doctrine-website-sculpin-build-prod --env=prod
+
+To publish the new version pass the `--publish` option:
+
+    ./vendor/bin/sculpin doctrine:build-website /data/doctrine-website-sculpin-build-prod --env=prod --publish
 
 ## TODO
 

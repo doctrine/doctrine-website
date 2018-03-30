@@ -14,9 +14,9 @@ class PrepareDocsCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('prepare-docs')
+            ->setName('doctrine:prepare-docs')
             ->setDescription('Prepare docs.')
-            ->addArgument('dir', null, InputArgument::REQUIRED, 'The directory where the documentation repositories are cloned.');
+            ->addArgument('dir', null, InputArgument::REQUIRED, 'The directory where the documentation repositories are cloned.')
         ;
     }
 
