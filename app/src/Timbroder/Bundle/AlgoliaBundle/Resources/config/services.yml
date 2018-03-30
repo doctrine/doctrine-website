@@ -1,0 +1,34 @@
+parameters:
+  timbroder_sculpin.search.indexation.listener.class: Timbroder\Bundle\AlgoliaBundle\EventListener\IndexationListener
+  timbroder_sculpin.search.engine.algolia.class: Timbroder\Bundle\AlgoliaBundle\Search\AlgoliaSearchEngine
+  timbroder_sculpin.search.algolia.client.class: AlgoliaSearch\Client
+  timbroder_sculpin.search.document_builder.algolia.class: Timbroder\Bundle\AlgoliaBundle\Search\AlgoliaDocumentBuilder
+
+services:
+  timbroder_sculpin.search.engine.algolia:
+    class: %timbroder_sculpin.search.engine.algolia.class%
+    arguments:
+      - @timbroder_sculpin.search.algolia.client
+      - %timbroder_sculpin.search.options.index%
+      - %timbroder_sculpin.search.options.clear_on_sync%
+
+  timbroder_sculpin.search.algolia.client:
+    class: %timbroder_sculpin.search.algolia.client.class%
+    arguments:
+      - %timbroder_sculpin.search.options.application_id%
+      - %timbroder_sculpin.search.options.admin_api_key%
+
+  timbroder_sculpin.search.document_builder.algolia:
+    class: %timbroder_sculpin.search.document_builder.algolia.class%
+    arguments:
+      - %doctrine.projects%
+
+  timbroder_sculpin.search.indexation.listener:
+    class: %timbroder_sculpin.search.indexation.listener.class%
+    arguments:
+      - @timbroder_sculpin.search.engine.algolia
+      - @timbroder_sculpin.search.document_builder.algolia
+      - %timbroder_sculpin.search.enabled%
+
+    tags:
+      - { name: kernel.event_subscriber }

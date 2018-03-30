@@ -1,0 +1,31 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ site.url }}/">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ site.url }}/projects">Projects</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ project.shortName }}</li>
+    </ol>
+</nav>
+
+<h2>{{ project.name }}</h2>
+
+<p class="lead">{{ project.description }}</p>
+
+<a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/" class="btn btn-primary mr-2">Documentation</a>
+
+<a href="https://github.com/{{ project.packageName }}" class="btn btn-primary" target="_blank">GitHub</a>
+
+<hr />
+
+<h2>Install</h2>
+
+<pre><code>$ composer require {{ project.composerPackageName }}</code></pre>
+
+<h3>Versions</h3>
+
+<ul>
+    {% for version in project.versions %}
+        <li>
+            {{ version.name }}
+        </li>
+    {% endfor %}
+</ul>

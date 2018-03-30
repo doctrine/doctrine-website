@@ -1,0 +1,42 @@
+{
+    "name": "jwage/jwage.com",
+    "description": "Source code for jwage.com",
+    "type": "jwage.com",
+    "minimum-stability": "dev",
+    "prefer-stable" : true,
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonathan H. Wage",
+            "email": "jonwage@gmail.com",
+            "homepage": "https://jwage.com"
+        }
+    ],
+    "require": {
+	  "sculpin/sculpin": "^2.1@dev",
+	  "dflydev/embedded-composer": "^1.0@dev",
+      "kriswallsmith/assetic": "1.1.2",
+      "components/highlightjs": "^9.7",
+      "algolia/algoliasearch-client-php": "~1.25.0",
+      "caseyamcl/toc": "^1.2",
+      "gregwar/rst": "^1.0"
+    },
+    "config": {
+        "component-dir": "source/components",
+        "components": [
+            "components/highlightjs"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "ComponentManager\\ComponentManager::postComposerInstall"
+        ]
+    },
+    "autoload": {
+        "classmap": ["component-manager.php"],
+        "psr-0": {
+            "Doctrine": "app/src/",
+            "Timbroder": "app/src/"
+        }
+    }
+}

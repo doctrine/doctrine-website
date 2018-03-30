@@ -1,0 +1,60 @@
+---
+layout: default
+title: Blog
+generator: pagination
+pagination:
+    max_per_page: 3
+use:
+    - posts
+---
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ site.url }}/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+    </ol>
+</nav>
+
+{% for post in page.pagination.items %}
+    <article>
+        <header>
+            <h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
+        </header>
+
+        <p class="lead">
+            Posted on {{ post.date|date('Y-m-d') }}
+            {% if post.authorName %}
+                by
+                {% if post.authorEmail %}
+                    <a href="mailto:{{ post.authorEmail }}">{{ post.authorName }}</a>
+                {% else %}
+                    {{ post.authorName }}
+                {% endif %}
+            {% endif %}
+        </p>
+
+        <hr />
+
+        <div>
+            {{ post.blocks.content|raw }}
+        </div>
+
+        {% if post.meta.tags %}
+            <p class="tags">
+            Tags:
+            {% for tag in post.meta.tags %}
+            <a href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+            </p>
+        {% endif %}
+    </article>
+{% endfor %}
+
+{% if page.pagination.previous_page or page.pagination.next_page %}
+    <nav class="mt-4">
+        <ul class="pagination">
+            {% if page.pagination.previous_page %}<li class="page-item"><a class="page-link" href="{{ site.url }}{{ page.pagination.previous_page.url }}">Newer Posts</a></li>{% endif %}<br />
+            {% if page.pagination.next_page %}<li class="page-item"><a class="page-link" href="{{ site.url }}{{ page.pagination.next_page.url }}">Older Posts</a></li>{% endif %}
+        </ul>
+    </nav>
+{% endif %}

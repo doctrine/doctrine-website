@@ -1,0 +1,53 @@
+---
+title: DBAL 2.4.4 and 2.5.1 released
+authorName: Steve Müller
+authorEmail: deeky666@googlemail.com
+categories: []
+indexed: false
+---
+We are happy to announce the immediate availability of Doctrine DBAL 2.4.4 and 2.5.1.
+Various bugs that prevented users from upgrading to DBAL 2.5.x have been fixed in DBAL 2.5.1,
+along with some others. DBAL 2.4.4 only contains backported bug fixes addressed since the release of DBAL 2.5.0.
+
+The index renaming feature introduced in DBAL 2.5.0 caused trouble for some MySQL users utilizing ORM's
+schema tool to upgrade their schemas where the schema tool was generating invalid ``DROP INDEX`` /
+``CREATE INDEX`` SQL. Fixing this issue was only possible by introducing a minor BC break (change in behaviour),
+please see ``UPGRADE.md`` for more information (we know that this is a patch release but we are actually reverting a BC
+break here).
+MariaDB users had problems upgrading to DBAL 2.5.0 because of the new platform detection feature not taking
+MariaDB backends into account.
+Additionally, some minor bugs around schema creation / introspection and DDL in various platforms were fixed.
+
+Please note that this release does ``not yet`` include a fix for users having problems with the DBAL connection
+not being lazy anymore since DBAL 2.5.0 when retrieving the underlying platform. Unfortunately we did not
+find a good solution for this issue yet.
+Until the issue is fixed please directly set the platform version as a workaround by using the
+``serverVersion`` configuration option described in the `documentation <http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#automatic-platform-version-detection>`_
+if you are encountering any problems.
+
+You can find all the changes on JIRA:
+
+- `DBAL 2.4.4 <http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10725>`_ - 9 issues fixed
+- `DBAL 2.5.1 <http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10727>`_ - 24 issues fixed
+
+You can install the DBAL using Composer and the following ``composer.json``
+contents:
+
+.. code-block:: json
+
+  {
+      "require": {
+          "doctrine/dbal": "2.4.4"
+      }
+  }
+
+.. code-block:: json
+
+  {
+      "require": {
+          "doctrine/dbal": "2.5.1"
+      }
+  }
+
+Please report any issues you may have with the update on the mailing list or on
+`Jira <http://www.doctrine-project.org/jira>`_.

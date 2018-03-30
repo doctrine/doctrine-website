@@ -1,0 +1,72 @@
+services:
+    doctrine.website.directive.warning:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\WarningDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.caution:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\CautionDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.tip:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\TipDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.configuration_block:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\ConfigurationBlockDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.section_author:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\SectionAuthorDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.version_added:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\VersionAddedDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.role:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\RoleDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.index:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\IndexDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.hint:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\HintDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.notice:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\NoticeDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.note:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\NoteDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]
+
+    doctrine.website.directive.toctree:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\ToctreeDirective
+        arguments: []
+        tags: [{ name: sculpin.rst.directive }]

@@ -1,0 +1,77 @@
+---
+layout: default
+title: Search
+---
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ site.url }}/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Search</li>
+        </ol>
+    </nav>
+
+    <div id="search-box" class="mb-4">
+        <!-- SearchBox widget will appear here -->
+    </div>
+
+    <div id="hits">
+        <!-- Hits widget will appear here -->
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script id="instantsearch-template" type="text/template">
+        {% verbatim %}
+
+            <a href="{{link}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{{_highlightResult.projectName.value}}}: {{{_highlightResult.h1.value}}}</h5>
+                </div>
+
+                {{#h2}}
+                    <p class="mb-1">
+                        <i class="far fa-arrow-alt-circle-right text-primary"></i>
+
+                        {{{_highlightResult.h2.value}}}
+
+                        {{#h3}}
+                            > {{{_highlightResult.h3.value}}}
+                        {{/h3}}
+
+                        {{#h4}}
+                            > {{{_highlightResult.h4.value}}}
+                        {{/h4}}
+                    </p>
+                {{/h2}}
+            </a>
+        {% endverbatim %}
+    </script>
+
+    <script type="text/javascript">
+        var search = instantsearch({
+            appId: 'YVYTFT9XMW',
+            apiKey: 'a6dada5f33f148586b92cc3afefeaaf6',
+            indexName: 'pages'
+        });
+
+        search.addWidget(
+            instantsearch.widgets.searchBox({
+                container: '#search-box',
+                placeholder: 'Search'
+            })
+        );
+
+        search.addWidget(
+            instantsearch.widgets.hits({
+                container: '#hits',
+                templates: {
+                    empty: 'No results',
+                    item: $('#instantsearch-template').html()
+                }
+            })
+        );
+
+        search.start();
+    </script>
+{% endblock %}

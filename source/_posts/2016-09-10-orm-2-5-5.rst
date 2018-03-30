@@ -1,0 +1,34 @@
+---
+title: Doctrine ORM 2.5.5 Released
+authorName: Marco Pivetta
+authorEmail: ocramius@gmail.com
+categories: [release]
+indexed: false
+---
+We are happy to announce the immediate availability of Doctrine ORM
+`2.5.5 <https://github.com/doctrine/doctrine2/releases/tag/v2.5.5>`_.
+
+Following issues were fixed:
+
+ - Embeddable classes are now allowed in inheritance trees `#4097 <https://github.com/doctrine/doctrine2/issues/4097>`_
+ - Removed some object hash collisions caused by entity merging `#1465 <https://github.com/doctrine/doctrine2/pull/1465>`_
+ - Allowed usage of mathematical operators in DQL ``HAVING`` clauses `#5598 <https://github.com/doctrine/doctrine2/pull/5598>`_
+ - Fixed cloning of proxies with private properties at multiple inheritance levels `#5755 <https://github.com/doctrine/doctrine2/pull/5755>`_
+ - Entity insertions are correctly cleared when a specific entity is to be cleared `#5849 <https://github.com/doctrine/doctrine2/issues/5849>`_
+ - Corrected hydration of fetch-joins that use composite keys `#5762 <https://github.com/doctrine/doctrine2/issues/5762>`_
+ - Metadata exporters now only export the owning side metadata in a one-to-one relation `#5858 <https://github.com/doctrine/doctrine2/issues/5858>`_
+ - Corrected hydration of JTI entities when ``NULL`` is retrieved for a ``simple_array`` or ``json_array`` field `#5989 <https://github.com/doctrine/doctrine2/issues/5989>`_
+ - Correctly expire L2 cache query caches, based on entity region cache timestamp `#6001 <https://github.com/doctrine/doctrine2/issues/6001>`_
+
+
+Installation
+~~~~~~~~~~~~
+
+You can install the ORM component using Composer:
+
+.. code-block:: shell
+
+  composer require doctrine/orm:^2.5.5
+
+Please report any issues you may have with the update on the
+`issue tracker <https://github.com/doctrine/doctrine2/issues>`_.

@@ -1,0 +1,38 @@
+---
+title: ORM 2.4.2 and 2.3.5 released
+authorName: Benjamin Eberlei 
+authorEmail: 
+categories: [release]
+indexed: false
+---
+*Published: 08.02.2014*
+
+We are happy to announce the immediate availability of Doctrine ORM 2.3.5
+and 2.4.2. Both versions fix 17 and 12 bugs respectively.
+
+You can find all the changes on JIRA:
+
+- `ORM 2.3.5 <http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10521>`_ - 17 issues fixed
+- `ORM 2.4.2 <http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10621>`_ 12 issues fixed
+
+You can install the ORM using Composer and the following ``composer.json``
+contents:
+
+.. code-block:: json
+
+  {
+      "require": {
+          "doctrine/orm": "2.4.2"
+      }
+  }
+
+.. code-block:: json
+
+    {
+        "require": {
+            "doctrine/orm": "2.3.5"
+        }
+    }
+
+Please report any issues you may have with the update on the mailing list or on
+`Jira <http://www.doctrine-project.org/jira>`_.

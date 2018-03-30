@@ -1,0 +1,62 @@
+---
+layout: default
+title: Home
+generator: pagination
+pagination:
+    max_per_page: 10000
+use:
+    - posts
+---
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">{{ site.title }}</h1>
+        <p class="lead">The Doctrine Project is the home to several PHP libraries primarily
+        focused on database storage and object mapping. The core projects are a
+        <a href="/projects/orm/">Object Relational Mapper (ORM)</a> and the
+        <a href="/projects/dbal/">Database Abstraction Layer (DBAL)</a> it is
+        built upon. Doctrine has greatly benefited from concepts of the
+        <a href="http://hibernate.org">Hibernate ORM</a> and has adapted them to fit
+        the PHP language.</p>
+
+        <p class="lead">
+            <a class="btn bg-doctrine-orange text-white btn-lg" href="{{ site.url }}/projects/doctrine-orm/en/latest/tutorials/getting-started.html" role="button">Get Started</a>
+            <a class="btn bg-doctrine-dark-blue text-white btn-lg" href="{{ site.url }}/projects/" role="button">View Projects</a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="card mb-4">
+            <h5 class="card-header">Why use Doctrine?</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fa fa-check text-success mr-2"></i>Around since 2006 with very stable, high-quality codebase.</li>
+                <li class="list-group-item"><i class="fa fa-check text-success mr-2"></i>Extremely flexible and powerful object-mapping and query features.</li>
+                <li class="list-group-item"><i class="fa fa-check text-success mr-2"></i>Support for both high-level and low-level database programming for all your use-cases.</li>
+                <li class="list-group-item"><i class="fa fa-check text-success mr-2"></i>Large Community and integrations with many different frameworks (Symfony, Laravel, Zend Framework and more)</li>
+            </ul>
+        </div>
+
+        <div class="card mb-4">
+            <h5 class="card-header">Latest Blog Posts</h5>
+            <ul class="list-group list-group-flush">
+                {% for post in page.pagination.items|slice(0, 5) %}
+                    <li class="list-group-item"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+
+        <div class="card mb-4">
+            <h5 class="card-header">Projects</h5>
+            <ul class="list-group list-group-flush">
+                {% for project in get_projects() %}
+                    <li class="list-group-item"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
