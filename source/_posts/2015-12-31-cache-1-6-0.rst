@@ -1,5 +1,6 @@
 ---
 title: Cache 1.6.0 Released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: [release]

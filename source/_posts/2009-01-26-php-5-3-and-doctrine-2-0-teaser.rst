@@ -1,5 +1,6 @@
 ---
 title: PHP 5.3 and Doctrine 2.0 Teaser
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

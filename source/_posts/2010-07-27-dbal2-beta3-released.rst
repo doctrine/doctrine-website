@@ -1,5 +1,6 @@
 ---
 title: Release of DBAL 2.0.0 Beta3
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

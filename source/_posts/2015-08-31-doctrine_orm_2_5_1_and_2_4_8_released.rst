@@ -1,5 +1,6 @@
 ---
 title: Doctrine ORM 2.5.1 and 2.4.8 released
+menuSlug: blog
 authorName: default
 authorEmail: 
 categories: []

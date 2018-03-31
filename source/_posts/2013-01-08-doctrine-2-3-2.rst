@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.3.2 released
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]

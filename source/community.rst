@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Community
+menuSlug: community
 ---
 
 .. raw:: html

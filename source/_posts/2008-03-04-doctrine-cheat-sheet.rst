@@ -1,5 +1,6 @@
 ---
 title: Doctrine Cheat Sheet
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

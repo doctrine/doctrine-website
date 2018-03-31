@@ -1,5 +1,6 @@
 ---
 title: Major Site Enhancements
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

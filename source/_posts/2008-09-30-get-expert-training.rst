@@ -1,5 +1,6 @@
 ---
 title: Get Expert Training
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

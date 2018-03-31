@@ -1,5 +1,6 @@
 ---
 title: A few updates for 2008
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

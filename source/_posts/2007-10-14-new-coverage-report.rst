@@ -1,5 +1,6 @@
 ---
 title: New Coverage Report
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

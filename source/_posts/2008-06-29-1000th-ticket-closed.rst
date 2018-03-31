@@ -1,5 +1,6 @@
 ---
 title: 1000th Ticket Closed
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

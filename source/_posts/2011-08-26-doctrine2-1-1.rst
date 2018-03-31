@@ -1,5 +1,6 @@
 ---
 title: DBAL and ORM 2.1.1 maintenance releases
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

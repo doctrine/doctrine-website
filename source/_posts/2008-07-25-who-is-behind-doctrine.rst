@@ -1,5 +1,6 @@
 ---
 title: Who is behind Doctrine?
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Help write tests for new DQL Parser
+menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []

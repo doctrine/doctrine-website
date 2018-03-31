@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.0 Quality Assurance
+menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []

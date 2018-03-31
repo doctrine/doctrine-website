@@ -1,5 +1,6 @@
 ---
 title: ORM 2.4.2 and 2.3.5 released
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]

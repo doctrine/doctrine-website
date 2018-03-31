@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.2.0 BETA3 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

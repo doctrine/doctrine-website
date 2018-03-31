@@ -1,5 +1,6 @@
 ---
 title: Security in Doctrine
+menuSlug: blog
 authorName: default
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: MongoDB ODM: Atomic Operator Improvements
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

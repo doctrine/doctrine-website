@@ -1,5 +1,6 @@
 ---
 title: Road to Doctrine 1.0
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

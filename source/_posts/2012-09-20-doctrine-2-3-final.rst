@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.3 final relased
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []

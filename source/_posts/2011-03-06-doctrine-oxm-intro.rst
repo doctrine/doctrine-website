@@ -1,5 +1,6 @@
 ---
 title: A Doctrine OXM Introduction
+menuSlug: blog
 authorName: richardfullmer 
 authorEmail: 
 categories: []

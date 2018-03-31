@@ -1,5 +1,6 @@
 ---
 title: Website Updates
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

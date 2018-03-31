@@ -1,5 +1,6 @@
 ---
 title: Glimpse of Doctrine 2.0
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

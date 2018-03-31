@@ -1,5 +1,6 @@
 ---
 title: Bringing it all together
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

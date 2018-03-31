@@ -1,5 +1,6 @@
 ---
 title: New hydration modes for Doctrine 1.1
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Indoctrinator 0.0.1-alpha1
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

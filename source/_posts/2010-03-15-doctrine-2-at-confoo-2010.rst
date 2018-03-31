@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2 at ConFoo 2010
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

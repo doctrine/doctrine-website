@@ -1,5 +1,6 @@
 ---
 title: Symfony Live 2012 Hackday
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

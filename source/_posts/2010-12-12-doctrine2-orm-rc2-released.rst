@@ -1,5 +1,6 @@
 ---
 title: Doctrine DBAL RC5 and ORM RC2 released
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

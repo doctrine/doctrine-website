@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.3.1 relased
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []

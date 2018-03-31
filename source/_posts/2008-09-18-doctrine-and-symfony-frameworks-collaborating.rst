@@ -1,5 +1,6 @@
 ---
 title: Doctrine and symfony frameworks collaborating
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

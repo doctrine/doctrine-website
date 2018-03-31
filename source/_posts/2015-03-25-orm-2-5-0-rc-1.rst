@@ -1,5 +1,6 @@
 ---
 title: Doctrine ORM 2.5.0-RC1 Release Candidate
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

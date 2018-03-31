@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.2.0-ALPHA Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

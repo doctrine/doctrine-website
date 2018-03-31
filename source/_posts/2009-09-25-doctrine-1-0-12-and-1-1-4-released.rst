@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.0.12 and 1.1.4 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

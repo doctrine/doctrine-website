@@ -1,5 +1,6 @@
 ---
 title: Cleaning up the mess
+menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []

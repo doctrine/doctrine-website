@@ -62,13 +62,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item{% if page.menuSlug == 'home' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/">Home</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item{% if page.menuSlug == 'about' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/about/">About</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown{% if page.menuSlug == 'projects' %} active{% endif %}">
                             <a class="nav-link dropdown-toggle" href="{{ site.url }}/projects/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Projects
                             </a>
@@ -78,19 +78,19 @@
                                 {% endfor %}
                             </div>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item{% if page.menuSlug == 'contribute' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/contribute/">Contribute</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item{% if page.menuSlug == 'community' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/community/">Community</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item{% if page.menuSlug == 'blog' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/blog/">Blog</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item{% if page.menuSlug == 'search' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/search/">Search</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="https://github.com/doctrine/" target="_blank">Development</a>
                         </li>
                     </ul>

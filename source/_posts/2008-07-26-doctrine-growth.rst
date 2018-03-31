@@ -1,5 +1,6 @@
 ---
 title: Doctrine growth
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

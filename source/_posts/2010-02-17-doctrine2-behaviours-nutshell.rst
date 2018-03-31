@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2 "Behaviours" in a Nutshell
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

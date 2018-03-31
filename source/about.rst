@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About
+menuSlug: about
 ---
 
 .. raw:: html

@@ -1,5 +1,6 @@
 ---
 title: Doctrine Fedora Package
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

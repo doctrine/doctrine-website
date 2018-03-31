@@ -1,5 +1,6 @@
 ---
 title: First 1.1 Alpha Version Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

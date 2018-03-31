@@ -1,5 +1,6 @@
 ---
 title: Maintenance Releases 2.0.1 of Common, DBAL and ORM
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

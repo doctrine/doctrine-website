@@ -1,5 +1,6 @@
 ---
 title: Want to get trained by Doctrine experts?
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

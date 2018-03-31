@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2 ALPHA4 Released
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]

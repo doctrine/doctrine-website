@@ -1,5 +1,6 @@
 ---
 title: Implementing Aggregate Fields with Doctrine 2
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

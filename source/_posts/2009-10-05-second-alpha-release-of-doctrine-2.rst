@@ -1,5 +1,6 @@
 ---
 title: Second Alpha Release of Doctrine 2
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.2 Beta 2
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []

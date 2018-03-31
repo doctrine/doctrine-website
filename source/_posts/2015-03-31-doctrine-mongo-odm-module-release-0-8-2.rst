@@ -1,5 +1,6 @@
 ---
 title: Doctrine Mongo ODM Module release 0.8.2
+menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []

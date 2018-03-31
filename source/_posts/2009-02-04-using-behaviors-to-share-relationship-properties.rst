@@ -1,5 +1,6 @@
 ---
 title: Using Behaviors to Share Relationship Properties
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

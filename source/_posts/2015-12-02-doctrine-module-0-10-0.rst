@@ -1,5 +1,6 @@
 ---
 title: DoctrineModule 0.10.0 Release
+menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []

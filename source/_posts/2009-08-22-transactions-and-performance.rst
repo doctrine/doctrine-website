@@ -1,5 +1,6 @@
 ---
 title: Transactions and Performance
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []

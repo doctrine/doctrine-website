@@ -1,5 +1,6 @@
 ---
 title: Doctrine all grown up
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

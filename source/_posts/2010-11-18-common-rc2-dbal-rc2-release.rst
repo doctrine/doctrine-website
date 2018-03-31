@@ -1,5 +1,6 @@
 ---
 title: Common RC2 and DBAL RC3 released
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

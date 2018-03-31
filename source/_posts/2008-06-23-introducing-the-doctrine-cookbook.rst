@@ -1,5 +1,6 @@
 ---
 title: Introducing the Doctrine Cookbook
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

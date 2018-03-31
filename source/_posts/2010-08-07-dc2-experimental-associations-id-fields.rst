@@ -1,5 +1,6 @@
 ---
 title: Experimental Doctrine 2 Feature: Associated Entities as Id Fields
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Moving to JIRA
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []

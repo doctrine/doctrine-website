@@ -1,5 +1,6 @@
 ---
 title: 0.11.0 Release Candidate 2
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

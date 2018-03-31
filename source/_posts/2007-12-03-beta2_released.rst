@@ -1,5 +1,6 @@
 ---
 title: Beta 2 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

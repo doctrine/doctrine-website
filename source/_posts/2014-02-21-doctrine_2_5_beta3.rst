@@ -1,5 +1,6 @@
 ---
 title: Doctrine DBAL 2.5 BETA3
+menuSlug: blog
 authorName: default
 authorEmail: 
 categories: [dbal]

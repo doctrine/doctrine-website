@@ -1,5 +1,6 @@
 ---
 title: symfony Doctrine Schema Manager
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Doctrine Data Fixtures 1.0.1
+menuSlug: blog
 authorName: Sebastien Lavoie
 authorEmail: 
 categories: []

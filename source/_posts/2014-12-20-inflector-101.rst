@@ -1,5 +1,6 @@
 ---
 title: Inflector 1.0.1 released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

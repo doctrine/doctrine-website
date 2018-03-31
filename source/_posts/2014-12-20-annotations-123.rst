@@ -1,5 +1,6 @@
 ---
 title: Annotations 1.2.3 released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

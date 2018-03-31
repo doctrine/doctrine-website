@@ -1,5 +1,6 @@
 ---
 title: Doctrine ORM 2.1.4 released
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]

@@ -1,5 +1,6 @@
 ---
 title: Moving Quickly
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

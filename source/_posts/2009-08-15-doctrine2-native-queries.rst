@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2 Native Queries
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []

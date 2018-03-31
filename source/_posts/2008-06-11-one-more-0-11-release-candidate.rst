@@ -1,5 +1,6 @@
 ---
 title: One more 0.11 Release Candidate
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

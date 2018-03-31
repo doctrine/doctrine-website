@@ -1,5 +1,6 @@
 ---
 title: Doctrine DBAL 2.5 RC2
+menuSlug: blog
 authorName: 
 authorEmail: 
 categories: []

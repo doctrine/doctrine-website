@@ -1,5 +1,6 @@
 ---
 title: Plug and Play Schema Information With Templates
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

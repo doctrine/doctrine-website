@@ -1,5 +1,6 @@
 ---
 title: Doctrine in your language
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Cookbook Recipe: Relation DQL Behavior
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

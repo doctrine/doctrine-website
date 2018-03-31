@@ -1,5 +1,6 @@
 ---
 title: New Documentation PDF Downloads
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

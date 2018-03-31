@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.2 Nearing Stable Release
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

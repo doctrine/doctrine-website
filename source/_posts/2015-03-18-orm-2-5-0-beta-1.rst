@@ -1,5 +1,6 @@
 ---
 title: Doctrine ORM 2.5.0 BETA 1 Released
+menuSlug: blog
 authorName: Benjamin Eberlei, Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

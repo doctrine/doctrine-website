@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2 BETA1 Released
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]

@@ -1,5 +1,6 @@
 ---
 title: Master and Slave Connections
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

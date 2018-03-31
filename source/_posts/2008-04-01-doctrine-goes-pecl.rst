@@ -1,5 +1,6 @@
 ---
 title: APRIL FOOLS! Doctrine goes PECL
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Creating a Unit of Work Using Doctrine
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

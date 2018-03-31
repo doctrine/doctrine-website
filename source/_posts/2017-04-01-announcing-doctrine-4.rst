@@ -1,5 +1,6 @@
 ---
 title: Announcing Doctrine 4
+menuSlug: blog
 authorName: Maciej Malarz
 authorEmail: malarzm@gmail.com
 categories: []

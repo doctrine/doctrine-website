@@ -1,5 +1,6 @@
 ---
 title: Extending DQL in Doctrine 2: User-Defined Functions
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

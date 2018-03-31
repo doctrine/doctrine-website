@@ -1,5 +1,6 @@
 ---
 title: Whats next? Our Roadmap
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

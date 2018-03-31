@@ -1,5 +1,6 @@
 ---
 title: Using Doctrine with CodeIgniter
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

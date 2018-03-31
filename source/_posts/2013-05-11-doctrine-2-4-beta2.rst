@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.4 Beta2 released
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]

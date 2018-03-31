@@ -1,5 +1,6 @@
 ---
 title: MongoDB ODM 1.0.0BETA1 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

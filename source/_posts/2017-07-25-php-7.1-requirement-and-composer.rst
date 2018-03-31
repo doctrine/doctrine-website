@@ -1,5 +1,6 @@
 ---
 title: PHP 7.1 requirement for Doctrine packages
+menuSlug: blog
 authorName: Andreas Braun
 authorEmail: alcaeus@alcaeus.org
 categories: []

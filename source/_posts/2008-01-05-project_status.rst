@@ -1,5 +1,6 @@
 ---
 title: Project Status
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

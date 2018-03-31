@@ -1,5 +1,6 @@
 ---
 title: Doctrine Module release 0.8.1
+menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: The Switch to git
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

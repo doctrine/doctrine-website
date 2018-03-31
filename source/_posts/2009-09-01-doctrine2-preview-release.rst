@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2 Preview Release
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]

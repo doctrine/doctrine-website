@@ -1,5 +1,6 @@
 ---
 title: Doctrine ORM 2.6 and Next (3.0)
+menuSlug: blog
 authorName: Mike Simonson
 authorEmail: mike@simonson.be
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.0.11 and 1.1.3 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

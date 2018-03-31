@@ -1,5 +1,6 @@
 ---
 title: Doctrine MongoDB ODM 1.0.0ALPHA2 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

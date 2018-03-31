@@ -1,5 +1,6 @@
 ---
 title: MongoDB ODM: Document-Oriented Databases vs. Relational Databases.
+menuSlug: blog
 authorName: avalanche123 
 authorEmail: 
 categories: []

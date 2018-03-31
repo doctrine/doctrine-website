@@ -1,5 +1,6 @@
 ---
 title: Thank you ServerGrove
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: 0.11.0 Stable Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

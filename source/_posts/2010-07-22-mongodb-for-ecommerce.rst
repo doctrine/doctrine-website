@@ -1,5 +1,6 @@
 ---
 title: MongoDB ODM: MongoDB for eCommerce
+menuSlug: blog
 authorName: avalanche123 
 authorEmail: 
 categories: []

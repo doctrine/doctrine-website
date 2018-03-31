@@ -1,5 +1,6 @@
 ---
 title: Doctrine Annotations 1.2.4 Release
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

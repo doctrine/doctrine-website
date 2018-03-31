@@ -1,5 +1,6 @@
 ---
 title: Doctrine changing homes
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

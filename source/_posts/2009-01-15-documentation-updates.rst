@@ -1,5 +1,6 @@
 ---
 title: Documentation Updates
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

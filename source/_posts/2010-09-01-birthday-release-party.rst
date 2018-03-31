@@ -1,5 +1,6 @@
 ---
 title: Birthday Release Party
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]

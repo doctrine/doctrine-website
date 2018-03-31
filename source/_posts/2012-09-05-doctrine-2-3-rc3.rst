@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.3.0 RC3 released
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

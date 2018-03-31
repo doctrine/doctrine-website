@@ -1,5 +1,6 @@
 ---
 title: What to expect from Doctrine 1
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

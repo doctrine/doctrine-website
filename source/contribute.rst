@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Contribute
+menuSlug: contribute
 ---
 
 .. raw:: html

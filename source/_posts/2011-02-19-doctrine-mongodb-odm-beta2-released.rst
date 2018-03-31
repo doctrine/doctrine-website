@@ -1,5 +1,6 @@
 ---
 title: Doctrine MongoDB ODM BETA2 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

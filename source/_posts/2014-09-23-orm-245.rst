@@ -1,5 +1,6 @@
 ---
 title: ORM 2.4.5 released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

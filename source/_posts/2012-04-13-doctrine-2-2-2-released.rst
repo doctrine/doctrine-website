@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.2.2 released
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

@@ -1,5 +1,6 @@
 ---
 title: PHP Benchmarking Mythbusters
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Doctrine DBAL 2.5.2 released
+menuSlug: blog
 authorName: Steve Müller
 authorEmail: deeky666@googlemail.com
 categories: []

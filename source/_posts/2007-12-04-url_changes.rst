@@ -1,5 +1,6 @@
 ---
 title: URL Changes
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

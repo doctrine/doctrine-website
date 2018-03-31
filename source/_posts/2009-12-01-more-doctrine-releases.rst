@@ -1,5 +1,6 @@
 ---
 title: More Doctrine Releases
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

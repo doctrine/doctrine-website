@@ -1,5 +1,6 @@
 ---
 title: Doctrine ORM Beta 3 released
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]

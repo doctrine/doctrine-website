@@ -1,5 +1,6 @@
 ---
 title: Doctrine at SymfonyCamp2008
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

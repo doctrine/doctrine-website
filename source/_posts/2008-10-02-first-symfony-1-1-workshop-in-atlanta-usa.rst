@@ -1,5 +1,6 @@
 ---
 title: First symfony 1.1 workshop in Atlanta, USA
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

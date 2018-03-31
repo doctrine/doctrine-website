@@ -1,5 +1,6 @@
 ---
 title: Doctrine DBAL 2.5 Release
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]

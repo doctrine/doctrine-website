@@ -1,5 +1,6 @@
 ---
 title: Want to contribute to Doctrine?
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

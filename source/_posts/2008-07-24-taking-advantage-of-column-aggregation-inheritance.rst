@@ -1,5 +1,6 @@
 ---
 title: Taking Advantage of Column Aggregation Inheritance
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

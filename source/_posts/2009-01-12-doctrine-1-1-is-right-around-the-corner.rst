@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.1 is right around the corner
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

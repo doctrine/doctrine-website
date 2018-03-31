@@ -1,5 +1,6 @@
 ---
 title: Using Views with Doctrine
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

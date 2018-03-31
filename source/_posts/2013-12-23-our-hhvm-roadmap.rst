@@ -1,5 +1,6 @@
 ---
 title: Our HHVM Roadmap
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []

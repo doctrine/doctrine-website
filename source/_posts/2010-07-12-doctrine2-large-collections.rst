@@ -1,5 +1,6 @@
 ---
 title: Working with Large Collections in Doctrine2
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

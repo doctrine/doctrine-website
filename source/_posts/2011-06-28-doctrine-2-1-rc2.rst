@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.1 Release Candidate 2
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

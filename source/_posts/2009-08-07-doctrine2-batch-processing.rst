@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2 Batch Processing
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []

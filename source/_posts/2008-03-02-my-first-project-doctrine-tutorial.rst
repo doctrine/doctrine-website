@@ -1,5 +1,6 @@
 ---
 title: My First Project Doctrine Tutorial
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

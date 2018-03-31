@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.0.7 is Available!
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

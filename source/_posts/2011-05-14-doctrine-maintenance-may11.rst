@@ -1,5 +1,6 @@
 ---
 title: Maintenance Releases 2.0.5 for DBAL and ORM
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

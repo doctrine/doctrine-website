@@ -1,5 +1,6 @@
 ---
 title: Database-Driver Support in Doctrine 2
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

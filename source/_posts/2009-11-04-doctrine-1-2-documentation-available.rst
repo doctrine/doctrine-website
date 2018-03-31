@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.2 Documentation Available
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

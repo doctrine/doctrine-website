@@ -1,5 +1,6 @@
 ---
 title: Doctrine Data-Fixtures 1.2.0 Released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: [release]

@@ -1,5 +1,6 @@
 ---
 title: Doctrine2 Behavioral Extensions
+menuSlug: blog
 authorName: gmorkevicius 
 authorEmail: 
 categories: []

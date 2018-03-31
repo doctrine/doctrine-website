@@ -1,5 +1,6 @@
 ---
 title: Introducing: Doctrine ORM for PHP
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

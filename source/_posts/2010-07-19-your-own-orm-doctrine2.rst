@@ -1,5 +1,6 @@
 ---
 title: Write your own ORM on top of Doctrine2
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

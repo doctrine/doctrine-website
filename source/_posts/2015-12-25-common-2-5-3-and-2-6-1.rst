@@ -1,5 +1,6 @@
 ---
 title: Common 2.5.3 and 2.6.1 Released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: [release]

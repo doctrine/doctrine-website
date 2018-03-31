@@ -1,5 +1,6 @@
 ---
 title: Doctrine MongoDB ODM release 1.1.1
+menuSlug: blog
 authorName: Maciej Malarz
 authorEmail: malarzm@gmail.com
 categories: []

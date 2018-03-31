@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.2.2 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

@@ -1,5 +1,6 @@
 ---
 title: MongoDB ODM: Mixing Types of Documents
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

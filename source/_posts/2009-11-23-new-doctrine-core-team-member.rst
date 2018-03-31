@@ -1,5 +1,6 @@
 ---
 title: New Doctrine Core Team Member
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

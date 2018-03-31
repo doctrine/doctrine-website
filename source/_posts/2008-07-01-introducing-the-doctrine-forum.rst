@@ -1,5 +1,6 @@
 ---
 title: Introducing the Doctrine Forum
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

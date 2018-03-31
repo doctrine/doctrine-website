@@ -1,5 +1,6 @@
 ---
 title: Doctrine frequently asked questions
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

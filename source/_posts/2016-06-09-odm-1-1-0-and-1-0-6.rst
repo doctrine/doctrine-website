@@ -1,5 +1,6 @@
 ---
 title: Doctrine MongoDB ODM 1.1.0 and 1.0.6 Released
+menuSlug: blog
 authorName: Andreas Braun
 authorEmail: alcaeus@alcaeus.org
 categories: []

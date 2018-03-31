@@ -1,5 +1,6 @@
 ---
 title: DoctrineORMModule release 0.9.0
+menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []

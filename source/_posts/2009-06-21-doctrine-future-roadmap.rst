@@ -1,5 +1,6 @@
 ---
 title: Doctrine Future Roadmap
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

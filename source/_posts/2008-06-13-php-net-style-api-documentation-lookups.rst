@@ -1,5 +1,6 @@
 ---
 title: Php.net style API documentation lookups
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

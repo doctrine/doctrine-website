@@ -1,5 +1,6 @@
 ---
 title: Security releases 2.0.8 and 2.1.2
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

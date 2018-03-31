@@ -1,5 +1,6 @@
 ---
 title: DBAL 2.3.5 released
+menuSlug: blog
 authorName: Steve Müller
 authorEmail: deeky666@googlemail.com
 categories: []

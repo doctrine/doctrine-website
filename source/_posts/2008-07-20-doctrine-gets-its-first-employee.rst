@@ -1,5 +1,6 @@
 ---
 title: Doctrine gets its first employee
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Sensio Labs Training Sessions
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

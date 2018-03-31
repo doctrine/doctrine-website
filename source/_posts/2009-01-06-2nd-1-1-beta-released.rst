@@ -1,5 +1,6 @@
 ---
 title: 2nd 1.1 Beta Released!
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

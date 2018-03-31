@@ -1,5 +1,6 @@
 ---
 title: Using Doctrine with Zend Framework
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

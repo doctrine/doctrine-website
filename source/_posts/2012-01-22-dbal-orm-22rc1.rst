@@ -1,5 +1,6 @@
 ---
 title: DBAL and ORM 2.2 Release candidates
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]

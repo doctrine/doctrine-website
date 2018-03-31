@@ -1,5 +1,6 @@
 ---
 title: Doctrine 0.9.1 / 0.10.1 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

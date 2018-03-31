@@ -1,5 +1,6 @@
 ---
 title: Getting started with Doctrine and symfony 1.1
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

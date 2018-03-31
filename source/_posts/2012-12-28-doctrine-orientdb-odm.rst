@@ -1,5 +1,6 @@
 ---
 title: Doctrine OrientDB Object Document Mapper
+menuSlug: blog
 authorName: odino 
 authorEmail: 
 categories: []

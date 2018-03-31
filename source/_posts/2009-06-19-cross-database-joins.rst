@@ -1,5 +1,6 @@
 ---
 title: Cross Database Joins
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

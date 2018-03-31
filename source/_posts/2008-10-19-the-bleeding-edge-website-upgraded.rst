@@ -1,5 +1,6 @@
 ---
 title: The Bleeding Edge: Website Upgraded
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

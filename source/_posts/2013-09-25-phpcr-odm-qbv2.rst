@@ -1,5 +1,6 @@
 ---
 title: PHPCR ODM QueryBuilder v2
+menuSlug: blog
 authorName: dantleech 
 authorEmail: 
 categories: []

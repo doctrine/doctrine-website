@@ -1,5 +1,6 @@
 ---
 title: Doctrine Lazy Loading
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

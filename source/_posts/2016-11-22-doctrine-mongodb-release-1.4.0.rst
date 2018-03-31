@@ -1,5 +1,6 @@
 ---
 title: Doctrine MongoDB 1.4.0
+menuSlug: blog
 authorName: Andreas Braun
 authorEmail: alcaeus@alcaeus.org
 categories: []

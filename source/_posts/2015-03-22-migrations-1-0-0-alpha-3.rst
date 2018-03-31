@@ -1,5 +1,6 @@
 ---
 title: Doctrine Migrations 1.0.0-alpha3 Pre-Release
+menuSlug: blog
 authorName: Michael Simonson
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: A Doctrine Triple Play
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

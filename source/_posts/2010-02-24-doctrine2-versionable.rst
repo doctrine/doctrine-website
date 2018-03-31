@@ -1,5 +1,6 @@
 ---
 title: A re-usable Versionable Behavior for Doctrine 2
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

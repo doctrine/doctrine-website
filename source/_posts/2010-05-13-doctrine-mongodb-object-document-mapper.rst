@@ -1,5 +1,6 @@
 ---
 title: Doctrine MongoDB Object Document Mapper
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

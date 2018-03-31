@@ -1,5 +1,6 @@
 ---
 title: MongoDB ODM: Query Builder API
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

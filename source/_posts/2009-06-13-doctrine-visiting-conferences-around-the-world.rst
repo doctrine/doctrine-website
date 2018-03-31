@@ -1,5 +1,6 @@
 ---
 title: Doctrine visiting conferences around the world
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

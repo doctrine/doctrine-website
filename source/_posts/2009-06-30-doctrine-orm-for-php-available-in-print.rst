@@ -1,5 +1,6 @@
 ---
 title: Doctrine ORM for PHP available in print
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

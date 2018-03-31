@@ -1,5 +1,6 @@
 ---
 title: Doctrine Inflector release 1.1.0
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

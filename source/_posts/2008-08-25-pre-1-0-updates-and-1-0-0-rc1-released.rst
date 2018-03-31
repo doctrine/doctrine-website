@@ -1,5 +1,6 @@
 ---
 title: Pre 1.0 Updates and 1.0.0-RC1 Released
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]

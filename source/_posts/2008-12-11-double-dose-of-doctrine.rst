@@ -1,5 +1,6 @@
 ---
 title: Double Dose of Doctrine
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Doctrine 1.0 and symfony 1.2
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

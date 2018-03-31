@@ -1,5 +1,6 @@
 ---
 title: Doctrine Common 2.5.0 Release
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

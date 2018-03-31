@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2 First Stable Release
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]

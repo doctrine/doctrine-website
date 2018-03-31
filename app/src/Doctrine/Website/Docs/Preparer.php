@@ -15,6 +15,7 @@ class Preparer
 layout: default
 indexed: true
 title: %s
+menuSlug: projects
 docsSlug: %s
 docsPage: true
 docsIndex: %s

@@ -1,5 +1,6 @@
 ---
 title: New Design
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

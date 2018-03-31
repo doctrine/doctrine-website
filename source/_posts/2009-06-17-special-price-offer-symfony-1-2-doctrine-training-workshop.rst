@@ -1,5 +1,6 @@
 ---
 title: Special Price Offer: Symfony 1.2 + Doctrine Training Workshop
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

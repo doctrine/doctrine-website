@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2.1 Beta and Backwards Compatibility Competition
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

@@ -1,5 +1,6 @@
 ---
 title: Doctrine Instantiator 1.0.0 released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

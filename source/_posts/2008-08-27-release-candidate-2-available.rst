@@ -1,5 +1,6 @@
 ---
 title: Release Candidate 2 Available
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

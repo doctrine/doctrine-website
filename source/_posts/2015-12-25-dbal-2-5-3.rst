@@ -1,5 +1,6 @@
 ---
 title: Doctrine DBAL 2.5.3 Released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: [release]

@@ -1,5 +1,6 @@
 ---
 title: Jira Issues Migration
+menuSlug: blog
 authorName: 
 authorEmail: 
 categories: []

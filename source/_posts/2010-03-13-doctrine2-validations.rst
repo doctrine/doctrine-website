@@ -1,5 +1,6 @@
 ---
 title: Validation of Doctrine 2 Entities
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

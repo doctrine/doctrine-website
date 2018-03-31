@@ -1,5 +1,6 @@
 ---
 title: Wow! 1000 tickets
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

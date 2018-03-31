@@ -1,5 +1,6 @@
 ---
 title: Doctrine Statistics
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

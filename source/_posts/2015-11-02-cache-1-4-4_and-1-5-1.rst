@@ -1,5 +1,6 @@
 ---
 title: Cache 1.4.4 and 1.5.1 Released
+menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: [release]

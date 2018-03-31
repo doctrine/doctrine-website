@@ -1,5 +1,6 @@
 ---
 title: What's new in Doctrine 1.2
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

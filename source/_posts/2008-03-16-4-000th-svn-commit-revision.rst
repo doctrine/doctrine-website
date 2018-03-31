@@ -1,5 +1,6 @@
 ---
 title: 4,000th svn commit/revision
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

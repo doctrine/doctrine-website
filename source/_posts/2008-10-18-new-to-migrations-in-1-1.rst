@@ -1,5 +1,6 @@
 ---
 title: New to Migrations in 1.1
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

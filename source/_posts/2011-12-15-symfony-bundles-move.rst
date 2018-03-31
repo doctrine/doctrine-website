@@ -1,5 +1,6 @@
 ---
 title: Our Symfony Bundles move to Doctrine organization
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []

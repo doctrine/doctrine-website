@@ -1,5 +1,6 @@
 ---
 title: Doctrine Performance Revisited
+menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []

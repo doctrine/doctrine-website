@@ -1,5 +1,6 @@
 ---
 title: ORM is Not a Choice
+menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []

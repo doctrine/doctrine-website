@@ -1,5 +1,6 @@
 ---
 title: Doctrine 2: Give me my constructor back
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

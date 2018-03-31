@@ -1,5 +1,6 @@
 ---
 title: An ORM/ODM Base Class
+menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []

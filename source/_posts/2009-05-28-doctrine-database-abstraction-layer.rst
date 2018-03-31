@@ -1,5 +1,6 @@
 ---
 title: Doctrine Database Abstraction Layer
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

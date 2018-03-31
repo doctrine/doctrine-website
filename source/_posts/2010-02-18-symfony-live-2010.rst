@@ -1,5 +1,6 @@
 ---
 title: Symfony Live 2010
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

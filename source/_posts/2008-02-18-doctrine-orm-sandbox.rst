@@ -1,5 +1,6 @@
 ---
 title: Doctrine ORM Sandbox
+menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []

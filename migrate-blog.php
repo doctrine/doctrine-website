@@ -3,6 +3,7 @@
 $template = <<<TEMPLATE
 ---
 title: %s
+menuSlug: blog
 authorName: %s
 authorEmail: %s
 categories: [%s]
