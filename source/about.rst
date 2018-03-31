@@ -4,14 +4,6 @@ title: About
 menuSlug: about
 ---
 
-.. raw:: html
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ site.url }}/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">About</li>
-        </ol>
-    </nav>
-
 The Doctrine Project is the home of a selected set of PHP libraries primarily focused
 on providing persistence services and related functionality. Its prize projects are a
 Object Relational Mapper and the Database Abstraction Layer it is built on top of.

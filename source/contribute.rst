@@ -4,14 +4,6 @@ title: Contribute
 menuSlug: contribute
 ---
 
-.. raw:: html
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ site.url }}/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Contribute</li>
-        </ol>
-    </nav>
-
 Welcome to the Doctrine Project Contributors Guide. This
 documentation aims to document how contributors and collaborators
 should work when using git, development workflow, build process,

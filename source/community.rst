@@ -4,14 +4,6 @@ title: Community
 menuSlug: community
 ---
 
-.. raw:: html
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ site.url }}/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Community</li>
-        </ol>
-    </nav>
-
 Want to contribute?
 -------------------
 
