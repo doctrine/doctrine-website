@@ -8,7 +8,19 @@ body {
 }
 
 body > .container {
-    padding: 20px 15px 20px;
+    padding: 80px 15px 20px;
+    margin-top: 20px;
+}
+
+.section-anchor {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+}
+
+.breadcrumbs {
+    width: 100%;
 }
 
 .navbar {
@@ -58,7 +70,7 @@ em {
 }
 
 .bg-doctrine-light-blue {
-    background-color: #1F2E4B;
+    background-color: #2e6bc8;
 }
 
 .bg-doctrine-dark-blue {
@@ -87,6 +99,80 @@ em {
     vertical-align: middle;
 }
 
+.left-sidebar {
+    padding: 0;
+    border-right: 1px dashed #ccc;
+}
+
+/** 1st Level */
+.left-sidebar .toc ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.left-sidebar .toc ul li {
+    line-height: 40px;
+    white-space: nowrap;
+    border-bottom: 1px dashed #ccc;
+    padding-left: 5px;
+}
+
+.left-sidebar .toc ul li a {
+    width: 100%;
+    display: block;
+    color: #333333;
+}
+
+.left-sidebar .toc ul li.opened {
+    font-weight: bold;
+    background-color: #f5f5f5;
+}
+
+/** 2nd Level */
+.left-sidebar .toc ul ul {
+    margin-top: 10px;
+    margin-left: 16px;
+    display: none;
+}
+
+.left-sidebar .toc ul ul li {
+    font-size: 12px;
+    line-height: 20px;
+    border-bottom: none;
+}
+
+.left-sidebar .toc ul ul li.opened {
+    background: none;
+}
+
+.left-sidebar .toc ul ul li a {
+    color: #FA6A3C;
+}
+
+/** 3rd Level */
+.left-sidebar .toc ul ul ul {
+    margin-top: 0;
+}
+
+.left-sidebar .toc ul ul ul li.opened {
+    background: none;
+}
+
+.left-sidebar .toc ul.closed-ul {
+    display: none;
+}
+
+.left-sidebar .toc ul.opened-ul {
+    display: block;
+}
+
+.right-content {
+    overflow-y: auto;
+    height: 1000px;
+}
+
 #back-to-top {
     display: none;
     position: fixed;
@@ -105,4 +191,41 @@ em {
 
 #back-to-top:hover {
     background-color: #555;
+}
+
+@media (max-width: 576px) {
+    h1.section-header {
+        font-size: 25px;
+    }
+
+    h2.section-header {
+        font-size: 20px;
+    }
+
+    h3.section-header {
+        font-size: 15px;
+    }
+
+    h4.section-header {
+        font-size: 10px;
+    }
+}
+
+
+@media (min-width: 576px) and (max-width: 768px) {
+    h1.section-header {
+        font-size: 30px;
+    }
+
+    h2.section-header {
+        font-size: 25px;
+    }
+
+    h3.section-header {
+        font-size: 20px;
+    }
+
+    h3.section-header {
+        font-size: 15px;
+    }
 }

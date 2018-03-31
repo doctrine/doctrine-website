@@ -48,6 +48,27 @@
 
         {% block head_scripts '' %}
 
+        <script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+        <script src="{{ site.url }}/components/highlightjs/highlight.pack.js?{{ site.cacheBuster }}"></script>
+        <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
+
+        <script src="{{ site.url }}/js/site.js?{{ site.cacheBuster }}"></script>
+
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
         <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
@@ -55,7 +76,7 @@
     <body>
 
         <header>
-            <nav class="navbar navbar-expand-md navbar-dark border-bottom">
+            <nav class="navbar navbar-expand-md navbar-dark border-bottom fixed-top">
                 <a class="navbar-brand text-hide" href="{{ site.url }}/"><img src="{{ site.url }}/images/doctrine-logo.svg" />{{ site.title }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -100,14 +121,14 @@
 
         <!-- Begin page content -->
         <main role="main" class="container">
-            {% block content_wrapper %}
+            <div class="row">
                 {% if page.docsSlug %}
                     {% set project = get_project(page.docsSlug) %}
                 {% endif %}
 
                 {# Documentation TOC #}
                 {% if page.docsIndex is defined and page.docsIndex and project is defined %}
-                    <nav aria-label="breadcrumb">
+                    <nav class="breadcrumbs d-none d-sm-block d-md-block d-lg-block d-xl-block" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/">Projects</a></li>
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.shortName }}</a></li>
@@ -118,7 +139,7 @@
 
                 {# Documentation Page #}
                 {% if page.docsPage is defined and page.docsPage == true and page.docsIndex == false and project is defined %}
-                    <nav aria-label="breadcrumb">
+                    <nav class="breadcrumbs d-none d-sm-block d-md-block d-lg-block d-xl-block" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/">Projects</a></li>
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.shortName }}</a></li>
@@ -127,19 +148,37 @@
                         </ol>
                     </nav>
                 {% endif %}
+            </div>
 
-                {% if project is defined and page.docsVersion is defined %}
-                    <ul class="list-inline float-right">
-                        {% for version in project.versions %}
-                            <li class="list-inline-item mr-0">
-                                <a href="{{ get_url_version(version, page.url, page.docsVersion) }}" class="badge {{ version.slug == page.docsVersion ? 'badge-primary' : 'badge-secondary' }}">{{ version.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+            <div class="row">
+                {% if page.docsPage %}
+                    <div class="left-sidebar col-3 d-none d-lg-block d-xl-block rounded">
+                        {% block sidebar '' %}
+                    </div>
                 {% endif %}
 
-                {% block content '' %}
-            {% endblock %}
+                {% if page.docsPage %}
+                <div class="right-content col-xl-9 col-lg-9 col-sm-12 col-xs-12">
+                {% else %}
+                <div class="right-content col-12">
+                {% endif %}
+
+                    {% block content_wrapper %}
+                        {% if project is defined and page.docsVersion is defined %}
+                            <ul class="list-inline">
+                                {% for version in project.versions %}
+                                    <li class="list-inline-item mr-0">
+                                        <a href="{{ get_url_version(version, page.url, page.docsVersion) }}" class="project-version-switcher badge {{ version.slug == page.docsVersion ? 'badge-primary' : 'badge-secondary' }}">{{ version.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        {% block content '' %}
+                        <div style="height: 10000px"></div>
+                    {% endblock %}
+                </div>
+            </div>
         </main>
 
         <footer class="footer">
@@ -168,25 +207,6 @@
         </script>
 
         <button onclick="topFunction()" id="back-to-top" title="Go to top">Top</button>
-
-        <script
-          src="https://code.jquery.com/jquery-3.3.1.min.js"
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script>
-
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-
-        <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-
-        <script src="{{ site.url }}/components/highlightjs/highlight.pack.js?{{ site.cacheBuster }}"></script>
-        <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
-        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
 
         {% block scripts '' %}
 

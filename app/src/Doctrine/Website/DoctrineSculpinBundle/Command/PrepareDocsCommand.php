@@ -57,7 +57,7 @@ class PrepareDocsCommand extends ContainerAwareCommand
                     $version
                 );
 
-                $preparer->prepareGit($output);
+                //$preparer->prepareGit($output);
 
                 if (!$preparer->versionHasDocs($project, $version)) {
                     continue;

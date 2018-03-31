@@ -18,23 +18,31 @@ class ToctreeDirective extends Directive
         $kernel = $parser->getKernel();
         $files = array();
 
+        // This sucks. I don't even think it works 100% right.
         foreach (explode("\n", $node->getValue()) as $file) {
             $file = trim($file);
 
             if (isset($options['glob']) && strpos($file, '*') !== false) {
 
-                $rootPath = rtrim($environment->absoluteRelativePath(''), '/');
-                $filePath = $rootPath.'/'.$file;
+                $currentDirPath = rtrim($environment->absoluteRelativePath(''), '/');
+                $rootPath = rtrim(str_replace($environment->getDirName(), '', $currentDirPath), '/');
 
-                $find = $this->recursiveGlob($filePath);
+                $findPath = $rootPath.$file;
+
+                $find = $this->recursiveGlob($findPath);
 
                 foreach ($find as $f) {
-                    $f = str_replace($rootPath.'/', '', $f);
+                    if (is_dir($f)) {
+                        continue;
+                    }
+
+                    $f = str_replace($currentDirPath.'/', '', $f);
                     $f = str_replace('.rst', '', $f);
 
                     $environment->addDependency($f);
                     $files[] = $f;
                 }
+
             } elseif ($file) {
                 $environment->addDependency($file);
                 $files[] = $file;

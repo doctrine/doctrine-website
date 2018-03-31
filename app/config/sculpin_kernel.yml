@@ -31,6 +31,14 @@ services:
         tags:
             - { name: twig.extension }
 
+    doctrine.twig.docs.extension:
+        class: Doctrine\Website\Twig\DocsExtension
+        public: false
+        arguments:
+            - '@doctrine.project.repository'
+        tags:
+            - { name: twig.extension }
+
     doctrine.project.factory:
         class: Doctrine\Website\Projects\ProjectFactory
         public: false

@@ -10,6 +10,30 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Preparer
 {
+    private const RST_TEMPLATE = <<<TEMPLATE
+.. raw:: html
+    {% block sidebar %}
+
+.. toctree::
+    :depth: 3
+    :glob:
+
+    *
+
+.. raw:: html
+    {% endblock %}
+
+
+.. raw:: html
+    {% block content %}
+
+{{ content }}
+
+.. raw:: html
+    {% endblock %}
+
+TEMPLATE;
+
     private const SCULPIN_TEMPLATE = <<<TEMPLATE
 ---
 layout: default
@@ -119,11 +143,15 @@ TEMPLATE;
             // fix incorrect casing of note
             $content = str_replace('.. Note::', '.. note::', $content);
 
-            // TODO grab contents out of <body>
+            // fix :maxdepth: to :depth:
+            $content = str_replace(':maxdepth:', ':depth:', $content);
 
-            $title = explode("\n", $content)[0];
+            // .. include:: toc.rst
+            $content = str_replace('.. include:: toc.rst', '', $content);
 
-            file_put_contents($newPath, $content);
+            $newContent = str_replace('{{ content }}', $content, self::RST_TEMPLATE);
+
+            file_put_contents($newPath, $newContent);
         }
     }
 
@@ -158,17 +186,27 @@ TEMPLATE;
             // modify anchors and headers
             $content = preg_replace(
                 '/<a id="(.*)"><\/a><h(\d)>(.*)<\/h(\d)>/',
-                '<h$2 class="section-header" id="$1"><a href="#$1">$3<i class="fas fa-link"></i></a></h$2>',
+                '<a class="section-anchor" name="$1"></a><h$2 class="section-header"><a href="#$1">$3<i class="fas fa-link"></i></a></h$2>',
                 $content
             );
 
-            $newContent = sprintf(self::SCULPIN_TEMPLATE,
-                $title,
-                $this->project->getDocsSlug(),
-                strpos($file, 'index.html') !== false ? 'true' : 'false',
-                $this->version->getSlug(),
-                $content
-            );
+            // grab the html out of the <body> because that is all we need
+            // sculpin will wrap it with the layout
+            preg_match("/<body>(.*)<\/body>/s", $content, $matches);
+
+            $content = isset($matches[1]) ? $matches[1] : $content;
+
+            if (strpos($file, '.html') !== false) {
+                $newContent = sprintf(self::SCULPIN_TEMPLATE,
+                    $title,
+                    $this->project->getDocsSlug(),
+                    strpos($file, 'index.html') !== false ? 'true' : 'false',
+                    $this->version->getSlug(),
+                    $content
+                );
+            } else {
+                $newContent = $content;
+            }
 
             file_put_contents($file, $newContent);
         }

@@ -19,6 +19,11 @@ class RstBuilder extends Builder
             $this->display(' -> Parsing '.$file.'...');
             // Process the file
             $rst = $this->getRST($file);
+
+            if (!file_exists($rst)) {
+                continue;
+            }
+
             $parser = new Parser(null, $this->kernel);
 
             $environment = $parser->getEnvironment();
@@ -31,12 +36,6 @@ class RstBuilder extends Builder
             foreach ($this->beforeHooks as $hook) {
                 $hook($parser);
             }
-
-            // Add this back/remove this class once docs are fixed
-            // if (!file_exists($rst)) {
-            //     $this->errorManager->error('Can\'t parse the file '.$rst);
-            //     continue;
-            // }
 
             $document = $this->documents[$file] = $parser->parseFile($rst);
 
