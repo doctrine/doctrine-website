@@ -80,7 +80,7 @@ class BuildWebsiteCommand extends ContainerAwareCommand
         if ($publish) {
             $output->writeln(sprintf('Publishing website for <info>%s</info> environment.', $kernelEnv));
 
-            passthru(sprintf('cd %s && git add . && git commit -m"New version of Doctrine website" && git push origin master', $buildDir));
+            passthru(sprintf('cd %s && git add . --all && git commit -m"New version of Doctrine website" && git push origin master', $buildDir));
         }
     }
 }
