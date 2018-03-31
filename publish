@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./vendor/bin/sculpin doctrine:build-website /data/doctrine-website-sculpin-build-$1 --env=$1 --publish

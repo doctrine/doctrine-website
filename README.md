@@ -32,6 +32,14 @@ Now you are ready to build the website for the first time:
 
 Setup `lcl.doctrine-project.org` locally and point your webserver at `/data/doctrine-website-sculpin-build-dev` to see the website:
 
+## Watch for Changes
+
+You can watch for changes in the source code and automatically build the website:
+
+    ./vendor/bin/sculpin doctrine:watch /data/doctrine-website-sculpin-build-dev
+
+The browser will automatically refresh after the build finishes.
+
 ## Build the Website for Production
 
 Now to make a production build:
@@ -41,6 +49,23 @@ Now to make a production build:
 To publish the new version pass the `--publish` option:
 
     ./vendor/bin/sculpin doctrine:build-website /data/doctrine-website-sculpin-build-prod --env=prod --publish
+
+## Shortcuts
+
+Assuming you put all your data in the `/data` path you can use these shortcuts for building and publishing:
+
+    ./build dev
+    ./build prod
+    ./build staging
+
+The `prod` environment publishes to `new.doctrine-project.org` and the staging environment publishes to `staging.doctrine-project.org`. You can only publish the `prod` and `staging` environments.
+
+    ./publish prod
+    ./publish staging
+
+Watch for changes:
+
+    ./watch
 
 ## TODO
 

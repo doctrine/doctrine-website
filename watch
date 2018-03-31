@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./vendor/bin/sculpin doctrine:watch /data/doctrine-website-sculpin-build-dev
