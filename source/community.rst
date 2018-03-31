@@ -4,6 +4,9 @@ title: Community
 menuSlug: community
 ---
 
+Community
+=========
+
 Want to contribute?
 -------------------
 

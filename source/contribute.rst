@@ -4,6 +4,9 @@ title: Contribute
 menuSlug: contribute
 ---
 
+Contribute
+==========
+
 Welcome to the Doctrine Project Contributors Guide. This
 documentation aims to document how contributors and collaborators
 should work when using git, development workflow, build process,

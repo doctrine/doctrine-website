@@ -109,7 +109,6 @@
                 {% if page.docsIndex is defined and page.docsIndex and project is defined %}
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ site.url }}/">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/">Projects</a></li>
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.shortName }}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Documentation</li>
@@ -121,7 +120,6 @@
                 {% if page.docsPage is defined and page.docsPage == true and page.docsIndex == false and project is defined %}
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ site.url }}/">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/">Projects</a></li>
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.shortName }}</a></li>
                             <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ page.docsVersion }}/">Documentation</a></li>
