@@ -51,6 +51,19 @@ class BuildWebsiteCommand extends ContainerAwareCommand
             throw new InvalidArgumentException(sprintf('The build directory %s does not exist.', $buildDir));
         }
 
+        // if we are publishing, increment the cacheBuster number in the sculpin_site.yml file
+        if ($publish) {
+            $sculpinSiteFile = $kernelRootDir.'/config/sculpin_site.yml';
+
+            $sculpinSiteFileContents = file_get_contents($sculpinSiteFile);
+
+            $sculpinSiteFileContents = preg_replace_callback('/cacheBuster: (\d+)/', function(array $match) {
+                return 'cacheBuster: '.($match[1] + 1);
+            }, $sculpinSiteFileContents);
+
+            file_put_contents($sculpinSiteFile, $sculpinSiteFileContents);
+        }
+
         $output->writeln(sprintf('Building website for <info>%s</info> environment.', $kernelEnv));
 
         $rootDir = realpath($kernelRootDir.'/..');
