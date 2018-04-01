@@ -363,7 +363,7 @@ parameters:
             docsSlug: doctrine-lexer
             composerPackageName: doctrine/lexer
             repositoryName: lexer
-            hasDocs: false
+            hasDocs: true
             docsRepositoryName: lexer
             docsPath: /docs
             description: Base library for a lexer that can be used in Top-Down, Recursive Descent Parsers.
@@ -372,9 +372,3 @@ parameters:
                     name: master
                     branchName: master
                     slug: latest
-                -
-                    name: 1.0
-                    branchName: 1.0
-                    slug: 1.0
-                    current: true
-
