@@ -2,6 +2,15 @@ var Sidebar = function() {
     this.loadCurrentDocsMenu();
     this.initVersionLinks();
 
+    $('[data-toggle="offcanvas"]').click(function () {
+        $('.row-offcanvas').toggleClass('active')
+        $('.sidebar').toggle();
+    });
+
+    $('.toc-item').on('click', function() {
+        $('.toc-toggle').click();
+    });
+
     var self = this;
 
     window.onhashchange = function() {

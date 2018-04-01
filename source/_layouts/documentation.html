@@ -1,10 +1,10 @@
-{% extends 'default.html' %}
+{% extends 'layout.html' %}
 
 {% block container %}
     <div class="container-fluid">
-        <div class="row">
+        <div class="row row-offcanvas row-offcanvas-right">
             {% if page.docsPage %}
-                <nav class="col-md-3 d-none d-md-block bg-light sidebar">
+                <nav class="col-md-3 d-sm-block bg-light sidebar sidebar-offcanvas" id="sidebar">
                     <div class="sidebar-sticky">
                         {% block sidebar '' %}
                     </div>
@@ -44,6 +44,8 @@
                 <div class="row">
                     <div class="col-12">
                         {% block content_wrapper %}
+                            <button type="button" class="btn btn-primary btn-sm float-right toc-toggle" data-toggle="offcanvas" id="toc-toggle">Table of Contents</button>
+
                             {% if project is defined and page.docsVersion is defined %}
                                 <ul class="list-inline">
                                     {% for version in project.versions %}
