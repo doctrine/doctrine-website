@@ -45,6 +45,10 @@ class PrepareDocsCommand extends ContainerAwareCommand
 
         foreach ($projects as $project) {
             if (!$project->hasDocs()) {
+                $output->writeln(sprintf('<warning>Skipping %s because it does not have any docs.</warning>',
+                    $project->getSlug()
+                ));
+
                 continue;
             }
 
