@@ -54,7 +54,11 @@ Sidebar.prototype.getCurrentDocsMenu = function() {
     var lastPart = currentUrl.substr(currentUrl.lastIndexOf('/') + 1);
 
     if (!lastPart) {
-        return;
+        lastPart = 'index.html';
+    }
+
+    if (lastPart[0] === '#') {
+        lastPart = 'index.html' + lastPart;
     }
 
     if (!window.location.hash) {
@@ -62,6 +66,8 @@ Sidebar.prototype.getCurrentDocsMenu = function() {
     }
 
     var id = lastPart.replaceAll('#', '-').replaceAll('.', '-');
+
+    console.log(id);
 
     return $('#' + id);
 };
