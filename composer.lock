@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a898fa6cf30562723221bf390ec17db9",
+    "hash": "b6e1751aa095c80413355c02318319d1",
+    "content-hash": "43af3d4c72389f02aae2c76218491ea6",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -54,7 +55,7 @@
             ],
             "description": "Algolia Search API Client for PHP",
             "homepage": "https://github.com/algolia/algoliasearch-client-php",
-            "time": "2018-03-02T13:24:10+00:00"
+            "time": "2018-03-02 13:24:10"
         },
         {
             "name": "caseyamcl/toc",
@@ -107,7 +108,7 @@
                 "TOC",
                 "table of contents"
             ],
-            "time": "2018-03-23T18:43:25+00:00"
+            "time": "2018-03-23 18:43:25"
         },
         {
             "name": "cocur/slugify",
@@ -170,7 +171,7 @@
                 "slug",
                 "slugify"
             ],
-            "time": "2016-02-11T09:53:46+00:00"
+            "time": "2016-02-11 09:53:46"
         },
         {
             "name": "components/highlightjs",
@@ -212,7 +213,7 @@
                 }
             ],
             "description": "Highlight.js highlights syntax in code examples on blogs, forums and in fact on any web pages.",
-            "time": "2017-06-04T08:08:15+00:00"
+            "time": "2017-06-04 08:08:15"
         },
         {
             "name": "composer/ca-bundle",
@@ -268,7 +269,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2018-03-29T19:57:20+00:00"
+            "time": "2018-03-29 19:57:20"
         },
         {
             "name": "composer/composer",
@@ -345,7 +346,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2018-01-31T15:28:18+00:00"
+            "time": "2018-01-31 15:28:18"
         },
         {
             "name": "composer/semver",
@@ -407,7 +408,7 @@
                 "validation",
                 "versioning"
             ],
-            "time": "2016-08-30T16:08:34+00:00"
+            "time": "2016-08-30 16:08:34"
         },
         {
             "name": "composer/spdx-licenses",
@@ -468,7 +469,7 @@
                 "spdx",
                 "validator"
             ],
-            "time": "2018-01-31T13:17:27+00:00"
+            "time": "2018-01-31 13:17:27"
         },
         {
             "name": "dflydev/ant-path-matcher",
@@ -517,7 +518,7 @@
                 "path",
                 "pattern"
             ],
-            "time": "2012-12-03T05:03:00+00:00"
+            "time": "2012-12-03 05:03:00"
         },
         {
             "name": "dflydev/apache-mime-types",
@@ -572,7 +573,7 @@
                 "mime",
                 "mimetypes"
             ],
-            "time": "2013-05-14T02:02:01+00:00"
+            "time": "2013-05-14 02:02:01"
         },
         {
             "name": "dflydev/canal",
@@ -627,7 +628,7 @@
                 "mime",
                 "type"
             ],
-            "time": "2013-05-14T05:22:25+00:00"
+            "time": "2013-05-14 05:22:25"
         },
         {
             "name": "dflydev/dot-access-configuration",
@@ -687,7 +688,7 @@
                 "config",
                 "configuration"
             ],
-            "time": "2016-12-12T17:43:40+00:00"
+            "time": "2016-12-12 17:43:40"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -746,7 +747,7 @@
                 "dot",
                 "notation"
             ],
-            "time": "2017-01-20T21:14:22+00:00"
+            "time": "2017-01-20 21:14:22"
         },
         {
             "name": "dflydev/embedded-composer",
@@ -865,7 +866,7 @@
                 "placeholder",
                 "resolver"
             ],
-            "time": "2012-10-28T21:08:28+00:00"
+            "time": "2012-10-28 21:08:28"
         },
         {
             "name": "dflydev/symfony-finder-factory",
@@ -918,7 +919,7 @@
                 "finder",
                 "syfony"
             ],
-            "time": "2012-11-09T16:45:28+00:00"
+            "time": "2012-11-09 16:45:28"
         },
         {
             "name": "doctrine/inflector",
@@ -985,7 +986,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2014-12-20T21:24:13+00:00"
+            "time": "2014-12-20 21:24:13"
         },
         {
             "name": "evenement/evenement",
@@ -1033,51 +1034,7 @@
                 "event-dispatcher",
                 "event-emitter"
             ],
-            "time": "2017-07-17T17:39:19+00:00"
-        },
-        {
-            "name": "gregwar/rst",
-            "version": "v1.0.4",
-            "target-dir": "Gregwar/RST",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Gregwar/RST.git",
-                "reference": "c469724db46e86dbdef878fe5bb604ae77a59133"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/RST/zipball/c469724db46e86dbdef878fe5bb604ae77a59133",
-                "reference": "c469724db46e86dbdef878fe5bb604ae77a59133",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Gregwar\\RST": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Grégoire Passault",
-                    "email": "g.passault@gmail.com",
-                    "homepage": "http://www.gregwar.com/"
-                }
-            ],
-            "description": "PHP library to parse reStructuredText documents",
-            "homepage": "https://github.com/Gregwar/RST",
-            "keywords": [
-                "markup",
-                "parser",
-                "rst"
-            ],
-            "time": "2017-09-07T13:11:08+00:00"
+            "time": "2017-07-17 17:39:19"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -1143,7 +1100,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2018-02-14T22:26:30+00:00"
+            "time": "2018-02-14 22:26:30"
         },
         {
             "name": "knplabs/knp-menu",
@@ -1207,7 +1164,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2017-11-18T20:49:26+00:00"
+            "time": "2017-11-18 20:49:26"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1278,7 +1235,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-07-19T00:03:27+00:00"
+            "time": "2013-07-19 00:03:27"
         },
         {
             "name": "masterminds/html5",
@@ -1343,7 +1300,7 @@
                 "serializer",
                 "xml"
             ],
-            "time": "2017-09-04T12:26:28+00:00"
+            "time": "2017-09-04 12:26:28"
         },
         {
             "name": "michelf/php-markdown",
@@ -1389,7 +1346,7 @@
             "keywords": [
                 "markdown"
             ],
-            "time": "2018-01-15T00:49:33+00:00"
+            "time": "2018-01-15 00:49:33"
         },
         {
             "name": "netcarver/textile",
@@ -1442,7 +1399,7 @@
                 "plaintext",
                 "textile"
             ],
-            "time": "2014-01-02T09:39:06+00:00"
+            "time": "2014-01-02 09:39:06"
         },
         {
             "name": "psr/http-message",
@@ -1492,7 +1449,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06T14:39:51+00:00"
+            "time": "2016-08-06 14:39:51"
         },
         {
             "name": "psr/log",
@@ -1539,7 +1496,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "react/event-loop",
@@ -1581,7 +1538,7 @@
                 "asynchronous",
                 "event-loop"
             ],
-            "time": "2017-04-27T10:56:23+00:00"
+            "time": "2017-04-27 10:56:23"
         },
         {
             "name": "react/http",
@@ -1621,7 +1578,7 @@
             "keywords": [
                 "http"
             ],
-            "time": "2017-02-13T14:12:50+00:00"
+            "time": "2017-02-13 14:12:50"
         },
         {
             "name": "react/promise",
@@ -1667,7 +1624,7 @@
                 "promise",
                 "promises"
             ],
-            "time": "2017-03-25T12:08:31+00:00"
+            "time": "2017-03-25 12:08:31"
         },
         {
             "name": "react/socket",
@@ -1709,7 +1666,7 @@
             "keywords": [
                 "Socket"
             ],
-            "time": "2017-01-26T09:23:38+00:00"
+            "time": "2017-01-26 09:23:38"
         },
         {
             "name": "react/stream",
@@ -1753,7 +1710,7 @@
                 "pipe",
                 "stream"
             ],
-            "time": "2017-01-25T14:44:14+00:00"
+            "time": "2017-01-25 14:44:14"
         },
         {
             "name": "ringcentral/psr7",
@@ -1811,7 +1768,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2018-01-15T21:00:49+00:00"
+            "time": "2018-01-15 21:00:49"
         },
         {
             "name": "sculpin/sculpin",
@@ -1911,7 +1868,7 @@
                 "site",
                 "static"
             ],
-            "time": "2017-03-24T08:53:01+00:00"
+            "time": "2017-03-24 08:53:01"
         },
         {
             "name": "sculpin/sculpin-theme-composer-plugin",
@@ -1946,7 +1903,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2017-02-27T17:40:03+00:00"
+            "time": "2017-02-27 17:40:03"
         },
         {
             "name": "seld/cli-prompt",
@@ -1994,7 +1951,7 @@
                 "input",
                 "prompt"
             ],
-            "time": "2017-03-18T11:32:45+00:00"
+            "time": "2017-03-18 11:32:45"
         },
         {
             "name": "seld/jsonlint",
@@ -2043,7 +2000,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2018-01-24T12:46:19+00:00"
+            "time": "2018-01-24 12:46:19"
         },
         {
             "name": "seld/phar-utils",
@@ -2087,7 +2044,7 @@
             "keywords": [
                 "phra"
             ],
-            "time": "2015-10-13T18:44:15+00:00"
+            "time": "2015-10-13 18:44:15"
         },
         {
             "name": "symfony/config",
@@ -2143,7 +2100,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-21T19:03:25+00:00"
+            "time": "2018-01-21 19:03:25"
         },
         {
             "name": "symfony/console",
@@ -2204,7 +2161,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-26T15:33:21+00:00"
+            "time": "2018-02-26 15:33:21"
         },
         {
             "name": "symfony/debug",
@@ -2261,7 +2218,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-28T21:47:46+00:00"
+            "time": "2018-02-28 21:47:46"
         },
         {
             "name": "symfony/dependency-injection",
@@ -2324,7 +2281,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-19T16:23:47+00:00"
+            "time": "2018-02-19 16:23:47"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2384,7 +2341,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-11T16:53:59+00:00"
+            "time": "2018-02-11 16:53:59"
         },
         {
             "name": "symfony/filesystem",
@@ -2433,7 +2390,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-19T16:23:47+00:00"
+            "time": "2018-02-19 16:23:47"
         },
         {
             "name": "symfony/finder",
@@ -2482,7 +2439,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-05T18:27:59+00:00"
+            "time": "2018-03-05 18:27:59"
         },
         {
             "name": "symfony/http-foundation",
@@ -2535,7 +2492,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-08T20:43:43+00:00"
+            "time": "2017-01-08 20:43:43"
         },
         {
             "name": "symfony/http-kernel",
@@ -2618,7 +2575,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-05T19:06:26+00:00"
+            "time": "2018-03-05 19:06:26"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2677,7 +2634,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-01-30T19:27:44+00:00"
+            "time": "2018-01-30 19:27:44"
         },
         {
             "name": "symfony/process",
@@ -2726,7 +2683,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-12T17:44:58+00:00"
+            "time": "2018-02-12 17:44:58"
         },
         {
             "name": "symfony/yaml",
@@ -2775,7 +2732,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:36:31+00:00"
+            "time": "2018-01-03 07:36:31"
         },
         {
             "name": "twig/extensions",
@@ -2831,7 +2788,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2017-06-08T18:19:53+00:00"
+            "time": "2017-06-08 18:19:53"
         },
         {
             "name": "twig/twig",
@@ -2896,7 +2853,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-03-20T04:25:58+00:00"
+            "time": "2018-03-20 04:25:58"
         },
         {
             "name": "webignition/disallowed-character-terminated-string",
@@ -2937,7 +2894,7 @@
                 "string",
                 "terminated"
             ],
-            "time": "2012-07-16T21:29:50+00:00"
+            "time": "2012-07-16 21:29:50"
         },
         {
             "name": "webignition/internet-media-type",
@@ -2988,7 +2945,7 @@
                 "media type",
                 "media-type"
             ],
-            "time": "2018-03-12T14:54:00+00:00"
+            "time": "2018-03-12 14:54:00"
         },
         {
             "name": "webignition/quoted-string",
@@ -3035,7 +2992,7 @@
                 "parser",
                 "quoted-string"
             ],
-            "time": "2017-05-11T11:41:31+00:00"
+            "time": "2017-05-11 11:41:31"
         },
         {
             "name": "webignition/string-parser",
@@ -3082,7 +3039,7 @@
                 "parser",
                 "string"
             ],
-            "time": "2017-05-11T10:04:12+00:00"
+            "time": "2017-05-11 10:04:12"
         }
     ],
     "packages-dev": [],

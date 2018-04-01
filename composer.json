@@ -18,8 +18,7 @@
       "kriswallsmith/assetic": "1.1.2",
       "components/highlightjs": "^9.7",
       "algolia/algoliasearch-client-php": "~1.25.0",
-      "caseyamcl/toc": "^1.2",
-      "gregwar/rst": "^1.0"
+      "caseyamcl/toc": "^1.2"
     },
     "config": {
         "component-dir": "source/components",
@@ -36,7 +35,8 @@
         "classmap": ["component-manager.php"],
         "psr-0": {
             "Doctrine": "app/src/",
-            "Timbroder": "app/src/"
+            "Timbroder": "app/src/",
+            "Gregwar": "app/src/"
         }
     }
 }
