@@ -31,7 +31,7 @@ class PrepareDocsCommand extends ContainerAwareCommand
         $projectsPath = $input->getArgument('dir');
 
         if (!$projectsPath) {
-            throw new InvalidArgumentException('You must pass the --dir option to configure ');
+            throw new InvalidArgumentException('You must pass the directory argument ');
         }
 
         if (!is_dir($projectsPath)) {
