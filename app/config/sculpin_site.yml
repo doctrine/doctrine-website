@@ -1,7 +1,7 @@
 # The contents of this file are parsed and made available as
 # via `site.*`. So for example, {{ site.title }} can be used
 # in a template to get the contents of the `title` key.
-cacheBuster: 43
+cacheBuster: 44
 title: Doctrine
 subtitle: PHP Database Tools
 url: http://lcl.doctrine-project.org:8080
