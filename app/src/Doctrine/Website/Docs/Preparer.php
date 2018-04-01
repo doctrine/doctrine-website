@@ -36,7 +36,7 @@ TEMPLATE;
 
     private const SCULPIN_TEMPLATE = <<<TEMPLATE
 ---
-layout: default
+layout: documentation
 indexed: true
 title: %s
 menuSlug: projects
@@ -128,7 +128,13 @@ TEMPLATE;
         $files = $this->findFiles($this->getProjectDocsPath().'/en');
 
         foreach ($files as $file) {
+            // skip non .rst files
             if (strpos($file, '.rst') === false) {
+                continue;
+            }
+
+            // skip toc.rst
+            if (strpos($file, 'toc.rst') !== false) {
                 continue;
             }
 
@@ -186,7 +192,7 @@ TEMPLATE;
             // modify anchors and headers
             $content = preg_replace(
                 '/<a id="(.*)"><\/a><h(\d)>(.*)<\/h(\d)>/',
-                '<a class="section-anchor" name="$1"></a><h$2 class="section-header"><a href="#$1">$3<i class="fas fa-link"></i></a></h$2>',
+                '<a class="section-anchor" id="$1" name="$1"></a><h$2 class="section-header"><a href="#$1">$3<i class="fas fa-link"></i></a></h$2>',
                 $content
             );
 

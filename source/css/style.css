@@ -8,14 +8,14 @@ body {
 }
 
 body > .container {
-    padding: 80px 15px 20px;
+    padding: 0 15px 20px;
     margin-top: 20px;
 }
 
 .section-anchor {
     display: block;
     position: relative;
-    top: -100px;
+    top: -60px;
     visibility: hidden;
 }
 
@@ -27,6 +27,8 @@ body > .container {
     background: linear-gradient(-90deg, #2C374C, #1F2E4B);
     color: white;
     border-top: solid 5px #2e6bc8;
+    padding: 0 0 0 30px;
+    min-height: 50px;
 }
 
 .navbar a:hover {
@@ -34,7 +36,100 @@ body > .container {
 }
 
 .navbar-brand img {
-    width: 40px;
+    width: 30px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+    height: calc(100vh - 50px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 5px;
+}
+
+/** 1st Level */
+.sidebar-sticky .toc ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.sidebar-sticky .toc ul li {
+    line-height: 40px;
+    white-space: nowrap;
+    border-bottom: 1px dashed #ccc;
+    padding-left: 10px;
+}
+
+.sidebar-sticky .toc ul li a {
+    width: 100%;
+    display: block;
+    color: #333333;
+}
+
+.sidebar-sticky .toc ul li.opened {
+    font-weight: bold;
+    background-color: #ccc;
+    color: #fff;
+}
+
+.sidebar-sticky .toc ul li.opened a {
+    color: #333;
+}
+
+/** 2nd Level */
+.sidebar-sticky .toc ul ul {
+    margin-top: 10px;
+    margin-left: 16px;
+    display: none;
+}
+
+.sidebar-sticky .toc ul ul li {
+    font-size: 12px;
+    line-height: 20px;
+    border-bottom: none;
+}
+
+.sidebar-sticky .toc ul ul li.opened {
+    background: none;
+}
+
+.sidebar-sticky .toc ul ul li.opened a {
+    color: #FA6A3C;
+}
+
+.sidebar-sticky .toc ul ul li a {
+    color: #FA6A3C;
+}
+
+/** 3rd Level */
+.sidebar-sticky .toc ul ul ul {
+    margin-top: 0;
+}
+
+.sidebar-sticky .toc ul ul ul li.opened {
+    background: none;
+}
+
+.sidebar-sticky .toc ul.closed-ul {
+    display: none;
+}
+
+.sidebar-sticky .toc ul.opened-ul {
+    display: block;
 }
 
 pre {
@@ -97,80 +192,6 @@ em {
     opacity: 0.7;
     font-size: 50%;
     vertical-align: middle;
-}
-
-.left-sidebar {
-    padding: 0;
-    border-right: 1px dashed #ccc;
-}
-
-/** 1st Level */
-.left-sidebar .toc ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.left-sidebar .toc ul li {
-    line-height: 40px;
-    white-space: nowrap;
-    border-bottom: 1px dashed #ccc;
-    padding-left: 5px;
-}
-
-.left-sidebar .toc ul li a {
-    width: 100%;
-    display: block;
-    color: #333333;
-}
-
-.left-sidebar .toc ul li.opened {
-    font-weight: bold;
-    background-color: #f5f5f5;
-}
-
-/** 2nd Level */
-.left-sidebar .toc ul ul {
-    margin-top: 10px;
-    margin-left: 16px;
-    display: none;
-}
-
-.left-sidebar .toc ul ul li {
-    font-size: 12px;
-    line-height: 20px;
-    border-bottom: none;
-}
-
-.left-sidebar .toc ul ul li.opened {
-    background: none;
-}
-
-.left-sidebar .toc ul ul li a {
-    color: #FA6A3C;
-}
-
-/** 3rd Level */
-.left-sidebar .toc ul ul ul {
-    margin-top: 0;
-}
-
-.left-sidebar .toc ul ul ul li.opened {
-    background: none;
-}
-
-.left-sidebar .toc ul.closed-ul {
-    display: none;
-}
-
-.left-sidebar .toc ul.opened-ul {
-    display: block;
-}
-
-.right-content {
-    overflow-y: auto;
-    height: 1000px;
 }
 
 #back-to-top {
