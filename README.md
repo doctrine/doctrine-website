@@ -82,3 +82,4 @@ Watch for changes:
 ## Future TODO:
 
 - Can we do the code highlighting server side on build instead of in the browser with highlightjs?
+- Move app/src/Gregwar back composer.json and submit modifications upstream.
