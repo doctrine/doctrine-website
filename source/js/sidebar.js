@@ -15,6 +15,7 @@ var Sidebar = function() {
 
     window.onhashchange = function() {
         self.loadCurrentDocsMenu();
+        self.initVersionLinks();
     };
 };
 
