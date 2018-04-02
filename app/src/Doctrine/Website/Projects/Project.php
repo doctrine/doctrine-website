@@ -118,7 +118,7 @@ class Project
         return null;
     }
 
-    public function getCurrentVersion() : ProjectVersion
+    public function getCurrentVersion()
     {
         foreach ($this->versions as $version) {
             if ($version->isCurrent()) {
