@@ -26,3 +26,12 @@ title: Test
     <?php
 
     echo 'Success!';
+
+.. code-block:: json
+
+    {
+        "require":
+        {
+            "doctrine/orm": "2.1.7"
+        }
+    }
