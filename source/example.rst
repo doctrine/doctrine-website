@@ -21,7 +21,8 @@ title: Test
 .. tip::
     This is a tip!
 
-.. code-block::
+.. code-block:: php
+
     <?php
 
     echo 'Success!';
