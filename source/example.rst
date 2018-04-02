@@ -1,7 +1,20 @@
 ---
 layout: default
-title: Test
+title: Example
 ---
+
+Example Header
+==============
+
+This is an example document showing all the different RST syntax that is supported.
+
+Example Sub-Header
+------------------
+
+This is an example sub-header.
+
+Notice Boxes
+------------
 
 .. warning::
     This is a warning message!
@@ -20,6 +33,9 @@ title: Test
 
 .. tip::
     This is a tip!
+
+Code Blocks
+-----------
 
 .. code-block:: php
 
