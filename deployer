@@ -1,5 +1,11 @@
-#!/bin/bash
+<?php
 
-./prepare-docs
-./publish prod
+$deployTimestamp = (int) file_get_contents('/data/doctrine/deploy');
+$lastDeployTimestamp = (int) file_get_contents('/data/doctrine/last-deploy');
 
+if ($deployTimestamp === $lastDeployTimestamp) {
+    echo "Nothing has changed. No need to deploy!\n";
+    exit;
+}
+
+shell_exec('cd /data/doctrine-website-sculpin && git pull origin master && ./prepare-docs && ./publish prod && cp /data/doctrine/deploy /data/doctrine/last-deploy');
