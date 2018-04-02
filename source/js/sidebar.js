@@ -44,7 +44,7 @@ Sidebar.prototype.getTopLevelParent = function(elem) {
 Sidebar.prototype.scrollToElement = function(elem) {
     var topLevelParent = this.getTopLevelParent(elem);
 
-    var offsetTop = document.getElementById(topLevelParent.attr('id')).offsetTop;
+    var offsetTop = document.getElementById(topLevelParent.attr('id')).offsetTop - 50;
 
     $('.sidebar-sticky').scrollTop(offsetTop);
 };
