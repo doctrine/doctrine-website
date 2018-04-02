@@ -12,6 +12,10 @@ body > .container {
     margin-top: 20px;
 }
 
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
 .section-anchor {
     display: block;
     position: relative;
