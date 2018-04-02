@@ -123,7 +123,10 @@ TEMPLATE;
 
     private function copyRst(OutputInterface $output)
     {
-        // TODO delete first before copying again to clean out previous build
+        $outputPath = $this->tmpPath.'/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug();
+
+        // clear tmp directory first
+        shell_exec(sprintf('rm -rf %s/*', $outputPath));
 
         $files = $this->findFiles($this->getProjectDocsPath().'/en');
 
@@ -140,7 +143,7 @@ TEMPLATE;
 
             $path = str_replace($this->getProjectDocsPath().'/en/', '', $file);
 
-            $newPath = $this->tmpPath.'/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug().'/'.$path;
+            $newPath = $outputPath.'/'.$path;
 
             $this->ensureDirectoryExists(dirname($newPath));
 
@@ -163,11 +166,16 @@ TEMPLATE;
 
     private function buildRst(OutputInterface $output)
     {
+        $outputPath = $this->sculpinSourcePath.'/projects/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug();
+
+        // clear projects docs source in the sculpin source folder before rebuilding
+        shell_exec(sprintf('rm -rf %s/*', $outputPath));
+
         $builder = new RstBuilder($this->kernel);
 
         $builder->build(
             $this->tmpPath.'/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug(),
-            $this->sculpinSourcePath.'/projects/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug(),
+            $outputPath,
             $output->isVerbose()
         );
     }
