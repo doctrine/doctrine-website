@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Preparer
 {
-    private const RST_TEMPLATE = <<<TEMPLATE
+    const RST_TEMPLATE = <<<TEMPLATE
 .. raw:: html
     {% block sidebar %}
 
@@ -34,7 +34,7 @@ class Preparer
 
 TEMPLATE;
 
-    private const SCULPIN_TEMPLATE = <<<TEMPLATE
+    const SCULPIN_TEMPLATE = <<<TEMPLATE
 ---
 layout: documentation
 indexed: true

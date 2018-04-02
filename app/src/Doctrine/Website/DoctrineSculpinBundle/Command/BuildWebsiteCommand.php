@@ -12,10 +12,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class BuildWebsiteCommand extends ContainerAwareCommand
 {
-    private const URL_LOCAL = 'lcl.doctrine-project.org';
-    private const URL_STAGING = 'staging.doctrine-project.org';
-    private const URL_PRODUCTION = 'new.doctrine-project.org';
-    private const PUBLISHABLE_ENVS = ['prod', 'staging'];
+    const URL_LOCAL = 'lcl.doctrine-project.org';
+    const URL_STAGING = 'staging.doctrine-project.org';
+    const URL_PRODUCTION = 'new.doctrine-project.org';
+    const PUBLISHABLE_ENVS = ['prod', 'staging'];
 
     protected function configure()
     {
