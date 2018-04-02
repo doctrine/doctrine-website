@@ -23,6 +23,12 @@ sculpin_twig:
     extensions: ['', 'twig', 'html', 'html.twig', 'twig.html', 'rst']
 
 services:
+    doctrine.twig.main.extension:
+        class: Doctrine\Website\Twig\MainExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
     doctrine.twig.project.extension:
         class: Doctrine\Website\Twig\ProjectExtension
         public: false

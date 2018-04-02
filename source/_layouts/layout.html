@@ -15,7 +15,7 @@
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
 
-        <link href="{{ site.url }}/css/style.css?{{ site.cacheBuster }}" rel="stylesheet" type="text/css" />
+        <link href="{{ get_asset_url('/css/style.css', site.url) }}" rel="stylesheet" type="text/css" />
 
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,7 +41,7 @@
         <meta name="msapplication-wide310x150logo" content="{{ site.url }}/images/mstile-310x150.png" />
         <meta name="msapplication-square310x310logo" content="{{ site.url }}/images/mstile-310x310.png" />
 
-        <link rel="stylesheet" href="{{ site.url }}/components/highlightjs/styles/railscasts.css?{{ site.cacheBuster }}" />
+        <link rel="stylesheet" href="{{ get_asset_url('/components/highlightjs/styles/railscasts.css', site.url) }}" />
         <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/atom.xml" title="{{ site.title }} activity feed" />
 
         {% block head_styles '' %}
@@ -55,7 +55,7 @@
     <body>
         {% block navbar %}
             <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark flex-md-nowrap">
-                <a class="navbar-brand text-hide" href="{{ site.url }}/"><img src="{{ site.url }}/images/doctrine-logo.svg" />{{ site.title }}</a>
+                <a class="navbar-brand text-hide" href="{{ site.url }}/"><img src="{{ get_asset_url('/images/doctrine-logo.svg', site.url) }}" />{{ site.title }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -114,7 +114,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
-        <script src="{{ site.url }}/components/highlightjs/highlight.pack.js?{{ site.cacheBuster }}"></script>
+        <script src="{{ get_asset_url('/components/highlightjs/highlight.pack.js', site.url) }}"></script>
         <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
         <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
 
@@ -159,7 +159,7 @@
             <script type="text/javascript">
                 var changedUrl = '{{ site.url }}/changed';
             </script>
-            <script src="{{ site.url }}/js/watch.js?{{ site.cacheBuster }}"></script>
+            <script src="{{ site.url }}/js/watch.js?"></script>
         {% endif %}
     </body>
 </html>
