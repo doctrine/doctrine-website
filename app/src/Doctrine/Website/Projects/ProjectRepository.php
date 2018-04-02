@@ -16,7 +16,7 @@ class ProjectRepository
         $this->projectFactory = $projectFactory;
     }
 
-    public function findOneBySlug(string $slug) : ? Project
+    public function findOneBySlug(string $slug) : Project
     {
         foreach ($this->projects as $project) {
             if ($project['slug'] === $slug || $project['docsSlug'] === $slug) {

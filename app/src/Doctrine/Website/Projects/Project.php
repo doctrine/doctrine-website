@@ -107,7 +107,7 @@ class Project
         return $this->versions;
     }
 
-    public function getVersion(string $slug) : ? ProjectVersion
+    public function getVersion(string $slug) : ProjectVersion
     {
         foreach ($this->versions as $version) {
             if ($version->getSlug() == $slug) {
@@ -118,7 +118,7 @@ class Project
         return null;
     }
 
-    public function getCurrentVersion() : ? ProjectVersion
+    public function getCurrentVersion() : ProjectVersion
     {
         foreach ($this->versions as $version) {
             if ($version->isCurrent()) {
