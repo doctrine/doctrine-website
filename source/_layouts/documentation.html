@@ -7,6 +7,7 @@
                 <nav class="col-md-3 d-sm-block bg-light sidebar sidebar-offcanvas" id="sidebar">
                     <div class="sidebar-sticky">
                         {% block sidebar '' %}
+                        <div style="height: 1000px;"></div>
                     </div>
                 </nav>
             {% endif %}
@@ -63,4 +64,8 @@
             </main>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ site.url }}/js/sidebar.js?{{ site.cacheBuster }}"></script>
 {% endblock %}

@@ -61,9 +61,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item{% if page.menuSlug == 'home' %} active{% endif %}">
-                            <a class="nav-link" href="{{ site.url }}/">Home</a>
-                        </li>
                         <li class="nav-item{% if page.menuSlug == 'about' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/about/">About</a>
                         </li>
@@ -86,13 +83,12 @@
                         <li class="nav-item{% if page.menuSlug == 'blog' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/blog/">Blog</a>
                         </li>
-                        <li class="nav-item{% if page.menuSlug == 'search' %} active{% endif %}">
-                            <a class="nav-link" href="{{ site.url }}/search/">Search</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/doctrine/" target="_blank">Development</a>
-                        </li>
                     </ul>
+
+                    <form id="header-search" class="form-inline my-2 my-lg-0" action="{{ site.url }}/search/">
+                        <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                 </div>
             </nav>
         {% endblock %}
@@ -121,8 +117,6 @@
         <script src="{{ site.url }}/components/highlightjs/highlight.pack.js?{{ site.cacheBuster }}"></script>
         <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
         <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
-
-        <script src="{{ site.url }}/js/sidebar.js?{{ site.cacheBuster }}"></script>
 
         <script type="text/javascript">
             // When the user scrolls down 20px from the top of the document, show the button

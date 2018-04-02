@@ -44,9 +44,13 @@ Sidebar.prototype.getTopLevelParent = function(elem) {
 Sidebar.prototype.scrollToElement = function(elem) {
     var topLevelParent = this.getTopLevelParent(elem);
 
-    var offsetTop = document.getElementById(topLevelParent.attr('id')).offsetTop - 50;
+    var topElem = document.getElementById(topLevelParent.attr('id'));
 
-    $('.sidebar-sticky').scrollTop(offsetTop);
+    if (topElem) {
+        var offsetTop = topElem.offsetTop;
+
+        $('.sidebar-sticky').scrollTop(offsetTop);
+    }
 };
 
 Sidebar.prototype.getCurrentDocsMenu = function() {
@@ -66,8 +70,6 @@ Sidebar.prototype.getCurrentDocsMenu = function() {
     }
 
     var id = lastPart.replaceAll('#', '-').replaceAll('.', '-');
-
-    console.log(id);
 
     return $('#' + id);
 };

@@ -30,9 +30,7 @@ body > .container {
 .navbar {
     background: linear-gradient(-90deg, #2C374C, #1F2E4B);
     color: white;
-    border-top: solid 5px #2e6bc8;
-    padding: 0 0 0 30px;
-    min-height: 50px;
+    padding: 0 20px 0 20px;
 }
 
 .navbar a:hover {
@@ -191,6 +189,7 @@ em {
     padding: 15px;
     border-radius: 10px;
     font-size: 18px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .5);
 }
 
 #back-to-top:hover {
@@ -219,8 +218,8 @@ em {
     .sidebar-sticky {
         position: -webkit-sticky;
         position: sticky;
-        top: 50px;
-        height: calc(100vh - 50px);
+        top: 40px;
+        height: calc(100vh - 40px);
         overflow-x: hidden;
         overflow-y: auto;
     }
