@@ -20,3 +20,8 @@ title: Test
 
 .. tip::
     This is a tip!
+
+.. code-block::
+    <?php
+
+    echo 'Success!';
