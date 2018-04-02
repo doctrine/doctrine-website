@@ -40,39 +40,7 @@ body > .container {
 }
 
 .navbar-brand img {
-    width: 30px;
-}
-
-@media (max-width: 900px) {
-    .sidebar {
-        display: none;
-    }
-}
-
-@media (min-width: 768px) {
-    .toc-toggle {
-        display: none;
-    }
-
-    .sidebar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 100;
-        padding: 0;
-        box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-    }
-
-    .sidebar-sticky {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 50px;
-        height: calc(100vh - 50px);
-        overflow-x: hidden;
-        overflow-y: auto;
-        padding-top: 5px;
-    }
+    width: 25px;
 }
 
 /** 1st Level */
@@ -229,6 +197,36 @@ em {
     background-color: #555;
 }
 
+@media (max-width: 900px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .toc-toggle {
+        display: none;
+    }
+
+    .sidebar {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        padding: 0;
+    }
+
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 50px;
+        height: calc(100vh - 50px);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
+
+
 @media (max-width: 576px) {
     h1.section-header {
         font-size: 25px;
@@ -265,7 +263,7 @@ em {
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .row-offcanvas {
     position: relative;
     -webkit-transition: all .25s ease-out;
