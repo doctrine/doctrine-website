@@ -205,15 +205,6 @@ parameters:
                     name: master
                     branchName: master
                     slug: latest
-                -
-                    name: 2.8
-                    branchName: 2.8
-                    slug: 2.8
-                    current: true
-                -
-                    name: 2.7
-                    branchName: 2.7
-                    slug: 2.7
 
         mongodb:
             name: MongoDB Abstraction Layer
