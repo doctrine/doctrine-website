@@ -55,6 +55,9 @@ class BuildWebsiteCommand extends ContainerAwareCommand
 
         $rootDir = realpath($kernelRootDir.'/..');
 
+        // update from master before building
+        passthru(sprintf('cd %s && git pull origin master', $buildDir));
+
         $command = sprintf('%s/vendor/bin/sculpin generate --env=%s',
             $rootDir,
             $kernelEnv
