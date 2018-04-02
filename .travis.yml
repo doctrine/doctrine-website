@@ -1,8 +1,11 @@
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
-  keep-history: true
-  on:
-    branch: master
+dist: trusty
+sudo: false
 
+language: php
+php:
+  - 7.2
+
+script:
+  - composer install
+  - ./prepare-docs
+  - ./publish staging
