@@ -180,15 +180,6 @@ parameters:
                     name: master
                     branchName: master
                     slug: latest
-                -
-                    name: 1.6
-                    branchName: e3faf7c96b8a6084045dedcaf51f74c7834644d4
-                    slug: 1.6
-                    current: true
-                -
-                    name: 1.5
-                    branchName: c81147c0f2938a6566594455367e095150547f72
-                    slug: 1.5
 
         common:
             name: Common
@@ -257,15 +248,6 @@ parameters:
                     name: master
                     branchName: master
                     slug: latest
-                -
-                    name: 1.6
-                    branchName: c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5
-                    slug: 1.6
-                    current: true
-                -
-                    name: 1.5
-                    branchName: 1.5
-                    slug: 1.5
 
         collections:
             name: Collections
@@ -274,7 +256,7 @@ parameters:
             docsSlug: doctrine-collections
             composerPackageName: doctrine/collections
             repositoryName: collections
-            hasDocs: false
+            hasDocs: true
             docsRepositoryName: collections
             docsPath: /docs
             description: Collections abstraction library.
@@ -283,15 +265,6 @@ parameters:
                     name: master
                     branchName: master
                     slug: latest
-                -
-                    name: 1.5
-                    branchName: 1.5
-                    slug: 1.5
-                    current: true
-                -
-                    name: 1.4
-                    branchName: 1a4fb7e902202c33cce8c55989b945612943c2ba
-                    slug: 1.4
 
         inflector:
             name: Inflector
@@ -300,7 +273,7 @@ parameters:
             docsSlug: doctrine-inflector
             composerPackageName: doctrine/inflector
             repositoryName: inflector
-            hasDocs: false
+            hasDocs: true
             docsRepositoryName: inflector
             docsPath: /docs
             description: Doctrine Inflector is a small library that can perform string manipulations with regard to upper-/lowercase and singular/plural forms of words.
@@ -309,15 +282,6 @@ parameters:
                     name: master
                     branchName: master
                     slug: latest
-                -
-                    name: 1.3
-                    branchName: master
-                    slug: 1.3
-                    current: true
-                -
-                    name: 1.2
-                    branchName: 1.2.x
-                    slug: 1.2
 
         cache:
             name: Cache
@@ -326,7 +290,7 @@ parameters:
             docsSlug: doctrine-cache
             composerPackageName: doctrine/cache
             repositoryName: cache
-            hasDocs: false
+            hasDocs: true
             docsRepositoryName: cache
             docsPath: /docs
             description: Cache component extracted from the Doctrine Common project.
@@ -335,15 +299,6 @@ parameters:
                     name: master
                     branchName: master
                     slug: latest
-                -
-                    name: 1.7
-                    branchName: 1.7.x
-                    slug: 1.7
-                    current: true
-                -
-                    name: 1.6
-                    branchName: 1.6.x
-                    slug: 1.6
 
         lexer:
             name: Lexer
