@@ -30,7 +30,11 @@ class ProjectExtension extends Twig_Extension
 
     public function getProjects() : array
     {
-        return $this->projectRepository->findAll();
+        $projects = $this->projectRepository->findAll();
+
+        ksort($projects);
+
+        return $projects;
     }
 
     public function getProject(string $slug) : Project
