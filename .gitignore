@@ -1,4 +1,5 @@
 vendor
 source/projects/doctrine-*
+source/api
 output_*
 

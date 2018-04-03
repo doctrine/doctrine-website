@@ -233,6 +233,7 @@ parameters:
             hasDocs: false
             docsRepositoryName: orientdb-odm
             docsPath: /docs
+            codePath: /src
             description: Doctrine OrientDB Object Document Mapper provides transparent persistence for PHP objects.
             versions:
                 -

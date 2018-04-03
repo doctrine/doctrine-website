@@ -91,22 +91,21 @@ TEMPLATE;
     {
         $dir = $this->getProjectDocsRepositoryPath();
 
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-
-            $command = sprintf('git clone git@github.com:doctrine/%s.git %s',
-                $this->project->getDocsRepositoryName(),
-                $this->getProjectDocsRepositoryPath()
+        // handle when docs are in a different repository then the code
+        if ($this->project->getDocsRepositoryName() !== $this->project->getRepositoryName()) {
+            $this->syncRepository(
+                $this->project->getRepositoryName(),
+                $this->version->getBranchName(),
+                $this->getProjectRepositoryPath()
             );
-
-            $this->shellExec($command);
         }
 
-        $command = sprintf('cd %s && git fetch && git clean -f && git reset --hard master && git checkout -- && git pull origin %s',
-            $this->getProjectDocsRepositoryPath(), $this->version->getBranchName()
+        // sync docs repository
+        $this->syncRepository(
+            $this->project->getDocsRepositoryName(),
+            $this->version->getBranchName(),
+            $this->getProjectDocsRepositoryPath()
         );
-
-        $this->shellExec($command);
     }
 
     public function prepare(OutputInterface $output)
@@ -226,6 +225,26 @@ TEMPLATE;
         }
     }
 
+    private function syncRepository(string $repositoryName, string $branchName, string $dir)
+    {
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+
+            $command = sprintf('git clone git@github.com:doctrine/%s.git %s',
+                $repositoryName,
+                $dir
+            );
+
+            $this->shellExec($command);
+        }
+
+        $command = sprintf('cd %s && git fetch && git clean -f && git reset --hard master && git checkout -- && git pull origin %s',
+            $dir, $branchName
+        );
+
+        $this->shellExec($command);
+    }
+
     private function ensureDirectoryExists(string $dir)
     {
         if (!is_dir($dir)) {
@@ -241,6 +260,11 @@ TEMPLATE;
     private function getProjectDocsRepositoryPath() : string
     {
         return $this->projectsPath.'/'.$this->project->getDocsRepositoryName();
+    }
+
+    private function getProjectRepositoryPath() : string
+    {
+        return $this->projectsPath.'/'.$this->project->getRepositoryName();
     }
 
     private function getProjectDocsPath() : string

@@ -11,7 +11,9 @@
 
 <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">Documentation</a>
 
-<a href="https://github.com/{{ project.packageName }}" class="btn btn-primary" target="_blank">GitHub</a>
+<a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">API Documentation</a>
+
+<a href="https://github.com/doctrine/{{ project.repositoryName }}" class="btn btn-primary" target="_blank">GitHub</a>
 
 <hr />
 
@@ -21,10 +23,20 @@
 
 <h3>Versions</h3>
 
-<ul>
-    {% for version in project.versions %}
-        <li>
-            {{ version.name }}
-        </li>
-    {% endfor %}
-</ul>
+<table class="table">
+    <tbody>
+        {% for version in project.versions %}
+            <tr>
+                <td>
+                    {{ version.name }}
+
+                    {% if version.current %}
+                        (current)
+                    {% endif %}
+                </td>
+                <td><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Documentation</a></td>
+                <td><a href="{{ site.url }}/api/{{ project.slug }}/{{ version.slug ?? 'latest' }}/index.html">API Documentation</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

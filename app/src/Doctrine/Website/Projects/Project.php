@@ -32,6 +32,9 @@ class Project
     private $docsPath;
 
     /** @var string */
+    private $codePath;
+
+    /** @var string */
     private $description;
 
     /** @var ProjectVersions */
@@ -48,6 +51,7 @@ class Project
         $this->hasDocs = $project['hasDocs'] ?? true;
         $this->docsRepositoryName = (string) $project['docsRepositoryName'];
         $this->docsPath = (string) $project['docsPath'];
+        $this->codePath = $project['codePath'] ?? '/lib';
         $this->description = (string) $project['description'];
         $this->versions = new ProjectVersions($project['versions']);
     }
@@ -95,6 +99,11 @@ class Project
     public function getDocsPath() : string
     {
         return $this->docsPath;
+    }
+
+    public function getCodePath() : string
+    {
+        return $this->codePath;
     }
 
     public function getDescription() : string
