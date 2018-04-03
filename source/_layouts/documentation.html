@@ -50,9 +50,14 @@
                                 <ul class="list-inline">
                                     {% for version in project.versions %}
                                         <li class="list-inline-item mr-0">
-                                            <a href="{{ get_url_version(version, page.url, page.docsVersion) }}" class="project-version-switcher badge {{ version.slug == page.docsVersion ? 'badge-primary' : 'badge-secondary' }}">{{ version.name }}</a>
+                                            <a href="{{ get_url_version(version, page.url, page.docsVersion) }}" class="project-version-switcher badge {{ version.slug == page.docsVersion ? 'badge-warning' : 'badge-secondary' }}">{{ version.name }}</a>
                                         </li>
                                     {% endfor %}
+
+                                    {% set version = project.getVersion(page.docsVersion) %}
+
+                                    <li class="list-inline-item ml-2"><a href="https://github.com/doctrine/{{ project.docsRepositoryName }}/edit/{{ version.branchName }}{{ project.docsPath }}{{ page.sourceFile }}" class="badge badge-primary">Edit</a></li>
+
                                 </ul>
                             {% endif %}
 

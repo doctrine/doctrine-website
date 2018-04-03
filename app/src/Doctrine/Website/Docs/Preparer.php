@@ -44,6 +44,7 @@ docsSlug: %s
 docsPage: true
 docsIndex: %s
 docsVersion: %s
+sourceFile: %s
 permalink: none
 ---
 %s
@@ -159,6 +160,10 @@ TEMPLATE;
 
             $newContent = str_replace('{{ content }}', $content, self::RST_TEMPLATE);
 
+            // append the source file name to the content so we can parse it back out
+            // for use in the sculpin build process
+            $newContent .= sprintf('{{ SOURCE_FILE:/en/%s }}', $path);
+
             file_put_contents($newPath, $newContent);
         }
     }
@@ -210,11 +215,20 @@ TEMPLATE;
             $content = isset($matches[1]) ? $matches[1] : $content;
 
             if (strpos($file, '.html') !== false) {
+                // parse out the source file that generated this file
+                preg_match('/<p>{{ SOURCE_FILE:(.*) }}<\/p>/', $content, $match);
+
+                $sourceFile = $match[1];
+
+                // get rid of this special syntax in the content
+                $content = str_replace($match[0], '', $content);
+
                 $newContent = sprintf(self::SCULPIN_TEMPLATE,
                     $title,
                     $this->project->getDocsSlug(),
                     strpos($file, 'index.html') !== false ? 'true' : 'false',
                     $this->version->getSlug(),
+                    $sourceFile,
                     $content
                 );
             } else {
