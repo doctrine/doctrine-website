@@ -80,6 +80,12 @@ parameters:
             twitter: guilhermeblanco
             github: guilhermeblanco
             email: guilhermeblanco@gmail.com
+        lcobucci:
+            slug: lcobucci
+            name: Luís Cobucci
+            twitter: lcobucci
+            github: lcobucci
+            email: lcobucci@gmail.com
 
     doctrine.projects:
         orm:
