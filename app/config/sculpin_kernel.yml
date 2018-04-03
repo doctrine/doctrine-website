@@ -230,7 +230,7 @@ parameters:
             docsSlug: doctrine-orientdb-odm
             composerPackageName: doctrine/orientdb-odm
             repositoryName: orientdb-odm
-            hasDocs: false
+            hasDocs: true
             docsRepositoryName: orientdb-odm
             docsPath: /docs
             codePath: /src
