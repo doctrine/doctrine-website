@@ -51,3 +51,5 @@ Code Blocks
             "doctrine/orm": "2.1.7"
         }
     }
+
+This is a paragraph.
