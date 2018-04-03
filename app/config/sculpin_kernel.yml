@@ -155,7 +155,7 @@ parameters:
             slug: couchdb-odm
             docsSlug: doctrine-couchdb-odm
             composerPackageName: doctrine/couchdb-odm
-            repositoryName: couchdb-odm-documentation
+            repositoryName: couchdb-odm
             docsRepositoryName: couchdb-documentation
             docsPath: /
             description: Doctrine CouchDB Object Document Mapper provides transparent persistence for PHP objects.
