@@ -11,7 +11,10 @@ if (!isset($payload['ref'])) {
 if ($payload['ref'] === 'refs/heads/master') {
     file_put_contents('/data/doctrine/deploy', time());
 } else {
-    file_put_contents('/data/doctrine/deploy-staging', $payload['after']);
+
+    if ($payload['after'] !== '0000000000000000000000000000000000000000') {
+        file_put_contents('/data/doctrine/deploy-staging', $payload['after']);
+    }
 }
 
 echo json_encode(['success' => true]);
