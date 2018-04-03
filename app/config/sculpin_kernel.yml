@@ -86,6 +86,12 @@ parameters:
             twitter: lcobucci
             github: lcobucci
             email: lcobucci@gmail.com
+        malarzm:
+            slug: malarzm
+            name: Maciej Malarz
+            twitter: malarzm
+            github: malarzm
+            email: malarzm@gmail.com
 
     doctrine.projects:
         orm:
