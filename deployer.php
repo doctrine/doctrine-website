@@ -14,7 +14,7 @@ if ($env === 'prod') {
     $command = "cd /data/doctrine-website-sculpin-prod && git checkout master && git pull origin master && ./prepare-docs && ./publish prod && cp /data/doctrine/deploy-prod /data/doctrine/last-deploy-prod";
 
 } elseif ($env === 'staging') {
-    $command = "cd /data/doctrine-website-sculpin-staging && git fetch && git checkout %s && ./prepare-docs && ./publish staging && cp /data/doctrine/deploy-staging /data/doctrine/last-deploy-staging"
+    $command = "cd /data/doctrine-website-sculpin-staging && git fetch && git checkout %s && ./prepare-docs && ./publish staging && cp /data/doctrine/deploy-staging /data/doctrine/last-deploy-staging";
 
     // $deploy contains the commit sha to deploy
     $command = sprintf($command, $deploy);
