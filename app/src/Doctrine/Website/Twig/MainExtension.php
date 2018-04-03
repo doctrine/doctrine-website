@@ -10,19 +10,20 @@ use Twig_SimpleTest;
 
 class MainExtension extends Twig_Extension
 {
-    /** @var array*/
-    private $team;
+    /** @var array */
+    private $teamMembers;
 
-    public function __construct(array $team)
+    public function __construct(array $teamMembers)
     {
-        $this->team = $team;
+        $this->teamMembers = $teamMembers;
     }
 
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('get_asset_url', array($this, 'getAssetUrl')),
-            new Twig_SimpleFunction('get_team', array($this, 'getTeam')),
+            new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
+            new Twig_SimpleFunction('get_team_members', [$this, 'getTeamMembers']),
+            new Twig_SimpleFunction('get_gravatar_url', [$this, 'getGravatarUrl'])
         ];
     }
 
@@ -31,9 +32,16 @@ class MainExtension extends Twig_Extension
         return $siteUrl.$path.'?'.$this->getAssetCacheBuster($path);
     }
 
-    public function getTeam() : array
+    public function getTeamMembers() : array
     {
-        return $this->team;
+        ksort($this->teamMembers);
+
+        return $this->teamMembers;
+    }
+
+    public function getGravatarUrl(string $email) : string
+    {
+        return sprintf('https://www.gravatar.com/avatar/%s', md5($email));
     }
 
     private function getAssetCacheBuster(string $path) : string

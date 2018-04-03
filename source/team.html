@@ -7,9 +7,9 @@ menuSlug: team
 <h1>Doctrine Team</h1>
 
 <ul class="list-group">
-    {% for member in get_team() %}
+    {% for member in get_team_members() %}
         <li class="list-group-item">
-            <img src="{{ get_asset_url('/images/team/' ~ member.slug ~ '.jpg', site.url) }}" class="rounded float-left mr-5" style="width: 50px;" alt="{{ member.name }}" />
+            <img src="{{ get_gravatar_url(member.email) }}" class="rounded float-left mr-5" style="width: 50px;" alt="{{ member.name }}" />
             <strong>{{ member.name }}</strong>
 
             <ul class="list-inline">
