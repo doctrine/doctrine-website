@@ -72,6 +72,11 @@ parameters:
             twitter: jwage
             github: jwage
             website: https://jwage.com
+        guilhermeblanco:
+            slug: guilhermeblanco
+            name: Guilherme Blanco
+            twitter: guilhermeblanco
+            github: guilhermeblanco
 
     doctrine.projects:
         orm:
