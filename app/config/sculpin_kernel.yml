@@ -26,6 +26,8 @@ services:
     doctrine.twig.main.extension:
         class: Doctrine\Website\Twig\MainExtension
         public: false
+        arguments:
+            - '%doctrine.team%'
         tags:
             - { name: twig.extension }
 
@@ -57,6 +59,20 @@ services:
             - '@doctrine.project.factory'
 
 parameters:
+    doctrine.team:
+        ocramius:
+            slug: ocramius
+            name: Marco Pivetta
+            twitter: ocramius
+            github: ocramius
+            website: https://ocramius.github.io/
+        jwage:
+            slug: jwage
+            name: Jonathan H. Wage
+            twitter: jwage
+            github: jwage
+            website: https://jwage.com
+
     doctrine.projects:
         orm:
             name: Object Relational Mapper
