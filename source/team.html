@@ -1,0 +1,30 @@
+---
+layout: default
+title: Doctrine Team
+menuSlug: team
+---
+
+<h1>Doctrine Team</h1>
+
+<ul class="list-group">
+    {% for member in get_team_members() %}
+        <li class="list-group-item">
+            <img src="{{ get_gravatar_url(member.email) }}" class="rounded float-left mr-5" style="width: 50px;" alt="{{ member.name }}" />
+            <strong>{{ member.name }}</strong>
+
+            <ul class="list-inline">
+                {% if member.twitter is defined and member.twitter %}
+                    <li class="list-inline-item" target="_blank"><a href="https://twitter.com/{{ member.twitter }}/" target="_blank"><i class="fab fa-twitter mr-2"></i></a></li>
+                {% endif %}
+
+                {% if member.website is defined and member.website %}
+                    <li class="list-inline-item" target="_blank"><a href="{{ member.website }}" target="_blank"><i class="fas fa-link mr-2"></i></a></li>
+                {% endif %}
+
+                {% if member.github is defined and member.github %}
+                    <li class="list-inline-item" target="_blank"><a href="https://github.com/{{ member.github }}/" target="_blank"><i class="fab fa-github mr-2"></i></a></li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endfor %}
+</div>
