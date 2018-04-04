@@ -92,6 +92,12 @@ parameters:
             twitter: malarzm
             github: malarzm
             email: malarzm@gmail.com
+        morozov:
+            slug: morozov
+            name: Sergei Morozov
+            twitter: srgmrzv
+            github: morozov
+            email: morozov@tut.by
 
     doctrine.projects:
         orm:
