@@ -1,8 +1,8 @@
 ---
 title: Doctrine 2.4 released
 menuSlug: blog
-authorName: Benjamin Eberlei 
-authorEmail: 
+authorName: Benjamin Eberlei
+authorEmail:
 categories: [release]
 indexed: false
 ---
@@ -78,7 +78,7 @@ links to their documentation.
   ``EntityManager``.
 - Allow to order by associations when using ``EntityRepository#findBy()``.
 - Support for new `NEW()` operator in DQL which can be wrapped around
-  the full ``SELECT``-clause parts and instantiates an object by passing
+  the full SELECT clause part and instantiates an object by passing
   the parameters to the constructor. See the `documentation
   <http://docs.doctrine-project.org/en/latest/reference/dql-doctrine-query-language.html#new-operator-syntax>`_
   for more details.

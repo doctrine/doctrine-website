@@ -137,4 +137,19 @@ class Project
 
         return null;
     }
+
+    public function getProjectDocsRepositoryPath(string $projectsPath) : string
+    {
+        return $projectsPath.'/'.$this->getDocsRepositoryName();
+    }
+
+    public function getProjectRepositoryPath(string $projectsPath) : string
+    {
+        return $projectsPath.'/'.$this->getRepositoryName();
+    }
+
+    public function getAbsoluteDocsPath(string $projectsPath) : string
+    {
+        return $this->getProjectDocsRepositoryPath($projectsPath).$this->getDocsPath();
+    }
 }

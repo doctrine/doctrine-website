@@ -2,13 +2,11 @@
 
 namespace Doctrine\Website\Docs;
 
-use Doctrine\Website\Docs;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Doctrine\Website\SculpinRstBundle\Kernel\Kernel;
-use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\Website\RST\Builder;
 
-class Preparer
+class RSTBuilder
 {
     const RST_TEMPLATE = <<<TEMPLATE
 .. raw:: html
@@ -53,82 +51,53 @@ TEMPLATE;
     /** @var string */
     private $sculpinSourcePath;
 
+    /** @var Builder */
+    private $builder;
+
     /** @var string */
     private $projectsPath;
-
-    /** @var Kernel */
-    private $kernel;
-
-    /** @var Project */
-    private $project;
-
-    /** @var ProjectVersion */
-    private $version;
 
     /** @var string */
     private $tmpPath;
 
     public function __construct(
         string $sculpinSourcePath,
-        string $projectsPath,
-        Kernel $kernel,
-        Project $project,
-        ProjectVersion $version)
+        Builder $builder,
+        string $projectsPath)
     {
         $this->sculpinSourcePath = $sculpinSourcePath;
+        $this->builder = $builder;
         $this->projectsPath = $projectsPath;
-        $this->kernel = $kernel;
-        $this->project = $project;
-        $this->version = $version;
         $this->tmpPath = sys_get_temp_dir().'/doctrine-docs';
     }
 
-    public function versionHasDocs(Project $project, ProjectVersion $version) : bool
+    public function getDocuments() : array
     {
-        return file_exists($this->getProjectDocsPath().'/en/index.rst');
+        return $this->builder->getDocuments();
     }
 
-    public function prepareGit(OutputInterface $output)
+    public function projectHasDocs(Project $project) : bool
     {
-        $dir = $this->getProjectDocsRepositoryPath();
-
-        // handle when docs are in a different repository then the code
-        if ($this->project->getDocsRepositoryName() !== $this->project->getRepositoryName()) {
-            $this->syncRepository(
-                $this->project->getRepositoryName(),
-                $this->version->getBranchName(),
-                $this->getProjectRepositoryPath()
-            );
-        }
-
-        // sync docs repository
-        $this->syncRepository(
-            $this->project->getDocsRepositoryName(),
-            $this->version->getBranchName(),
-            $this->getProjectDocsRepositoryPath()
-        );
+        return file_exists($this->getProjectDocsPath($project).'/en/index.rst');
     }
 
-    public function prepare(OutputInterface $output)
+    public function buildRSTDocs(Project $project, ProjectVersion $version)
     {
-        // copy the docs all in to one location first
-        $this->copyRst($output);
+        $this->copyRst($project, $version);
 
-        // build the docs and produce html for sculpin to process
-        $this->buildRst($output);
+        $this->buildRst($project, $version);
 
-        // prepare all the generated html for the sculpin build
-        $this->postRstBuild($output);
+        $this->postRstBuild($project, $version);
     }
 
-    private function copyRst(OutputInterface $output)
+    private function copyRst(Project $project, ProjectVersion $version)
     {
-        $outputPath = $this->tmpPath.'/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug();
+        $outputPath = $this->getProjectVersionTmpPath($project, $version);
 
         // clear tmp directory first
         shell_exec(sprintf('rm -rf %s/*', $outputPath));
 
-        $files = $this->findFiles($this->getProjectDocsPath().'/en');
+        $files = $this->findFiles($this->getProjectDocsPath($project).'/en');
 
         foreach ($files as $file) {
             // skip non .rst files
@@ -141,7 +110,7 @@ TEMPLATE;
                 continue;
             }
 
-            $path = str_replace($this->getProjectDocsPath().'/en/', '', $file);
+            $path = str_replace($this->getProjectDocsPath($project).'/en/', '', $file);
 
             $newPath = $outputPath.'/'.$path;
 
@@ -168,29 +137,37 @@ TEMPLATE;
         }
     }
 
-    private function buildRst(OutputInterface $output)
+    private function buildRst(Project $project, ProjectVersion $version)
     {
-        $outputPath = $this->sculpinSourcePath.'/projects/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug();
+        $outputPath = $this->getProjectVersionSourcePath($project, $version);
 
         // clear projects docs source in the sculpin source folder before rebuilding
         shell_exec(sprintf('rm -rf %s/*', $outputPath));
 
-        $builder = new RstBuilder($this->kernel);
+        // we have to get a fresh builder due to how the RST parser works
+        $this->builder = $this->builder->recreate();
 
-        $builder->build(
-            $this->tmpPath.'/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug(),
+        $this->builder->build(
+            $this->getProjectVersionTmpPath($project, $version),
             $outputPath,
-            $output->isVerbose()
+            false
         );
     }
 
-    public function postRstBuild(OutputInterface $output)
+    private function postRstBuild(Project $project, ProjectVersion $version)
     {
-        $projectDocsVersionPath = $this->sculpinSourcePath.'/projects/'.$this->project->getDocsSlug().'/en/'.$this->version->getSlug();
+        $projectDocsVersionPath = $this->getProjectVersionSourcePath($project, $version);
 
         $files = $this->findFiles($projectDocsVersionPath);
 
         foreach ($files as $file) {
+            // we don't want the meta.php files in the end result
+            if (strpos($file, 'meta.php')) {
+                unlink($file);
+
+                continue;
+            }
+
             $content = trim(file_get_contents($file));
 
             // extract title from <h1>
@@ -225,9 +202,9 @@ TEMPLATE;
 
                 $newContent = sprintf(self::SCULPIN_TEMPLATE,
                     $title,
-                    $this->project->getDocsSlug(),
+                    $project->getDocsSlug(),
                     strpos($file, 'index.html') !== false ? 'true' : 'false',
-                    $this->version->getSlug(),
+                    $version->getSlug(),
                     $sourceFile,
                     $content
                 );
@@ -239,51 +216,14 @@ TEMPLATE;
         }
     }
 
-    private function syncRepository(string $repositoryName, string $branchName, string $dir)
-    {
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-
-            $command = sprintf('git clone git@github.com:doctrine/%s.git %s',
-                $repositoryName,
-                $dir
-            );
-
-            $this->shellExec($command);
-        }
-
-        $command = sprintf('cd %s && git fetch && git clean -f && git reset --hard master && git checkout -- && git pull origin %s',
-            $dir, $branchName
-        );
-
-        $this->shellExec($command);
-    }
-
-    private function ensureDirectoryExists(string $dir)
-    {
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-    }
-
     private function findFiles(string $root) : array
     {
         return $this->recursiveGlob($root.'/*');
     }
 
-    private function getProjectDocsRepositoryPath() : string
+    private function getProjectDocsPath(Project $project) : string
     {
-        return $this->projectsPath.'/'.$this->project->getDocsRepositoryName();
-    }
-
-    private function getProjectRepositoryPath() : string
-    {
-        return $this->projectsPath.'/'.$this->project->getRepositoryName();
-    }
-
-    private function getProjectDocsPath() : string
-    {
-        return $this->getProjectDocsRepositoryPath().$this->project->getDocsPath();
+        return $project->getAbsoluteDocsPath($this->projectsPath);
     }
 
     private function recursiveGlob(string $path)
@@ -311,8 +251,20 @@ TEMPLATE;
         return $allFiles;
     }
 
-    private function shellExec(string $command)
+    private function ensureDirectoryExists(string $dir)
     {
-        shell_exec($command);
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+    }
+
+    private function getProjectVersionSourcePath(Project $project, ProjectVersion $version) : string
+    {
+        return $this->sculpinSourcePath.'/projects/'.$project->getDocsSlug().'/en/'.$version->getSlug();
+    }
+
+    private function getProjectVersionTmpPath(Project $project, ProjectVersion $version) : string
+    {
+        return $this->tmpPath.'/'.$project->getDocsSlug().'/en/'.$version->getSlug();
     }
 }

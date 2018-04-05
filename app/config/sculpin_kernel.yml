@@ -1,3 +1,6 @@
+imports:
+    - { resource: local.yml }
+
 sculpin_content_types:
     posts:
         type: path
@@ -9,14 +12,6 @@ sculpin_content_types:
 
 sculpin_rst:
     demote_headings: false
-
-timbroder_algolia:
-    enabled: false
-    options:
-        application_id: YVYTFT9XMW
-        admin_api_key: 8c7a98e9db76e2df59893bf11f632675
-        index: pages
-        clear_on_sync: true
 
 sculpin_twig:
     source_view_paths: ['_views', '_layouts', '_partials', '_includes']
@@ -51,14 +46,98 @@ services:
         class: Doctrine\Website\Projects\ProjectFactory
         public: false
 
+    doctrine.process.factory:
+        class: Doctrine\Website\ProcessFactory
+        public: false
+
     doctrine.project.repository:
         class: Doctrine\Website\Projects\ProjectRepository
-        public: true
+        public: false
         arguments:
             - '%doctrine.projects%'
             - '@doctrine.project.factory'
 
+    doctrine.project.git_syncer:
+        class: Doctrine\Website\Projects\ProjectGitSyncer
+        public: false
+        arguments:
+            - '@doctrine.process.factory'
+            - '%doctrine.projects_path%'
+
+    doctrine.search.algolia_client:
+        class: AlgoliaSearch\Client
+        public: false
+        arguments:
+            - '%doctrine.search.algolia.application_id%'
+            - '%doctrine.search.algolia.admin_api_key%'
+
+    doctrine.search.indexer:
+        class: Doctrine\Website\Docs\SearchIndexer
+        public: false
+        arguments:
+            - '@doctrine.search.algolia_client'
+            - '@doctrine.docs.rst_builder'
+
+    doctrine.rst_builder:
+        class: Doctrine\Website\RST\Builder
+        public: false
+        arguments:
+            - '@sculpin_rst.kernel.sculpin'
+
+    doctrine.docs.api_builder:
+        class: Doctrine\Website\Docs\APIBuilder
+        public: false
+        arguments:
+            - '@doctrine.process.factory'
+            - '%doctrine.projects_path%'
+            - '%doctrine.sculpin_source_path%'
+
+    doctrine.docs.rst_builder:
+        class: Doctrine\Website\Docs\RSTBuilder
+        arguments:
+            - '%doctrine.sculpin_source_path%'
+            - '@doctrine.rst_builder'
+            - '%doctrine.projects_path%'
+
+    doctrine.docs.build_docs:
+        class: Doctrine\Website\Docs\BuildDocs
+        public: true
+        arguments:
+            - '@doctrine.project.repository'
+            - '@doctrine.project.git_syncer'
+            - '@doctrine.docs.api_builder'
+            - '@doctrine.docs.rst_builder'
+            - '@doctrine.search.indexer'
+
+    doctrine.website_builder:
+        class: Doctrine\Website\WebsiteBuilder
+        public: true
+        arguments:
+            - '@doctrine.process.factory'
+            - '@sculpin.site_configuration'
+            - '%kernel.root_dir%'
+
+    doctrine.watcher:
+        class: Doctrine\Website\Watcher
+        public: true
+        arguments:
+            - '@doctrine.process.factory'
+            - '%kernel.root_dir%'
+
+    doctrine.deployer:
+        class: Doctrine\Website\Deployer
+        public: true
+        arguments:
+            - '@doctrine.process.factory'
+            - '%kernel.environment%'
+
 parameters:
+    doctrine.projects_path: '/data/doctrine'
+    doctrine.sculpin_source_path: '%kernel.root_dir%/../source'
+
+    doctrine.search.algolia.application_id: YVYTFT9XMW
+    doctrine.search.algolia.index: pages
+
     doctrine.team_members:
         ocramius:
             slug: ocramius
@@ -182,8 +261,8 @@ parameters:
             docsSlug: doctrine-phpcr-odm
             composerPackageName: doctrine/phpcr-odm
             repositoryName: phpcr-odm
-            docsRepositoryName: phpcr-odm-documentation
-            docsPath: /
+            docsRepositoryName: phpcr-odm
+            docsPath: /docs
             description: Doctrine PHPCR Object Document Mapper provides transparent persistence for PHP objects.
             versions:
                 -
@@ -198,8 +277,8 @@ parameters:
             docsSlug: doctrine-couchdb-odm
             composerPackageName: doctrine/couchdb-odm
             repositoryName: couchdb-odm
-            docsRepositoryName: couchdb-documentation
-            docsPath: /
+            docsRepositoryName: couchdb-odm
+            docsPath: /docs
             description: Doctrine CouchDB Object Document Mapper provides transparent persistence for PHP objects.
             versions:
                 -
@@ -230,8 +309,8 @@ parameters:
             docsSlug: doctrine-common
             composerPackageName: doctrine/common
             repositoryName: common
-            docsRepositoryName: common-documentation
-            docsPath: /
+            docsRepositoryName: common
+            docsPath: /docs
             description: The Doctrine Common project is a library that provides extensions to core PHP functionality.
             versions:
                 -

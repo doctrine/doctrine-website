@@ -2,4 +2,5 @@ vendor
 source/projects/doctrine-*
 source/api
 output_*
+app/config/local.yml
 

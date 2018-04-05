@@ -9,7 +9,6 @@ class SculpinKernel extends AbstractKernel
         return array(
             'Doctrine\Website\SculpinRstBundle\SculpinRstBundle',
             'Doctrine\Website\DoctrineSculpinBundle\DoctrineSculpinBundle',
-            'Timbroder\Bundle\AlgoliaBundle\TimbroderAlgoliaBundle',
         );
     }
 }

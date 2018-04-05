@@ -1,0 +1,2 @@
+parameters:
+    doctrine.search.algolia.admin_api_key: 'abcd'

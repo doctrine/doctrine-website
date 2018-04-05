@@ -16,6 +16,19 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
 }
 
+#hits {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    z-index: 1000;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    display: none;
+}
+
 .dropdown:hover > .dropdown-menu {
     display: block;
 }
@@ -34,7 +47,12 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
     background: linear-gradient(-90deg, #2C374C, #1F2E4B);
     color: white;
-    padding: 0 20px 0 20px;
+    padding: 0 10px 0 10px;
+}
+
+.navbar input {
+    height: 40px;
+    margin-top: 2px;
 }
 
 .navbar a:hover {
@@ -42,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand img {
-    width: 25px;
+    width: 30px;
 }
 
 /** 1st Level */
@@ -222,8 +240,8 @@ em {
     .sidebar-sticky {
         position: -webkit-sticky;
         position: sticky;
-        top: 40px;
-        height: calc(100vh - 40px);
+        top: 50px;
+        height: calc(100vh - 60px);
         overflow-x: hidden;
         overflow-y: auto;
     }
