@@ -5,7 +5,6 @@ namespace Doctrine\Website\Docs;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class APIBuilder
 {
@@ -52,18 +51,24 @@ CONFIG;
         );
 
         $configPath = $this->projectsPath.'/'.$project->getRepositoryName().'/sami.php';
-        $samiPharPath = realpath($this->sculpinSourcePath.'/../sami.phar');
+        $samiPharPath = $this->sculpinSourcePath.'/../sami.phar';
 
-        file_put_contents($configPath, $renderedConfigContent);
+        $this->filePutContents($configPath, $renderedConfigContent);
 
         $command = 'php '.$samiPharPath.' update '.$configPath.' --verbose';
 
-        $process = $this->processFactory->run($command);
+        $this->processFactory->run($command);
 
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
+        $this->unlinkFile($configPath);
+    }
 
-        unlink($configPath);
+    protected function filePutContents(string $path, string $contents)
+    {
+        file_put_contents($path, $contents);
+    }
+
+    protected function unlinkFile(string $path)
+    {
+        unlink($path);
     }
 }

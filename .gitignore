@@ -3,4 +3,9 @@ source/projects/doctrine-*
 source/api
 output_*
 app/config/local.yml
+tests/Doctrine/Website/Tests/Docs/resources/projects
+tests/Doctrine/Website/Tests/Docs/resources/docs
+tests/Doctrine/Website/Tests/Docs/resources/sculpin-source
+docs
+projects
 

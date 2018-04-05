@@ -8,7 +8,7 @@ class ProjectRepository
     private $projects = [];
 
     /** @var ProjectFactory */
-    private $projectsFactory;
+    private $projectFactory;
 
     public function __construct(array $projects, ProjectFactory $projectFactory)
     {

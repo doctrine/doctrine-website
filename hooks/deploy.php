@@ -8,12 +8,13 @@ if (!isset($payload['ref'])) {
     exit(0);
 }
 
+
 if ($payload['ref'] === 'refs/heads/master') {
-    file_put_contents('/data/doctrine/deploy-prod', time());
+    file_put_contents('/data/doctrine-website-sculpin-prod/projects/deploy-prod', time());
 } else {
 
     if ($payload['after'] !== '0000000000000000000000000000000000000000') {
-        file_put_contents('/data/doctrine/deploy-staging', $payload['after']);
+        file_put_contents('/data/doctrine-website-sculpin-staging/projects/deploy-staging', $payload['after']);
     }
 }
 

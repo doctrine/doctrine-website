@@ -68,7 +68,7 @@ TEMPLATE;
         $this->sculpinSourcePath = $sculpinSourcePath;
         $this->builder = $builder;
         $this->projectsPath = $projectsPath;
-        $this->tmpPath = sys_get_temp_dir().'/doctrine-docs';
+        $this->tmpPath = $this->sculpinSourcePath.'/../docs';
     }
 
     public function getDocuments() : array
@@ -254,7 +254,7 @@ TEMPLATE;
     private function ensureDirectoryExists(string $dir)
     {
         if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
+            @mkdir($dir, 0777, true);
         }
     }
 

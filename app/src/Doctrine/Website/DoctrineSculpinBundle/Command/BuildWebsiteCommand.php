@@ -36,6 +36,7 @@ class BuildWebsiteCommand extends ContainerAwareCommand
     {
         $container = $this->getContainer();
 
+        $rootDir = $container->getParameter('kernel.root_dir');
         $env = $container->getParameter('kernel.environment');
 
         $publish = $input->getOption('publish');
@@ -47,12 +48,14 @@ class BuildWebsiteCommand extends ContainerAwareCommand
         $buildDir = $input->getArgument('build-dir');
 
         if (!$buildDir) {
-            $buildDir = sprintf('/data/doctrine-website-sculpin-build-%s', $env);
+            $buildDir = sprintf('%s/../build-%s', $rootDir, $env);
         }
 
         if (!is_dir($buildDir)) {
-            throw new InvalidArgumentException(sprintf('The build directory %s does not exist.', $buildDir));
+            mkdir($buildDir, 0777, true);
         }
+
+        $buildDir = realpath($buildDir);
 
         $buildWebsite = $container->get('doctrine.website_builder');
 

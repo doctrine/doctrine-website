@@ -24,10 +24,6 @@ class ProjectGitSyncer
         Project $project,
         ProjectVersion $version)
     {
-        if (!is_dir($this->projectsPath)) {
-            mkdir($this->projectsPath, 0777, true);
-        }
-
         $dir = $project->getProjectDocsRepositoryPath($this->projectsPath);
 
         // handle when docs are in a different repository then the code
@@ -53,29 +49,18 @@ class ProjectGitSyncer
         string $dir)
     {
         if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-
-            $command = sprintf('git clone git@github.com:doctrine/%s.git %s',
+            $command = sprintf('git clone https://github.com/doctrine/%s.git %s',
                 $repositoryName,
                 $dir
             );
 
-            $this->execute($command);
+            $this->processFactory->run($command);
         }
 
         $command = sprintf('cd %s && git fetch && git clean -f && git reset --hard origin/master && git checkout %s',
             $dir, $branchName
         );
 
-        $this->execute($command);
-    }
-
-    private function execute(string $command)
-    {
-        $process = $this->processFactory->run($command);
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
+        $this->processFactory->run($command);
     }
 }
