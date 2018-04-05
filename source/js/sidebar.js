@@ -104,13 +104,3 @@ Sidebar.prototype.loadCurrentDocsMenu = function() {
 
     this.scrollToElement(elem);
 };
-
-$(document).ready(function() {
-    var sidebar = new Sidebar();
-});
-
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-
-    return target.split(search).join(replacement);
-};

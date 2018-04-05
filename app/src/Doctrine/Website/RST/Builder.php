@@ -1,8 +1,8 @@
 <?php
 
-namespace Doctrine\Website\Docs;
+namespace Doctrine\Website\RST;
 
-use Gregwar\RST\Builder;
+use Gregwar\RST\Builder as BaseBuilder;
 use Gregwar\RST\Parser;
 
 /**
@@ -10,8 +10,18 @@ use Gregwar\RST\Parser;
  * to files in the rst that don't exist. Remove this after docs get fixed after the switch
  * to the new site.
  */
-class RstBuilder extends Builder
+class Builder extends BaseBuilder
 {
+    public function recreate()
+    {
+        return new Builder($this->kernel);
+    }
+
+    public function getDocuments() : array
+    {
+        return $this->documents;
+    }
+
     protected function parseAll()
     {
         $this->display('* Parsing files');

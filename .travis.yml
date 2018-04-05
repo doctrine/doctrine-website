@@ -1,11 +1,6 @@
-dist: trusty
-sudo: false
-
 language: php
-php:
-  - 7.2
 
-script:
-  - composer install
-  - ./prepare-docs
-  - ./publish staging
+php:
+  - 7.1
+
+before_script: composer install

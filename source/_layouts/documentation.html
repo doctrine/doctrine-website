@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block container %}
-    <div class="container-fluid">
+    <div class="container-wrapper container-fluid">
         <div class="row row-offcanvas row-offcanvas-right">
             {% if page.docsPage %}
                 <nav class="col-md-3 d-sm-block bg-light sidebar sidebar-offcanvas" id="sidebar">
@@ -72,4 +72,8 @@
 
 {% block scripts %}
     <script src="{{ get_asset_url('/js/sidebar.js', site.url) }}"></script>
+
+    <script type="text/javascript">
+        new Sidebar();
+    </script>
 {% endblock %}
