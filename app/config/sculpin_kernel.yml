@@ -177,6 +177,12 @@ parameters:
             twitter: srgmrzv
             github: morozov
             email: morozov@tut.by
+        mikesimonson:
+            slug: mikesimonson
+            name: Mike Simonson
+            twitter: _mikeSimonson
+            github: mikeSimonson
+            email: mike@simonson.be
 
     doctrine.projects:
         orm:
