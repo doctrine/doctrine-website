@@ -73,15 +73,15 @@ class Deployer
 
     protected function getDeploy() : string
     {
-        return $this->getFileContents(sprintf('%s/deploy-%s',
-            $this->projectsPath, $this->env
+        return $this->getFileContents(sprintf('/data/doctrine-website-sculpin-%s/deploy-%s',
+            $this->env, $this->env
         ));
     }
 
     protected function getLastDeploy() : string
     {
-        return $this->getFileContents(sprintf('%s/last-deploy-%s',
-            $this->projectsPath, $this->env
+        return $this->getFileContents(sprintf('/data/doctrine-website-sculpin-%s/last-deploy-%s',
+            $this->env, $this->env
         ));
     }
 

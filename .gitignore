@@ -8,4 +8,4 @@ tests/Doctrine/Website/Tests/Docs/resources/docs
 tests/Doctrine/Website/Tests/Docs/resources/sculpin-source
 docs
 projects
-
+build-*
