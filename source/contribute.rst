@@ -59,29 +59,21 @@ Initial Setup
    the project you want to contribute to.
 -  Clone your fork locally
 
--
-
-::
+.. code-block::
 
     $ git clone git@github.com:username/doctrine2.git
 
-
 -  Enter the doctrine2 directory and add the **doctrine** remote
 
--
-
-::
+.. code-block::
 
     $ cd doctrine2
     $ git remote add doctrine git://github.com/doctrine/doctrine2.git
 
-
 -  Adjust your branch to track the doctrine master remote branch,
    by default it'll track your origin remote's master:
 
--
-
-::
+.. code-block::
 
     $ git config branch.master.remote doctrine
 
@@ -91,7 +83,7 @@ Keeping your master up-to-date!
 Once all this is done, you'll be able to keep your local master up
 to date with the simple command:
 
-::
+.. code-block::
 
     $ git checkout master
     $ git pull --rebase
@@ -99,7 +91,7 @@ to date with the simple command:
 Alternatively, you can synchronize your master from any branch with
 the full fetch/rebase syntax:
 
-::
+.. code-block::
 
     $ git fetch doctrine
     $ git rebase doctrine/master master
@@ -114,7 +106,6 @@ Branching Model
 The following names will be used to differentiate between the
 different repositories:
 
-
 -  **doctrine** - The "official" Doctrine repository
 -  **origin** - Your fork of the official repository on github
 -  **local** - This will be your local clone of **origin**
@@ -128,7 +119,6 @@ Primary Branches
 ----------------
 
 The **doctrine** repository holds the following primary branches:
-
 
 -  **doctrine/master** Development towards the next release.
 -  **doctrine/release-\*** Maintenance branches of existing
@@ -147,14 +137,12 @@ released unstable version will be a tagged commit in the
     **doctrine/master**. All work must be done in a **topic branch**,
     which are explained below.
 
-
 Topic Branches
 --------------
 
 Topic branches are for contributors to develop bug fixes, new
 features, etc. so that they can be easily merged to **master**.
 They must follow a few simple rules as listed below:
-
 
 -  May branch off from: **master** or a **release-\*** branch.
 -  Must merge back into: **master** and any affected **release-\***
@@ -184,14 +172,14 @@ First create an appropriately named branch. When starting work on a
 new topic, branch off from **doctrine/master** or a
 **doctrine/release-\*** branch:
 
-::
+.. code-block::
 
     $ git checkout -b DDC-588 doctrine/master
     Switched to a new branch "DDC-588"
 
 Now do some work, make some changes then commit them:
 
-::
+.. code-block::
 
     $ git status
     $ git commit <filespec>
@@ -206,29 +194,29 @@ continue rebasing with ``rebase --continue``. At any stage, you can
 abort the rebase with ``rebase --abort`` unlike nasty merges which
 will leave files strewn everywhere.
 
-    **CAUTION** Please note that once you have pushed your branch
-    remotely you MUST NOT rebase!
+.. caution::
 
+    Please note that once you have pushed your branch remotely you MUST NOT rebase!
 
-::
+.. code-block::
 
     $ git fetch doctrine
     $ git rebase doctrine/master DDC-588
 
 or (uses tracking branch shortcuts):
 
-::
+.. code-block::
 
     $ git pull --rebase
 
-    **CAUTION** You must not rebase if you have pushed your branch to
-    **origin**.
+.. caution::
 
+    You must not rebase if you have pushed your branch to **origin**.
 
 If you need to pull master into your branch after it has already
 been pushed remotely, simply use:
 
-::
+.. code-block::
 
     $ git pull
 
@@ -238,7 +226,7 @@ Finished topic branches should be pushed to **origin** for a
 **collaborator** to review and pull into **doctrine** as
 appropriate:
 
-::
+.. code-block::
 
     $ git push origin DDC-588
     To git@github.com:hobodave/doctrine2.git
@@ -256,7 +244,7 @@ you can remove them!
 
 Sync your local master:
 
-::
+.. code-block::
 
     $ git checkout master
     $ git pull --rebase
@@ -267,28 +255,24 @@ ancestor of your current head.
 
 From the git-branch man page:
 
+.. code-block::
 
-.. raw:: html
-
-   <pre>
    -d
        Delete a branch. The branch must be fully merged in HEAD.
    -D
        Delete a branch irrespective of its merged status.
-   </pre>
 
 Remove your local branch:
 
-::
+.. code-block::
 
     $ git branch -d DDC-588
 
 Remove your remote branch at **origin**:
 
-::
+.. code-block::
 
     $ git push origin :DDC-588
-
 
 The projects under the Doctrine umbrella use
 `Phing <http://phing.info/trac>`_ to automate the process for
@@ -309,7 +293,6 @@ You might want want to know how a collaborator is different from a
 contributor. The **Collaborator Workflow** is used primarily for
 the following:
 
-
 -  Merging **contributor** branches into **doctrine/master** and/or
    **doctrine/release-\*** branches.
 -  Creating @release-\*@ branches.
@@ -323,34 +306,34 @@ First you must Fork the
 `repository <http://github.com/doctrine/doctrine2>`_ and clone your
 fork locally:
 
-::
+.. code-block::
 
     $ git clone git@github.com:username/doctrine2.git doctrine2-orm
     $ cd doctrine2-orm
 
 Fetch dependencies using `composer <https://getcomposer.org/>`_:
 
-::
+.. code-block::
 
     $ composer install
 
 Now add the **doctrine** remote for collaborators:
 
-::
+.. code-block::
 
     $ git remote add doctrine git@github.com:doctrine/doctrine2.git
 
 Adjust your branch to track the doctrine master remote branch, by
 default it'll track your origin remote's master:
 
-::
+.. code-block::
 
     $ git config branch.master.remote doctrine
 
 Optionally, add any additional contributor/collaborator forks,
 e.g.:
 
-::
+.. code-block::
 
     $ git remote add romanb git://github.com/romanb/doctrine2.git
 
@@ -359,7 +342,6 @@ Branching Model
 
 Merging topic branches
 ~~~~~~~~~~~~~~~~~~~~~~
-
 
 -  Topic branches **must** merge into **master** and/or any
    affected **release-\*** branches.
@@ -373,19 +355,19 @@ Steps
 Add remote repo for contributor/collaborator, if necessary (only
 needs to be done once per collaborator):
 
-::
+.. code-block::
 
     $ git remote add hobodave git://github.com/hobodave/doctrine2.git
 
 Fetch remote:
 
-::
+.. code-block::
 
     $ git fetch hobodave
 
 Merge topic branch into master:
 
-::
+.. code-block::
 
     $ git checkout master
     Switched to branch 'master'
@@ -402,7 +384,6 @@ the topic.
 
 Release branches
 ~~~~~~~~~~~~~~~~
-
 
 -  May branch off from: **master**
 -  Must merge back into: -
@@ -425,7 +406,7 @@ branch off and give the release branch a name reflecting the target
 version number. In addition the ".0" release is tagged on the new
 release branch:
 
-::
+.. code-block::
 
     $ git checkout -b release-2.0 doctrine/master
     Switched to a new branch "release-2.0"
@@ -454,10 +435,9 @@ Bumping Versions
 To bump/upgrade a dependency version you just need to update the
 version constraint in composer.json and run:
 
-::
+.. code-block::
 
     $ composer update
-
 
 Running Tests
 =============
@@ -465,14 +445,13 @@ Running Tests
 Prerequisites
 -------------
 
-
 -  You must have installed the library with composer and the dev dependencies (default).
 
 Tests
 ~~~~~
 
-To run the tests :
+To run the tests:
 
-::
+.. code-block::
 
     $ ./vendor/bin/phpunit
