@@ -19,7 +19,7 @@ class WatchCommand extends ContainerAwareCommand
                 'build-dir',
                 InputArgument::OPTIONAL,
                 'The directory where the website is built',
-                '/data/doctrine-website-sculpin-build-dev'
+                '/data/doctrine-website-build-dev'
             )
         ;
     }

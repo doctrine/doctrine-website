@@ -10,11 +10,11 @@ if (!isset($payload['ref'])) {
 
 
 if ($payload['ref'] === 'refs/heads/master') {
-    file_put_contents('/data/doctrine-website-sculpin-prod/projects/deploy-prod', time());
+    file_put_contents('/data/doctrine-website-prod/deploy-prod', time());
 } else {
 
     if ($payload['after'] !== '0000000000000000000000000000000000000000') {
-        file_put_contents('/data/doctrine-website-sculpin-staging/projects/deploy-staging', $payload['after']);
+        file_put_contents('/data/doctrine-website-staging/deploy-staging', $payload['after']);
     }
 }
 

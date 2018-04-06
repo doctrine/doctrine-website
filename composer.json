@@ -1,5 +1,5 @@
 {
-    "name": "doctrine/doctrine-website-sculpin",
+    "name": "doctrine/doctrine-website",
     "description": "Source code for doctrine-project.org",
     "type": "jwage.com",
     "minimum-stability": "dev",

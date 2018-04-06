@@ -47,13 +47,13 @@ class WebsiteBuilderTest extends TestCase
     public function testBuild()
     {
         $output = $this->createMock(OutputInterface::class);
-        $buildDir = '/data/doctrine-website-sculpin-build-staging';
+        $buildDir = '/data/doctrine-website-build-staging';
         $env = 'staging';
         $publish = true;
 
         $this->processFactory->expects($this->at(0))
             ->method('run')
-            ->with('cd /data/doctrine-website-sculpin-build-staging && git pull origin master');
+            ->with('cd /data/doctrine-website-build-staging && git pull origin master');
 
         $this->processFactory->expects($this->at(1))
             ->method('run')
@@ -61,11 +61,11 @@ class WebsiteBuilderTest extends TestCase
 
         $this->processFactory->expects($this->at(2))
             ->method('run')
-            ->with('rm -rf /data/doctrine-website-sculpin-build-staging/*');
+            ->with('rm -rf /data/doctrine-website-build-staging/*');
 
         $this->processFactory->expects($this->at(3))
             ->method('run')
-            ->with(sprintf('mv %s/output_staging/* /data/doctrine-website-sculpin-build-staging',
+            ->with(sprintf('mv %s/output_staging/* /data/doctrine-website-build-staging',
                 $this->rootDir
             ));
 
@@ -77,13 +77,13 @@ class WebsiteBuilderTest extends TestCase
         $this->websiteBuilder->expects($this->once())
             ->method('filePutContents')
             ->with(
-                '/data/doctrine-website-sculpin-build-staging/CNAME',
+                '/data/doctrine-website-build-staging/CNAME',
                 'lcl.doctrine-project.org'
             );
 
         $this->processFactory->expects($this->at(4))
             ->method('run')
-            ->with('cd /data/doctrine-website-sculpin-build-staging && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master');
+            ->with('cd /data/doctrine-website-build-staging && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master');
 
         $this->websiteBuilder->build($output, $buildDir, $env, $publish);
     }
