@@ -28,6 +28,12 @@ class BuildDocsCommand extends ContainerAwareCommand
                 'The project version to build the docs for.'
             )
             ->addOption(
+                'api',
+                null,
+                InputOption::VALUE_NONE,
+                'Build the api documentation.'
+            )
+            ->addOption(
                 'search',
                 null,
                 InputOption::VALUE_NONE,
@@ -40,6 +46,7 @@ class BuildDocsCommand extends ContainerAwareCommand
     {
         $projectToBuild = (string) $input->getOption('project');
         $versionToBuild = (string) $input->getOption('v');
+        $buildApiDocs = (bool) $input->getOption('api');
         $buildSearchIndexes = (bool) $input->getOption('search');
 
         $buildDocs = $this->getContainer()->get('doctrine.docs.build_docs');
@@ -48,6 +55,7 @@ class BuildDocsCommand extends ContainerAwareCommand
             $output,
             $projectToBuild,
             $versionToBuild,
+            $buildApiDocs,
             $buildSearchIndexes
         );
     }

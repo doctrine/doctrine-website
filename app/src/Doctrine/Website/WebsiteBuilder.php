@@ -48,7 +48,7 @@ class WebsiteBuilder
         if ($publish) {
             $output->writeln(' - updating from git');
 
-            $this->execute(sprintf('cd %s && git pull origin master', $buildDir));
+            $this->processFactory->run(sprintf('cd %s && git pull origin master', $buildDir));
         }
 
         $output->writeln(' - sculpin generate');
@@ -58,41 +58,42 @@ class WebsiteBuilder
             $env
         );
 
-        $this->execute($command);
+        $this->processFactory->run($command);
 
         $output->writeln(' - preparing build');
 
         $outputDir = sprintf('output_%s', $env);
 
         // cleanup the build directory
-        $this->execute(sprintf('rm -rf %s/*', $buildDir));
+        $this->processFactory->run(sprintf('rm -rf %s/*', $buildDir));
 
         // copy the build to the build directory
-        $this->execute(sprintf('mv %s/%s/* %s', $rootDir, $outputDir, $buildDir));
+        $this->processFactory->run(sprintf('mv %s/%s/* %s', $rootDir, $outputDir, $buildDir));
 
         // put the CNAME file back for publishable envs
         if (in_array($env, self::PUBLISHABLE_ENVS)) {
             $url = $this->sculpinConfig->get('url');
             $cname = str_replace(['https://', 'http://'], '', $url);
 
-            file_put_contents($buildDir.'/CNAME', $cname);
+            $this->filePutContents($buildDir.'/CNAME', $cname);
         }
 
         if ($publish) {
             $output->writeln(' - publishing build');
 
-            $this->execute(sprintf('cd %s && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master', $buildDir));
+            $this->processFactory->run(sprintf('cd %s && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master', $buildDir));
         }
 
         $output->writeln(' - done');
     }
 
-    private function execute(string $command)
+    protected function filePutContents(string $path, string $contents)
     {
-        $process = $this->processFactory->run($command);
+        file_put_contents($path, $contents);
+    }
 
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
+    protected function execute(string $command)
+    {
+        $this->processFactory->run($command);
     }
 }

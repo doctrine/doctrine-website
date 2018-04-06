@@ -42,18 +42,18 @@ class Project
 
     public function __construct(array $project)
     {
-        $this->name = (string) $project['name'];
-        $this->shortName = (string) $project['shortName'];
-        $this->slug = (string) $project['slug'];
-        $this->docsSlug = (string) $project['docsSlug'];
-        $this->composerPackageName = (string) $project['composerPackageName'];
-        $this->repositoryName = (string) $project['repositoryName'];
+        $this->name = (string) ($project['name'] ?? '');
+        $this->shortName = (string) ($project['shortName'] ?? '');
+        $this->slug = (string) ($project['slug'] ?? '');
+        $this->docsSlug = (string) ($project['docsSlug'] ?? '');
+        $this->composerPackageName = (string) ($project['composerPackageName'] ?? '');
+        $this->repositoryName = (string) ($project['repositoryName'] ?? '');
         $this->hasDocs = $project['hasDocs'] ?? true;
-        $this->docsRepositoryName = (string) $project['docsRepositoryName'];
-        $this->docsPath = (string) $project['docsPath'];
-        $this->codePath = $project['codePath'] ?? '/lib';
-        $this->description = (string) $project['description'];
-        $this->versions = new ProjectVersions($project['versions']);
+        $this->docsRepositoryName = (string) ($project['docsRepositoryName'] ?? '');
+        $this->docsPath = (string) ($project['docsPath'] ?? '');
+        $this->codePath = (string) ($project['codePath'] ?? '/lib');
+        $this->description = (string) ($project['description'] ?? '');
+        $this->versions = new ProjectVersions($project['versions'] ?? []);
     }
 
     public function getName() : string

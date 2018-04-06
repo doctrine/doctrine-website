@@ -18,10 +18,10 @@ class ProjectVersion
 
     public function __construct(array $version)
     {
-        $this->name = (string) $version['name'];
-        $this->branchName = (string) $version['branchName'];
-        $this->slug = (string) $version['slug'];
-        $this->current = $version['current'] ?? false;
+        $this->name = (string) ($version['name'] ?? '');
+        $this->branchName = (string) ($version['branchName'] ?? '');
+        $this->slug = (string) ($version['slug'] ?? '');
+        $this->current = (bool) ($version['current'] ?? false);
     }
 
     public function getName() : string

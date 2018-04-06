@@ -34,14 +34,6 @@ services:
         tags:
             - { name: twig.extension }
 
-    doctrine.twig.docs.extension:
-        class: Doctrine\Website\Twig\DocsExtension
-        public: false
-        arguments:
-            - '@doctrine.project.repository'
-        tags:
-            - { name: twig.extension }
-
     doctrine.project.factory:
         class: Doctrine\Website\Projects\ProjectFactory
         public: false
@@ -129,10 +121,11 @@ services:
         public: true
         arguments:
             - '@doctrine.process.factory'
+            - '%doctrine.projects_path%'
             - '%kernel.environment%'
 
 parameters:
-    doctrine.projects_path: '/data/doctrine'
+    doctrine.projects_path: '%kernel.root_dir%/../projects'
     doctrine.sculpin_source_path: '%kernel.root_dir%/../source'
 
     doctrine.search.algolia.application_id: YVYTFT9XMW
@@ -226,10 +219,14 @@ parameters:
                     branchName: master
                     slug: latest
                 -
+                    name: 2.7
+                    branchName: 2.7
+                    slug: 2.7
+                    current: true
+                -
                     name: 2.6
                     branchName: 2.6
                     slug: 2.6
-                    current: true
                 -
                     name: 2.5
                     branchName: 2.5

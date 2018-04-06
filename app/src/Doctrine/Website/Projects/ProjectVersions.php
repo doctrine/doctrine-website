@@ -12,7 +12,10 @@ class ProjectVersions implements Iterator
     public function __construct(array $versions)
     {
         foreach ($versions as $version) {
-            $this->versions[] = new ProjectVersion($version);
+            $this->versions[] = $version instanceof ProjectVersion
+                ? $version
+                : new ProjectVersion($version)
+            ;
         }
     }
 

@@ -3,6 +3,7 @@
 namespace Doctrine\Website;
 
 use Closure;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 class ProcessFactory
@@ -19,6 +20,10 @@ class ProcessFactory
     {
         $process = $this->create($command);
         $process->run($callback);
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
 
         return $process;
     }

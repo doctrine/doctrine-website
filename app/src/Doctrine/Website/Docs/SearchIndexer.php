@@ -9,7 +9,6 @@ use Doctrine\Website\Projects\ProjectVersion;
 use Gregwar\RST\Nodes\Node;
 use Gregwar\RST\HTML\Document;
 use Gregwar\RST\HTML\Nodes\ParagraphNode;
-use Gregwar\RST\HTML\Nodes\TableNode;
 use Gregwar\RST\HTML\Nodes\TitleNode;
 
 /**

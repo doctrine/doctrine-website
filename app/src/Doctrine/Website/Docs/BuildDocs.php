@@ -45,6 +45,7 @@ class BuildDocs
         OutputInterface $output,
         string $projectToBuild,
         string $versionToBuilder,
+        bool $buildApiDocs,
         bool $buildSearchIndexes)
     {
         if ($buildSearchIndexes) {
@@ -71,12 +72,14 @@ class BuildDocs
 
                 $this->projectGitSyncer->sync($project, $version);
 
-                $output->writeln(' - building api docs');
+                if ($buildApiDocs) {
+                    $output->writeln(' - building api docs');
 
-                try {
-                    $this->apiBuilder->buildAPIDocs($project, $version);
-                } catch (ProcessFailedException $e) {
-                    $output->writeln(' - <error>building api docs failed</error>');
+                    try {
+                        $this->apiBuilder->buildAPIDocs($project, $version);
+                    } catch (ProcessFailedException $e) {
+                        $output->writeln(' - <error>building api docs failed</error>');
+                    }
                 }
 
                 if (!$this->rstBuilder->projectHasDocs($project)) {
