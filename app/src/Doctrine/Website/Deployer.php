@@ -52,7 +52,7 @@ class Deployer
 
         $deployRef = $this->env === 'prod' ? 'master' : $deploy;
 
-        $command = sprintf("cd /data/doctrine-website-sculpin-%s && git fetch && git checkout %s && git pull origin %s && ./doctrine build-docs --api && ./doctrine build-website /data/doctrine-website-sculpin-build-%s --env=%s --publish && cp /data/doctrine-website-sculpin-%s/deploy-%s /data/doctrine-website-sculpin-%s/last-deploy-%s",
+        $command = sprintf("cd /data/doctrine-website-sculpin-%s && git fetch && git checkout %s && git pull origin %s && ./doctrine build-docs --api && ./doctrine build-website /data/doctrine-website-sculpin-build-%s --env=%s --publish",
             $this->env,
             $deployRef,
             $deployRef,
@@ -65,6 +65,14 @@ class Deployer
         );
 
         $output->writeln(sprintf('Deploying website for <info>%s</info> environment.', $this->env));
+
+        $this->processFactory->run($command, function($type, $buffer) use ($output) {
+            $output->write($buffer);
+        });
+
+        $command = sprintf('cp /data/doctrine-website-sculpin-%s/deploy-%s /data/doctrine-website-sculpin-%s/last-deploy-%s',
+            $this->env, $this->env, $this->env, $this->env
+        );
 
         $this->processFactory->run($command, function($type, $buffer) use ($output) {
             $output->write($buffer);
