@@ -22,7 +22,7 @@ var Search = function(projectSlug, versionSlug) {
         searchParameters: searchParameters,
         searchFunction: function(helper) {
             if (helper.state.query === "") {
-                $('#hits').hide();
+                $('.search-results').hide();
                 $('.container-wrapper').css('opacity', '1');
 
                 return;
@@ -31,7 +31,7 @@ var Search = function(projectSlug, versionSlug) {
             helper.search();
 
             $('.container-wrapper').css('opacity', '.25');
-            $('#hits').show();
+            $('.search-results').show();
         }
     });
 
@@ -57,7 +57,7 @@ var Search = function(projectSlug, versionSlug) {
     $('#search-box input').on('blur', function() {
         setTimeout(function() {
             $('.container-wrapper').css('opacity', '1');
-            $('#hits').hide();
+            $('.search-results').hide();
         }, 200);
     });
 };
