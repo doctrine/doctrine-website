@@ -9,7 +9,7 @@ Community
 
 The Doctrine community is made up of thousands of developers all around the world.
 The project has had over 500 contributors and is maintained by a core team of developers.
-If you want to get involved, find other other Doctrine developers on GitHub, Mailing Lists
+If you want to get involved, find other Doctrine developers on GitHub, the Mailing Lists
 and Gitter.
 
 GitHub
