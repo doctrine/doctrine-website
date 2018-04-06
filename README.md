@@ -1,24 +1,24 @@
 # README
 
-[![Build Status](https://travis-ci.org/doctrine/doctrine-website-sculpin.svg?branch=master)](https://travis-ci.org/doctrine/doctrine-website-sculpin)
+[![Build Status](https://travis-ci.org/doctrine/doctrine-website.svg?branch=master)](https://travis-ci.org/doctrine/doctrine-website)
 
-This is the Doctrine Sculpin website code.
+This is the Doctrine website code.
 
 ## Setup
 
 First clone the source code for the website to a directory like `/data`:
 
     cd /data
-    git clone git@github.com:doctrine/doctrine-website-sculpin.git
+    git clone git@github.com:doctrine/doctrine-website.git
     composer install
 
-Next clone the repository which holds the built source code to `/data/doctrine-website-sculpin-build-prod`:
+Next clone the repository which holds the built source code to `/data/doctrine-website-build-prod`:
 
-    git clone git@github.com:doctrine/doctrine-website-sculpin-build.git /data/doctrine-website-sculpin-build-prod
+    git clone git@github.com:doctrine/doctrine-website-build.git /data/doctrine-website-build-prod
 
-Create a development directory for you to create dev builds in `/data/doctrine-website-sculpin-build-dev` for testing:
+Create a development directory for you to create dev builds in `/data/doctrine-website-build-dev` for testing:
 
-    mkdir /data/doctrine-website-sculpin-build-dev
+    mkdir /data/doctrine-website-build-dev
 
 ## Config
 
@@ -26,7 +26,7 @@ Copy the distribution config file:
 
     cp app/config/local.yml.dist app/config/local.yml
 
-## Prepare Docs for Sculpin Build
+## Prepare Docs for Build
 
 This command accepts an argument for where the Doctrine repositories with the documentation will be cloned:
 
@@ -44,7 +44,7 @@ Now you are ready to build the website for the first time:
 
     ./doctrine build-website
 
-Setup `lcl.doctrine-project.org` locally and point your webserver at `/data/doctrine-website-sculpin-build-dev` to see the website:
+Setup `lcl.doctrine-project.org` locally and point your webserver at `/data/doctrine-website-build-dev` to see the website:
 
 ## Watch for Changes
 

@@ -26,7 +26,7 @@ class APIBuilderTest extends TestCase
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
         $this->projectsPath = '/data/doctrine';
-        $this->sculpinSourcePath = '/data/doctrine-website-sculpin/source';
+        $this->sculpinSourcePath = '/data/doctrine-website/source';
 
         $this->apiBuilder = $this->getMockBuilder(APIBuilder::class)
             ->setConstructorArgs([
@@ -54,7 +54,7 @@ class APIBuilderTest extends TestCase
 <?php
 
 return new Sami\Sami('/data/doctrine/doctrine2/src', [
-    'build_dir' => '/data/doctrine-website-sculpin/source/api/orm/2.0',
+    'build_dir' => '/data/doctrine-website/source/api/orm/2.0',
     'cache_dir' => '/data/doctrine/doctrine2/cache',
 ]);
 CONFIG;
@@ -65,7 +65,7 @@ CONFIG;
 
         $this->processFactory->expects($this->once())
             ->method('run')
-            ->with('php /data/doctrine-website-sculpin/source/../sami.phar update /data/doctrine/doctrine2/sami.php --verbose');
+            ->with('php /data/doctrine-website/source/../sami.phar update /data/doctrine/doctrine2/sami.php --verbose');
 
         $this->apiBuilder->expects($this->once())
             ->method('unlinkFile')

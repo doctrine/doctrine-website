@@ -53,7 +53,7 @@ class Deployer
 
         $deployRef = $this->env === 'prod' ? 'master' : $deploy;
 
-        $command = sprintf("cd /data/doctrine-website-sculpin-%s && git fetch && git checkout %s && git pull origin %s && ./doctrine build-docs --api && ./doctrine build-website /data/doctrine-website-sculpin-build-%s --env=%s --publish",
+        $command = sprintf("cd /data/doctrine-website-%s && git fetch && git checkout %s && git pull origin %s && ./doctrine build-docs --api && ./doctrine build-website /data/doctrine-website-build-%s --env=%s --publish",
             $this->env,
             $deployRef,
             $deployRef,
@@ -84,7 +84,7 @@ class Deployer
 
     protected function finishDeploy(OutputInterface $output)
     {
-        $command = sprintf('cp /data/doctrine-website-sculpin-%s/deploy-%s /data/doctrine-website-sculpin-%s/last-deploy-%s',
+        $command = sprintf('cp /data/doctrine-website-%s/deploy-%s /data/doctrine-website-%s/last-deploy-%s',
             $this->env, $this->env, $this->env, $this->env
         );
 
@@ -95,14 +95,14 @@ class Deployer
 
     protected function getDeploy() : string
     {
-        return $this->getFileContents(sprintf('/data/doctrine-website-sculpin-%s/deploy-%s',
+        return $this->getFileContents(sprintf('/data/doctrine-website-%s/deploy-%s',
             $this->env, $this->env
         ));
     }
 
     protected function getLastDeploy() : string
     {
-        return $this->getFileContents(sprintf('/data/doctrine-website-sculpin-%s/last-deploy-%s',
+        return $this->getFileContents(sprintf('/data/doctrine-website-%s/last-deploy-%s',
             $this->env, $this->env
         ));
     }
