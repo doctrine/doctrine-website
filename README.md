@@ -12,6 +12,12 @@ First clone the source code for the website to a directory like `/data`:
     git clone git@github.com:doctrine/doctrine-website-sculpin.git
     composer install
 
+## Config
+
+Copy the distribution config file:
+
+    cp app/config/local.yml.dist app/config/local.yml
+
 Next clone the repository which holds the built source code to `/data/doctrine-website-sculpin-build-prod`:
 
     git clone git@github.com:doctrine/doctrine-website-sculpin-build.git /data/doctrine-website-sculpin-build-prod
