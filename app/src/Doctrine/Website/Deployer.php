@@ -4,6 +4,7 @@ namespace Doctrine\Website;
 
 use InvalidArgumentException;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Deployer
 {
@@ -66,10 +67,23 @@ class Deployer
 
         $output->writeln(sprintf('Deploying website for <info>%s</info> environment.', $this->env));
 
-        $this->processFactory->run($command, function($type, $buffer) use ($output) {
-            $output->write($buffer);
-        });
 
+        try {
+            $this->processFactory->run($command, function($type, $buffer) use ($output) {
+                $output->write($buffer);
+            });
+
+            $this->finishDeploy();
+
+        } catch (ProcessFailedException $e) {
+            $this->finishDeploy();
+
+            throw $e;
+        }
+    }
+
+    protected function finishDeploy()
+    {
         $command = sprintf('cp /data/doctrine-website-sculpin-%s/deploy-%s /data/doctrine-website-sculpin-%s/last-deploy-%s',
             $this->env, $this->env, $this->env, $this->env
         );
