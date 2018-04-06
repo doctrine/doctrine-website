@@ -73,16 +73,16 @@ class Deployer
                 $output->write($buffer);
             });
 
-            $this->finishDeploy();
+            $this->finishDeploy($output);
 
         } catch (ProcessFailedException $e) {
-            $this->finishDeploy();
+            $this->finishDeploy($output);
 
             throw $e;
         }
     }
 
-    protected function finishDeploy()
+    protected function finishDeploy(OutputInterface $output)
     {
         $command = sprintf('cp /data/doctrine-website-sculpin-%s/deploy-%s /data/doctrine-website-sculpin-%s/last-deploy-%s',
             $this->env, $this->env, $this->env, $this->env
