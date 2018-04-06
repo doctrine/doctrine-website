@@ -10,7 +10,7 @@ class WebsiteBuilder
 {
     const URL_LOCAL = 'lcl.doctrine-project.org';
     const URL_STAGING = 'staging.doctrine-project.org';
-    const URL_PRODUCTION = 'new.doctrine-project.org';
+    const URL_PRODUCTION = 'www.doctrine-project.org';
     const PUBLISHABLE_ENVS = ['prod', 'staging'];
 
     /** @var ProcessFactory */
