@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Next week will be `Symfony Live 2012 <http://paris2012.live.symfony.com/>`_ in
 Paris and the Doctrine DBAL/ORM Team will be represented by Guilherme, Alexander, Marco

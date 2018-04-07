@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: default
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability of Doctrine ORM 2.5.1 and
 2.4.8.

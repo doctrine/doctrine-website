@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 The **Zend Framework Integration Team** is happy to announce the new release of **DoctrineModule**.
 DoctrineModule ``0.8.1`` will be the last bugfix, it is the last version that will support PHP 5.3.

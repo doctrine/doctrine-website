@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 One of the greatest advantages to using Doctrine is what is under
 the hood that powers it. That is the database abstraction layer.

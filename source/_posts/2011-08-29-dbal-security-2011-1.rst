@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 It was brought to our attention that identifier quoting in Doctrine
 DBAL has a potential security problem when user-input is passed

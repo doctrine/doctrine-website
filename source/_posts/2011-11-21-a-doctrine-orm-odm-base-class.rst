@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 One of most common complaints about Doctrine2 is the requirement to write
 getters/setters for all the fields and assocations of every entity. A concern

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today we are happy to introduce the immediate availability of
 Doctrine 1.0.4. This is a major bug fix release for the 1.0 branch

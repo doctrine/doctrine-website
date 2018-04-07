@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 This past week I had the pleasure of spending time in Paris, France
 for the `2010 Symfony Live <http://www.symfony-live.com>`_

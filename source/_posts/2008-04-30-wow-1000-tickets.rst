@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Last night the 1000th ticket came rolling in. This is just a
 reminder to the fact that Doctrine while still young, has had a

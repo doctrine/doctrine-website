@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 This weekend I decided it was time to completely dive in to the
 awesomeness that is `symfony <http://www.symfony-project.com>`_

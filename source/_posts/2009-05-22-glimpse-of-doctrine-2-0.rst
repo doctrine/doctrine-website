@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 As you all probably already know, we have been working on Doctrine
 2.0 pretty much since before we released Doctrine 1.0. This effort

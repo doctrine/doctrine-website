@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Well, we discovered some bugs in the last RC of 0.11 so we have
 decided to have another release candidate to make sure the 0.11

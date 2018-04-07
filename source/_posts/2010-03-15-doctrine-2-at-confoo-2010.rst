@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 This past week I was lucky enough to get to travel to Montreal for
 the annual ConFoo conference, previously known as PHP Quebec. I

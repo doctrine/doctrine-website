@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Steve Müller
 authorEmail: deeky666@googlemail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability of Doctrine DBAL 2.3.5, which fixes a
 minor issue introduced in 2.3.4 where ``null`` parameter values passed to one of the connection

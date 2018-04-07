@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: gmorkevicius 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 These behavioral extensions will give you another view on Doctrine2
 capabilities handling behaviors through the EventListeners. These

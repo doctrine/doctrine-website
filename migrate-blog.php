@@ -7,7 +7,7 @@ menuSlug: blog
 authorName: %s
 authorEmail: %s
 categories: [%s]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 %s
 TEMPLATE;

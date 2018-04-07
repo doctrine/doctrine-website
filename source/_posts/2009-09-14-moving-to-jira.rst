@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 While we really like Trac, especially its subversion integration,
 it has a lot of shortcomings for bigger projects in the area of

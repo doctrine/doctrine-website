@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am happy to release to you the second ALPHA release of
 Doctrine 1.2. Honestly, we didn't receive many reports of

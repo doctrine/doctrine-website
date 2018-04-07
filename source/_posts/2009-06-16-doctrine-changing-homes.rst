@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 You all may have noticed the stability of the website going up and
 down recently. Up until now we have been lucky to have our good

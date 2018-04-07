@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We released a new round of maintenance releases for the 2.1 branch. DBAL and ORM are now in version 2.1.6 of their lifecycle. There have been 8 bug fixes in ORM and 8 in DBAL. See the changelogs:
 

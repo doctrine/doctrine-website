@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Thanks to Phuson we have a brand new design that is absolutely
 spectacular. Now we have a design that is on the same level of

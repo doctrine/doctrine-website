@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 In this post I want to clarify some things about transactions and
 performance of PHP applications in general. I want to show you that

@@ -3,6 +3,7 @@ title: New Website
 menuSlug: blog
 authorName: Jonathan H. Wage
 authorEmail: jonwage@gmail.com
+permalink: /:year/:month/:day/:basename.html
 ---
 
 In 2007 Doctrine got its first official website at `phpdoctrine.org <https://www.phpdoctrine.org/>`_.

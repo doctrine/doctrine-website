@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Maciej Malarz
 authorEmail: malarzm@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability of Doctrine MongoDB ODM
 `1.1.1 <https://github.com/doctrine/mongodb-odm/releases/tag/1.1.1>`__.

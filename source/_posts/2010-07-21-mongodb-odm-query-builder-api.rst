@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 The Doctrine MongoDB Object Document Mapper includes a fluent
 object oriented API for building queries to execute against

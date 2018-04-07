@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 This last month I have been present at a few events to speak about
 Doctrine. I visited Verona, Italy for the phpDay conference and

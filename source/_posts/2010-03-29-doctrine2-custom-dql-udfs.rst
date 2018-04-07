@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 By default DQL supports a limited subset of all the vendor-specific
 SQL functions common between all the vendors. However in many cases

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today we are happy to bring you the first maintenance release for
 the Doctrine 1.2 version. We will continue to have regular

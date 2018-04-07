@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Sebastien Lavoie
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability Doctrine Data Fixtures ``1.0.1``.
 

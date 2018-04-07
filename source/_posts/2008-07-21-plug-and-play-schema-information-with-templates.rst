@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Check out the latest addition to the Doctrine Cookbook. We have
 added a short little tutorial on how to use Doctrine templates to

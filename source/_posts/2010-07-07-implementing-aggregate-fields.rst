@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 You will often come across the requirement to display aggregate
 values of data that can be computed by using the MIN, MAX, COUNT or

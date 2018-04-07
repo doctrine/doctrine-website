@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Again with a slight delay we finalized the DBAL and ORM release candidates for the 2.2 branch. There have been some late changes that made the delay necessary:
 

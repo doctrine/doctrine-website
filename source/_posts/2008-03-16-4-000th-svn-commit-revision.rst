@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 This evening Doctrine reached a milestone of four thousand commits
 in svn. Doctrine has maintained steady development for almost three

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 As you all know, we're focusing most of our development time on
 Doctrine 2.0 these days. To help speed things up, we would like to

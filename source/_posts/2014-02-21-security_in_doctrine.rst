@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: default
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 When using Doctrine in a project it is always a security critical component
 because it talks directly to your database. As such security is very important

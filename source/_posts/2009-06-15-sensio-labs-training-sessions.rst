@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 If you're a PHP developer and would like to get familiar with the
 concepts behind MVC Frameworks and ORMs then you should attend one

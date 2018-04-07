@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 First I would like to thank everyone who has adopted Doctrine and
 stuck with us through the many long and difficult development

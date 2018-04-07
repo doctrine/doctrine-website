@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 RC2 of Doctrine 2.1 is packaged and can be grabbed from
 `PEAR <http://pear.doctrine-project.org>`_ and the download

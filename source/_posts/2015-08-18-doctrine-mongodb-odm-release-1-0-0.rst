@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Maciej Malarz
 authorEmail: malarzm@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 In observance of August 18th, the day that Jon Wage tagged Doctrine MongoDB ODM's
 `first BETA release <https://github.com/doctrine/mongodb-odm/releases/tag/1.0.0BETA1>`__,

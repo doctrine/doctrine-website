@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I have deployed some updates to the Doctrine website. Some of
 the updates all of you will enjoy, but another specific one might

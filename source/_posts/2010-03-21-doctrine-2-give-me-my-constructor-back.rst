@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 At
 `ConFoo 2010 <http://www.doctrine-project.org/blog/doctrine-2-at-confoo-2010>`_

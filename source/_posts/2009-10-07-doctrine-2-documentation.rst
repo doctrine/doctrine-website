@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Did you know that Doctrine 2 is already very well documented? I've
 noticed recently that some people seem to think we don't have any

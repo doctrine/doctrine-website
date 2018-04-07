@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Last night the
 `Doctrine ORM for PHP <http://www.amazon.com/Doctrine-ORM-PHP-Jonathan-Wage/dp/2918390038/ref=sr_1_1?ie=UTF8&s=books&qid=1246303098&sr=8-1>`_

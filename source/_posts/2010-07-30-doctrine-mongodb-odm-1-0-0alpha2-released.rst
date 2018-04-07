@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am happy to bring you the second alpha release of the brand
 new Doctrine MongoDB Object Document Mapper (ODM). The release

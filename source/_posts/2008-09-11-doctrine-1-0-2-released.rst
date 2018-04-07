@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Due to a minor regression in 1.0.1 we are releasing 1.0.2 which
 addresses the issue discovered. The issue was reported and fixed

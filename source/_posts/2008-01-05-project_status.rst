@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Here is a short update on the current project status. We're heavily
 developing towards a 1.0 release that will bring lots of

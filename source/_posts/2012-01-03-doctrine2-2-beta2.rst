@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Sadly we did not manage to hold our schedule with a 2.2 release in 2011, we had to do some larger changes before the final release. This means we are releasing another Beta of Doctrine DBAL and ORM. The final release is rescheduled to 19th January.
 

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 For those of you who are not keen on using the mailing list or irc
 for getting help with Doctrine, we now have a public Forum, powered

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 I am happy to announce that
 `Doctrine 1.2 documentation <http://www.doctrine-project.org/documentation/manual/1_2/en>`_

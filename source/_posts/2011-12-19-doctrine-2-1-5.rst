@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We released another Doctrine ORM bugfix release, version 2.1.5. It fixes 5
 critical regressions that were introduced in 2.1.0, 2.1.2 and 2.1.3 and a total

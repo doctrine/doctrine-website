@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 The **Zend Framework Integration Team** is happy to announce the new release of **DoctrineMongoODMModule**.  
 DoctrineMongoODMModule ``0.8.2`` will be the last bugfix version with support for **DoctrineModule** ``0.8``, and in consequence, it is the last version that will support PHP 5.3.

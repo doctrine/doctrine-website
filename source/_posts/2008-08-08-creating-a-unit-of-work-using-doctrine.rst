@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 I am happy to introduce the latest contribution to the 1.0
 cookbook, Creating a Unit of Work Using Doctrine by Jon Lebensold.

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 **NOTE** This blog entry relates to an outdated Doctrine 2 Alpha
     version. Please see the documentation for the most up to date

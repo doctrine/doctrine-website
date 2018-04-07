@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 First of, this blog post sucks. I thought I would never write such
 a senseless apples and oranges comparison with artificial and

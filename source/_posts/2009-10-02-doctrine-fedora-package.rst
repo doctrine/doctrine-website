@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Thanks to Christof Damian, a loyal Doctrine user, if you are a
 Fedora user you can now yum install the latest stable version of

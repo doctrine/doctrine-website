@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 As you all can obviously see, our focus around here these days has
 been on Doctrine 2. While overall this is a great thing, we still

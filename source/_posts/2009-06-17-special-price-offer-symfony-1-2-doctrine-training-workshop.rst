@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 As you all may know, I work for
 `Sensio Labs <http://www.sensiolabs.com>`_ , the creators of the

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability of Doctrine ORM 2.4.5, which
 fixes `an HHVM/PHP7 issue related with func_get_args() <http://3v4l.org/NIqRh>`_.

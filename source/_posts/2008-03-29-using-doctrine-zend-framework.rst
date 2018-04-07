@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today, "rubenv" pinged me in IRC and told me he has put together an
 article on how to get started using Doctrine with the Zend

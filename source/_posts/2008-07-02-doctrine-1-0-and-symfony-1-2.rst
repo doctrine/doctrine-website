@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 This morning Fabien from the symfony project announced the roadmap
 for the next major version of symfony, 1.2. He announced that

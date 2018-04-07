@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability Doctrine Common `2.5.0-beta1`.
 
