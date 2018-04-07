@@ -29,10 +29,6 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
 }
 
-.dropdown:hover > .dropdown-menu {
-    display: block;
-}
-
 .section-anchor {
     display: block;
     position: relative;
@@ -61,6 +57,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-brand img {
     width: 30px;
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.projects-dropdown-menu {
+    margin-top: 0;
 }
 
 /** 1st Level */

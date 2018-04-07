@@ -69,7 +69,7 @@
                             <a class="nav-link dropdown-toggle" href="{{ site.url }}/projects/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Projects
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu projects-dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for project in get_projects() %}
                                     <a class="dropdown-item" href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.shortName }}</a>
                                 {% endfor %}
