@@ -90,6 +90,6 @@ class BuildDocsTest extends TestCase
             ->method('buildSearchIndexes')
             ->with($project, $version);
 
-        $this->buildDocs->build($output, '', '', true, true);
+        $this->buildDocs->build($output, '', '', true, true, true);
     }
 }

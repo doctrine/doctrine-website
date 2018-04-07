@@ -53,7 +53,7 @@ class Deployer
 
         $deployRef = $this->env === 'prod' ? 'master' : $deploy;
 
-        $command = sprintf("cd /data/doctrine-website-%s && git fetch && git checkout %s && git pull origin %s && ./doctrine build-docs --api && ./doctrine build-website /data/doctrine-website-build-%s --env=%s --publish",
+        $command = sprintf("cd /data/doctrine-website-%s && git fetch && git checkout %s && git pull origin %s && ./doctrine build-docs --api --sync-git && ./doctrine build-website /data/doctrine-website-build-%s --env=%s --publish",
             $this->env,
             $deployRef,
             $deployRef,

@@ -46,7 +46,8 @@ class BuildDocs
         string $projectToBuild,
         string $versionToBuilder,
         bool $buildApiDocs,
-        bool $buildSearchIndexes)
+        bool $buildSearchIndexes,
+        bool $syncGit)
     {
         if ($buildSearchIndexes) {
             $this->searchIndexer->initSearchIndex();
@@ -68,9 +69,11 @@ class BuildDocs
                     $project->getSlug(), $version->getSlug()
                 ));
 
-                $output->writeln(' - syncing git');
+                if ($syncGit) {
+                    $output->writeln(' - syncing git');
 
-                $this->projectGitSyncer->sync($project, $version);
+                    $this->projectGitSyncer->sync($project, $version);
+                }
 
                 if ($buildApiDocs) {
                     $output->writeln(' - building api docs');
