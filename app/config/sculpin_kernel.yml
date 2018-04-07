@@ -10,9 +10,6 @@ sculpin_content_types:
             - tags
             - categories
 
-sculpin_rst:
-    demote_headings: false
-
 sculpin_twig:
     source_view_paths: ['_views', '_layouts', '_partials', '_includes']
     extensions: ['', 'twig', 'html', 'html.twig', 'twig.html', 'rst']
@@ -70,11 +67,22 @@ services:
             - '@doctrine.search.algolia_client'
             - '@doctrine.docs.rst_builder'
 
-    doctrine.rst_builder:
+    doctrine.rst.kernel.html:
+        class: Gregwar\RST\HTML\Kernel
+        public: false
+
+    doctrine.rst.kernel:
+        class: Doctrine\Website\RST\Kernel
+        public: false
+        arguments:
+            - @doctrine.rst.kernel.html
+            - []
+
+    doctrine.rst.builder:
         class: Gregwar\RST\Builder
         public: false
         arguments:
-            - '@sculpin_rst.kernel.sculpin'
+            - '@doctrine.rst.kernel'
 
     doctrine.docs.api_builder:
         class: Doctrine\Website\Docs\APIBuilder
@@ -88,7 +96,7 @@ services:
         class: Doctrine\Website\Docs\RSTBuilder
         arguments:
             - '%doctrine.sculpin_source_path%'
-            - '@doctrine.rst_builder'
+            - '@doctrine.rst.builder'
             - '%doctrine.projects_path%'
 
     doctrine.docs.build_docs:

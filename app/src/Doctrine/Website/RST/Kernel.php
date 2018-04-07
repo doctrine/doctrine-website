@@ -1,30 +1,21 @@
 <?php
 
-namespace Doctrine\Website\SculpinRstBundle\Kernel;
+namespace Doctrine\Website\RST;
 
 use Gregwar\RST\Builder;
 use Gregwar\RST\Directive;
 use Gregwar\RST\Document;
 use Gregwar\RST\HTML\Kernel as HtmlKernel;
 use Gregwar\RST\Kernel as BaseKernel;
-use Gregwar\RST\Roles\Role;
 
 class Kernel extends BaseKernel
 {
-    /**
-     * @var HtmlKernel
-     */
+    /** @var HtmlKernel */
     private $baseKernel;
 
-    /**
-     * @var Directive[]
-     */
+    /** @var Directive[] */
     private $directives;
 
-    /**
-     * @param HtmlKernel $baseKernel
-     * @param Directive[] $directives
-     */
     public function __construct(HtmlKernel $baseKernel, array $directives)
     {
         $this->baseKernel = $baseKernel;
@@ -33,7 +24,7 @@ class Kernel extends BaseKernel
 
     public function getName()
     {
-        return 'sculpin';
+        return 'doctrine';
     }
 
     public function getDirectives()
