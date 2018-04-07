@@ -125,7 +125,6 @@ services:
             - '%kernel.environment%'
 
 parameters:
-    doctrine.projects_path: '%kernel.root_dir%/../projects'
     doctrine.sculpin_source_path: '%kernel.root_dir%/../source'
 
     doctrine.search.algolia.application_id: YVYTFT9XMW

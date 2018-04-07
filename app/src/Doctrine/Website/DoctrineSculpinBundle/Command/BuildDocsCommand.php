@@ -39,6 +39,12 @@ class BuildDocsCommand extends ContainerAwareCommand
                 InputOption::VALUE_NONE,
                 'Build the search indexes.'
             )
+            ->addOption(
+                'sync-git',
+                null,
+                InputOption::VALUE_NONE,
+                'Sync git repositories before building.'
+            )
         ;
     }
 
@@ -48,6 +54,7 @@ class BuildDocsCommand extends ContainerAwareCommand
         $versionToBuild = (string) $input->getOption('v');
         $buildApiDocs = (bool) $input->getOption('api');
         $buildSearchIndexes = (bool) $input->getOption('search');
+        $syncGit = (bool) $input->getOption('sync-git');
 
         $buildDocs = $this->getContainer()->get('doctrine.docs.build_docs');
 
@@ -56,7 +63,8 @@ class BuildDocsCommand extends ContainerAwareCommand
             $projectToBuild,
             $versionToBuild,
             $buildApiDocs,
-            $buildSearchIndexes
+            $buildSearchIndexes,
+            $syncGit
         );
     }
 }

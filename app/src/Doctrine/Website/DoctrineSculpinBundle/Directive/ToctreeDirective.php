@@ -27,7 +27,7 @@ class ToctreeDirective extends Directive
                 $currentDirPath = rtrim($environment->absoluteRelativePath(''), '/');
                 $rootPath = rtrim(str_replace($environment->getDirName(), '', $currentDirPath), '/');
 
-                $findPath = $rootPath.$file;
+                $findPath = $rootPath.'/'.$file;
 
                 $find = $this->recursiveGlob($findPath);
 
