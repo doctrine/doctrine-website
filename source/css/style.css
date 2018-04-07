@@ -76,8 +76,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar-sticky .toc ul li {
-    line-height: 40px;
-    white-space: nowrap;
     border-bottom: 1px dashed #ccc;
     padding-left: 10px;
 }
