@@ -1,7 +1,0 @@
-
-Main title
-==========
-
-Second title
-------------
-
