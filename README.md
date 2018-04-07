@@ -1,4 +1,4 @@
-# README
+# Doctrine Website
 
 [![Build Status](https://travis-ci.org/doctrine/doctrine-website.svg?branch=master)](https://travis-ci.org/doctrine/doctrine-website)
 
@@ -32,7 +32,10 @@ This command accepts an argument for where the Doctrine repositories with the do
 
     ./doctrine build-docs
 
-## Build Search Indexes
+By default only the RST docs are built but you can pass the `--api` option to generate the API docs
+using Sami:
+
+    ./doctrine build-docs --api
 
 To build the search indexes pass the `--search` option:
 
@@ -63,17 +66,3 @@ Now to make a production build:
 To publish the new version pass the `--publish` option:
 
     ./doctrine build-website --env=prod --publish
-
-## TODO
-
-- Build UX for switching between versions
-- Enhance the /projects/{project} path in to a combined page that lists install, github link and documentation in one? Goal, reduce clicks from initial entry.
-- Turn on HSTS?
-- Rewrite /contribute, /about and /community pages
-- Run a link checker to look for 404s
-
-## Future TODO:
-
-- Can we do the code highlighting server side on build instead of in the browser with highlightjs?
-- Move app/src/Gregwar back composer.json and submit modifications upstream.
-
