@@ -4,7 +4,7 @@ namespace Doctrine\Website\Docs;
 
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Doctrine\Website\RST\Builder;
+use Gregwar\RST\Builder;
 
 class RSTBuilder
 {

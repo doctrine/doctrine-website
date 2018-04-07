@@ -6,8 +6,8 @@ use Gregwar\RST\HTML\Kernel as HTMLKernel;
 use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Doctrine\Website\RST\Builder;
 use Doctrine\Website\SculpinRstBundle\Kernel\Kernel as SculpinKernel;
+use Gregwar\RST\Builder;
 use PHPUnit\Framework\TestCase;
 
 class RSTBuilderTest extends TestCase

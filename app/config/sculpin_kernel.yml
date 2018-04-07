@@ -71,7 +71,7 @@ services:
             - '@doctrine.docs.rst_builder'
 
     doctrine.rst_builder:
-        class: Doctrine\Website\RST\Builder
+        class: Gregwar\RST\Builder
         public: false
         arguments:
             - '@sculpin_rst.kernel.sculpin'
