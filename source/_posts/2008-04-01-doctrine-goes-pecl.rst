@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 After many long debates and countless hours of development,
 Doctrine has been successfully ported to a PECL extension and will

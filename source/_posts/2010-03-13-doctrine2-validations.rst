@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 While Doctrine 1 had validation nested inside the
 ``Doctrine_Record`` instance this is not the case in Doctrine 2

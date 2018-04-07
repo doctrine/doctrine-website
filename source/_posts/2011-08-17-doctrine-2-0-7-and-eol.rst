@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We released the last maintenance version of the 2.0.x branch
 Doctrine 2.0.7 today. It contains a bunch of fixes backported from

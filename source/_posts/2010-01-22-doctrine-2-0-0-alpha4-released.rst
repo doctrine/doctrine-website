@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today we are happy to announce the release of the next, and
 hopefully last, alpha release of Doctrine 2. With over 60 fixed

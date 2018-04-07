@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am very happy to make available two new releases of
 Doctrine for the 1.0 and 1.1 code bases. These are both significant

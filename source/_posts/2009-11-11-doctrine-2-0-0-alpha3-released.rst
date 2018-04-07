@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am happy to bring you the third alpha version of Doctrine
 2! This release contains over 60 fixes and the code is starting to

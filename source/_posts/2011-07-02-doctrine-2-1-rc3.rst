@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We released Doctrine 2.1 Release Candidate 3 after some important
 changes to the new annotation reader. That is also why we didnt

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We've been really busy around here as you may have noticed.
 Doctrine 1.1 is about to be released, we just got some much needed

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Recently we have done some work to sort out our domain names and
 the permanent URL structure we will use from now on. We have put

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: dantleech 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 managed to merge the new query builder.
 

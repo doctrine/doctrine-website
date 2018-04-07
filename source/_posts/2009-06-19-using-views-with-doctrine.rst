@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 I've seen a few requests recently on how you can use a view with
 Doctrine. This is very easy and I've also learned a few neat tricks

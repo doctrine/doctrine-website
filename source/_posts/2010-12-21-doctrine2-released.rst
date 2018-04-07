@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate release of the first stable
 Doctrine 2.0 version. This release marks the end of 2.5 years of

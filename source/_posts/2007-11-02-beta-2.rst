@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 The Doctrine team is proud to announce that we have scheduled the
 release of the second beta snapshot for November 31st, 2007. This

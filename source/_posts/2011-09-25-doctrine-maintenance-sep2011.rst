@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We have released the maintenance versions Common 2.1.2, DBAL 2.1.3
 and ORM 2.1.2.

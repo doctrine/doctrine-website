@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We finished all the outstanding work on the Doctrine 2.1 branch and
 released the first final version. Almost all of the code was kept

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Facebook has been `pushing HHVM alot lately
 <http://www.hhvm.com/blog/2813/we-are-the-98-5-and-the-16>`_ , helping open

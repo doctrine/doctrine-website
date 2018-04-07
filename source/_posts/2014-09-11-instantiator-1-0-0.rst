@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We released `Doctrine Instantiator 1.0.0`_ several weeks ago.
 

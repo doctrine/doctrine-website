@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I have made available
 `Doctrine 1.0.7 <http://www.doctrine-project.org/download>`_ , the

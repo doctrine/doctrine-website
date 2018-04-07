@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: odino 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 "2012 is the year of graph databases" was the
 sentence that a lot of people were hearing at the

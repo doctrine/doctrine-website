@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am happy to announce the immediate availability of Doctrine
 1.2.0 ALPHA1. As you all may already know, 1.2 will most likely be

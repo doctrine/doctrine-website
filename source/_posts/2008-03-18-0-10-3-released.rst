@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 A few days late, but the 0.10.3 release has been packaged and
 released. This release contains nearly 40 closed tickets, and is a

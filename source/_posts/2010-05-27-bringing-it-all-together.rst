@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Recently we've been making some pretty serious changes around here.
 This blog post aims to overview it all and make sure people are

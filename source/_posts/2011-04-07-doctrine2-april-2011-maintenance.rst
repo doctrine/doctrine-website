@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Slightly behind schedule, but we released the next round of
 maintenance versions of Doctrine Common (2.0.2), DBAL (2.0.4) and

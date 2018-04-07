@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 If you access a collection of Entity A pointing to Entity B,
 Doctrine2 always initializes the complete collection for you. For

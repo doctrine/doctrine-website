@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 I have been waiting for this day for some time, the day we have the
 manual in a 2nd language. For many months the website has been

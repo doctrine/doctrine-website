@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am happy to introduce two new versions of Doctrine! We have
 made available yet another maintenance release for the 1.0 version,

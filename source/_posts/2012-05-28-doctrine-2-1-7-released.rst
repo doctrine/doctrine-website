@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We released version 2.1.7 of the Doctrine ORM and DBAL today, fixing a total of 18 bugs.
 

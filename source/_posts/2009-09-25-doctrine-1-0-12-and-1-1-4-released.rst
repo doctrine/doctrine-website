@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am happy to bring you two new maintenance releases for the
 1.0 and 1.1 versions of Doctrine. These are both standard

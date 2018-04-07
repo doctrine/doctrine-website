@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce DoctrineModule ``0.10.0``.
 

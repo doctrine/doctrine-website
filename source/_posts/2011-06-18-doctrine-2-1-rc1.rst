@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Doctrine 2.1 is feature complete and we packaged up the first
 release candidate to celebrate this day. So far we got exactly one

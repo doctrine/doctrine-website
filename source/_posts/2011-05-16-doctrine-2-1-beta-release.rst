@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We would like to announce the first beta release of Doctrine 2.1.
 It is packed with new features that will make your life easier:

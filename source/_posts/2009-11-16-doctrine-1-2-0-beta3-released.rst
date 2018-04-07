@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We're getting very close to a stable Doctrine 1.2 with the latest
 BETA3 being released today. This will most likely be the last beta

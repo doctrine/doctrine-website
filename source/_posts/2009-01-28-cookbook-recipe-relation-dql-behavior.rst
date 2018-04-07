@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I will teach you how to write a simple Doctrine behavior. You
 will learn some of the basics of creating a behavior and you will

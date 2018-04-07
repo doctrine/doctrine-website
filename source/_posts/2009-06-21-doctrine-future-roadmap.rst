@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 So, lately we've been discussing and getting a lot of questions
 about the future roadmap of Doctrine, specifically 2.0. If you are

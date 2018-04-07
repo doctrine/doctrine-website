@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 As you all may have noticed, we have put up an actual website. The
 manual, api documentation, and trac are now all available from the

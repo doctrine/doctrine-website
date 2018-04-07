@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am very happy to announce that Doctrine 1.2.0 stable has
 been released. This is a very significant release for Doctrine as

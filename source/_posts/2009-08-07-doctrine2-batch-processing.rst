@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 **TIP** Disclaimer: In general, an ORM is surely not the best tool
     for the job for mass data movements, however, it can be a

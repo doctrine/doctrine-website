@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Steve Müller
 authorEmail: deeky666@googlemail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability of Doctrine DBAL 2.5.2.
 

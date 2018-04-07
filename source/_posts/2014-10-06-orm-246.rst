@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability of Doctrine ORM 2.4.6.
 

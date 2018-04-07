@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 If you are familar with Doctrine\_RawSql from Doctrine 1.x you
 probably know that it is somewhat broken by design since it

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 As you all probably know, Doctrine has been tightly integrated with
 `a few <http://trac.doctrine-project.org/wiki/integrate>`_

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 In Doctrine 1.1 migrations are much easier to work with. In
 addition to the increased stability we have enhanced the migrations

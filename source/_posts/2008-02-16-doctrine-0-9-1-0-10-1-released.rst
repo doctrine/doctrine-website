@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today the Doctrine team is proud to announce the release of
 Doctrine 0.9.1 and 0.10.1. Both releases bring many fixes and a few

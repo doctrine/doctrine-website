@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: avalanche123 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 .. raw:: html
 

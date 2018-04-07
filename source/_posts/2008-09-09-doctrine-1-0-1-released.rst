@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today we would like to announce the immediate availability of the
 first maintenance release of the Doctrine 1.0 branch. This release

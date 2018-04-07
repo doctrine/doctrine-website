@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Andreas Braun
 authorEmail: alcaeus@alcaeus.org
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability of Doctrine MongoDB ODM
 `1.0.4 <https://github.com/doctrine/mongodb-odm/releases/tag/1.0.4>`__.

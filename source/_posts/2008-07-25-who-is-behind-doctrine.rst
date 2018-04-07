@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I have updated the about page on the website so you can get a
 glimpse of who is behind the Doctrine project. Each core

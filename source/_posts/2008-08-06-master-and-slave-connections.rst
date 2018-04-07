@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 In this new cookbook recipe we demonstrate how you can setup
 multiple connections and use them as master/slaves. All select

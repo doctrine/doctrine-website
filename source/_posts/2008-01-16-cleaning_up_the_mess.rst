@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Starting from last blog post, development team went under some
 general discussions to reach a commom sense regarding the project

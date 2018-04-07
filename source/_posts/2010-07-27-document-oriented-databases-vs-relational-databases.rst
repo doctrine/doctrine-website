@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: avalanche123 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 `My last post <http://www.doctrine-project.org/blog/mongodb-for-ecommerce>`_
 brought up a lot of questions on the differences between

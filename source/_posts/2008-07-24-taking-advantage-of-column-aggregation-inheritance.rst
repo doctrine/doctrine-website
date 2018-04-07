@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I have published another tutorial in the 1.0 Cookbook. This
 recipe solves the same situation where you want to allow address

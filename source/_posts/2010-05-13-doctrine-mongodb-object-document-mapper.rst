@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 A question asked to me many times by many different people over the
 last year is, "will Doctrine ever have any support for MongoDB?". I

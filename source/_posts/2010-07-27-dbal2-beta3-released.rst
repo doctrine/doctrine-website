@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 In preparation of the next ORM Beta Release in the next days we
 already released Doctrine DBAL 2.0.0BETA3 today. Noteworthy changes

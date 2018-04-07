@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am happy to release two new maintenance releases for
 Doctrine. As usual we have a new version for the 1.0 branch and a

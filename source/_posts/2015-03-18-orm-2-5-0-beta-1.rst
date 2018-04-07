@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei, Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability Doctrine ORM ``2.5.0-beta1``.
 

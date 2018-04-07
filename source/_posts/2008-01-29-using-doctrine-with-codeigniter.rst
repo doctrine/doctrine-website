@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 If you use the PHP MVC framework, CodeIgniter, and want to use
 Doctrine, here is a tutorial on how to integrate Doctrine with your

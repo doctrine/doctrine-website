@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I am very excited to announce to you all that we have
 officially invited Benjamin Eberlei, also known as beberlei in IRC,

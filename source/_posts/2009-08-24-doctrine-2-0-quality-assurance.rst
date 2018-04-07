@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Greetings folks!
 

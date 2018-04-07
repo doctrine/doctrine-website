@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today we would like to announce the 0.10.4 release. This release
 addresses 46 tickets and is a major step in stabilizing the 1st

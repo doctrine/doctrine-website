@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today I would like to announce the official introduction of the
 Doctrine sandbox package. The Doctrine sandbox was first introduced

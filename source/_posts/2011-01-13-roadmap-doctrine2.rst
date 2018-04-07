@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Doctrine 2 is now stable for about three weeks and we are pretty
 happy about the increase in community discussions on IRC and

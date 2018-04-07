@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Today we have some great news! Thanks to Fabien from the
 `symfony project <http://www.symfony-project.org>`_ , we now have a

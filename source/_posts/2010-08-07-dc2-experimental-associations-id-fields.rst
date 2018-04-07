@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Doctrine 2 supports composite keys of primitive types from the
 beginning, however we realized early that a very common use-case is

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 This week I have been working on the next major version of
 Doctrine, 1.2. This version will possibly be the last 1.x version

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Because of a SQL injection possibility we urge users of Doctrine
 1.2 and 2 to the newly released versions of both libraries

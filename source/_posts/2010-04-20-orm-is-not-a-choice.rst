@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 **NOTE** When speaking of "ORM" or "object-relational mapping" in
     this post I am referring to the act of mapping an

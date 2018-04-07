@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 As you all may know, we recently
 `moved <http://www.doctrine-project.org/blog/doctrine-changing-homes>`_

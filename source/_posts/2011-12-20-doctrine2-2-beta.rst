@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are proud to announce the start of the beta phase of Doctrine 2.2. I think we implemented a nice amount of new features and refactored lots of the code-base for simplicity and performance. Additionally we found a bunch of new developers that contributed considerable amount of code.
 

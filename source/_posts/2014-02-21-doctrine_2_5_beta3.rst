@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: default
 authorEmail: 
 categories: [dbal]
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We have released the BETA3 of DBAL 2.5 after some more work on the many new
 features. For early testers, we have refactored the Exception support again and

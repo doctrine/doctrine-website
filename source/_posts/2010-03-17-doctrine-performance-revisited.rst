@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 In our ever-lasting quest to provide a powerful, flexible and yet
 performant ORM experience we are often confronted with benchmarks

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 Now that the dust has settled from the move to git I suppose it is
 time for a blog post. About a month ago, we made the decision to

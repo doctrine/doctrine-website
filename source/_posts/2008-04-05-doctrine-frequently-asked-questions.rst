@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We have compiled a new addition to the Doctrine website, Frequently
 Asked Questions. The purpose of this is to help the users of

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 As you probably already noticed, the Doctrine website looks a
 little bit different. In preparation for the Doctrine 2.0 release,

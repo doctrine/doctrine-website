@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Maciej Malarz
 authorEmail: malarzm@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 .. note:: 
 

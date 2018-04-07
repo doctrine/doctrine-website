@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 We are happy to announce the immediate availability of Doctrine ORM 2.4.4, which fixes a
 minor regression introduced by `DDC-2996 <http://www.doctrine-project.org/jira/browse/DDC-2996>`_.

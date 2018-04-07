@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-indexed: false
+permalink: /:year/:month/:day/:basename.html
 ---
 One major advantage to using something like MongoDB is the fact
 that it is schema-less. We can store multiple types of documents in
