@@ -8,5 +8,5 @@ before_script: composer install
 script:
     - ./vendor/bin/phpunit --exclude-group=functional --debug
     - cp app/config/local.yml.dist app/config/local.yml
-    - ./vendor/bin/sculpin build-docs
+    - ./vendor/bin/sculpin build-docs --sync-git
     - ./vendor/bin/sculpin build-website
