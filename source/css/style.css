@@ -77,23 +77,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar-sticky .toc ul li {
     border-bottom: 1px dashed #ccc;
-    padding-left: 10px;
 }
 
 .sidebar-sticky .toc ul li a {
+    padding: 8px;
     width: 100%;
     display: block;
     color: #333333;
 }
 
-.sidebar-sticky .toc ul li.opened {
-    font-weight: bold;
-    background-color: #ccc;
-    color: #fff;
-}
-
 .sidebar-sticky .toc ul li.opened a {
+    background-color: #ccc;
     color: #333;
+    font-weight: bold;
 }
 
 /** 2nd Level */
@@ -109,25 +105,19 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: none;
 }
 
-.sidebar-sticky .toc ul ul li.opened {
-    background: none;
-}
-
-.sidebar-sticky .toc ul ul li.opened a {
+.sidebar-sticky .toc ul ul li a {
+    padding: 2px;
     color: #FA6A3C;
 }
 
-.sidebar-sticky .toc ul ul li a {
+.sidebar-sticky .toc ul ul li.opened a {
+    background: none;
     color: #FA6A3C;
 }
 
 /** 3rd Level */
 .sidebar-sticky .toc ul ul ul {
     margin-top: 0;
-}
-
-.sidebar-sticky .toc ul ul ul li.opened {
-    background: none;
 }
 
 .sidebar-sticky .toc ul.closed-ul {
