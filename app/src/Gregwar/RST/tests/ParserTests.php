@@ -62,7 +62,7 @@ class ParserTests extends \PHPUnit_Framework_TestCase
             return $node instanceof CodeNode;
         });
 
-        $this->assertEquals(1, count($nodes));
+        $this->assertCount(1, $nodes);
         $this->assertEquals("A\nB\n C", trim($nodes[0]->getValue()));
     }
 
@@ -238,16 +238,16 @@ class ParserTests extends \PHPUnit_Framework_TestCase
             return $node instanceof DummyNode;
         });
 
-        $this->assertEquals(1, count($nodes));
+        $this->assertCount(1, $nodes);
 
         if ($nodes) {
             $node = $nodes[0];
             $data = $node->data;
             $this->assertEquals('some data', $data['data']);
             $options = $data['options'];
-            $this->assertTrue(isset($options['maxdepth']));
-            $this->assertTrue(isset($options['titlesonly']));
-            $this->assertTrue(isset($options['glob']));
+            $this->assertArrayHasKey('maxdepth', $options);
+            $this->assertArrayHasKey('titlesonly', $options);
+            $this->assertArrayHasKey('glob', $options);
             $this->assertTrue($options['titlesonly']);
             $this->assertEquals(123, $options['maxdepth']);
         }
@@ -355,7 +355,7 @@ class ParserTests extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($nodes);
 
         if ($count !== null) {
-            $this->assertEquals($count, count($nodes));
+            $this->assertCount($count, $nodes);
         }
     }
 
