@@ -88,11 +88,11 @@ class RSTBuilderTest extends TestCase
 
     private function assertSculpinSourceFileExists(string $path)
     {
-        $this->assertTrue(file_exists($this->sculpinSourcePath.$path));
+        $this->assertFileExists($this->sculpinSourcePath.$path);
     }
 
     private function assertSculpinSourceFileContains(string $path, string $contains)
     {
-        $this->assertTrue(strpos(file_get_contents($this->sculpinSourcePath.$path), $contains) !== false);
+        $this->assertContains($contains, file_get_contents($this->sculpinSourcePath.$path));
     }
 }

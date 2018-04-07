@@ -15,13 +15,13 @@ class BuilderTests extends \PHPUnit_Framework_TestCase
      */
     public function testBuild()
     {
-        $this->assertTrue(is_dir($this->targetFile()));
-        $this->assertTrue(file_exists($this->targetFile('index.html')));
-        $this->assertTrue(file_exists($this->targetFile('introduction.html')));
-        $this->assertTrue(file_exists($this->targetFile('subdirective.html')));
-        $this->assertTrue(file_exists($this->targetFile('magic-link.html')));
-        $this->assertTrue(file_exists($this->targetFile('file.txt')));
-        $this->assertTrue(file_exists($this->targetFile('subdir/test.html')));
+        $this->assertDirectoryExists($this->targetFile());
+        $this->assertFileExists($this->targetFile('index.html'));
+        $this->assertFileExists($this->targetFile('introduction.html'));
+        $this->assertFileExists($this->targetFile('subdirective.html'));
+        $this->assertFileExists($this->targetFile('magic-link.html'));
+        $this->assertFileExists($this->targetFile('file.txt'));
+        $this->assertFileExists($this->targetFile('subdir/test.html'));
     }
 
     /**
