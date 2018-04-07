@@ -48,7 +48,7 @@ class ProjectGitSyncerTest extends TestCase
 
         $this->processFactory->expects($this->at(1))
             ->method('run')
-            ->with(sprintf('cd %s/example-project-docs && git fetch && git clean -f && git reset --hard origin/master && git checkout 1.0',
+            ->with(sprintf('cd %s/example-project-docs && git clean -xdf && git fetch origin && git checkout origin/1.0',
                 $this->projectsPath
             ));
 
@@ -60,7 +60,7 @@ class ProjectGitSyncerTest extends TestCase
 
         $this->processFactory->expects($this->at(3))
             ->method('run')
-            ->with(sprintf('cd %s/example-project && git fetch && git clean -f && git reset --hard origin/master && git checkout 1.0',
+            ->with(sprintf('cd %s/example-project && git clean -xdf && git fetch origin && git checkout origin/1.0',
                 $this->projectsPath
             ));
 

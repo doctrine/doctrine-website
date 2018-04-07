@@ -57,7 +57,7 @@ class ProjectGitSyncer
             $this->processFactory->run($command);
         }
 
-        $command = sprintf('cd %s && git fetch && git clean -f && git reset --hard origin/master && git checkout %s',
+        $command = sprintf('cd %s && git clean -xdf && git fetch origin && git checkout origin/%s',
             $dir, $branchName
         );
 
