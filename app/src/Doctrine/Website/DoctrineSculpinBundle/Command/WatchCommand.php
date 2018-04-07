@@ -18,18 +18,22 @@ class WatchCommand extends ContainerAwareCommand
             ->addArgument(
                 'build-dir',
                 InputArgument::OPTIONAL,
-                'The directory where the website is built',
-                '/data/doctrine-website-build-dev'
+                'The directory where the website is built'
             )
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $container = $this->getContainer();
+
+        $rootDir = $container->getParameter('kernel.root_dir');
+        $env = $container->getParameter('kernel.environment');
+
         $buildDir = $input->getArgument('build-dir');
 
-        if (!is_dir($buildDir)) {
-            throw new InvalidArgumentException(sprintf('The build directory %s does not exist.', $buildDir));
+        if (!$buildDir) {
+            $buildDir = sprintf('%s/../build-%s', $rootDir, $env);
         }
 
         $watcher = $this->getContainer()->get('doctrine.watcher');
