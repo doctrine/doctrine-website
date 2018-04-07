@@ -114,15 +114,7 @@ foreach ($files as $file) {
 
     $categories = parseCategories($content);
 
-    $contentToWrite = sprintf($template,
-        $title,
-        $authorName,
-        $authorEmail,
-        implode(', ', $categories),
-        $content
-    );
-
-    $contentToWrite = preg_replace('/.. author::(.*)/', '', $contentToWrite);
+    $contentToWrite = preg_replace('/.. author::(.*)/', '', $content);
     $contentToWrite = preg_replace('/.. categories::(.*)/', '', $contentToWrite);
     $contentToWrite = preg_replace('/.. tags::(.*)/', '', $contentToWrite);
     $contentToWrite = preg_replace('/.. comments::(.*)/', '', $contentToWrite);
@@ -133,5 +125,25 @@ foreach ($files as $file) {
 
     $contentToWrite = trim($contentToWrite)."\n";
 
-    file_put_contents(__DIR__.'/source/_posts/'.$newPath, $contentToWrite);
+    $outputPath = __DIR__.'/source/_posts/'.$newPath;
+
+    file_put_contents($outputPath, $contentToWrite);
+
+    $pandocOutputPath = str_replace('.rst', '.md', $outputPath);
+
+    shell_exec(sprintf('pandoc %s -f rst -t markdown -o %s', $outputPath, $pandocOutputPath));
+
+    $content = file_get_contents($pandocOutputPath);
+
+    $content = sprintf($template,
+        $title,
+        $authorName,
+        $authorEmail,
+        implode(', ', $categories),
+        $content
+    );
+
+    file_put_contents($pandocOutputPath, $content);
+
+    unlink($outputPath);
 }

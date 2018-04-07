@@ -6,7 +6,7 @@ use Gregwar\RST\HTML\Kernel as HTMLKernel;
 use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Doctrine\Website\SculpinRstBundle\Kernel\Kernel as SculpinKernel;
+use Doctrine\Website\RST\Kernel;
 use Gregwar\RST\Builder;
 use PHPUnit\Framework\TestCase;
 
@@ -28,7 +28,7 @@ class RSTBuilderTest extends TestCase
     {
         $this->sculpinSourcePath = __DIR__.'/resources/sculpin-source';
         $this->projectsPath = __DIR__.'/resources';
-        $this->builder = new Builder(new SculpinKernel(new HTMLKernel(), []));
+        $this->builder = new Builder(new Kernel(new HTMLKernel(), []));
 
         $this->rstBuilder = new RSTBuilder(
             $this->sculpinSourcePath,
