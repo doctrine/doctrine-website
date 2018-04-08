@@ -25,10 +25,12 @@ class ProjectRepository
         }
     }
 
-    public function findAll() : array
+    public function findAllActive() : array
     {
-        return array_map(function(array $project) {
+        return array_filter(array_map(function(array $project) {
             return $this->projectFactory->create($project);
-        }, $this->projects);
+        }, $this->projects), function(Project $project) {
+            return $project->isActive();
+        });
     }
 }

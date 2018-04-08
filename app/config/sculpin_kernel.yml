@@ -300,6 +300,25 @@ parameters:
                     branchName: master
                     slug: latest
 
+        orientdb-odm:
+            active: false
+            name: OrientDB Object Document Mapper
+            shortName: OrientDB ODM
+            slug: orientdb-odm
+            docsSlug: doctrine-orientdb-odm
+            composerPackageName: doctrine/orientdb-odm
+            repositoryName: orientdb-odm
+            hasDocs: true
+            docsRepositoryName: orientdb-odm
+            docsPath: /docs
+            codePath: /src
+            description: Doctrine OrientDB Object Document Mapper provides transparent persistence for PHP objects.
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
         annotations:
             name: Annotations
             shortName: Annotations
