@@ -38,6 +38,7 @@ parameters:
             website: 'http://dzh-online.de/'
             location: 'Hamburg, Germany'
             active: true
+            projects: ["dbal"]
         greg0ire:
             name: 'Grégoire Paris'
             github: greg0ire
@@ -93,6 +94,7 @@ parameters:
             website: ''
             location: 'Prague, Czech Republic'
             active: true
+            projects: ["orm"]
         mikeSimonson:
             name: "Mike Simonson"
             twitter: _mikeSimonson
@@ -144,6 +146,7 @@ parameters:
             website: 'http://davidbu.ch'
             location: Switzerland
             active: true
+            projects: ["phpcr-odm"]
 
         # inactive
         asm89:
