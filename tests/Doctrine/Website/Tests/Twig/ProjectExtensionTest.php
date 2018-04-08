@@ -30,7 +30,7 @@ class ProjectExtensionTest extends TestCase
         ];
 
         $this->projectRepository->expects($this->once())
-            ->method('findActive')
+            ->method('findAll')
             ->willReturn($projects);
 
         $this->assertEquals($projects, $this->projectExtension->getProjects());
