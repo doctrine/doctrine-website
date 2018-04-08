@@ -5,6 +5,10 @@
     </ol>
 </nav>
 
+{% if project.active == false %}
+    <div class="alert warning bg-light-yellow text-dark border"><i class="fas fa-exclamation-circle text-warning mr-2"></i> This project is not being actively maintained. If you are interested in helping to maintain this project, take a look at the open issues on <a href="https://github.com/doctrine/{{ project.repositoryName }}/" target="_blank">GitHub</a> and submit pull requests.</div>
+{% endif %}
+
 <h2>{{ project.name }}</h2>
 
 <p class="lead">{{ project.description }}</p>
@@ -13,7 +17,7 @@
 
 <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">API Docs</a>
 
-<a href="https://github.com/doctrine/{{ project.repositoryName }}" class="btn btn-primary" target="_blank">GitHub</a>
+<a href="https://github.com/doctrine/{{ project.repositoryName }}/" class="btn btn-primary" target="_blank">GitHub</a>
 
 <hr />
 
@@ -23,23 +27,25 @@
 
 <h2>Versions</h2>
 
-<table class="table">
-    <tbody>
-        {% for version in project.versions %}
-            <tr>
-                <td>
-                    {{ version.name }}
+<div class="border-left border-right border-bottom rounded mb-4">
+    <table class="table mb-0">
+        <tbody>
+            {% for version in project.versions %}
+                <tr>
+                    <td{% if version.current %} class="font-weight-bold"{% endif %}>
+                        {{ version.name }}
 
-                    {% if version.current %}
-                        (current)
-                    {% endif %}
-                </td>
-                <td><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Docs</a></td>
-                <td><a href="{{ site.url }}/api/{{ project.slug }}/{{ version.slug ?? 'latest' }}/index.html">API Docs</a></td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                        {% if version.current %}
+                            (current)
+                        {% endif %}
+                    </td>
+                    <td><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Docs</a></td>
+                    <td><a href="{{ site.url }}/api/{{ project.slug }}/{{ version.slug ?? 'latest' }}/index.html">API Docs</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% set teamMembers = get_project_team_members(project) %}
 
@@ -47,7 +53,7 @@
     <h2>Team</h2>
 
     <ul class="list-group">
-        {% for member in teamMembers if member.active is defined and member.active == true %}
+        {% for member in teamMembers if member.active is defined and member.active == true or (project.active == false and member.active == false) %}
             <li class="list-group-item">
                 <img src="{{ member.avatarUrl }}" class="rounded float-left mr-5" style="width: 50px;" />
                 <strong>{{ member.name ?? member.github }}{% if member.name %} <small>({{ member.github }}){% endif %}</small></strong>

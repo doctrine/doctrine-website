@@ -25,6 +25,7 @@ class ProjectTest extends TestCase
             'codePath' => '/src',
             'hasDocs' => true,
             'description' => 'Test description.',
+            'keywords' => ['keyword1', 'keyword2'],
             'versions' => [
                 [
                     'name' => 'master',
@@ -94,6 +95,11 @@ class ProjectTest extends TestCase
     public function testGetDescription()
     {
         $this->assertEquals('Test description.', $this->project->getDescription());
+    }
+
+    public function testGetKeywords()
+    {
+        $this->assertEquals(['keyword1', 'keyword2'], $this->project->getKeywords());
     }
 
     public function testGetVersions()

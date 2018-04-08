@@ -287,6 +287,7 @@ parameters:
             avatarUrl: 'https://avatars3.githubusercontent.com/u/328420?v=4'
             website: www.odino.org
             location: 'Dubai, UAE'
+            projects: [orientdb-odm]
         richardfullmer:
             name: 'Richard Fullmer'
             github: richardfullmer

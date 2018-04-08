@@ -1,0 +1,333 @@
+parameters:
+    doctrine.projects:
+        orm:
+            active: true
+            name: Object Relational Mapper
+            shortName: ORM
+            slug: orm
+            docsSlug: doctrine-orm
+            composerPackageName: doctrine/orm
+            repositoryName: doctrine2
+            docsRepositoryName: doctrine2
+            docsPath: /docs
+            description: >
+                PHP object relational mapper (ORM) that sits on top of a powerful
+                database abstraction layer (DBAL). One of its key features is the
+                option to write database queries in a proprietary object oriented
+                SQL dialect called Doctrine Query Language (DQL). This provides developers
+                with a powerful alternative to SQL that maintains flexibility without
+                requiring unnecessary code duplication.
+
+            keywords: [php, orm, mysql, object, mapper, mapping, query, dql]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+                -
+                    name: 2.6
+                    branchName: 2.6
+                    slug: 2.6
+                    current: true
+                -
+                    name: 2.5
+                    branchName: 2.5
+                    slug: 2.5
+
+        dbal:
+            active: true
+            name: Database Abstraction Layer
+            shortName: DBAL
+            slug: dbal
+            docsSlug: doctrine-dbal
+            composerPackageName: doctrine/dbal
+            repositoryName: dbal
+            docsRepositoryName: dbal
+            docsPath: /docs
+            description: >
+                Powerful PHP database abstraction layer (DBAL) with many features
+                for database schema introspection, schema management and PDO
+                abstraction.
+            keywords: [php, mysql, pgsql, dbal, database, abstraction]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+                -
+                    name: 2.7
+                    branchName: 2.7
+                    slug: 2.7
+                    current: true
+                -
+                    name: 2.6
+                    branchName: 2.6
+                    slug: 2.6
+                -
+                    name: 2.5
+                    branchName: 2.5
+                    slug: 2.5
+
+        mongodb-odm:
+            active: true
+            name: MongoDB Object Document Mapper
+            shortName: MongoDB ODM
+            slug: mongodb-odm
+            docsSlug: doctrine-mongodb-odm
+            composerPackageName: doctrine/mongodb-odm
+            repositoryName: mongodb-odm
+            docsRepositoryName: mongodb-odm
+            docsPath: /docs
+            description: >
+                PHP Doctrine MongoDB Object Document Mapper (ODM) provides transparent
+                persistence for PHP objects to MongoDB.
+            keywords: [php, mongodb, odm, mapper, mapping, object]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+                -
+                    name: 1.2
+                    branchName: 1.2.x
+                    slug: 1.2
+                    current: true
+                -
+                    name: 1.1
+                    branchName: 1.1.x
+                    slug: 1.1
+
+        phpcr-odm:
+            active: true
+            name: PHPCR ODM
+            shortName: PHPCR ODM
+            slug: phpcr-odm
+            docsSlug: doctrine-phpcr-odm
+            composerPackageName: doctrine/phpcr-odm
+            repositoryName: phpcr-odm
+            docsRepositoryName: phpcr-odm
+            docsPath: /docs
+            description: >
+                PHP Doctrine Content Repository Object Document Mapper (ODM)
+                provides transparent persistence for PHP objects.
+            keywords: [php, content, odm, mapper, mapping, object]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        couchdb-odm:
+            active: true
+            name: CouchDB Object Document Mapper
+            shortName: CouchDB ODM
+            slug: couchdb-odm
+            docsSlug: doctrine-couchdb-odm
+            composerPackageName: doctrine/couchdb-odm
+            repositoryName: couchdb-odm
+            docsRepositoryName: couchdb-odm
+            docsPath: /docs
+            description: >
+                PHP Doctrine CouchDB Object Document Mapper (ODM) provides
+                transparent persistence for PHP objects to CouchDB.
+            keywords: [couchdb, odm, mapper, mapping, object]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        migrations:
+            active: true
+            name: Migrations
+            shortName: Migrations
+            slug: migrations
+            docsSlug: doctrine-migrations
+            composerPackageName: doctrine/migrations
+            repositoryName: migrations
+            docsRepositoryName: migrations
+            docsPath: /docs
+            description: >
+                PHP Doctrine Migrations project offer additional functionality
+                on top of the database abstraction layer (DBAL) for versioning
+                your database schema and easily deploying changes to it. It is
+                a very easy to use and a powerful tool.
+            keywords: [php, database, migrations, dbal]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        common:
+            active: true
+            name: Common
+            shortName: Common
+            slug: common
+            docsSlug: doctrine-common
+            composerPackageName: doctrine/common
+            repositoryName: common
+            docsRepositoryName: common
+            docsPath: /docs
+            description: >
+                PHP Doctrine Common project is a library that provides additional
+                functionality that other Doctrine projects depend on such as better
+                reflection support, persistence interfaces, proxies, event system
+                and much more.
+            keywords: [php, common, doctrine]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        mongodb:
+            active: true
+            name: MongoDB Abstraction Layer
+            shortName: MongoDB
+            slug: mongodb
+            docsSlug: doctrine-mongodb
+            composerPackageName: doctrine/mongodb
+            repositoryName: mongodb
+            hasDocs: true
+            docsRepositoryName: mongodb
+            docsPath: /docs
+            description: >
+                PHP Doctrine MongoDB project is a library that provides a wrapper
+                around the native PHP Mongo PECL extension to provide additional
+                functionality.
+            keywords: [php, mongodb, abstraction]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        orientdb-odm:
+            active: false
+            name: OrientDB Object Document Mapper
+            shortName: OrientDB ODM
+            slug: orientdb-odm
+            docsSlug: doctrine-orientdb-odm
+            composerPackageName: doctrine/orientdb-odm
+            repositoryName: orientdb-odm
+            hasDocs: true
+            docsRepositoryName: orientdb-odm
+            docsPath: /docs
+            codePath: /src
+            description: >
+                PHP OrientDB Object Document Mapper (ODM) provides transparent
+                persistence for PHP objects to OrientDB.
+            keywords: [php, orientdb, odm, mapper, mapping, object, graphdb]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        annotations:
+            active: true
+            name: Annotations
+            shortName: Annotations
+            slug: annotations
+            docsSlug: doctrine-annotations
+            composerPackageName: doctrine/annotations
+            repositoryName: annotations
+            hasDocs: false
+            docsRepositoryName: annotations
+            docsPath: /docs
+            description: >
+                PHP Doctrine DocBlock Annotations Parser library that lets you parse
+                structured data out of PHP docblocks for use with other functionality.
+            keywords: [php, annotations, docblock, comment]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        collections:
+            active: true
+            name: Collections
+            shortName: Collections
+            slug: collections
+            docsSlug: doctrine-collections
+            composerPackageName: doctrine/collections
+            repositoryName: collections
+            hasDocs: true
+            docsRepositoryName: collections
+            docsPath: /docs
+            description: >
+                PHP Doctrine Collections library that adds additional functionality
+                on top of PHP arrays.
+            keywords: [php, collections, iterators]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        inflector:
+            active: true
+            name: Inflector
+            shortName: Inflector
+            slug: inflector
+            docsSlug: doctrine-inflector
+            composerPackageName: doctrine/inflector
+            repositoryName: inflector
+            hasDocs: true
+            docsRepositoryName: inflector
+            docsPath: /docs
+            description: >
+                PHP Doctrine Inflector is a small library that can perform
+                string manipulations with regard to upper/lowercase and
+                singular/plural forms of words.
+            keywords: [php, strings, words, manipulation, inflector, inflection, uppercase, lowercase, singular, plural]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        cache:
+            active: true
+            name: Cache
+            shortName: Cache
+            slug: cache
+            docsSlug: doctrine-cache
+            composerPackageName: doctrine/cache
+            repositoryName: cache
+            hasDocs: true
+            docsRepositoryName: cache
+            docsPath: /docs
+            description: >
+                PHP Doctrine Cache library is a popular cache implementation
+                that supports many different drivers such as redis, memcache,
+                apc, mongodb and others.
+            keywords: [php, cache, abstraction, redis, memcache, couchdb, xcache, apc, riak]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        lexer:
+            active: true
+            name: Lexer
+            shortName: Lexer
+            slug: lexer
+            docsSlug: doctrine-lexer
+            composerPackageName: doctrine/lexer
+            repositoryName: lexer
+            hasDocs: true
+            docsRepositoryName: lexer
+            docsPath: /docs
+            description: >
+                PHP Doctrine Lexer parser library that can be used in Top-Down,
+                Recursive Descent Parsers.
+            keywords: [php, parser, lexer, annotations, docblock]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest

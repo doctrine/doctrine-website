@@ -4,6 +4,14 @@
     {% set project = get_project(page.docsSlug) %}
 {% endif %}
 
+{% if project is defined and project %}
+    {% block title %}{{ page.title }} - {{ project.name }} ({{ project.shortName }}){% endblock %}
+
+    {% block meta_description project.description %}
+
+    {% block meta_keywords project.keywords|join(',') %}
+{% endif %}
+
 {% block head_meta %}
     {% if project is defined and project %}
         <link rel="canonical" href="{{ site.url }}{{ get_url_version(project.currentVersion, page.url, page.docsVersion) }}" />

@@ -37,6 +37,9 @@ class Project
     /** @var string */
     private $description;
 
+    /** @var array */
+    private $keywords = [];
+
     /** @var ProjectVersions */
     private $versions = [];
 
@@ -54,6 +57,7 @@ class Project
         $this->docsPath = (string) ($project['docsPath'] ?? '');
         $this->codePath = (string) ($project['codePath'] ?? '/lib');
         $this->description = (string) ($project['description'] ?? '');
+        $this->keywords = $project['keywords'] ?? [];
         $this->versions = new ProjectVersions($project['versions'] ?? []);
     }
 
@@ -115,6 +119,11 @@ class Project
     public function getDescription() : string
     {
         return $this->description;
+    }
+
+    public function getKeywords() : array
+    {
+        return $this->keywords;
     }
 
     public function getVersions() : ProjectVersions
