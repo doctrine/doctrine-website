@@ -2,9 +2,10 @@
 
 namespace Doctrine\Website\Projects;
 
+use Countable;
 use Iterator;
 
-class ProjectVersions implements Iterator
+class ProjectVersions implements Iterator, Countable
 {
     /** @var array */
     private $versions;
@@ -17,6 +18,11 @@ class ProjectVersions implements Iterator
                 : new ProjectVersion($version)
             ;
         }
+    }
+
+    public function count()
+    {
+        return count($this->versions);
     }
 
     public function rewind()

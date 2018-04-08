@@ -23,31 +23,35 @@
 
 <hr />
 
-<h2>Install</h2>
+{% if project.composerPackageName %}
+    <h2>Install</h2>
 
-<pre><code>$ composer require {{ project.composerPackageName }}</code></pre>
+    <pre><code>$ composer require {{ project.composerPackageName }}</code></pre>
+{% endif %}
 
-<h2>Versions</h2>
+{% if project.versions|length > 1 %}
+    <h2>Versions</h2>
 
-<div class="border-left border-right border-bottom rounded mb-4">
-    <table class="table mb-0">
-        <tbody>
-            {% for version in project.versions %}
-                <tr>
-                    <td{% if version.current %} class="font-weight-bold"{% endif %}>
-                        {{ version.name }}
+    <div class="border-left border-right border-bottom rounded mb-4">
+        <table class="table mb-0">
+            <tbody>
+                {% for version in project.versions %}
+                    <tr>
+                        <td{% if version.current %} class="font-weight-bold"{% endif %}>
+                            {{ version.name }}
 
-                        {% if version.current %}
-                            (current)
-                        {% endif %}
-                    </td>
-                    <td><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Docs</a></td>
-                    <td><a href="{{ site.url }}/api/{{ project.slug }}/{{ version.slug ?? 'latest' }}/index.html">API Docs</a></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+                            {% if version.current %}
+                                (current)
+                            {% endif %}
+                        </td>
+                        <td><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Docs</a></td>
+                        <td><a href="{{ site.url }}/api/{{ project.slug }}/{{ version.slug ?? 'latest' }}/index.html">API Docs</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
 
 {% if project.archived or not project.active %}
     {% set allTeamMembers = get_all_project_team_members(project) %}
