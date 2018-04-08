@@ -34,14 +34,17 @@ class MainExtension extends Twig_Extension
 
     public function getTeamMembers() : array
     {
-        ksort($this->teamMembers);
+        $teamMembers = [];
 
-        return $this->teamMembers;
-    }
+        foreach ($this->teamMembers as $key => $teamMember) {
+            $key = $teamMember['name'] ?? $key;
 
-    public function getGravatarUrl(string $email) : string
-    {
-        return sprintf('https://www.gravatar.com/avatar/%s', md5($email));
+            $teamMembers[$key] = $teamMember;
+        }
+
+        ksort($teamMembers);
+
+        return $teamMembers;
     }
 
     private function getAssetCacheBuster(string $path) : string

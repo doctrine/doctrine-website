@@ -4,13 +4,44 @@ title: Doctrine Team
 menuSlug: team
 ---
 
-<h1>Doctrine Team</h1>
+<h1>Doctrine Core Team</h1>
+
+<div class="row">
+    {% for member in get_team_members() if member.active is defined and member.active == true %}
+        <div class="col-md-3">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{{ member.avatarUrl }}" alt="{{ member.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ member.name ?? member.github }}</small></h5>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <ul class="list-inline">
+                            {% if member.twitter is defined and member.twitter %}
+                                <li class="list-inline-item" target="_blank"><a href="https://twitter.com/{{ member.twitter }}/" target="_blank"><i class="fab fa-twitter mr-2"></i></a></li>
+                            {% endif %}
+
+                            {% if member.website is defined and member.website %}
+                                <li class="list-inline-item" target="_blank"><a href="{{ member.website }}" target="_blank"><i class="fas fa-link mr-2"></i></a></li>
+                            {% endif %}
+
+                            {% if member.github is defined and member.github %}
+                                <li class="list-inline-item" target="_blank"><a href="https://github.com/{{ member.github }}/" target="_blank"><i class="fab fa-github mr-2"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<h3>Inactive</h3>
 
 <ul class="list-group">
-    {% for member in get_team_members() %}
+    {% for member in get_team_members() if member.active is not defined or member.active == false %}
         <li class="list-group-item">
-            <img src="{{ get_gravatar_url(member.email) }}" class="rounded float-left mr-5" style="width: 50px;" alt="{{ member.name }}" />
-            <strong>{{ member.name }}</strong>
+            <img src="{{ member.avatarUrl }}" class="rounded float-left mr-5" style="width: 50px;" />
+            <strong>{{ member.name ?? member.github }}{% if member.name %} <small>({{ member.github }}){% endif %}</small></strong>
 
             <ul class="list-inline">
                 {% if member.twitter is defined and member.twitter %}
