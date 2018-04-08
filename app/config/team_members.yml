@@ -16,6 +16,7 @@ parameters:
             website: 'https://beberlei.de'
             location: Germany
             active: true
+            projects: ["orm", "dbal"]
         billschaller:
             name: 'Bill Schaller'
             github: billschaller
@@ -52,6 +53,7 @@ parameters:
             website: 'http://www.doctrine-project.org'
             location: 'Toronto, ON, Canada'
             active: true
+            projects: ["orm"]
         jmikola:
             name: 'Jeremy Mikola'
             github: jmikola
@@ -59,6 +61,7 @@ parameters:
             website: 'http://jmikola.net'
             location: 'Hoboken, NJ'
             active: true
+            projects: ["mongodb", "mongodb-odm"]
         jwage:
             name: 'Jonathan H. Wage'
             twitter: jwage
@@ -67,6 +70,7 @@ parameters:
             avatarUrl: 'https://avatars0.githubusercontent.com/u/97422?v=4'
             location: 'Nashville, TN'
             active: true
+            projects: ["mongodb", "mongodb-odm", "migrations"]
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
             github: kimhemsoe
@@ -97,6 +101,7 @@ parameters:
             website: ''
             location: null
             active: true
+            projects: ["migrations"]
         malarzm:
             name: 'Maciej Malarz'
             twitter: malarzm
@@ -105,6 +110,7 @@ parameters:
             website: 'http://twitter.com/malarzm'
             location: Cracow
             active: true
+            projects: ["mongodb", "mongodb-odm"]
         morozov:
             name: 'Sergei Morozov'
             twitter: srgmrzv
@@ -113,6 +119,7 @@ parameters:
             website: 'http://morozov.livejournal.com/'
             location: 'San Jose, CA'
             active: true
+            projects: ["dbal"]
         Ocramius:
             name: 'Marco Pivetta'
             twitter: ocramius
@@ -121,6 +128,7 @@ parameters:
             avatarUrl: 'https://avatars2.githubusercontent.com/u/154256?v=4'
             location: 'Frankfurt am Main'
             active: true
+            projects: ["orm", "dbal"]
         TomHAnderson:
             name: 'Tom H Anderson'
             github: TomHAnderson
@@ -128,6 +136,7 @@ parameters:
             website: 'http://tomhanderson.com'
             location: 'Salt Lake City, Utah'
             active: true
+            projects: ["mongodb", "mongodb-odm"]
         dbu:
             name: 'David Buchmann'
             github: dbu
