@@ -55,7 +55,7 @@ use:
             <div class="card mb-4">
                 <h5 class="card-header">Projects</h5>
                 <ul class="list-group list-group-flush">
-                    {% for project in get_projects() %}
+                    {% for project in get_projects() if project.active is defined and project.active == true %}
                         <li class="list-group-item"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></li>
                     {% endfor %}
                 </ul>
