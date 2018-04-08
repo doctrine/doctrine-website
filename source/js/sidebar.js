@@ -54,8 +54,30 @@ Sidebar.prototype.scrollToElement = function(elem) {
     }
 };
 
+Sidebar.prototype.removeQueryStringParameter = function(key, url) {
+    if (!url) url = window.location.href;
+
+    var hashParts = url.split('#');
+
+    var regex = new RegExp("([?&])" + key + "=.*?(&|#|$)", "i");
+
+    if (hashParts[0].match(regex)) {
+        //REMOVE KEY AND VALUE
+        url = hashParts[0].replace(regex, '$1');
+
+        //REMOVE TRAILING ? OR &
+        url = url.replace(/([?&])$/, '');
+
+        //ADD HASH
+        if (typeof hashParts[1] !== 'undefined' && hashParts[1] !== null)
+            url += '#' + hashParts[1];
+    }
+
+    return url;
+};
+
 Sidebar.prototype.getCurrentDocsMenu = function() {
-    var currentUrl = window.location.href;
+    var currentUrl = this.removeQueryStringParameter('q', window.location.href);
     var lastPart = currentUrl.substr(currentUrl.lastIndexOf('/') + 1);
 
     if (!lastPart) {

@@ -54,10 +54,29 @@ var Search = function(projectSlug, versionSlug) {
 
     search.start();
 
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+
     $('#search-box input').on('blur', function() {
         setTimeout(function() {
             $('.container-wrapper').css('opacity', '1');
             $('.search-results').hide();
         }, 200);
+    });
+
+    $(function() {
+        var q = getParameterByName('q', window.location.href);
+
+        if (q) {
+            $('#search-box input').val(q);
+            search.helper.setQuery(q).search();
+        }
     });
 };

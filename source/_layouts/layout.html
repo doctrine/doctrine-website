@@ -7,6 +7,12 @@
         <meta name="theme-color" content="#ffffff">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        {% if site.env == 'prod' %}
+            <meta name="robots" content="index, follow">
+        {% else %}
+            <meta name="robots" content="noindex">
+        {% endif %}
+
         {% block head_meta '' %}
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -49,6 +55,42 @@
         <meta property="og:image:height" content="1200" />
 
         <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/atom.xml" title="{{ site.title }} activity feed" />
+
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Doctrine",
+            "url": "{{ site.url }}",
+            "logo": "{{ site.url }}/images/doctrine-logo.svg"
+        }
+        </script>
+
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "{{ site.url }}",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "{{ site.url }}?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+        </script>
+
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": "Doctrine",
+            "url": "{{ site.url }}",
+            "sameAs": [
+                "https://twitter.com/doctrineorm"
+            ]
+        }
+        </script>
+
+        {% block structured_data '' %}
 
         {% block head_styles '' %}
 
