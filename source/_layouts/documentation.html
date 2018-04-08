@@ -10,6 +10,24 @@
     {% endif %}
 {% endblock %}
 
+{% block structured_data %}
+    {% if project is defined and project %}
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Course",
+            "name": "Doctrine {{ project.name }}",
+            "description": "{{ page.title }}",
+            "provider": {
+                "@type": "Organization",
+                "name": "Doctrine",
+                "sameAs": "{{ site.url }}"
+            }
+        }
+        </script>
+    {% endif %}
+{% endblock %}
+
 {% block container %}
     <div class="container-wrapper container-fluid">
         <div class="row row-offcanvas row-offcanvas-right">
