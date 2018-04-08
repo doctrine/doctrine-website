@@ -4,6 +4,8 @@ namespace Doctrine\Website\Twig;
 
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use Twig_Extension;
 use Twig_SimpleFunction;
 use Twig_SimpleTest;
@@ -24,7 +26,8 @@ class MainExtension extends Twig_Extension
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
             new Twig_SimpleFunction('get_team_members', [$this, 'getTeamMembers']),
             new Twig_SimpleFunction('get_project_team_members', [$this, 'getProjectTeamMembers']),
-            new Twig_SimpleFunction('get_gravatar_url', [$this, 'getGravatarUrl'])
+            new Twig_SimpleFunction('get_docs_urls', [$this, 'getDocsUrls']),
+            new Twig_SimpleFunction('get_api_docs_urls', [$this, 'getApiDocsUrls'])
         ];
     }
 
@@ -53,6 +56,46 @@ class MainExtension extends Twig_Extension
         return array_filter($this->getTeamMembers(), function(array $teamMember) use ($project) {
             return in_array($project->getSlug(), $teamMember['projects'] ?? []);
         });
+    }
+
+    public function getDocsUrls() : array
+    {
+        $root = realpath(__DIR__.'/../../../../../source');
+        $path = $root.'/projects';
+
+        $it = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
+
+        $urls = [];
+        foreach(new RecursiveIteratorIterator($it) as $file) {
+            $url = str_replace($root, '', $file);
+
+            $urls[] = [
+                'url' => $url,
+                'date' => filemtime($file),
+            ];
+        }
+
+        return $urls;
+    }
+
+    public function getApiDocsUrls() : array
+    {
+        $root = realpath(__DIR__.'/../../../../../source');
+        $path = $root.'/api';
+
+        $it = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
+
+        $urls = [];
+        foreach(new RecursiveIteratorIterator($it) as $file) {
+            $url = str_replace($root, '', $file);
+
+            $urls[] = [
+                'url' => $url,
+                'date' => filemtime($file),
+            ];
+        }
+
+        return $urls;
     }
 
     private function getAssetCacheBuster(string $path) : string

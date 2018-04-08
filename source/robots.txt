@@ -2,8 +2,12 @@
 permalink: none
 ---
 
-User-agent: *
-Disallow: /blog/tags/
-Disallow: /blog/categories/
-
 Sitemap: {{ site.url }}/sitemap.xml
+
+{% if site.env == 'prod' %}
+User-agent: *
+Allow: /
+{% else %}
+User-agent: *
+Disallow: /
+{% endif %}
