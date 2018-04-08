@@ -55,7 +55,7 @@ use:
             <h5 class="card-header">Projects</h5>
             <ul class="list-group list-group-flush">
                 {% for project in get_projects() %}
-                    <li class="list-group-item"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.name }}</a></li>
+                    <li class="list-group-item"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>
