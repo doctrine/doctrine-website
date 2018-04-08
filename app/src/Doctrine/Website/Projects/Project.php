@@ -4,6 +4,12 @@ namespace Doctrine\Website\Projects;
 
 class Project
 {
+    /** @var bool */
+    private $active;
+
+    /** @var bool */
+    private $archived;
+
     /** @var string */
     private $name;
 
@@ -46,6 +52,7 @@ class Project
     public function __construct(array $project)
     {
         $this->active = (bool) ($project['active'] ?? true);
+        $this->archived = (bool) ($project['archived'] ?? false);
         $this->name = (string) ($project['name'] ?? '');
         $this->shortName = (string) ($project['shortName'] ?? '');
         $this->slug = (string) ($project['slug'] ?? '');
@@ -64,6 +71,11 @@ class Project
     public function isActive() : bool
     {
         return $this->active;
+    }
+
+    public function isArchived() : bool
+    {
+        return $this->archived;
     }
 
     public function getName() : string

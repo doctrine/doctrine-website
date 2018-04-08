@@ -43,7 +43,38 @@ permalink: none
 </p>
 
 <ul class="list-group">
-    {% for project in get_projects() if project.active is defined and project.active == false %}
+    {% for project in get_projects() if project.active is defined and not project.active and not project.archived %}
+        <li class="list-group-item">
+            <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
+
+            <ul class="list-inline mt-2">
+                <li class="list-inline-item">
+                    <i class="fas fa-book"></i>
+                    <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <i class="fas fa-eye"></i>
+                    <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
+                </li>
+            </ul>
+        </li>
+    {% endfor %}
+</div>
+
+<h3 class="mt-4">Archived Projects</h3>
+
+<p class="lead">
+    These project are no longer maintained with no chance of revival and have been archived.
+</p>
+
+<ul class="list-group">
+    {% for project in get_projects() if project.active is defined and not project.active and project.archived %}
         <li class="list-group-item">
             <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
 

@@ -27,9 +27,9 @@ class MainExtensionTest extends TestCase
         $this->assertEquals('http://lcl.doctrine-project.org/js/watch.js?cfed72', $url);
     }
 
-    public function testGetTeamMembers()
+    public function testGetAllTeamMembers()
     {
-        $teamMembers = $this->mainExtension->getTeamMembers();
+        $teamMembers = $this->mainExtension->getAllTeamMembers();
 
         $this->assertEquals([
             'jwage' => [],

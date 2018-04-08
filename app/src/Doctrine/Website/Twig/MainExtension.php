@@ -24,8 +24,11 @@ class MainExtension extends Twig_Extension
     {
         return [
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
-            new Twig_SimpleFunction('get_team_members', [$this, 'getTeamMembers']),
-            new Twig_SimpleFunction('get_project_team_members', [$this, 'getProjectTeamMembers']),
+            new Twig_SimpleFunction('get_active_team_members', [$this, 'getActiveTeamMembers']),
+            new Twig_SimpleFunction('get_inactive_team_members', [$this, 'getInactiveTeamMembers']),
+            new Twig_SimpleFunction('get_active_project_team_members', [$this, 'getActiveProjectTeamMembers']),
+            new Twig_SimpleFunction('get_inactive_project_team_members', [$this, 'getInactiveProjectTeamMembers']),
+            new Twig_SimpleFunction('get_all_project_team_members', [$this, 'getAllProjectTeamMembers']),
             new Twig_SimpleFunction('get_docs_urls', [$this, 'getDocsUrls']),
             new Twig_SimpleFunction('get_api_docs_urls', [$this, 'getApiDocsUrls'])
         ];
@@ -36,7 +39,7 @@ class MainExtension extends Twig_Extension
         return $siteUrl.$path.'?'.$this->getAssetCacheBuster($path);
     }
 
-    public function getTeamMembers() : array
+    public function getAllTeamMembers() : array
     {
         $teamMembers = [];
 
@@ -51,10 +54,70 @@ class MainExtension extends Twig_Extension
         return $teamMembers;
     }
 
-    public function getProjectTeamMembers(Project $project) : array
+    public function getActiveTeamMembers() : array
     {
-        return array_filter($this->getTeamMembers(), function(array $teamMember) use ($project) {
+        $teamMembers = [];
+
+        foreach ($this->teamMembers as $key => $teamMember) {
+            $active = $teamMember['active'] ?? false;
+
+            if (!$active) {
+                continue;
+            }
+
+            $key = $teamMember['name'] ?? $key;
+
+            $teamMembers[$key] = $teamMember;
+        }
+
+        ksort($teamMembers);
+
+        return $teamMembers;
+    }
+
+    public function getInactiveTeamMembers() : array
+    {
+        $teamMembers = [];
+
+        foreach ($this->teamMembers as $key => $teamMember) {
+            $active = $teamMember['active'] ?? false;
+
+            if ($active) {
+                continue;
+            }
+
+            $key = $teamMember['name'] ?? $key;
+
+            $teamMembers[$key] = $teamMember;
+        }
+
+        ksort($teamMembers);
+
+        return $teamMembers;
+    }
+
+    public function getAllProjectTeamMembers(Project $project) : array
+    {
+        return array_filter($this->getAllTeamMembers(), function(array $teamMember) use ($project) {
             return in_array($project->getSlug(), $teamMember['projects'] ?? []);
+        });
+    }
+
+    public function getActiveProjectTeamMembers(Project $project) : array
+    {
+        return array_filter($this->getAllTeamMembers(), function(array $teamMember) use ($project) {
+            $active = $teamMember['active'] ?? false;
+
+            return $active && in_array($project->getSlug(), $teamMember['projects'] ?? []);
+        });
+    }
+
+    public function getInactiveProjectTeamMembers(Project $project) : array
+    {
+        return array_filter($this->getAllTeamMembers(), function(array $teamMember) use ($project) {
+            $active = $teamMember['active'] ?? false;
+
+            return !$active && in_array($project->getSlug(), $teamMember['projects'] ?? []);
         });
     }
 

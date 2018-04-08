@@ -57,7 +57,7 @@ class WebsiteBuilderTest extends TestCase
 
         $this->processFactory->expects($this->at(1))
             ->method('run')
-            ->with(sprintf('%s/vendor/bin/sculpin generate --env=staging', $this->rootDir));
+            ->with(sprintf('php -d memory_limit=1024M %s/vendor/bin/sculpin generate --env=staging', $this->rootDir));
 
         $this->processFactory->expects($this->at(2))
             ->method('run')

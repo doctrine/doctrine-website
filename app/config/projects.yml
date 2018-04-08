@@ -118,7 +118,7 @@ parameters:
                     slug: latest
 
         couchdb-odm:
-            active: true
+            active: false
             name: CouchDB Object Document Mapper
             shortName: CouchDB ODM
             slug: couchdb-odm
@@ -326,6 +326,26 @@ parameters:
                 PHP Doctrine Lexer parser library that can be used in Top-Down,
                 Recursive Descent Parsers.
             keywords: [php, parser, lexer, annotations, docblock]
+            versions:
+                -
+                    name: master
+                    branchName: master
+                    slug: latest
+
+        doctrine1:
+            active: false
+            archived: true
+            name: Doctrine1 ORM
+            shortName: Doctrine1
+            slug: doctrine1
+            docsSlug: doctrine1
+            repositoryName: doctrine1
+            hasDocs: true
+            docsRepositoryName: doctrine1-documentation
+            docsPath: /source
+            description: >
+                PHP 5 Doctrine1 Object Relational Mapper (ORM)
+            keywords: [php, doctrine1, orm]
             versions:
                 -
                     name: master

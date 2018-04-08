@@ -25,7 +25,11 @@ class RSTBuilder
 .. raw:: html
     {% block content %}
 
+{% verbatim %}
+
 {{ content }}
+
+{% endverbatim %}
 
 .. raw:: html
     {% endblock %}
@@ -124,8 +128,21 @@ TEMPLATE;
             // fix :maxdepth: to :depth:
             $content = str_replace(':maxdepth:', ':depth:', $content);
 
-            // .. include:: toc.rst
+            // get rid of .. include:: toc.rst
             $content = str_replace('.. include:: toc.rst', '', $content);
+
+            // stuff from doctrine1 docs
+            if ($project->getSlug() === 'doctrine1') {
+                $content = preg_replace("/:code:(.*)\n/", '$1', $content);
+                $content = preg_replace("/:php:(.*):`(.*)`/", '$2', $content);
+                $content = preg_replace("/:file:`(.*)`/", '$1', $content);
+                $content = preg_replace("/:code:`(.*)`/", '$1', $content);
+                $content = preg_replace("/:literal:`(.*)`/", '$1', $content);
+                $content = preg_replace("/:token:`(.*)`/", '$1', $content);
+                $content = str_replace('.. productionlist::', '', $content);
+                $content = preg_replace("/.. rubric:: Notes/", '', $content);
+                $content = preg_replace("/.. sidebar:: (.*)\n/", '$1', $content);
+            }
 
             $newContent = str_replace('{{ content }}', $content, self::RST_TEMPLATE);
 

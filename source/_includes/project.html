@@ -5,7 +5,9 @@
     </ol>
 </nav>
 
-{% if project.active == false %}
+{% if project.archived == true %}
+    <div class="alert caution bg-light-yellow text-dark border"><i class="fas fa-exclamation-circle text-warning mr-2"></i> This project is no longer maintained and has been archived.</div>
+{% elseif project.active == false %}
     <div class="alert warning bg-light-yellow text-dark border"><i class="fas fa-exclamation-circle text-warning mr-2"></i> This project is not being actively maintained. If you are interested in helping to maintain this project, take a look at the open issues on <a href="https://github.com/doctrine/{{ project.repositoryName }}/" target="_blank">GitHub</a> and submit pull requests.</div>
 {% endif %}
 
@@ -47,31 +49,31 @@
     </table>
 </div>
 
-{% set teamMembers = get_project_team_members(project) %}
+{% if project.archived or not project.active %}
+    {% set allTeamMembers = get_all_project_team_members(project) %}
 
-{% if teamMembers %}
-    <h2>Team</h2>
+    {% if allTeamMembers %}
+        <h2>Team</h2>
 
-    <ul class="list-group">
-        {% for member in teamMembers if member.active is defined and member.active == true or (project.active == false and member.active == false) %}
-            <li class="list-group-item">
-                <img src="{{ member.avatarUrl }}" class="rounded float-left mr-5" style="width: 50px;" />
-                <strong>{{ member.name ?? member.github }}{% if member.name %} <small>({{ member.github }}){% endif %}</small></strong>
+        {% include "team-members-short-list.html.twig" with {members:allTeamMembers} %}
+    {% endif %}
 
-                <ul class="list-inline">
-                    {% if member.twitter is defined and member.twitter %}
-                        <li class="list-inline-item" target="_blank"><a href="https://twitter.com/{{ member.twitter }}/" target="_blank"><i class="fab fa-twitter mr-2"></i></a></li>
-                    {% endif %}
+{% else %}
 
-                    {% if member.website is defined and member.website %}
-                        <li class="list-inline-item" target="_blank"><a href="{{ member.website }}" target="_blank"><i class="fas fa-link mr-2"></i></a></li>
-                    {% endif %}
+    {% set activeTeamMembers = get_active_project_team_members(project) %}
 
-                    {% if member.github is defined and member.github %}
-                        <li class="list-inline-item" target="_blank"><a href="https://github.com/{{ member.github }}/" target="_blank"><i class="fab fa-github mr-2"></i></a></li>
-                    {% endif %}
-                </ul>
-            </li>
-        {% endfor %}
-    </ul>
+    {% if activeTeamMembers %}
+        <h2>Team</h2>
+
+        {% include "team-members-short-list.html.twig" with {members:activeTeamMembers} %}
+    {% endif %}
+
+    {% set inactiveTeamMembers = get_inactive_project_team_members(project) %}
+
+    {% if inactiveTeamMembers %}
+        <h2 class="mt-2">Inactive</h2>
+
+        {% include "team-members-short-list.html.twig" with {members:inactiveTeamMembers} %}
+    {% endif %}
+
 {% endif %}

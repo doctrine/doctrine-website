@@ -16,7 +16,7 @@ parameters:
             website: 'https://beberlei.de'
             location: Germany
             active: true
-            projects: ["orm", "dbal"]
+            projects: ["orm", "dbal", "couchdb-odm"]
         billschaller:
             name: 'Bill Schaller'
             github: billschaller
@@ -54,7 +54,7 @@ parameters:
             website: 'http://www.doctrine-project.org'
             location: 'Toronto, ON, Canada'
             active: true
-            projects: ["orm"]
+            projects: ["orm", "doctrine1"]
         jmikola:
             name: 'Jeremy Mikola'
             github: jmikola
@@ -71,7 +71,7 @@ parameters:
             avatarUrl: 'https://avatars0.githubusercontent.com/u/97422?v=4'
             location: 'Nashville, TN'
             active: true
-            projects: ["mongodb", "mongodb-odm", "migrations"]
+            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1"]
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
             github: kimhemsoe
@@ -149,6 +149,23 @@ parameters:
             projects: ["phpcr-odm"]
 
         # inactive
+        zYne-:
+            name: Konsta Vesterinen
+            github: kvesteri
+            avatarUrl: https://avatars3.githubusercontent.com/u/398714?v=4
+            website: http://www.fastmonkeys.com/
+            location: Espoo, Finland
+            active: false
+            founder: true
+            projects: ["doctrine1"]
+        romanb:
+            name: Roman Borschel
+            github: romanb
+            avatarUrl: https://avatars1.githubusercontent.com/u/177309?v=4
+            website: ''
+            location: Berlin, Germany
+            active: false
+            projects: ["doctrine1", "orm", "dbal", "common", "annotations", "lexer", "collections", "cache", "inflector"]
         asm89:
             name: Alexander
             github: asm89
@@ -251,6 +268,7 @@ parameters:
             avatarUrl: 'https://avatars0.githubusercontent.com/u/300279?v=4'
             website: 'http://pooteeweet.org'
             location: 'Zurich, Switzerland'
+            projects: ["couchdb-odm"]
         mikelohmann:
             name: 'Mike Lohmann'
             github: mikelohmann
