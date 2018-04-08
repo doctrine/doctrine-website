@@ -141,7 +141,7 @@ class Project
             }
         }
 
-        return null;
+        return $version ?? null;
     }
 
     public function getProjectDocsRepositoryPath(string $projectsPath) : string
