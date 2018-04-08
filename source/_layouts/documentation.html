@@ -1,5 +1,15 @@
 {% extends 'layout.html' %}
 
+{% if page.docsSlug %}
+    {% set project = get_project(page.docsSlug) %}
+{% endif %}
+
+{% block head_meta %}
+    {% if project is defined and project %}
+        <link rel="canonical" href="{{ site.url }}{{ get_url_version(project.currentVersion, page.url, page.docsVersion) }}" />
+    {% endif %}
+{% endblock %}
+
 {% block container %}
     <div class="container-wrapper container-fluid">
         <div class="row row-offcanvas row-offcanvas-right">
@@ -13,10 +23,6 @@
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-9 pt-3 px-4">
                 <div class="row">
-                    {% if page.docsSlug %}
-                        {% set project = get_project(page.docsSlug) %}
-                    {% endif %}
-
                     {# Documentation TOC #}
                     {% if page.docsIndex is defined and page.docsIndex and project is defined %}
                         <nav class="breadcrumbs d-none d-sm-block d-md-block d-lg-block d-xl-block" aria-label="breadcrumb">
