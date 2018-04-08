@@ -21,8 +21,8 @@
                     {% if page.docsIndex is defined and page.docsIndex and project is defined %}
                         <nav class="breadcrumbs d-none d-sm-block d-md-block d-lg-block d-xl-block" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/">Projects</a></li>
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.shortName }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects.html">Projects</a></li>
+                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Documentation</li>
                             </ol>
                         </nav>
@@ -32,8 +32,8 @@
                     {% if page.docsPage is defined and page.docsPage == true and page.docsIndex == false and project is defined %}
                         <nav class="breadcrumbs d-none d-sm-block d-md-block d-lg-block d-xl-block" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/">Projects</a></li>
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.shortName }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects.html">Projects</a></li>
+                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a></li>
                                 <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ page.docsVersion }}/">Documentation</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
                             </ol>

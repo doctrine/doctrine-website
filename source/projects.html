@@ -2,14 +2,15 @@
 layout: default
 title: Projects
 menuSlug: projects
+permalink: none
 ---
 
 {% for project in get_projects() %}
     <div class="card mb-3">
         <div class="card-body">
-            <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.name }}</a></h5>
+            <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
             <p class="card-text">{{ project.description }}</p>
-            <a href="{{ site.url }}/projects/{{ project.slug }}/" class="btn btn-primary">Learn More</a>
+            <a href="{{ site.url }}/projects/{{ project.slug }}.html" class="btn btn-primary">Learn More</a>
         </div>
     </div>
 {% endfor %}

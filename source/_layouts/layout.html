@@ -66,12 +66,12 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown{% if page.menuSlug == 'projects' %} active{% endif %}">
-                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/projects/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/projects.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Projects
                             </a>
                             <div class="dropdown-menu projects-dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for project in get_projects() %}
-                                    <a class="dropdown-item" href="{{ site.url }}/projects/{{ project.slug }}/">{{ project.shortName }}</a>
+                                    <a class="dropdown-item" href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a>
                                 {% endfor %}
                             </div>
                         </li>
