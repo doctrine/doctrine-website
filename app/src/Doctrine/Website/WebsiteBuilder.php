@@ -53,7 +53,7 @@ class WebsiteBuilder
 
         $output->writeln(' - sculpin generate');
 
-        $command = sprintf('%s/vendor/bin/sculpin generate --env=%s',
+        $command = sprintf('php -d memory_limit=1024M %s/vendor/bin/sculpin generate --env=%s',
             $rootDir,
             $env
         );
