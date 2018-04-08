@@ -28,4 +28,13 @@ permalink: sitemap.xml
             <priority>1.0</priority>
         </url>
     {% endfor %}
+
+    {% for doc in get_api_docs_urls() %}
+        <url>
+            <loc>{{ site.url }}{{ doc.url }}</loc>
+            <lastmod>{{ doc.date|date('c') }}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+    {% endfor %}
 </urlset>
