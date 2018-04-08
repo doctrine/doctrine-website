@@ -1,7 +1,32 @@
 {% extends "default" %}
 
 {% block head_meta %}
-    <meta name="robots" content="index, follow">
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ site.url }}{{ page.url }}"
+        },
+        "headline": "{{ page.title }}",
+        "datePublished": "{{ page.date|date('c') }}",
+        "dateModified": "{{ page.date|date('c') }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ page.authorName ?? 'Doctrine' }}"
+        },
+         "publisher": {
+            "@type": "Organization",
+            "name": "Doctrine",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ site.url }}/images/doctrine-logo.svg"
+            }
+        },
+        "description": "{{ page.blocks.content|raw|striptags[:100] }}"
+    }
+    </script>
 {% endblock %}
 
 {% block content_wrapper %}
