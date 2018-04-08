@@ -10,6 +10,9 @@
             "@id": "{{ site.url }}{{ page.url }}"
         },
         "headline": "{{ page.title }}",
+        "image": [
+            "{{ site.url }}/images/og.png"
+        ],
         "datePublished": "{{ page.date|date('c') }}",
         "dateModified": "{{ page.date|date('c') }}",
         "author": {
@@ -21,7 +24,7 @@
             "name": "Doctrine",
             "logo": {
                 "@type": "ImageObject",
-                "url": "{{ site.url }}/images/doctrine-logo.svg"
+                "url": "{{ site.url }}/images/og.png"
             }
         },
         "description": "{{ page.blocks.content|raw|striptags[:100] }}"
