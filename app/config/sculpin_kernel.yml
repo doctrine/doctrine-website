@@ -1,5 +1,6 @@
 imports:
     - { resource: local.yml }
+    - { resource: team_members.yml }
 
 sculpin_content_types:
     posts:
@@ -137,52 +138,6 @@ parameters:
 
     doctrine.search.algolia.application_id: YVYTFT9XMW
     doctrine.search.algolia.index: pages
-
-    doctrine.team_members:
-        ocramius:
-            slug: ocramius
-            name: Marco Pivetta
-            twitter: ocramius
-            github: ocramius
-            website: https://ocramius.github.io/
-            email: ocramius@gmail.com
-        jwage:
-            slug: jwage
-            name: Jonathan H. Wage
-            twitter: jwage
-            github: jwage
-            website: https://jwage.com
-            email: jonwage@gmail.com
-        guilhermeblanco:
-            slug: guilhermeblanco
-            name: Guilherme Blanco
-            twitter: guilhermeblanco
-            github: guilhermeblanco
-            email: guilhermeblanco@gmail.com
-        lcobucci:
-            slug: lcobucci
-            name: Luís Cobucci
-            twitter: lcobucci
-            github: lcobucci
-            email: lcobucci@gmail.com
-        malarzm:
-            slug: malarzm
-            name: Maciej Malarz
-            twitter: malarzm
-            github: malarzm
-            email: malarzm@gmail.com
-        morozov:
-            slug: morozov
-            name: Sergei Morozov
-            twitter: srgmrzv
-            github: morozov
-            email: morozov@tut.by
-        mikesimonson:
-            slug: mikesimonson
-            name: Mike Simonson
-            twitter: _mikeSimonson
-            github: mikeSimonson
-            email: mike@simonson.be
 
     doctrine.projects:
         orm:

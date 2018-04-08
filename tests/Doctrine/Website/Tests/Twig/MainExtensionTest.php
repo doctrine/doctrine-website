@@ -36,12 +36,4 @@ class MainExtensionTest extends TestCase
             'ocramius' => [],
         ], $teamMembers);
     }
-
-    public function testGetGravatarUrl()
-    {
-        $this->assertEquals(
-            'https://www.gravatar.com/avatar/f76041410752f9019752b6afd2bebc2a',
-            $this->mainExtension->getGravatarUrl('jonwage@gmail.com')
-        );
-    }
 }
