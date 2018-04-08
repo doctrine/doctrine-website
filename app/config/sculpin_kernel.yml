@@ -301,6 +301,7 @@ parameters:
                     slug: latest
 
         orientdb-odm:
+            active: false
             name: OrientDB Object Document Mapper
             shortName: OrientDB ODM
             slug: orientdb-odm

@@ -23,6 +23,7 @@ class MainExtension extends Twig_Extension
         return [
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
             new Twig_SimpleFunction('get_team_members', [$this, 'getTeamMembers']),
+            new Twig_SimpleFunction('get_project_team_members', [$this, 'getProjectTeamMembers']),
             new Twig_SimpleFunction('get_gravatar_url', [$this, 'getGravatarUrl'])
         ];
     }
@@ -45,6 +46,13 @@ class MainExtension extends Twig_Extension
         ksort($teamMembers);
 
         return $teamMembers;
+    }
+
+    public function getProjectTeamMembers(Project $project) : array
+    {
+        return array_filter($this->getTeamMembers(), function(array $teamMember) use ($project) {
+            return in_array($project->getSlug(), $teamMember['projects'] ?? []);
+        });
     }
 
     private function getAssetCacheBuster(string $path) : string

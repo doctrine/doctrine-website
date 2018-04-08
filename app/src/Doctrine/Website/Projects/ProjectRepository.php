@@ -31,4 +31,11 @@ class ProjectRepository
             return $this->projectFactory->create($project);
         }, $this->projects);
     }
+
+    public function findActive() : array
+    {
+        return array_filter($this->findAll(), function(Project $project) {
+            return $project->isActive();
+        });
+    }
 }

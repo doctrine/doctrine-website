@@ -30,7 +30,7 @@ class ProjectExtension extends Twig_Extension
 
     public function getProjects() : array
     {
-        $projects = $this->projectRepository->findAll();
+        $projects = $this->projectRepository->findActive();
 
         ksort($projects);
 

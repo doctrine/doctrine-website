@@ -42,6 +42,7 @@ class Project
 
     public function __construct(array $project)
     {
+        $this->active = (bool) ($project['active'] ?? true);
         $this->name = (string) ($project['name'] ?? '');
         $this->shortName = (string) ($project['shortName'] ?? '');
         $this->slug = (string) ($project['slug'] ?? '');
@@ -54,6 +55,11 @@ class Project
         $this->codePath = (string) ($project['codePath'] ?? '/lib');
         $this->description = (string) ($project['description'] ?? '');
         $this->versions = new ProjectVersions($project['versions'] ?? []);
+    }
+
+    public function isActive() : bool
+    {
+        return $this->active;
     }
 
     public function getName() : string
