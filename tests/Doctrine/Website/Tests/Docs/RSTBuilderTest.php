@@ -84,6 +84,52 @@ class RSTBuilderTest extends TestCase
             '/projects/example-project/en/1.0/index.html',
             '<li class="dash"><a href="example.html">Example</a></li>'
         );
+
+        $expected = <<<HTML
+<ul><li class="dash">List item 1
+multiline</li>
+<li class="dash">List item 2</li>
+<li class="dash">List item 3
+multiline</li>
+</ul>
+HTML;
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            $expected
+        );
+
+        $expected = <<<HTML
+<ul><li class="dash">
+    Alternate list item 1
+    multiline</li>
+<li class="dash">
+    Alternate list item 2</li>
+<li class="dash">
+    Alternate list item 3
+    multiline</li>
+</ul>
+HTML;
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            $expected
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<a id="lists"></a>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<p><a href="#lists">go to lists</a></p>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<p><a href="about.html">about</a></p>'
+        );
     }
 
     private function assertSculpinSourceFileExists(string $path)
@@ -93,6 +139,8 @@ class RSTBuilderTest extends TestCase
 
     private function assertSculpinSourceFileContains(string $path, string $contains)
     {
-        $this->assertContains($contains, file_get_contents($this->sculpinSourcePath.$path));
+        $html = file_get_contents($this->sculpinSourcePath.$path);
+
+        $this->assertContains($contains, $html);
     }
 }
