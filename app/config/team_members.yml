@@ -87,6 +87,7 @@ parameters:
             website: ''
             location: 'Amsterdam, NL'
             active: true
+            projects: ["orm", "dbal", "migrations", "cache"]
         Majkl578:
             name: 'Michael Moravec'
             github: Majkl578
