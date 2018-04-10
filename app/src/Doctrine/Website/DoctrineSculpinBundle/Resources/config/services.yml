@@ -65,6 +65,18 @@ services:
         arguments: []
         tags: [{ name: doctrine.rst.directive }]
 
+    doctrine.website.directive.toc:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\TocDirective
+        arguments: []
+        tags: [{ name: doctrine.rst.directive }]
+
+    doctrine.website.directive.toc_header:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\TocHeaderDirective
+        arguments: []
+        tags: [{ name: doctrine.rst.directive }]
+
     doctrine.website.directive.toctree:
         public: false
         class: Doctrine\Website\DoctrineSculpinBundle\Directive\ToctreeDirective

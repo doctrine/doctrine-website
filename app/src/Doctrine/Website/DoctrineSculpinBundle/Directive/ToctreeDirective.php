@@ -3,6 +3,7 @@
 namespace Doctrine\Website\DoctrineSculpinBundle\Directive;
 
 use Gregwar\RST\Directive;
+use Gregwar\RST\Environment;
 use Gregwar\RST\Parser;
 
 class ToctreeDirective extends Directive
@@ -18,34 +19,26 @@ class ToctreeDirective extends Directive
         $kernel = $parser->getKernel();
         $files = array();
 
-        // This sucks. I don't even think it works 100% right.
         foreach (explode("\n", $node->getValue()) as $file) {
             $file = trim($file);
 
             if (isset($options['glob']) && strpos($file, '*') !== false) {
+                $globPattern = $file;
 
-                $currentDirPath = rtrim($environment->absoluteRelativePath(''), '/');
-                $rootPath = rtrim(str_replace($environment->getDirName(), '', $currentDirPath), '/');
+                $globFiles = $this->globSearch($environment, $globPattern);
 
-                $findPath = $rootPath.'/'.$file;
+                foreach ($globFiles as $globFile) {
+                    $dependency = $this->getDependencyFromFile($environment, $globFile);
 
-                $find = $this->recursiveGlob($findPath);
-
-                foreach ($find as $f) {
-                    if (is_dir($f)) {
-                        continue;
-                    }
-
-                    $f = str_replace($currentDirPath.'/', '', $f);
-                    $f = str_replace('.rst', '', $f);
-
-                    $environment->addDependency($f);
-                    $files[] = $f;
+                    $environment->addDependency($dependency);
+                    $files[] = $dependency;
                 }
 
             } elseif ($file) {
-                $environment->addDependency($file);
-                $files[] = $file;
+                $dependency = $this->getDependencyFromFile($environment, $file);
+
+                $environment->addDependency($dependency);
+                $files[] = $dependency;
             }
         }
 
@@ -58,24 +51,52 @@ class ToctreeDirective extends Directive
         return true;
     }
 
-    private function recursiveGlob(string $path)
+    private function globSearch(Environment $environment, string $globPattern)
     {
+        $currentDirPath = realpath(rtrim($environment->absoluteRelativePath(''), '/'));
+        $rootPath = rtrim(str_replace($environment->getDirName(), '', $currentDirPath), '/');
+        $globPattern = str_replace($rootPath, '', $globPattern);
+
         $allFiles = [];
 
-        $files =  glob($path);
-
-        $allFiles = array_merge($allFiles, $files);
+        $files =  glob($rootPath.$globPattern);
 
         foreach ($files as $file) {
             if (is_dir($file)) {
                 $dirPath = $file.'/*';
 
-                $dirFiles = $this->recursiveGlob($dirPath);
+                $dirFiles = $this->globSearch($environment, $dirPath);
 
                 $allFiles = array_merge($allFiles, $dirFiles);
+            } else {
+                // Trim the root path and the .rst extension. This is what the
+                // RST parser requires to add a dependency.
+                $file = str_replace([$rootPath.'/', '.rst'], '', $file);
+
+                $allFiles[] = $file;
             }
         }
 
         return $allFiles;
+    }
+
+    private function getDependencyFromFile(Environment $environment, string $file)
+    {
+        $url = $environment->getUrl();
+
+        $e = explode('/', $url);
+
+        if (count($e) > 1) {
+            unset($e[count($e) - 1]);
+            $folderPath = implode('/', $e).'/';
+
+            if (strpos($file, $folderPath) !== false) {
+                $file = str_replace($folderPath, '', $file);
+            } else {
+                $file = str_repeat('../', count($e)).$file;
+            }
+        }
+
+        return $file;
     }
 }
