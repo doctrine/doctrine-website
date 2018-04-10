@@ -98,9 +98,9 @@ parameters:
                     slug: 1.1
                     maintained: false
                 -
-                    name: 1.0
+                    name: '1.0'
                     branchName: 1.0.x
-                    slug: 1.0
+                    slug: '1.0'
                     maintained: false
 
         phpcr-odm:
