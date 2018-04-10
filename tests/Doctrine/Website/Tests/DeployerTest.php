@@ -81,12 +81,17 @@ class DeployerTest extends TestCase
 
         $this->processFactory->expects($this->at(0))
             ->method('run')
-            ->with('cd /data/doctrine-website-staging && git fetch && git checkout 1234 && git pull origin 1234 && ./doctrine build-docs --api --sync-git && ./doctrine build-website /data/doctrine-website-build-staging --env=staging --publish')
+            ->with('cp /data/doctrine-website-staging/deploy-staging /data/doctrine-website-staging/last-deploy-staging')
             ->willReturn($process);
 
         $this->processFactory->expects($this->at(1))
             ->method('run')
-            ->with('cp /data/doctrine-website-staging/deploy-staging /data/doctrine-website-staging/last-deploy-staging')
+            ->with('cd /data/doctrine-website-staging && git fetch && git checkout 1234 && git pull origin 1234 && php composer.phar install --no-dev')
+            ->willReturn($process);
+
+        $this->processFactory->expects($this->at(2))
+            ->method('run')
+            ->with('cd /data/doctrine-website-staging && ./doctrine build-docs --api --sync-git && ./doctrine build-website /data/doctrine-website-build-staging --env=staging --publish')
             ->willReturn($process);
 
         $deployer->deploy($output);

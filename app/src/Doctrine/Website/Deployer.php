@@ -51,12 +51,26 @@ class Deployer
             return;
         }
 
+        $this->startDeploy($output);
+
         $deployRef = $this->env === 'prod' ? 'master' : $deploy;
 
-        $command = sprintf("cd /data/doctrine-website-%s && git fetch && git checkout %s && git pull origin %s && ./doctrine build-docs --api --sync-git && ./doctrine build-website /data/doctrine-website-build-%s --env=%s --publish",
+        $output->writeln(sprintf('Deploying website for <info>%s</info> environment.', $this->env));
+
+        // update the code from git and run composer install first
+        $updateCommand = sprintf('cd /data/doctrine-website-%s && git fetch && git checkout %s && git pull origin %s && php composer.phar install --no-dev',
             $this->env,
             $deployRef,
-            $deployRef,
+            $deployRef
+        );
+
+        $this->processFactory->run($updateCommand, function($type, $buffer) use ($output) {
+            $output->write($buffer);
+        });
+
+        // build the docs, website and publish
+        $deployCommand = sprintf("cd /data/doctrine-website-%s && ./doctrine build-docs --api --sync-git && ./doctrine build-website /data/doctrine-website-build-%s --env=%s --publish",
+            $this->env,
             $this->env,
             $this->env,
             $this->env,
@@ -65,24 +79,12 @@ class Deployer
             $this->env
         );
 
-        $output->writeln(sprintf('Deploying website for <info>%s</info> environment.', $this->env));
-
-
-        try {
-            $this->processFactory->run($command, function($type, $buffer) use ($output) {
-                $output->write($buffer);
-            });
-
-            $this->finishDeploy($output);
-
-        } catch (ProcessFailedException $e) {
-            $this->finishDeploy($output);
-
-            throw $e;
-        }
+        $this->processFactory->run($deployCommand, function($type, $buffer) use ($output) {
+            $output->write($buffer);
+        });
     }
 
-    protected function finishDeploy(OutputInterface $output)
+    protected function startDeploy(OutputInterface $output)
     {
         $command = sprintf('cp /data/doctrine-website-%s/deploy-%s /data/doctrine-website-%s/last-deploy-%s',
             $this->env, $this->env, $this->env, $this->env
