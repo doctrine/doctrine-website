@@ -92,10 +92,6 @@ parameters:
                     branchName: 1.2.x
                     slug: 1.2
                     current: true
-                -
-                    name: 1.1
-                    branchName: 1.1.x
-                    slug: 1.1
 
         phpcr-odm:
             active: true
