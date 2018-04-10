@@ -72,12 +72,12 @@ class RSTBuilderTest extends TestCase
 
         $this->assertSculpinSourceFileContains(
             '/projects/example-project/en/1.0/index.html',
-            '<a class="section-anchor" id="title.1" name="title.1"></a><h1 class="section-header"><a href="#title.1">Index<i class="fas fa-link"></i></a></h1>'
+            '<a class="section-anchor" id="index" name="index"></a><h1 class="section-header"><a href="#index">Index<i class="fas fa-link"></i></a></h1>'
         );
 
         $this->assertSculpinSourceFileContains(
             '/projects/example-project/en/1.0/index.html',
-            '<li class="dash"><a href="about.html">About</a></li>'
+            '<li class="dash"><a href="about.html">About1</a></li>'
         );
 
         $this->assertSculpinSourceFileContains(
@@ -128,7 +128,42 @@ HTML;
 
         $this->assertSculpinSourceFileContains(
             '/projects/example-project/en/1.0/index.html',
-            '<p><a href="about.html">about</a></p>'
+            '<p><a href="#anchor-section">@Anchor Section</a></p>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<li class="dash"><a href="about.html">About2</a></li>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<ul><li class="dash"> <a href="#test_reference_anchor">@Test Reference Anchor</a></li>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<li class="dash"><a href="cross-ref.html#cross_ref_anchor">Cross Ref</a></li>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<li class="dash"><a href="cross-ref.html#cross_ref_section_1_anchor">Cross Ref Section 1</a></li>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<li class="dash"><a href="cross-ref.html#cross_ref_section_2_anchor">Cross Ref Section 2</a></li>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<li class="dash"><a href="cross-ref.html#cross_ref_section_a_anchor">Cross Ref Section A</a></li>'
+        );
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            '<li class="dash"><a href="https://www.doctrine-project.org">TestLink</a></li>'
         );
     }
 

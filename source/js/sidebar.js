@@ -89,7 +89,7 @@ Sidebar.prototype.getCurrentDocsMenu = function() {
     }
 
     if (!window.location.hash) {
-        lastPart = lastPart + '#title.1';
+        lastPart = lastPart + $('h1.section-header a').attr('href');
     }
 
     var id = lastPart.replaceAll('#', '-').replaceAll('.', '-');
