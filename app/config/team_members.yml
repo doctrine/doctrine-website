@@ -97,7 +97,7 @@ parameters:
             twitter: Majkl578
             github: Majkl578
             avatarUrl: 'https://avatars2.githubusercontent.com/u/144181?v=4'
-            website: ~
+            website: 'https://majkl.me'
             location: 'Prague, Czech Republic'
             active: true
             projects: ["orm"]
