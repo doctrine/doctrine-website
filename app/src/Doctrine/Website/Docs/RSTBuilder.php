@@ -38,16 +38,16 @@ TEMPLATE;
 
     const SCULPIN_TEMPLATE = <<<TEMPLATE
 ---
-layout: documentation
+layout: "documentation"
 indexed: true
-title: %s
-menuSlug: projects
-docsSlug: %s
+title: "%s"
+menuSlug: "projects"
+docsSlug: "%s"
 docsPage: true
-docsIndex: %s
-docsVersion: %s
-sourceFile: %s
-permalink: none
+docsIndex: "%s"
+docsVersion: "%s"
+sourceFile: "%s"
+permalink: "none"
 ---
 %s
 TEMPLATE;
