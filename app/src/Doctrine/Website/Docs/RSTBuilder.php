@@ -44,7 +44,7 @@ title: "%s"
 menuSlug: "projects"
 docsSlug: "%s"
 docsPage: true
-docsIndex: "%s"
+docsIndex: %s
 docsVersion: "%s"
 sourceFile: "%s"
 permalink: "none"
