@@ -69,7 +69,7 @@ parameters:
         jwage:
             name: 'Jonathan H. Wage'
             twitter: jwage
-            website: ~
+            website: 'https://jwage.com'
             github: jwage
             avatarUrl: 'https://avatars0.githubusercontent.com/u/97422?v=4'
             location: 'Nashville, TN'
@@ -159,7 +159,7 @@ parameters:
             name: Konsta Vesterinen
             github: kvesteri
             avatarUrl: https://avatars3.githubusercontent.com/u/398714?v=4
-            website: http://www.fastmonkeys.com/
+            website: 'http://www.fastmonkeys.com/'
             location: Espoo, Finland
             active: false
             founder: true
@@ -298,7 +298,7 @@ parameters:
             name: 'Pascal Helfenstein'
             github: nicam
             avatarUrl: 'https://avatars0.githubusercontent.com/u/182071?v=4'
-            website: nicam.ch
+            website: 'https://nicam.ch/'
             location: 'Zürich Switzerland'
         nrk:
             name: 'Daniele Alessandri'
@@ -310,7 +310,7 @@ parameters:
             name: 'Alessandro Nadalin'
             github: odino
             avatarUrl: 'https://avatars3.githubusercontent.com/u/328420?v=4'
-            website: www.odino.org
+            website: 'https://odino.org/'
             location: 'Dubai, UAE'
             projects: [orientdb-odm]
         richardfullmer:
