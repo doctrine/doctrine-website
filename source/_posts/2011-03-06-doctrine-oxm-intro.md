@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: richardfullmer 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/03/06/doctrine-oxm-intro.html
 ---
 Greetings programmers!
 

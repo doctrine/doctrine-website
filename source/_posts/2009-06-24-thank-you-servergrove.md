@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/24/thank-you-servergrove.html
 ---
 As you all may know, we recently
 [moved](http://www.doctrine-project.org/blog/doctrine-changing-homes)

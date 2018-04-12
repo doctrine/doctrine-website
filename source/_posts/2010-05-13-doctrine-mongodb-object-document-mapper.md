@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/05/13/doctrine-mongodb-object-document-mapper.html
 ---
 A question asked to me many times by many different people over the last
 year is, "will Doctrine ever have any support for MongoDB?". I have

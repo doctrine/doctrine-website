@@ -7,7 +7,7 @@ menuSlug: blog
 authorName: %s
 authorEmail: %s
 categories: [%s]
-permalink: /:year/:month/:day/:basename.html
+permalink: %s
 ---
 %s
 TEMPLATE;
@@ -97,6 +97,13 @@ foreach ($files as $file) {
 
     $newPath = sprintf('%s-%s-%s-%s', $e[0], $e[1], $e[2], $e[3]);
 
+    $permalink = sprintf('/%s/%s/%s/%s',
+        $e[0],
+        $e[1],
+        $e[2],
+        str_replace('.rst', '.html', $e[3])
+    );
+
     $content = file_get_contents($file);
 
     $e = explode("\n", $content);
@@ -135,11 +142,14 @@ foreach ($files as $file) {
 
     $content = file_get_contents($pandocOutputPath);
 
+    $content = str_replace(')\_', ')', $content);
+
     $content = sprintf($template,
         $title,
         $authorName,
         $authorEmail,
         implode(', ', $categories),
+        $permalink,
         $content
     );
 

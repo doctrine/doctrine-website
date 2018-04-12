@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/11/21/doctrine-maintenance-nov2011.html
 ---
 The bugfix release is three weeks overdue, here is it now:
 

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/02/19/doctrine-mongodb-odm-beta2-released.html
 ---
 After a long wait, I am happy to bring you the second beta release of
 the new Doctrine persistence layer for [MongoDB](http://mongodb.org).

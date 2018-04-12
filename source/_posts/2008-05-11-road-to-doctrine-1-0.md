@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/05/11/road-to-doctrine-1-0.html
 ---
 First I would like to thank everyone who has adopted Doctrine and stuck
 with us through the many long and difficult development iterations.

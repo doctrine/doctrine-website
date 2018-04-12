@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/05/11/doctrine-1-0-9-and-1-1-1-released.html
 ---
 Today I am very happy to make available two new releases of Doctrine for
 the 1.0 and 1.1 code bases. These are both significant bug fix releases

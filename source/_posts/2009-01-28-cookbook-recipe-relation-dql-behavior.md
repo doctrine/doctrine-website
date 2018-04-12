@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/01/28/cookbook-recipe-relation-dql-behavior.html
 ---
 Today I will teach you how to write a simple Doctrine behavior. You will
 learn some of the basics of creating a behavior and you will gain some

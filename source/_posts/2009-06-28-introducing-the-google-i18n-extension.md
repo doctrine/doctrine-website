@@ -4,6 +4,6 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/28/introducing-the-google-i18n-extension.html
 ---
 

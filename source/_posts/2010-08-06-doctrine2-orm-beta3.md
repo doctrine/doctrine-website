@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/08/06/doctrine2-orm-beta3.html
 ---
 We would like to announce the immediate release of Doctrine ORM BETA 3:
 

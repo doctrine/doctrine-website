@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/04/07/doctrine2-april-2011-maintenance.html
 ---
 Slightly behind schedule, but we released the next round of maintenance
 versions of Doctrine Common (2.0.2), DBAL (2.0.4) and ORM (2.0.4) today.

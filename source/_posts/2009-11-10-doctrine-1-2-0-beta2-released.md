@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/11/10/doctrine-1-2-0-beta2-released.html
 ---
 Today I am happy to bring you the second beta of the latest Doctrine 1.2
 version. This is a solid bug fix release and we're getting very close to

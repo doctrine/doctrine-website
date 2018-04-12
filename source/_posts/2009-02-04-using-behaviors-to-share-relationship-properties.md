@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/02/04/using-behaviors-to-share-relationship-properties.html
 ---
 Define The Schema
 =================

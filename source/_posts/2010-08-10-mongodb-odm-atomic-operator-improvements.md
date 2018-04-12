@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/08/10/mongodb-odm-atomic-operator-improvements.html
 ---
 Recently we've improved the support for use of atomic operators and how
 much it takes advantage of them in the Doctrine MongoDB ODM. Now when

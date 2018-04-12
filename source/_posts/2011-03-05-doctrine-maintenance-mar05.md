@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/03/05/doctrine-maintenance-mar05.html
 ---
 Slightly delayed but here are the releases of DBAL and ORM versions
 2.0.2:

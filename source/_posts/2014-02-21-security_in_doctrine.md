@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: default
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2014/02/21/security_in_doctrine.html
 ---
 When using Doctrine in a project it is always a security critical
 component because it talks directly to your database. As such security

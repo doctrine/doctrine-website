@@ -4,6 +4,6 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/08/24/doctrine-orm-version-1-2-3-released.html
 ---
 

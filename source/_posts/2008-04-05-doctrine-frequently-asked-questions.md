@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/04/05/doctrine-frequently-asked-questions.html
 ---
 We have compiled a new addition to the Doctrine website, Frequently
 Asked Questions. The purpose of this is to help the users of Doctrine

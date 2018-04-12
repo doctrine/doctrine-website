@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/10/26/symfony-doctrine-schema-manager.html
 ---
 As you all probably know, Doctrine has been tightly integrated with [a
 few](http://trac.doctrine-project.org/wiki/integrate) different PHP

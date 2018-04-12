@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/26/what-s-new-in-doctrine-1-2.html
 ---
 This week I have been working on the next major version of Doctrine,
 1.2. This version will possibly be the last 1.x version before we really

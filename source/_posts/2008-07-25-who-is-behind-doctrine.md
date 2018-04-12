@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/07/25/who-is-behind-doctrine.html
 ---
 Today I have updated the about page on the website so you can get a
 glimpse of who is behind the Doctrine project. Each core contributor

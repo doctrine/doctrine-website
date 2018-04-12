@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/02/18/doctrine-orm-sandbox.html
 ---
 Today I would like to announce the official introduction of the Doctrine
 sandbox package. The Doctrine sandbox was first introduced in SVN a few

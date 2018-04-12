@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/01/30/doctrine-maintenance-jan2011.html
 ---
 We released the first maintenance versions of Common, DBAL and ORM
 today. See the changelogs for more information:

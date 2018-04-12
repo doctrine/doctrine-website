@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2014/09/11/instantiator-1-0-0.html
 ---
 We released [Doctrine Instantiator
 1.0.0](https://github.com/doctrine/instantiator/releases/tag/1.0.0)

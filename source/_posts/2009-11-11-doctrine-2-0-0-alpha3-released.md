@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/11/11/doctrine-2-0-0-alpha3-released.html
 ---
 Today I am happy to bring you the third alpha version of Doctrine 2!
 This release contains over 60 fixes and the code is starting to

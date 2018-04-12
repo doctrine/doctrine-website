@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/01/25/a-few-updates-for-2008.html
 ---
 Some of these announcements are a little late but I think they deserve a
 proper announcement.

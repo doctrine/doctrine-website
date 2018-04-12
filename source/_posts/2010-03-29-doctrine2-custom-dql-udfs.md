@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/03/29/doctrine2-custom-dql-udfs.html
 ---
 By default DQL supports a limited subset of all the vendor-specific SQL
 functions common between all the vendors. However in many cases once you

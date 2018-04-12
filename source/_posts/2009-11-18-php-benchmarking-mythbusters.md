@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/11/18/php-benchmarking-mythbusters.html
 ---
 First of, this blog post sucks. I thought I would never write such a
 senseless apples and oranges comparison with artificial and meaningless

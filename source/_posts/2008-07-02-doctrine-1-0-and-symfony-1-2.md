@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/07/02/doctrine-1-0-and-symfony-1-2.html
 ---
 This morning Fabien from the symfony project announced the roadmap for
 the next major version of symfony, 1.2. He announced that Doctrine would

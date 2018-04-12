@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Andreas Braun
 authorEmail: alcaeus@alcaeus.org
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2016/11/22/doctrine-mongodb-release-1.4.0.html
 ---
 We are happy to announce the immediate availability of Doctrine MongoDB
 Abstraction Layer

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/07/04/major-site-enhancements.html
 ---
 You've probably noticed over the past few days I have rolled out some
 major new site enhancements. You can find more information below about

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2012/01/03/doctrine2-2-beta2.html
 ---
 Sadly we did not manage to hold our schedule with a 2.2 release in 2011,
 we had to do some larger changes before the final release. This means we

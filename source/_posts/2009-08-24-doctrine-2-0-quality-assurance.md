@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/08/24/doctrine-2-0-quality-assurance.html
 ---
 Greetings folks!
 

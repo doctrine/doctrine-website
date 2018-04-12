@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/11/23/new-doctrine-core-team-member.html
 ---
 Today I am very excited to announce to you all that we have officially
 invited Benjamin Eberlei, also known as beberlei in IRC, to join the

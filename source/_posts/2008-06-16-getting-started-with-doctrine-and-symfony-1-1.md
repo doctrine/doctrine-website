@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/06/16/getting-started-with-doctrine-and-symfony-1-1.html
 ---
 Today, over on the symfony-project blog. A short tutorial on how to get
 started using Doctrine and symfony 1.1 has been published. As of symfony

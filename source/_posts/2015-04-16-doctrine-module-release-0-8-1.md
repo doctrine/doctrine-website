@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/04/16/doctrine-module-release-0-8-1.html
 ---
 The **Zend Framework Integration Team** is happy to announce the new
 release of **DoctrineModule**. DoctrineModule `0.8.1` will be the last

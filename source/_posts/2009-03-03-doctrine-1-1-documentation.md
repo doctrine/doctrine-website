@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/03/03/doctrine-1-1-documentation.html
 ---
 Today I have begun updating the documentation to reflect the changes
 made in 1.1 and [The Guide to Doctrine for

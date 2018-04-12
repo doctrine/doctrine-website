@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/05/05/doctrine-orm-module-release-0-9-0.html
 ---
 The **Zend Framework Integration Team** is happy to announce the new
 release of **DoctrineORMModule**.

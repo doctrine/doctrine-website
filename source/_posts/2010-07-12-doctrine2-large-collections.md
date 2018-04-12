@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/07/12/doctrine2-large-collections.html
 ---
 If you access a collection of Entity A pointing to Entity B, Doctrine2
 always initializes the complete collection for you. For small

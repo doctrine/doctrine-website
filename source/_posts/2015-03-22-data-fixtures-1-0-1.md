@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Sebastien Lavoie
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/03/22/data-fixtures-1-0-1.html
 ---
 We are happy to announce the immediate availability Doctrine Data
 Fixtures `1.0.1`.

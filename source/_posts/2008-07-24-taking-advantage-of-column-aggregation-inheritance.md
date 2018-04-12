@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/07/24/taking-advantage-of-column-aggregation-inheritance.html
 ---
 Today I have published another tutorial in the 1.0 Cookbook. This recipe
 solves the same situation where you want to allow address properties on

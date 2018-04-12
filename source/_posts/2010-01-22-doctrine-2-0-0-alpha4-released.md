@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/01/22/doctrine-2-0-0-alpha4-released.html
 ---
 Today we are happy to announce the release of the next, and hopefully
 last, alpha release of Doctrine 2. With over 60 fixed bugs and some

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/08/22/transactions-and-performance.html
 ---
 In this post I want to clarify some things about transactions and
 performance of PHP applications in general. I want to show you that it

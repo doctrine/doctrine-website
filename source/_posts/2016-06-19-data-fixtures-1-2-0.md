@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2016/06/19/data-fixtures-1-2-0.html
 ---
 We are happy to announce the immediate availability of Doctrine
 Data-Fixtures

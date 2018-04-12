@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/08/18/mongodb-odm-1-0-0beta1-released.html
 ---
 Today I am happy to tell you we have released the first beta version of
 the MongoDB Object Document Mapper. It contains many fixes and general

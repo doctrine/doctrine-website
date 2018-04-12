@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/11/03/a-doctrine-triple-play.html
 ---
 Today I am happy to bring you three new versions of Doctrine:
 

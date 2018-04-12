@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Michael Simonson
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/03/22/migrations-1-0-0-alpha-3.html
 ---
 We are happy to announce the immediate availability Doctrine Migrations
 `1.0.0-alpha3`.

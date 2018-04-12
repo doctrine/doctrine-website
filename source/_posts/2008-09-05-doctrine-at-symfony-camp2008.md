@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/09/05/doctrine-at-symfony-camp2008.html
 ---
 This year I will be making a presentation on Doctrine at the 2008
 SymfonyCamp conference on September 12th and 13th. This is a huge

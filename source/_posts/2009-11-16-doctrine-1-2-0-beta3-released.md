@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/11/16/doctrine-1-2-0-beta3-released.html
 ---
 We're getting very close to a stable Doctrine 1.2 with the latest BETA3
 being released today. This will most likely be the last beta release

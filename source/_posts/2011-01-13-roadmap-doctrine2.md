@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/01/13/roadmap-doctrine2.html
 ---
 Doctrine 2 is now stable for about three weeks and we are pretty happy
 about the increase in community discussions on IRC and mailing list.

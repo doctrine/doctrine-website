@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/09/14/moving-to-jira.html
 ---
 While we really like Trac, especially its subversion integration, it has
 a lot of shortcomings for bigger projects in the area of project &

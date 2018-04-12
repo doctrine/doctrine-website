@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: default
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/08/31/doctrine_orm_2_5_1_and_2_4_8_released.html
 ---
 We are happy to announce the immediate availability of Doctrine ORM
 2.5.1 and 2.4.8.

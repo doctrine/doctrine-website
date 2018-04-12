@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/13/doctrine-visiting-conferences-around-the-world.html
 ---
 This last month I have been present at a few events to speak about
 Doctrine. I visited Verona, Italy for the phpDay conference and this

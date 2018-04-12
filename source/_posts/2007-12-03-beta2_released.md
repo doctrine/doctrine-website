@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2007/12/03/beta2_released.html
 ---
 On Friday November 30th, the second beta release of the PHP5 Doctrine
 ORM software was released. A lot of progress has been made since the

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/11/23/doctrine-orm-2-1-4-released.html
 ---
 I just released Doctrine ORM 2.1.4. The Doctrine ORM 2.1.3 release has a
 regression in the EntityManager\#merge() method, which is fixed in this

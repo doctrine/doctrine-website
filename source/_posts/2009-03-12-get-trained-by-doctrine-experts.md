@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/03/12/get-trained-by-doctrine-experts.html
 ---
 What is it?
 ===========

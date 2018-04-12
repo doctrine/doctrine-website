@@ -4,6 +4,6 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/03/01/introduction-to-doctrine-2-webinar.html
 ---
 

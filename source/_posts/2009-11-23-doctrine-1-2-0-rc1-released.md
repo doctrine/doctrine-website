@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/11/23/doctrine-1-2-0-rc1-released.html
 ---
 Today the first release candidate for the 1.2 version of Doctrine is
 available for [download](http://www.doctrine-project.org/download#1_2).

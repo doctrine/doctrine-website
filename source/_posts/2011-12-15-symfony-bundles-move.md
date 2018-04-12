@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/12/15/symfony-bundles-move.html
 ---
 The Symfony2 Doctrine related Bundles move to the Doctrine organization.
 The DoctrineBundle being in the core for the 2.0 release it is now

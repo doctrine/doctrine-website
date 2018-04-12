@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/07/21/plug-and-play-schema-information-with-templates.html
 ---
 Check out the latest addition to the Doctrine Cookbook. We have added a
 short little tutorial on how to use Doctrine templates to solve a real

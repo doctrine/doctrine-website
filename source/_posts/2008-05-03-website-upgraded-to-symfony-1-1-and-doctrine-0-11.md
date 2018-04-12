@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/05/03/website-upgraded-to-symfony-1-1-and-doctrine-0-11.html
 ---
 <p>
 

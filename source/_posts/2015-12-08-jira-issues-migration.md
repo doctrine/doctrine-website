@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/12/08/jira-issues-migration.html
 ---
 We have started the migration of all our Jira tickets to Github Issues.
 

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: gmorkevicius 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/11/18/doctrine2-behavioral-extensions.html
 ---
 These behavioral extensions will give you another view on Doctrine2
 capabilities handling behaviors through the EventListeners. These

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/08/25/pre-1-0-updates-and-1-0-0-rc1-released.html
 ---
 <p>
 

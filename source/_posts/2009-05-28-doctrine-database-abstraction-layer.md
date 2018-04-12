@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/05/28/doctrine-database-abstraction-layer.html
 ---
 One of the greatest advantages to using Doctrine is what is under the
 hood that powers it. That is the database abstraction layer. This

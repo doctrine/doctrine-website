@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/11/18/common-rc2-dbal-rc2-release.html
 ---
 Today we are happy to announce the second release candidate of Doctrine
 Common and the first, second and third release candidate (yes, all in

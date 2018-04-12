@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/05/13/the-switch-to-git.html
 ---
 Now that the dust has settled from the move to git I suppose it is time
 for a blog post. About a month ago, we made the decision to switch the

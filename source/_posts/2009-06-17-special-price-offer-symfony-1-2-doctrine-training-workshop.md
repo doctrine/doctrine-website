@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/17/special-price-offer-symfony-1-2-doctrine-training-workshop.html
 ---
 As you all may know, I work for [Sensio Labs](http://www.sensiolabs.com)
 , the creators of the [Symfony](http://www.symfony-project.org)

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: default
 authorEmail: 
 categories: [dbal]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2014/02/21/doctrine_2_5_beta3.html
 ---
 We have released the BETA3 of DBAL 2.5 after some more work on the many
 new features. For early testers, we have refactored the Exception

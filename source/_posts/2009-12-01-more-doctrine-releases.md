@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/12/01/more-doctrine-releases.html
 ---
 Only a few hours ago we released the stable version of Doctrine 1.2! Now
 we bring you two maintenance releases for the 1.0 and 1.1 versions of

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/07/21/mongodb-odm-query-builder-api.html
 ---
 The Doctrine MongoDB Object Document Mapper includes a fluent object
 oriented API for building queries to execute against MongoDB. Recently

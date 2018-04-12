@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/05/22/glimpse-of-doctrine-2-0.html
 ---
 As you all probably already know, we have been working on Doctrine 2.0
 pretty much since before we released Doctrine 1.0. This effort has been

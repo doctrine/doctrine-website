@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/21/website-updates.html
 ---
 Today I have deployed some updates to the Doctrine website. Some of the
 updates all of you will enjoy, but another specific one might upset some

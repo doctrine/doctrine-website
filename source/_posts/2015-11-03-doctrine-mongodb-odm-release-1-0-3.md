@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Maciej Malarz
 authorEmail: malarzm@gmail.com
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/11/03/doctrine-mongodb-odm-release-1-0-3.html
 ---
 We are happy to announce the immediate availability of Doctrine MongoDB
 ODM

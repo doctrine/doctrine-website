@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/06/21/doctrine-in-your-language.html
 ---
 I have been waiting for this day for some time, the day we have the
 manual in a 2nd language. For many months the website has been capable

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/15/doctrine-1-0-10-and-1-1-2-released.html
 ---
 Today I am happy to release two new maintenance releases for Doctrine.
 As usual we have a new version for the 1.0 branch and a new version for

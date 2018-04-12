@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/04/27/doctrine-2-0-0-beta1-released.html
 ---
 Today we are pleased to announce the immediate release of the first beta
 version of Doctrine 2. It comes with some delay which was caused partly

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/07/01/introducing-the-doctrine-forum.html
 ---
 For those of you who are not keen on using the mailing list or irc for
 getting help with Doctrine, we now have a public Forum, powered by

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/03/21/doctrine-2-give-me-my-constructor-back.html
 ---
 At [ConFoo
 2010](http://www.doctrine-project.org/blog/doctrine-2-at-confoo-2010)

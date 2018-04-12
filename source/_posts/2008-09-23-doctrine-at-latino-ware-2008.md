@@ -4,6 +4,6 @@ menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/09/23/doctrine-at-latino-ware-2008.html
 ---
 

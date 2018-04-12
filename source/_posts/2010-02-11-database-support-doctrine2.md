@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/02/11/database-support-doctrine2.html
 ---
 Not only the ORM part of Doctrine will see major changes for the step
 from the 1.x to the Doctrine 2 series. The DBAL layer has undergone

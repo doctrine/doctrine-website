@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/06/09/doctrine-mongodb-odm-1-0-0alpha1-released.html
 ---
 Today I am very happy to announce the release of the first alpha version
 of the Doctrine [MongoDB](http://www.mongodb.org) Object Document

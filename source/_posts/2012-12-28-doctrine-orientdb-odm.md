@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: odino 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2012/12/28/doctrine-orientdb-odm.html
 ---
 "2012 is the year of graph databases" was the sentence that a lot of
 people were hearing at the end of 2011, especially after the explosion

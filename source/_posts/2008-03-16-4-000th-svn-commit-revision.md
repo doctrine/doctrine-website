@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/03/16/4-000th-svn-commit-revision.html
 ---
 This evening Doctrine reached a milestone of four thousand commits in
 svn. Doctrine has maintained steady development for almost three years

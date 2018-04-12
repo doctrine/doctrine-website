@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/01/23/introducing-doctrine-orm-for-php.html
 ---
 Today I am very happy to announce that we have a first draft available
 of the new main Doctrine documentation which is titled, "[Doctrine ORM

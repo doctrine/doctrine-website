@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/16/doctrine-changing-homes.html
 ---
 You all may have noticed the stability of the website going up and down
 recently. Up until now we have been lucky to have our good friend Ian

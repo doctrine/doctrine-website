@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/11/21/a-doctrine-orm-odm-base-class.html
 ---
 One of most common complaints about Doctrine2 is the requirement to
 write getters/setters for all the fields and assocations of every

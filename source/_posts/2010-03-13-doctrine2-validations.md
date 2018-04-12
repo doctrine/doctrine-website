@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/03/13/doctrine2-validations.html
 ---
 While Doctrine 1 had validation nested inside the `Doctrine_Record`
 instance this is not the case in Doctrine 2 anymore. We won't ship

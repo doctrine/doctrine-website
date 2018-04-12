@@ -4,6 +4,6 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/10/02/doctrine-1-1-development-begins.html
 ---
 
