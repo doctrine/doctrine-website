@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/02/17/doctrine2-behaviours-nutshell.html
 ---
 **NOTE** This blog entry relates to an outdated Doctrine 2 Alpha
 :   version. Please see the documentation for the most up to date

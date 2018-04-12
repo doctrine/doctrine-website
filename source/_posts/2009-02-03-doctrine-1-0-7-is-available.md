@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/02/03/doctrine-1-0-7-is-available.html
 ---
 Today I have made available [Doctrine
 1.0.7](http://www.doctrine-project.org/download) , the latest bug fix

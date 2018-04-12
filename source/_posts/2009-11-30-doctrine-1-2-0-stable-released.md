@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/11/30/doctrine-1-2-0-stable-released.html
 ---
 Today I am very happy to announce that Doctrine 1.2.0 stable has been
 released. This is a very significant release for Doctrine as it contains

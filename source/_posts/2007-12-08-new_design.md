@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2007/12/08/new_design.html
 ---
 Thanks to Phuson we have a brand new design that is absolutely
 spectacular. Now we have a design that is on the same level of Doctrine

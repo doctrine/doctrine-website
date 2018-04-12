@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/03/15/doctrine-2-at-confoo-2010.html
 ---
 This past week I was lucky enough to get to travel to Montreal for the
 annual ConFoo conference, previously known as PHP Quebec. I presented on

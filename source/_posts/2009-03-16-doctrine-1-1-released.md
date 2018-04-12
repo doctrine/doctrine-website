@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/03/16/doctrine-1-1-released.html
 ---
 Today I am very pleased to bring news to you that Doctrine 1.1.0 stable
 is available. This is a significant release for the 1.x code base. It

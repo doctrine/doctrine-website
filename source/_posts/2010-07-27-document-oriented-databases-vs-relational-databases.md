@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: avalanche123 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/07/27/document-oriented-databases-vs-relational-databases.html
 ---
 [My last
 post](http://www.doctrine-project.org/blog/mongodb-for-ecommerce)

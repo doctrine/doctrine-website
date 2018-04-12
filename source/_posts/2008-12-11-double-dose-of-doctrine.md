@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/12/11/double-dose-of-doctrine.html
 ---
 Today I am happy to introduce two new versions of Doctrine! We have made
 available yet another maintenance release for the 1.0 version,

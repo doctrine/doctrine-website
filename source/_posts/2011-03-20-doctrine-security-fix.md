@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/03/20/doctrine-security-fix.html
 ---
 Because of a SQL injection possibility we urge users of Doctrine 1.2 and
 2 to the newly released versions of both libraries immediately. Both

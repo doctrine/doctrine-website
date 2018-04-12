@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/07/20/mixing-types-of-documents.html
 ---
 One major advantage to using something like MongoDB is the fact that it
 is schema-less. We can store multiple types of documents in a single

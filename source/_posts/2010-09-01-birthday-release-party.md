@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/09/01/birthday-release-party.html
 ---
 Today is Jonathan's birthday and in order to celebrate properly we're
 rolling out three new releases.

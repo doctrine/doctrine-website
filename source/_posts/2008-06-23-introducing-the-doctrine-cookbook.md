@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/06/23/introducing-the-doctrine-cookbook.html
 ---
 <p>
 

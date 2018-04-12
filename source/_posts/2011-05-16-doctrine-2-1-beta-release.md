@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/05/16/doctrine-2-1-beta-release.html
 ---
 We would like to announce the first beta release of Doctrine 2.1. It is
 packed with new features that will make your life easier:

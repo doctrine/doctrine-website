@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/05/14/doctrine-maintenance-may11.html
 ---
 Slightly behind schedule we released the next round of maintenance
 versions of Doctrine DBAL (2.0.5) and ORM (2.0.5) today. It also

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2014/12/04/doctrine_dbal_2_5_release.html
 ---
 We are happy to announce the immediate availability of Doctrine DBAL
 2.5.0 Stable. This release is a landmark in making DBAL more consistent

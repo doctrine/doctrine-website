@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/09/25/doctrine-maintenance-sep2011.html
 ---
 We have released the maintenance versions Common 2.1.2, DBAL 2.1.3 and
 ORM 2.1.2.

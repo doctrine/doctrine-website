@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2013/09/11/doctrine-2-4-released.html
 ---
 We are happy to announce the availability of Doctrine Common, DBAL and
 ORM versions 2.4. This took us much longer than planned and we are very

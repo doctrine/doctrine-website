@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/07/27/doctrine-1-0-11-and-1-1-3-released.html
 ---
 Today I am happy to introduce two new maintenance releases for Doctrine,
 1.0.11 and 1.1.3. As always these are regular maintenance releases and

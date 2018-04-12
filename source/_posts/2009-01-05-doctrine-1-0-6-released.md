@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/01/05/doctrine-1-0-6-released.html
 ---
 Welcome Back
 ============

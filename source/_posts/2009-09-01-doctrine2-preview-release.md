@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/09/01/doctrine2-preview-release.html
 ---
 Exactly one year ago today we released Doctrine 1.0 stable, which was on
 the birthday of Jon. Again, today we have chosen the birthday of Jon to

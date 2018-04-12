@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/10/18/new-to-migrations-in-1-1.html
 ---
 In Doctrine 1.1 migrations are much easier to work with. In addition to
 the increased stability we have enhanced the migrations in a few ways to

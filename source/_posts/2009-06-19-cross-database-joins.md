@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/19/cross-database-joins.html
 ---
 Cross Database Joins
 ====================

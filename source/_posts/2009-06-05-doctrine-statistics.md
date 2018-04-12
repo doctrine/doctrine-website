@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/06/05/doctrine-statistics.html
 ---
 On October 18th of 2007 I implemented Google Analytics which allowed me
 to track the statistics of the website. On that first day of statistics

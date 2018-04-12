@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/08/06/master-and-slave-connections.html
 ---
 In this new cookbook recipe we demonstrate how you can setup multiple
 connections and use them as master/slaves. All select statements are

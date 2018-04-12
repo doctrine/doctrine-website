@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/12/12/doctrine2-orm-rc2-released.html
 ---
 We are happy to announce the immediate availability of Doctrine DBAL RC5
 and Doctrine ORM RC2. There have been almost only minor bugfixes in both

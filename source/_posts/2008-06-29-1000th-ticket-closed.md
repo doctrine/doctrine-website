@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/06/29/1000th-ticket-closed.html
 ---
 Tonight I have closed the 1000th ticket in the Doctrine Trac. This is a
 big milestone for Doctrine and it has taken the work of many people to

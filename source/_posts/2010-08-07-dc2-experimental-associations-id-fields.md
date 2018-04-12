@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/08/07/dc2-experimental-associations-id-fields.html
 ---
 Doctrine 2 supports composite keys of primitive types from the
 beginning, however we realized early that a very common use-case is a

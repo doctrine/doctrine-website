@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/10/21/doctrine-1-2-alpha3-released.html
 ---
 Today I am happy to bring you hopefully the last alpha release for
 Doctrine 1.2. We decided to have one more alpha due to some interesting

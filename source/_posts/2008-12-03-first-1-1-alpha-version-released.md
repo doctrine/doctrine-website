@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/12/03/first-1-1-alpha-version-released.html
 ---
 Today I am very happy to introduce the first alpha version of the 1.1
 branch of Doctrine. This means we have just about finalized the scope of

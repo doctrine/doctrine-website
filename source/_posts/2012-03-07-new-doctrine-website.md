@@ -4,6 +4,6 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2012/03/07/new-doctrine-website.html
 ---
 

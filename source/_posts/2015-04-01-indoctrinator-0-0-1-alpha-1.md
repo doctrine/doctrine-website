@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/04/01/indoctrinator-0-0-1-alpha-1.html
 ---
 We are happy to announce the start of development on a new project
 called **the indoctrinator**.

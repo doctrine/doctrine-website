@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/10/05/second-alpha-release-of-doctrine-2.html
 ---
 Today we are happy to bring you the second alpha release of the brand
 new Doctrine 2! This release contains about 70 fixes since the first

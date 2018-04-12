@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/03/17/doctrine-performance-revisited.html
 ---
 In our ever-lasting quest to provide a powerful, flexible and yet
 performant ORM experience we are often confronted with benchmarks and

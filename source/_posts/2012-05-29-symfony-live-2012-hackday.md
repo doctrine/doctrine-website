@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2012/05/29/symfony-live-2012-hackday.html
 ---
 Next week will be [Symfony Live
 2012](http://paris2012.live.symfony.com/) in Paris and the Doctrine

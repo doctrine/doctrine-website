@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/10/07/doctrine-2-documentation.html
 ---
 Did you know that Doctrine 2 is already very well documented? I've
 noticed recently that some people seem to think we don't have any

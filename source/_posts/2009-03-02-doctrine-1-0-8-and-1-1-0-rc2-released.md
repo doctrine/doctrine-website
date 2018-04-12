@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/03/02/doctrine-1-0-8-and-1-1-0-rc2-released.html
 ---
 Today I am happy to tell you that we have two new versions of Doctrine
 available for you to use. The first is the monthly maintenance release

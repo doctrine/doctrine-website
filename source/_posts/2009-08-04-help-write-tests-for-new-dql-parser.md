@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/08/04/help-write-tests-for-new-dql-parser.html
 ---
 As you all know, we're focusing most of our development time on Doctrine
 2.0 these days. To help speed things up, we would like to ask for help

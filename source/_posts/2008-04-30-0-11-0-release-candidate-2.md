@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/04/30/0-11-0-release-candidate-2.html
 ---
 Quick! Come and get it! The second release candidate of the latest
 Doctrine version, 0.11.0, has just been released. This release includes

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2012/03/04/doctrine-2-2-1-released.html
 ---
 We released version 2.2.1 of the Doctrine ORM today, fixing a total of
 16 bugs.

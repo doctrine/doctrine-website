@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/10/19/the-bleeding-edge-website-upgraded.html
 ---
 This weekend I decided it was time to completely dive in to the
 awesomeness that is [symfony](http://www.symfony-project.com) 1.2. I

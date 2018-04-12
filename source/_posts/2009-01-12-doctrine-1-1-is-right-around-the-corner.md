@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/01/12/doctrine-1-1-is-right-around-the-corner.html
 ---
 1.1 Release Manager
 ===================

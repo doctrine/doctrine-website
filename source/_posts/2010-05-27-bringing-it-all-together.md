@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/05/27/bringing-it-all-together.html
 ---
 Recently we've been making some pretty serious changes around here. This
 blog post aims to overview it all and make sure people are aware of what

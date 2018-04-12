@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/01/26/php-5-3-and-doctrine-2-0-teaser.html
 ---
 We've been really busy around here as you may have noticed. Doctrine 1.1
 is about to be released, we just got some much needed new documentation,

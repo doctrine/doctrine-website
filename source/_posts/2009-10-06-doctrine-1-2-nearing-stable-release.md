@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/10/06/doctrine-1-2-nearing-stable-release.html
 ---
 Today I am happy to release to you the second ALPHA release of Doctrine
 1.2. Honestly, we didn't receive many reports of regressions or problems

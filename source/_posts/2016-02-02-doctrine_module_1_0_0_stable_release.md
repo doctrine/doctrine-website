@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2016/02/02/doctrine_module_1_0_0_stable_release.html
 ---
 We are happy to announce the first stable release for DoctrineModule!
 [1.0.0](https://github.com/doctrine/DoctrineModule/releases/tag/1.0.0)

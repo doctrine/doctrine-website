@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/08/15/doctrine2-native-queries.html
 ---
 If you are familar with Doctrine\_RawSql from Doctrine 1.x you probably
 know that it is somewhat broken by design since it requires a special

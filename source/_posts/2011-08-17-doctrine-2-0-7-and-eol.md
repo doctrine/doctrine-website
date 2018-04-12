@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2011/08/17/doctrine-2-0-7-and-eol.html
 ---
 We released the last maintenance version of the 2.0.x branch Doctrine
 2.0.7 today. It contains a bunch of fixes backported from the 2.1.x and

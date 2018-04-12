@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/03/02/my-first-project-doctrine-tutorial.html
 ---
 I have put together a short and sweet tutorial on how to get started
 using Doctrine in under 5 minutes. A few weeks ago, we announced the

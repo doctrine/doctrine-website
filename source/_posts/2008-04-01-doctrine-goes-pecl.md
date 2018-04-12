@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/04/01/doctrine-goes-pecl.html
 ---
 After many long debates and countless hours of development, Doctrine has
 been successfully ported to a PECL extension and will be maintained as a

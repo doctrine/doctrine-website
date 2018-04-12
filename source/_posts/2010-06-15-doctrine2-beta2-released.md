@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/06/15/doctrine2-beta2-released.html
 ---
 Today we are happy to announce the immediate availability of the second
 beta version of Doctrine2. This is the first release after the

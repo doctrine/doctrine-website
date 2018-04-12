@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/07/27/dbal2-beta3-released.html
 ---
 In preparation of the next ORM Beta Release in the next days we already
 released Doctrine DBAL 2.0.0BETA3 today. Noteworthy changes include:

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2015/03/31/doctrine-mongo-odm-module-release-0-8-2.html
 ---
 The **Zend Framework Integration Team** is happy to announce the new
 release of **DoctrineMongoODMModule**. DoctrineMongoODMModule `0.8.2`

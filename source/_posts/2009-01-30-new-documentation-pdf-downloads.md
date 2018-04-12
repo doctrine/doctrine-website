@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/01/30/new-documentation-pdf-downloads.html
 ---
 Today we have some great news! Thanks to Fabien from the [symfony
 project](http://www.symfony-project.org) , we now have a new way to

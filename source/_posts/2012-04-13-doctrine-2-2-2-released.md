@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: beberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2012/04/13/doctrine-2-2-2-released.html
 ---
 We released version 2.2.2 of the Doctrine ORM, Common and DBAL today,
 fixing a total of 20 bugs.

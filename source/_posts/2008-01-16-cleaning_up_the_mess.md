@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: guilhermeblanco 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/01/16/cleaning_up_the_mess.html
 ---
 Starting from last blog post, development team went under some general
 discussions to reach a commom sense regarding the project versions. We

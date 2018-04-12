@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/10/12/new-hydration-modes-for-doctrine-1-1.html
 ---
 <p>
 

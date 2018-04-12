@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/05/12/a-few-website-changes.html
 ---
 As you probably already noticed, the Doctrine website looks a little bit
 different. In preparation for the Doctrine 2.0 release, the website

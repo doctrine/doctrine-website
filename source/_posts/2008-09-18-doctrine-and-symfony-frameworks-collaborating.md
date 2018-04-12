@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/09/18/doctrine-and-symfony-frameworks-collaborating.html
 ---
 <p>
 

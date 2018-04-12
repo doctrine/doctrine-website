@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2012/07/16/doctrine-2-3-beta.html
 ---
 **16.7.2012**
 

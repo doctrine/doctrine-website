@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: jwage 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2008/09/09/doctrine-1-0-1-released.html
 ---
 Today we would like to announce the immediate availability of the first
 maintenance release of the Doctrine 1.0 branch. This release contains

@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/04/20/orm-is-not-a-choice.html
 ---
 **NOTE** When speaking of "ORM" or "object-relational mapping" in
 :   this post I am referring to the act of mapping an [object-oriented

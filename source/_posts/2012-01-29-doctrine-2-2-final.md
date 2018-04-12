@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: [release]
-permalink: /:year/:month/:day/:basename.html
+permalink: /2012/01/29/doctrine-2-2-final.html
 ---
 We released Doctrine 2.2 today.
 

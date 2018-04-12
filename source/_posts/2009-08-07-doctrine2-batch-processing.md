@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: romanb 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2009/08/07/doctrine2-batch-processing.html
 ---
 **TIP** Disclaimer: In general, an ORM is surely not the best tool
 :   for the job for mass data movements, however, it can be a convenient

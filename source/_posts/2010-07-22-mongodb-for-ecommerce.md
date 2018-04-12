@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: avalanche123 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2010/07/22/mongodb-for-ecommerce.html
 ---
 <div style="float: left; width: 300px;">
     <div style="padding: 15px; border: 1px solid #ccc; margin: 0 15px; background: #eee; color: #888">

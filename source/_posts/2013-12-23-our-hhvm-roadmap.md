@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: Benjamin Eberlei 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2013/12/23/our-hhvm-roadmap.html
 ---
 Facebook has been [pushing HHVM alot
 lately](http://www.hhvm.com/blog/2813/we-are-the-98-5-and-the-16) ,

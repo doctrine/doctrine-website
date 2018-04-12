@@ -4,7 +4,7 @@ menuSlug: blog
 authorName: dantleech 
 authorEmail: 
 categories: []
-permalink: /:year/:month/:day/:basename.html
+permalink: /2013/09/25/phpcr-odm-qbv2.html
 ---
 managed to merge the new query builder.
 
