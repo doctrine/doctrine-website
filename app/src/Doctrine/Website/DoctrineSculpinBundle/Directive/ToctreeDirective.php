@@ -53,25 +53,27 @@ class ToctreeDirective extends Directive
 
     private function globSearch(Environment $environment, string $globPattern)
     {
-        $currentDirPath = realpath(rtrim($environment->absoluteRelativePath(''), '/'));
-        $rootPath = rtrim(str_replace($environment->getDirName(), '', $currentDirPath), '/');
-        $globPattern = str_replace($rootPath, '', $globPattern);
+        $currentFilePath = realpath(rtrim($environment->absoluteRelativePath(''), '/'));
+        $rootDocPath = rtrim(str_replace($environment->getDirName(), '', $currentFilePath), '/');
+        $globPatternPath = $rootDocPath.'/'.$globPattern;
 
         $allFiles = [];
 
-        $files =  glob($rootPath.$globPattern);
+        $files =  glob($globPatternPath);
 
         foreach ($files as $file) {
             if (is_dir($file)) {
-                $dirPath = $file.'/*';
+                // remove the root directory so it is a relative path from the root
+                $relativePath = str_replace($rootDocPath.'/', '', $file);
 
-                $dirFiles = $this->globSearch($environment, $dirPath);
+                // recursively search in this directory
+                $dirFiles = $this->globSearch($environment, $relativePath.'/*');
 
                 $allFiles = array_merge($allFiles, $dirFiles);
             } else {
                 // Trim the root path and the .rst extension. This is what the
                 // RST parser requires to add a dependency.
-                $file = str_replace([$rootPath.'/', '.rst'], '', $file);
+                $file = str_replace([$rootDocPath.'/', '.rst'], '', $file);
 
                 $allFiles[] = $file;
             }

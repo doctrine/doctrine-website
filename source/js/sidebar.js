@@ -92,7 +92,12 @@ Sidebar.prototype.getCurrentDocsMenu = function() {
         lastPart = lastPart + $('h1.section-header a').attr('href');
     }
 
-    var id = lastPart.replaceAll('#', '-').replaceAll('.', '-');
+    var id = lastPart
+        .replaceAll('../', '')
+        .replaceAll('#', '-')
+        .replaceAll('.', '-')
+        .replaceAll('/', '-')
+    ;
 
     return $('#' + id);
 };
