@@ -66,3 +66,37 @@ Reference Anchor
 - :ref:`Cross Ref Section A <cross_ref_section_a_anchor>`
 
 .. _`TestLink`: https://www.doctrine-project.org
+
+Glob TOC
+--------
+
+.. tocheader:: Glob TOC Title
+
+.. toc::
+
+.. toctree::
+    :depth: 3
+    :glob:
+
+    *
+
+TOC
+---
+
+.. tocheader:: TOC Title
+
+.. toc::
+
+.. toctree::
+    :depth: 3
+    :glob:
+
+    about
+    cross-ref
+    example
+    index
+
+Folder
+------
+
+- :ref:`Getting Started <reference/getting-started>`

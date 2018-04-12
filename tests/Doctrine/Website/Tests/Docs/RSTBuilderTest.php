@@ -3,6 +3,9 @@
 namespace Doctrine\Website\Tests\Docs;
 
 use Gregwar\RST\HTML\Kernel as HTMLKernel;
+use Doctrine\Website\DoctrineSculpinBundle\Directive\TocDirective;
+use Doctrine\Website\DoctrineSculpinBundle\Directive\TocHeaderDirective;
+use Doctrine\Website\DoctrineSculpinBundle\Directive\ToctreeDirective;
 use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
@@ -28,7 +31,11 @@ class RSTBuilderTest extends TestCase
     {
         $this->sculpinSourcePath = __DIR__.'/resources/sculpin-source';
         $this->projectsPath = __DIR__.'/resources';
-        $this->builder = new Builder(new Kernel(new HTMLKernel(), []));
+        $this->builder = new Builder(new Kernel(new HTMLKernel(), [
+            new TocDirective(),
+            new ToctreeDirective(),
+            new TocHeaderDirective()
+        ]));
 
         $this->rstBuilder = new RSTBuilder(
             $this->sculpinSourcePath,
@@ -164,6 +171,31 @@ HTML;
         $this->assertSculpinSourceFileContains(
             '/projects/example-project/en/1.0/index.html',
             '<li class="dash"><a href="https://www.doctrine-project.org">TestLink</a></li>'
+        );
+
+        $expected = <<<TOC
+<h2 class="toc-header">Glob TOC Title</h2>
+<div class="toc-section"></div>
+<div class="toc"><ul><li id="about-html-about" class="toc-item"><a href="about.html#about">About</a></li><ul><li id="about-html-section" class="toc-item"><a href="about.html#section">Section</a></li></ul><li id="cross-ref-html-cross-ref" class="toc-item"><a href="cross-ref.html#cross-ref">Cross Ref</a></li><ul><li id="cross-ref-html-cross-ref-section-1" class="toc-item"><a href="cross-ref.html#cross-ref-section-1">Cross Ref Section 1</a></li><li id="cross-ref-html-cross-ref-section-2" class="toc-item"><a href="cross-ref.html#cross-ref-section-2">Cross Ref Section 2</a></li><ul><li id="cross-ref-html-cross-ref-section-a" class="toc-item"><a href="cross-ref.html#cross-ref-section-a">Cross Ref Section A</a></li></ul></ul><li id="example-html-example" class="toc-item"><a href="example.html#example">Example</a></li><ul><li id="example-html-section" class="toc-item"><a href="example.html#section">Section</a></li></ul><li id="index-html-index" class="toc-item"><a href="index.html#index">Index</a></li><ul><li id="index-html-section" class="toc-item"><a href="index.html#section">Section</a></li><li id="index-html-lists" class="toc-item"><a href="index.html#lists">Lists</a></li><li id="index-html-alternate-list-syntax" class="toc-item"><a href="index.html#alternate-list-syntax">Alternate List Syntax</a></li><li id="index-html-anchors" class="toc-item"><a href="index.html#anchors">Anchors</a></li><li id="index-html-anchor-section" class="toc-item"><a href="index.html#anchor-section">@Anchor Section</a></li><li id="index-html-anchors" class="toc-item"><a href="index.html#anchors">Anchors</a></li><li id="index-html-links" class="toc-item"><a href="index.html#links">Links</a></li><li id="index-html-reference-anchor" class="toc-item"><a href="index.html#reference-anchor">Reference Anchor</a></li><li id="index-html-glob-toc" class="toc-item"><a href="index.html#glob-toc">Glob TOC</a></li><li id="index-html-toc" class="toc-item"><a href="index.html#toc">TOC</a></li><li id="index-html-folder" class="toc-item"><a href="index.html#folder">Folder</a></li></ul><li id="reference/getting-started-html-getting-started" class="toc-item"><a href="reference/getting-started.html#getting-started">Getting Started</a></li></ul></div>
+TOC;
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            $expected
+        );
+
+        $expected = <<<TOC
+<h2 class="toc-header">TOC Title</h2>
+<div class="toc-section"></div>
+<div class="toc"><ul><li id="about-html-about" class="toc-item"><a href="about.html#about">About</a></li><ul><li id="about-html-section" class="toc-item"><a href="about.html#section">Section</a></li></ul><li id="cross-ref-html-cross-ref" class="toc-item"><a href="cross-ref.html#cross-ref">Cross Ref</a></li><ul><li id="cross-ref-html-cross-ref-section-1" class="toc-item"><a href="cross-ref.html#cross-ref-section-1">Cross Ref Section 1</a></li><li id="cross-ref-html-cross-ref-section-2" class="toc-item"><a href="cross-ref.html#cross-ref-section-2">Cross Ref Section 2</a></li><ul><li id="cross-ref-html-cross-ref-section-a" class="toc-item"><a href="cross-ref.html#cross-ref-section-a">Cross Ref Section A</a></li></ul></ul><li id="example-html-example" class="toc-item"><a href="example.html#example">Example</a></li><ul><li id="example-html-section" class="toc-item"><a href="example.html#section">Section</a></li></ul><li id="index-html-index" class="toc-item"><a href="index.html#index">Index</a></li><ul><li id="index-html-section" class="toc-item"><a href="index.html#section">Section</a></li><li id="index-html-lists" class="toc-item"><a href="index.html#lists">Lists</a></li><li id="index-html-alternate-list-syntax" class="toc-item"><a href="index.html#alternate-list-syntax">Alternate List Syntax</a></li><li id="index-html-anchors" class="toc-item"><a href="index.html#anchors">Anchors</a></li><li id="index-html-anchor-section" class="toc-item"><a href="index.html#anchor-section">@Anchor Section</a></li><li id="index-html-anchors" class="toc-item"><a href="index.html#anchors">Anchors</a></li><li id="index-html-links" class="toc-item"><a href="index.html#links">Links</a></li><li id="index-html-reference-anchor" class="toc-item"><a href="index.html#reference-anchor">Reference Anchor</a></li><li id="index-html-glob-toc" class="toc-item"><a href="index.html#glob-toc">Glob TOC</a></li><li id="index-html-toc" class="toc-item"><a href="index.html#toc">TOC</a></li><li id="index-html-folder" class="toc-item"><a href="index.html#folder">Folder</a></li></ul></ul></div>
+<a class="section-anchor" id="folder" name="folder"></a><h2 class="section-header"><a href="#folder">Folder<i class="fas fa-link"></i></a></h2>
+<ul><li class="dash"><a href="reference/getting-started.html">Getting Started</a></li>
+</ul>
+TOC;
+
+        $this->assertSculpinSourceFileContains(
+            '/projects/example-project/en/1.0/index.html',
+            $expected
         );
     }
 
