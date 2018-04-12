@@ -53,6 +53,8 @@ Links
 - :ref:`Cross Ref <cross-ref>`
 - `TestLink`_
 
+.. _`TestLink`: https://www.doctrine-project.org
+
 Reference Anchor
 ----------------
 
@@ -64,8 +66,6 @@ Reference Anchor
 - :ref:`Cross Ref Section 1 <cross_ref_section_1_anchor>`
 - :ref:`Cross Ref Section 2 <cross_ref_section_2_anchor>`
 - :ref:`Cross Ref Section A <cross_ref_section_a_anchor>`
-
-.. _`TestLink`: https://www.doctrine-project.org
 
 Glob TOC
 --------

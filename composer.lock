@@ -926,12 +926,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/RST.git",
-                "reference": "d03f38f5c35d390d8a2f067e7ee382ebef869967"
+                "reference": "549a81bb6fec6b9a92b8e9ffd05e4a104d7c950b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/RST/zipball/d03f38f5c35d390d8a2f067e7ee382ebef869967",
-                "reference": "d03f38f5c35d390d8a2f067e7ee382ebef869967",
+                "url": "https://api.github.com/repos/doctrine/RST/zipball/549a81bb6fec6b9a92b8e9ffd05e4a104d7c950b",
+                "reference": "549a81bb6fec6b9a92b8e9ffd05e4a104d7c950b",
                 "shasum": ""
             },
             "require": {
@@ -963,7 +963,7 @@
             "support": {
                 "source": "https://github.com/doctrine/RST/tree/master"
             },
-            "time": "2018-04-10T06:05:12+00:00"
+            "time": "2018-04-12T23:09:23+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
