@@ -33,7 +33,6 @@ class RSTBuilderTest extends TestCase
         $this->projectsPath = __DIR__.'/resources';
         $this->builder = new Builder(new Kernel(new HTMLKernel(), [
             new TocDirective(),
-            new ToctreeDirective(),
             new TocHeaderDirective()
         ]));
 
