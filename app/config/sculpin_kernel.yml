@@ -30,6 +30,7 @@ services:
         public: false
         arguments:
             - '@doctrine.project.repository'
+            - '%doctrine.sculpin_source_path%'
         tags:
             - { name: twig.extension }
 
