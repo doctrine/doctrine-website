@@ -19,7 +19,15 @@ class ProjectExtensionTest extends TestCase
     protected function setUp()
     {
         $this->projectRepository = $this->createMock(ProjectRepository::class);
-        $this->projectExtension = new ProjectExtension($this->projectRepository);
+
+        $this->projectExtension = $this->getMockBuilder(ProjectExtension::class)
+            ->setConstructorArgs([
+                $this->projectRepository,
+                ''
+            ])
+            ->setMethods(['fileExists'])
+            ->getMock()
+        ;
     }
 
     public function testGetProjects()
@@ -54,6 +62,25 @@ class ProjectExtensionTest extends TestCase
             'slug' => '2.0',
         ]);
 
+        $this->projectExtension->expects($this->once())
+            ->method('fileExists')
+            ->with('/test/2.0')
+            ->willReturn(true);
+
         $this->assertEquals('/test/2.0', $this->projectExtension->getUrlVersion($version, '/test/1.0', '1.0'));
+    }
+
+    public function testGetUrlVersionNotFound()
+    {
+        $version = new ProjectVersion([
+            'slug' => '2.0',
+        ]);
+
+        $this->projectExtension->expects($this->once())
+            ->method('fileExists')
+            ->with('/test/2.0')
+            ->willReturn(false);
+
+        $this->assertNull($this->projectExtension->getUrlVersion($version, '/test/1.0', '1.0'));
     }
 }

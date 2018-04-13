@@ -14,9 +14,13 @@ class ProjectExtension extends Twig_Extension
     /** @var ProjectRepository */
     private $projectRepository;
 
-    public function __construct(ProjectRepository $projectRepository)
+    /** @var string */
+    private $sculpinSourcePath;
+
+    public function __construct(ProjectRepository $projectRepository, string $sculpinSourcePath)
     {
         $this->projectRepository = $projectRepository;
+        $this->sculpinSourcePath = $sculpinSourcePath;
     }
 
     public function getFunctions()
@@ -44,6 +48,19 @@ class ProjectExtension extends Twig_Extension
 
     public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion)
     {
-        return str_replace($currentVersion, $projectVersion->getSlug(), $url);
+        $otherVersionUrl = str_replace($currentVersion, $projectVersion->getSlug(), $url);
+
+        $otherVersionFile = $this->sculpinSourcePath.$otherVersionUrl;
+
+        if (!$this->fileExists($otherVersionFile)) {
+            return null;
+        }
+
+        return $otherVersionUrl;
+    }
+
+    protected function fileExists(string $file) : bool
+    {
+        return file_exists($file);
     }
 }
