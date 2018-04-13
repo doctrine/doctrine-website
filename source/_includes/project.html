@@ -36,12 +36,16 @@
         <table class="table mb-0">
             <tbody>
                 {% for version in project.versions %}
-                    <tr>
+                    <tr{% if not version.maintained %} style="opacity: .40;"{% endif %}>
                         <td{% if version.current %} class="font-weight-bold"{% endif %}>
                             {{ version.name }}
 
                             {% if version.current %}
                                 (current)
+                            {% endif %}
+
+                            {% if not version.maintained %}
+                                (unmaintained)
                             {% endif %}
                         </td>
                         <td><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Docs</a></td>

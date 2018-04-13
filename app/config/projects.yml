@@ -33,6 +33,12 @@ parameters:
                     name: '2.5'
                     branchName: '2.5'
                     slug: '2.5'
+                    maintained: false
+                -
+                    name: '2.4'
+                    branchName: '2.4'
+                    slug: '2.4'
+                    maintained: false
 
         dbal:
             active: true
@@ -63,10 +69,12 @@ parameters:
                     name: '2.6'
                     branchName: '2.6'
                     slug: '2.6'
+                    maintained: false
                 -
                     name: '2.5'
                     branchName: '2.5'
                     slug: '2.5'
+                    maintained: false
 
         mongodb-odm:
             active: true

@@ -16,12 +16,16 @@ class ProjectVersion
     /** @var boolean */
     private $current = false;
 
+    /** @var boolean */
+    private $maintained = true;
+
     public function __construct(array $version)
     {
         $this->name = (string) ($version['name'] ?? '');
         $this->branchName = (string) ($version['branchName'] ?? '');
         $this->slug = (string) ($version['slug'] ?? '');
         $this->current = (bool) ($version['current'] ?? false);
+        $this->maintained = (bool) ($version['maintained'] ?? true);
     }
 
     public function getName() : string
@@ -42,5 +46,10 @@ class ProjectVersion
     public function isCurrent() : bool
     {
         return $this->current;
+    }
+
+    public function isMaintained() : bool
+    {
+        return $this->maintained;
     }
 }
