@@ -79,6 +79,7 @@ Sidebar.prototype.removeQueryStringParameter = function(key, url) {
 Sidebar.prototype.getCurrentDocsMenu = function() {
     var currentUrl = this.removeQueryStringParameter('q', window.location.href);
     var lastPart = currentUrl.substr(currentUrl.lastIndexOf('/') + 1);
+    var primaryHash = $('h1.section-header a').attr('href');
 
     if (!lastPart) {
         lastPart = 'index.html';
@@ -89,17 +90,32 @@ Sidebar.prototype.getCurrentDocsMenu = function() {
     }
 
     if (!window.location.hash) {
-        lastPart = lastPart + $('h1.section-header a').attr('href');
+        lastPart = lastPart + primaryHash;
     }
 
-    var id = lastPart
+    var id = this.normalize(lastPart);
+    var lastPartWithPrimaryHash = lastPart.substr(0, lastPart.lastIndexOf('#')) + primaryHash;
+    var idWithPrimaryHash = this.normalize(lastPartWithPrimaryHash);
+
+    // try the current link with the hash
+    var currentDocsMenu = $('#' + id);
+
+    // if we can't find it, open the primary menu item for this page
+    if (!currentDocsMenu.length) {
+        currentDocsMenu = $('#' + idWithPrimaryHash);
+    }
+
+    return currentDocsMenu;
+};
+
+Sidebar.prototype.normalize = function(string) {
+    return string
         .replaceAll('../', '')
         .replaceAll('#', '-')
         .replaceAll('.', '-')
         .replaceAll('/', '-')
+        .replaceAll('_', '-')
     ;
-
-    return $('#' + id);
 };
 
 Sidebar.prototype.closeAll = function() {
@@ -119,15 +135,15 @@ Sidebar.prototype.openElement = function(elem) {
 };
 
 Sidebar.prototype.loadCurrentDocsMenu = function() {
-    var elem = this.getCurrentDocsMenu();
+    var currentDocsMenu = this.getCurrentDocsMenu();
 
-    if (!elem) {
+    if (!currentDocsMenu.length) {
         return;
     }
 
     this.closeAll();
 
-    this.openElement(elem);
+    this.openElement(currentDocsMenu);
 
-    this.scrollToElement(elem);
+    this.scrollToElement(currentDocsMenu);
 };
