@@ -56,13 +56,13 @@ Initial Setup
     project you want to contribute to.
 - Clone your fork locally
 
-```
+```console
 $ git clone git@github.com:username/doctrine2.git
 ```
 
 - Enter the doctrine2 directory and add the **doctrine** remote
 
-```
+```console
 $ cd doctrine2
 $ git remote add doctrine git://github.com/doctrine/doctrine2.git
 ```
@@ -70,7 +70,7 @@ $ git remote add doctrine git://github.com/doctrine/doctrine2.git
 - Adjust your branch to track the doctrine master remote branch, by
     default it'll track your origin remote's master:
 
-```
+```console
 $ git config branch.master.remote doctrine
 ```
 
@@ -80,7 +80,7 @@ Keeping your master up-to-date!
 Once all this is done, you'll be able to keep your local master up to
 date with the simple command:
 
-```
+```console
 $ git checkout master
 $ git pull --rebase
 ```
@@ -88,7 +88,7 @@ $ git pull --rebase
 Alternatively, you can synchronize your master from any branch with the
 full fetch/rebase syntax:
 
-```
+```console
 $ git fetch doctrine
 $ git rebase doctrine/master master
 ```
@@ -165,14 +165,14 @@ First create an appropriately named branch. When starting work on a new
 topic, branch off from **doctrine/master** or a **doctrine/\***
 branch:
 
-```
+```console
 $ git checkout -b fix-weird-bug doctrine/master
 Switched to a new branch "fix-weird-bug"
 ```
 
 Now do some work, make some changes then commit them:
 
-```
+```console
 $ git status
 $ git commit <filespec>
 ```
@@ -191,14 +191,14 @@ merges which will leave files strewn everywhere.
 > Please note that once you have pushed your branch remotely you MUST
 > NOT rebase!
 
-```
+```console
 $ git fetch doctrine
 $ git rebase doctrine/master fix-weird-bug
 ```
 
 or (uses tracking branch shortcuts):
 
-```
+```console
 $ git pull --rebase
 ```
 
@@ -207,7 +207,7 @@ Push your branch to **origin**:
 Finished topic branches should be pushed to **origin** for a
 **maintainer** to review and pull into **doctrine** as appropriate:
 
-```
+```console
 $ git push origin fix-weird-bug
 To git@github.com:hobodave/doctrine2.git
     * [new branch]      fix-weird-bug -> fix-weird-bug
@@ -225,7 +225,7 @@ can remove them!
 
 Sync your local master:
 
-```
+```console
 $ git checkout master
 $ git pull --rebase
 ```
@@ -236,7 +236,7 @@ your current head.
 
 From the git-branch man page:
 
-```
+```text
 -d
     Delete a branch. The branch must be fully merged in HEAD.
 -D
@@ -245,13 +245,13 @@ From the git-branch man page:
 
 Remove your local branch:
 
-```
+```console
 $ git branch -d fix-weird-bug
 ```
 
 Remove your remote branch at **origin**:
 
-```
+```console
 $ git push origin fix-weird-bug
 ```
 
@@ -266,7 +266,7 @@ projects resides under **vendor/**.
 To bump/upgrade a dependency version you just need to update the version
 constraint in composer.json and run:
 
-```
+```console
 $ composer update
 ```
 
@@ -276,6 +276,6 @@ Running Tests
 You must have installed the library with composer and the dev
 dependencies (default). To run the tests:
 
-```
+```console
 $ ./vendor/bin/phpunit
 ```
