@@ -34,13 +34,6 @@ contributor and a maintainer.
     of the project and has commit access to the main repository of the
     project.
 
-Maintainer Workflow
--------------------
-
-You can learn more about the maintainer workflow [here](/contribute/maintainer).
-Continue reading if you are interested in learning more about how to get started
-with your first contribution.
-
 Contributor Workflow
 --------------------
 
@@ -279,3 +272,17 @@ dependencies (default). To run the tests:
 ```console
 $ ./vendor/bin/phpunit
 ```
+
+Maintainer Workflow
+-------------------
+
+You can learn more about the maintainer workflow [here](/contribute/maintainer/).
+Continue reading if you are interested in learning more about how to get started
+with your first contribution.
+
+Website
+-------
+
+The [doctrine-project.org](https://www.doctrine-project.org/) website is completely open source!
+If you want to learn how to contribute to the Doctrine website and documentation you can
+read more about it [here](/contribute/website/).

@@ -28,33 +28,33 @@ First you must Fork the
 [repository](http://github.com/doctrine/doctrine2) and clone your fork
 locally:
 
-```
+```console
 $ git clone git@github.com:username/doctrine2.git doctrine2-orm
 $ cd doctrine2-orm
 ```
 
 Fetch dependencies using [composer](https://getcomposer.org/):
 
-```
+```console
 $ composer install
 ```
 
 Now add the **doctrine** remote for maintainers:
 
-```
+```console
 $ git remote add doctrine git@github.com:doctrine/doctrine2.git
 ```
 
 Adjust your branch to track the doctrine master remote branch, by
 default it'll track your origin remote's master:
 
-```
+```console
 $ git config branch.master.remote doctrine
 ```
 
 Optionally, add any additional contributor/maintainer forks, e.g.:
 
-```
+```console
 $ git remote add romanb git://github.com/romanb/doctrine2.git
 ```
 
@@ -75,19 +75,19 @@ Configuring Remotes
 Add remote repo for contributor/maintainer, if necessary (only needs
 to be done once per maintainer):
 
-```
+```console
 $ git remote add hobodave git://github.com/hobodave/doctrine2.git
 ```
 
 Fetch remote:
 
-```
+```console
 $ git fetch hobodave
 ```
 
 Merge topic branch into master:
 
-```
+```console
 $ git checkout master
 Switched to branch 'master'
 $ git merge --no-ff hobodave/DDC-588
@@ -123,7 +123,7 @@ of **master** is ready for the upcoming target version we branch off and
 give the release branch a name reflecting the target version number. In
 addition the ".0" release is tagged on the new release branch:
 
-```
+```console
 $ git checkout -b 2.0 doctrine/master
 Switched to a new branch "2.0"
 $ git push doctrine 2.0
