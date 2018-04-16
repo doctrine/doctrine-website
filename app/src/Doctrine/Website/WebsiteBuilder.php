@@ -3,6 +3,9 @@
 namespace Doctrine\Website;
 
 use Dflydev\DotAccessConfiguration\Configuration;
+use Doctrine\Website\Projects\Project;
+use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Projects\ProjectRepository;
 use InvalidArgumentException;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -19,16 +22,21 @@ class WebsiteBuilder
     /** @var Configuration */
     private $sculpinConfig;
 
+    /** @var ProjectRepository */
+    private $projectRepository;
+
     /** @var string */
     private $kernelRootDir;
 
     public function __construct(
         ProcessFactory $processFactory,
         Configuration $sculpinConfig,
+        ProjectRepository $projectRepository,
         string $kernelRootDir)
     {
         $this->processFactory = $processFactory;
         $this->sculpinConfig = $sculpinConfig;
+        $this->projectRepository = $projectRepository;
         $this->kernelRootDir = $kernelRootDir;
     }
 
@@ -78,6 +86,8 @@ class WebsiteBuilder
             $this->filePutContents($buildDir.'/CNAME', $cname);
         }
 
+        $this->createProjectVersionAliases($buildDir);
+
         if ($publish) {
             $output->writeln(' - publishing build');
 
@@ -95,5 +105,65 @@ class WebsiteBuilder
     protected function execute(string $command)
     {
         $this->processFactory->run($command);
+    }
+
+    private function createProjectVersionAliases(string $buildDir)
+    {
+        $projects = $this->projectRepository->findAll();
+
+        foreach ($projects as $project) {
+            foreach ($project->getVersions() as $version) {
+                foreach ($version->getAliases() as $alias) {
+                    $this->createApiDocsProjectVersionAlias(
+                        $buildDir, $project, $version, $alias
+                    );
+
+                    $this->createDocsProjectVersionAlias(
+                        $buildDir, $project, $version, $alias
+                    );
+                }
+            }
+        }
+    }
+
+    private function createApiDocsProjectVersionAlias(
+        string $buildDir,
+        Project $project,
+        ProjectVersion $version,
+        string $alias)
+    {
+        $dir = sprintf('%s/api/%s',
+            $buildDir,
+            $project->getSlug()
+        );
+
+        $this->createVersionAlias($dir, $version, $alias);
+    }
+
+    private function createDocsProjectVersionAlias(
+        string $buildDir,
+        Project $project,
+        ProjectVersion $version,
+        string $alias)
+    {
+        $dir = sprintf('%s/projects/%s/en',
+            $buildDir,
+            $project->getDocsSlug()
+        );
+
+        $this->createVersionAlias($dir, $version, $alias);
+    }
+
+    private function createVersionAlias(string $dir, ProjectVersion $version, string $alias)
+    {
+        chdir($dir);
+
+        if (file_exists($alias)) {
+            unlink($alias);
+        }
+
+        if (file_exists($version->getSlug())) {
+            symlink($version->getSlug(), $alias);
+        }
     }
 }

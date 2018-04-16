@@ -118,6 +118,7 @@ services:
         arguments:
             - '@doctrine.process.factory'
             - '@sculpin.site_configuration'
+            - '@doctrine.project.repository'
             - '%kernel.root_dir%'
 
     doctrine.watcher:

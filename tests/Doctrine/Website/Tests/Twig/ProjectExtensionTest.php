@@ -67,7 +67,27 @@ class ProjectExtensionTest extends TestCase
             ->with('/test/2.0')
             ->willReturn(true);
 
-        $this->assertEquals('/test/2.0', $this->projectExtension->getUrlVersion($version, '/test/1.0', '1.0'));
+        $this->assertEquals(
+            '/test/2.0',
+            $this->projectExtension->getUrlVersion($version, '/test/1.0', '1.0')
+        );
+    }
+
+    public function testGetUrlVersionCurrent()
+    {
+        $version = new ProjectVersion([
+            'slug' => '2.0',
+        ]);
+
+        $this->projectExtension->expects($this->once())
+            ->method('fileExists')
+            ->with('/test/2.0')
+            ->willReturn(true);
+
+        $this->assertEquals(
+            '/test/2.0',
+            $this->projectExtension->getUrlVersion($version, '/test/current', '1.0')
+        );
     }
 
     public function testGetUrlVersionNotFound()

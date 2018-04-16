@@ -29,6 +29,7 @@ parameters:
                     branchName: '2.6'
                     slug: '2.6'
                     current: true
+                    aliases: ['current']
                 -
                     name: '2.5'
                     branchName: '2.5'
@@ -65,6 +66,7 @@ parameters:
                     branchName: '2.7'
                     slug: '2.7'
                     current: true
+                    aliases: ['current']
                 -
                     name: '2.6'
                     branchName: '2.6'
@@ -100,16 +102,19 @@ parameters:
                     branchName: '1.2.x'
                     slug: '1.2'
                     current: true
+                    aliases: ['current', '1.2.x']
                 -
                     name: '1.1'
                     branchName: '1.1.x'
                     slug: '1.1'
                     maintained: false
+                    aliases: ['1.1.x']
                 -
                     name: '1.0'
                     branchName: '1.0.x'
                     slug: '1.0'
                     maintained: false
+                    aliases: ['1.0.x']
 
         phpcr-odm:
             active: true
@@ -130,6 +135,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         couchdb-odm:
             active: false
@@ -150,6 +156,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         migrations:
             active: true
@@ -172,6 +179,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         common:
             active: true
@@ -194,6 +202,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         mongodb:
             active: true
@@ -216,6 +225,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         orientdb-odm:
             active: false
@@ -238,6 +248,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         annotations:
             active: true
@@ -259,6 +270,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         collections:
             active: true
@@ -280,6 +292,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         inflector:
             active: true
@@ -302,6 +315,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         cache:
             active: true
@@ -324,6 +338,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         lexer:
             active: true
@@ -345,6 +360,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
 
         doctrine1:
             active: false
@@ -365,3 +381,4 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    aliases: ['current']
