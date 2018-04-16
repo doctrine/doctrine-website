@@ -345,37 +345,37 @@ div.jsactive pre
 
 
 @media (max-width: 576px) {
-    h1.section-header {
+    h1 {
         font-size: 25px;
     }
 
-    h2.section-header {
+    h2 {
         font-size: 20px;
     }
 
-    h3.section-header {
+    h3 {
         font-size: 15px;
     }
 
-    h4.section-header {
+    h4 {
         font-size: 10px;
     }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-    h1.section-header {
+    h1 {
         font-size: 30px;
     }
 
-    h2.section-header {
+    h2 {
         font-size: 25px;
     }
 
-    h3.section-header {
+    h3 {
         font-size: 20px;
     }
 
-    h3.section-header {
+    h3 {
         font-size: 15px;
     }
 }
