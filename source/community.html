@@ -4,49 +4,89 @@ title: Community
 menuSlug: community
 ---
 
-<h1>Community</h1>
-
-<p class="lead">
+{% block meta_description %}
+{% spaceless %}
     The Doctrine community is made up of thousands of developers all around
-    the world. The project has had over <a href="https://github.com/doctrine/doctrine2/graphs/contributors" target="_blank">500 contributors</a> and is maintained by a <a href="/team/">core team</a> of developers. If you want to get involved, find other
+    the world. The project has had over 500 contributors and is maintained
+    by a core team of developers. If you want to get involved, find other
     Doctrine developers on GitHub, Gitter Chat and the Mailing List.
-</p>
+{% endspaceless %}
+{% endblock %}
 
-<div class="card mb-4 w-100">
-    <div class="card-body">
-        <h5 class="card-title"><i class="fab fa-github"></i> GitHub</h5>
-        <p class="card-text">
-            Code contributions are coordinated via GitHub pull requests.
-            Find the project you want to contribute to and from there you
-            will see a link for Pull Requests. You can browse existing pull
-            requests or create one of your own. Learn more about how to
-            contribute to Doctrine <a href="/contribute/">here</a>.
-        </p>
+{% block content %}
+    <h1>Community</h1>
 
-        <a href="https://github.com/doctrine/" class="btn btn-primary" target="_blank">Go to GitHub</a>
+    <p class="lead">
+        The Doctrine community is made up of thousands of developers all around
+        the world. The project has had over <a href="https://github.com/doctrine/doctrine2/graphs/contributors" target="_blank">500 contributors</a> and is maintained by a <a href="/team/">core team</a> of developers. If you want to get involved, find other
+        Doctrine developers on GitHub, Gitter Chat and the Mailing List.
+    </p>
+
+    <div class="card mb-4 w-100">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fab fa-github"></i> GitHub</h5>
+            <p class="card-text">
+                Code contributions are coordinated via GitHub pull requests.
+                Find the project you want to contribute to and from there you
+                will see a link for Pull Requests. You can browse existing pull
+                requests or create one of your own. Learn more about how to
+                contribute to Doctrine <a href="/contribute/">here</a>.
+            </p>
+
+            <a href="https://github.com/doctrine/" class="btn btn-primary" target="_blank">Go to GitHub</a>
+        </div>
     </div>
-</div>
 
-<div class="card mb-4 w-100">
-    <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-comments"></i> Gitter Chat</h5>
-        <p class="card-text">
-            The primary method for communicating with other Doctrine developers is via Gitter.
-            You must have a GitHub account in order to use Gitter.
-        </p>
+    <div class="card mb-4 w-100">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-comments"></i> Gitter Chat</h5>
+            <p class="card-text">
+                The primary method for communicating with other Doctrine developers is via Gitter.
+                You must have a GitHub account in order to use Gitter.
+            </p>
 
-        <a href="https://gitter.im/doctrine/home" class="btn btn-primary" target="_blank">Go to Gitter</a>
+            <a href="https://gitter.im/doctrine/home" class="btn btn-primary" target="_blank">Go to Gitter</a>
+        </div>
     </div>
-</div>
 
-<div class="card mb-4 w-100">
-    <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-envelope-square"></i> Mailing List</h5>
-        <p class="card-text">
-            You can also use the mailing list hosted with Google Groups
-            to communicate with other Doctrine developers.
-        </p>
+    <div class="card mb-4 w-100">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-envelope-square"></i> Mailing List</h5>
+            <p class="card-text">
+                You can also use the mailing list hosted with Google Groups
+                to communicate with other Doctrine developers.
+            </p>
 
-        <a href="http://groups.google.com/group/doctrine-user" class="btn btn-primary" target="_blank">Go to Mailing List</a>
+            <a href="http://groups.google.com/group/doctrine-user" class="btn btn-primary" target="_blank">Go to Mailing List</a>
+        </div>
     </div>
-</div>
+
+    <h1>Framework Communities</h1>
+
+    <p class="lead">
+        Some frameworks have sub-communities that are specific to using Doctrine
+        with that framework.
+    </p>
+
+    <div class="card mb-4 w-100">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fab fa-slack"></i> Symfony Doctrine Slack</h5>
+            <p class="card-text">
+                Communicate with other Symfony developers that use Doctrine in the #doctrine slack channel in the Symfony Devs slack instance.
+            </p>
+
+            <a href="https://symfony-devs.slack.com/messages/C3FQPE6LE/" class="btn btn-primary" target="_blank">Go to Slack</a>
+        </div>
+    </div>
+
+    <div class="card mb-4 w-100">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fab fa-slack"></i> Laravel Doctrine Slack</h5>
+            <p class="card-text">
+                Communicate with other Laravel developers that use Doctrine in the Laravel Doctrine slack instance.
+            </p>
+
+            <a href="http://slack.laraveldoctrine.org/" class="btn btn-primary" target="_blank">Go to Slack</a>
+        </div>
+    </div>
+{% endblock %}
