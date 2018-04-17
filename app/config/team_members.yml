@@ -202,6 +202,7 @@ parameters:
             avatarUrl: 'https://avatars1.githubusercontent.com/u/530801?v=4'
             website: 'http://www.dantleech.com'
             location: Europe
+            projects: ["phpcr-odm"]
         davidino:
             name: 'David Funaro'
             github: davidino
@@ -275,7 +276,7 @@ parameters:
             avatarUrl: 'https://avatars0.githubusercontent.com/u/300279?v=4'
             website: 'http://pooteeweet.org'
             location: 'Zurich, Switzerland'
-            projects: ["couchdb-odm"]
+            projects: ["couchdb-odm", "phpcr-odm"]
         mikelohmann:
             name: 'Mike Lohmann'
             github: mikelohmann
