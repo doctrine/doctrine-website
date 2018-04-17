@@ -48,7 +48,11 @@ class ProjectExtension extends Twig_Extension
 
     public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion)
     {
-        $otherVersionUrl = str_replace($currentVersion, $projectVersion->getSlug(), $url);
+        if (strpos($url, 'current') !== false) {
+            $otherVersionUrl = str_replace('current', $projectVersion->getSlug(), $url);
+        } else {
+            $otherVersionUrl = str_replace($currentVersion, $projectVersion->getSlug(), $url);
+        }
 
         $otherVersionFile = $this->sculpinSourcePath.$otherVersionUrl;
 

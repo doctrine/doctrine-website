@@ -4,6 +4,7 @@ namespace Doctrine\Website\Tests;
 
 use Dflydev\DotAccessConfiguration\Configuration;
 use Doctrine\Website\ProcessFactory;
+use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,6 +17,9 @@ class WebsiteBuilderTest extends TestCase
 
     /** @var Configuration */
     private $sculpinConfig;
+
+    /** @var ProjectRepository */
+    private $projectRepository;
 
     /** @var string */
     private $kernelRootDir;
@@ -30,6 +34,7 @@ class WebsiteBuilderTest extends TestCase
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
         $this->sculpinConfig = $this->createMock(Configuration::class);
+        $this->projectRepository = $this->createMock(ProjectRepository::class);
         $this->kernelRootDir = realpath(__DIR__.'/../../../../app');
         $this->rootDir = realpath($this->kernelRootDir.'/..');
 
@@ -37,6 +42,7 @@ class WebsiteBuilderTest extends TestCase
             ->setConstructorArgs([
                 $this->processFactory,
                 $this->sculpinConfig,
+                $this->projectRepository,
                 $this->kernelRootDir
             ])
             ->setMethods(['filePutContents'])

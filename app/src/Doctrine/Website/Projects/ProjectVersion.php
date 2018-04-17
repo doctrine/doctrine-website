@@ -19,6 +19,9 @@ class ProjectVersion
     /** @var boolean */
     private $maintained = true;
 
+    /** @var array */
+    private $aliases;
+
     public function __construct(array $version)
     {
         $this->name = (string) ($version['name'] ?? '');
@@ -26,6 +29,7 @@ class ProjectVersion
         $this->slug = (string) ($version['slug'] ?? '');
         $this->current = (bool) ($version['current'] ?? false);
         $this->maintained = (bool) ($version['maintained'] ?? true);
+        $this->aliases = $version['aliases'] ?? [];
     }
 
     public function getName() : string
@@ -51,5 +55,10 @@ class ProjectVersion
     public function isMaintained() : bool
     {
         return $this->maintained;
+    }
+
+    public function getAliases() : array
+    {
+        return $this->aliases;
     }
 }
