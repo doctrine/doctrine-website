@@ -51,13 +51,30 @@ use:
         </div>
 
         <div class="col-12 col-md-6">
-
             <div class="card mb-4">
                 <h5 class="card-header">Projects</h5>
                 <ul class="list-group list-group-flush">
                     {% for project in get_projects() if project.active is defined and project.active == true %}
                         <li class="list-group-item"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></li>
                     {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Who uses Doctrine?</h5>
+                <div class="card-body bg-secondary text-white">
+                    <p class="card-text">Many other popular PHP projects use libraries from Doctrine. Some use the full <a href="/projects/orm.html" class="text-white font-weight-bold">ORM</a> and others may only use one small library such as the <a href="/projects/inflector.html" class="text-white font-weight-bold">Inflector</a>. Here are some projects that use Doctrine.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="https://symfony.com" target="_blank" class="mr-4">Symfony</a></li>
+                    <li class="list-group-item"><a href="https://www.drupal.org" target="_blank" class="mr-4">Drupal</a></li>
+                    <li class="list-group-item"><a href="https://laravel.com" target="_blank" class="mr-4">Laravel</a></li>
+                    <li class="list-group-item"><a href="https://www.ezplatform.com/" target="_blank" class="mr-4">eZ Platform</a></li>
+                    <li class="list-group-item"><a href="https://phpunit.de/" target="_blank">PHPUnit</a></li>
                 </ul>
             </div>
         </div>
