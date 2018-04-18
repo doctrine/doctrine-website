@@ -19,7 +19,7 @@ The Doctrine Project is the home of a selected set of PHP libraries
 primarily focused on providing persistence services and related
 functionality. Its prize projects are the Object Relational Mapper and the
 Database Abstraction Layer it is built on top of. You can view a list of
-all [projects](/projects) on the website.
+all [projects](/projects.html) on the website.
 
 Contributors vs Maintainers
 ---------------------------
