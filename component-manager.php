@@ -19,22 +19,22 @@ class ComponentManager
             return;
         }
 
-        $componentDir = __DIR__ .'/'. $componentDir;
+        $componentDir = __DIR__.'/'.$componentDir;
 
         if (!is_dir($componentDir)) {
             mkdir($componentDir);
         }
 
-        $filesystem   = new Filesystem();
+        $filesystem = new Filesystem();
 
         foreach ($components as $component) {
-            $componentSource = $vendorDir .'/'. $component;
+            $componentSource = $vendorDir.'/'.$component;
 
             if (!is_dir($componentSource)) {
                 continue;
             }
 
-            $filesystem->mirror($componentSource, $componentDir .'/'. basename($component));
+            $filesystem->mirror($componentSource, $componentDir.'/'.basename($component));
         }
     }
 }
