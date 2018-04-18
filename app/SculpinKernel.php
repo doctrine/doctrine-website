@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use Sculpin\Bundle\SculpinBundle\HttpKernel\AbstractKernel;
 
 class SculpinKernel extends AbstractKernel
 {
     protected function getAdditionalSculpinBundles()
     {
-        return array(
-            'Doctrine\Website\DoctrineSculpinBundle\DoctrineSculpinBundle',
-        );
+        return ['Doctrine\Website\DoctrineSculpinBundle\DoctrineSculpinBundle'];
     }
 }

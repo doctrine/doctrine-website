@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\DoctrineSculpinBundle\Command;
 
 use Sculpin\Core\Console\Command\ContainerAwareCommand;
@@ -8,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DeployCommand extends ContainerAwareCommand
 {
-    protected function configure()
+    protected function configure() : void
     {
         $this
             ->setName('deploy')
@@ -16,7 +18,7 @@ class DeployCommand extends ContainerAwareCommand
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output) : void
     {
         $container = $this->getContainer();
 

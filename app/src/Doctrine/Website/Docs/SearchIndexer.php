@@ -1,22 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Docs;
 
 use AlgoliaSearch\Client;
 use AlgoliaSearch\Index;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Gregwar\RST\Nodes\Node;
 use Gregwar\RST\HTML\Document;
 use Gregwar\RST\HTML\Nodes\ParagraphNode;
 use Gregwar\RST\HTML\Nodes\TitleNode;
+use Gregwar\RST\Nodes\Node;
+use function get_class;
+use function in_array;
+use function md5;
+use function preg_match;
+use function strip_tags;
+use function strpos;
 
 /**
  * Influenced by Laravel.com website code search indexes that also use Algolia.
  */
 class SearchIndexer
 {
-    const INDEX_NAME = 'pages';
+    public const INDEX_NAME = 'pages';
 
     /** @var Client */
     private $client;
@@ -26,11 +34,11 @@ class SearchIndexer
 
     public function __construct(Client $client, RSTBuilder $rstBuilder)
     {
-        $this->client = $client;
+        $this->client     = $client;
         $this->rstBuilder = $rstBuilder;
     }
 
-    public function initSearchIndex()
+    public function initSearchIndex() : void
     {
         $index = $this->getSearchIndex();
 
@@ -61,8 +69,8 @@ class SearchIndexer
 
     public function buildSearchIndexes(
         Project $project,
-        ProjectVersion $version)
-    {
+        ProjectVersion $version
+    ) : void {
         $records = [];
 
         foreach ($this->rstBuilder->getDocuments() as $document) {
@@ -76,11 +84,11 @@ class SearchIndexer
         Document $document,
         array &$records,
         Project $project,
-        ProjectVersion $version)
-    {
+        ProjectVersion $version
+    ) : void {
         $environment = $document->getEnvironment();
 
-        $slug = $environment->getUrl();
+        $slug        = $environment->getUrl();
         $currentLink = $slug;
 
         $current = [
@@ -93,7 +101,7 @@ class SearchIndexer
 
         $nodeTypes = [TitleNode::class, ParagraphNode::class];
 
-        $nodes = $document->getNodes(function(Node $node) use ($nodeTypes) {
+        $nodes = $document->getNodes(function (Node $node) use ($nodeTypes) {
             return in_array(get_class($node), $nodeTypes);
         });
 
@@ -113,7 +121,11 @@ class SearchIndexer
             }
 
             $records[] = $this->getNodeSearchRecord(
-                $node, $current, $currentLink, $project, $version
+                $node,
+                $current,
+                $currentLink,
+                $project,
+                $version
             );
         }
     }
@@ -123,15 +135,15 @@ class SearchIndexer
         array &$current,
         string &$currentLink,
         Project $project,
-        ProjectVersion $version) : array
-    {
+        ProjectVersion $version
+    ) : array {
         $level = $node instanceof TitleNode ? $node->getLevel() : false;
 
         if ($level !== false) {
-            $current['h'.$level] = (string) $node->getValue();
+            $current['h' . $level] = (string) $node->getValue();
 
             for ($i = ($level + 1); $i <= 5; $i++) {
-                $current["h".$i] = null;
+                $current['h' . $i] = null;
             }
 
             $content = null;
@@ -140,20 +152,20 @@ class SearchIndexer
         }
 
         return [
-            'objectID' => $version->getSlug().'-'.$currentLink.'-'.md5($node->getValue()),
+            'objectID' => $version->getSlug() . '-' . $currentLink . '-' . md5($node->getValue()),
             'rank' => $this->getRank($node),
             'h1' => $current['h1'],
             'h2'  => $current['h2'],
             'h3'  => $current['h3'],
             'h4'  => $current['h4'],
             'h5'  => $current['h5'],
-            'url' => '/projects/'.$project->getDocsSlug().'/en/'.$version->getSlug().'/'.$currentLink,
+            'url' => '/projects/' . $project->getDocsSlug() . '/en/' . $version->getSlug() . '/' . $currentLink,
             'content' => $content ? strip_tags($content) : null,
             'projectName' => $project->getShortName(),
             '_tags' => [
                 $version->getSlug(),
                 $project->getSlug(),
-            ]
+            ],
         ];
     }
 
@@ -169,7 +181,7 @@ class SearchIndexer
         ];
 
         if ($node instanceof TitleNode) {
-            $elementName = 'h'.$node->getLevel();
+            $elementName = 'h' . $node->getLevel();
         } elseif ($node instanceof ParagraphNode) {
             $elementName = 'p';
         }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\RST;
 
 use Gregwar\RST\Builder;
@@ -7,6 +9,7 @@ use Gregwar\RST\Directive;
 use Gregwar\RST\Document;
 use Gregwar\RST\HTML\Kernel as HtmlKernel;
 use Gregwar\RST\Kernel as BaseKernel;
+use function array_merge;
 
 class Kernel extends BaseKernel
 {
@@ -47,12 +50,12 @@ class Kernel extends BaseKernel
         return $this->baseKernel->getReferences();
     }
 
-    public function postParse(Document $document)
+    public function postParse(Document $document) : void
     {
         $this->baseKernel->postParse($document);
     }
 
-    public function initBuilder(Builder $builder)
+    public function initBuilder(Builder $builder) : void
     {
         $this->baseKernel->initBuilder($builder);
     }

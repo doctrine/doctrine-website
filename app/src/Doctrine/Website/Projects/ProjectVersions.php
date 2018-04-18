@@ -1,9 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Projects;
 
 use Countable;
 use Iterator;
+use function count;
+use function current;
+use function key;
+use function next;
+use function reset;
 
 class ProjectVersions implements Iterator, Countable
 {

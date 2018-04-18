@@ -1,17 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Docs;
 
-use Gregwar\RST\HTML\Kernel as HTMLKernel;
+use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\DoctrineSculpinBundle\Directive\TocDirective;
 use Doctrine\Website\DoctrineSculpinBundle\Directive\TocHeaderDirective;
-use Doctrine\Website\DoctrineSculpinBundle\Directive\ToctreeDirective;
-use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
 use Doctrine\Website\RST\Kernel;
 use Gregwar\RST\Builder;
+use Gregwar\RST\HTML\Kernel as HTMLKernel;
 use PHPUnit\Framework\TestCase;
+use function array_keys;
+use function file_get_contents;
+use function sprintf;
 
 class RSTBuilderTest extends TestCase
 {
@@ -27,13 +31,13 @@ class RSTBuilderTest extends TestCase
     /** @var RSTBuilder */
     private $rstBuilder;
 
-    protected function setUp()
+    protected function setUp() : void
     {
-        $this->sculpinSourcePath = __DIR__.'/resources/sculpin-source';
-        $this->projectsPath = __DIR__.'/resources';
-        $this->builder = new Builder(new Kernel(new HTMLKernel(), [
+        $this->sculpinSourcePath = __DIR__ . '/resources/sculpin-source';
+        $this->projectsPath      = __DIR__ . '/resources';
+        $this->builder           = new Builder(new Kernel(new HTMLKernel(), [
             new TocDirective(),
-            new TocHeaderDirective()
+            new TocHeaderDirective(),
         ]));
 
         $this->rstBuilder = new RSTBuilder(
@@ -48,14 +52,12 @@ class RSTBuilderTest extends TestCase
             'docsPath' => '/docs',
         ]);
 
-        $version = new ProjectVersion([
-            'slug' => '1.0',
-        ]);
+        $version = new ProjectVersion(['slug' => '1.0']);
 
         $this->rstBuilder->buildRSTDocs($project, $version);
     }
 
-    public function testGetDocuments()
+    public function testGetDocuments() : void
     {
         $this->assertCount(7, $this->rstBuilder->getDocuments());
         $this->assertEquals([
@@ -69,7 +71,7 @@ class RSTBuilderTest extends TestCase
         ], array_keys($this->rstBuilder->getDocuments()));
     }
 
-    public function testProjectHasDocs()
+    public function testProjectHasDocs() : void
     {
         $project = new Project([
             'docsRepositoryName' => 'example-project',
@@ -79,16 +81,17 @@ class RSTBuilderTest extends TestCase
         $this->assertTrue($this->rstBuilder->projectHasDocs($project));
     }
 
-    public function testFilesExist()
+    public function testFilesExist() : void
     {
         foreach (array_keys($this->rstBuilder->getDocuments()) as $file) {
-            $this->assertSculpinSourceFileExists(sprintf('/projects/example-project/en/1.0/%s.html',
+            $this->assertSculpinSourceFileExists(sprintf(
+                '/projects/example-project/en/1.0/%s.html',
                 $file
             ));
         }
     }
 
-    public function testH1Anchors()
+    public function testH1Anchors() : void
     {
         $this->assertSculpinSourceFileContains(
             '/projects/example-project/en/1.0/index.html',
@@ -96,7 +99,7 @@ class RSTBuilderTest extends TestCase
         );
     }
 
-    public function testReferences()
+    public function testReferences() : void
     {
         $this->assertSculpinSourceFileContains(
             '/projects/example-project/en/1.0/index.html',
@@ -155,7 +158,7 @@ TOC;
         );
     }
 
-    public function testExternalLink()
+    public function testExternalLink() : void
     {
         $this->assertSculpinSourceFileContains(
             '/projects/example-project/en/1.0/index.html',
@@ -163,7 +166,7 @@ TOC;
         );
     }
 
-    public function testLists()
+    public function testLists() : void
     {
         $expected = <<<HTML
 <ul><li class="dash">List item 1
@@ -197,7 +200,7 @@ HTML;
         );
     }
 
-    public function testAnchors()
+    public function testAnchors() : void
     {
         $this->assertSculpinSourceFileContains(
             '/projects/example-project/en/1.0/index.html',
@@ -235,7 +238,7 @@ HTML;
         );
     }
 
-    public function testToc()
+    public function testToc() : void
     {
         $expected = <<<TOC
 <h2 class="toc-header">Glob TOC Title</h2>
@@ -299,14 +302,14 @@ TOC;
         );
     }
 
-    private function assertSculpinSourceFileExists(string $path)
+    private function assertSculpinSourceFileExists(string $path) : void
     {
-        $this->assertFileExists($this->sculpinSourcePath.$path);
+        $this->assertFileExists($this->sculpinSourcePath . $path);
     }
 
-    private function assertSculpinSourceFileContains(string $path, string $contains)
+    private function assertSculpinSourceFileContains(string $path, string $contains) : void
     {
-        $html = file_get_contents($this->sculpinSourcePath.$path);
+        $html = file_get_contents($this->sculpinSourcePath . $path);
 
         $this->assertContains($contains, $html);
     }

@@ -27,7 +27,8 @@
         "gregwar/rst": "master"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "doctrine/coding-standard": "^4.0"
     },
     "config": {
         "component-dir": "source/components",

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests;
 
 use Doctrine\Website\ProcessFactory;
@@ -11,12 +13,12 @@ class ProcessFactoryTest extends TestCase
     /** @var ProcessFactory */
     private $processFactory;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->processFactory = new ProcessFactory();
     }
 
-    public function testCreate()
+    public function testCreate() : void
     {
         $command = 'ls -la';
 
@@ -26,7 +28,7 @@ class ProcessFactoryTest extends TestCase
         $this->assertInstanceOf(Process::class, $process);
     }
 
-    public function testRun()
+    public function testRun() : void
     {
         $process = $this->processFactory->run('echo "test"');
 

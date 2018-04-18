@@ -1,20 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website;
 
 use Dflydev\DotAccessConfiguration\Configuration;
 use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectVersion;
 use Doctrine\Website\Projects\ProjectRepository;
-use InvalidArgumentException;
+use Doctrine\Website\Projects\ProjectVersion;
 use Symfony\Component\Console\Output\OutputInterface;
+use function chdir;
+use function file_exists;
+use function file_put_contents;
+use function in_array;
+use function is_dir;
+use function realpath;
+use function sprintf;
+use function str_replace;
+use function symlink;
+use function unlink;
 
 class WebsiteBuilder
 {
-    const URL_LOCAL = 'lcl.doctrine-project.org';
-    const URL_STAGING = 'staging.doctrine-project.org';
-    const URL_PRODUCTION = 'www.doctrine-project.org';
-    const PUBLISHABLE_ENVS = ['prod', 'staging'];
+    public const URL_LOCAL        = 'lcl.doctrine-project.org';
+    public const URL_STAGING      = 'staging.doctrine-project.org';
+    public const URL_PRODUCTION   = 'www.doctrine-project.org';
+    public const PUBLISHABLE_ENVS = ['prod', 'staging'];
 
     /** @var ProcessFactory */
     private $processFactory;
@@ -32,26 +43,27 @@ class WebsiteBuilder
         ProcessFactory $processFactory,
         Configuration $sculpinConfig,
         ProjectRepository $projectRepository,
-        string $kernelRootDir)
-    {
-        $this->processFactory = $processFactory;
-        $this->sculpinConfig = $sculpinConfig;
+        string $kernelRootDir
+    ) {
+        $this->processFactory    = $processFactory;
+        $this->sculpinConfig     = $sculpinConfig;
         $this->projectRepository = $projectRepository;
-        $this->kernelRootDir = $kernelRootDir;
+        $this->kernelRootDir     = $kernelRootDir;
     }
 
     public function build(
         OutputInterface $output,
         string $buildDir,
         string $env,
-        bool $publish)
-    {
-        $output->writeln(sprintf('Building Doctrine website for <info>%s</info> environment at <info>%s</info>.',
+        bool $publish
+    ) : void {
+        $output->writeln(sprintf(
+            'Building Doctrine website for <info>%s</info> environment at <info>%s</info>.',
             $env,
             $buildDir
         ));
 
-        $rootDir = realpath($this->kernelRootDir.'/..');
+        $rootDir = realpath($this->kernelRootDir . '/..');
 
         if ($publish) {
             $output->writeln(' - updating from git');
@@ -61,7 +73,8 @@ class WebsiteBuilder
 
         $output->writeln(' - sculpin generate');
 
-        $command = sprintf('php -d memory_limit=1024M %s/vendor/bin/sculpin generate --env=%s',
+        $command = sprintf(
+            'php -d memory_limit=1024M %s/vendor/bin/sculpin generate --env=%s',
             $rootDir,
             $env
         );
@@ -80,10 +93,10 @@ class WebsiteBuilder
 
         // put the CNAME file back for publishable envs
         if (in_array($env, self::PUBLISHABLE_ENVS)) {
-            $url = $this->sculpinConfig->get('url');
+            $url   = $this->sculpinConfig->get('url');
             $cname = str_replace(['https://', 'http://'], '', $url);
 
-            $this->filePutContents($buildDir.'/CNAME', $cname);
+            $this->filePutContents($buildDir . '/CNAME', $cname);
         }
 
         $this->createProjectVersionAliases($buildDir);
@@ -97,17 +110,17 @@ class WebsiteBuilder
         $output->writeln(' - done');
     }
 
-    protected function filePutContents(string $path, string $contents)
+    protected function filePutContents(string $path, string $contents) : void
     {
         file_put_contents($path, $contents);
     }
 
-    protected function execute(string $command)
+    protected function execute(string $command) : void
     {
         $this->processFactory->run($command);
     }
 
-    private function createProjectVersionAliases(string $buildDir)
+    private function createProjectVersionAliases(string $buildDir) : void
     {
         $projects = $this->projectRepository->findAll();
 
@@ -115,11 +128,17 @@ class WebsiteBuilder
             foreach ($project->getVersions() as $version) {
                 foreach ($version->getAliases() as $alias) {
                     $this->createApiDocsProjectVersionAlias(
-                        $buildDir, $project, $version, $alias
+                        $buildDir,
+                        $project,
+                        $version,
+                        $alias
                     );
 
                     $this->createDocsProjectVersionAlias(
-                        $buildDir, $project, $version, $alias
+                        $buildDir,
+                        $project,
+                        $version,
+                        $alias
                     );
                 }
             }
@@ -130,9 +149,10 @@ class WebsiteBuilder
         string $buildDir,
         Project $project,
         ProjectVersion $version,
-        string $alias)
-    {
-        $dir = sprintf('%s/api/%s',
+        string $alias
+    ) : void {
+        $dir = sprintf(
+            '%s/api/%s',
             $buildDir,
             $project->getSlug()
         );
@@ -144,9 +164,10 @@ class WebsiteBuilder
         string $buildDir,
         Project $project,
         ProjectVersion $version,
-        string $alias)
-    {
-        $dir = sprintf('%s/projects/%s/en',
+        string $alias
+    ) : void {
+        $dir = sprintf(
+            '%s/projects/%s/en',
             $buildDir,
             $project->getDocsSlug()
         );
@@ -154,16 +175,22 @@ class WebsiteBuilder
         $this->createVersionAlias($dir, $version, $alias);
     }
 
-    private function createVersionAlias(string $dir, ProjectVersion $version, string $alias)
+    private function createVersionAlias(string $dir, ProjectVersion $version, string $alias) : void
     {
+        if (! is_dir($dir)) {
+            return;
+        }
+
         chdir($dir);
 
         if (file_exists($alias)) {
             unlink($alias);
         }
 
-        if (file_exists($version->getSlug())) {
-            symlink($version->getSlug(), $alias);
+        if (! file_exists($version->getSlug())) {
+            return;
         }
+
+        symlink($version->getSlug(), $alias);
     }
 }

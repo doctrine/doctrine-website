@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website;
 
 use Closure;
@@ -16,12 +18,12 @@ class ProcessFactory
         return $process;
     }
 
-    public function run(string $command, Closure $callback = null) : Process
+    public function run(string $command, ?Closure $callback = null) : Process
     {
         $process = $this->create($command);
         $process->run($callback);
 
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 

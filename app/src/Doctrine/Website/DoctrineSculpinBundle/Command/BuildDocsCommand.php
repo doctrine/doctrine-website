@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\DoctrineSculpinBundle\Command;
 
 use Sculpin\Core\Console\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class BuildDocsCommand extends ContainerAwareCommand
 {
-    protected function configure()
+    protected function configure() : void
     {
         $this
             ->setName('build-docs')
@@ -48,13 +49,13 @@ class BuildDocsCommand extends ContainerAwareCommand
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output) : void
     {
-        $projectToBuild = (string) $input->getOption('project');
-        $versionToBuild = (string) $input->getOption('v');
-        $buildApiDocs = (bool) $input->getOption('api');
+        $projectToBuild     = (string) $input->getOption('project');
+        $versionToBuild     = (string) $input->getOption('v');
+        $buildApiDocs       = (bool) $input->getOption('api');
         $buildSearchIndexes = (bool) $input->getOption('search');
-        $syncGit = (bool) $input->getOption('sync-git');
+        $syncGit            = (bool) $input->getOption('sync-git');
 
         $buildDocs = $this->getContainer()->get('doctrine.docs.build_docs');
 

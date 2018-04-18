@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\DoctrineSculpinBundle\Command;
 
-use Doctrine\Website\Docs\Preparer;
 use Doctrine\Website\WebsiteBuilder;
 use InvalidArgumentException;
 use Sculpin\Core\Console\Command\ContainerAwareCommand;
@@ -10,10 +11,15 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use function in_array;
+use function is_dir;
+use function mkdir;
+use function realpath;
+use function sprintf;
 
 class BuildWebsiteCommand extends ContainerAwareCommand
 {
-    protected function configure()
+    protected function configure() : void
     {
         $this
             ->setName('build-website')
@@ -32,26 +38,26 @@ class BuildWebsiteCommand extends ContainerAwareCommand
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output) : void
     {
         $container = $this->getContainer();
 
         $rootDir = $container->getParameter('kernel.root_dir');
-        $env = $container->getParameter('kernel.environment');
+        $env     = $container->getParameter('kernel.environment');
 
         $publish = $input->getOption('publish');
 
-        if ($publish && !in_array($env, WebsiteBuilder::PUBLISHABLE_ENVS)) {
+        if ($publish && ! in_array($env, WebsiteBuilder::PUBLISHABLE_ENVS)) {
             throw new InvalidArgumentException(sprintf('You cannot publish the "%s" environment.', $env));
         }
 
         $buildDir = $input->getArgument('build-dir');
 
-        if (!$buildDir) {
+        if (! $buildDir) {
             $buildDir = sprintf('%s/../build-%s', $rootDir, $env);
         }
 
-        if (!is_dir($buildDir)) {
+        if (! is_dir($buildDir)) {
             mkdir($buildDir, 0777, true);
         }
 

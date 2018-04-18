@@ -1,13 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Twig;
 
 use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectVersion;
 use Doctrine\Website\Projects\ProjectRepository;
+use Doctrine\Website\Projects\ProjectVersion;
 use Twig_Extension;
 use Twig_SimpleFunction;
-use Twig_SimpleTest;
+use function file_exists;
+use function ksort;
+use function str_replace;
+use function strpos;
 
 class ProjectExtension extends Twig_Extension
 {
@@ -25,11 +30,11 @@ class ProjectExtension extends Twig_Extension
 
     public function getFunctions()
     {
-        return array(
-            new Twig_SimpleFunction('get_projects', array($this, 'getProjects')),
-            new Twig_SimpleFunction('get_project', array($this, 'getProject')),
-            new Twig_SimpleFunction('get_url_version', array($this, 'getUrlVersion')),
-        );
+        return [
+            new Twig_SimpleFunction('get_projects', [$this, 'getProjects']),
+            new Twig_SimpleFunction('get_project', [$this, 'getProject']),
+            new Twig_SimpleFunction('get_url_version', [$this, 'getUrlVersion']),
+        ];
     }
 
     public function getProjects() : array
@@ -54,9 +59,9 @@ class ProjectExtension extends Twig_Extension
             $otherVersionUrl = str_replace($currentVersion, $projectVersion->getSlug(), $url);
         }
 
-        $otherVersionFile = $this->sculpinSourcePath.$otherVersionUrl;
+        $otherVersionFile = $this->sculpinSourcePath . $otherVersionUrl;
 
-        if (!$this->fileExists($otherVersionFile)) {
+        if (! $this->fileExists($otherVersionFile)) {
             return null;
         }
 

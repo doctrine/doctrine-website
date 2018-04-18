@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\Project;
@@ -29,13 +31,13 @@ class ProjectRepositoryTest extends TestCase
     /** @var ProjectRepository */
     private $projectRepository;
 
-    protected function setUp()
+    protected function setUp() : void
     {
-        $this->projectFactory = new ProjectFactory();
+        $this->projectFactory    = new ProjectFactory();
         $this->projectRepository = new ProjectRepository($this->projects, $this->projectFactory);
     }
 
-    public function testFindOneBySlug()
+    public function testFindOneBySlug() : void
     {
         $orm = $this->projectRepository->findOneBySlug('orm');
 
@@ -58,7 +60,7 @@ class ProjectRepositoryTest extends TestCase
         $this->assertEquals('DBAL', $dbal->getName());
     }
 
-    public function testFindAll()
+    public function testFindAll() : void
     {
         $this->assertCount(2, $this->projectRepository->findAll());
     }
