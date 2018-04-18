@@ -26,8 +26,6 @@ class ProjectGitSyncer
         Project $project,
         ProjectVersion $version
     ) : void {
-        $dir = $project->getProjectDocsRepositoryPath($this->projectsPath);
-
         // handle when docs are in a different repository then the code
         if ($project->getDocsRepositoryName() !== $project->getRepositoryName()) {
             $this->syncRepository(
