@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Docs;
 
 use AlgoliaSearch\Client;
@@ -25,9 +27,9 @@ class SearchIndexerTest extends TestCase
     /** @var SearchIndexer */
     private $searchIndexer;
 
-    protected function setUp()
+    protected function setUp() : void
     {
-        $this->client = $this->createMock(Client::class);
+        $this->client     = $this->createMock(Client::class);
         $this->rstBuilder = $this->createMock(RSTBuilder::class);
 
         $this->searchIndexer = new SearchIndexer(
@@ -36,7 +38,7 @@ class SearchIndexerTest extends TestCase
         );
     }
 
-    public function testInitSearchIndex()
+    public function testInitSearchIndex() : void
     {
         $index = $this->createMock(Index::class);
 
@@ -75,16 +77,14 @@ class SearchIndexerTest extends TestCase
         $this->searchIndexer->initSearchIndex();
     }
 
-    public function testBuildSearchIndexes()
+    public function testBuildSearchIndexes() : void
     {
         $project = new Project([
             'shortName' => 'ORM',
             'docsSlug' => 'doctrine-orm',
             'slug' => 'orm',
         ]);
-        $version = new ProjectVersion([
-            'slug' => '1.0',
-        ]);
+        $version = new ProjectVersion(['slug' => '1.0']);
 
         $index = $this->createMock(Index::class);
 
@@ -93,7 +93,7 @@ class SearchIndexerTest extends TestCase
             ->with(SearchIndexer::INDEX_NAME)
             ->willReturn($index);
 
-        $document = $this->createMock(Document::class);
+        $document    = $this->createMock(Document::class);
         $environment = $this->createMock(Environment::class);
 
         $document->expects($this->once())

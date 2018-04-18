@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\ProjectVersion;
@@ -10,7 +12,7 @@ class ProjectVersionTest extends TestCase
     /** @var ProjectVersion */
     private $projectVersion;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->projectVersion = new ProjectVersion([
             'name' => '1.0',
@@ -20,7 +22,7 @@ class ProjectVersionTest extends TestCase
         ]);
     }
 
-    public function testGetName()
+    public function testGetName() : void
     {
         $this->assertEquals('1.0', $this->projectVersion->getName());
         $this->assertEquals('1.0', $this->projectVersion->getBranchName());

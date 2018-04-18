@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Docs;
 
 use Doctrine\Website\Docs\APIBuilder;
+use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Doctrine\Website\ProcessFactory;
 use PHPUnit\Framework\TestCase;
 
 class APIBuilderTest extends TestCase
@@ -22,33 +24,31 @@ class APIBuilderTest extends TestCase
     /** @var APIBuilder */
     private $apiBuilder;
 
-    protected function setUp()
+    protected function setUp() : void
     {
-        $this->processFactory = $this->createMock(ProcessFactory::class);
-        $this->projectsPath = '/data/doctrine';
+        $this->processFactory    = $this->createMock(ProcessFactory::class);
+        $this->projectsPath      = '/data/doctrine';
         $this->sculpinSourcePath = '/data/doctrine-website/source';
 
         $this->apiBuilder = $this->getMockBuilder(APIBuilder::class)
             ->setConstructorArgs([
                 $this->processFactory,
                 $this->projectsPath,
-                $this->sculpinSourcePath
+                $this->sculpinSourcePath,
             ])
             ->setMethods(['filePutContents', 'unlinkFile'])
             ->getMock()
         ;
     }
 
-    public function testBuildAPIDocs()
+    public function testBuildAPIDocs() : void
     {
         $project = new Project([
             'slug' => 'orm',
             'repositoryName' => 'doctrine2',
             'codePath' => '/src',
         ]);
-        $version = new ProjectVersion([
-            'slug' => '2.0',
-        ]);
+        $version = new ProjectVersion(['slug' => '2.0']);
 
         $configContent = <<<CONFIG
 <?php

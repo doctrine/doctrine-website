@@ -27,6 +27,15 @@ $ cd doctrine-website
 $ composer install
 ```
 
+## Coding Standards
+
+Copy the `pre-commit` hook to `.git/hooks/pre-commit` to ensure
+coding standards are maintained:
+
+```console
+$ cp pre-commit .git/hooks/pre-commit
+```
+
 ## Configuration
 
 Copy the `app/config/local.yml.dist` config file that came with the repository:

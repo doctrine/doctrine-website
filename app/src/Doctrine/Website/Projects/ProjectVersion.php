@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Projects;
 
 class ProjectVersion
@@ -13,10 +15,10 @@ class ProjectVersion
     /** @var string */
     private $slug;
 
-    /** @var boolean */
+    /** @var bool */
     private $current = false;
 
-    /** @var boolean */
+    /** @var bool */
     private $maintained = true;
 
     /** @var array */
@@ -24,12 +26,12 @@ class ProjectVersion
 
     public function __construct(array $version)
     {
-        $this->name = (string) ($version['name'] ?? '');
+        $this->name       = (string) ($version['name'] ?? '');
         $this->branchName = (string) ($version['branchName'] ?? '');
-        $this->slug = (string) ($version['slug'] ?? '');
-        $this->current = (bool) ($version['current'] ?? false);
+        $this->slug       = (string) ($version['slug'] ?? '');
+        $this->current    = (bool) ($version['current'] ?? false);
         $this->maintained = (bool) ($version['maintained'] ?? true);
-        $this->aliases = $version['aliases'] ?? [];
+        $this->aliases    = $version['aliases'] ?? [];
     }
 
     public function getName() : string

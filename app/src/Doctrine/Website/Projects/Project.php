@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Projects;
 
 class Project
@@ -51,21 +53,21 @@ class Project
 
     public function __construct(array $project)
     {
-        $this->active = (bool) ($project['active'] ?? true);
-        $this->archived = (bool) ($project['archived'] ?? false);
-        $this->name = (string) ($project['name'] ?? '');
-        $this->shortName = (string) ($project['shortName'] ?? '');
-        $this->slug = (string) ($project['slug'] ?? '');
-        $this->docsSlug = (string) ($project['docsSlug'] ?? '');
+        $this->active              = (bool) ($project['active'] ?? true);
+        $this->archived            = (bool) ($project['archived'] ?? false);
+        $this->name                = (string) ($project['name'] ?? '');
+        $this->shortName           = (string) ($project['shortName'] ?? '');
+        $this->slug                = (string) ($project['slug'] ?? '');
+        $this->docsSlug            = (string) ($project['docsSlug'] ?? '');
         $this->composerPackageName = (string) ($project['composerPackageName'] ?? '');
-        $this->repositoryName = (string) ($project['repositoryName'] ?? '');
-        $this->hasDocs = $project['hasDocs'] ?? true;
-        $this->docsRepositoryName = (string) ($project['docsRepositoryName'] ?? '');
-        $this->docsPath = (string) ($project['docsPath'] ?? '');
-        $this->codePath = (string) ($project['codePath'] ?? '/lib');
-        $this->description = (string) ($project['description'] ?? '');
-        $this->keywords = $project['keywords'] ?? [];
-        $this->versions = new ProjectVersions($project['versions'] ?? []);
+        $this->repositoryName      = (string) ($project['repositoryName'] ?? '');
+        $this->hasDocs             = $project['hasDocs'] ?? true;
+        $this->docsRepositoryName  = (string) ($project['docsRepositoryName'] ?? '');
+        $this->docsPath            = (string) ($project['docsPath'] ?? '');
+        $this->codePath            = (string) ($project['codePath'] ?? '/lib');
+        $this->description         = (string) ($project['description'] ?? '');
+        $this->keywords            = $project['keywords'] ?? [];
+        $this->versions            = new ProjectVersions($project['versions'] ?? []);
     }
 
     public function isActive() : bool
@@ -146,7 +148,7 @@ class Project
     public function getVersion(string $slug) : ProjectVersion
     {
         foreach ($this->versions as $version) {
-            if ($version->getSlug() == $slug) {
+            if ($version->getSlug() === $slug) {
                 return $version;
             }
         }
@@ -167,16 +169,16 @@ class Project
 
     public function getProjectDocsRepositoryPath(string $projectsPath) : string
     {
-        return $projectsPath.'/'.$this->getDocsRepositoryName();
+        return $projectsPath . '/' . $this->getDocsRepositoryName();
     }
 
     public function getProjectRepositoryPath(string $projectsPath) : string
     {
-        return $projectsPath.'/'.$this->getRepositoryName();
+        return $projectsPath . '/' . $this->getRepositoryName();
     }
 
     public function getAbsoluteDocsPath(string $projectsPath) : string
     {
-        return $this->getProjectDocsRepositoryPath($projectsPath).$this->getDocsPath();
+        return $this->getProjectDocsRepositoryPath($projectsPath) . $this->getDocsPath();
     }
 }

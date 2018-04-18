@@ -1,14 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Twig;
 
 use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectVersion;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Twig_Extension;
 use Twig_SimpleFunction;
-use Twig_SimpleTest;
+use function array_filter;
+use function file_get_contents;
+use function filemtime;
+use function in_array;
+use function ksort;
+use function md5;
+use function realpath;
+use function str_replace;
+use function substr;
 
 class MainExtension extends Twig_Extension
 {
@@ -30,13 +39,13 @@ class MainExtension extends Twig_Extension
             new Twig_SimpleFunction('get_inactive_project_team_members', [$this, 'getInactiveProjectTeamMembers']),
             new Twig_SimpleFunction('get_all_project_team_members', [$this, 'getAllProjectTeamMembers']),
             new Twig_SimpleFunction('get_docs_urls', [$this, 'getDocsUrls']),
-            new Twig_SimpleFunction('get_api_docs_urls', [$this, 'getApiDocsUrls'])
+            new Twig_SimpleFunction('get_api_docs_urls', [$this, 'getApiDocsUrls']),
         ];
     }
 
     public function getAssetUrl(string $path, string $siteUrl)
     {
-        return $siteUrl.$path.'?'.$this->getAssetCacheBuster($path);
+        return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path);
     }
 
     public function getAllTeamMembers() : array
@@ -61,7 +70,7 @@ class MainExtension extends Twig_Extension
         foreach ($this->teamMembers as $key => $teamMember) {
             $active = $teamMember['active'] ?? false;
 
-            if (!$active) {
+            if (! $active) {
                 continue;
             }
 
@@ -98,14 +107,14 @@ class MainExtension extends Twig_Extension
 
     public function getAllProjectTeamMembers(Project $project) : array
     {
-        return array_filter($this->getAllTeamMembers(), function(array $teamMember) use ($project) {
+        return array_filter($this->getAllTeamMembers(), function (array $teamMember) use ($project) {
             return in_array($project->getSlug(), $teamMember['projects'] ?? []);
         });
     }
 
     public function getActiveProjectTeamMembers(Project $project) : array
     {
-        return array_filter($this->getAllTeamMembers(), function(array $teamMember) use ($project) {
+        return array_filter($this->getAllTeamMembers(), function (array $teamMember) use ($project) {
             $active = $teamMember['active'] ?? false;
 
             return $active && in_array($project->getSlug(), $teamMember['projects'] ?? []);
@@ -114,27 +123,29 @@ class MainExtension extends Twig_Extension
 
     public function getInactiveProjectTeamMembers(Project $project) : array
     {
-        return array_filter($this->getAllTeamMembers(), function(array $teamMember) use ($project) {
+        return array_filter($this->getAllTeamMembers(), function (array $teamMember) use ($project) {
             $active = $teamMember['active'] ?? false;
 
-            return !$active && in_array($project->getSlug(), $teamMember['projects'] ?? []);
+            return ! $active && in_array($project->getSlug(), $teamMember['projects'] ?? []);
         });
     }
 
     public function getDocsUrls() : array
     {
-        $root = realpath(__DIR__.'/../../../../../source');
-        $path = $root.'/projects';
+        $root = realpath(__DIR__ . '/../../../../../source');
+        $path = $root . '/projects';
 
         $it = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
 
         $urls = [];
-        foreach(new RecursiveIteratorIterator($it) as $file) {
-            $url = str_replace($root, '', $file);
+        foreach (new RecursiveIteratorIterator($it) as $file) {
+            $path = (string) $file;
+
+            $url = str_replace($root, '', $path);
 
             $urls[] = [
                 'url' => $url,
-                'date' => filemtime($file),
+                'date' => filemtime($path),
             ];
         }
 
@@ -143,18 +154,20 @@ class MainExtension extends Twig_Extension
 
     public function getApiDocsUrls() : array
     {
-        $root = realpath(__DIR__.'/../../../../../source');
-        $path = $root.'/api';
+        $root = realpath(__DIR__ . '/../../../../../source');
+        $path = $root . '/api';
 
         $it = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
 
         $urls = [];
-        foreach(new RecursiveIteratorIterator($it) as $file) {
-            $url = str_replace($root, '', $file);
+        foreach (new RecursiveIteratorIterator($it) as $file) {
+            $path = (string) $file;
+
+            $url = str_replace($root, '', $path);
 
             $urls[] = [
                 'url' => $url,
-                'date' => filemtime($file),
+                'date' => filemtime($path),
             ];
         }
 
@@ -163,7 +176,7 @@ class MainExtension extends Twig_Extension
 
     private function getAssetCacheBuster(string $path) : string
     {
-        $assetPath = realpath(__DIR__.'/../../../../../source/'.$path);
+        $assetPath = realpath(__DIR__ . '/../../../../../source/' . $path);
 
         return substr(md5(file_get_contents($assetPath)), 0, 6);
     }

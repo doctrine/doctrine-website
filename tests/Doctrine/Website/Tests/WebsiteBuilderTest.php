@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests;
 
 use Dflydev\DotAccessConfiguration\Configuration;
@@ -8,7 +10,8 @@ use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Process;
+use function realpath;
+use function sprintf;
 
 class WebsiteBuilderTest extends TestCase
 {
@@ -30,32 +33,32 @@ class WebsiteBuilderTest extends TestCase
     /** @var WebsiteBuilder */
     private $websiteBuilder;
 
-    protected function setUp()
+    protected function setUp() : void
     {
-        $this->processFactory = $this->createMock(ProcessFactory::class);
-        $this->sculpinConfig = $this->createMock(Configuration::class);
+        $this->processFactory    = $this->createMock(ProcessFactory::class);
+        $this->sculpinConfig     = $this->createMock(Configuration::class);
         $this->projectRepository = $this->createMock(ProjectRepository::class);
-        $this->kernelRootDir = realpath(__DIR__.'/../../../../app');
-        $this->rootDir = realpath($this->kernelRootDir.'/..');
+        $this->kernelRootDir     = realpath(__DIR__ . '/../../../../app');
+        $this->rootDir           = realpath($this->kernelRootDir . '/..');
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
             ->setConstructorArgs([
                 $this->processFactory,
                 $this->sculpinConfig,
                 $this->projectRepository,
-                $this->kernelRootDir
+                $this->kernelRootDir,
             ])
             ->setMethods(['filePutContents'])
             ->getMock()
         ;
     }
 
-    public function testBuild()
+    public function testBuild() : void
     {
-        $output = $this->createMock(OutputInterface::class);
+        $output   = $this->createMock(OutputInterface::class);
         $buildDir = '/data/doctrine-website-build-staging';
-        $env = 'staging';
-        $publish = true;
+        $env      = 'staging';
+        $publish  = true;
 
         $this->processFactory->expects($this->at(0))
             ->method('run')
@@ -71,7 +74,8 @@ class WebsiteBuilderTest extends TestCase
 
         $this->processFactory->expects($this->at(3))
             ->method('run')
-            ->with(sprintf('mv %s/output_staging/* /data/doctrine-website-build-staging',
+            ->with(sprintf(
+                'mv %s/output_staging/* /data/doctrine-website-build-staging',
                 $this->rootDir
             ));
 

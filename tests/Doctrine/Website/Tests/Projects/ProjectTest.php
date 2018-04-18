@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\Project;
@@ -11,7 +13,7 @@ class ProjectTest extends TestCase
     /** @var Project */
     private $project;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->project = new Project([
             'name' => 'Object Relational Mapper',
@@ -42,72 +44,72 @@ class ProjectTest extends TestCase
         ]);
     }
 
-    public function testGetName()
+    public function testGetName() : void
     {
         $this->assertEquals('Object Relational Mapper', $this->project->getName());
     }
 
-    public function testGetShortName()
+    public function testGetShortName() : void
     {
         $this->assertEquals('ORM', $this->project->getShortName());
     }
 
-    public function testGetSlug()
+    public function testGetSlug() : void
     {
         $this->assertEquals('orm', $this->project->getSlug());
     }
 
-    public function testGetDocsSlug()
+    public function testGetDocsSlug() : void
     {
         $this->assertEquals('doctrine-orm', $this->project->getDocsSlug());
     }
 
-    public function testGetComposerPackageName()
+    public function testGetComposerPackageName() : void
     {
         $this->assertEquals('doctrine/orm', $this->project->getComposerPackageName());
     }
 
-    public function testGetRepositoryName()
+    public function testGetRepositoryName() : void
     {
         $this->assertEquals('doctrine2', $this->project->getRepositoryName());
     }
 
-    public function testHasDocs()
+    public function testHasDocs() : void
     {
         $this->assertTrue($this->project->hasDocs());
     }
 
-    public function testGetDocsRepositoryName()
+    public function testGetDocsRepositoryName() : void
     {
         $this->assertEquals('doctrine2', $this->project->getDocsRepositoryName());
     }
 
-    public function testGetDocsPath()
+    public function testGetDocsPath() : void
     {
         $this->assertEquals('/docs', $this->project->getDocsPath());
     }
 
-    public function testGetCodePath()
+    public function testGetCodePath() : void
     {
         $this->assertEquals('/src', $this->project->getCodePath());
     }
 
-    public function testGetDescription()
+    public function testGetDescription() : void
     {
         $this->assertEquals('Test description.', $this->project->getDescription());
     }
 
-    public function testGetKeywords()
+    public function testGetKeywords() : void
     {
         $this->assertEquals(['keyword1', 'keyword2'], $this->project->getKeywords());
     }
 
-    public function testGetVersions()
+    public function testGetVersions() : void
     {
         $this->assertCount(2, $this->project->getVersions());
     }
 
-    public function testGetVersion()
+    public function testGetVersion() : void
     {
         $version = $this->project->getVersion('1.0');
 
@@ -116,7 +118,7 @@ class ProjectTest extends TestCase
         $this->assertEquals('1.0', $version->getName());
     }
 
-    public function testGetCurrentVersion()
+    public function testGetCurrentVersion() : void
     {
         $version = $this->project->getCurrentVersion();
 
@@ -125,17 +127,17 @@ class ProjectTest extends TestCase
         $this->assertEquals('1.0', $version->getName());
     }
 
-    public function testGetProjectDocsRepositoryPath()
+    public function testGetProjectDocsRepositoryPath() : void
     {
         $this->assertEquals('/test/doctrine2', $this->project->getProjectDocsRepositoryPath('/test'));
     }
 
-    public function testGetProjectRepositoryPath()
+    public function testGetProjectRepositoryPath() : void
     {
         $this->assertEquals('/test/doctrine2', $this->project->getProjectRepositoryPath('/test'));
     }
 
-    public function testGetAbsoluteDocsPath()
+    public function testGetAbsoluteDocsPath() : void
     {
         $this->assertEquals('/test/doctrine2/docs', $this->project->getAbsoluteDocsPath('/test'));
     }

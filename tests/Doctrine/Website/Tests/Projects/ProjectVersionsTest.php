@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\ProjectVersion;
@@ -8,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class ProjectVersionsTest extends TestCase
 {
-    public function testIterator()
+    public function testIterator() : void
     {
         $versions = new ProjectVersions([[], []]);
 

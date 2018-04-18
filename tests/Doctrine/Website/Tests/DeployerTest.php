@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests;
 
 use Doctrine\Website\Deployer;
@@ -8,7 +10,6 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class DeployerTest extends TestCase
 {
@@ -21,13 +22,13 @@ class DeployerTest extends TestCase
     /** @var Deployer */
     private $deployer;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
-        $this->projectsPath = '/data/doctrine';
+        $this->projectsPath   = '/data/doctrine';
     }
 
-    public function testDeployDev()
+    public function testDeployDev() : void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -38,7 +39,7 @@ class DeployerTest extends TestCase
         $deployer->deploy($output);
     }
 
-    public function testDeployStagingNothingChanged()
+    public function testDeployStagingNothingChanged() : void
     {
         $output = $this->createMock(OutputInterface::class);
 
@@ -59,7 +60,7 @@ class DeployerTest extends TestCase
         $deployer->deploy($output);
     }
 
-    public function testDeployStaging()
+    public function testDeployStaging() : void
     {
         $output = $this->createMock(OutputInterface::class);
 
@@ -103,7 +104,7 @@ class DeployerTest extends TestCase
             ->setConstructorArgs([
                 $this->processFactory,
                 $this->projectsPath,
-                $env
+                $env,
             ])
             ->setMethods(['getDeploy', 'getLastDeploy'])
             ->getMock();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Docs;
 
 use Doctrine\Website\Docs\APIBuilder;
@@ -34,13 +36,13 @@ class BuildDocsTest extends TestCase
     /** @var BuildDocs */
     private $buildDocs;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->projectRepository = $this->createMock(ProjectRepository::class);
-        $this->projectGitSyncer = $this->createMock(ProjectGitSyncer::class);
-        $this->apiBuilder = $this->createMock(APIBuilder::class);
-        $this->rstBuilder = $this->createMock(RSTBuilder::class);
-        $this->searchIndexer = $this->createMock(SearchIndexer::class);
+        $this->projectGitSyncer  = $this->createMock(ProjectGitSyncer::class);
+        $this->apiBuilder        = $this->createMock(APIBuilder::class);
+        $this->rstBuilder        = $this->createMock(RSTBuilder::class);
+        $this->searchIndexer     = $this->createMock(SearchIndexer::class);
 
         $this->buildDocs = new BuildDocs(
             $this->projectRepository,
@@ -51,7 +53,7 @@ class BuildDocsTest extends TestCase
         );
     }
 
-    public function testBuild()
+    public function testBuild() : void
     {
         $output = $this->createMock(OutputInterface::class);
 

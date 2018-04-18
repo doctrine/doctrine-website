@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Projects;
+
+use function array_map;
 
 class ProjectRepository
 {
@@ -12,7 +16,7 @@ class ProjectRepository
 
     public function __construct(array $projects, ProjectFactory $projectFactory)
     {
-        $this->projects = $projects;
+        $this->projects       = $projects;
         $this->projectFactory = $projectFactory;
     }
 
@@ -27,7 +31,7 @@ class ProjectRepository
 
     public function findAll() : array
     {
-        return array_map(function(array $project) {
+        return array_map(function (array $project) {
             return $this->projectFactory->create($project);
         }, $this->projects);
     }

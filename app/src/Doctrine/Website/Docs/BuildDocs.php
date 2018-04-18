@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Docs;
 
-use Doctrine\Website\Docs\APIBuilder;
-use Doctrine\Website\Docs\RSTBuilder;
-use Doctrine\Website\Docs\SearchIndexer;
-use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
+use Doctrine\Website\Projects\ProjectRepository;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use function sprintf;
 
 class BuildDocs
 {
@@ -32,23 +32,23 @@ class BuildDocs
         ProjectGitSyncer $projectGitSyncer,
         APIBuilder $apiBuilder,
         RSTBuilder $rstBuilder,
-        SearchIndexer $searchIndexer)
-    {
+        SearchIndexer $searchIndexer
+    ) {
         $this->projectRepository = $projectRepository;
-        $this->projectGitSyncer = $projectGitSyncer;
-        $this->apiBuilder = $apiBuilder;
-        $this->rstBuilder = $rstBuilder;
-        $this->searchIndexer = $searchIndexer;
+        $this->projectGitSyncer  = $projectGitSyncer;
+        $this->apiBuilder        = $apiBuilder;
+        $this->rstBuilder        = $rstBuilder;
+        $this->searchIndexer     = $searchIndexer;
     }
 
-    public function  build(
+    public function build(
         OutputInterface $output,
         string $projectToBuild,
         string $versionToBuilder,
         bool $buildApiDocs,
         bool $buildSearchIndexes,
-        bool $syncGit)
-    {
+        bool $syncGit
+    ) : void {
         if ($buildSearchIndexes) {
             $this->searchIndexer->initSearchIndex();
         }
@@ -65,8 +65,10 @@ class BuildDocs
                     continue;
                 }
 
-                $output->writeln(sprintf('<info>%s</info> (<comment>%s</comment>)',
-                    $project->getSlug(), $version->getSlug()
+                $output->writeln(sprintf(
+                    '<info>%s</info> (<comment>%s</comment>)',
+                    $project->getSlug(),
+                    $version->getSlug()
                 ));
 
                 if ($syncGit) {
@@ -85,7 +87,7 @@ class BuildDocs
                     }
                 }
 
-                if (!$this->rstBuilder->projectHasDocs($project)) {
+                if (! $this->rstBuilder->projectHasDocs($project)) {
                     $output->writeln(' - <warning>no docs found</warning>');
 
                     continue;
@@ -95,11 +97,13 @@ class BuildDocs
 
                 $this->rstBuilder->buildRSTDocs($project, $version);
 
-                if ($buildSearchIndexes) {
-                    $output->writeln(' - building search indexes');
-
-                    $this->searchIndexer->buildSearchIndexes($project, $version);
+                if (! $buildSearchIndexes) {
+                    continue;
                 }
+
+                $output->writeln(' - building search indexes');
+
+                $this->searchIndexer->buildSearchIndexes($project, $version);
             }
         }
     }

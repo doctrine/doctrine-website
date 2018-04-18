@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\Project;
@@ -11,12 +13,12 @@ class ProjectFactoryTest extends TestCase
     /** @var ProjectFactory */
     private $projectFactory;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->projectFactory = new ProjectFactory();
     }
 
-    public function testCreate()
+    public function testCreate() : void
     {
         $project = $this->projectFactory->create([]);
 

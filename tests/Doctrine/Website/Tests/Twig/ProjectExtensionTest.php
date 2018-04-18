@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Doctrine\Website\Tests\Twig;
 
 use Doctrine\Website\Projects\Project;
@@ -16,21 +18,21 @@ class ProjectExtensionTest extends TestCase
     /** @var ProjectExtension */
     private $projectExtension;
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->projectRepository = $this->createMock(ProjectRepository::class);
 
         $this->projectExtension = $this->getMockBuilder(ProjectExtension::class)
             ->setConstructorArgs([
                 $this->projectRepository,
-                ''
+                '',
             ])
             ->setMethods(['fileExists'])
             ->getMock()
         ;
     }
 
-    public function testGetProjects()
+    public function testGetProjects() : void
     {
         $projects = [
             'orm' => [],
@@ -44,7 +46,7 @@ class ProjectExtensionTest extends TestCase
         $this->assertEquals($projects, $this->projectExtension->getProjects());
     }
 
-    public function testGetProject()
+    public function testGetProject() : void
     {
         $project = new Project([]);
 
@@ -56,11 +58,9 @@ class ProjectExtensionTest extends TestCase
         $this->assertSame($project, $this->projectExtension->getProject('orm'));
     }
 
-    public function testGetUrlVersion()
+    public function testGetUrlVersion() : void
     {
-        $version = new ProjectVersion([
-            'slug' => '2.0',
-        ]);
+        $version = new ProjectVersion(['slug' => '2.0']);
 
         $this->projectExtension->expects($this->once())
             ->method('fileExists')
@@ -73,11 +73,9 @@ class ProjectExtensionTest extends TestCase
         );
     }
 
-    public function testGetUrlVersionCurrent()
+    public function testGetUrlVersionCurrent() : void
     {
-        $version = new ProjectVersion([
-            'slug' => '2.0',
-        ]);
+        $version = new ProjectVersion(['slug' => '2.0']);
 
         $this->projectExtension->expects($this->once())
             ->method('fileExists')
@@ -90,11 +88,9 @@ class ProjectExtensionTest extends TestCase
         );
     }
 
-    public function testGetUrlVersionNotFound()
+    public function testGetUrlVersionNotFound() : void
     {
-        $version = new ProjectVersion([
-            'slug' => '2.0',
-        ]);
+        $version = new ProjectVersion(['slug' => '2.0']);
 
         $this->projectExtension->expects($this->once())
             ->method('fileExists')
