@@ -224,7 +224,7 @@ SIDEBAR;
             preg_match('/<h1>(.*)<\/h1>/', $content, $matches);
 
             $title = '';
-            if ($matches) {
+            if (! empty($matches)) {
                 $title = $matches[1];
             }
 
@@ -291,7 +291,7 @@ SIDEBAR;
 
     private function ensureDirectoryExists(string $dir) : void
     {
-        if (is_dir($dir)) {
+        if (file_exists($dir)) {
             return;
         }
 

@@ -180,6 +180,8 @@ class SearchIndexer
             'p'  => 5,
         ];
 
+        $elementName = 'p';
+
         if ($node instanceof TitleNode) {
             $elementName = 'h' . $node->getLevel();
         } elseif ($node instanceof ParagraphNode) {
