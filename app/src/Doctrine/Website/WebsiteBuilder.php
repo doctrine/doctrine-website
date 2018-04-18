@@ -9,9 +9,11 @@ use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\Projects\ProjectVersion;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use function chdir;
 use function file_exists;
 use function file_put_contents;
+use function glob;
 use function in_array;
 use function is_dir;
 use function realpath;
@@ -36,6 +38,9 @@ class WebsiteBuilder
     /** @var ProjectRepository */
     private $projectRepository;
 
+    /** @var Filesystem */
+    private $filesystem;
+
     /** @var string */
     private $kernelRootDir;
 
@@ -43,11 +48,13 @@ class WebsiteBuilder
         ProcessFactory $processFactory,
         Configuration $sculpinConfig,
         ProjectRepository $projectRepository,
+        Filesystem $filesystem,
         string $kernelRootDir
     ) {
         $this->processFactory    = $processFactory;
         $this->sculpinConfig     = $sculpinConfig;
         $this->projectRepository = $projectRepository;
+        $this->filesystem        = $filesystem;
         $this->kernelRootDir     = $kernelRootDir;
     }
 
@@ -86,10 +93,10 @@ class WebsiteBuilder
         $outputDir = sprintf('output_%s', $env);
 
         // cleanup the build directory
-        $this->processFactory->run(sprintf('rm -rf %s/*', $buildDir));
+        $this->filesystem->remove(glob($buildDir . '/*'));
 
         // copy the build to the build directory
-        $this->processFactory->run(sprintf('mv %s/%s/* %s', $rootDir, $outputDir, $buildDir));
+        $this->filesystem->mirror($rootDir . '/' . $outputDir, $buildDir);
 
         // put the CNAME file back for publishable envs
         if (in_array($env, self::PUBLISHABLE_ENVS)) {
@@ -113,11 +120,6 @@ class WebsiteBuilder
     protected function filePutContents(string $path, string $contents) : void
     {
         file_put_contents($path, $contents);
-    }
-
-    protected function execute(string $command) : void
-    {
-        $this->processFactory->run($command);
     }
 
     private function createProjectVersionAliases(string $buildDir) : void
