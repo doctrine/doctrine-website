@@ -17,7 +17,7 @@ function recursiveGlob(array $paths)
     $allFiles = [];
 
     foreach ($paths as $path) {
-        $files =  glob($path);
+        $files = glob($path);
 
         $allFiles = array_merge($allFiles, $files);
 
