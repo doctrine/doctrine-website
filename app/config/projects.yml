@@ -29,7 +29,7 @@ parameters:
                     branchName: '2.6'
                     slug: '2.6'
                     current: true
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
                 -
                     name: '2.5'
                     branchName: '2.5'
@@ -66,7 +66,7 @@ parameters:
                     branchName: '2.7'
                     slug: '2.7'
                     current: true
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
                 -
                     name: '2.6'
                     branchName: '2.6'
@@ -102,7 +102,7 @@ parameters:
                     branchName: '1.2.x'
                     slug: '1.2'
                     current: true
-                    aliases: ['current', '1.2.x']
+                    aliases: ['current', 'stable', '1.2.x']
                 -
                     name: '1.1'
                     branchName: '1.1.x'
@@ -135,7 +135,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         couchdb-odm:
             active: false
@@ -156,7 +156,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         migrations:
             active: true
@@ -179,7 +179,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         common:
             active: true
@@ -202,7 +202,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         mongodb:
             active: true
@@ -225,7 +225,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         orientdb-odm:
             active: false
@@ -248,7 +248,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         annotations:
             active: true
@@ -270,7 +270,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         collections:
             active: true
@@ -292,7 +292,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         inflector:
             active: true
@@ -315,7 +315,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         cache:
             active: true
@@ -338,7 +338,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         lexer:
             active: true
@@ -360,7 +360,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
 
         doctrine1:
             active: false
@@ -381,4 +381,4 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
-                    aliases: ['current']
+                    aliases: ['current', 'stable']
