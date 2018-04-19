@@ -5,11 +5,13 @@
 {% endif %}
 
 {% if project is defined and project %}
-    {% block title %}{{ page.title }} - {{ project.name }} ({{ project.shortName }}){% endblock %}
+    {% block title %}{{ page.title }} - {{ project.name }}{% if project.name != project.shortName %} ({{ project.shortName }}){% endif %} - Doctrine{% endblock %}
 
-    {% block meta_description project.description %}
+    {% block meta_description %}Doctrine {{ project.name }} Documentation: {{ page.title }} {% endblock %}
 
-    {% block meta_keywords project.keywords|join(',') %}
+    {% set pageTitleKeywords = page.title|lower|split(' ') %}
+
+    {% block meta_keywords project.keywords|merge(['documentation'])|merge(pageTitleKeywords)|join(',') %}
 {% endif %}
 
 {% block head_meta %}

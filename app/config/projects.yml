@@ -18,7 +18,7 @@ parameters:
                 with a powerful alternative to SQL that maintains flexibility without
                 requiring unnecessary code duplication.
 
-            keywords: [php, orm, mysql, object, mapper, mapping, query, dql]
+            keywords: [php, orm, mysql, object, data, mapper, mapping, query, dql]
             versions:
                 -
                     name: 'master'
@@ -91,7 +91,7 @@ parameters:
             description: >
                 PHP Doctrine MongoDB Object Document Mapper (ODM) provides transparent
                 persistence for PHP objects to MongoDB.
-            keywords: [php, mongodb, odm, mapper, mapping, object]
+            keywords: [php, mongodb, odm, data, mapper, mapping, object]
             versions:
                 -
                     name: 'master'
@@ -129,7 +129,7 @@ parameters:
             description: >
                 PHP Doctrine Content Repository Object Document Mapper (ODM)
                 provides transparent persistence for PHP objects.
-            keywords: [php, content, odm, mapper, mapping, object]
+            keywords: [php, content, odm, data, mapper, mapping, object]
             versions:
                 -
                     name: 'master'
@@ -150,7 +150,7 @@ parameters:
             description: >
                 PHP Doctrine CouchDB Object Document Mapper (ODM) provides
                 transparent persistence for PHP objects to CouchDB.
-            keywords: [couchdb, odm, mapper, mapping, object]
+            keywords: [couchdb, odm, data, mapper, mapping, object]
             versions:
                 -
                     name: 'master'
@@ -242,7 +242,7 @@ parameters:
             description: >
                 PHP OrientDB Object Document Mapper (ODM) provides transparent
                 persistence for PHP objects to OrientDB.
-            keywords: [php, orientdb, odm, mapper, mapping, object, graphdb]
+            keywords: [php, orientdb, odm, data, mapper, mapping, object, graphdb]
             versions:
                 -
                     name: 'master'

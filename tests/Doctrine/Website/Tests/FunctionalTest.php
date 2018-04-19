@@ -79,6 +79,12 @@ class FunctionalTest extends TestCase
                 $project['docsSlug']
             ));
 
+            // rst docs stable symlink
+            $crawler = $this->assertValid(sprintf(
+                '/projects/%s/en/stable/index.html',
+                $project['docsSlug']
+            ));
+
             $this->assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));
         }
     }
