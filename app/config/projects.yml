@@ -24,6 +24,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    wip: true
                 -
                     name: '2.6'
                     branchName: '2.6'
@@ -61,6 +62,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    wip: true
                 -
                     name: '2.7'
                     branchName: '2.7'
@@ -97,6 +99,7 @@ parameters:
                     name: 'master'
                     branchName: 'master'
                     slug: 'latest'
+                    wip: true
                 -
                     name: '1.2'
                     branchName: '1.2.x'
