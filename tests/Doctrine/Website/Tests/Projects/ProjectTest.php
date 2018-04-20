@@ -35,10 +35,16 @@ class ProjectTest extends TestCase
                     'slug' => 'latest',
                 ],
                 [
+                    'name' => '2.0',
+                    'branchName' => '2.0',
+                    'slug' => '2.0',
+                    'current' => true,
+                ],
+                [
                     'name' => '1.0',
                     'branchName' => '1.0',
                     'slug' => '1.0',
-                    'current' => true,
+                    'maintained' => false,
                 ],
             ],
         ]);
@@ -106,7 +112,30 @@ class ProjectTest extends TestCase
 
     public function testGetVersions() : void
     {
-        $this->assertCount(2, $this->project->getVersions());
+        $this->assertCount(3, $this->project->getVersions());
+    }
+
+    public function testGetVersionsWithFilter() : void
+    {
+        $version = $this->project->getVersions(function (ProjectVersion $version) {
+            return $version->getSlug() === 'latest';
+        })[0];
+
+        $this->assertEquals('master', $version->getName());
+    }
+
+    public function testGetMaintainedVersions() : void
+    {
+        $maintainedVersions = $this->project->getMaintainedVersions();
+
+        $this->assertCount(2, $maintainedVersions);
+    }
+
+    public function testGetUnmaintainedVersions() : void
+    {
+        $unmaintainedVersions = $this->project->getUnmaintainedVersions();
+
+        $this->assertCount(1, $unmaintainedVersions);
     }
 
     public function testGetVersion() : void
@@ -124,7 +153,7 @@ class ProjectTest extends TestCase
 
         $this->assertInstanceOf(ProjectVersion::class, $version);
 
-        $this->assertEquals('1.0', $version->getName());
+        $this->assertEquals('2.0', $version->getName());
     }
 
     public function testGetProjectDocsRepositoryPath() : void
