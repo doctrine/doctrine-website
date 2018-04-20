@@ -87,24 +87,47 @@
                             <button type="button" class="btn btn-primary btn-sm float-right toc-toggle" data-toggle="offcanvas" id="toc-toggle">Table of Contents</button>
 
                             {% if project is defined and page.docsVersion is defined %}
-                                <ul class="list-inline">
-                                    {% for version in project.versions %}
-                                        {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
+                                {% set currentVersion = project.getVersion(page.docsVersion) %}
 
-                                        <li class="list-inline-item mr-0">
-                                            {% if versionUrl %}
-                                                <a href="{{ versionUrl }}" class="project-version-switcher badge {{ version.slug == page.docsVersion ? 'badge-warning' : 'badge-secondary' }}">{{ version.name }}</a>
-                                            {% else %}
-                                                <span class="badge badge-light text-muted border border-secondary">{{ version.name }}</span>
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
+                                <div class="dropdown show d-inline-block">
+                                    <a class="project-version-switcher btn btn-secondary btn-sm dropdown-toggle" href="{{ page.url }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ currentVersion.name }}
+                                    </a>
 
-                                    {% set version = project.getVersion(page.docsVersion) %}
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        {% if project.maintainedVersions %}
+                                            <h6 class="dropdown-header">Maintained</h6>
 
-                                    <li class="list-inline-item ml-2"><a href="https://github.com/doctrine/{{ project.docsRepositoryName }}/edit/{{ version.branchName }}{{ project.docsPath }}{{ page.sourceFile }}" class="badge badge-primary">Edit</a></li>
+                                            {% for version in project.maintainedVersions %}
+                                                {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
 
-                                </ul>
+                                                <a class="project-version-switcher dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">
+                                                    {{ version.name }}
+
+                                                    {% if version.current %}
+                                                        (current)
+                                                    {% endif %}
+
+                                                    {% if version.upcoming %}
+                                                        (upcoming)
+                                                    {% endif %}
+                                                </a>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        {% if project.unmaintainedVersions %}
+                                            <h6 class="dropdown-header">Unmaintained</h6>
+
+                                            {% for version in project.unmaintainedVersions %}
+                                                {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
+
+                                                <a class="dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">{{ version.name }}</a>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <a href="https://github.com/doctrine/{{ project.docsRepositoryName }}/edit/{{ currentVersion.branchName }}{{ project.docsPath }}{{ page.sourceFile }}" class="btn btn-primary btn-sm">Edit</a>
                             {% endif %}
 
                             {% block content '' %}

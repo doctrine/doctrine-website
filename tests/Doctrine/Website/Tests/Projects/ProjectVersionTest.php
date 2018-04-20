@@ -19,7 +19,7 @@ class ProjectVersionTest extends TestCase
             'branchName' => '1.0',
             'slug' => '1.0',
             'current' => true,
-            'wip' => true,
+            'upcoming' => true,
         ]);
     }
 
@@ -29,6 +29,6 @@ class ProjectVersionTest extends TestCase
         $this->assertEquals('1.0', $this->projectVersion->getBranchName());
         $this->assertEquals('1.0', $this->projectVersion->getSlug());
         $this->assertTrue($this->projectVersion->isCurrent());
-        $this->assertTrue($this->projectVersion->isWip());
+        $this->assertTrue($this->projectVersion->isUpcoming());
     }
 }

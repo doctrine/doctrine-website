@@ -22,7 +22,7 @@ class ProjectVersion
     private $maintained = true;
 
     /** @var bool */
-    private $wip = false;
+    private $upcoming = false;
 
     /** @var array */
     private $aliases;
@@ -34,7 +34,7 @@ class ProjectVersion
         $this->slug       = (string) ($version['slug'] ?? '');
         $this->current    = (bool) ($version['current'] ?? false);
         $this->maintained = (bool) ($version['maintained'] ?? true);
-        $this->wip        = (bool) ($version['wip'] ?? false);
+        $this->upcoming   = (bool) ($version['upcoming'] ?? false);
         $this->aliases    = $version['aliases'] ?? [];
     }
 
@@ -63,9 +63,9 @@ class ProjectVersion
         return $this->maintained;
     }
 
-    public function isWip() : bool
+    public function isUpcoming() : bool
     {
-        return $this->wip;
+        return $this->upcoming;
     }
 
     public function getAliases() : array

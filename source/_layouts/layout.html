@@ -121,7 +121,7 @@
                             <a class="nav-link dropdown-toggle" href="{{ site.url }}/projects.html" id="navbarProjectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Projects
                             </a>
-                            <div class="dropdown-menu projects-dropdown-menu" aria-labelledby="navbarProjectsDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarProjectsDropdown">
                                 {% for project in get_projects() if project.active is defined and project.active == true %}
                                     <a class="dropdown-item" href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a>
                                 {% endfor %}
@@ -134,7 +134,7 @@
                         <li class="nav-item dropdown{% if page.menuSlug == 'contribute' %} active{% endif %}">
                             <a class="nav-link dropdown-toggle" href="{{ site.url }}/contribute/" id="navbarContributeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contribute</a>
 
-                            <div class="dropdown-menu projects-dropdown-menu" aria-labelledby="navbarContributeDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarContributeDropdown">
                                 <a class="dropdown-item" href="{{ site.url }}/contribute/">Contributor Workflow</a>
                                 <a class="dropdown-item" href="{{ site.url }}/contribute/maintainer/">Maintainer Workflow</a>
                                 <a class="dropdown-item" href="{{ site.url }}/contribute/website/">Contribute to Website</a>

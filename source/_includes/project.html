@@ -48,8 +48,8 @@
                                 (unmaintained)
                             {% endif %}
 
-                            {% if version.wip %}
-                                (in development)
+                            {% if version.upcoming %}
+                                (upcoming)
                             {% endif %}
                         </td>
                         <td><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Docs</a></td>

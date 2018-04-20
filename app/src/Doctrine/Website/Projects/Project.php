@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
+use Closure;
+use function array_filter;
+use function array_values;
+
 class Project
 {
     /** @var bool */
@@ -48,7 +52,7 @@ class Project
     /** @var array */
     private $keywords = [];
 
-    /** @var ProjectVersions */
+    /** @var array */
     private $versions = [];
 
     public function __construct(array $project)
@@ -67,7 +71,17 @@ class Project
         $this->codePath            = (string) ($project['codePath'] ?? '/lib');
         $this->description         = (string) ($project['description'] ?? '');
         $this->keywords            = $project['keywords'] ?? [];
-        $this->versions            = new ProjectVersions($project['versions'] ?? []);
+
+        if (! isset($project['versions'])) {
+            return;
+        }
+
+        foreach ($project['versions'] as $version) {
+            $this->versions[] = $version instanceof ProjectVersion
+                ? $version
+                : new ProjectVersion($version)
+            ;
+        }
     }
 
     public function isActive() : bool
@@ -140,31 +154,41 @@ class Project
         return $this->keywords;
     }
 
-    public function getVersions() : ProjectVersions
+    public function getVersions(?Closure $filter = null) : array
     {
+        if ($filter !== null) {
+            return array_values(array_filter($this->versions, $filter));
+        }
+
         return $this->versions;
+    }
+
+    public function getMaintainedVersions() : array
+    {
+        return $this->getVersions(function (ProjectVersion $version) {
+            return $version->isMaintained();
+        });
+    }
+
+    public function getUnmaintainedVersions() : array
+    {
+        return $this->getVersions(function (ProjectVersion $version) {
+            return ! $version->isMaintained();
+        });
     }
 
     public function getVersion(string $slug) : ?ProjectVersion
     {
-        foreach ($this->versions as $version) {
-            if ($version->getSlug() === $slug) {
-                return $version;
-            }
-        }
-
-        return null;
+        return $this->getVersions(function (ProjectVersion $version) use ($slug) {
+            return $version->getSlug() === $slug;
+        })[0] ?? null;
     }
 
     public function getCurrentVersion()
     {
-        foreach ($this->versions as $version) {
-            if ($version->isCurrent()) {
-                return $version;
-            }
-        }
-
-        return $version ?? null;
+        return $this->getVersions(function (ProjectVersion $version) {
+            return $version->isCurrent();
+        })[0] ?? ($this->versions[0] ?? []);
     }
 
     public function getProjectDocsRepositoryPath(string $projectsPath) : string

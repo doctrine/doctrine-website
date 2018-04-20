@@ -12,7 +12,6 @@ use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\Projects\ProjectVersion;
-use Doctrine\Website\Projects\ProjectVersions;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -61,7 +60,7 @@ class BuildDocsTest extends TestCase
         $version = $this->createMock(ProjectVersion::class);
 
         $projects = [$project];
-        $versions = new ProjectVersions([$version]);
+        $versions = [$version];
 
         $project->expects($this->once())
             ->method('getVersions')
