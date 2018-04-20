@@ -21,6 +21,9 @@ class ProjectVersion
     /** @var bool */
     private $maintained = true;
 
+    /** @var bool */
+    private $wip = false;
+
     /** @var array */
     private $aliases;
 
@@ -31,6 +34,7 @@ class ProjectVersion
         $this->slug       = (string) ($version['slug'] ?? '');
         $this->current    = (bool) ($version['current'] ?? false);
         $this->maintained = (bool) ($version['maintained'] ?? true);
+        $this->wip        = (bool) ($version['wip'] ?? false);
         $this->aliases    = $version['aliases'] ?? [];
     }
 
@@ -57,6 +61,11 @@ class ProjectVersion
     public function isMaintained() : bool
     {
         return $this->maintained;
+    }
+
+    public function isWip() : bool
+    {
+        return $this->wip;
     }
 
     public function getAliases() : array
