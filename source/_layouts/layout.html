@@ -110,7 +110,7 @@
     </head>
     <body>
         {% block navbar %}
-            <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark flex-md-nowrap">
+            <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap">
                 <a class="navbar-brand text-hide" href="{{ site.url }}/"><img src="{{ get_asset_url('/images/doctrine-logo.svg', site.url) }}" />{{ site.title }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -123,7 +123,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarProjectsDropdown">
                                 {% for project in get_projects() if project.active is defined and project.active == true %}
-                                    <a class="dropdown-item" href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a>
+                                    <a class="dropdown-item notranslate" href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a>
                                 {% endfor %}
                                 <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ site.url }}/projects.html">View All</a>
                             </div>
@@ -150,6 +150,16 @@
                             <a class="nav-link" href="{{ site.url }}/team/">Team</a>
                         </li>
                     </ul>
+
+                    <div class="google-translate-dropdown dropdown show d-inline-block mr-2">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="translateDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Translate
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="translateDropdown">
+                            <div class="dropdown-item" id="google_translate_element"></div>
+                        </div>
+                    </div>
 
                     <div id="search-box">
                         <!-- SearchBox widget will appear here -->
@@ -211,7 +221,15 @@
             new Main();
 
             new Search(projectSlug, versionSlug);
+
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement(
+                    {pageLanguage: 'en'}, 'google_translate_element'
+                );
+            }
         </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
         {% block scripts '' %}
 

@@ -14,7 +14,7 @@ use:
 {% block content %}
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">{{ site.title }}</h1>
+            <h1 class="display-4 notranslate">{{ site.title }}</h1>
             <p class="lead">The Doctrine Project is the home to several PHP libraries primarily
             focused on database storage and object mapping. The core projects are the
             <a href="{{ site.url }}/projects/orm.html">Object Relational Mapper (ORM)</a> and the
@@ -55,7 +55,7 @@ use:
                 <h5 class="card-header">Projects</h5>
                 <ul class="list-group list-group-flush">
                     {% for project in get_projects() if project.active is defined and project.active == true %}
-                        <li class="list-group-item"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></li>
+                        <li class="list-group-item notranslate"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -70,11 +70,11 @@ use:
                     <p class="card-text">Many other popular PHP projects use libraries from Doctrine. Some use the full <a href="/projects/orm.html" class="text-white font-weight-bold">ORM</a> and others may only use one small library such as the <a href="/projects/inflector.html" class="text-white font-weight-bold">Inflector</a>. Here are some projects that use Doctrine.</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="https://symfony.com" target="_blank" class="mr-4">Symfony</a></li>
-                    <li class="list-group-item"><a href="https://www.drupal.org" target="_blank" class="mr-4">Drupal</a></li>
-                    <li class="list-group-item"><a href="https://laravel.com" target="_blank" class="mr-4">Laravel</a></li>
-                    <li class="list-group-item"><a href="https://www.ezplatform.com/" target="_blank" class="mr-4">eZ Platform</a></li>
-                    <li class="list-group-item"><a href="https://phpunit.de/" target="_blank">PHPUnit</a></li>
+                    <li class="list-group-item notranslate"><a href="https://symfony.com" target="_blank" class="mr-4">Symfony</a></li>
+                    <li class="list-group-item notranslate"><a href="https://www.drupal.org" target="_blank" class="mr-4">Drupal</a></li>
+                    <li class="list-group-item notranslate"><a href="https://laravel.com" target="_blank" class="mr-4">Laravel</a></li>
+                    <li class="list-group-item notranslate"><a href="https://www.ezplatform.com/" target="_blank" class="mr-4">eZ Platform</a></li>
+                    <li class="list-group-item notranslate"><a href="https://phpunit.de/" target="_blank">PHPUnit</a></li>
                 </ul>
             </div>
         </div>
