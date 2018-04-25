@@ -39,9 +39,13 @@ class APIBuilder
         $configContent = <<<CONFIG
 <?php
 
+use Sami\RemoteRepository\GitHubRemoteRepository;
+
 return new Sami\Sami('%s', [
     'build_dir' => '%s',
     'cache_dir' => '%s',
+    'remote_repository' => new GitHubRemoteRepository('%s', '%s'),
+    'versions' => '%s',
 ]);
 CONFIG;
 
@@ -53,7 +57,10 @@ CONFIG;
             $configContent,
             $codeDir,
             $buildDir,
-            $cacheDir
+            $cacheDir,
+            'doctrine/' . $project->getRepositoryName(),
+            $this->projectsPath . '/' . $project->getRepositoryName(),
+            $version->getBranchName()
         );
 
         $configPath   = $this->projectsPath . '/' . $project->getRepositoryName() . '/sami.php';

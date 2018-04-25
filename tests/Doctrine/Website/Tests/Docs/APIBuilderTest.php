@@ -48,14 +48,18 @@ class APIBuilderTest extends TestCase
             'repositoryName' => 'doctrine2',
             'codePath' => '/src',
         ]);
-        $version = new ProjectVersion(['slug' => '2.0']);
+        $version = new ProjectVersion(['slug' => '2.0', 'branchName' => '2.0']);
 
         $configContent = <<<CONFIG
 <?php
 
+use Sami\RemoteRepository\GitHubRemoteRepository;
+
 return new Sami\Sami('/data/doctrine/doctrine2/src', [
     'build_dir' => '/data/doctrine-website/source/api/orm/2.0',
     'cache_dir' => '/data/doctrine/doctrine2/cache',
+    'remote_repository' => new GitHubRemoteRepository('doctrine/doctrine2', '/data/doctrine/doctrine2'),
+    'versions' => '2.0',
 ]);
 CONFIG;
 
