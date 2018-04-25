@@ -84,6 +84,7 @@ class BuildDocs
                         $this->apiBuilder->buildAPIDocs($project, $version);
                     } catch (ProcessFailedException $e) {
                         $output->writeln(' - <error>building api docs failed</error>');
+                        $output->writeln($e->getMessage());
                     }
                 }
 
