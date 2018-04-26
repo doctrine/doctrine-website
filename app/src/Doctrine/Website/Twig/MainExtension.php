@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Twig;
 
+use Closure;
 use Doctrine\Website\Projects\Project;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -17,6 +18,7 @@ use function ksort;
 use function md5;
 use function realpath;
 use function str_replace;
+use function strpos;
 use function substr;
 
 class MainExtension extends Twig_Extension
@@ -33,7 +35,8 @@ class MainExtension extends Twig_Extension
     {
         return [
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
-            new Twig_SimpleFunction('get_active_team_members', [$this, 'getActiveTeamMembers']),
+            new Twig_SimpleFunction('get_active_core_team_members', [$this, 'getActiveCoreTeamMembers']),
+            new Twig_SimpleFunction('get_active_documentation_team_members', [$this, 'getActiveDocumentationTeamMembers']),
             new Twig_SimpleFunction('get_inactive_team_members', [$this, 'getInactiveTeamMembers']),
             new Twig_SimpleFunction('get_active_project_team_members', [$this, 'getActiveProjectTeamMembers']),
             new Twig_SimpleFunction('get_inactive_project_team_members', [$this, 'getInactiveProjectTeamMembers']),
@@ -48,7 +51,7 @@ class MainExtension extends Twig_Extension
         return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path);
     }
 
-    public function getAllTeamMembers() : array
+    public function getTeamMembers(?Closure $filter = null) : array
     {
         $teamMembers = [];
 
@@ -56,6 +59,10 @@ class MainExtension extends Twig_Extension
             $key = $teamMember['name'] ?? $key;
 
             $teamMembers[$key] = $teamMember;
+        }
+
+        if ($filter !== null) {
+            return array_filter($teamMembers, $filter);
         }
 
         ksort($teamMembers);
@@ -63,58 +70,45 @@ class MainExtension extends Twig_Extension
         return $teamMembers;
     }
 
-    public function getActiveTeamMembers() : array
+    public function getActiveCoreTeamMembers() : array
     {
-        $teamMembers = [];
-
-        foreach ($this->teamMembers as $key => $teamMember) {
+        return $this->getTeamMembers(function (array $teamMember) {
             $active = $teamMember['active'] ?? false;
+            $core   = $teamMember['core'] ?? false;
 
-            if (! $active) {
-                continue;
-            }
+            return $active && $core;
+        });
+    }
 
-            $key = $teamMember['name'] ?? $key;
+    public function getActiveDocumentationTeamMembers() : array
+    {
+        return $this->getTeamMembers(function (array $teamMember) {
+            $active        = $teamMember['active'] ?? false;
+            $documentation = $teamMember['documentation'] ?? false;
 
-            $teamMembers[$key] = $teamMember;
-        }
-
-        ksort($teamMembers);
-
-        return $teamMembers;
+            return $active && $documentation;
+        });
     }
 
     public function getInactiveTeamMembers() : array
     {
-        $teamMembers = [];
-
-        foreach ($this->teamMembers as $key => $teamMember) {
+        return $this->getTeamMembers(function (array $teamMember) {
             $active = $teamMember['active'] ?? false;
 
-            if ($active) {
-                continue;
-            }
-
-            $key = $teamMember['name'] ?? $key;
-
-            $teamMembers[$key] = $teamMember;
-        }
-
-        ksort($teamMembers);
-
-        return $teamMembers;
+            return $active === false;
+        });
     }
 
     public function getAllProjectTeamMembers(Project $project) : array
     {
-        return array_filter($this->getAllTeamMembers(), function (array $teamMember) use ($project) {
+        return $this->getTeamMembers(function (array $teamMember) use ($project) {
             return in_array($project->getSlug(), $teamMember['projects'] ?? []);
         });
     }
 
     public function getActiveProjectTeamMembers(Project $project) : array
     {
-        return array_filter($this->getAllTeamMembers(), function (array $teamMember) use ($project) {
+        return $this->getTeamMembers(function (array $teamMember) use ($project) {
             $active = $teamMember['active'] ?? false;
 
             return $active && in_array($project->getSlug(), $teamMember['projects'] ?? []);
@@ -123,7 +117,7 @@ class MainExtension extends Twig_Extension
 
     public function getInactiveProjectTeamMembers(Project $project) : array
     {
-        return array_filter($this->getAllTeamMembers(), function (array $teamMember) use ($project) {
+        return $this->getTeamMembers(function (array $teamMember) use ($project) {
             $active = $teamMember['active'] ?? false;
 
             return ! $active && in_array($project->getSlug(), $teamMember['projects'] ?? []);
@@ -132,36 +126,28 @@ class MainExtension extends Twig_Extension
 
     public function getDocsUrls() : array
     {
-        $root = realpath(__DIR__ . '/../../../../../source');
-        $path = $root . '/projects';
-
-        $it = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
-
-        $urls = [];
-        foreach (new RecursiveIteratorIterator($it) as $file) {
-            $path = (string) $file;
-
-            $url = str_replace($root, '', $path);
-
-            $urls[] = [
-                'url' => $url,
-                'date' => filemtime($path),
-            ];
-        }
-
-        return $urls;
+        return $this->getUrlsFromFiles('projects');
     }
 
     public function getApiDocsUrls() : array
     {
+        return $this->getUrlsFromFiles('api');
+    }
+
+    private function getUrlsFromFiles(string $path)
+    {
         $root = realpath(__DIR__ . '/../../../../../source');
-        $path = $root . '/api';
+        $path = $root . '/' . $path;
 
         $it = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
 
         $urls = [];
         foreach (new RecursiveIteratorIterator($it) as $file) {
             $path = (string) $file;
+
+            if (strpos($path, '.html') === false) {
+                continue;
+            }
 
             $url = str_replace($root, '', $path);
 

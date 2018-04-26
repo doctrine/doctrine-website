@@ -8,6 +8,7 @@ parameters:
             website: ~
             location: Munich
             active: true
+            core: true
             projects: ["mongodb-odm", "mongodb"]
         beberlei:
             name: 'Benjamin Eberlei'
@@ -16,6 +17,7 @@ parameters:
             website: 'https://beberlei.de'
             location: Germany
             active: true
+            core: true
             projects: ["orm", "dbal", "couchdb-odm"]
         billschaller:
             name: 'Bill Schaller'
@@ -24,6 +26,7 @@ parameters:
             website: ~
             location: 'New York, NY'
             active: true
+            core: true
         carusogabriel:
             name: 'Gabriel Caruso'
             twitter: carusogabriel
@@ -32,6 +35,7 @@ parameters:
             website: ~
             location: Brazil
             active: true
+            core: true
         deeky666:
             name: 'Steve Müller'
             github: deeky666
@@ -39,6 +43,7 @@ parameters:
             website: 'http://dzh-online.de/'
             location: 'Hamburg, Germany'
             active: true
+            core: true
             projects: ["dbal"]
         greg0ire:
             name: 'Grégoire Paris'
@@ -48,6 +53,7 @@ parameters:
             website: 'https://greg0ire.fr'
             location: Paris
             active: true
+            core: true
         guilhermeblanco:
             name: 'Guilherme Blanco'
             twitter: guilhermeblanco
@@ -56,6 +62,7 @@ parameters:
             website: 'http://www.doctrine-project.org'
             location: 'Toronto, ON, Canada'
             active: true
+            core: true
             projects: ["orm", "doctrine1"]
         jmikola:
             name: 'Jeremy Mikola'
@@ -65,6 +72,7 @@ parameters:
             website: 'http://jmikola.net'
             location: 'Hoboken, NJ'
             active: true
+            core: true
             projects: ["mongodb", "mongodb-odm"]
         jwage:
             name: 'Jonathan H. Wage'
@@ -74,6 +82,8 @@ parameters:
             avatarUrl: 'https://avatars0.githubusercontent.com/u/97422?v=4'
             location: 'Nashville, TN'
             active: true
+            core: true
+            documentation: true
             projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1"]
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
@@ -83,6 +93,7 @@ parameters:
             website: ~
             location: Copenhagen
             active: true
+            core: true
         lcobucci:
             name: 'Luís Cobucci'
             twitter: lcobucci
@@ -91,6 +102,7 @@ parameters:
             website: ~
             location: 'Amsterdam, NL'
             active: true
+            core: true
             projects: ["orm", "dbal", "migrations", "cache"]
         Majkl578:
             name: 'Michael Moravec'
@@ -100,6 +112,7 @@ parameters:
             website: 'https://majkl.me'
             location: 'Prague, Czech Republic'
             active: true
+            core: true
             projects: ["orm"]
         mikeSimonson:
             name: "Mike Simonson"
@@ -109,6 +122,7 @@ parameters:
             website: ~
             location: ~
             active: true
+            core: true
             projects: ["migrations"]
         malarzm:
             name: 'Maciej Malarz'
@@ -118,6 +132,7 @@ parameters:
             website: ~
             location: Cracow
             active: true
+            core: true
             projects: ["mongodb", "mongodb-odm"]
         morozov:
             name: 'Sergei Morozov'
@@ -127,6 +142,7 @@ parameters:
             website: 'http://morozov.livejournal.com/'
             location: 'San Jose, CA'
             active: true
+            core: true
             projects: ["dbal"]
         Ocramius:
             name: 'Marco Pivetta'
@@ -136,6 +152,7 @@ parameters:
             avatarUrl: 'https://avatars2.githubusercontent.com/u/154256?v=4'
             location: 'Frankfurt am Main'
             active: true
+            core: true
             projects: ["orm", "dbal"]
         TomHAnderson:
             name: 'Tom H Anderson'
@@ -144,6 +161,7 @@ parameters:
             website: 'http://tomhanderson.com'
             location: 'Salt Lake City, Utah'
             active: true
+            core: true
             projects: ["mongodb", "mongodb-odm"]
         dbu:
             name: 'David Buchmann'
@@ -152,7 +170,24 @@ parameters:
             website: 'http://davidbu.ch'
             location: Switzerland
             active: true
+            core: true
             projects: ["phpcr-odm"]
+        weaverryan:
+            name: 'Ryan Weaver'
+            github: weaverryan
+            avatarUrl: 'https://avatars1.githubusercontent.com/u/121003?v=4'
+            website: 'http://knpuniversity.com'
+            location: 'Grand Rapids MI'
+            active: true
+            documentation: true
+        SenseException:
+            name: 'Claudio Zizza'
+            github: 'SenseException'
+            avatarUrl: 'https://avatars3.githubusercontent.com/u/859964?v=4'
+            website: 'http://php.budgegeria.de/'
+            location: 'Karlsruhe'
+            active: true
+            documentation: true
 
         # inactive
         zYne-:
@@ -356,9 +391,3 @@ parameters:
             avatarUrl: 'https://avatars1.githubusercontent.com/u/1670364?v=4'
             website: ~
             location: 'Sydney, Australia'
-        weaverryan:
-            name: 'Ryan Weaver'
-            github: weaverryan
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/121003?v=4'
-            website: 'http://knpuniversity.com'
-            location: 'Grand Rapids MI'
