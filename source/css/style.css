@@ -32,8 +32,15 @@ h1, h2, h3, h4, h5, h6 {
 .section-anchor {
     display: block;
     position: relative;
-    top: -60px;
     visibility: hidden;
+}
+
+.section-anchor {
+    top: -175px;
+}
+
+.section-anchor ~ .section-anchor {
+    top: -60px;
 }
 
 .breadcrumbs {
