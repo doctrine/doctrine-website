@@ -211,6 +211,12 @@
             {% include "search-results.html.twig" %}
         </script>
 
+        <script src="https://cdn.ravenjs.com/3.24.2/raven.min.js" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+            Raven.config('https://09ce137590054cfd8f0b7e9324d6ec14@sentry.io/1197701').install()
+        </script>
+
         <script src="{{ get_asset_url('/js/main.js', site.url) }}"></script>
         <script src="{{ get_asset_url('/js/search.js', site.url) }}"></script>
 
