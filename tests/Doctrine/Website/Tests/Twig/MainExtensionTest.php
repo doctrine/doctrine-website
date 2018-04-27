@@ -85,8 +85,8 @@ class MainExtensionTest extends TestCase
         $teamMembers = $this->mainExtension->getAllProjectTeamMembers($project);
 
         $this->assertEquals([
-            'ocramius',
             'jwage',
+            'ocramius',
             'romanb',
         ], array_keys($teamMembers));
     }
@@ -98,8 +98,8 @@ class MainExtensionTest extends TestCase
         $teamMembers = $this->mainExtension->getActiveProjectTeamMembers($project);
 
         $this->assertEquals([
-            'ocramius',
             'jwage',
+            'ocramius',
         ], array_keys($teamMembers));
     }
 

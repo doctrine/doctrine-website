@@ -56,13 +56,13 @@ class MainExtension extends Twig_Extension
         $teamMembers = [];
 
         foreach ($this->teamMembers as $key => $teamMember) {
-            $key = $teamMember['name'] ?? $key;
+            $name = $teamMember['name'] ?? $key;
 
-            $teamMembers[$key] = $teamMember;
+            $teamMembers[$name] = $teamMember;
         }
 
         if ($filter !== null) {
-            return array_filter($teamMembers, $filter);
+            $teamMembers = array_filter($teamMembers, $filter);
         }
 
         ksort($teamMembers);
