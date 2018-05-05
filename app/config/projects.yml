@@ -189,10 +189,16 @@ parameters:
             keywords: [php, database, migrations, dbal]
             versions:
                 -
-                    name: 'master'
+                    name: '2.0'
                     branchName: 'master'
                     slug: 'latest'
+                    upcoming: true
+                -
+                    name: '1.7'
+                    branchName: '1.7'
+                    slug: '1.7'
                     aliases: ['current', 'stable']
+                    maintained: true
 
         common:
             active: true
