@@ -7,22 +7,26 @@ namespace Doctrine\Website\Docs;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
 use Gregwar\RST\Builder;
-use function array_merge;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
+use function array_filter;
+use function array_map;
+use function array_values;
 use function dirname;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
-use function glob;
 use function is_dir;
+use function iterator_to_array;
 use function mkdir;
 use function preg_match;
 use function preg_replace;
-use function shell_exec;
+use function realpath;
 use function sprintf;
 use function str_replace;
 use function strpos;
 use function trim;
-use function unlink;
 
 class RSTBuilder
 {
@@ -80,6 +84,9 @@ SIDEBAR;
     /** @var Builder */
     private $builder;
 
+    /** @var Filesystem */
+    private $filesystem;
+
     /** @var string */
     private $projectsPath;
 
@@ -89,10 +96,12 @@ SIDEBAR;
     public function __construct(
         string $sculpinSourcePath,
         Builder $builder,
+        Filesystem $filesystem,
         string $projectsPath
     ) {
         $this->sculpinSourcePath = $sculpinSourcePath;
         $this->builder           = $builder;
+        $this->filesystem        = $filesystem;
         $this->projectsPath      = $projectsPath;
         $this->tmpPath           = $this->sculpinSourcePath . '/../docs';
     }
@@ -121,7 +130,7 @@ SIDEBAR;
         $outputPath = $this->getProjectVersionTmpPath($project, $version);
 
         // clear tmp directory first
-        shell_exec(sprintf('rm -rf %s/*', $outputPath));
+        $this->filesystem->remove($this->findFiles($outputPath));
 
         $docsPath = $this->getProjectDocsPath($project) . '/en';
 
@@ -130,19 +139,9 @@ SIDEBAR;
         $sidebarPath = $docsPath . '/sidebar.rst';
         $sidebar     = file_exists($sidebarPath) ? file_get_contents($sidebarPath) : self::DEFAULT_SIDEBAR;
 
-        $files = $this->recursiveGlob($docsPath);
+        $files = $this->getSourceFiles($docsPath);
 
         foreach ($files as $file) {
-            // skip non .rst files
-            if (strpos($file, '.rst') === false) {
-                continue;
-            }
-
-            // skip toc.rst
-            if (strpos($file, 'toc.rst') !== false) {
-                continue;
-            }
-
             $path = str_replace($this->getProjectDocsPath($project) . '/en/', '', $file);
 
             $newPath = $outputPath . '/' . $path;
@@ -192,7 +191,7 @@ SIDEBAR;
         $outputPath = $this->getProjectVersionSourcePath($project, $version);
 
         // clear projects docs source in the sculpin source folder before rebuilding
-        shell_exec(sprintf('rm -rf %s/*', $outputPath));
+        $this->filesystem->remove($this->findFiles($outputPath));
 
         // we have to get a fresh builder due to how the RST parser works
         $this->builder = $this->builder->recreate();
@@ -208,16 +207,11 @@ SIDEBAR;
     {
         $projectDocsVersionPath = $this->getProjectVersionSourcePath($project, $version);
 
-        $files = $this->recursiveGlob($projectDocsVersionPath);
+        $this->removeMetaFiles($projectDocsVersionPath);
+
+        $files = $this->getBuildFiles($projectDocsVersionPath);
 
         foreach ($files as $file) {
-            // we don't want the meta.php files in the end result
-            if (strpos($file, 'meta.php')) {
-                unlink($file);
-
-                continue;
-            }
-
             $content = trim(file_get_contents($file));
 
             // extract title from <h1>
@@ -267,34 +261,85 @@ SIDEBAR;
         }
     }
 
-    private function getProjectDocsPath(Project $project) : string
+    private function removeMetaFiles(string $path) : void
     {
-        return $project->getAbsoluteDocsPath($this->projectsPath);
+        $finder = new Finder();
+        $finder->in($path)->name('meta.php')->files();
+
+        $files = $this->finderToArray($finder);
+
+        $this->filesystem->remove($files);
     }
 
-    private function recursiveGlob(string $path)
+    private function getProjectDocsPath(Project $project) : string
     {
-        $allFiles = [];
+        return realpath($project->getAbsoluteDocsPath($this->projectsPath));
+    }
 
-        $files =  glob($path . '/*');
-
-        foreach ($files as $file) {
-            if (is_dir($file)) {
-                $allFiles = array_merge($allFiles, $this->recursiveGlob($file));
-            } else {
-                $allFiles[] = $file;
-            }
+    private function getSourceFiles(string $path) : array
+    {
+        if (! is_dir($path)) {
+            return [];
         }
 
-        return $allFiles;
+        $finder = $this->getFilesFinder($path);
+
+        $finder->name('*.rst');
+        $finder->notName('toc.rst');
+
+        return $this->finderToArray($finder);
+    }
+
+    private function getBuildFiles(string $path)
+    {
+        if (! is_dir($path)) {
+            return [];
+        }
+
+        $finder = $this->getFilesFinder($path);
+
+        $files = $this->finderToArray($finder);
+
+        return array_filter($files, function (string $file) {
+            return strpos($file, 'meta.php') === false;
+        });
+    }
+
+    private function getFilesFinder(string $path) : Finder
+    {
+        $finder = new Finder();
+        $finder->in($path)->files();
+
+        return $finder;
+    }
+
+    private function findFiles(string $path) : array
+    {
+        if (! is_dir($path)) {
+            return [];
+        }
+
+        return $this->finderToArray($this->getFilesFinder($path));
+    }
+
+    private function finderToArray(Finder $finder) : array
+    {
+        return array_values(array_map(function (SplFileInfo $file) {
+            return $file->getRealPath();
+        }, iterator_to_array($finder)));
     }
 
     private function ensureDirectoryExists(string $dir) : void
     {
+        if (is_dir($dir)) {
+            return;
+        }
+
         if (file_exists($dir)) {
             return;
         }
 
+        // Without the @ this fails on travis ci with error: "mkdir(): File exists"
         @mkdir($dir, 0777, true);
     }
 

@@ -7,6 +7,7 @@ namespace Doctrine\Website\Tests;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Yaml\Yaml;
+use function file_exists;
 use function file_get_contents;
 use function is_dir;
 use function realpath;
@@ -73,6 +74,11 @@ class FunctionalTest extends TestCase
                 $this->assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));
             }
 
+            $this->assertFileNotExists($this->getFullPath(sprintf(
+                '/projects/%s/en/current/meta.php',
+                $project['docsSlug']
+            )));
+
             // rst docs current symlink
             $crawler = $this->assertValid(sprintf(
                 '/projects/%s/en/current/index.html',
@@ -89,13 +95,20 @@ class FunctionalTest extends TestCase
         }
     }
 
+    private function getFullPath(string $path)
+    {
+        $fullPath = $this->buildDir . $path;
+
+        if (file_exists($fullPath)) {
+            return realpath($this->buildDir . $path);
+        }
+
+        return $this->buildDir . $path;
+    }
+
     private function assertValid(string $path) : Crawler
     {
-        $fullPath = realpath($this->buildDir . $path);
-
-        if (! $fullPath) {
-            $this->fail(sprintf('Could not find file %s in the build.', $path));
-        }
+        $fullPath = $this->getFullPath($path);
 
         $html = file_get_contents($fullPath);
 

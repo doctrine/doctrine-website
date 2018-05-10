@@ -17,6 +17,10 @@ sculpin_twig:
     extensions: ['', 'twig', 'html', 'html.twig', 'twig.html', 'rst']
 
 services:
+    doctrine.filesystem:
+        class: Symfony\Component\Filesystem\Filesystem
+        public: false
+
     doctrine.twig.main.extension:
         class: Doctrine\Website\Twig\MainExtension
         public: false
@@ -100,6 +104,7 @@ services:
         arguments:
             - '%doctrine.sculpin_source_path%'
             - '@doctrine.rst.builder'
+            - '@doctrine.filesystem'
             - '%doctrine.projects_path%'
 
     doctrine.docs.build_docs:
@@ -119,6 +124,7 @@ services:
             - '@doctrine.process.factory'
             - '@sculpin.site_configuration'
             - '@doctrine.project.repository'
+            - '@doctrine.filesystem'
             - '%kernel.root_dir%'
 
     doctrine.watcher:

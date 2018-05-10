@@ -10,6 +10,7 @@ use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use function realpath;
 use function sprintf;
 
@@ -23,6 +24,9 @@ class WebsiteBuilderTest extends TestCase
 
     /** @var ProjectRepository */
     private $projectRepository;
+
+    /** @var Filesystem */
+    private $filesystem;
 
     /** @var string */
     private $kernelRootDir;
@@ -38,6 +42,7 @@ class WebsiteBuilderTest extends TestCase
         $this->processFactory    = $this->createMock(ProcessFactory::class);
         $this->sculpinConfig     = $this->createMock(Configuration::class);
         $this->projectRepository = $this->createMock(ProjectRepository::class);
+        $this->filesystem        = $this->createMock(Filesystem::class);
         $this->kernelRootDir     = realpath(__DIR__ . '/../../../../app');
         $this->rootDir           = realpath($this->kernelRootDir . '/..');
 
@@ -46,6 +51,7 @@ class WebsiteBuilderTest extends TestCase
                 $this->processFactory,
                 $this->sculpinConfig,
                 $this->projectRepository,
+                $this->filesystem,
                 $this->kernelRootDir,
             ])
             ->setMethods(['filePutContents'])
@@ -68,16 +74,12 @@ class WebsiteBuilderTest extends TestCase
             ->method('run')
             ->with(sprintf('php -d memory_limit=1024M %s/vendor/bin/sculpin generate --env=staging', $this->rootDir));
 
-        $this->processFactory->expects($this->at(2))
-            ->method('run')
-            ->with('rm -rf /data/doctrine-website-build-staging/*');
+        $this->filesystem->expects($this->once())
+            ->method('remove');
 
-        $this->processFactory->expects($this->at(3))
-            ->method('run')
-            ->with(sprintf(
-                'mv %s/output_staging/* /data/doctrine-website-build-staging',
-                $this->rootDir
-            ));
+        $this->filesystem->expects($this->once())
+            ->method('mirror')
+            ->with(sprintf('%s/output_staging', $this->rootDir), '/data/doctrine-website-build-staging');
 
         $this->sculpinConfig->expects($this->once())
             ->method('get')
@@ -91,7 +93,7 @@ class WebsiteBuilderTest extends TestCase
                 'lcl.doctrine-project.org'
             );
 
-        $this->processFactory->expects($this->at(4))
+        $this->processFactory->expects($this->at(2))
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master');
 

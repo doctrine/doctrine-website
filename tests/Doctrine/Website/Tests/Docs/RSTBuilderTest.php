@@ -13,6 +13,7 @@ use Doctrine\Website\RST\Kernel;
 use Gregwar\RST\Builder;
 use Gregwar\RST\HTML\Kernel as HTMLKernel;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use function array_keys;
 use function file_get_contents;
 use function sprintf;
@@ -24,6 +25,9 @@ class RSTBuilderTest extends TestCase
 
     /** @var Builder */
     private $builder;
+
+    /** @var Filesystem */
+    private $filesystem;
 
     /** @var string */
     private $projectsPath;
@@ -39,10 +43,12 @@ class RSTBuilderTest extends TestCase
             new TocDirective(),
             new TocHeaderDirective(),
         ]));
+        $this->filesystem        = new Filesystem();
 
         $this->rstBuilder = new RSTBuilder(
             $this->sculpinSourcePath,
             $this->builder,
+            $this->filesystem,
             $this->projectsPath
         );
 
