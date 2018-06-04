@@ -199,6 +199,7 @@ parameters:
                     slug: '1.7'
                     aliases: ['current', 'stable']
                     maintained: true
+                    current: true
 
         common:
             active: true
