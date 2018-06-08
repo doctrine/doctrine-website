@@ -393,6 +393,29 @@ parameters:
                     slug: 'latest'
                     aliases: ['current', 'stable']
 
+        event-manager:
+            active: true
+            name: Event Manager
+            shortName: Event Manager
+            slug: event-manager
+            docsSlug: doctrine-event-manager
+            composerPackageName: doctrine/event-manager
+            repositoryName: event-manager
+            docsRepositoryName: event-manager
+            docsPath: /docs
+            description: >
+                The Doctrine Event Manager is a simple PHP event system that was built to be used with
+                the various Doctrine projects.
+
+            keywords: [events, event manager, event system]
+            versions:
+                -
+                    name: '1.0'
+                    branchName: 'master'
+                    slug: 'latest'
+                    current: true
+                    aliases: ['current', 'stable']
+
         doctrine1:
             active: false
             archived: true

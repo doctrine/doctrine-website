@@ -1,0 +1,17 @@
+---
+layout: default
+title: Event Manager
+menuSlug: projects
+docsSlug: doctrine-event-manager
+permalink: none
+---
+
+{% set project = get_project(page.docsSlug) %}
+
+{% block meta_description project.description %}
+
+{% block meta_keywords project.keywords|join(',') %}
+
+{% block content %}
+    {% include "project.html" with {project:get_project(page.docsSlug)} %}
+{% endblock %}

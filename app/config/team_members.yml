@@ -84,7 +84,7 @@ parameters:
             active: true
             core: true
             documentation: true
-            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1"]
+            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager"]
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
             twitter: kimhemsoe
@@ -113,7 +113,7 @@ parameters:
             location: 'Prague, Czech Republic'
             active: true
             core: true
-            projects: ["orm"]
+            projects: ["orm", "event-manager"]
         mikeSimonson:
             name: "Mike Simonson"
             twitter: _mikeSimonson
