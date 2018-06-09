@@ -416,6 +416,28 @@ parameters:
                     current: true
                     aliases: ['current', 'stable']
 
+        persistence:
+            active: true
+            name: Persistence
+            shortName: Persistence
+            slug: persistence
+            docsSlug: doctrine-persistence
+            composerPackageName: doctrine/persistence
+            repositoryName: persistence
+            docsRepositoryName: persistence
+            docsPath: /docs
+            description: >
+                The Doctrine Persistence project is a set of shared interfaces and functionality that the different Doctrine
+                object mappers share.
+            keywords: [persistence, object, mapper, orm, odm]
+            versions:
+                -
+                    name: '1.0'
+                    branchName: 'master'
+                    slug: 'latest'
+                    current: true
+                    aliases: ['current', 'stable']
+
         doctrine1:
             active: false
             archived: true
