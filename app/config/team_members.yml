@@ -84,7 +84,7 @@ parameters:
             active: true
             core: true
             documentation: true
-            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager", "persistence"]
+            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager", "persistence", "reflection"]
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
             twitter: kimhemsoe
@@ -113,7 +113,7 @@ parameters:
             location: 'Prague, Czech Republic'
             active: true
             core: true
-            projects: ["orm", "event-manager", "persistence"]
+            projects: ["orm", "event-manager", "persistence", "reflection"]
         mikeSimonson:
             name: "Mike Simonson"
             twitter: _mikeSimonson
@@ -153,7 +153,7 @@ parameters:
             location: 'Frankfurt am Main'
             active: true
             core: true
-            projects: ["orm", "dbal"]
+            projects: ["orm", "dbal", "reflection"]
         TomHAnderson:
             name: 'Tom H Anderson'
             github: TomHAnderson
