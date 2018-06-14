@@ -468,6 +468,33 @@ parameters:
                     current: true
                     aliases: ['current', 'stable']
 
+        coding-standard:
+            active: true
+            name: Coding Standard
+            shortName: Coding Standard
+            slug: coding-standard
+            docsSlug: doctrine-coding-standard
+            composerPackageName: doctrine/coding-standard
+            repositoryName: coding-standard
+            docsRepositoryName: coding-standard
+            docsPath: /docs
+            description: >
+                The Doctrine Coding Standard is a set of PHPCS rules applied to all Doctrine projects.
+
+            keywords: [coding, standard, rules, sniffs, checks]
+            versions:
+                -
+                    name: '5.0'
+                    branchName: 'master'
+                    slug: 'latest'
+                    upcoming: true
+                -
+                    name: '4.0'
+                    branchName: '4.x'
+                    slug: '4.0'
+                    current: true
+                    aliases: ['current', 'stable']
+
         doctrine1:
             active: false
             archived: true
