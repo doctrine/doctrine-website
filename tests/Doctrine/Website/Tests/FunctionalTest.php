@@ -38,7 +38,6 @@ class FunctionalTest extends TestCase
     public function testFunctional() : void
     {
         $this->assertValid('/index.html');
-        $this->assertValid('/about/index.html');
         $this->assertValid('/contribute/index.html');
         $this->assertValid('/contribute/maintainer/index.html');
         $this->assertValid('/contribute/website/index.html');

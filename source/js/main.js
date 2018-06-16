@@ -22,8 +22,6 @@ var Main = function() {
         document.documentElement.scrollTop = 0;
     });
 
-    hljs.initHighlightingOnLoad();
-
     $(document).ready(function(){
         $('div.configuration-block [class^=highlight-]').hide();
         $('div.configuration-block [class^=highlight-]').width($('div.configuration-block').width());
@@ -31,14 +29,14 @@ var Main = function() {
         $('div.configuration-block').addClass('jsactive');
         $('div.configuration-block').addClass('clearfix');
 
-        $('div.configuration-block').each(function (){
+        $('div.configuration-block').each(function () {
             var el = $('[class^=highlight-]:first', $(this));
             el.show();
             el.parents('ul').height(el.height() + 40);
         });
 
         // Global
-        $('div.configuration-block li').each(function(){
+        $('div.configuration-block li').each(function() {
             var str = $(':first', $(this)).html();
             $(':first ', $(this)).html('');
             $(':first ', $(this)).append('<a href="#">' + str + '</a>')
@@ -54,8 +52,23 @@ var Main = function() {
             });
         });
 
-        $('div.configuration-block').each(function (){
+        $('div.configuration-block').each(function () {
             $('li:first', $(this)).addClass('selected');
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $('button.copy-to-clipboard').on('click', function() {
+            var copyElementId = $(this).data('copy-element-id');
+
+            var copyText = $('#' + copyElementId + ' .code-line').text();
+
+            var element = document.createElement('textarea');
+            element.value = copyText;
+            document.body.appendChild(element);
+            element.select();
+            document.execCommand('copy');
+            document.body.removeChild(element);
         });
     });
 };

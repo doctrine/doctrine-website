@@ -1,4 +1,29 @@
 services:
+    doctrine.code_highlighter:
+        public: false
+        class: Highlight\Highlighter
+
+    doctrine.code_block.renderer:
+        public: false
+        class: Doctrine\Website\Docs\CodeBlockRenderer
+        arguments:
+            - '@doctrine.code_block.console.renderer'
+            - '@doctrine.code_block.with_line_numbers.renderer'
+
+    doctrine.code_block.language_detector:
+        public: false
+        class: Doctrine\Website\Docs\CodeBlockLanguageDetector
+
+    doctrine.code_block.console.renderer:
+        public: false
+        class: Doctrine\Website\Docs\CodeBlockConsoleRenderer
+
+    doctrine.code_block.with_line_numbers.renderer:
+        public: false
+        class: Doctrine\Website\Docs\CodeBlockWithLineNumbersRenderer
+        arguments:
+            - '@doctrine.code_highlighter'
+
     doctrine.website.directive.warning:
         public: false
         class: Doctrine\Website\DoctrineSculpinBundle\Directive\WarningDirective
@@ -75,4 +100,12 @@ services:
         public: false
         class: Doctrine\Website\DoctrineSculpinBundle\Directive\TocHeaderDirective
         arguments: []
+        tags: [{ name: doctrine.rst.directive }]
+
+    doctrine.website.directive.code_block:
+        public: false
+        class: Doctrine\Website\DoctrineSculpinBundle\Directive\CodeBlockDirective
+        arguments:
+            - '@doctrine.code_block.renderer'
+            - '@doctrine.code_block.language_detector'
         tags: [{ name: doctrine.rst.directive }]

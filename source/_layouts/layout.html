@@ -128,9 +128,6 @@
                                 <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ site.url }}/projects.html">View All</a>
                             </div>
                         </li>
-                        <li class="nav-item{% if page.menuSlug == 'about' %} active{% endif %}">
-                            <a class="nav-link" href="{{ site.url }}/about/">About</a>
-                        </li>
                         <li class="nav-item dropdown{% if page.menuSlug == 'contribute' %} active{% endif %}">
                             <a class="nav-link dropdown-toggle" href="{{ site.url }}/contribute/" id="navbarContributeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contribute</a>
 
@@ -202,8 +199,6 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-
-        <script src="{{ get_asset_url('/components/highlightjs/highlight.pack.js', site.url) }}"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
 
