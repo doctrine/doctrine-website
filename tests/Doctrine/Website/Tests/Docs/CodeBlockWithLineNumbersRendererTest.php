@@ -28,13 +28,13 @@ class CodeBlockWithLineNumbersRendererTest extends TestCase
 <pre class="code-block-table"><code class="php"><button
             type="button"
             class="copy-to-clipboard"
-            data-copy-element-id="0e59189fbd1fac5920744b486651f171b1a99359"
+            data-copy-element-id="6c7c6ae7f5433ee1d7f2e10594419ff9e77e1328"
             title="Copy to Clipboard"
-        ><i class="fas fa-copy"></i></button><div id="0e59189fbd1fac5920744b486651f171b1a99359"><table class="code-block-table"><tr><td class="line-number noselect">1</td><td class="code-line" rowspan="3"><span class="hljs-meta">&lt;?php</span>
+        ><i class="fas fa-copy"></i></button><div id="6c7c6ae7f5433ee1d7f2e10594419ff9e77e1328"><table class="code-block-table"><tr><td class="line-number noselect"><a name="line-number-6c7c6ae7f5433ee1d7f2e10594419ff9e77e1328-1" class="line-number-anchor" /><a href="#line-number-6c7c6ae7f5433ee1d7f2e10594419ff9e77e1328-1">1</a></td><td class="code-line" rowspan="3"><span class="hljs-meta">&lt;?php</span>
 
 <span class="hljs-keyword">echo</span> <span class="hljs-string">"Hello World"</span>;</td></tr>
-<tr><td class="line-number noselect">2</td></tr>
-<tr><td class="line-number noselect">3</td></tr></table></div></code></pre>
+<tr><td class="line-number noselect"><a name="line-number-6c7c6ae7f5433ee1d7f2e10594419ff9e77e1328-2" class="line-number-anchor" /><a href="#line-number-6c7c6ae7f5433ee1d7f2e10594419ff9e77e1328-2">2</a></td></tr>
+<tr><td class="line-number noselect"><a name="line-number-6c7c6ae7f5433ee1d7f2e10594419ff9e77e1328-3" class="line-number-anchor" /><a href="#line-number-6c7c6ae7f5433ee1d7f2e10594419ff9e77e1328-3">3</a></td></tr></table></div></code></pre>
 EXPECTED;
 
         self::assertSame($expected, $rendered);

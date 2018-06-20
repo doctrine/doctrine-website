@@ -25,7 +25,7 @@ class CodeBlockWithLineNumbersRenderer
         'html+php',
     ];
 
-    private const LINE_NUMBER_TABLE_COLUMN_TEMPLATE = '<td class="line-number noselect">%d</td>';
+    private const LINE_NUMBER_TABLE_COLUMN_TEMPLATE = '<td class="line-number noselect"><a name="%s" class="line-number-anchor" /><a href="%s">%d</a></td>';
 
     private const CODE_LINE_TABLE_COLUMN_TEMPLATE = '<td class="code-line" rowspan="%d">{{ RENDERED_CODE }}</td>';
 
@@ -60,13 +60,13 @@ TEMPLATE;
     {
         $renderedCode = $this->renderCode($lines, $language);
 
+        $codeElementId = sha1($renderedCode);
+
         $lineNumbersTable = str_replace(
             '{{ RENDERED_CODE }}',
             $renderedCode,
-            $this->generateLineNumbersTableTemplate($lines)
+            $this->generateLineNumbersTableTemplate($lines, $codeElementId)
         );
-
-        $codeElementId = sha1($lineNumbersTable);
 
         // trim new lines and white space from html
         $template = preg_replace('~>\s+<~', '><', self::CODE_BLOCK_TABLE_TEMPLATE);
@@ -102,15 +102,23 @@ TEMPLATE;
     /**
      * @param string[] $lines
      */
-    private function generateLineNumbersTableTemplate(array $lines) : string
+    private function generateLineNumbersTableTemplate(array $lines, string $codeElementId) : string
     {
         $lineTableRows = [];
 
         foreach ($lines as $key => $line) {
             $lineNumber = $key + 1;
 
+            $anchor = sprintf('line-number-%s-%d', $codeElementId, $lineNumber);
+            $link   = sprintf('#%s', $anchor);
+
             $lineTableRow  = '<tr>';
-            $lineTableRow .= sprintf(self::LINE_NUMBER_TABLE_COLUMN_TEMPLATE, $lineNumber);
+            $lineTableRow .= sprintf(
+                self::LINE_NUMBER_TABLE_COLUMN_TEMPLATE,
+                $anchor,
+                $link,
+                $lineNumber
+            );
 
             if ($lineNumber === 1) {
                 $lineTableRow .= sprintf(self::CODE_LINE_TABLE_COLUMN_TEMPLATE, count($lines));
