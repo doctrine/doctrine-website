@@ -9,6 +9,7 @@ use Gregwar\RST\Directive;
 use Gregwar\RST\Document;
 use Gregwar\RST\HTML\Kernel as HtmlKernel;
 use Gregwar\RST\Kernel as BaseKernel;
+use Gregwar\RST\Reference;
 use function array_merge;
 
 class Kernel extends BaseKernel
@@ -19,33 +20,42 @@ class Kernel extends BaseKernel
     /** @var Directive[] */
     private $directives;
 
+    /**
+     * @param Directive[] $directives
+     */
     public function __construct(HtmlKernel $baseKernel, array $directives)
     {
         $this->baseKernel = $baseKernel;
         $this->directives = $directives;
     }
 
-    public function getName()
+    public function getName() : string
     {
         return 'doctrine';
     }
 
-    public function getDirectives()
+    /**
+     * @return Directive[]
+     */
+    public function getDirectives() : array
     {
         return array_merge($this->baseKernel->getDirectives(), $this->directives);
     }
 
-    public function getFileExtension()
+    public function getFileExtension() : string
     {
         return $this->baseKernel->getFileExtension();
     }
 
-    public function getClass($name)
+    public function getClass($name) : string
     {
         return $this->baseKernel->getClass($name);
     }
 
-    public function getReferences()
+    /**
+     * @return Reference[]
+     */
+    public function getReferences() : array
     {
         return $this->baseKernel->getReferences();
     }

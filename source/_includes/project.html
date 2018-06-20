@@ -26,7 +26,7 @@
 {% if project.composerPackageName %}
     <h2>Install</h2>
 
-    <pre><code>$ composer require {{ project.composerPackageName }}</code></pre>
+    <div class="console"><pre><code class="console"><span class="noselect">$ </span>composer require {{ project.composerPackageName }}</code></pre></div>
 {% endif %}
 
 {% if project.versions|length > 1 %}

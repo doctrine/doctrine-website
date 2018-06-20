@@ -24,7 +24,8 @@
         "kriswallsmith/assetic": "1.1.2",
         "components/highlightjs": "^9.7",
         "algolia/algoliasearch-client-php": "~1.25.0",
-        "gregwar/rst": "master"
+        "gregwar/rst": "master",
+        "scrivo/highlight.php": "9.12.0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0",
