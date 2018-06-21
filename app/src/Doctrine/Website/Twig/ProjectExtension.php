@@ -28,7 +28,10 @@ class ProjectExtension extends Twig_Extension
         $this->sculpinSourcePath = $sculpinSourcePath;
     }
 
-    public function getFunctions()
+    /**
+     * @return Twig_SimpleFunction[]
+     */
+    public function getFunctions() : array
     {
         return [
             new Twig_SimpleFunction('get_projects', [$this, 'getProjects']),
@@ -37,6 +40,9 @@ class ProjectExtension extends Twig_Extension
         ];
     }
 
+    /**
+     * @return Project[]
+     */
     public function getProjects() : array
     {
         $projects = $this->projectRepository->findAll();
@@ -51,7 +57,7 @@ class ProjectExtension extends Twig_Extension
         return $this->projectRepository->findOneBySlug($slug);
     }
 
-    public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion)
+    public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion) : ?string
     {
         if (strpos($url, 'current') !== false) {
             $otherVersionUrl = str_replace('current', $projectVersion->getSlug(), $url);

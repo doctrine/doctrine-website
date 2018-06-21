@@ -10,12 +10,17 @@ use Gregwar\RST\SubDirective;
 
 class TocHeaderDirective extends SubDirective
 {
-    public function getName()
+    public function getName() : string
     {
         return 'tocheader';
     }
 
-    public function processSub(Parser $parser, $document, $variable, $data, array $options)
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
+     * @param string[] $options
+     */
+    public function processSub(Parser $parser, $document, $variable, $data, array $options) : RawNode
     {
         return new RawNode('<h2 class="toc-header">' . $data . '</h2>');
     }

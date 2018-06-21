@@ -16,16 +16,9 @@ class DeployerTest extends TestCase
     /** @var ProcessFactory */
     private $processFactory;
 
-    /** @var string */
-    private $projectsPath;
-
-    /** @var Deployer */
-    private $deployer;
-
     protected function setUp() : void
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
-        $this->projectsPath   = '/data/doctrine';
     }
 
     public function testDeployDev() : void
@@ -103,7 +96,6 @@ class DeployerTest extends TestCase
         return $this->getMockBuilder(Deployer::class)
             ->setConstructorArgs([
                 $this->processFactory,
-                $this->projectsPath,
                 $env,
             ])
             ->setMethods(['getDeploy', 'getLastDeploy'])

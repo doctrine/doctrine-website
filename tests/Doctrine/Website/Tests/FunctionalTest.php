@@ -20,9 +20,6 @@ class FunctionalTest extends TestCase
     /** @var string */
     private $buildDir;
 
-    /** @var array */
-    private $crawled = [];
-
     protected function setUp() : void
     {
         $this->rootDir  = realpath(__DIR__ . '/../../../..');

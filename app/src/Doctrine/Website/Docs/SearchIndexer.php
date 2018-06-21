@@ -80,6 +80,9 @@ class SearchIndexer
         $this->getSearchIndex()->addObjects($records);
     }
 
+    /**
+     * @param mixed[][] $records
+     */
     private function buildDocumentSearchRecords(
         Document $document,
         array &$records,
@@ -130,6 +133,11 @@ class SearchIndexer
         }
     }
 
+    /**
+     * @param string[] $current
+     *
+     * @return mixed[]
+     */
     private function getNodeSearchRecord(
         Node $node,
         array &$current,

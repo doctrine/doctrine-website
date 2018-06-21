@@ -23,15 +23,21 @@ use function substr;
 
 class MainExtension extends Twig_Extension
 {
-    /** @var array */
+    /** @var mixed[] */
     private $teamMembers;
 
+    /**
+     * @param mixed[] $teamMembers
+     */
     public function __construct(array $teamMembers)
     {
         $this->teamMembers = $teamMembers;
     }
 
-    public function getFunctions()
+    /**
+     * @return Twig_SimpleFunction[]
+     */
+    public function getFunctions() : array
     {
         return [
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
@@ -46,11 +52,14 @@ class MainExtension extends Twig_Extension
         ];
     }
 
-    public function getAssetUrl(string $path, string $siteUrl)
+    public function getAssetUrl(string $path, string $siteUrl) : string
     {
         return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getTeamMembers(?Closure $filter = null) : array
     {
         $teamMembers = [];
@@ -70,6 +79,9 @@ class MainExtension extends Twig_Extension
         return $teamMembers;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getActiveCoreTeamMembers() : array
     {
         return $this->getTeamMembers(function (array $teamMember) {
@@ -80,6 +92,9 @@ class MainExtension extends Twig_Extension
         });
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getActiveDocumentationTeamMembers() : array
     {
         return $this->getTeamMembers(function (array $teamMember) {
@@ -90,6 +105,9 @@ class MainExtension extends Twig_Extension
         });
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getInactiveTeamMembers() : array
     {
         return $this->getTeamMembers(function (array $teamMember) {
@@ -99,6 +117,9 @@ class MainExtension extends Twig_Extension
         });
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getAllProjectTeamMembers(Project $project) : array
     {
         return $this->getTeamMembers(function (array $teamMember) use ($project) {
@@ -106,6 +127,9 @@ class MainExtension extends Twig_Extension
         });
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getActiveProjectTeamMembers(Project $project) : array
     {
         return $this->getTeamMembers(function (array $teamMember) use ($project) {
@@ -115,6 +139,9 @@ class MainExtension extends Twig_Extension
         });
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getInactiveProjectTeamMembers(Project $project) : array
     {
         return $this->getTeamMembers(function (array $teamMember) use ($project) {
@@ -124,17 +151,26 @@ class MainExtension extends Twig_Extension
         });
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getDocsUrls() : array
     {
         return $this->getUrlsFromFiles('projects');
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getApiDocsUrls() : array
     {
         return $this->getUrlsFromFiles('api');
     }
 
-    private function getUrlsFromFiles(string $path)
+    /**
+     * @return mixed[]
+     */
+    private function getUrlsFromFiles(string $path) : array
     {
         $root = realpath(__DIR__ . '/../../../../../source');
         $path = $root . '/' . $path;

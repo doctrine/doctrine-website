@@ -10,12 +10,17 @@ use Gregwar\RST\SubDirective;
 
 class TocDirective extends SubDirective
 {
-    public function getName()
+    public function getName() : string
     {
         return 'toc';
     }
 
-    public function processSub(Parser $parser, $document, $variable, $data, array $options)
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
+     * @param string[] $options
+     */
+    public function processSub(Parser $parser, $document, $variable, $data, array $options) : WrapperNode
     {
         return new WrapperNode($document, '<div class="toc-section">', '</div>');
     }

@@ -43,6 +43,8 @@ class CodeBlockDirective extends Directive
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
      * @param string[] $options
      */
     public function process(Parser $parser, $node, $variable, $data, array $options) : void

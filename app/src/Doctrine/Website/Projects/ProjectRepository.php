@@ -8,12 +8,15 @@ use function array_map;
 
 class ProjectRepository
 {
-    /** @var array */
+    /** @var Project[] */
     private $projects = [];
 
     /** @var ProjectFactory */
     private $projectFactory;
 
+    /**
+     * @param mixed[][] $projects
+     */
     public function __construct(array $projects, ProjectFactory $projectFactory)
     {
         $this->projects       = $projects;
@@ -29,6 +32,9 @@ class ProjectRepository
         }
     }
 
+    /**
+     * @return Project[]
+     */
     public function findAll() : array
     {
         return array_map(function (array $project) {

@@ -25,18 +25,13 @@ class Deployer
     private $processFactory;
 
     /** @var string */
-    private $projectsPath;
-
-    /** @var string */
     private $env;
 
     public function __construct(
         ProcessFactory $processFactory,
-        string $projectsPath,
         string $env
     ) {
         $this->processFactory = $processFactory;
-        $this->projectsPath   = $projectsPath;
         $this->env            = $env;
     }
 

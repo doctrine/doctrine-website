@@ -10,12 +10,17 @@ use Gregwar\RST\SubDirective;
 
 class SectionAuthorDirective extends SubDirective
 {
-    public function getName()
+    public function getName() : string
     {
         return 'sectionauthor';
     }
 
-    public function processSub(Parser $parser, $document, $variable, $data, array $options)
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
+     * @param string[] $options
+     */
+    public function processSub(Parser $parser, $document, $variable, $data, array $options) : WrapperNode
     {
         return new WrapperNode($document, '<div class="section-author">', '</div>');
     }

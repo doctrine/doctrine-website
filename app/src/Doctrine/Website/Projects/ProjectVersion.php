@@ -24,9 +24,12 @@ class ProjectVersion
     /** @var bool */
     private $upcoming = false;
 
-    /** @var array */
+    /** @var string[] */
     private $aliases;
 
+    /**
+     * @param mixed[] $version
+     */
     public function __construct(array $version)
     {
         $this->name       = (string) ($version['name'] ?? '');
@@ -68,6 +71,9 @@ class ProjectVersion
         return $this->upcoming;
     }
 
+    /**
+     * @return string[]
+     */
     public function getAliases() : array
     {
         return $this->aliases;

@@ -8,7 +8,7 @@ use Gregwar\RST\SubDirective;
 
 class IndexDirective extends SubDirective
 {
-    public function getName()
+    public function getName() : string
     {
         return 'index';
     }

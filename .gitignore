@@ -9,3 +9,5 @@ tests/Doctrine/Website/Tests/Docs/resources/sculpin-source
 /docs
 projects
 build-*
+/.phpcs-cache
+

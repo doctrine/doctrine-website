@@ -12,12 +12,17 @@ use function strtoupper;
 
 class ConfigurationBlockDirective extends SubDirective
 {
-    public function getName()
+    public function getName() : string
     {
         return 'configuration-block';
     }
 
-    public function processSub(Parser $parser, $document, $variable, $data, array $options)
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
+     * @param string[] $options
+     */
+    public function processSub(Parser $parser, $document, $variable, $data, array $options) : RawNode
     {
         $html = '<div class="configuration-block jsactive clearfix"><ul class="simple">';
 

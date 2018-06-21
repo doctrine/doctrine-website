@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class ProjectRepositoryTest extends TestCase
 {
-    /** @var array */
+    /** @var string[][] */
     private $projects = [
         [
             'name' => 'ORM',

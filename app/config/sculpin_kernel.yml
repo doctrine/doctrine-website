@@ -133,7 +133,6 @@ services:
         public: true
         arguments:
             - '@doctrine.process.factory'
-            - '%doctrine.projects_path%'
             - '%kernel.environment%'
 
 parameters:

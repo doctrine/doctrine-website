@@ -47,6 +47,11 @@ class Kernel extends BaseKernel
         return $this->baseKernel->getFileExtension();
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
+     * @param string $name
+     */
     public function getClass($name) : string
     {
         return $this->baseKernel->getClass($name);
