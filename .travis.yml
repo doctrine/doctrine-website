@@ -1,3 +1,5 @@
+dist: trusty
+sudo: false
 language: php
 
 cache:
@@ -7,12 +9,35 @@ cache:
         - $HOME/.composer/cache
 
 php:
-    - 7.1
+  - 7.1
 
-before_script: composer install
+before_install:
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
+
+install:
+  - rm composer.lock
+  - travis_retry composer update -n --prefer-dist
 
 script:
     - cp app/config/local.yml.dist app/config/local.yml
     - ./vendor/bin/sculpin build-docs --sync-git
     - ./vendor/bin/sculpin build-website
     - ./vendor/bin/phpunit --debug
+
+jobs:
+  include:
+    - stage: Coverage
+      before_script:
+        - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
+        - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
+      script:
+        - ./vendor/bin/phpunit --coverage-clover clover.xml
+      after_script:
+        - wget https://scrutinizer-ci.com/ocular.phar
+        - php ocular.phar code-coverage:upload --format=php-clover clover.xml
+
+    - stage: Coding standard
+      install:
+        - travis_retry composer install -n --prefer-dist
+      script:
+        - ./vendor/bin/phpcs

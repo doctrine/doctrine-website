@@ -49,12 +49,15 @@ class Project
     /** @var string */
     private $description;
 
-    /** @var array */
+    /** @var string[] */
     private $keywords = [];
 
-    /** @var array */
+    /** @var ProjectVersion[] */
     private $versions = [];
 
+    /**
+     * @param mixed[] $project
+     */
     public function __construct(array $project)
     {
         $this->active              = (bool) ($project['active'] ?? true);
@@ -149,11 +152,17 @@ class Project
         return $this->description;
     }
 
+    /**
+     * @return string[]
+     */
     public function getKeywords() : array
     {
         return $this->keywords;
     }
 
+    /**
+     * @return ProjectVersion[]
+     */
     public function getVersions(?Closure $filter = null) : array
     {
         if ($filter !== null) {
@@ -163,6 +172,9 @@ class Project
         return $this->versions;
     }
 
+    /**
+     * @return ProjectVersion[]
+     */
     public function getMaintainedVersions() : array
     {
         return $this->getVersions(function (ProjectVersion $version) {
@@ -170,6 +182,9 @@ class Project
         });
     }
 
+    /**
+     * @return ProjectVersion[]
+     */
     public function getUnmaintainedVersions() : array
     {
         return $this->getVersions(function (ProjectVersion $version) {
@@ -184,11 +199,11 @@ class Project
         })[0] ?? null;
     }
 
-    public function getCurrentVersion()
+    public function getCurrentVersion() : ?ProjectVersion
     {
         return $this->getVersions(function (ProjectVersion $version) {
             return $version->isCurrent();
-        })[0] ?? ($this->versions[0] ?? []);
+        })[0] ?? ($this->versions[0] ?? null);
     }
 
     public function getProjectDocsRepositoryPath(string $projectsPath) : string

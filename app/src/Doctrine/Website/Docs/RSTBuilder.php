@@ -7,6 +7,7 @@ namespace Doctrine\Website\Docs;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
 use Gregwar\RST\Builder;
+use Gregwar\RST\Document;
 use function array_merge;
 use function dirname;
 use function file_exists;
@@ -97,6 +98,9 @@ SIDEBAR;
         $this->tmpPath           = $this->sculpinSourcePath . '/../docs';
     }
 
+    /**
+     * @return Document[]
+     */
     public function getDocuments() : array
     {
         return $this->builder->getDocuments();
@@ -272,7 +276,10 @@ SIDEBAR;
         return $project->getAbsoluteDocsPath($this->projectsPath);
     }
 
-    private function recursiveGlob(string $path)
+    /**
+     * @return string[]
+     */
+    private function recursiveGlob(string $path) : array
     {
         $allFiles = [];
 

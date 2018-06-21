@@ -68,7 +68,12 @@ class Watcher
         }
     }
 
-    private function recursiveGlob(array $paths)
+    /**
+     * @param string[] $paths
+     *
+     * @return string[]
+     */
+    private function recursiveGlob(array $paths) : array
     {
         $allFiles = [];
 

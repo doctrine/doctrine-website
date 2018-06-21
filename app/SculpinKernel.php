@@ -6,7 +6,10 @@ use Sculpin\Bundle\SculpinBundle\HttpKernel\AbstractKernel;
 
 class SculpinKernel extends AbstractKernel
 {
-    protected function getAdditionalSculpinBundles()
+    /**
+     * @return string[]
+     */
+    protected function getAdditionalSculpinBundles() : array
     {
         return ['Doctrine\Website\DoctrineSculpinBundle\DoctrineSculpinBundle'];
     }
