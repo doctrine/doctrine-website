@@ -26,7 +26,7 @@ This release introduces the following deprecations:
    [hoa/compiler](https://github.com/hoaproject/Compiler) instead;
  * `Doctrine\Common\Util\Inflector` is deprecated, use `Doctrine\Common\Inflector\Inflector`
    from [`doctrine/inflector`](https://github.com/doctrine/inflector) instead;
- * `Doctrine\Common\Util\ClassUtils` is deprecated, use Composer autoloader instead;
+ * `Doctrine\Common\Util\ClassUtils` is deprecated without replacement;
  * `Doctrine\Common\Version` is deprecated, refrain from checking Common version at runtime;
  * `Doctrine\Common\CommonException` is deprecated without replacement.
 
