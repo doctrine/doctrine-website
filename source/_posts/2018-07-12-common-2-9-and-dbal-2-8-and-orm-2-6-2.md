@@ -43,7 +43,7 @@ For complete release notes,
 ### DBAL 2.8.0
 
 DBAL 2.8.0 is a minor release of Doctrine DBAL that aggregates over
-20 fixes and improvements developed over the last 2 months.
+30 fixes and improvements developed over the last 3 months.
 
 The dependency on `doctrine/common` is removed. DBAL now
 depends on `doctrine/cache` and `doctrine/event-manager` instead.
