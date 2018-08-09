@@ -17,13 +17,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .search-results {
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    right: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: #fff;
     padding: 20px;
-    z-index: 1000;
+    z-index: 1030;
     margin-top: 20px;
     border: 1px solid #ccc;
     display: none;
