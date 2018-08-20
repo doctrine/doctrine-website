@@ -133,7 +133,9 @@ Topic branches are for contributors to develop bug fixes, new features,
 etc. so that they can be easily merged to **master**. They must follow a
 few simple rules as listed below:
 
-- May branch off from: **master** or a release branch.
+- May branch off from: **master** whenever possible, or a release branch
+  otherwise. Keep in mind that your changes will be cherry-picked to lower
+  branches by maintainers after the merge if they are applicable.
 - Must merge back into: **master** and any affected release
     branches that should get the same changes, but remember that release
     branches usually only get bug fixes, with rare exceptions.
