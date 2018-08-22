@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DoctrineSculpinBundle\Directive;
 
-use Gregwar\RST\Nodes\RawNode;
-use Gregwar\RST\Parser;
-use Gregwar\RST\SubDirective;
+use Doctrine\RST\Nodes\Node;
+use Doctrine\RST\Nodes\RawNode;
+use Doctrine\RST\Parser;
+use Doctrine\RST\SubDirective;
 
 class TocHeaderDirective extends SubDirective
 {
@@ -16,12 +17,15 @@ class TocHeaderDirective extends SubDirective
     }
 
     /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
-     *
      * @param string[] $options
      */
-    public function processSub(Parser $parser, $document, $variable, $data, array $options) : RawNode
-    {
+    public function processSub(
+        Parser $parser,
+        ?Node $document,
+        string $variable,
+        string $data,
+        array $options
+    ) : ?Node {
         return new RawNode('<h2 class="toc-header">' . $data . '</h2>');
     }
 }
