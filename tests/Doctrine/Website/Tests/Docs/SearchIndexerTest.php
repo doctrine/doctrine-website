@@ -6,14 +6,15 @@ namespace Doctrine\Website\Tests\Docs;
 
 use AlgoliaSearch\Client;
 use AlgoliaSearch\Index;
+use Doctrine\RST\Environment;
+use Doctrine\RST\HTML\Document;
+use Doctrine\RST\HTML\Nodes\ParagraphNode;
+use Doctrine\RST\HTML\Nodes\TitleNode;
+use Doctrine\RST\Nodes\RawNode;
 use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\Docs\SearchIndexer;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Gregwar\RST\Environment;
-use Gregwar\RST\HTML\Document;
-use Gregwar\RST\HTML\Nodes\ParagraphNode;
-use Gregwar\RST\HTML\Nodes\TitleNode;
 use PHPUnit\Framework\TestCase;
 
 class SearchIndexerTest extends TestCase
@@ -104,11 +105,17 @@ class SearchIndexerTest extends TestCase
             ->method('getUrl')
             ->willReturn('index');
 
-        $h1Node = new TitleNode('Test 1', 1, 'title.1');
-        $h2Node = new TitleNode('Test 2', 2, 'title.1.1');
-        $h3Node = new TitleNode('Test 3', 3, 'title.1.2');
-        $h4Node = new TitleNode('Test 4', 4, 'title.1.3');
-        $h5Node = new TitleNode('Test 5', 5, 'title.1.4');
+        $node1 = new RawNode('Test 1');
+        $node2 = new RawNode('Test 2');
+        $node3 = new RawNode('Test 3');
+        $node4 = new RawNode('Test 4');
+        $node5 = new RawNode('Test 5');
+
+        $h1Node = new TitleNode($node1, 1, 'title.1');
+        $h2Node = new TitleNode($node2, 2, 'title.1.1');
+        $h3Node = new TitleNode($node3, 3, 'title.1.2');
+        $h4Node = new TitleNode($node4, 4, 'title.1.3');
+        $h5Node = new TitleNode($node5, 5, 'title.1.4');
 
         $paragraph1Node = new ParagraphNode('Paragraph 1');
         $paragraph2Node = new ParagraphNode('Paragraph 2');

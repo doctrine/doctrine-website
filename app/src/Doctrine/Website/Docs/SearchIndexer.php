@@ -6,12 +6,12 @@ namespace Doctrine\Website\Docs;
 
 use AlgoliaSearch\Client;
 use AlgoliaSearch\Index;
+use Doctrine\RST\HTML\Document;
+use Doctrine\RST\HTML\Nodes\ParagraphNode;
+use Doctrine\RST\HTML\Nodes\TitleNode;
+use Doctrine\RST\Nodes\Node;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Gregwar\RST\HTML\Document;
-use Gregwar\RST\HTML\Nodes\ParagraphNode;
-use Gregwar\RST\HTML\Nodes\TitleNode;
-use Gregwar\RST\Nodes\Node;
 use function get_class;
 use function in_array;
 use function md5;
@@ -109,7 +109,7 @@ class SearchIndexer
         });
 
         foreach ($nodes as $node) {
-            $value = $node->getValue();
+            $value = (string) $node->getValue();
 
             if (strpos($value, '{{ SOURCE_FILE') !== false) {
                 continue;
@@ -160,7 +160,7 @@ class SearchIndexer
         }
 
         return [
-            'objectID' => $version->getSlug() . '-' . $currentLink . '-' . md5($node->getValue()),
+            'objectID' => $version->getSlug() . '-' . $currentLink . '-' . md5((string) $node->getValue()),
             'rank' => $this->getRank($node),
             'h1' => $current['h1'],
             'h2'  => $current['h2'],
