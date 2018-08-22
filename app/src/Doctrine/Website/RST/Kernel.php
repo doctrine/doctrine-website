@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\RST;
 
-use Gregwar\RST\Builder;
-use Gregwar\RST\Directive;
-use Gregwar\RST\Document;
-use Gregwar\RST\HTML\Kernel as HtmlKernel;
-use Gregwar\RST\Kernel as BaseKernel;
-use Gregwar\RST\Reference;
+use Doctrine\RST\Builder;
+use Doctrine\RST\Directive;
+use Doctrine\RST\Document;
+use Doctrine\RST\HTML\Kernel as HtmlKernel;
+use Doctrine\RST\Kernel as BaseKernel;
+use Doctrine\RST\Reference;
 use function array_merge;
 
 class Kernel extends BaseKernel
@@ -50,9 +50,8 @@ class Kernel extends BaseKernel
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
      *
-     * @param string $name
      */
-    public function getClass($name) : string
+    public function getClass(string $name) : string
     {
         return $this->baseKernel->getClass($name);
     }
