@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DoctrineSculpinBundle\Directive;
 
+use Doctrine\RST\Directive;
+use Doctrine\RST\Nodes\Node;
+use Doctrine\RST\Parser;
 use Doctrine\Website\Docs\CodeBlockLanguageDetector;
 use Doctrine\Website\Docs\CodeBlockRenderer;
-use Gregwar\RST\Directive;
-use Gregwar\RST\Parser;
 use function array_reverse;
 use function preg_split;
 use function trim;
@@ -43,12 +44,15 @@ class CodeBlockDirective extends Directive
     }
 
     /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
-     *
      * @param string[] $options
      */
-    public function process(Parser $parser, $node, $variable, $data, array $options) : void
-    {
+    public function process(
+        Parser $parser,
+        ?Node $node,
+        string $variable,
+        string $data,
+        array $options
+    ) : void {
         if (! $node) {
             return;
         }

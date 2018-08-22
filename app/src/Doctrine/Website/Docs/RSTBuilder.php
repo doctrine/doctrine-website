@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs;
 
+use Doctrine\RST\Builder;
+use Doctrine\RST\Document;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
-use Gregwar\RST\Builder;
-use Gregwar\RST\Document;
 use function array_merge;
 use function dirname;
 use function file_exists;

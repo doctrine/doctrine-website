@@ -85,6 +85,27 @@ class FunctionalTest extends TestCase
         }
     }
 
+    public function testLinks() : void
+    {
+        $crawler = $this->assertValid('/projects/doctrine-orm/en/2.6/reference/events.html');
+        $this->assertContains('<a href="#reference-events-lifecycle-events">lifecycle events</a>', $crawler->html());
+
+        $crawler = $this->assertValid('/projects/doctrine-dbal/en/2.8/reference/data-retrieval-and-manipulation.html');
+        $this->assertContains('<a href="types.html#mappingMatrix">Types</a>', $crawler->html());
+
+        $crawler = $this->assertValid('/projects/doctrine-orm/en/2.6/reference/architecture.html');
+        $this->assertContains('<a href="../cookbook/implementing-wakeup-or-clone.html">do so safely</a>', $crawler->html());
+
+        $crawler = $this->assertValid('/projects/doctrine-orm/en/2.6/reference/annotations-reference.html');
+        $this->assertContains('<a href="annotations-reference.html#annref_column_result">@ColumnResult</a>', $crawler->html());
+
+        $crawler = $this->assertValid('/projects/doctrine-dbal/en/2.8/reference/events.html');
+        $this->assertContains('<a href="platforms.html">Platforms</a>', $crawler->html());
+
+        $crawler = $this->assertValid('/projects/doctrine-orm/en/2.6/reference/improving-performance.html');
+        $this->assertContains('<a href="../tutorials/extra-lazy-associations.html">tutorial</a>', $crawler->html());
+    }
+
     private function assertValid(string $path) : Crawler
     {
         $fullPath = realpath($this->buildDir . $path);
