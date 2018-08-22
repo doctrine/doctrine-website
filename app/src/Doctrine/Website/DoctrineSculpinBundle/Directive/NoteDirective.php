@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DoctrineSculpinBundle\Directive;
 
-use Doctrine\RST\Nodes\Node;
-use Doctrine\RST\Nodes\WrapperNode;
-use Doctrine\RST\Parser;
-use Doctrine\RST\SubDirective;
+use Gregwar\RST\Nodes\WrapperNode;
+use Gregwar\RST\Parser;
+use Gregwar\RST\SubDirective;
 
 class NoteDirective extends SubDirective
 {
@@ -17,15 +16,12 @@ class NoteDirective extends SubDirective
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
      * @param string[] $options
      */
-    public function processSub(
-        Parser $parser,
-        ?Node $document,
-        string $variable,
-        string $data,
-        array $options
-    ) : ?Node {
+    public function processSub(Parser $parser, $document, $variable, $data, array $options) : WrapperNode
+    {
         return new WrapperNode($document, '<div class="alert note bg-light-yellow text-dark border"><i class="fas fa-sticky-note text-primary mr-2"></i>', '</div>');
     }
 }

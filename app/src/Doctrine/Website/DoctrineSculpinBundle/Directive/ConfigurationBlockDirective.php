@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DoctrineSculpinBundle\Directive;
 
-use Doctrine\RST\Nodes\CodeNode;
-use Doctrine\RST\Nodes\Node;
-use Doctrine\RST\Nodes\RawNode;
-use Doctrine\RST\Parser;
-use Doctrine\RST\SubDirective;
+use Gregwar\RST\Nodes\CodeNode;
+use Gregwar\RST\Nodes\RawNode;
+use Gregwar\RST\Parser;
+use Gregwar\RST\SubDirective;
 use function strtoupper;
 
 class ConfigurationBlockDirective extends SubDirective
@@ -19,15 +18,12 @@ class ConfigurationBlockDirective extends SubDirective
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     *
      * @param string[] $options
      */
-    public function processSub(
-        Parser $parser,
-        ?Node $document,
-        string $variable,
-        string $data,
-        array $options
-    ) : ?Node {
+    public function processSub(Parser $parser, $document, $variable, $data, array $options) : RawNode
+    {
         $html = '<div class="configuration-block jsactive clearfix"><ul class="simple">';
 
         foreach ($document->getNodes() as $node) {
