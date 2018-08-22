@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Docs;
 
-use Doctrine\RST\Builder;
-use Doctrine\RST\HTML\Kernel as HTMLKernel;
 use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\DoctrineSculpinBundle\Directive\TocDirective;
 use Doctrine\Website\DoctrineSculpinBundle\Directive\TocHeaderDirective;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
 use Doctrine\Website\RST\Kernel;
+use Gregwar\RST\Builder;
+use Gregwar\RST\HTML\Kernel as HTMLKernel;
 use PHPUnit\Framework\TestCase;
 use function array_keys;
 use function file_get_contents;

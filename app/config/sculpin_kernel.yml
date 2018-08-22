@@ -71,7 +71,7 @@ services:
             - '@doctrine.docs.rst_builder'
 
     doctrine.rst.kernel.html:
-        class: Doctrine\RST\HTML\Kernel
+        class: Gregwar\RST\HTML\Kernel
         public: false
 
     doctrine.rst.kernel:
@@ -82,7 +82,7 @@ services:
             - []
 
     doctrine.rst.builder:
-        class: Doctrine\RST\Builder
+        class: Gregwar\RST\Builder
         public: false
         arguments:
             - '@doctrine.rst.kernel'
