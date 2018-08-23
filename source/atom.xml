@@ -1,6 +1,5 @@
 ---
-use: ["posts"]
-permalink: atom.xml
+permalink: /atom.xml
 ---
 
 <?xml version="1.0" encoding="utf-8"?>
@@ -18,15 +17,13 @@ permalink: atom.xml
         </author>
     {% endif %}
 
-    <generator uri="http://sculpin.io/">Sculpin</generator>
-
-    {% for post in data.posts|slice(0, 10) %}
+    {% for post in get_blog_posts()|slice(0, 10) %}
         <entry>
-            <title type="html"><![CDATA[{{ post.title }}]]></title>
+            <title type="html"><![CDATA[{{ post.parameters.title }}]]></title>
             <link href="{{ site.url }}{{ post.url }}"/>
             <updated>{{ post.date|date('c') }}</updated>
             <id>{{ site.url }}{{ post.url }}</id>
-            <content type="html"><![CDATA[{{ post.blocks.content|raw }}]]></content>
+            <content type="html"><![CDATA[{{ post.contents|markdown|raw }}]]></content>
         </entry>
     {% endfor %}
 </feed>

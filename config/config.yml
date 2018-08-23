@@ -1,0 +1,17 @@
+parameters:
+    doctrine.website.algolia.app_id: 'YVYTFT9XMW'
+    doctrine.website.algolia.admin_api_key: '1234'
+
+    doctrine.website.projects_path: '%doctrine.website.root_dir%/projects'
+    doctrine.website.source_path: '%doctrine.website.root_dir%/source'
+    doctrine.website.templates_path: '%doctrine.website.root_dir%/templates'
+
+    doctrine.website.title: Doctrine
+    doctrine.website.subtitle: PHP Database Tools
+    doctrine.website.url: http://lcl.doctrine-project.org:8080
+    doctrine.website.keywords: [php, mysql, orm, dbal, database, mongodb, odm, annotations, migrations, cache, couchdb]
+    doctrine.website.description: >
+        The Doctrine Project is the home to several PHP libraries primarily
+        focused on database storage and object mapping. The core projects
+        are the Object Relational Mapper (ORM) and the Database Abstraction
+        Layer (DBAL) it is built upon.

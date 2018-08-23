@@ -1,5 +1,0 @@
-imports:
-    - sculpin_site.yml
-
-url: https://www.doctrine-project.org
-google_analytics_tracking_id: UA-288343-7

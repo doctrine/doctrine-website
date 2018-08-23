@@ -13,5 +13,5 @@ permalink: none
 {% block meta_keywords project.keywords|join(',') %}
 
 {% block content %}
-    {% include "project.html" with {project:get_project(page.docsSlug)} %}
+    {% include "project.html.twig" with {project:get_project(page.docsSlug)} %}
 {% endblock %}

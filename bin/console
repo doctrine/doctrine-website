@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Doctrine\Website\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+
+$input = new ArgvInput();
+$env = $input->getParameterOption(['--env', '-e'], 'dev');
+
+$container = Application::getContainer($env);
+
+$application = $container->get(Application::class);
+
+$application->run($input);

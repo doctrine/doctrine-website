@@ -1,0 +1,64 @@
+{% extends 'layouts/default.html.twig' %}
+
+{% set contentValue %}
+    {% block content '' %}
+{% endset %}
+
+{% block head_meta %}
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ site.url }}{{ page.url }}"
+        },
+        "headline": "{{ page.title }}",
+        "image": [
+            "{{ site.url }}/images/og.png"
+        ],
+        "datePublished": "{{ page.date|date('c') }}",
+        "dateModified": "{{ page.date|date('c') }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ page.authorName ?? 'Doctrine' }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Doctrine",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ site.url }}/images/og.png"
+            }
+        },
+        "description": "{{ contentValue|raw|striptags|trim[:100] }}"
+    }
+    </script>
+{% endblock %}
+
+{% block content_wrapper %}
+    <article>
+        <header>
+            <h2>{{ page.title }}</h2>
+        </header>
+
+        <p class="lead">
+            Posted on {{ page.date|date('Y-m-d') }}
+            {% if page.authorName %}
+                by
+                {% if page.authorEmail %}
+                    <a href="mailto:{{ page.authorEmail }}">{{ page.authorName }}</a>
+                {% else %}
+                    {{ page.authorName }}
+                {% endif %}
+            {% endif %}
+        </p>
+
+        <hr />
+
+        <div>
+            {{ contentValue }}
+        </div>
+    </article>
+{% endblock %}
+

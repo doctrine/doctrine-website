@@ -9,12 +9,8 @@
     <!-- Ignore warnings, show progress of the run and show sniff names -->
     <arg value="nps"/>
 
-    <file>app</file>
+    <file>lib</file>
     <file>tests</file>
 
     <rule ref="Doctrine"/>
-
-    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
-        <exclude-pattern>app/SculpinKernel.php</exclude-pattern>
-    </rule>
 </ruleset>
