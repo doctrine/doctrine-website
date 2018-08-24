@@ -8,7 +8,7 @@ use function array_map;
 
 class ProjectRepository
 {
-    /** @var Project[] */
+    /** @var mixed[][] */
     private $projects = [];
 
     /** @var ProjectFactory */
