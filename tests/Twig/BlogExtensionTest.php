@@ -7,11 +7,12 @@ namespace Doctrine\Website\Tests\Twig;
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Builder\SourceFileRepository;
 use Doctrine\Website\Twig\BlogExtension;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class BlogExtensionTest extends TestCase
 {
-    /** @var SourceFileRepository */
+    /** @var SourceFileRepository|MockObject */
     private $sourceFileRepository;
 
     /** @var BlogExtension */

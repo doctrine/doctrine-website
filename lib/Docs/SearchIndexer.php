@@ -145,7 +145,7 @@ class SearchIndexer
                 $current['h' . $i] = null;
             }
 
-            $content = null;
+            $content = '';
         } else {
             $content = (string) $node->getValue();
         }
@@ -159,7 +159,7 @@ class SearchIndexer
             'h4'  => $current['h4'],
             'h5'  => $current['h5'],
             'url' => '/projects/' . $project->getDocsSlug() . '/en/' . $version->getSlug() . '/' . $currentLink,
-            'content' => $content ? strip_tags($content) : null,
+            'content' => $content !== '' ? strip_tags($content) : '',
             'projectName' => $project->getShortName(),
             '_tags' => [
                 $version->getSlug(),

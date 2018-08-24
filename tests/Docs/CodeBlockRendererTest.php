@@ -7,14 +7,15 @@ namespace Doctrine\Website\Tests\Docs;
 use Doctrine\Website\Docs\CodeBlockConsoleRenderer;
 use Doctrine\Website\Docs\CodeBlockRenderer;
 use Doctrine\Website\Docs\CodeBlockWithLineNumbersRenderer;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class CodeBlockRendererTest extends TestCase
 {
-    /** @var CodeBlockConsoleRenderer */
+    /** @var CodeBlockConsoleRenderer|MockObject */
     private $codeBlockConsoleRenderer;
 
-    /** @var CodeBlockWithLineNumbersRenderer */
+    /** @var CodeBlockWithLineNumbersRenderer|MockObject */
     private $codeBlockWithLineNumbersRenderer;
 
     /** @var CodeBlockRenderer */

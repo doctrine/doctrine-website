@@ -15,14 +15,15 @@ use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\Docs\SearchIndexer;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class SearchIndexerTest extends TestCase
 {
-    /** @var Client */
+    /** @var Client|MockObject */
     private $client;
 
-    /** @var RSTBuilder */
+    /** @var RSTBuilder|MockObject */
     private $rstBuilder;
 
     /** @var SearchIndexer */

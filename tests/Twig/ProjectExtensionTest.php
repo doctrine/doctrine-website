@@ -8,14 +8,15 @@ use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\Projects\ProjectVersion;
 use Doctrine\Website\Twig\ProjectExtension;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class ProjectExtensionTest extends TestCase
 {
-    /** @var ProjectRepository */
+    /** @var ProjectRepository|MockObject */
     private $projectRepository;
 
-    /** @var ProjectExtension */
+    /** @var ProjectExtension|MockObject */
     private $projectExtension;
 
     protected function setUp() : void

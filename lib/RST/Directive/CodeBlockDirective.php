@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\RST\Directive;
 
 use Doctrine\RST\Directive;
+use Doctrine\RST\Nodes\CodeNode;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Parser;
 use Doctrine\Website\Docs\CodeBlockLanguageDetector;
@@ -53,7 +54,7 @@ class CodeBlockDirective extends Directive
         string $data,
         array $options
     ) : void {
-        if (! $node) {
+        if (! $node instanceof CodeNode) {
             return;
         }
 
@@ -70,7 +71,7 @@ class CodeBlockDirective extends Directive
         $node->setRaw(true);
         $node->setValue($codeBlock);
 
-        if ($variable) {
+        if ($variable !== '') {
             $environment = $parser->getEnvironment();
             $environment->setVariable($variable, $node);
         } else {

@@ -12,24 +12,25 @@ use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\Projects\ProjectVersion;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class BuildDocsTest extends TestCase
 {
-    /** @var ProjectRepository */
+    /** @var ProjectRepository|MockObject */
     private $projectRepository;
 
-    /** @var ProjectGitSyncer */
+    /** @var ProjectGitSyncer|MockObject */
     private $projectGitSyncer;
 
-    /** @var APIBuilder */
+    /** @var APIBuilder|MockObject */
     private $apiBuilder;
 
-    /** @var RSTBuilder */
+    /** @var RSTBuilder|MockObject */
     private $rstBuilder;
 
-    /** @var SearchIndexer */
+    /** @var SearchIndexer|MockObject */
     private $searchIndexer;
 
     /** @var BuildDocs */

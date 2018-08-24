@@ -9,28 +9,29 @@ use Doctrine\Website\Builder\SourceFileRepository;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 class WebsiteBuilderTest extends TestCase
 {
-    /** @var ProcessFactory */
+    /** @var ProcessFactory|MockObject */
     private $processFactory;
 
-    /** @var ProjectRepository */
+    /** @var ProjectRepository|MockObject */
     private $projectRepository;
 
-    /** @var Filesystem */
+    /** @var Filesystem|MockObject */
     private $filesystem;
 
-    /** @var SourceFileRepository */
+    /** @var SourceFileRepository|MockObject */
     private $sourceFileRepository;
 
-    /** @var SourceFileBuilder */
+    /** @var SourceFileBuilder|MockObject */
     private $sourceFileBuilder;
 
-    /** @var WebsiteBuilder */
+    /** @var WebsiteBuilder|MockObject */
     private $websiteBuilder;
 
     protected function setUp() : void

@@ -8,11 +8,12 @@ use Doctrine\Website\Docs\APIBuilder;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class APIBuilderTest extends TestCase
 {
-    /** @var ProcessFactory */
+    /** @var ProcessFactory|MockObject */
     private $processFactory;
 
     /** @var string */
@@ -21,7 +22,7 @@ class APIBuilderTest extends TestCase
     /** @var string */
     private $sculpinSourcePath;
 
-    /** @var APIBuilder */
+    /** @var APIBuilder|MockObject */
     private $apiBuilder;
 
     protected function setUp() : void

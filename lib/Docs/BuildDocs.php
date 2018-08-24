@@ -44,7 +44,7 @@ class BuildDocs
     public function build(
         OutputInterface $output,
         string $projectToBuild,
-        string $versionToBuilder,
+        string $versionToBuild,
         bool $buildApiDocs,
         bool $buildSearchIndexes,
         bool $syncGit
@@ -56,12 +56,12 @@ class BuildDocs
         $projects = $this->projectRepository->findAll();
 
         foreach ($projects as $project) {
-            if ($projectToBuild && $project->getSlug() !== $projectToBuild) {
+            if ($projectToBuild !== '' && $project->getSlug() !== $projectToBuild) {
                 continue;
             }
 
             foreach ($project->getVersions() as $version) {
-                if ($versionToBuilder && $version->getSlug() !== $versionToBuilder) {
+                if ($versionToBuild !== '' && $version->getSlug() !== $versionToBuild) {
                     continue;
                 }
 

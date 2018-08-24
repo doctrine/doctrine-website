@@ -7,13 +7,14 @@ namespace Doctrine\Website\Tests;
 use Doctrine\Website\Deployer;
 use Doctrine\Website\ProcessFactory;
 use InvalidArgumentException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 
 class DeployerTest extends TestCase
 {
-    /** @var ProcessFactory */
+    /** @var ProcessFactory|MockObject */
     private $processFactory;
 
     protected function setUp() : void
@@ -36,6 +37,7 @@ class DeployerTest extends TestCase
     {
         $output = $this->createMock(OutputInterface::class);
 
+        /** @var Deployer|MockObject $deployer */
         $deployer = $this->getMockDeployer('staging');
 
         $deployer->expects(self::once())
@@ -57,6 +59,7 @@ class DeployerTest extends TestCase
     {
         $output = $this->createMock(OutputInterface::class);
 
+        /** @var Deployer|MockObject $deployer */
         $deployer = $this->getMockDeployer('staging');
 
         $deployer->expects(self::once())
