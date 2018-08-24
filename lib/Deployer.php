@@ -122,6 +122,6 @@ class Deployer
             return '';
         }
 
-        return trim(file_get_contents($file));
+        return trim((string) file_get_contents($file));
     }
 }

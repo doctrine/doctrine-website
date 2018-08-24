@@ -40,9 +40,9 @@ class SourceFileRepository
         $files = [];
 
         foreach ($finder as $splFileInfo) {
-            $path = $splFileInfo->getRealPath();
+            $path = (string) $splFileInfo->getRealPath();
 
-            $contents = file_get_contents($path);
+            $contents = (string) file_get_contents($path);
 
             $extension = $this->getExtension($path);
 
@@ -70,7 +70,7 @@ class SourceFileRepository
         $writePath = $buildDir . str_replace($this->rootDir . '/source', '', $path);
 
         if (in_array($extension, ['md', 'rst'], true)) {
-            $writePath = substr($writePath, 0, strrpos($writePath, '.')) . '.html';
+            $writePath = substr($writePath, 0, (int) strrpos($writePath, '.')) . '.html';
         }
 
         return $writePath;
@@ -95,7 +95,7 @@ class SourceFileRepository
     {
         $parameters = [];
 
-        if (preg_match('/^\s*(?:---[\s]*[\r\n]+)(.*?)(?:---[\s]*[\r\n]+)(.*?)$/s', $string, $matches)) {
+        if (preg_match('/^\s*(?:---[\s]*[\r\n]+)(.*?)(?:---[\s]*[\r\n]+)(.*?)$/s', $string, $matches) > 0) {
             if (preg_match('/^(\s*[-]+\s*|\s*)$/', $matches[1]) === 0) {
                 $parameters = Yaml::parse($matches[1], 1);
             }

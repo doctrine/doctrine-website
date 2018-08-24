@@ -48,7 +48,7 @@ class SourceFileRenderer
     private function prepareTemplate(SourceFile $sourceFile, string $contents) : string
     {
         if ($sourceFile->isLayoutNeeded()) {
-            if (! preg_match_all('/{%\s+block\s+(\w+)\s+%}(.*?){%\s+endblock\s+%}/si', $contents, $matches)) {
+            if (preg_match_all('/{%\s+block\s+(\w+)\s+%}(.*?){%\s+endblock\s+%}/si', $contents, $matches) === 0) {
                 $contents = '{% block content %}' . $contents . '{% endblock %}';
             }
 

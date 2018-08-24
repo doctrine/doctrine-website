@@ -12,7 +12,6 @@ use function explode;
 use function file_exists;
 use function file_get_contents;
 use function is_dir;
-use function realpath;
 use function simplexml_load_string;
 use function sprintf;
 
@@ -26,7 +25,7 @@ class FunctionalTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->rootDir  = realpath(__DIR__ . '/..');
+        $this->rootDir  = __DIR__ . '/..';
         $this->buildDir = $this->rootDir . '/build-dev';
 
         if (is_dir($this->buildDir)) {
@@ -48,7 +47,7 @@ class FunctionalTest extends TestCase
         self::assertValid('/2018/04/06/new-website.html');
         self::assertValid('/projects.html');
 
-        $data = Yaml::parse(file_get_contents($this->rootDir . '/config/projects.yml'));
+        $data = Yaml::parseFile($this->rootDir . '/config/projects.yml');
 
         $projects = $data['parameters']['doctrine.website.projects'];
 
@@ -121,7 +120,7 @@ class FunctionalTest extends TestCase
 
         self::assertFileExists($sitemapPath);
 
-        $xmlString = file_get_contents($sitemapPath);
+        $xmlString = $this->getFileContents($sitemapPath);
 
         $lines = explode("\n", $xmlString);
 
@@ -139,7 +138,7 @@ class FunctionalTest extends TestCase
 
         self::assertFileExists($atomPath);
 
-        $xmlString = file_get_contents($atomPath);
+        $xmlString = $this->getFileContents($atomPath);
 
         $lines = explode("\n", $xmlString);
 
@@ -156,21 +155,28 @@ class FunctionalTest extends TestCase
         $fullPath = $this->buildDir . $path;
 
         if (file_exists($fullPath)) {
-            return realpath($this->buildDir . $path);
+            return $this->buildDir . $path;
         }
 
         return $this->buildDir . $path;
+    }
+
+    private function getFileContents(string $path) : string
+    {
+        $html = file_get_contents($path);
+
+        if ($html === false) {
+            self::fail(sprintf('File %s contents empty.', $path));
+        }
+
+        return $html;
     }
 
     private function assertValid(string $path) : Crawler
     {
         $fullPath = $this->getFullPath($path);
 
-        $html = file_get_contents($fullPath);
-
-        if (! $html) {
-            self::fail(sprintf('File %s contents empty.', $fullPath));
-        }
+        $html = $this->getFileContents($fullPath);
 
         $crawler = new Crawler($html);
 

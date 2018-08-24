@@ -88,6 +88,10 @@ class BuildWebsiteCommand extends Command
 
         $buildDir = realpath($buildDir);
 
+        if ($buildDir === false) {
+            throw new InvalidArgumentException(sprintf('Could not find build directory'));
+        }
+
         $this->websiteBuilder->build($output, $buildDir, $this->env, $publish);
     }
 }

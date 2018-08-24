@@ -11,6 +11,7 @@ use Doctrine\RST\Parser;
 use Doctrine\Website\Docs\CodeBlockLanguageDetector;
 use Doctrine\Website\Docs\CodeBlockRenderer;
 use function array_reverse;
+use function is_array;
 use function preg_split;
 use function trim;
 
@@ -60,7 +61,7 @@ class CodeBlockDirective extends Directive
 
         $kernel = $parser->getKernel();
 
-        $lines = $this->getLines($node->getValue());
+        $lines = $this->getLines((string) $node->getValue());
 
         $language = $this->codeBlockLanguageDetector->detectLanguage($data, $lines);
 
@@ -85,7 +86,9 @@ class CodeBlockDirective extends Directive
      */
     private function getLines(string $code) : array
     {
-        $lines = array_reverse(preg_split('/\r\n|\r|\n/', $code));
+        $lines = preg_split('/\r\n|\r|\n/', $code);
+        $lines = is_array($lines) ? $lines : [];
+        $lines = array_reverse($lines);
 
         // trim empty lines at the end of the code
         foreach ($lines as $key => $line) {

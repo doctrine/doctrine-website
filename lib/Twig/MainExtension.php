@@ -77,7 +77,7 @@ class MainExtension extends Twig_Extension
      */
     private function getUrlsFromFiles(string $path, string $extension = 'html') : array
     {
-        $root = realpath(__DIR__ . '/../../source');
+        $root = (string) realpath(__DIR__ . '/../../source');
         $path = $root . '/' . $path;
 
         if (! file_exists($path)) {
@@ -107,8 +107,8 @@ class MainExtension extends Twig_Extension
 
     private function getAssetCacheBuster(string $path) : string
     {
-        $assetPath = realpath(__DIR__ . '/../../source/' . $path);
+        $assetPath = (string) realpath(__DIR__ . '/../../source/' . $path);
 
-        return substr(md5(file_get_contents($assetPath)), 0, 6);
+        return substr(md5((string) file_get_contents($assetPath)), 0, 6);
     }
 }
