@@ -10,11 +10,13 @@ use RecursiveIteratorIterator;
 use Twig_Extension;
 use Twig_SimpleFilter;
 use Twig_SimpleFunction;
+use function assert;
 use function file_exists;
 use function file_get_contents;
 use function filemtime;
-use function md5;
+use function is_string;
 use function realpath;
+use function sha1;
 use function str_replace;
 use function strpos;
 use function substr;
@@ -77,7 +79,9 @@ class MainExtension extends Twig_Extension
      */
     private function getUrlsFromFiles(string $path, string $extension = 'html') : array
     {
-        $root = (string) realpath(__DIR__ . '/../../source');
+        $root = realpath(__DIR__ . '/../../source');
+        assert(is_string($root));
+
         $path = $root . '/' . $path;
 
         if (! file_exists($path)) {
@@ -107,8 +111,12 @@ class MainExtension extends Twig_Extension
 
     private function getAssetCacheBuster(string $path) : string
     {
-        $assetPath = (string) realpath(__DIR__ . '/../../source/' . $path);
+        $assetPath = realpath(__DIR__ . '/../../source/' . $path);
+        assert(is_string($assetPath));
 
-        return substr(md5((string) file_get_contents($assetPath)), 0, 6);
+        $contents = file_get_contents($assetPath);
+        assert(is_string($contents));
+
+        return substr(sha1($contents), 0, 6);
     }
 }

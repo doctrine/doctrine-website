@@ -6,9 +6,11 @@ namespace Doctrine\Website;
 
 use InvalidArgumentException;
 use Symfony\Component\Console\Output\OutputInterface;
+use function assert;
 use function file_exists;
 use function file_get_contents;
 use function in_array;
+use function is_string;
 use function sprintf;
 use function trim;
 
@@ -122,6 +124,9 @@ class Deployer
             return '';
         }
 
-        return trim((string) file_get_contents($file));
+        $contents = file_get_contents($file);
+        assert(is_string($contents));
+
+        return trim($contents);
     }
 }

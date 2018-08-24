@@ -107,7 +107,7 @@ TEMPLATE;
         $lineTableRows = [];
 
         foreach ($lines as $key => $line) {
-            $lineNumber = (int) $key + 1;
+            $lineNumber = $key + 1;
 
             $anchor = sprintf('line-number-%s-%d', $codeElementId, $lineNumber);
             $link   = sprintf('#%s', $anchor);

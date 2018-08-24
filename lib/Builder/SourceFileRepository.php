@@ -6,10 +6,12 @@ namespace Doctrine\Website\Builder;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Yaml;
+use function assert;
 use function end;
 use function explode;
 use function file_get_contents;
 use function in_array;
+use function is_string;
 use function preg_match;
 use function preg_replace;
 use function str_replace;
@@ -40,9 +42,11 @@ class SourceFileRepository
         $files = [];
 
         foreach ($finder as $splFileInfo) {
-            $path = (string) $splFileInfo->getRealPath();
+            $path = $splFileInfo->getRealPath();
+            assert(is_string($path));
 
-            $contents = (string) file_get_contents($path);
+            $contents = file_get_contents($path);
+            assert(is_string($contents));
 
             $extension = $this->getExtension($path);
 

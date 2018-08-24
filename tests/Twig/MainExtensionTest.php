@@ -34,7 +34,7 @@ class MainExtensionTest extends TestCase
             'http://lcl.doctrine-project.org'
         );
 
-        self::assertSame('http://lcl.doctrine-project.org/js/main.js?850a2b', $url);
+        self::assertSame('http://lcl.doctrine-project.org/js/main.js?4138a7', $url);
     }
 
     public function testGetDocsUrls() : void
