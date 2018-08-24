@@ -6,7 +6,7 @@ namespace Doctrine\Website\Docs;
 
 use AlgoliaSearch\Client;
 use AlgoliaSearch\Index;
-use Doctrine\RST\HTML\Document;
+use Doctrine\RST\Document;
 use Doctrine\RST\HTML\Nodes\ParagraphNode;
 use Doctrine\RST\HTML\Nodes\TitleNode;
 use Doctrine\RST\Nodes\Node;
