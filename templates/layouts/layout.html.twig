@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{{ page.title }} - {{ site.title }} - {{ site.subtitle }}{% endblock %}</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="theme-color" content="#ffffff">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta name="description" content="{% block meta_description %}{{ site.description }}{% endblock %}">
+
+        <meta name="keywords" content="{% block meta_keywords %}{{ site.keywords|join(',') }}{% endblock %}">
+
+        {% if site.env == 'prod' %}
+            <meta name="robots" content="index, follow">
+        {% else %}
+            <meta name="robots" content="noindex">
+        {% endif %}
+
+        {% block head_meta '' %}
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+
+        <link href="{{ get_asset_url('/css/style.css', site.url) }}" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+        <link rel="stylesheet" href="{{ get_asset_url('/css/railscasts.css', site.url) }}" />
+
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ site.url }}/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.url }}/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.url }}/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.url }}/images/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ site.url }}/images/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ site.url }}/images/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ site.url }}/images/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ site.url }}/images/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="{{ site.url }}/images/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="{{ site.url }}/images/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="{{ site.url }}/images/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="{{ site.url }}/images/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="{{ site.url }}/images/favicon-128.png" sizes="128x128" />
+        <meta name="application-name" content="Doctrine"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="{{ site.url }}/images/mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="{{ site.url }}/images/mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="{{ site.url }}/images/mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="{{ site.url }}/images/mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="{{ site.url }}/images/mstile-310x310.png" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@doctrineorm" />
+        <meta name="twitter:creator" content="@doctrineorm" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+        <meta property="og:title" content="{{ block('title') }}" />
+        <meta property="og:description" content="{{ block('meta_description') }}" />
+        <meta property="og:image" content="{{ site.url }}/images/og.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="1200" />
+
+        <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/atom.xml" title="{{ site.title }} activity feed" />
+
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "url": "{{ site.url }}",
+            "logo": "{{ site.url }}/images/doctrine-logo.svg"
+        }
+        </script>
+
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "{{ site.url }}",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "{{ site.url }}?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+        </script>
+
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": "Doctrine",
+            "url": "{{ site.url }}",
+            "sameAs": [
+                "https://twitter.com/doctrineorm"
+            ]
+        }
+        </script>
+
+        {% block structured_data '' %}
+
+        {% block head_styles '' %}
+
+        {% block head_scripts '' %}
+    </head>
+    <body>
+        {% block navbar %}
+            <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap">
+                <a class="navbar-brand text-hide" href="{{ site.url }}/"><img src="{{ get_asset_url('/images/doctrine-logo.svg', site.url) }}" />{{ site.title }}</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown{% if page.menuSlug == 'projects' %} active{% endif %}">
+                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/projects.html" id="navbarProjectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Projects
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarProjectsDropdown">
+                                {% for project in get_projects() if project.active is defined and project.active == true %}
+                                    <a class="dropdown-item notranslate" href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a>
+                                {% endfor %}
+                                <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ site.url }}/projects.html">View All</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown{% if page.menuSlug == 'contribute' %} active{% endif %}">
+                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/contribute/" id="navbarContributeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contribute</a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarContributeDropdown">
+                                <a class="dropdown-item" href="{{ site.url }}/contribute/">Contributor Workflow</a>
+                                <a class="dropdown-item" href="{{ site.url }}/contribute/maintainer/">Maintainer Workflow</a>
+                                <a class="dropdown-item" href="{{ site.url }}/contribute/website/">Contribute to Website</a>
+                            </div>
+                        </li>
+                        <li class="nav-item{% if page.menuSlug == 'community' %} active{% endif %}">
+                            <a class="nav-link" href="{{ site.url }}/community/">Community</a>
+                        </li>
+                        <li class="nav-item{% if page.menuSlug == 'blog' %} active{% endif %}">
+                            <a class="nav-link" href="{{ site.url }}/blog/">Blog</a>
+                        </li>
+                        <li class="nav-item{% if page.menuSlug == 'team' %} active{% endif %}">
+                            <a class="nav-link" href="{{ site.url }}/team/">Team</a>
+                        </li>
+                    </ul>
+
+                    <div class="google-translate-dropdown dropdown show d-inline-block mr-2">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="translateDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Translate
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="translateDropdown">
+                            <div class="dropdown-item" id="google_translate_element">Loading...</div>
+                        </div>
+                    </div>
+
+                    <div id="search-box">
+                        <!-- SearchBox widget will appear here -->
+                    </div>
+                </div>
+            </nav>
+
+            <div class="search-results rounded">
+                <div id="hits">
+                    <!-- Hits widget will appear here -->
+                </div>
+
+                <a href="https://www.algolia.com" target="_blank"><img src="{{ site.url }}/images/search-by-algolia.png" class="float-right" style="width: 150px;" /></a>
+            </div>
+        {% endblock %}
+
+        {% block container %}
+            {% block content_wrapper %}
+                {% block content '' %}
+            {% endblock %}
+        {% endblock %}
+
+        {% if page.docsSlug %}
+            {% set project = get_project(page.docsSlug) %}
+        {% endif %}
+
+        <button id="back-to-top" title="Go to top">Top</button>
+
+        <script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
+
+        <script id="instantsearch-template" type="text/template">
+            {% include "search-results.html.twig" %}
+        </script>
+
+        <script src="https://cdn.ravenjs.com/3.24.2/raven.min.js" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+            Raven.config('https://09ce137590054cfd8f0b7e9324d6ec14@sentry.io/1197701').install()
+        </script>
+
+        <script src="{{ get_asset_url('/js/main.js', site.url) }}"></script>
+        <script src="{{ get_asset_url('/js/search.js', site.url) }}"></script>
+
+        <script type="text/javascript">
+            var projectSlug = '{{ project.slug ? project.slug : null }}';
+            var versionSlug = '{{ page.docsVersion ? page.docsVersion : "latest" }}';
+
+            new Main();
+
+            new Search(projectSlug, versionSlug);
+
+            function googleAnalyticsEvent(eventCategory, eventAction, eventLabel, eventValue, fieldsObject) {
+                {% if site.google_analytics_tracking_id %}
+                ga('send', 'event', eventCategory, eventAction, eventLabel, eventValue, fieldsObject);
+                {% else %}
+                console.log(eventCategory, eventAction, eventLabel, eventValue, fieldsObject);
+                {% endif %}
+            }
+
+            function googleTranslateElementInit() {
+                $('#google_translate_element').html('');
+
+                new google.translate.TranslateElement(
+                    {pageLanguage: 'en'}, 'google_translate_element'
+                );
+
+                $('#google_translate_element select').on('change', function() {
+                    var language = $('#google_translate_element select option:selected').text();
+
+                    googleAnalyticsEvent('Translate', 'click', language);
+                });
+            }
+        </script>
+
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
+        {% block scripts '' %}
+
+        {% if site.google_analytics_tracking_id %}
+            <script type="text/javascript">
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', '{{site.google_analytics_tracking_id}}', 'auto');
+                ga('send', 'pageview');
+            </script>
+        {% endif %}
+
+        {% block scripts_after '' %}
+    </body>
+</html>

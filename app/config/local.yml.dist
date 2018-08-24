@@ -1,3 +1,0 @@
-parameters:
-    doctrine.search.algolia.admin_api_key: 'abcd'
-    doctrine.projects_path: '%kernel.root_dir%/../projects'

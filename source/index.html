@@ -2,11 +2,6 @@
 layout: default
 title: Home
 menuSlug: home
-generator: pagination
-pagination:
-    max_per_page: 10000
-use:
-    - posts
 ---
 
 {% block title 'Doctrine, The Open-Source PHP ORM and Persistence Tools Project' %}
@@ -43,8 +38,8 @@ use:
             <div class="card mb-4">
                 <h5 class="card-header">Latest Blog Posts</h5>
                 <ul class="list-group list-group-flush">
-                    {% for post in page.pagination.items|slice(0, 5) %}
-                        <li class="list-group-item"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+                    {% for post in get_blog_posts()|slice(0, 5) %}
+                        <li class="list-group-item"><a href="{{ site.url }}{{ post.url }}">{{ post.parameters.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

@@ -1,6 +1,5 @@
 ---
-use: ["posts"]
-permalink: sitemap.xml
+permalink: /sitemap.xml
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -11,7 +10,7 @@ permalink: sitemap.xml
         <priority>0.8</priority>
     </url>
 
-    {% for post in data.posts %}
+    {% for post in get_blog_posts() %}
         <url>
             <loc>{{ site.url }}{{ post.url }}</loc>
             <lastmod>{{ post.date|date('c') }}</lastmod>

@@ -1,0 +1,3 @@
+parameters:
+    doctrine.website.algolia.admin_api_key: 'abcd'
+    doctrine.website.projects_path: '%doctrine.website.root_dir%/projects'

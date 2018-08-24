@@ -2,6 +2,7 @@
 layout: default
 title: Contribute to Website
 menuSlug: contribute
+permalink: /contribute/website/index.html
 ---
 
 # Contribute to Website
@@ -60,7 +61,7 @@ switch to the appropriate branches for each version of a project when
 you pass the `--sync-git` option.
 
 ```console
-$ ./doctrine build-docs --sync-git
+$ ./bin/console build-docs --sync-git
 ```
 
 ### API Documentation
@@ -69,7 +70,7 @@ By default only the RST docs are built. You need to pass the `--api`
 option to also generate the API docs:
 
 ```console
-$ ./doctrine build-docs --sync-git --api
+$ ./bin/console build-docs --sync-git --api
 ```
 
 We use [Sami](https://github.com/FriendsOfPHP/Sami) for generating the PHP
@@ -80,7 +81,7 @@ API documentation for each project.
 To build the Algolia search indexes pass the `--search` option:
 
 ```console
-$ ./doctrine build-docs --sync-git --search
+$ ./bin/console build-docs --sync-git --search
 ```
 
 You will need to have the `doctrine.search.algolia.admin_api_key` parameter in
@@ -91,21 +92,11 @@ You will need to have the `doctrine.search.algolia.admin_api_key` parameter in
 Now you are ready to build the website for the first time:
 
 ```console
-$ ./doctrine build-website
+$ ./bin/console build-website
 ```
 
 Go take a look at `lcl.doctrine-project.org` and the local website should render.
 The built code for the website is written to `/data/doctrine-website/build-dev`.
-
-## Watch for Changes
-
-You can watch for changes in the source code and automatically build the website:
-
-```console
-$ ./doctrine watch
-```
-
-The browser will automatically refresh after the build finishes.
 
 ## Submitting Pull Requests
 

@@ -1,0 +1,5 @@
+imports:
+    - config.yml
+
+parameters:
+    doctrine.website.url: 'https://www.doctrine-project.org'

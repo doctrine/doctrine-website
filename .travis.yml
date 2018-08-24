@@ -18,26 +18,37 @@ install:
   - rm composer.lock
   - travis_retry composer update -n --prefer-dist
 
-script:
-    - cp app/config/local.yml.dist app/config/local.yml
-    - ./vendor/bin/sculpin build-docs --sync-git
-    - ./vendor/bin/sculpin build-website
-    - ./vendor/bin/phpunit --debug
-
 jobs:
   include:
-    - stage: Coverage
+    - stage: Test
+      env: DEPENDENCIES=low
+      install:
+        - rm composer.lock
+        - travis_retry composer update --prefer-dist --prefer-lowest
+      script:
+        - cp config/local.yml.dist config/local.yml
+        - ./vendor/bin/phpunit
+
+    - stage: Test
+      env: COVERAGE
       before_script:
         - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
         - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
       script:
+        - cp config/local.yml.dist config/local.yml
+        - ./bin/console build-docs --sync-git
+        - ./bin/console build-website
         - ./vendor/bin/phpunit --coverage-clover clover.xml
       after_script:
         - wget https://scrutinizer-ci.com/ocular.phar
         - php ocular.phar code-coverage:upload --format=php-clover clover.xml
 
-    - stage: Coding standard
-      install:
-        - travis_retry composer install -n --prefer-dist
-      script:
-        - ./vendor/bin/phpcs
+    - stage: Code Quality
+      env: CODING_STANDARDS
+      install: travis_retry composer install --prefer-dist
+      script: ./vendor/bin/phpcs
+
+    - stage: Code Quality
+      env: STATIC_ANALYSIS
+      install: travis_retry composer install --prefer-dist
+      script: vendor/bin/phpstan analyse

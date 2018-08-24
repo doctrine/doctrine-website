@@ -1,0 +1,5 @@
+imports:
+    - { resource: config.yml }
+
+parameters:
+    doctrine.website.url: 'https://staging.doctrine-project.org'

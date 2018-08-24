@@ -2,6 +2,7 @@
 layout: default
 title: Maintainer Workflow
 menuSlug: contribute
+permalink: /contribute/maintainer/index.html
 ---
 
 Maintainer Workflow

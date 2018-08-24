@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true" public="false">
+            <bind key="$rootDir">%doctrine.website.root_dir%</bind>
+            <bind key="$env">%doctrine.website.env%</bind>
+            <bind key="$projectsPath">%doctrine.website.projects_path%</bind>
+            <bind key="$sourcePath">%doctrine.website.source_path%</bind>
+            <bind key="$projects">%doctrine.website.projects%</bind>
+            <bind key="$teamMembers">%doctrine.website.team_members%</bind>
+            <bind key="$templatesPath">%doctrine.website.templates_path%</bind>
+        </defaults>
+
+        <prototype namespace="Doctrine\Website\" resource="../lib/*" />
+
+        <service id="Doctrine\Website\Application" autowire="true" public="true" />
+
+        <service id="Doctrine\RST\Builder">
+            <argument type="service" id="Doctrine\Website\RST\Kernel" />
+        </service>
+
+        <service id="Doctrine\RST\HTML\Kernel" autowire="true" />
+        <service id="Highlight\Highlighter" autowire="true" />
+        <service id="Parsedown" class="Parsedown" autowire="true" />
+        <service id="Symfony\Component\Console\Application" autowire="true" />
+        <service id="Symfony\Component\Filesystem\Filesystem" autowire="true" />
+
+        <service id="AlgoliaSearch\Client">
+            <argument>%doctrine.website.algolia.app_id%</argument>
+            <argument>%doctrine.website.algolia.admin_api_key%</argument>
+        </service>
+
+        <service id="Doctrine\Website\Site">
+            <argument>%doctrine.website.title%</argument>
+            <argument>%doctrine.website.subtitle%</argument>
+            <argument>%doctrine.website.url%</argument>
+            <argument>%doctrine.website.keywords%</argument>
+            <argument>%doctrine.website.description%</argument>
+            <argument>%doctrine.website.env%</argument>
+        </service>
+
+        <service id="Doctrine\Website\RST\Kernel" autowire="true" public="true">
+            <argument type="service" id="Doctrine\RST\HTML\Kernel" />
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\RST\Directive\CautionDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\CodeBlockDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\ConfigurationBlockDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\HintDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\IndexDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\NoteDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\NoticeDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\RoleDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\SectionAuthorDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\TipDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\TocDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\TocHeaderDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\VersionAddedDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\WarningDirective" />
+            </argument>
+        </service>
+    </services>
+</container>

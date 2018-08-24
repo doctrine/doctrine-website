@@ -2,6 +2,7 @@
 layout: default
 title: Contribute
 menuSlug: contribute
+permalink: /contribute/index.html
 ---
 
 Contribute
