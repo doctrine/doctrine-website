@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
-use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectFactory;
 use Doctrine\Website\Projects\ProjectRepository;
 use PHPUnit\Framework\TestCase;
@@ -41,22 +40,18 @@ class ProjectRepositoryTest extends TestCase
     {
         $orm = $this->projectRepository->findOneBySlug('orm');
 
-        self::assertInstanceOf(Project::class, $orm);
         self::assertSame('ORM', $orm->getName());
 
         $orm = $this->projectRepository->findOneBySlug('doctrine-orm');
 
-        self::assertInstanceOf(Project::class, $orm);
         self::assertSame('ORM', $orm->getName());
 
         $dbal = $this->projectRepository->findOneBySlug('dbal');
 
-        self::assertInstanceOf(Project::class, $dbal);
         self::assertSame('DBAL', $dbal->getName());
 
         $dbal = $this->projectRepository->findOneBySlug('doctrine-dbal');
 
-        self::assertInstanceOf(Project::class, $dbal);
         self::assertSame('DBAL', $dbal->getName());
     }
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
-use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -20,8 +19,8 @@ class ProjectFactoryTest extends TestCase
 
     public function testCreate() : void
     {
-        $project = $this->projectFactory->create([]);
+        $project = $this->projectFactory->create(['slug' => 'test']);
 
-        self::assertInstanceOf(Project::class, $project);
+        self::assertSame('test', $project->getSlug());
     }
 }

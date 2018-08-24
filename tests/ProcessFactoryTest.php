@@ -6,7 +6,6 @@ namespace Doctrine\Website\Tests;
 
 use Doctrine\Website\ProcessFactory;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Process\Process;
 
 class ProcessFactoryTest extends TestCase
 {
@@ -25,7 +24,6 @@ class ProcessFactoryTest extends TestCase
         $process = $this->processFactory->create($command);
 
         self::assertSame($command, $process->getCommandLine());
-        self::assertInstanceOf(Process::class, $process);
     }
 
     public function testRun() : void

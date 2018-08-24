@@ -44,7 +44,7 @@ class ProjectExtensionTest extends TestCase
             ->method('findAll')
             ->willReturn($projects);
 
-        self::assertSame($projects, $this->projectExtension->getProjects());
+        self::assertCount(2, $this->projectExtension->getProjects());
     }
 
     public function testGetProject() : void
