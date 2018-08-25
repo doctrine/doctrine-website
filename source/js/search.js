@@ -1,4 +1,4 @@
-var Search = function(projectSlug, versionSlug) {
+var Search = function(projectSlug, versionSlug, searchBoxSettings) {
     var searchParameters = {
         tagFilters: [],
         hitsPerPage: 5
@@ -36,10 +36,7 @@ var Search = function(projectSlug, versionSlug) {
     });
 
     search.addWidget(
-        instantsearch.widgets.searchBox({
-            container: '#search-box',
-            placeholder: 'Search'
-        })
+        instantsearch.widgets.searchBox(searchBoxSettings)
     );
 
     search.addWidget(

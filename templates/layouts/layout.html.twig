@@ -219,9 +219,14 @@
             var projectSlug = '{{ project.slug ? project.slug : null }}';
             var versionSlug = '{{ page.docsVersion ? page.docsVersion : "latest" }}';
 
+            var searchBoxSettings = {
+                container: '#search-box',
+                placeholder: '{{ get_search_box_placeholder(project, page.docsVersion) }}'
+            };
+
             new Main();
 
-            new Search(projectSlug, versionSlug);
+            new Search(projectSlug, versionSlug, searchBoxSettings);
 
             function googleAnalyticsEvent(eventCategory, eventAction, eventLabel, eventValue, fieldsObject) {
                 {% if site.google_analytics_tracking_id %}
