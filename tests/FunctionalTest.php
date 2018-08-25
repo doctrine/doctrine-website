@@ -150,6 +150,21 @@ class FunctionalTest extends TestCase
         self::assertInstanceOf(SimpleXMLElement::class, $xml);
     }
 
+    public function testSearchBoxPlaceholder() : void
+    {
+        $crawler = $this->assertValid('/index.html');
+
+        self::assertContains("placeholder: 'Search'", $crawler->html());
+
+        $crawler = $this->assertValid('/projects/migrations.html');
+
+        self::assertContains("placeholder: 'Search Migrations'", $crawler->html());
+
+        $crawler = $this->assertValid('/projects/doctrine-migrations/en/1.7/index.html');
+
+        self::assertContains("placeholder: 'Search Migrations 1.7'", $crawler->html());
+    }
+
     private function getFullPath(string $path) : string
     {
         $fullPath = $this->buildDir . $path;

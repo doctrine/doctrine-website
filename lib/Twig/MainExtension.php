@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Twig;
 
+use Doctrine\Website\Projects\Project;
 use Parsedown;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -37,6 +38,7 @@ class MainExtension extends Twig_Extension
     public function getFunctions() : array
     {
         return [
+            new Twig_SimpleFunction('get_search_box_placeholder', [$this, 'getSearchBoxPlaceholder']),
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
             new Twig_SimpleFunction('get_docs_urls', [$this, 'getDocsUrls']),
             new Twig_SimpleFunction('get_api_docs_urls', [$this, 'getApiDocsUrls']),
@@ -51,6 +53,23 @@ class MainExtension extends Twig_Extension
         return [
             new Twig_SimpleFilter('markdown', [$this->parsedown, 'text']),
         ];
+    }
+
+    public function getSearchBoxPlaceholder(?Project $project = null, ?string $version = null) : string
+    {
+        $projectVersion = $project !== null && is_string($version)
+            ? $project->getVersion($version)
+            : null;
+
+        if ($project !== null && $projectVersion !== null) {
+            return 'Search ' . $project->getShortName() . ' ' . $projectVersion->getName();
+        }
+
+        if ($project !== null) {
+            return 'Search ' . $project->getShortName();
+        }
+
+        return 'Search';
     }
 
     public function getAssetUrl(string $path, string $siteUrl) : string
