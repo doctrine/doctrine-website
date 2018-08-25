@@ -39,10 +39,10 @@ $ cp pre-commit .git/hooks/pre-commit
 
 ## Configuration
 
-Copy the `app/config/local.yml.dist` config file that came with the repository:
+Copy the `config/local.yml.dist` config file that came with the repository:
 
 ```console
-$ cp app/config/local.yml.dist app/config/local.yml
+$ cp config/local.yml.dist config/local.yml
 ```
 
 ## Edit your Hosts File
@@ -84,8 +84,8 @@ To build the Algolia search indexes pass the `--search` option:
 $ ./bin/console build-docs --sync-git --search
 ```
 
-You will need to have the `doctrine.search.algolia.admin_api_key` parameter in
-`app/config/local.yml` in order to update the Algolia search indexes.
+You will need to have the `doctrine.website.algolia.admin_api_key` parameter in
+`config/local.yml` in order to update the Algolia search indexes.
 
 ## Build the Website
 
