@@ -30,9 +30,9 @@ class SourceFileRenderer
         $pageParameters = $this->preparePageParameters($sourceFile);
 
         return $this->twigRenderer->render($template, [
-                'page' => $pageParameters,
-                'site' => $this->site,
-            ]);
+            'page' => $pageParameters,
+            'site' => $this->site,
+        ]);
     }
 
     /**

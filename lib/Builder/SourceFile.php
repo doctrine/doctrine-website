@@ -20,6 +20,8 @@ class SourceFile
 
     private const MARKDOWN_EXTENSION = 'md';
 
+    private const RESTRUCTURED_TEXT_EXTENSION = 'rst';
+
     /** @var string */
     private $extension;
 
@@ -82,6 +84,11 @@ class SourceFile
     public function isMarkdown() : bool
     {
         return $this->getExtension() === self::MARKDOWN_EXTENSION;
+    }
+
+    public function isRestructuredText() : bool
+    {
+        return $this->getExtension() === self::RESTRUCTURED_TEXT_EXTENSION;
     }
 
     public function isTwig() : bool
