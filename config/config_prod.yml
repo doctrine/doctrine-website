@@ -3,3 +3,4 @@ imports:
 
 parameters:
     doctrine.website.url: 'https://www.doctrine-project.org'
+    doctrine.website.google_analytics_tracking_id: 'UA-288343-7'

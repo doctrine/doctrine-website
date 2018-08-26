@@ -2,6 +2,7 @@
 title: "The Switch to git"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

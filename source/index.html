@@ -2,6 +2,7 @@
 layout: default
 title: Home
 menuSlug: home
+controller: ['Doctrine\Website\Controllers\HomepageController', 'index']
 ---
 
 {% block title 'Doctrine, The Open-Source PHP ORM and Persistence Tools Project' %}
@@ -38,8 +39,8 @@ menuSlug: home
             <div class="card mb-4">
                 <h5 class="card-header">Latest Blog Posts</h5>
                 <ul class="list-group list-group-flush">
-                    {% for post in get_blog_posts()|slice(0, 5) %}
-                        <li class="list-group-item"><a href="{{ site.url }}{{ post.url }}">{{ post.parameters.title }}</a></li>
+                    {% for post in blogPosts %}
+                        <li class="list-group-item"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -49,7 +50,7 @@ menuSlug: home
             <div class="card mb-4">
                 <h5 class="card-header">Projects</h5>
                 <ul class="list-group list-group-flush">
-                    {% for project in get_projects() if project.active is defined and project.active == true %}
+                    {% for project in projects if project.active is defined and project.active == true %}
                         <li class="list-group-item notranslate"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></li>
                     {% endfor %}
                 </ul>

@@ -2,6 +2,7 @@
 title: "Doctrine 2.0.7 and EOL"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: []

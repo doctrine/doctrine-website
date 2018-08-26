@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Tests\Twig;
+namespace Doctrine\Website\Tests\Team;
 
 use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Twig\TeamExtension;
+use Doctrine\Website\Team\TeamRepository;
 use PHPUnit\Framework\TestCase;
 use function array_keys;
 
-class TeamExtensionTest extends TestCase
+class TeamRepositoryTest extends TestCase
 {
-    /** @var TeamExtension */
-    private $teamExtension;
+    /** @var TeamRepository */
+    private $teamRepository;
 
     protected function setUp() : void
     {
-        $this->teamExtension = new TeamExtension([
+        $this->teamRepository = new TeamRepository([
             'ocramius' => [
                 'active' => true,
                 'core' => true,
@@ -36,7 +36,7 @@ class TeamExtensionTest extends TestCase
 
     public function testGetTeamMembers() : void
     {
-        $teamMembers = $this->teamExtension->getTeamMembers();
+        $teamMembers = $this->teamRepository->getTeamMembers();
 
         self::assertSame([
             'jwage',
@@ -47,21 +47,21 @@ class TeamExtensionTest extends TestCase
 
     public function testGetActiveCoreTeamMembers() : void
     {
-        $teamMembers = $this->teamExtension->getActiveCoreTeamMembers();
+        $teamMembers = $this->teamRepository->getActiveCoreTeamMembers();
 
         self::assertSame(['ocramius'], array_keys($teamMembers));
     }
 
     public function testGetActiveDocumentationTeamMembers() : void
     {
-        $teamMembers = $this->teamExtension->getActiveDocumentationTeamMembers();
+        $teamMembers = $this->teamRepository->getActiveDocumentationTeamMembers();
 
         self::assertSame(['jwage'], array_keys($teamMembers));
     }
 
     public function testGetInactiveTeamMembers() : void
     {
-        $teamMembers = $this->teamExtension->getInactiveTeamMembers();
+        $teamMembers = $this->teamRepository->getInactiveTeamMembers();
 
         self::assertSame(['romanb'], array_keys($teamMembers));
     }
@@ -70,7 +70,7 @@ class TeamExtensionTest extends TestCase
     {
         $project = new Project(['slug' => 'orm']);
 
-        $teamMembers = $this->teamExtension->getAllProjectTeamMembers($project);
+        $teamMembers = $this->teamRepository->getAllProjectTeamMembers($project);
 
         self::assertSame([
             'jwage',
@@ -83,7 +83,7 @@ class TeamExtensionTest extends TestCase
     {
         $project = new Project(['slug' => 'orm']);
 
-        $teamMembers = $this->teamExtension->getActiveProjectTeamMembers($project);
+        $teamMembers = $this->teamRepository->getActiveProjectTeamMembers($project);
 
         self::assertSame([
             'jwage',
@@ -95,7 +95,7 @@ class TeamExtensionTest extends TestCase
     {
         $project = new Project(['slug' => 'orm']);
 
-        $teamMembers = $this->teamExtension->getInactiveProjectTeamMembers($project);
+        $teamMembers = $this->teamRepository->getInactiveProjectTeamMembers($project);
 
         self::assertSame(['romanb'], array_keys($teamMembers));
     }

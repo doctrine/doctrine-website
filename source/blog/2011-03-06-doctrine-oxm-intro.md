@@ -2,6 +2,7 @@
 title: "A Doctrine OXM Introduction"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: richardfullmer
 authorEmail:
 categories: []

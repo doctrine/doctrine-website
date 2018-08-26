@@ -2,6 +2,7 @@
 title: "First symfony 1.1 workshop in Atlanta, USA"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

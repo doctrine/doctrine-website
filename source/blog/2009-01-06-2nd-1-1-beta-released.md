@@ -2,6 +2,7 @@
 title: "2nd 1.1 Beta Released!"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: [release]

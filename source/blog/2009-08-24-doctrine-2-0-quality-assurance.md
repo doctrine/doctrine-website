@@ -2,6 +2,7 @@
 title: "Doctrine 2.0 Quality Assurance"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: guilhermeblanco
 authorEmail:
 categories: []

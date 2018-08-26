@@ -2,6 +2,7 @@
 title: "Symfony Live 2012 Hackday"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: []

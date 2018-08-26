@@ -15,3 +15,4 @@ parameters:
         focused on database storage and object mapping. The core projects
         are the Object Relational Mapper (ORM) and the Database Abstraction
         Layer (DBAL) it is built upon.
+    doctrine.website.google_analytics_tracking_id: ''

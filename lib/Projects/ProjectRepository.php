@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
+use InvalidArgumentException;
 use function array_map;
+use function ksort;
+use function sprintf;
 
 class ProjectRepository
 {
@@ -30,6 +33,8 @@ class ProjectRepository
                 return $this->projectFactory->create($project);
             }
         }
+
+        throw new InvalidArgumentException(sprintf('Could not find Project with slug "%s"', $slug));
     }
 
     /**
@@ -37,8 +42,12 @@ class ProjectRepository
      */
     public function findAll() : array
     {
-        return array_map(function (array $project) {
+        $projects = array_map(function (array $project) : Project {
             return $this->projectFactory->create($project);
         }, $this->projects);
+
+        ksort($projects);
+
+        return $projects;
     }
 }

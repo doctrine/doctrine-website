@@ -24,6 +24,9 @@ class Site
     /** @var string */
     private $env;
 
+    /** @var string */
+    private $googleAnalyticsTrackingId;
+
     /**
      * @param string[] $keywords
      */
@@ -33,14 +36,16 @@ class Site
         string $url,
         array $keywords,
         string $description,
-        string $env
+        string $env,
+        string $googleAnalyticsTrackingId
     ) {
-        $this->title       = $title;
-        $this->subtitle    = $subtitle;
-        $this->url         = $url;
-        $this->keywords    = $keywords;
-        $this->description = $description;
-        $this->env         = $env;
+        $this->title                     = $title;
+        $this->subtitle                  = $subtitle;
+        $this->url                       = $url;
+        $this->keywords                  = $keywords;
+        $this->description               = $description;
+        $this->env                       = $env;
+        $this->googleAnalyticsTrackingId = $googleAnalyticsTrackingId;
     }
 
     public function getTitle() : string
@@ -74,5 +79,10 @@ class Site
     public function getEnv() : string
     {
         return $this->env;
+    }
+
+    public function googleAnalyticsTrackingId() : string
+    {
+        return $this->googleAnalyticsTrackingId;
     }
 }

@@ -2,6 +2,7 @@
 title: "Special Price Offer: Symfony 1.2 + Doctrine Training Workshop"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

@@ -2,6 +2,7 @@
 title: "Doctrine 2 First Stable Release"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: [release]

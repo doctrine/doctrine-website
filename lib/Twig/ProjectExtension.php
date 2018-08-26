@@ -10,7 +10,6 @@ use Doctrine\Website\Projects\ProjectVersion;
 use Twig_Extension;
 use Twig_SimpleFunction;
 use function file_exists;
-use function ksort;
 use function str_replace;
 use function strpos;
 
@@ -45,11 +44,7 @@ class ProjectExtension extends Twig_Extension
      */
     public function getProjects() : array
     {
-        $projects = $this->projectRepository->findAll();
-
-        ksort($projects);
-
-        return $projects;
+        return $this->projectRepository->findAll();
     }
 
     public function getProject(string $slug) : Project

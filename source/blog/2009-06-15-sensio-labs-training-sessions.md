@@ -2,6 +2,7 @@
 title: "Sensio Labs Training Sessions"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

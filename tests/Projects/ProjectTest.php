@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class ProjectTest extends TestCase
@@ -142,7 +143,15 @@ class ProjectTest extends TestCase
     {
         $version = $this->project->getVersion('1.0');
 
-        self::assertInstanceOf(ProjectVersion::class, $version);
+        self::assertSame('1.0', $version->getName());
+    }
+
+    public function testGetVersionThrowsInvalidArgumentExceptionWithInvalidVersion() : void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Could not find version 10.0 for project orm');
+
+        $version = $this->project->getVersion('10.0');
 
         self::assertSame('1.0', $version->getName());
     }

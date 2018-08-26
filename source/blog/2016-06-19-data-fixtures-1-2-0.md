@@ -2,6 +2,7 @@
 title: "Doctrine Data-Fixtures 1.2.0 Released"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: [release]

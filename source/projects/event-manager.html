@@ -1,17 +1,8 @@
 ---
-layout: default
+layout: project
 title: Event Manager
 menuSlug: projects
 docsSlug: doctrine-event-manager
 permalink: none
+controller: ['Doctrine\Website\Controllers\ProjectController', 'view']
 ---
-
-{% set project = get_project(page.docsSlug) %}
-
-{% block meta_description project.description %}
-
-{% block meta_keywords project.keywords|join(',') %}
-
-{% block content %}
-    {% include "project.html.twig" with {project:get_project(page.docsSlug)} %}
-{% endblock %}

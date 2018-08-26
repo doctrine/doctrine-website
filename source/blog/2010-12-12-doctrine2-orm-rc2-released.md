@@ -2,6 +2,7 @@
 title: "Doctrine DBAL RC5 and ORM RC2 released"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: [release]

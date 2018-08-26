@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "php": "^7.1",
         "algolia/algoliasearch-client-php": "^1.27",
         "doctrine/rst-parser": "dev-master",
         "erusev/parsedown": "^1.7",

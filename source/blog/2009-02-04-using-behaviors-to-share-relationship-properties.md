@@ -2,6 +2,7 @@
 title: "Using Behaviors to Share Relationship Properties"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

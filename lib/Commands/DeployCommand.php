@@ -17,9 +17,9 @@ class DeployCommand extends Command
 
     public function __construct(Deployer $deployer)
     {
-        parent::__construct();
-
         $this->deployer = $deployer;
+
+        parent::__construct();
     }
 
     protected function configure() : void
@@ -37,8 +37,10 @@ class DeployCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : void
+    protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $this->deployer->deploy($output);
+
+        return 0;
     }
 }

@@ -70,6 +70,7 @@ docsIndex: %s
 docsVersion: "%s"
 sourceFile: "%s"
 permalink: "none"
+controller: ['Doctrine\Website\Controllers\DocumentationController', 'view']
 ---
 %s
 TEMPLATE;

@@ -110,6 +110,8 @@
     </head>
     <body>
         {% block navbar %}
+            {% set menuSlug = page.menuSlug is defined and page.menuSlug ? page.menuSlug : '' %}
+
             <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap">
                 <a class="navbar-brand text-hide" href="{{ site.url }}/"><img src="{{ get_asset_url('/images/doctrine-logo.svg', site.url) }}" />{{ site.title }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,7 +119,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown{% if page.menuSlug == 'projects' %} active{% endif %}">
+                        <li class="nav-item dropdown{% if menuSlug == 'projects' %} active{% endif %}">
                             <a class="nav-link dropdown-toggle" href="{{ site.url }}/projects.html" id="navbarProjectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Projects
                             </a>
@@ -128,7 +130,7 @@
                                 <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ site.url }}/projects.html">View All</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown{% if page.menuSlug == 'contribute' %} active{% endif %}">
+                        <li class="nav-item dropdown{% if menuSlug == 'contribute' %} active{% endif %}">
                             <a class="nav-link dropdown-toggle" href="{{ site.url }}/contribute/" id="navbarContributeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contribute</a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarContributeDropdown">
@@ -137,13 +139,13 @@
                                 <a class="dropdown-item" href="{{ site.url }}/contribute/website/">Contribute to Website</a>
                             </div>
                         </li>
-                        <li class="nav-item{% if page.menuSlug == 'community' %} active{% endif %}">
+                        <li class="nav-item{% if menuSlug == 'community' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/community/">Community</a>
                         </li>
-                        <li class="nav-item{% if page.menuSlug == 'blog' %} active{% endif %}">
+                        <li class="nav-item{% if menuSlug == 'blog' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/blog/">Blog</a>
                         </li>
-                        <li class="nav-item{% if page.menuSlug == 'team' %} active{% endif %}">
+                        <li class="nav-item{% if menuSlug == 'team' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/team/">Team</a>
                         </li>
                     </ul>
@@ -179,10 +181,6 @@
             {% endblock %}
         {% endblock %}
 
-        {% if page.docsSlug %}
-            {% set project = get_project(page.docsSlug) %}
-        {% endif %}
-
         <button id="back-to-top" title="Go to top">Top</button>
 
         <script
@@ -215,13 +213,21 @@
         <script src="{{ get_asset_url('/js/main.js', site.url) }}"></script>
         <script src="{{ get_asset_url('/js/search.js', site.url) }}"></script>
 
+        {% set project = null %}
+
+        {% if page.docsSlug is defined and page.docsSlug %}
+            {% set project = get_project(page.docsSlug) %}
+        {% endif %}
+
+        {% set docsVersion = page.docsVersion ?? null %}
+
         <script type="text/javascript">
-            var projectSlug = '{{ project.slug ? project.slug : null }}';
-            var versionSlug = '{{ page.docsVersion ? page.docsVersion : "latest" }}';
+            var projectSlug = '{{ project and project.slug ? project.slug : null }}';
+            var versionSlug = '{{ docsVersion ? docsVersion : "latest" }}';
 
             var searchBoxSettings = {
                 container: '#search-box',
-                placeholder: '{{ get_search_box_placeholder(project, page.docsVersion) }}'
+                placeholder: '{{ get_search_box_placeholder(project, docsVersion) }}'
             };
 
             new Main();
@@ -229,7 +235,7 @@
             new Search(projectSlug, versionSlug, searchBoxSettings);
 
             function googleAnalyticsEvent(eventCategory, eventAction, eventLabel, eventValue, fieldsObject) {
-                {% if site.google_analytics_tracking_id %}
+                {% if site.googleAnalyticsTrackingId %}
                 ga('send', 'event', eventCategory, eventAction, eventLabel, eventValue, fieldsObject);
                 {% else %}
                 console.log(eventCategory, eventAction, eventLabel, eventValue, fieldsObject);
@@ -255,14 +261,14 @@
 
         {% block scripts '' %}
 
-        {% if site.google_analytics_tracking_id %}
+        {% if site.googleAnalyticsTrackingId %}
             <script type="text/javascript">
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                ga('create', '{{site.google_analytics_tracking_id}}', 'auto');
+                ga('create', '{{ site.googleAnalyticsTrackingId }}', 'auto');
                 ga('send', 'pageview');
             </script>
         {% endif %}
