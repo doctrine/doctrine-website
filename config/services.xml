@@ -22,6 +22,11 @@
             <argument type="service" id="Doctrine\Website\RST\Kernel" />
         </service>
 
+        <service id="Doctrine\RST\Parser">
+            <argument></argument>
+            <argument type="service" id="Doctrine\Website\RST\Kernel" />
+        </service>
+
         <service id="Doctrine\RST\HTML\Kernel" autowire="true" />
         <service id="Highlight\Highlighter" autowire="true" />
         <service id="Parsedown" class="Parsedown" autowire="true" />

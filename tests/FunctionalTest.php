@@ -165,6 +165,30 @@ class FunctionalTest extends TestCase
         self::assertContains("placeholder: 'Search Migrations 1.7'", $crawler->html());
     }
 
+    public function testContribute() : void
+    {
+        $crawler = $this->assertValid('/contribute/index.html');
+
+        self::assertContains('<a id="contribute"></a>', $crawler->html());
+        self::assertContains('<h1>Contribute</h1>', $crawler->html());
+    }
+
+    public function testContributeMaintainer() : void
+    {
+        $crawler = $this->assertValid('/contribute/maintainer/index.html');
+
+        self::assertContains('<a id="maintainer-workflow"></a>', $crawler->html());
+        self::assertContains('<h1>Maintainer Workflow</h1>', $crawler->html());
+    }
+
+    public function testContributeWebsite() : void
+    {
+        $crawler = $this->assertValid('/contribute/website/index.html');
+
+        self::assertContains('<a id="contribute-to-website"></a>', $crawler->html());
+        self::assertContains('<h1>Contribute to Website</h1>', $crawler->html());
+    }
+
     private function getFullPath(string $path) : string
     {
         $fullPath = $this->buildDir . $path;
