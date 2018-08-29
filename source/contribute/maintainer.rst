@@ -70,6 +70,26 @@ edit your ``.git/config`` as following:
         # add this:
         fetch = +refs/pull/*/head:refs/remotes/doctrine/pr/*
 
+Distinguishing features, bugs and critical fixes
+------------------------------------------------
+
+The primary role of a maintainer, besides being also a contributor,
+is to sort incoming proposals by their category:
+
+-  **new features** are additions that provide new API or new behavior
+   that was previously not exposed by the project
+-  **improvements** are additions that improve existing API by making
+   it more clear, by improving the usability and performance, or by
+   verifying existing behavior via refactoring, new tests or static
+   analysis.
+-  **bug fixes** are changes to the codebase that do correct invalid
+   behaviour.
+-  **deprecations** are changes to the codebase that do mark existing
+   API as "to be removed in future"
+-  **backwards-compatibility breakages** (or **BC breaks** in short)
+   are modifications to the existing API or implementation that would
+   result in downstream users having to correct their software to
+   adapt to the new changes.
 
 Branching Model
 ---------------
