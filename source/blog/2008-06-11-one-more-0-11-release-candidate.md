@@ -2,6 +2,7 @@
 title: "One more 0.11 Release Candidate"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: [release]

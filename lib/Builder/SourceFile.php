@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Builder;
 
-use DateTime;
+use DateTimeImmutable;
 use function count;
 use function explode;
 use function in_array;
@@ -31,17 +31,14 @@ class SourceFile
     /** @var string */
     private $contents;
 
-    /** @var mixed[] */
-    private $parameters = [];
+    /** @var SourceFileParameters */
+    private $parameters;
 
-    /**
-     * @param mixed[] $parameters
-     */
     public function __construct(
         string $extension,
         string $writePath,
         string $contents,
-        array $parameters
+        SourceFileParameters $parameters
     ) {
         $this->extension  = $extension;
         $this->writePath  = $writePath;
@@ -56,24 +53,24 @@ class SourceFile
 
     public function getUrl() : string
     {
-        return $this->parameters['url'];
+        return (string) $this->parameters->getParameter('url');
     }
 
-    public function getDate() : DateTime
+    public function getDate() : DateTimeImmutable
     {
         $e = explode('/', $this->getUrl());
 
         if (count($e) < 4) {
-            return new DateTime();
+            return new DateTimeImmutable();
         }
 
         $date = strtotime(sprintf('%s/%s/%s', $e[1], $e[2], $e[3]));
 
         if ($date === false) {
-            return new DateTime();
+            return new DateTimeImmutable();
         }
 
-        return (new DateTime())->setTimestamp($date);
+        return (new DateTimeImmutable())->setTimestamp($date);
     }
 
     public function getExtension() : string
@@ -111,10 +108,7 @@ class SourceFile
         return $this->contents;
     }
 
-    /**
-     * @return mixed[]
-     */
-    public function getParameters() : array
+    public function getParameters() : SourceFileParameters
     {
         return $this->parameters;
     }
@@ -124,6 +118,6 @@ class SourceFile
      */
     public function getParameter(string $key)
     {
-        return $this->parameters[$key] ?? '';
+        return $this->parameters->getParameter($key);
     }
 }

@@ -2,6 +2,7 @@
 title: "Doctrine Common 2.1.3, DBAL 2.1.5 and ORM 2.1.3 Releases"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Benjamin Eberlei
 authorEmail:
 categories: [release]

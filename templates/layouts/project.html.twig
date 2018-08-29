@@ -1,0 +1,93 @@
+{% extends 'layouts/default.html.twig' %}
+
+{% block meta_description project.description %}
+
+{% block meta_keywords project.keywords|join(',') %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ site.url }}/projects.html">Projects</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ project.shortName }}</li>
+        </ol>
+    </nav>
+
+    {% if project.archived == true %}
+        <div class="alert caution bg-light-yellow text-dark border"><i class="fas fa-exclamation-circle text-warning mr-2"></i> This project is no longer maintained and has been archived.</div>
+    {% elseif project.active == false %}
+        <div class="alert warning bg-light-yellow text-dark border"><i class="fas fa-exclamation-circle text-warning mr-2"></i> This project is not being actively maintained. If you are interested in helping to maintain this project, take a look at the open issues on <a href="https://github.com/doctrine/{{ project.repositoryName }}/" target="_blank">GitHub</a> and submit pull requests.</div>
+    {% endif %}
+
+    <h2>{{ project.name }}</h2>
+
+    <p class="lead">{{ project.description }}</p>
+
+    <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">Docs</a>
+
+    <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">API Docs</a>
+
+    <a href="https://github.com/doctrine/{{ project.repositoryName }}/" class="btn btn-primary" target="_blank">GitHub</a>
+
+    <hr />
+
+    {% if project.composerPackageName %}
+        <h2>Install</h2>
+
+        <div class="console"><pre><code class="console"><span class="noselect">$ </span>composer require {{ project.composerPackageName }}</code></pre></div>
+    {% endif %}
+
+    {% if project.versions|length > 1 %}
+        <h2>Versions</h2>
+
+        <div class="border-left border-right border-bottom rounded mb-4">
+            <table class="table mb-0">
+                <tbody>
+                    {% for version in project.versions %}
+                        <tr{% if not version.maintained %} style="opacity: .40;"{% endif %}>
+                            <td{% if version.current %} class="font-weight-bold"{% endif %}>
+                                {{ version.name }}
+
+                                {% if version.current %}
+                                    (current)
+                                {% endif %}
+
+                                {% if not version.maintained %}
+                                    (unmaintained)
+                                {% endif %}
+
+                                {% if version.upcoming %}
+                                    (upcoming)
+                                {% endif %}
+                            </td>
+                            <td><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Docs</a></td>
+                            <td><a href="{{ site.url }}/api/{{ project.slug }}/{{ version.slug ?? 'latest' }}/index.html">API Docs</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    {% if project.archived or not project.active %}
+        {% if allTeamMembers %}
+            <h2>Team</h2>
+
+            {% include "team-members-short-list.html.twig" with {members:allTeamMembers} %}
+        {% endif %}
+
+    {% else %}
+
+        {% if activeTeamMembers %}
+            <h2>Team</h2>
+
+            {% include "team-members-short-list.html.twig" with {members:activeTeamMembers} %}
+        {% endif %}
+
+        {% if inactiveTeamMembers %}
+            <h2 class="mt-2">Inactive</h2>
+
+            {% include "team-members-short-list.html.twig" with {members:inactiveTeamMembers} %}
+        {% endif %}
+
+    {% endif %}
+{% endblock %}

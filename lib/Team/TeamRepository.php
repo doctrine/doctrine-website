@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Twig;
+namespace Doctrine\Website\Team;
 
 use Closure;
 use Doctrine\Website\Projects\Project;
-use Twig_Extension;
-use Twig_SimpleFunction;
 use function array_filter;
 use function in_array;
 use function ksort;
 
-class TeamExtension extends Twig_Extension
+class TeamRepository
 {
     /** @var mixed[] */
     private $teamMembers;
@@ -23,21 +21,6 @@ class TeamExtension extends Twig_Extension
     public function __construct(array $teamMembers)
     {
         $this->teamMembers = $teamMembers;
-    }
-
-    /**
-     * @return Twig_SimpleFunction[]
-     */
-    public function getFunctions() : array
-    {
-        return [
-            new Twig_SimpleFunction('get_active_core_team_members', [$this, 'getActiveCoreTeamMembers']),
-            new Twig_SimpleFunction('get_active_documentation_team_members', [$this, 'getActiveDocumentationTeamMembers']),
-            new Twig_SimpleFunction('get_inactive_team_members', [$this, 'getInactiveTeamMembers']),
-            new Twig_SimpleFunction('get_active_project_team_members', [$this, 'getActiveProjectTeamMembers']),
-            new Twig_SimpleFunction('get_inactive_project_team_members', [$this, 'getInactiveProjectTeamMembers']),
-            new Twig_SimpleFunction('get_all_project_team_members', [$this, 'getAllProjectTeamMembers']),
-        ];
     }
 
     /**

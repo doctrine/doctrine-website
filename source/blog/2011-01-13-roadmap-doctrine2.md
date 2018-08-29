@@ -2,6 +2,7 @@
 title: "Whats next? Our Roadmap"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: []

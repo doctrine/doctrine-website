@@ -9,8 +9,10 @@ use Doctrine\Website\Builder\SourceFileRepository;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\Projects\ProjectVersion;
+use RuntimeException;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Throwable;
 use function chdir;
 use function file_exists;
 use function file_put_contents;
@@ -105,13 +107,24 @@ class WebsiteBuilder
         file_put_contents($path, $contents);
     }
 
+    /**
+     * @throws RuntimeException
+     */
     private function buildWebsite(string $buildDir) : void
     {
         // cleanup the build directory
         $this->filesystem->remove(glob($buildDir . '/*'));
 
         foreach ($this->sourceFileRepository->getFiles($buildDir) as $file) {
-            $this->sourceFileBuilder->buildFile($file, $buildDir);
+            try {
+                $this->sourceFileBuilder->buildFile($file, $buildDir);
+            } catch (Throwable $e) {
+                throw new RuntimeException(sprintf(
+                    'Failed building file "%s" with error "%s',
+                    $file->getWritePath(),
+                    $e->getMessage()
+                ));
+            }
         }
     }
 

@@ -8,8 +8,6 @@ use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Twig\MainExtension;
 use Parsedown;
 use PHPUnit\Framework\TestCase;
-use function current;
-use function sort;
 
 class MainExtensionTest extends TestCase
 {
@@ -63,16 +61,5 @@ class MainExtensionTest extends TestCase
         );
 
         self::assertSame('http://lcl.doctrine-project.org/js/main.js?4138a7', $url);
-    }
-
-    public function testGetDocsUrls() : void
-    {
-        $urls = $this->mainExtension->getDocsUrls();
-
-        sort($urls);
-
-        $first = current($urls);
-
-        self::assertSame('/projects/annotations.html', $first['url']);
     }
 }

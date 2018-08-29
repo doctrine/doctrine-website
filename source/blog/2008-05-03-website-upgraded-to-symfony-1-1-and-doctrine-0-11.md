@@ -2,6 +2,7 @@
 title: "Website upgraded to symfony 1.1 and Doctrine 0.11"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

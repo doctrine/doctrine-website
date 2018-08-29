@@ -2,6 +2,7 @@
 title: "Jira Issues Migration"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName:
 authorEmail:
 categories: []

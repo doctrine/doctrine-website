@@ -2,6 +2,7 @@
 title: "PHPCR ODM QueryBuilder v2"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: dantleech
 authorEmail:
 categories: []

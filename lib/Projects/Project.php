@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Doctrine\Website\Projects;
 
 use Closure;
+use InvalidArgumentException;
 use function array_filter;
 use function array_values;
+use function sprintf;
 
 class Project
 {
@@ -192,11 +194,20 @@ class Project
         });
     }
 
-    public function getVersion(string $slug) : ?ProjectVersion
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function getVersion(string $slug) : ProjectVersion
     {
-        return $this->getVersions(function (ProjectVersion $version) use ($slug) {
+        $projectVersion = $this->getVersions(function (ProjectVersion $version) use ($slug) {
             return $version->getSlug() === $slug;
         })[0] ?? null;
+
+        if ($projectVersion === null) {
+            throw new InvalidArgumentException(sprintf('Could not find version %s for project %s', $slug, $this->slug));
+        }
+
+        return $projectVersion;
     }
 
     public function getCurrentVersion() : ?ProjectVersion

@@ -39,17 +39,17 @@
 {% block content_wrapper %}
     <article>
         <header>
-            <h2>{{ page.title }}</h2>
+            <h2>{{ blogPost.title }}</h2>
         </header>
 
         <p class="lead">
-            Posted on {{ page.date|date('Y-m-d') }}
-            {% if page.authorName %}
+            Posted on {{ blogPost.date|date('Y-m-d') }}
+            {% if blogPost.authorName %}
                 by
-                {% if page.authorEmail %}
-                    <a href="mailto:{{ page.authorEmail }}">{{ page.authorName }}</a>
+                {% if blogPost.authorEmail %}
+                    <a href="mailto:{{ blogPost.authorEmail }}">{{ blogPost.authorName }}</a>
                 {% else %}
-                    {{ page.authorName }}
+                    {{ blogPost.authorName }}
                 {% endif %}
             {% endif %}
         </p>
@@ -61,4 +61,3 @@
         </div>
     </article>
 {% endblock %}
-

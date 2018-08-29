@@ -1,5 +1,6 @@
 ---
 permalink: /atom.xml
+controller: ['Doctrine\Website\Controllers\AtomController', 'index']
 ---
 
 <?xml version="1.0" encoding="utf-8"?>
@@ -7,23 +8,16 @@ permalink: /atom.xml
     <title><![CDATA[{{ site.title }}]]></title>
     <link href="{{ site.url }}/atom.xml" rel="self" />
     <link href="{{ site.url }}/" />
-    <updated>{{ site.calculated_date | date('c') }}</updated>
+    <updated>{{ "now"|date('c') }}</updated>
     <id>{{ site.url }}/</id>
 
-    {% if site.author or site.email %}
-        <author>
-            {% if site.author %}<name><![CDATA[{{ site.author }}]]></name>{% endif %}
-            {% if site.email %}<email><![CDATA[{{ site.email }}]]></email>{% endif %}
-        </author>
-    {% endif %}
-
-    {% for post in get_blog_posts()|slice(0, 10) %}
+    {% for blogPost in blogPosts %}
         <entry>
-            <title type="html"><![CDATA[{{ post.parameters.title }}]]></title>
-            <link href="{{ site.url }}{{ post.url }}"/>
-            <updated>{{ post.date|date('c') }}</updated>
-            <id>{{ site.url }}{{ post.url }}</id>
-            <content type="html"><![CDATA[{{ post.contents|markdown|raw }}]]></content>
+            <title type="html"><![CDATA[{{ blogPost.title }}]]></title>
+            <link href="{{ site.url }}{{ blogPost.url }}"/>
+            <updated>{{ blogPost.date|date('c') }}</updated>
+            <id>{{ site.url }}{{ blogPost.url }}</id>
+            <content type="html"><![CDATA[{{ blogPost.contents|markdown|raw }}]]></content>
         </entry>
     {% endfor %}
 </feed>

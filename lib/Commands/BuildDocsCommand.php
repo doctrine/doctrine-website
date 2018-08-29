@@ -17,9 +17,9 @@ class BuildDocsCommand extends Command
 
     public function __construct(BuildDocs $buildDocs)
     {
-        parent::__construct();
-
         $this->buildDocs = $buildDocs;
+
+        parent::__construct();
     }
 
     protected function configure() : void
@@ -66,7 +66,7 @@ class BuildDocsCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : void
+    protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $projectToBuild     = (string) $input->getOption('project');
         $versionToBuild     = (string) $input->getOption('v');
@@ -82,5 +82,7 @@ class BuildDocsCommand extends Command
             $buildSearchIndexes,
             $syncGit
         );
+
+        return 0;
     }
 }

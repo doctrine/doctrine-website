@@ -2,6 +2,7 @@
 title: "Doctrine 2.0.0-ALPHA3 Released"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: [release]

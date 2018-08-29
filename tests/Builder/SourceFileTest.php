@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Builder;
 
 use Doctrine\Website\Builder\SourceFile;
+use Doctrine\Website\Builder\SourceFileParameters;
 use PHPUnit\Framework\TestCase;
 
 class SourceFileTest extends TestCase
@@ -38,7 +39,7 @@ class SourceFileTest extends TestCase
             'rst',
             '/tmp/test.rst',
             'test',
-            ['url' => '/2019/01/01/test.html']
+            new SourceFileParameters(['url' => '/2019/01/01/test.html'])
         );
 
         self::assertFalse($sourceFile->isMarkdown());
@@ -52,7 +53,7 @@ class SourceFileTest extends TestCase
             'rst',
             '/tmp/test.rst',
             'test',
-            ['url' => '/2019/01/01/test.html']
+            new SourceFileParameters(['url' => '/2019/01/01/test.html'])
         );
 
         self::assertTrue($sourceFile->isRestructuredText());
@@ -66,7 +67,7 @@ class SourceFileTest extends TestCase
             'jpg',
             '/tmp/test.jpg',
             'test',
-            ['url' => '/test.jpg']
+            new SourceFileParameters(['url' => '/test.jpg'])
         );
 
         self::assertFalse($sourceFile->isTwig());
@@ -80,7 +81,7 @@ class SourceFileTest extends TestCase
             'jpg',
             '/tmp/test.jpg',
             'test',
-            ['url' => '/test.jpg']
+            new SourceFileParameters(['url' => '/test.jpg'])
         );
 
         self::assertFalse($sourceFile->isLayoutNeeded());
@@ -94,7 +95,7 @@ class SourceFileTest extends TestCase
             'html',
             '/tmp/api/test.html',
             'test',
-            ['url' => '/api/test.html']
+            new SourceFileParameters(['url' => '/api/test.html'])
         );
 
         self::assertTrue($sourceFile->isApiDocs());
@@ -109,7 +110,7 @@ class SourceFileTest extends TestCase
 
     public function testGetParameters() : void
     {
-        self::assertSame(['url' => '/2019/01/01/test.html'], $this->sourceFile->getParameters());
+        self::assertEquals(new SourceFileParameters(['url' => '/2019/01/01/test.html']), $this->sourceFile->getParameters());
     }
 
     public function testGetParameter() : void
@@ -123,7 +124,7 @@ class SourceFileTest extends TestCase
             'md',
             '/tmp/test.md',
             'test',
-            ['url' => '/2019/01/01/test.html']
+            new SourceFileParameters(['url' => '/2019/01/01/test.html'])
         );
     }
 }

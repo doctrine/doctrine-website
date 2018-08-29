@@ -3,6 +3,7 @@ layout: default
 title: Projects
 menuSlug: projects
 permalink: /projects.html
+controller: ['Doctrine\Website\Controllers\ProjectController', 'index']
 ---
 
 <h1>Projects</h1>
@@ -12,10 +13,9 @@ permalink: /projects.html
 </p>
 
 <div class="row">
-    {% for project in get_projects() if project.active is defined and project.active == true %}
+    {% for project in projects if project.active is defined and project.active == true %}
         <div class="col-lg-6 d-flex align-items-stretch">
             <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{{ member.avatarUrl }}" alt="{{ member.name }}">
                 <div class="card-body">
                     <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
 
@@ -43,7 +43,7 @@ permalink: /projects.html
 </p>
 
 <ul class="list-group">
-    {% for project in get_projects() if project.active is defined and not project.active and not project.archived %}
+    {% for project in projects if project.active is defined and not project.active and not project.archived %}
         <li class="list-group-item">
             <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
 
@@ -74,7 +74,7 @@ permalink: /projects.html
 </p>
 
 <ul class="list-group">
-    {% for project in get_projects() if project.active is defined and not project.active and project.archived %}
+    {% for project in projects if project.active is defined and not project.active and project.archived %}
         <li class="list-group-item">
             <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
 

@@ -2,6 +2,7 @@
 title: "Doctrine and symfony frameworks collaborating"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

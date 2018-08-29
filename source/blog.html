@@ -3,22 +3,21 @@ layout: default
 title: Blog
 menuSlug: blog
 permalink: /blog/index.html
+controller: ['Doctrine\Website\Controllers\BlogController', 'index']
 ---
 
 <h1>Blog</h1>
 
+{% for blogPost in blogPosts %}
+    {{ blogPost.date|date('Y-m-d') }} &nbsp; <a href="{{ blogPost.url }}">{{ blogPost.title }}</a>
 
-{% for post in get_blog_posts() %}
-    {{ post.date|date('Y-m-d') }} &nbsp; <a href="{{ post.url }}">{{ post.parameters.title }}</a>
-
-    {% if post.parameters.authorName %}
+    {% if blogPost.authorName %}
         by
-        {% if post.parameters.authorEmail %}
-            <a href="mailto:{{ page.authorEmail }}">{{ post.parameters.authorName }}</a>
+        {% if blogPost.authorEmail %}
+            <a href="mailto:{{ blogPost.authorEmail }}">{{ blogPost.authorName }}</a>
         {% else %}
-            {{ post.parameters.authorName }}
+            {{ blogPost.authorName }}
         {% endif %}
     {% endif %}
     <br/>
 {% endfor %}
-

@@ -2,6 +2,7 @@
 title: "Cleaning up the mess"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: guilhermeblanco
 authorEmail:
 categories: []

@@ -2,6 +2,7 @@
 title: "Second Alpha Release of Doctrine 2"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: [release]

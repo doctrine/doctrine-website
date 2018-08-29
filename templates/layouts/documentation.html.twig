@@ -1,9 +1,5 @@
 {% extends 'layouts/layout.html.twig' %}
 
-{% if page.docsSlug %}
-    {% set project = get_project(page.docsSlug) %}
-{% endif %}
-
 {% if project is defined and project %}
     {% block title %}{{ page.title }} - {{ project.name }}{% if project.name != project.shortName %} ({{ project.shortName }}){% endif %} - Doctrine{% endblock %}
 

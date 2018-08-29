@@ -2,6 +2,7 @@
 title: "Doctrine MongoDB ODM release 1.0.4"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Andreas Braun
 authorEmail: alcaeus@alcaeus.org
 categories: []

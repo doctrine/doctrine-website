@@ -2,6 +2,7 @@
 title: "Validation of Doctrine 2 Entities"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: []

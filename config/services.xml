@@ -33,6 +33,18 @@
         <service id="Symfony\Component\Console\Application" autowire="true" />
         <service id="Symfony\Component\Filesystem\Filesystem" autowire="true" />
 
+        <service id="Doctrine\Website\Controller\ControllerProvider">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Controllers\AtomController" />
+                <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
+                <argument type="service" id="Doctrine\Website\Controllers\DocumentationController" />
+                <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
+                <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
+                <argument type="service" id="Doctrine\Website\Controllers\SitemapController" />
+                <argument type="service" id="Doctrine\Website\Controllers\TeamController" />
+            </argument>
+        </service>
+
         <service id="AlgoliaSearch\Client">
             <argument>%doctrine.website.algolia.app_id%</argument>
             <argument>%doctrine.website.algolia.admin_api_key%</argument>
@@ -45,6 +57,7 @@
             <argument>%doctrine.website.keywords%</argument>
             <argument>%doctrine.website.description%</argument>
             <argument>%doctrine.website.env%</argument>
+            <argument>%doctrine.website.google_analytics_tracking_id%</argument>
         </service>
 
         <service id="Doctrine\Website\RST\Kernel" autowire="true" public="true">

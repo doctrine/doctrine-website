@@ -2,6 +2,7 @@
 title: "Introducing the Google I18n Extension"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

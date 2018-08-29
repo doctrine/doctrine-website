@@ -2,6 +2,7 @@
 title: "Doctrine 2.4 Beta2 released"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Benjamin Eberlei
 authorEmail:
 categories: [release]

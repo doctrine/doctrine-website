@@ -2,6 +2,7 @@
 title: "Doctrine DBAL 2.5 BETA3"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: default
 authorEmail:
 categories: [dbal]

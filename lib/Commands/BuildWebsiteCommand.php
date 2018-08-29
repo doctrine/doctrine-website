@@ -34,11 +34,11 @@ class BuildWebsiteCommand extends Command
         string $rootDir,
         string $env
     ) {
-        parent::__construct();
-
         $this->websiteBuilder = $websiteBuilder;
         $this->rootDir        = $rootDir;
         $this->env            = $env;
+
+        parent::__construct();
     }
 
     protected function configure() : void
@@ -49,7 +49,8 @@ class BuildWebsiteCommand extends Command
             ->addArgument(
                 'build-dir',
                 InputArgument::OPTIONAL,
-                'The directory where the build repository is cloned.'
+                'The directory where the build repository is cloned.',
+                sprintf('%s/build-%s', $this->rootDir, $this->env)
             )
             ->addOption(
                 'publish',
@@ -66,7 +67,7 @@ class BuildWebsiteCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : void
+    protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         ini_set('memory_limit', '1024M');
 
@@ -77,10 +78,6 @@ class BuildWebsiteCommand extends Command
         }
 
         $buildDir = $input->getArgument('build-dir');
-
-        if ($buildDir === null) {
-            $buildDir = sprintf('%s/build-%s', $this->rootDir, $this->env);
-        }
 
         if (! is_dir($buildDir)) {
             mkdir($buildDir, 0777, true);
@@ -93,5 +90,7 @@ class BuildWebsiteCommand extends Command
         }
 
         $this->websiteBuilder->build($output, $buildDir, $this->env, $publish);
+
+        return 0;
     }
 }

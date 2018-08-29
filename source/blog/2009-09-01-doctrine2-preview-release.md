@@ -2,6 +2,7 @@
 title: "Doctrine 2 Preview Release"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: romanb
 authorEmail:
 categories: [release]

@@ -2,6 +2,7 @@
 title: "MongoDB ODM: MongoDB for eCommerce"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: avalanche123
 authorEmail:
 categories: []

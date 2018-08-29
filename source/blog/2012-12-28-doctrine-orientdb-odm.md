@@ -2,6 +2,7 @@
 title: "Doctrine OrientDB Object Document Mapper"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: odino
 authorEmail:
 categories: []

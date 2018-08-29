@@ -52,9 +52,13 @@ class SourceFileRepository
 
             $writePath = $this->getWritePath($buildDir, $path, $extension);
 
-            $parameters = $this->getFileParameters($buildDir, $writePath, $contents);
+            $sourceFileParameters = $this->createSourceFileParameters(
+                $buildDir,
+                $writePath,
+                $contents
+            );
 
-            $writePath = $buildDir . $parameters['url'];
+            $writePath = $buildDir . $sourceFileParameters->getParameter('url');
 
             $contents = $this->stripFileParameters($contents);
 
@@ -62,7 +66,7 @@ class SourceFileRepository
                 $extension,
                 $writePath,
                 $contents,
-                $parameters
+                $sourceFileParameters
             );
         }
 
@@ -92,11 +96,11 @@ class SourceFileRepository
         return preg_replace('/^\s*(?:---[\s]*[\r\n]+)(.*?)(?:---[\s]*[\r\n]+)(.*?)$/s', '$2', $contents);
     }
 
-    /**
-     * @return mixed[]
-     */
-    private function getFileParameters(string $buildDir, string $writePath, string $string) : array
-    {
+    private function createSourceFileParameters(
+        string $buildDir,
+        string $writePath,
+        string $string
+    ) : SourceFileParameters {
         $parameters = [];
 
         if (preg_match('/^\s*(?:---[\s]*[\r\n]+)(.*?)(?:---[\s]*[\r\n]+)(.*?)$/s', $string, $matches) > 0) {
@@ -111,7 +115,7 @@ class SourceFileRepository
 
         $parameters['url'] = $this->getUrl($buildDir, $writePath, $parameters);
 
-        return $parameters;
+        return new SourceFileParameters($parameters);
     }
 
     /**

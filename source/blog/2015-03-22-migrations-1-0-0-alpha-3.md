@@ -2,6 +2,7 @@
 title: "Doctrine Migrations 1.0.0-alpha3 Pre-Release"
 menuSlug: blog
 layout: blog-post
+controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Michael Simonson
 authorEmail:
 categories: []
