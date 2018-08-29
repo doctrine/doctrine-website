@@ -31,7 +31,7 @@ locally:
 
 .. code-block:: console
 
-    $ git clone git@github.com:username/doctrine2.git doctrine2-orm
+    $ git clone git@github.com:<username>/doctrine2.git doctrine2-orm
     $ cd doctrine2-orm
 
 Fetch dependencies using `composer <https://getcomposer.org/>`_:
