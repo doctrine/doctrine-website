@@ -128,13 +128,24 @@ nuances that are involved in the software development process.
 Branching Model
 ---------------
 
-Merging topic branches:
+In order to maintain all the stability invariants that SemVer imposes,
+it is vital that maintainers know where to merge incoming patches.
 
--  Topic branches **must** merge into **master** and/or any affected
-   release branches.
--  Merging a topic branch puts it into the *next* release, that is the
-   next release created from **master** and/or the next patch release
-   created from a specific release branch.
+Packages in the doctrine organisation should use following branching
+structure:
+
+ * ``develop`` - extremely unstable, points at the next planned
+   **MAJOR** release, may be rebased in order to speed up individual
+   maintainers prototyping new changes. Changes on ``develop`` can
+   be radical, and should not be relied upon.
+ * ``master`` - always to be considered as the next planned **MAJOR**
+   or **MINOR** release (depending on team internal agreement).
+   Consumers should not rely on ``master`` unless they are prepared
+   to adapt their codebase at every potentially breaking change.
+ * ``MAJOR.MINOR.x`` - always to be considered the next planned
+   **PATCH** release. Maintainers should keep these (multiple) branches
+   stable. The base of these branches MUST be the ``MAJOR.MINOR.0`` tag.
+   Without a pre-existing tag, these branches should not exist.
 
 Configuring Remotes
 -------------------
