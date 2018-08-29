@@ -110,8 +110,8 @@ downstream users, a maintainer must therefore always consider
 carefully where a patch may land.
 
 Packages controlled by the Doctrine organisation are to follow
-`Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_ rules,
-with the famous ``MAJOR.MINOR.PATCH`` naming scheme.
+`Semantic Versioning (SemVer) <https://semver.org/spec/v2.0.0.html>`_
+rules, with the famous ``MAJOR.MINOR.PATCH`` naming scheme.
 
 This effectively means:
 
