@@ -87,6 +87,10 @@ is to sort incoming proposals by their category:
 -  **critical fixes** are changes to the codebase that correct invalid
    behavior that was erroneously introduced, and prevents installation
    or usage of the library by a very large portion of the community.
+-  **security fixes** are changes to the codebase that correct existing
+   behavior in the codebase that may lead to substantial financial or
+   personal damage to consumers of the packages due to malicious
+   attack vectors.
 -  **deprecations** are changes to the codebase that do mark existing
    API as "to be removed in future"
 -  **backwards-compatibility breakages** (or **BC breaks** in short)
