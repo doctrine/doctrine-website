@@ -22,6 +22,14 @@ following:
 -  Creating release branches.
 -  Tagging released versions within **master** and release branches.
 
+Automation
+----------
+
+Each of the following steps are documented for humans to perform them
+manually, but maintainers and contributors are highly encouraged to try
+and automate them away into tooling that is commonly available across
+the organisation projects, as well as the community at large.
+
 Setup
 -----
 
