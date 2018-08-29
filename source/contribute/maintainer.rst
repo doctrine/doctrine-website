@@ -182,6 +182,53 @@ git graph like following:
       \
        ----- 1.0.1 ----- 1.0.2 ----- 1.0.x
 
+Preparing a release
+-------------------
+
+Assuming that all tasks for a planned release are completed, a
+maintainer would then be in the position of preparing a git tag,
+which for doctrine project also corresponds to a release.
+
+To do that:
+
+-  ensure that all known introduced **BC Breaks** are documented
+   in ``UPGRADE.md``.
+-  ensure that the automated tests for the branch from which
+   a release has to be tagged are passing.
+-  prepare a release description, which should:
+    -  list all patches
+    -  describe the points of major relevance in the patch
+   maintainers may want to use a tool such
+   as `weierophinney/changelog_generator <https://github.com/weierophinney/changelog_generator>`_
+   or `jwage/changelog-generator <https://github.com/jwage/changelog-generator>`_)
+   in order to generate such release notes
+
+Then it is possible to tag a release.
+
+Please note that tags *MUST* be signed. Unsigned releases will be
+removed and replaced.
+
+For a new patch release,
+this is the workflow (here with **MAJOR** = 5, **MINOR** = 3 and **PATCH** = 1):
+
+.. code-block:: console
+
+    $ git checkout 5.3.x
+    $ git pull --ff-only
+    $ git tag -s 5.3.1 -F my-release-notes.txt --cleanup=verbatim
+    $ git push origin 5.3.1
+
+To release a new minor or major version, the workflow starts from
+``master``:
+
+.. code-block:: console
+
+    $ git checkout master
+    $ git pull --ff-only
+    $ git tag -s 6.2.0 -F my-release-notes.txt --cleanup=verbatim
+    $ git checkout -b 6.2.x
+    $ git push origin 6.2.0 6.2.x
+
 Configuring Remotes
 -------------------
 
