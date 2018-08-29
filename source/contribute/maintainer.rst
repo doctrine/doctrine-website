@@ -167,6 +167,19 @@ corresponding **MAJOR.MINOR.x** branch should be branched off the tag.
 **MAJOR.MINOR.1+** releases must be tagged from the corresponding
 ``MAJOR.MINOR.x`` branch.
 
+This effectively means that a typical doctrine package should have a
+git graph like following:
+
+.. code-block:: console
+
+                                             ----- develop
+                                            /
+    1.0.0 ----- 1.1.0 ----- 2.0.0 ------ master
+      |           \
+      |            ----- 1.1.1 ----- 1.1.2 ----- 1.1.x
+      \
+       ----- 1.0.1 ----- 1.0.2 ----- 1.0.x
+
 Configuring Remotes
 -------------------
 
