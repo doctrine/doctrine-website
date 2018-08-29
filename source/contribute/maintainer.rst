@@ -96,7 +96,9 @@ is to sort incoming proposals by their category:
 -  **backwards-compatibility breakages** (or **BC breaks** in short)
    are modifications to the existing API or implementation that would
    result in downstream users having to correct their software to
-   adapt to the new changes.
+   adapt to the new changes. Maintainers should also prevent any
+   unnecessary BC breaks, and always evaluating if it is worth
+   introducing them.
 
 Stability and Semantic Versioning
 ---------------------------------
