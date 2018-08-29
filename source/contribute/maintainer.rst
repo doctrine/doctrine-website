@@ -153,7 +153,19 @@ structure:
  * ``MAJOR.MINOR.x`` - always to be considered the next planned
    **PATCH** release. Maintainers should keep these (multiple) branches
    stable. The base of these branches MUST be the ``MAJOR.MINOR.0`` tag.
-   Without a pre-existing tag, these branches should not exist.
+   Without a pre-existing tag, these branches should not exist
+
+Releasing packages
+------------------
+
+**MAJOR.0.0** and **MAJOR.MINOR.0** releases **MUST** be tagged from
+``master``.
+
+When tagging a new **MAJOR.0.0** or **MAJOR.MINOR.0** release, a
+corresponding **MAJOR.MINOR.x** branch should be branched off the tag.
+
+**MAJOR.MINOR.1+** releases must be tagged from the corresponding
+``MAJOR.MINOR.x`` branch.
 
 Configuring Remotes
 -------------------
