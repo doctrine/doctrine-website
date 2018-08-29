@@ -59,6 +59,18 @@ Optionally, add any additional contributor/maintainer forks, e.g.:
 
     $ git remote add romanb git://github.com/romanb/doctrine2.git
 
+You can also fetch all open pull requests via `git fetch` if you
+edit your ``.git/config`` as following:
+
+... code-block:: console
+
+    [remote "doctrine"]
+        url = git@github.com:doctrine/doctrine2.git
+        fetch = +refs/heads/*:refs/remotes/doctrine/*
+        # add this:
+        fetch = +refs/pull/*/head:refs/remotes/doctrine/pr/*
+
+
 Branching Model
 ---------------
 
