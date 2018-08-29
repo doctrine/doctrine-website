@@ -84,6 +84,9 @@ is to sort incoming proposals by their category:
    analysis.
 -  **bug fixes** are changes to the codebase that do correct invalid
    behaviour.
+-  **critical fixes** are changes to the codebase that correct invalid
+   behavior that was erroneously introduced, and prevents installation
+   or usage of the library by a very large portion of the community.
 -  **deprecations** are changes to the codebase that do mark existing
    API as "to be removed in future"
 -  **backwards-compatibility breakages** (or **BC breaks** in short)
