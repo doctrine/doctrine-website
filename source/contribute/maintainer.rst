@@ -98,6 +98,31 @@ is to sort incoming proposals by their category:
    result in downstream users having to correct their software to
    adapt to the new changes.
 
+Stability and Semantic Versioning
+---------------------------------
+
+A maintainer must also always consider that any proposal, regardless
+how well tested and verified it could be, brings in some instability.
+In order to reduce the amount of defects and/or regressions reaching
+downstream users, a maintainer must therefore always consider
+carefully where a patch may land.
+
+Packages controlled by the Doctrine organisation are to follow
+`Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_ rules,
+with the famous ``MAJOR.MINOR.PATCH`` naming scheme.
+
+This effectively means:
+
+- **PATCH** only contains **bug fixes**, **security fixes** and
+  **critical fixes**
+- **MINOR** can contain everything that is in **PATCH** plus
+  **new features**, **improvements** and **deprecations**
+- **MAJOR** can contain all of the above plus **BC breaks**
+
+Whilst it is possible to automate some of these decisions, humans
+are still better at categorising these changes due to the amount of
+nuances that are involved in the software development process.
+
 Branching Model
 ---------------
 
