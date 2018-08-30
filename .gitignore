@@ -3,9 +3,9 @@
 /source/projects/doctrine-*
 /source/projects/doctrine1
 /source/api
-/tests/Doctrine/Website/Tests/Docs/resources/projects
-/tests/Doctrine/Website/Tests/Docs/resources/docs
-/tests/Doctrine/Website/Tests/Docs/resources/sculpin-source
+/tests/Docs/resources/projects
+/tests/Docs/resources/docs
+/tests/Docs/resources/source
 /docs
 /.phpcs-cache
 /build-*
