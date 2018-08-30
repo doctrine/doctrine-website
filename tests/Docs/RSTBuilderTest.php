@@ -315,7 +315,23 @@ TOC;
 
     <?php
 
-    echo 'Hello World';
+    echo 'Hello World1';
+RST;
+
+        self::assertDocsFileContains(
+            '/example-project/en/1.0/index.rst',
+            $expected
+        );
+    }
+
+    public function testSloppyCodeBlockSyntax() : void
+    {
+        $expected = <<<RST
+.. code-block:: php
+
+    <?php
+
+    echo 'Hello World2';
 RST;
 
         self::assertDocsFileContains(

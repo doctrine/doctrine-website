@@ -123,7 +123,14 @@ Folder
 
     <?php
 
-    echo 'Hello World';
+    echo 'Hello World1';
+
+
+.. code-block:: php
+
+    <?php
+
+    echo 'Hello World2';
 
 {% endverbatim %}
 
