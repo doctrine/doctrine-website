@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Twig;
 
+use Doctrine\Website\Assets\AssetIntegrityGenerator;
 use Doctrine\Website\Projects\Project;
 use Parsedown;
 use Twig_Extension;
@@ -21,9 +22,17 @@ class MainExtension extends Twig_Extension
     /** @var Parsedown */
     private $parsedown;
 
-    public function __construct(Parsedown $parsedown)
+    /** @var AssetIntegrityGenerator */
+    private $assetIntegrityGenerator;
+
+    /** @var string */
+    private $sourcePath;
+
+    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourcePath)
     {
-        $this->parsedown = $parsedown;
+        $this->parsedown               = $parsedown;
+        $this->assetIntegrityGenerator = $assetIntegrityGenerator;
+        $this->sourcePath              = $sourcePath;
     }
 
     /**
@@ -34,6 +43,7 @@ class MainExtension extends Twig_Extension
         return [
             new Twig_SimpleFunction('get_search_box_placeholder', [$this, 'getSearchBoxPlaceholder']),
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
+            new Twig_SimpleFunction('get_asset_integrity', [$this->assetIntegrityGenerator, 'getAssetIntegrity']),
         ];
     }
 
@@ -71,7 +81,7 @@ class MainExtension extends Twig_Extension
 
     private function getAssetCacheBuster(string $path) : string
     {
-        $assetPath = realpath(__DIR__ . '/../../source/' . $path);
+        $assetPath = realpath($this->sourcePath . $path);
         assert(is_string($assetPath));
 
         $contents = file_get_contents($assetPath);

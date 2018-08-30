@@ -146,7 +146,11 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ get_asset_url('/js/sidebar.js', site.url) }}"></script>
+    <script
+        src="{{ get_asset_url('/js/sidebar.js', site.url) }}"
+        integrity="{{ get_asset_integrity('/js/sidebar.js') }}"
+        crossorigin="anonymous">
+    </script>
 
     <script type="text/javascript">
         new Sidebar();

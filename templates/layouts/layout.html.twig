@@ -20,16 +20,53 @@
 
         {% block head_meta '' %}
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+        />
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+            integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S"
+            crossorigin="anonymous"
+        />
 
-        <link href="{{ get_asset_url('/css/style.css', site.url) }}" rel="stylesheet" type="text/css" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ get_asset_url('/css/style.css', site.url) }}"
+            integrity="{{ get_asset_integrity('/css/style.css') }}"
+            crossorigin="anonymous"
+        />
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css"
+            integrity="sha384-3pqpjew6zqJsw9mdIpd6FVJvuFuacqOpSXwAifQ9iHE4keUyghetuuJDGFoTNhfn"
+            crossorigin="anonymous"
+        />
 
-        <link rel="stylesheet" href="{{ get_asset_url('/css/railscasts.css', site.url) }}" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"
+            integrity="sha384-VzUGdSDk+HLoSg+ptudZxGZyaFVN7q7Eqh7QaUU19cWL2fK0kyz1belH38z7MbcZ"
+            crossorigin="anonymous"
+        />
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ get_asset_url('/css/railscasts.css', site.url) }}"
+            integrity="sha384-K7nnw0wrUNTkBLTS8aN3AOx/e095lEJ1g60EJX7ash3cfsHTpQV6kWKoCPxPc9AJ"
+            crossorigin="anonymous"
+        />
 
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -193,7 +230,7 @@
 
         <script
           src="https://code.jquery.com/jquery-3.3.1.min.js"
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
           crossorigin="anonymous"></script>
 
         <script
@@ -204,22 +241,40 @@
         <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous">
+        </script>
 
-        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"
+            integrity="sha384-EtEQyqoKtrBSat8+V0eTyycfmdkEHHzKesnWrc2VPnKAcD8PJw8HKAWKsK/QnGT+"
+            crossorigin="anonymous">
+        </script>
 
         <script id="instantsearch-template" type="text/template">
             {% include "search-results.html.twig" %}
         </script>
 
-        <script src="https://cdn.ravenjs.com/3.24.2/raven.min.js" crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.ravenjs.com/3.24.2/raven.min.js"
+            integrity="sha384-HwE7dFvrH8iD9R5VYUqNwjIhxDycip+e4DjP5nEhXrJtACG8AdNXjvP+AfJWxhJh"
+            crossorigin="anonymous">
+        </script>
 
         <script type="text/javascript">
             Raven.config('https://09ce137590054cfd8f0b7e9324d6ec14@sentry.io/1197701').install()
         </script>
 
-        <script src="{{ get_asset_url('/js/main.js', site.url) }}"></script>
-        <script src="{{ get_asset_url('/js/search.js', site.url) }}"></script>
+        <script
+            src="{{ get_asset_url('/js/main.js', site.url) }}"
+            integrity="{{ get_asset_integrity('/js/main.js') }}"
+            crossorigin="anonymous">
+        </script>
+
+        <script
+            src="{{ get_asset_url('/js/search.js', site.url) }}"
+            integrity="{{ get_asset_integrity('/js/search.js') }}"
+            crossorigin="anonymous">
+        </script>
 
         {% set project = null %}
 
@@ -265,7 +320,11 @@
             }
         </script>
 
-        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+        <script
+            type="text/javascript"
+            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+            async>
+        </script>
 
         {% block scripts '' %}
 

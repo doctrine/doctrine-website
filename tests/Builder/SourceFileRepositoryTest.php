@@ -22,7 +22,7 @@ class SourceFileRepositoryTest extends TestCase
     {
         $files = $this->sortFiles($this->sourceFileRepository->getFiles(''));
 
-        self::assertCount(6, $files);
+        self::assertCount(7, $files);
 
         self::assertSame('html', $files[0]->getExtension());
         self::assertSame('/api/inflector.html', $files[0]->getWritePath());
