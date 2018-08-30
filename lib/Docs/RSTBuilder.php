@@ -167,6 +167,11 @@ SIDEBAR;
             // get rid of .. include:: toc.rst
             $content = str_replace('.. include:: toc.rst', '', $content);
 
+            // replace \n::\n with \n.. code-block::\n
+            // this corrects code blocks that don't render properly.
+            // we should update the docs code but this makes old docs code render properly.
+            $content = preg_replace("/\n::\n/", "\n.. code-block::\n", $content);
+
             // stuff from doctrine1 docs
             if ($project->getSlug() === 'doctrine1') {
                 $content = preg_replace("/:code:(.*)\n/", '$1', $content);

@@ -100,3 +100,9 @@ Folder
 ------
 
 - :ref:`Getting Started <reference/getting-started>`
+
+::
+
+    <?php
+
+    echo 'Hello World';

@@ -119,6 +119,12 @@ Folder
 
 - :ref:`Getting Started <reference/getting-started>`
 
+.. code-block::
+
+    <?php
+
+    echo 'Hello World';
+
 {% endverbatim %}
 
 .. raw:: html
