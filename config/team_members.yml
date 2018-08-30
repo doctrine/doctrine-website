@@ -36,6 +36,7 @@ parameters:
             location: Brazil
             active: true
             core: true
+            projects: ["coding-standard"]
         deeky666:
             name: 'Steve Müller'
             github: deeky666
@@ -54,6 +55,7 @@ parameters:
             location: Paris
             active: true
             core: true
+            projects: ["dbal", "orm"]
         guilhermeblanco:
             name: 'Guilherme Blanco'
             twitter: guilhermeblanco
@@ -63,7 +65,7 @@ parameters:
             location: 'Toronto, ON, Canada'
             active: true
             core: true
-            projects: ["orm", "doctrine1"]
+            projects: ["orm", "dbal", "annotations", "doctrine1"]
         jmikola:
             name: 'Jeremy Mikola'
             twitter: jmikola
@@ -113,7 +115,7 @@ parameters:
             location: 'Prague, Czech Republic'
             active: true
             core: true
-            projects: ["orm", "event-manager", "persistence", "reflection"]
+            projects: ["orm", "dbal", "event-manager", "annotations", "persistence", "reflection"]
         mikeSimonson:
             name: "Mike Simonson"
             twitter: _mikeSimonson
@@ -162,7 +164,6 @@ parameters:
             location: 'Salt Lake City, Utah'
             active: true
             core: true
-            projects: ["mongodb", "mongodb-odm"]
         dbu:
             name: 'David Buchmann'
             github: dbu
