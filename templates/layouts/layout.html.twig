@@ -150,6 +150,14 @@
                         </li>
                     </ul>
 
+                    <div class="layout-edit-button d-inline-block mr-2">
+                        {% if page.docsSlug is defined and page.docsSlug and project is defined and projectVersion is defined %}
+                            <a href="https://github.com/doctrine/{{ project.docsRepositoryName }}/edit/{{ projectVersion.branchName }}{{ project.docsPath }}{{ page.sourceFile }}" class="btn btn-light" target="_blank">Edit</a>
+                        {% else %}
+                            <a href="https://github.com/doctrine/doctrine-website/edit/master{{ page.sourceFile }}" class="btn btn-light" target="_blank">Edit</a>
+                        {% endif %}
+                    </div>
+
                     <div class="google-translate-dropdown dropdown show d-inline-block mr-2">
                         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="translateDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Translate

@@ -13,9 +13,14 @@ class SourceFileTest extends TestCase
     /** @var SourceFile */
     private $sourceFile;
 
+    public function testGetSourcePath() : void
+    {
+        self::assertSame('/tmp/test.md', $this->sourceFile->getSourcePath());
+    }
+
     public function testGetWritePath() : void
     {
-        self::assertSame('/tmp/test.md', $this->sourceFile->getWritePath());
+        self::assertSame('/tmp/test.html', $this->sourceFile->getWritePath());
     }
 
     public function testGetUrl() : void
@@ -38,6 +43,7 @@ class SourceFileTest extends TestCase
         $sourceFile = new SourceFile(
             'rst',
             '/tmp/test.rst',
+            '/tmp/test.html',
             'test',
             new SourceFileParameters(['url' => '/2019/01/01/test.html'])
         );
@@ -52,6 +58,7 @@ class SourceFileTest extends TestCase
         $sourceFile = new SourceFile(
             'rst',
             '/tmp/test.rst',
+            '/tmp/test.html',
             'test',
             new SourceFileParameters(['url' => '/2019/01/01/test.html'])
         );
@@ -65,6 +72,7 @@ class SourceFileTest extends TestCase
     {
         $sourceFile = new SourceFile(
             'jpg',
+            '/tmp/test.jpg',
             '/tmp/test.jpg',
             'test',
             new SourceFileParameters(['url' => '/test.jpg'])
@@ -80,6 +88,7 @@ class SourceFileTest extends TestCase
         $sourceFile = new SourceFile(
             'jpg',
             '/tmp/test.jpg',
+            '/tmp/test.jpg',
             'test',
             new SourceFileParameters(['url' => '/test.jpg'])
         );
@@ -93,6 +102,7 @@ class SourceFileTest extends TestCase
     {
         $sourceFile = new SourceFile(
             'html',
+            '/tmp/api/test.html',
             '/tmp/api/test.html',
             'test',
             new SourceFileParameters(['url' => '/api/test.html'])
@@ -123,6 +133,7 @@ class SourceFileTest extends TestCase
         $this->sourceFile = new SourceFile(
             'md',
             '/tmp/test.md',
+            '/tmp/test.html',
             'test',
             new SourceFileParameters(['url' => '/2019/01/01/test.html'])
         );

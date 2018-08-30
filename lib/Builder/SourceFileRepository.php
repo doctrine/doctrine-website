@@ -64,6 +64,7 @@ class SourceFileRepository
 
             $files[] = new SourceFile(
                 $extension,
+                $path,
                 $writePath,
                 $contents,
                 $sourceFileParameters
