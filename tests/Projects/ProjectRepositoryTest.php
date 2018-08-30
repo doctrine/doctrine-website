@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\ProjectFactory;
+use Doctrine\Website\Projects\ProjectJsonReader;
 use Doctrine\Website\Projects\ProjectRepository;
 use PHPUnit\Framework\TestCase;
 
@@ -16,13 +17,18 @@ class ProjectRepositoryTest extends TestCase
             'name' => 'ORM',
             'slug' => 'orm',
             'docsSlug' => 'doctrine-orm',
+            'repositoryName' => 'doctrine2',
         ],
         [
             'name' => 'DBAL',
             'slug' => 'dbal',
             'docsSlug' => 'doctrine-dbal',
+            'repositoryName' => 'dbal',
         ],
     ];
+
+    /** @var ProjectJsonReader */
+    private $projectJsonReader;
 
     /** @var ProjectFactory */
     private $projectFactory;
@@ -32,7 +38,8 @@ class ProjectRepositoryTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->projectFactory    = new ProjectFactory();
+        $this->projectJsonReader = $this->createMock(ProjectJsonReader::class);
+        $this->projectFactory    = new ProjectFactory($this->projectJsonReader);
         $this->projectRepository = new ProjectRepository($this->projects, $this->projectFactory);
     }
 
