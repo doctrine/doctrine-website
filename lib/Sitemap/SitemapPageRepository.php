@@ -15,7 +15,6 @@ use function file_exists;
 use function filemtime;
 use function is_int;
 use function str_replace;
-use function strcmp;
 
 class SitemapPageRepository
 {
@@ -68,7 +67,7 @@ class SitemapPageRepository
 
             public function compare(string $b, string $a) : int
             {
-                return strcmp($a, $b);
+                return $a <=> $b;
             }
         };
 
