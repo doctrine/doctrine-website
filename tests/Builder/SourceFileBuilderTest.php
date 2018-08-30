@@ -159,6 +159,7 @@ class SourceFileBuilderTest extends TestCase
 
         $this->sourceFileBuilder->buildFile($sourceFile, '/tmp');
     }
+
     protected function setUp() : void
     {
         $this->sourceFileRenderer = $this->createMock(SourceFileRenderer::class);
