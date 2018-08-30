@@ -5,20 +5,28 @@ declare(strict_types=1);
 namespace Doctrine\Website\Sitemap;
 
 use DateTimeImmutable;
+use Iterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use SplHeap;
 use function array_merge;
 use function assert;
 use function file_exists;
 use function filemtime;
 use function is_int;
-use function is_string;
-use function realpath;
 use function str_replace;
-use function strpos;
+use function strcmp;
 
 class SitemapPageRepository
 {
+    /** @var string */
+    private $sourcePath;
+
+    public function __construct(string $sourcePath)
+    {
+        $this->sourcePath = $sourcePath;
+    }
+
     /**
      * @return SitemapPage[]
      */
@@ -34,12 +42,9 @@ class SitemapPageRepository
     /**
      * @return SitemapPage[]
      */
-    private function getUrlsFromFiles(string $path, string $extension = 'html') : array
+    private function getUrlsFromFiles(string $path) : array
     {
-        $root = realpath(__DIR__ . '/../../source');
-        assert(is_string($root));
-
-        $path = $root . '/' . $path;
+        $path = $this->sourcePath . '/' . $path;
 
         if (! file_exists($path)) {
             return [];
@@ -50,13 +55,26 @@ class SitemapPageRepository
             RecursiveDirectoryIterator::SKIP_DOTS | RecursiveDirectoryIterator::CURRENT_AS_PATHNAME
         );
 
-        $urls = [];
-        foreach (new RecursiveIteratorIterator($it) as $file) {
-            if (strpos($file, '.' . $extension) === false) {
-                continue;
+        $it = new RecursiveIteratorIterator($it);
+
+        // Sorting the results so we get a consistent order in the sitemap
+        $sortedIterator = new class($it) extends SplHeap {
+            public function __construct(Iterator $iterator)
+            {
+                foreach ($iterator as $item) {
+                    $this->insert($item);
+                }
             }
 
-            $url = str_replace($root, '', $file);
+            public function compare(string $b, string $a) : int
+            {
+                return strcmp($a, $b);
+            }
+        };
+
+        $urls = [];
+        foreach ($sortedIterator as $file) {
+            $url = str_replace($this->sourcePath, '', $file);
 
             $timestamp = filemtime($file);
             assert(is_int($timestamp));
