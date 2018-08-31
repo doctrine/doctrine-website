@@ -65,14 +65,14 @@ class Project
         $this->active              = (bool) ($project['active'] ?? true);
         $this->archived            = (bool) ($project['archived'] ?? false);
         $this->name                = (string) ($project['name'] ?? '');
-        $this->shortName           = (string) ($project['shortName'] ?? '');
+        $this->shortName           = (string) ($project['shortName'] ?? $this->name);
         $this->slug                = (string) ($project['slug'] ?? '');
         $this->docsSlug            = (string) ($project['docsSlug'] ?? '');
         $this->composerPackageName = (string) ($project['composerPackageName'] ?? '');
         $this->repositoryName      = (string) ($project['repositoryName'] ?? '');
         $this->hasDocs             = $project['hasDocs'] ?? true;
-        $this->docsRepositoryName  = (string) ($project['docsRepositoryName'] ?? '');
-        $this->docsPath            = (string) ($project['docsPath'] ?? '');
+        $this->docsRepositoryName  = (string) ($project['docsRepositoryName'] ?? $this->repositoryName);
+        $this->docsPath            = (string) ($project['docsPath'] ?? '/docs');
         $this->codePath            = (string) ($project['codePath'] ?? '/lib');
         $this->description         = (string) ($project['description'] ?? '');
         $this->keywords            = $project['keywords'] ?? [];
