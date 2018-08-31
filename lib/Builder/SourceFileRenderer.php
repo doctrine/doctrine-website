@@ -8,6 +8,7 @@ use Doctrine\Website\Controller\ControllerExecutor;
 use Doctrine\Website\Site;
 use Doctrine\Website\Twig\TwigRenderer;
 use function preg_match_all;
+use function str_replace;
 
 class SourceFileRenderer
 {
@@ -20,14 +21,19 @@ class SourceFileRenderer
     /** @var Site */
     private $site;
 
+    /** @var string */
+    private $sourcePath;
+
     public function __construct(
         ControllerExecutor $controllerExecutor,
         TwigRenderer $twigRenderer,
-        Site $site
+        Site $site,
+        string $sourcePath
     ) {
         $this->controllerExecutor = $controllerExecutor;
         $this->twigRenderer       = $twigRenderer;
         $this->site               = $site;
+        $this->sourcePath         = $sourcePath;
     }
 
     public function render(SourceFile $sourceFile, string $contents) : string
@@ -57,6 +63,7 @@ class SourceFileRenderer
     {
         return $sourceFile->getParameters()->getAll() + [
             'date' => $sourceFile->getDate(),
+            'sourceFile' => str_replace($this->sourcePath, '/source', $sourceFile->getSourcePath()),
         ];
     }
 

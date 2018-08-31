@@ -26,6 +26,9 @@ class SourceFile
     private $extension;
 
     /** @var string */
+    private $sourcePath;
+
+    /** @var string */
     private $writePath;
 
     /** @var string */
@@ -36,14 +39,21 @@ class SourceFile
 
     public function __construct(
         string $extension,
+        string $sourcePath,
         string $writePath,
         string $contents,
         SourceFileParameters $parameters
     ) {
         $this->extension  = $extension;
+        $this->sourcePath = $sourcePath;
         $this->writePath  = $writePath;
         $this->contents   = $contents;
         $this->parameters = $parameters;
+    }
+
+    public function getSourcePath() : string
+    {
+        return $this->sourcePath;
     }
 
     public function getWritePath() : string

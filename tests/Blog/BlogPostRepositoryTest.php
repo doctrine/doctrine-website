@@ -21,12 +21,18 @@ class BlogPostRepositoryTest extends TestCase
 
     public function testFind() : void
     {
-        $sourceFile = new SourceFile('md', '/tmp/test.html', 'test', new SourceFileParameters([
-            'url' => '/2018/09/01/test.html',
-            'title' => 'Test Blog Post',
-            'authorName' => 'Jonathan H. Wage',
-            'authorEmail' => 'jonwage@gmail.com',
-        ]));
+        $sourceFile = new SourceFile(
+            'md',
+            '/tmp/test.html',
+            '/tmp/test.html',
+            'test',
+            new SourceFileParameters([
+                'url' => '/2018/09/01/test.html',
+                'title' => 'Test Blog Post',
+                'authorName' => 'Jonathan H. Wage',
+                'authorEmail' => 'jonwage@gmail.com',
+            ])
+        );
 
         $blogPost = $this->blogPostRepository->find(
             $sourceFile
@@ -42,19 +48,31 @@ class BlogPostRepositoryTest extends TestCase
 
     public function testFindAll() : void
     {
-        $sourceFile1 = new SourceFile('md', '/tmp/test1.html', 'test1', new SourceFileParameters([
-            'url' => '/2018/09/02/test1.html',
-            'title' => 'Test Blog Post',
-            'authorName' => 'Jonathan H. Wage',
-            'authorEmail' => 'jonwage@gmail.com',
-        ]));
+        $sourceFile1 = new SourceFile(
+            'md',
+            '/tmp/test1.html',
+            '/tmp/test1.html',
+            'test1',
+            new SourceFileParameters([
+                'url' => '/2018/09/02/test1.html',
+                'title' => 'Test Blog Post',
+                'authorName' => 'Jonathan H. Wage',
+                'authorEmail' => 'jonwage@gmail.com',
+            ])
+        );
 
-        $sourceFile2 = new SourceFile('md', '/tmp/test.html', 'test2', new SourceFileParameters([
-            'url' => '/2018/09/01/test2.html',
-            'title' => 'Test Blog Post',
-            'authorName' => 'Jonathan H. Wage',
-            'authorEmail' => 'jonwage@gmail.com',
-        ]));
+        $sourceFile2 = new SourceFile(
+            'md',
+            '/tmp/test.html',
+            '/tmp/test.html',
+            'test2',
+            new SourceFileParameters([
+                'url' => '/2018/09/01/test2.html',
+                'title' => 'Test Blog Post',
+                'authorName' => 'Jonathan H. Wage',
+                'authorEmail' => 'jonwage@gmail.com',
+            ])
+        );
 
         $files = [$sourceFile1, $sourceFile2];
 
