@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Projects;
 
 use InvalidArgumentException;
+use function array_replace;
 
 class ProjectFactory
 {
@@ -27,10 +28,8 @@ class ProjectFactory
 
         $projectJson = $this->projectJsonReader->read($project['repositoryName']);
 
-        if ($projectJson !== null) {
-            $project = $project + $projectJson;
-        }
+        $projectData = array_replace($projectJson, $project);
 
-        return new Project($project);
+        return new Project($projectData);
     }
 }

@@ -42,5 +42,8 @@ class ProjectFactoryTest extends TestCase
 
         self::assertSame('test-project', $project->getSlug());
         self::assertSame('test', $project->getShortName());
+        self::assertSame('doctrine/test-project', $project->getComposerPackageName());
+        self::assertSame('Test description', $project->getDescription());
+        self::assertSame(['keyword1', 'keyword2'], $project->getKeywords());
     }
 }
