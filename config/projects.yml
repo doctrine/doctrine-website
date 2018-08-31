@@ -6,10 +6,7 @@ parameters:
             shortName: ORM
             slug: orm
             docsSlug: doctrine-orm
-            composerPackageName: doctrine/orm
             repositoryName: doctrine2
-            docsRepositoryName: doctrine2
-            docsPath: /docs
             description: >
                 PHP object relational mapper (ORM) that sits on top of a powerful
                 database abstraction layer (DBAL). One of its key features is the
@@ -53,10 +50,7 @@ parameters:
             shortName: DBAL
             slug: dbal
             docsSlug: doctrine-dbal
-            composerPackageName: doctrine/dbal
             repositoryName: dbal
-            docsRepositoryName: dbal
-            docsPath: /docs
             description: >
                 Powerful PHP database abstraction layer (DBAL) with many features
                 for database schema introspection, schema management and PDO
@@ -101,10 +95,7 @@ parameters:
             shortName: MongoDB ODM
             slug: mongodb-odm
             docsSlug: doctrine-mongodb-odm
-            composerPackageName: doctrine/mongodb-odm
             repositoryName: mongodb-odm
-            docsRepositoryName: mongodb-odm
-            docsPath: /docs
             description: >
                 PHP Doctrine MongoDB Object Document Mapper (ODM) provides transparent
                 persistence for PHP objects to MongoDB.
@@ -137,13 +128,9 @@ parameters:
         phpcr-odm:
             active: true
             name: PHPCR ODM
-            shortName: PHPCR ODM
             slug: phpcr-odm
             docsSlug: doctrine-phpcr-odm
-            composerPackageName: doctrine/phpcr-odm
             repositoryName: phpcr-odm
-            docsRepositoryName: phpcr-odm
-            docsPath: /docs
             description: >
                 PHP Doctrine Content Repository Object Document Mapper (ODM)
                 provides transparent persistence for PHP objects.
@@ -161,10 +148,7 @@ parameters:
             shortName: CouchDB ODM
             slug: couchdb-odm
             docsSlug: doctrine-couchdb-odm
-            composerPackageName: doctrine/couchdb-odm
             repositoryName: couchdb-odm
-            docsRepositoryName: couchdb-odm
-            docsPath: /docs
             description: >
                 PHP Doctrine CouchDB Object Document Mapper (ODM) provides
                 transparent persistence for PHP objects to CouchDB.
@@ -179,13 +163,9 @@ parameters:
         migrations:
             active: true
             name: Migrations
-            shortName: Migrations
             slug: migrations
             docsSlug: doctrine-migrations
-            composerPackageName: doctrine/migrations
             repositoryName: migrations
-            docsRepositoryName: migrations
-            docsPath: /docs
             description: >
                 PHP Doctrine Migrations project offer additional functionality
                 on top of the database abstraction layer (DBAL) for versioning
@@ -209,13 +189,9 @@ parameters:
         common:
             active: true
             name: Common
-            shortName: Common
             slug: common
             docsSlug: doctrine-common
-            composerPackageName: doctrine/common
             repositoryName: common
-            docsRepositoryName: common
-            docsPath: /docs
             description: >
                 PHP Doctrine Common project is a library that provides additional
                 functionality that other Doctrine projects depend on such as better
@@ -235,11 +211,7 @@ parameters:
             shortName: MongoDB
             slug: mongodb
             docsSlug: doctrine-mongodb
-            composerPackageName: doctrine/mongodb
             repositoryName: mongodb
-            hasDocs: true
-            docsRepositoryName: mongodb
-            docsPath: /docs
             description: >
                 PHP Doctrine MongoDB project is a library that provides a wrapper
                 around the native PHP Mongo PECL extension to provide additional
@@ -258,11 +230,7 @@ parameters:
             shortName: OrientDB ODM
             slug: orientdb-odm
             docsSlug: doctrine-orientdb-odm
-            composerPackageName: doctrine/orientdb-odm
             repositoryName: orientdb-odm
-            hasDocs: true
-            docsRepositoryName: orientdb-odm
-            docsPath: /docs
             codePath: /src
             description: >
                 PHP OrientDB Object Document Mapper (ODM) provides transparent
@@ -278,13 +246,9 @@ parameters:
         annotations:
             active: true
             name: Annotations
-            shortName: Annotations
             slug: annotations
             docsSlug: doctrine-annotations
-            composerPackageName: doctrine/annotations
             repositoryName: annotations
-            docsRepositoryName: annotations
-            docsPath: /docs
             description: >
                 PHP Doctrine DocBlock Annotations Parser library that lets you parse
                 structured data out of PHP docblocks for use with other functionality.
@@ -311,14 +275,9 @@ parameters:
         collections:
             active: true
             name: Collections
-            shortName: Collections
             slug: collections
             docsSlug: doctrine-collections
-            composerPackageName: doctrine/collections
             repositoryName: collections
-            hasDocs: true
-            docsRepositoryName: collections
-            docsPath: /docs
             description: >
                 PHP Doctrine Collections library that adds additional functionality
                 on top of PHP arrays.
@@ -333,14 +292,9 @@ parameters:
         inflector:
             active: true
             name: Inflector
-            shortName: Inflector
             slug: inflector
             docsSlug: doctrine-inflector
-            composerPackageName: doctrine/inflector
             repositoryName: inflector
-            hasDocs: true
-            docsRepositoryName: inflector
-            docsPath: /docs
             description: >
                 PHP Doctrine Inflector is a small library that can perform
                 string manipulations with regard to upper/lowercase and
@@ -362,14 +316,9 @@ parameters:
         cache:
             active: true
             name: Cache
-            shortName: Cache
             slug: cache
             docsSlug: doctrine-cache
-            composerPackageName: doctrine/cache
             repositoryName: cache
-            hasDocs: true
-            docsRepositoryName: cache
-            docsPath: /docs
             description: >
                 PHP Doctrine Cache library is a popular cache implementation
                 that supports many different drivers such as redis, memcache,
@@ -385,14 +334,9 @@ parameters:
         lexer:
             active: true
             name: Lexer
-            shortName: Lexer
             slug: lexer
             docsSlug: doctrine-lexer
-            composerPackageName: doctrine/lexer
             repositoryName: lexer
-            hasDocs: true
-            docsRepositoryName: lexer
-            docsPath: /docs
             description: >
                 PHP Doctrine Lexer parser library that can be used in Top-Down,
                 Recursive Descent Parsers.
@@ -407,13 +351,9 @@ parameters:
         event-manager:
             active: true
             name: Event Manager
-            shortName: Event Manager
             slug: event-manager
             docsSlug: doctrine-event-manager
-            composerPackageName: doctrine/event-manager
             repositoryName: event-manager
-            docsRepositoryName: event-manager
-            docsPath: /docs
             description: >
                 The Doctrine Event Manager is a simple PHP event system that was built to be used with
                 the various Doctrine projects.
@@ -430,13 +370,9 @@ parameters:
         persistence:
             active: true
             name: Persistence
-            shortName: Persistence
             slug: persistence
             docsSlug: doctrine-persistence
-            composerPackageName: doctrine/persistence
             repositoryName: persistence
-            docsRepositoryName: persistence
-            docsPath: /docs
             description: >
                 The Doctrine Persistence project is a set of shared interfaces and functionality that the different Doctrine
                 object mappers share.
@@ -452,13 +388,9 @@ parameters:
         reflection:
             active: true
             name: Reflection
-            shortName: Reflection
             slug: reflection
             docsSlug: doctrine-reflection
-            composerPackageName: doctrine/reflection
             repositoryName: reflection
-            docsRepositoryName: reflection
-            docsPath: /docs
             description: >
                 The Doctrine Reflection project is a simple library used by the various Doctrine projects which
                 adds some additional functionality on top of the reflection functionality that comes with PHP.
@@ -476,13 +408,9 @@ parameters:
         coding-standard:
             active: true
             name: Coding Standard
-            shortName: Coding Standard
             slug: coding-standard
             docsSlug: doctrine-coding-standard
-            composerPackageName: doctrine/coding-standard
             repositoryName: coding-standard
-            docsRepositoryName: coding-standard
-            docsPath: /docs
             description: >
                 The Doctrine Coding Standard is a set of PHPCS rules applied to all Doctrine projects.
 
@@ -508,7 +436,6 @@ parameters:
             slug: doctrine1
             docsSlug: doctrine1
             repositoryName: doctrine1
-            hasDocs: true
             docsRepositoryName: doctrine1-documentation
             docsPath: /source
             description: >
