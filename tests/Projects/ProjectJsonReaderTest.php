@@ -15,19 +15,24 @@ class ProjectJsonReaderTest extends TestCase
 
     public function testRead() : void
     {
-        self::assertSame(['shortName' => 'test'], $this->projectJsonReader->read('test-project'));
+        self::assertSame([
+            'composerPackageName' => 'doctrine/test-project',
+            'description' => 'Test description',
+            'keywords' => ['keyword1', 'keyword2'],
+            'shortName' => 'test',
+        ], $this->projectJsonReader->read('test-project'));
     }
 
     public function testReadFileDoesNotExist() : void
     {
-        self::assertNull($this->projectJsonReader->read('no-project-json'));
+        self::assertEmpty($this->projectJsonReader->read('no-project-json'));
     }
 
     public function testReadFileHasInvalidJson() : void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        self::assertNull($this->projectJsonReader->read('invalid-project-json'));
+        $this->projectJsonReader->read('invalid-project-json');
     }
 
     protected function setUp() : void
