@@ -12,28 +12,36 @@ use function usort;
 class ProjectRepository
 {
     /** @var string[] */
-    private $projects = [];
+    private $projectRepositoryNames = [];
 
     /** @var ProjectFactory */
     private $projectFactory;
 
     /** @var Project[] */
-    private $projectObjects = [];
+    private $projects = [];
 
     /**
-     * @param string[] $projects
+     * @param string[] $projectRepositoryNames
      */
-    public function __construct(array $projects, ProjectFactory $projectFactory)
+    public function __construct(array $projectRepositoryNames, ProjectFactory $projectFactory)
     {
-        $this->projects       = $projects;
-        $this->projectFactory = $projectFactory;
+        $this->projectRepositoryNames = $projectRepositoryNames;
+        $this->projectFactory         = $projectFactory;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getProjectRepositoryNames() : array
+    {
+        return $this->projectRepositoryNames;
     }
 
     public function findOneBySlug(string $slug) : Project
     {
         $this->init();
 
-        foreach ($this->projectObjects as $project) {
+        foreach ($this->projects as $project) {
             if ($project->getSlug() === $slug || $project->getDocsSlug() === $slug) {
                 return $project;
             }
@@ -49,20 +57,20 @@ class ProjectRepository
     {
         $this->init();
 
-        return $this->projectObjects;
+        return $this->projects;
     }
 
     private function init() : void
     {
-        if ($this->projectObjects !== []) {
+        if ($this->projects !== []) {
             return;
         }
 
-        $this->projectObjects = array_map(function (string $repositoryName) : Project {
+        $this->projects = array_map(function (string $repositoryName) : Project {
             return $this->projectFactory->create($repositoryName);
-        }, $this->projects);
+        }, $this->projectRepositoryNames);
 
-        usort($this->projectObjects, function (Project $a, Project $b) {
+        usort($this->projects, function (Project $a, Project $b) {
             return $a->getName() <=> $b->getName();
         });
     }

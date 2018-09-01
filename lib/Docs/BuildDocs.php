@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs;
 
+use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectRepository;
+use Doctrine\Website\Projects\ProjectVersion;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use function array_filter;
 use function sprintf;
 
 class BuildDocs
@@ -53,18 +56,14 @@ class BuildDocs
             $this->searchIndexer->initSearchIndex();
         }
 
-        $projects = $this->projectRepository->findAll();
+        foreach ($this->projectRepository->getProjectRepositoryNames() as $repositoryName) {
+            $this->projectGitSyncer->initRepository($repositoryName);
+        }
+
+        $projects = $this->getProjectsToBuild($projectToBuild);
 
         foreach ($projects as $project) {
-            if ($projectToBuild !== '' && $project->getSlug() !== $projectToBuild) {
-                continue;
-            }
-
-            foreach ($project->getVersions() as $version) {
-                if ($versionToBuild !== '' && $version->getSlug() !== $versionToBuild) {
-                    continue;
-                }
-
+            foreach ($this->getProjectVersionsToBuild($project, $versionToBuild) as $version) {
                 $output->writeln(sprintf(
                     '<info>%s</info> (<comment>%s</comment>)',
                     $project->getSlug(),
@@ -113,5 +112,33 @@ class BuildDocs
 
             $this->projectGitSyncer->checkoutMaster($project);
         }
+    }
+
+    /**
+     * @return Project[]
+     */
+    private function getProjectsToBuild(string $projectToBuild) : array
+    {
+        return array_filter($this->projectRepository->findAll(), function (Project $project) use ($projectToBuild) : bool {
+            if ($projectToBuild !== '' && $project->getSlug() !== $projectToBuild) {
+                return false;
+            }
+
+            return true;
+        });
+    }
+
+    /**
+     * @return ProjectVersion[]
+     */
+    private function getProjectVersionsToBuild(Project $project, string $versionToBuild) : array
+    {
+        return array_filter($project->getVersions(), function (ProjectVersion $version) use ($versionToBuild) : bool {
+            if ($versionToBuild !== '' && $version->getSlug() !== $versionToBuild) {
+                return false;
+            }
+
+            return true;
+        });
     }
 }
