@@ -1,5 +1,5 @@
 parameters:
-    doctrine.website.projects:
+    doctrine.website.project_repository_names:
         - doctrine2
         - dbal
         - mongodb-odm
@@ -19,3 +19,4 @@ parameters:
         - reflection
         - coding-standard
         - doctrine1
+        - instantiator
