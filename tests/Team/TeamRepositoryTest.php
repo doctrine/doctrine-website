@@ -6,7 +6,7 @@ namespace Doctrine\Website\Tests\Team;
 
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Team\TeamRepository;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 use function array_keys;
 
 class TeamRepositoryTest extends TestCase

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests;
 
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Projects\ProjectRepository;
 use SimpleXMLElement;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\Yaml\Yaml;
 use function explode;
 use function file_exists;
 use function file_get_contents;
@@ -47,26 +46,27 @@ class FunctionalTest extends TestCase
         self::assertValid('/2018/04/06/new-website.html');
         self::assertValid('/projects.html');
 
-        $data = Yaml::parseFile($this->rootDir . '/config/projects.yml');
+        $container = $this->getContainer();
 
-        $projects = $data['parameters']['doctrine.website.projects'];
+        /** @var ProjectRepository $projectRepository */
+        $projectRepository = $container->get(ProjectRepository::class);
 
-        foreach ($projects as $project) {
+        foreach ($projectRepository->findAll() as $project) {
             // project homepage
             $crawler = self::assertValid(sprintf(
                 '/projects/%s.html',
-                $project['slug']
+                $project->getSlug()
             ));
 
-            self::assertSame($project['name'], $crawler->filter('h2')->text());
-            self::assertSame($project['description'], $crawler->filter('p.lead')->text());
+            self::assertSame($project->getName(), $crawler->filter('h2')->text());
+            self::assertSame($project->getDescription(), $crawler->filter('p.lead')->text());
 
-            foreach ($project['versions'] as $version) {
+            foreach ($project->getVersions() as $version) {
                 // rst docs
                 $crawler = self::assertValid(sprintf(
                     '/projects/%s/en/%s/index.html',
-                    $project['docsSlug'],
-                    $version['slug']
+                    $project->getDocsSlug(),
+                    $version->getSlug()
                 ));
 
                 self::assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));
@@ -74,19 +74,19 @@ class FunctionalTest extends TestCase
 
             self::assertFileNotExists($this->getFullPath(sprintf(
                 '/projects/%s/en/current/meta.php',
-                $project['docsSlug']
+                $project->getDocsSlug()
             )));
 
             // rst docs current symlink
             $crawler = self::assertValid(sprintf(
                 '/projects/%s/en/current/index.html',
-                $project['docsSlug']
+                $project->getDocsSlug()
             ));
 
             // rst docs stable symlink
             $crawler = self::assertValid(sprintf(
                 '/projects/%s/en/stable/index.html',
-                $project['docsSlug']
+                $project->getDocsSlug()
             ));
 
             self::assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));

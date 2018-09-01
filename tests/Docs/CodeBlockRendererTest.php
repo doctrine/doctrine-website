@@ -7,8 +7,8 @@ namespace Doctrine\Website\Tests\Docs;
 use Doctrine\Website\Docs\CodeBlockConsoleRenderer;
 use Doctrine\Website\Docs\CodeBlockRenderer;
 use Doctrine\Website\Docs\CodeBlockWithLineNumbersRenderer;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class CodeBlockRendererTest extends TestCase
 {

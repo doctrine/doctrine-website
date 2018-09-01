@@ -10,7 +10,6 @@ use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 

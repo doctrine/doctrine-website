@@ -6,8 +6,8 @@ namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Tests\TestCase;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 
 class ProjectTest extends TestCase
 {

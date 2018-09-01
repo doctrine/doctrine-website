@@ -7,9 +7,9 @@ namespace Doctrine\Website\Tests\Twig;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectRepository;
 use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Tests\TestCase;
 use Doctrine\Website\Twig\ProjectExtension;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class ProjectExtensionTest extends TestCase
 {

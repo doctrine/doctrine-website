@@ -18,6 +18,8 @@
 
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
 
+        <service id="Doctrine\Website\Projects\ProjectRepository" autowire="true" public="true" />
+
         <service id="Doctrine\RST\Builder">
             <argument type="service" id="Doctrine\Website\RST\Kernel" />
         </service>

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Builder;
 
 use Doctrine\Website\Builder\SourceFileParameters;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class SourceFileParametersTest extends TestCase
 {

@@ -6,7 +6,7 @@ namespace Doctrine\Website\Tests\Builder;
 
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Builder\SourceFileRepository;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 use function assert;
 use function is_string;
 use function realpath;

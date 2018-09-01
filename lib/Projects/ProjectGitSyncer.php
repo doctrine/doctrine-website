@@ -43,6 +43,15 @@ class ProjectGitSyncer
         );
     }
 
+    public function checkoutMaster(Project $project) : void
+    {
+        $this->syncRepository(
+            $project->getRepositoryName(),
+            'master',
+            $project->getProjectRepositoryPath($this->projectsPath)
+        );
+    }
+
     private function syncRepository(
         string $repositoryName,
         string $branchName,
