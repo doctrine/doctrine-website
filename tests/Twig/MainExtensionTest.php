@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Twig;
 
+use Doctrine\Website\Assets\AssetIntegrityGenerator;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Tests\TestCase;
 use Doctrine\Website\Twig\MainExtension;
@@ -14,15 +15,25 @@ class MainExtensionTest extends TestCase
     /** @var Parsedown */
     private $parsedown;
 
+    /** @var AssetIntegrityGenerator */
+    private $assetIntegrityGenerator;
+
+    /** @var string */
+    private $sourcePath;
+
     /** @var MainExtension */
     private $mainExtension;
 
     protected function setUp() : void
     {
-        $this->parsedown = $this->createMock(Parsedown::class);
+        $this->parsedown               = $this->createMock(Parsedown::class);
+        $this->assetIntegrityGenerator = $this->createMock(AssetIntegrityGenerator::class);
+        $this->sourcePath              = __DIR__ . '/../../source';
 
         $this->mainExtension = new MainExtension(
-            $this->parsedown
+            $this->parsedown,
+            $this->assetIntegrityGenerator,
+            $this->sourcePath
         );
     }
 
