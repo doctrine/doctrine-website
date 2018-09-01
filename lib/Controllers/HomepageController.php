@@ -18,12 +18,20 @@ class HomepageController
     /** @var ProjectRepository */
     private $projectRepository;
 
+    /** @var string[][] */
+    private $whoUsesDoctrine;
+
+    /**
+     * @param string[][] $whoUsesDoctrine
+     */
     public function __construct(
         BlogPostRepository $blogPostRepository,
-        ProjectRepository $projectRepository
+        ProjectRepository $projectRepository,
+        array $whoUsesDoctrine
     ) {
         $this->blogPostRepository = $blogPostRepository;
         $this->projectRepository  = $projectRepository;
+        $this->whoUsesDoctrine    = $whoUsesDoctrine;
     }
 
     public function index(SourceFile $sourceFile) : ControllerResult
@@ -34,6 +42,7 @@ class HomepageController
         return new ControllerResult([
             'blogPosts' => $blogPosts,
             'projects' => $projects,
+            'whoUsesDoctrine' => $this->whoUsesDoctrine,
         ]);
     }
 }
