@@ -1,0 +1,23 @@
+---
+layout: default
+title: Blog Archive
+menuSlug: blog
+permalink: /blog/archive.html
+controller: ['Doctrine\Website\Controllers\BlogController', 'archive']
+---
+
+<h1>Blog Archive</h1>
+
+{% for blogPost in blogPosts %}
+    <date>{{ blogPost.date|date('Y-m-d') }}</date> &nbsp; <a href="{{ blogPost.url }}">{{ blogPost.title }}</a>
+
+    {% if blogPost.authorName %}
+        by
+        {% if blogPost.authorEmail %}
+            <a href="mailto:{{ blogPost.authorEmail }}">{{ blogPost.authorName }}</a>
+        {% else %}
+            {{ blogPost.authorName }}
+        {% endif %}
+    {% endif %}
+    <br/>
+{% endfor %}

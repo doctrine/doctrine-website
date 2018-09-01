@@ -7,7 +7,6 @@ namespace Doctrine\Website\Controllers;
 use Doctrine\Website\Blog\BlogPostRepository;
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
-use function array_slice;
 
 class AtomController
 {
@@ -22,7 +21,7 @@ class AtomController
     public function index(SourceFile $sourceFile) : ControllerResult
     {
         return new ControllerResult([
-            'blogPosts' => array_slice($this->blogPostRepository->findAll(), 0, 10),
+            'blogPosts' => $this->blogPostRepository->findPaginated(),
         ]);
     }
 }

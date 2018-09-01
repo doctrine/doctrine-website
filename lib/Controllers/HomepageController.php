@@ -8,7 +8,6 @@ use Doctrine\Website\Blog\BlogPostRepository;
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
 use Doctrine\Website\Projects\ProjectRepository;
-use function array_slice;
 
 class HomepageController
 {
@@ -36,7 +35,7 @@ class HomepageController
 
     public function index(SourceFile $sourceFile) : ControllerResult
     {
-        $blogPosts = array_slice($this->blogPostRepository->findAll(), 0, 9);
+        $blogPosts = $this->blogPostRepository->findPaginated(1, 10);
         $projects  = $this->projectRepository->findAll();
 
         return new ControllerResult([

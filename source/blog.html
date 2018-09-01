@@ -6,18 +6,30 @@ permalink: /blog/index.html
 controller: ['Doctrine\Website\Controllers\BlogController', 'index']
 ---
 
-<h1>Blog</h1>
-
 {% for blogPost in blogPosts %}
-    {{ blogPost.date|date('Y-m-d') }} &nbsp; <a href="{{ blogPost.url }}">{{ blogPost.title }}</a>
+    <article>
+        <header>
+            <h2><a href="{{ blogPost.url }}">{{ blogPost.title }}</a></h2>
+        </header>
 
-    {% if blogPost.authorName %}
-        by
-        {% if blogPost.authorEmail %}
-            <a href="mailto:{{ blogPost.authorEmail }}">{{ blogPost.authorName }}</a>
-        {% else %}
-            {{ blogPost.authorName }}
-        {% endif %}
-    {% endif %}
-    <br/>
+        <p class="lead">
+            Posted on <date>{{ blogPost.date|date('F j, Y') }}</date>
+            {% if blogPost.authorName %}
+                by
+                {% if blogPost.authorEmail %}
+                    <a href="mailto:{{ blogPost.authorEmail }}">{{ blogPost.authorName }}</a>
+                {% else %}
+                    {{ blogPost.authorName }}
+                {% endif %}
+            {% endif %}
+        </p>
+
+        <hr />
+
+        <div>
+            {{ blogPost.contents|markdown }}
+        </div>
+    </article>
 {% endfor %}
+
+<a href="/blog/archive.html" class="btn btn-primary">View Blog Archive</a>
