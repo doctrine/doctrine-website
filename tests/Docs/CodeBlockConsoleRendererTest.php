@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Docs;
 
 use Doctrine\Website\Docs\CodeBlockConsoleRenderer;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class CodeBlockConsoleRendererTest extends TestCase
 {

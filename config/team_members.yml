@@ -155,7 +155,7 @@ parameters:
             location: 'Frankfurt am Main'
             active: true
             core: true
-            projects: ["orm", "dbal", "reflection"]
+            projects: ["orm", "dbal", "reflection", "instantiator"]
         TomHAnderson:
             name: 'Tom H Anderson'
             github: TomHAnderson

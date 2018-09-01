@@ -9,7 +9,7 @@
             <bind key="$env">%doctrine.website.env%</bind>
             <bind key="$projectsPath">%doctrine.website.projects_path%</bind>
             <bind key="$sourcePath">%doctrine.website.source_path%</bind>
-            <bind key="$projects">%doctrine.website.projects%</bind>
+            <bind key="$projectRepositoryNames">%doctrine.website.project_repository_names%</bind>
             <bind key="$teamMembers">%doctrine.website.team_members%</bind>
             <bind key="$templatesPath">%doctrine.website.templates_path%</bind>
         </defaults>
@@ -17,6 +17,8 @@
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />
 
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
+
+        <service id="Doctrine\Website\Projects\ProjectRepository" autowire="true" public="true" />
 
         <service id="Doctrine\RST\Builder">
             <argument type="service" id="Doctrine\Website\RST\Kernel" />

@@ -4,31 +4,15 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
+use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectFactory;
-use Doctrine\Website\Projects\ProjectJsonReader;
 use Doctrine\Website\Projects\ProjectRepository;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class ProjectRepositoryTest extends TestCase
 {
-    /** @var string[][] */
-    private $projects = [
-        [
-            'name' => 'ORM',
-            'slug' => 'orm',
-            'docsSlug' => 'doctrine-orm',
-            'repositoryName' => 'doctrine2',
-        ],
-        [
-            'name' => 'DBAL',
-            'slug' => 'dbal',
-            'docsSlug' => 'doctrine-dbal',
-            'repositoryName' => 'dbal',
-        ],
-    ];
-
-    /** @var ProjectJsonReader */
-    private $projectJsonReader;
+    /** @var string[] */
+    private $projects = ['doctrine2', 'dbal'];
 
     /** @var ProjectFactory */
     private $projectFactory;
@@ -38,8 +22,30 @@ class ProjectRepositoryTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->projectJsonReader = $this->createMock(ProjectJsonReader::class);
-        $this->projectFactory    = new ProjectFactory($this->projectJsonReader);
+        $this->projectFactory = $this->createMock(ProjectFactory::class);
+
+        $project1 = new Project([
+            'name' => 'ORM',
+            'slug' => 'orm',
+            'docsSlug' => 'doctrine-orm',
+        ]);
+
+        $project2 = new Project([
+            'name' => 'DBAL',
+            'slug' => 'dbal',
+            'docsSlug' => 'doctrine-dbal',
+        ]);
+
+        $this->projectFactory->expects(self::at(0))
+            ->method('create')
+            ->with('doctrine2')
+            ->willReturn($project1);
+
+        $this->projectFactory->expects(self::at(1))
+            ->method('create')
+            ->with('dbal')
+            ->willReturn($project2);
+
         $this->projectRepository = new ProjectRepository($this->projects, $this->projectFactory);
     }
 

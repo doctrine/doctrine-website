@@ -12,7 +12,7 @@ use Doctrine\Website\Projects\ProjectVersion;
 use Doctrine\Website\RST\Directive\TocDirective;
 use Doctrine\Website\RST\Directive\TocHeaderDirective;
 use Doctrine\Website\RST\Kernel;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use function array_keys;
 use function file_get_contents;

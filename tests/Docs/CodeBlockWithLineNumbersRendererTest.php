@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Docs;
 
 use Doctrine\Website\Docs\CodeBlockWithLineNumbersRenderer;
+use Doctrine\Website\Tests\TestCase;
 use Highlight\Highlighter;
-use PHPUnit\Framework\TestCase;
 
 class CodeBlockWithLineNumbersRendererTest extends TestCase
 {

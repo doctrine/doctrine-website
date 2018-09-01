@@ -6,31 +6,44 @@ namespace Doctrine\Website\Projects;
 
 use InvalidArgumentException;
 use function array_map;
-use function ksort;
 use function sprintf;
+use function usort;
 
 class ProjectRepository
 {
-    /** @var string[][]|int[][]|bool[][] */
-    private $projects = [];
+    /** @var string[] */
+    private $projectRepositoryNames = [];
 
     /** @var ProjectFactory */
     private $projectFactory;
 
+    /** @var Project[] */
+    private $projects = [];
+
     /**
-     * @param string[][]|int[][]|bool[][] $projects
+     * @param string[] $projectRepositoryNames
      */
-    public function __construct(array $projects, ProjectFactory $projectFactory)
+    public function __construct(array $projectRepositoryNames, ProjectFactory $projectFactory)
     {
-        $this->projects       = $projects;
-        $this->projectFactory = $projectFactory;
+        $this->projectRepositoryNames = $projectRepositoryNames;
+        $this->projectFactory         = $projectFactory;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getProjectRepositoryNames() : array
+    {
+        return $this->projectRepositoryNames;
     }
 
     public function findOneBySlug(string $slug) : Project
     {
+        $this->init();
+
         foreach ($this->projects as $project) {
-            if ($project['slug'] === $slug || $project['docsSlug'] === $slug) {
-                return $this->projectFactory->create($project);
+            if ($project->getSlug() === $slug || $project->getDocsSlug() === $slug) {
+                return $project;
             }
         }
 
@@ -42,12 +55,23 @@ class ProjectRepository
      */
     public function findAll() : array
     {
-        $projects = array_map(function (array $project) : Project {
-            return $this->projectFactory->create($project);
-        }, $this->projects);
+        $this->init();
 
-        ksort($projects);
+        return $this->projects;
+    }
 
-        return $projects;
+    private function init() : void
+    {
+        if ($this->projects !== []) {
+            return;
+        }
+
+        $this->projects = array_map(function (string $repositoryName) : Project {
+            return $this->projectFactory->create($repositoryName);
+        }, $this->projectRepositoryNames);
+
+        usort($this->projects, function (Project $a, Project $b) {
+            return $a->getName() <=> $b->getName();
+        });
     }
 }

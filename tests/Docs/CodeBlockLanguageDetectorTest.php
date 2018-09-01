@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Docs;
 
 use Doctrine\Website\Docs\CodeBlockLanguageDetector;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class CodeBlockLanguageDetectorTest extends TestCase
 {

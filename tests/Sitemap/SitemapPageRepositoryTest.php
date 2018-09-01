@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Sitemap;
 
 use Doctrine\Website\Sitemap\SitemapPageRepository;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 use function date;
 
 class SitemapPageRepositoryTest extends TestCase

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests;
 
 use Doctrine\Website\ProcessFactory;
-use PHPUnit\Framework\TestCase;
 
 class ProcessFactoryTest extends TestCase
 {

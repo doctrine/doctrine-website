@@ -22,6 +22,23 @@ class ProjectGitSyncer
         $this->projectsPath   = $projectsPath;
     }
 
+    public function initRepository(string $repositoryName) : void
+    {
+        $repositoryPath = $this->projectsPath . '/' . $repositoryName;
+
+        if (is_dir($repositoryPath)) {
+            return;
+        }
+
+        $command = sprintf(
+            'git clone https://github.com/doctrine/%s.git %s',
+            $repositoryName,
+            $repositoryPath
+        );
+
+        $this->processFactory->run($command);
+    }
+
     public function sync(
         Project $project,
         ProjectVersion $version
@@ -43,20 +60,21 @@ class ProjectGitSyncer
         );
     }
 
+    public function checkoutMaster(Project $project) : void
+    {
+        $this->syncRepository(
+            $project->getRepositoryName(),
+            'master',
+            $project->getProjectRepositoryPath($this->projectsPath)
+        );
+    }
+
     private function syncRepository(
         string $repositoryName,
         string $branchName,
         string $dir
     ) : void {
-        if (! is_dir($dir)) {
-            $command = sprintf(
-                'git clone https://github.com/doctrine/%s.git %s',
-                $repositoryName,
-                $dir
-            );
-
-            $this->processFactory->run($command);
-        }
+        $this->initRepository($repositoryName);
 
         $command = sprintf(
             'cd %s && git clean -xdf && git fetch origin && git checkout origin/%s',
