@@ -34,9 +34,20 @@ class FunctionalTest extends TestCase
         self::markTestSkipped('This test requires ./bin/console build-website to have been ran.');
     }
 
+    public function testHomepageWhoUsesDoctrine() : void
+    {
+        $crawler = self::assertValid('/index.html');
+
+        $table = $crawler->filter('#who-uses-doctrine-table');
+        $first = $table->filter('tr td a')->first();
+
+        self::assertCount(5, $table->children());
+        self::assertSame('https://symfony.com/', $first->attr('href'));
+        self::assertSame('Symfony', $first->text());
+    }
+
     public function testFunctional() : void
     {
-        self::assertValid('/index.html');
         self::assertValid('/contribute/index.html');
         self::assertValid('/contribute/maintainer/index.html');
         self::assertValid('/contribute/website/index.html');

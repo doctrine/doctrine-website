@@ -16,3 +16,47 @@ parameters:
         are the Object Relational Mapper (ORM) and the Database Abstraction
         Layer (DBAL) it is built upon.
     doctrine.website.google_analytics_tracking_id: ''
+
+    doctrine.website.who_uses_doctrine:
+        -
+            name: Symfony
+            url: https://symfony.com/
+        -
+            name: Drupal
+            url: https://www.drupal.org/
+        -
+            name: Laravel
+            url: https://laravel.com/
+        -
+            name: JMS Libraries
+            url: https://jmsyst.com/
+        -
+            name: Go! AOP
+            url: https://go.aopphp.com/
+        -
+            name: KNP Labs
+            url: https://knplabs.com/
+        -
+            name: eZ Platform
+            url: https://www.ezplatform.com/
+        -
+            name: API Platform
+            url: https://api-platform.com/
+        -
+            name: PrestaShop
+            url: https://www.prestashop.com/en
+        -
+            name: PHPUnit
+            url: https://phpunit.de/
+        -
+            name: Prophecy
+            url: https://github.com/phpspec/prophecy
+        -
+            name: phpbench
+            url: https://github.com/phpbench/phpbench
+        -
+            name: TYPO3
+            url: https://typo3.org/
+        -
+            name: Sonata Project
+            url: https://sonata-project.org/
