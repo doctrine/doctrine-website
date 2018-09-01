@@ -8,7 +8,6 @@ use Doctrine\Website\Deployer;
 use Doctrine\Website\ProcessFactory;
 use InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 

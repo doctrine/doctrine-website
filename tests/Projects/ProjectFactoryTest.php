@@ -6,7 +6,7 @@ namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\ProjectFactory;
 use Doctrine\Website\Projects\ProjectJsonReader;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class ProjectFactoryTest extends TestCase
 {
@@ -25,22 +25,16 @@ class ProjectFactoryTest extends TestCase
 
     public function testCreate() : void
     {
-        $project = $this->projectFactory->create([
-            'slug' => 'test',
-            'repositoryName' => 'test-project',
-        ]);
+        $project = $this->projectFactory->create('no-project-json');
 
-        self::assertSame('test', $project->getSlug());
+        self::assertSame('no-project-json', $project->getRepositoryName());
     }
 
     public function testCreateWithDoctrineProjectJson() : void
     {
-        $project = $this->projectFactory->create([
-            'slug' => 'test-project',
-            'repositoryName' => 'test-project',
-        ]);
+        $project = $this->projectFactory->create('test-project');
 
-        self::assertSame('test-project', $project->getSlug());
+        self::assertSame('test-project', $project->getRepositoryName());
         self::assertSame('test', $project->getShortName());
         self::assertSame('doctrine/test-project', $project->getComposerPackageName());
         self::assertSame('Test description', $project->getDescription());

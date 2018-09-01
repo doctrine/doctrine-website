@@ -8,8 +8,8 @@ use Doctrine\Website\Docs\APIBuilder;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class APIBuilderTest extends TestCase
 {

@@ -106,6 +106,12 @@ class BuildDocs
 
                 $this->searchIndexer->buildSearchIndexes($project, $version);
             }
+
+            if (! $syncGit) {
+                continue;
+            }
+
+            $this->projectGitSyncer->checkoutMaster($project);
         }
     }
 }

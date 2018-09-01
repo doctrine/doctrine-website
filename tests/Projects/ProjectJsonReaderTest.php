@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Projects;
 
 use Doctrine\Website\Projects\ProjectJsonReader;
+use Doctrine\Website\Tests\TestCase;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 
 class ProjectJsonReaderTest extends TestCase
 {
@@ -16,6 +16,7 @@ class ProjectJsonReaderTest extends TestCase
     public function testRead() : void
     {
         self::assertSame([
+            'repositoryName' => 'test-project',
             'composerPackageName' => 'doctrine/test-project',
             'description' => 'Test description',
             'keywords' => ['keyword1', 'keyword2'],
@@ -25,7 +26,7 @@ class ProjectJsonReaderTest extends TestCase
 
     public function testReadFileDoesNotExist() : void
     {
-        self::assertEmpty($this->projectJsonReader->read('no-project-json'));
+        self::assertEquals(['repositoryName' => 'no-project-json'], $this->projectJsonReader->read('no-project-json'));
     }
 
     public function testReadFileHasInvalidJson() : void

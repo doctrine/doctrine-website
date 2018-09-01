@@ -8,8 +8,8 @@ use Doctrine\Website\Blog\BlogPostRepository;
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Builder\SourceFileParameters;
 use Doctrine\Website\Builder\SourceFileRepository;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class BlogPostRepositoryTest extends TestCase
 {

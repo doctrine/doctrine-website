@@ -35,6 +35,7 @@ class ProjectJsonReader
     public function read(string $repositoryName) : array
     {
         return array_replace(
+            ['repositoryName' => $repositoryName],
             $this->readComposerData($repositoryName),
             $this->readJsonFile($repositoryName, self::DOCTRINE_PROJECT_JSON_FILE_NAME)
         );

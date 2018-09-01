@@ -9,9 +9,9 @@ use Doctrine\RST\Parser as RSTParser;
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Builder\SourceFileBuilder;
 use Doctrine\Website\Builder\SourceFileRenderer;
+use Doctrine\Website\Tests\TestCase;
 use Parsedown;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 class SourceFileBuilderTest extends TestCase

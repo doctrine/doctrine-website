@@ -10,9 +10,9 @@ use Doctrine\Website\Builder\SourceFileParameters;
 use Doctrine\Website\Builder\SourceFileRenderer;
 use Doctrine\Website\Controller\ControllerExecutor;
 use Doctrine\Website\Site;
+use Doctrine\Website\Tests\TestCase;
 use Doctrine\Website\Twig\TwigRenderer;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class SourceFileRendererTest extends TestCase
 {

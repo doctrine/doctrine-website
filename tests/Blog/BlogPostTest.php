@@ -6,7 +6,7 @@ namespace Doctrine\Website\Tests\Blog;
 
 use DateTimeImmutable;
 use Doctrine\Website\Blog\BlogPost;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class BlogPostTest extends TestCase
 {

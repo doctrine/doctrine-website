@@ -8,8 +8,8 @@ use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use function sprintf;
 
 class ProjectGitSyncerTest extends TestCase

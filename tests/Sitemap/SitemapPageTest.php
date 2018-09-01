@@ -6,7 +6,7 @@ namespace Doctrine\Website\Tests\Sitemap;
 
 use DateTimeImmutable;
 use Doctrine\Website\Sitemap\SitemapPage;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class SitemapPageTest extends TestCase
 {
