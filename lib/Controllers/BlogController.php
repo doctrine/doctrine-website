@@ -21,6 +21,13 @@ class BlogController
     public function index(SourceFile $sourceFile) : ControllerResult
     {
         return new ControllerResult([
+            'blogPosts' => $this->blogPostRepository->findPaginated(),
+        ]);
+    }
+
+    public function archive(SourceFile $sourceFile) : ControllerResult
+    {
+        return new ControllerResult([
             'blogPosts' => $this->blogPostRepository->findAll(),
         ]);
     }

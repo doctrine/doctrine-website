@@ -6,8 +6,10 @@ namespace Doctrine\Website\Blog;
 
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Builder\SourceFileRepository;
+use InvalidArgumentException;
 use function array_map;
 use function array_reverse;
+use function array_slice;
 use function usort;
 
 class BlogPostRepository
@@ -30,6 +32,20 @@ class BlogPostRepository
             $sourceFile->getContents(),
             $sourceFile->getDate()
         );
+    }
+
+    /**
+     * @return BlogPost[]
+     */
+    public function findPaginated(int $page = 1, int $perPage = 10) : array
+    {
+        if ($page < 1 || $perPage < 1) {
+            throw new InvalidArgumentException('Pagination parameters must be positive.');
+        }
+
+        $offset = ($page - 1) * $perPage;
+
+        return array_slice($this->findAll(), $offset, $perPage);
     }
 
     /**

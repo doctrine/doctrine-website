@@ -43,7 +43,7 @@
         </header>
 
         <p class="lead">
-            Posted on {{ blogPost.date|date('Y-m-d') }}
+            Posted on <date>{{ blogPost.date|date('F j, Y') }}</date>
             {% if blogPost.authorName %}
                 by
                 {% if blogPost.authorEmail %}

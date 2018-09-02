@@ -53,7 +53,7 @@ class MainExtension extends Twig_Extension
     public function getFilters() : array
     {
         return [
-            new Twig_SimpleFilter('markdown', [$this->parsedown, 'text']),
+            new Twig_SimpleFilter('markdown', [$this->parsedown, 'text'], ['is_safe' => ['html']]),
         ];
     }
 

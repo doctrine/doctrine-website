@@ -9,6 +9,7 @@ use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Builder\SourceFileParameters;
 use Doctrine\Website\Builder\SourceFileRepository;
 use Doctrine\Website\Tests\TestCase;
+use InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class BlogPostRepositoryTest extends TestCase
@@ -46,7 +47,87 @@ class BlogPostRepositoryTest extends TestCase
         self::assertSame('2018-09-01', $blogPost->getDate()->format('Y-m-d'));
     }
 
+    public function testFindPaginatedPageOne() : void
+    {
+        $this->setUpFindAll();
+
+        $blogPosts = $this->blogPostRepository->findPaginated(1, 1);
+
+        self::assertSame('/2018/09/02/test1.html', $blogPosts[0]->getUrl());
+        self::assertSame('Test Blog Post', $blogPosts[0]->getTitle());
+        self::assertSame('Jonathan H. Wage', $blogPosts[0]->getAuthorName());
+        self::assertSame('jonwage@gmail.com', $blogPosts[0]->getAuthorEmail());
+        self::assertSame('test1', $blogPosts[0]->getContents());
+        self::assertSame('2018-09-02', $blogPosts[0]->getDate()->format('Y-m-d'));
+
+        self::assertCount(1, $blogPosts);
+    }
+
+    public function testFindPaginatedPageTwo() : void
+    {
+        $this->setUpFindAll();
+
+        $blogPosts = $this->blogPostRepository->findPaginated(2, 1);
+
+        self::assertSame('/2018/09/01/test2.html', $blogPosts[0]->getUrl());
+        self::assertSame('Test Blog Post', $blogPosts[0]->getTitle());
+        self::assertSame('Jonathan H. Wage', $blogPosts[0]->getAuthorName());
+        self::assertSame('jonwage@gmail.com', $blogPosts[0]->getAuthorEmail());
+        self::assertSame('test2', $blogPosts[0]->getContents());
+        self::assertSame('2018-09-01', $blogPosts[0]->getDate()->format('Y-m-d'));
+
+        self::assertCount(1, $blogPosts);
+    }
+
+    public function testFindPaginatedWithNegativePageThrowsInvalidArgumentException() : void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Pagination parameters must be positive.');
+
+        $this->blogPostRepository->findPaginated(-1, 10);
+    }
+
+    public function testFindPaginatedWithNegativePerPageThrowsInvalidArgumentException() : void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Pagination parameters must be positive.');
+
+        $this->blogPostRepository->findPaginated(1, -10);
+    }
+
     public function testFindAll() : void
+    {
+        $this->setUpFindAll();
+
+        $blogPosts = $this->blogPostRepository->findAll();
+
+        self::assertCount(2, $blogPosts);
+
+        self::assertSame('/2018/09/02/test1.html', $blogPosts[0]->getUrl());
+        self::assertSame('Test Blog Post', $blogPosts[0]->getTitle());
+        self::assertSame('Jonathan H. Wage', $blogPosts[0]->getAuthorName());
+        self::assertSame('jonwage@gmail.com', $blogPosts[0]->getAuthorEmail());
+        self::assertSame('test1', $blogPosts[0]->getContents());
+        self::assertSame('2018-09-02', $blogPosts[0]->getDate()->format('Y-m-d'));
+
+        self::assertSame('/2018/09/01/test2.html', $blogPosts[1]->getUrl());
+        self::assertSame('Test Blog Post', $blogPosts[1]->getTitle());
+        self::assertSame('Jonathan H. Wage', $blogPosts[1]->getAuthorName());
+        self::assertSame('jonwage@gmail.com', $blogPosts[1]->getAuthorEmail());
+        self::assertSame('test2', $blogPosts[1]->getContents());
+        self::assertSame('2018-09-01', $blogPosts[1]->getDate()->format('Y-m-d'));
+    }
+
+    protected function setUp() : void
+    {
+        $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
+
+        $this->blogPostRepository = new BlogPostRepository(
+            $this->sourceFileRepository
+        );
+    }
+
+    private function setUpFindAll() : void
     {
         $sourceFile1 = new SourceFile(
             'md',
@@ -80,32 +161,5 @@ class BlogPostRepositoryTest extends TestCase
             ->method('getFiles')
             ->with('', 'source/blog')
             ->willReturn($files);
-
-        $blogPosts = $this->blogPostRepository->findAll();
-
-        self::assertCount(2, $blogPosts);
-
-        self::assertSame('/2018/09/02/test1.html', $blogPosts[0]->getUrl());
-        self::assertSame('Test Blog Post', $blogPosts[0]->getTitle());
-        self::assertSame('Jonathan H. Wage', $blogPosts[0]->getAuthorName());
-        self::assertSame('jonwage@gmail.com', $blogPosts[0]->getAuthorEmail());
-        self::assertSame('test1', $blogPosts[0]->getContents());
-        self::assertSame('2018-09-02', $blogPosts[0]->getDate()->format('Y-m-d'));
-
-        self::assertSame('/2018/09/01/test2.html', $blogPosts[1]->getUrl());
-        self::assertSame('Test Blog Post', $blogPosts[1]->getTitle());
-        self::assertSame('Jonathan H. Wage', $blogPosts[1]->getAuthorName());
-        self::assertSame('jonwage@gmail.com', $blogPosts[1]->getAuthorEmail());
-        self::assertSame('test2', $blogPosts[1]->getContents());
-        self::assertSame('2018-09-01', $blogPosts[1]->getDate()->format('Y-m-d'));
-    }
-
-    protected function setUp() : void
-    {
-        $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
-
-        $this->blogPostRepository = new BlogPostRepository(
-            $this->sourceFileRepository
-        );
     }
 }
