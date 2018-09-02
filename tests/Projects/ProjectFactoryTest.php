@@ -20,7 +20,9 @@ class ProjectFactoryTest extends TestCase
     {
         $this->projectJsonReader = new ProjectJsonReader(__DIR__ . '/../test-projects');
 
-        $this->projectFactory = new ProjectFactory($this->projectJsonReader);
+        $this->projectFactory = new ProjectFactory($this->projectJsonReader, [
+            'no-project-json' => ['description' => 'Test description'],
+        ]);
     }
 
     public function testCreate() : void
@@ -28,6 +30,7 @@ class ProjectFactoryTest extends TestCase
         $project = $this->projectFactory->create('no-project-json');
 
         self::assertSame('no-project-json', $project->getRepositoryName());
+        self::assertSame('Test description', $project->getDescription());
     }
 
     public function testCreateWithDoctrineProjectJson() : void

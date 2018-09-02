@@ -36,7 +36,28 @@ controller: ['Doctrine\Website\Controllers\ProjectController', 'index']
     {% endfor %}
 </div>
 
-<h3>Inactive Projects</h3>
+<hr/>
+
+{% for project in projects if project.integrations %}
+    <h3 class="mt-4">{{ project.shortName }} Integrations</h3>
+
+    <ul class="list-group">
+        {% for integration in project.integrations %}
+            <li class="list-group-item">
+                <h5 class="card-title">{{ integration.name }} <span class="text-secondary text-sm">({{ integration.type }})</span></h5>
+
+                <ul class="list-inline mt-2">
+                    <li class="list-inline-item">
+                        <i class="fab fa-github"></i>
+                        <a href="{{ integration.url }}" class="mr-2" target="_blank">GitHub</a>
+                    </li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+<h3 class="mt-4">Inactive Projects</h3>
 
 <p class="lead">
     These were once active and maintained projects. If you are interested in helping to maintain any Doctrine project take a look at the open issues on <a href="https://github.com/doctrine/" target="_blank">GitHub</a> and submit pull requests.
@@ -65,7 +86,7 @@ controller: ['Doctrine\Website\Controllers\ProjectController', 'index']
             </ul>
         </li>
     {% endfor %}
-</div>
+</ul>
 
 <h3 class="mt-4">Archived Projects</h3>
 
@@ -96,4 +117,4 @@ controller: ['Doctrine\Website\Controllers\ProjectController', 'index']
             </ul>
         </li>
     {% endfor %}
-</div>
+</ul>
