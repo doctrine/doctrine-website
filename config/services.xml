@@ -10,6 +10,7 @@
             <bind key="$projectsPath">%doctrine.website.projects_path%</bind>
             <bind key="$sourcePath">%doctrine.website.source_path%</bind>
             <bind key="$projectRepositoryNames">%doctrine.website.project_repository_names%</bind>
+            <bind key="$projectsConfiguration">%doctrine.website.projects_configuration%</bind>
             <bind key="$teamMembers">%doctrine.website.team_members%</bind>
             <bind key="$templatesPath">%doctrine.website.templates_path%</bind>
             <bind key="$whoUsesDoctrine">%doctrine.website.who_uses_doctrine%</bind>

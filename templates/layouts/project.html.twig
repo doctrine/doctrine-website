@@ -90,4 +90,21 @@
         {% endif %}
 
     {% endif %}
+
+    {% if project.integrations %}
+        <h2 class="mt-2">Integrations</h2>
+
+        <div class="border-left border-right border-bottom rounded mb-4">
+            <table class="table mb-0">
+                <tbody>
+                    {% for integration in project.integrations %}
+                        <tr>
+                            <td>{{ integration.type }}</td>
+                            <td><a href="{{ integration.url }}" target="_blank">{{ integration.name }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 {% endblock %}

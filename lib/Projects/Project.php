@@ -57,6 +57,9 @@ class Project
     /** @var ProjectVersion[] */
     private $versions = [];
 
+    /** @var string[][] */
+    private $integrations = [];
+
     /**
      * @param mixed[] $project
      */
@@ -76,6 +79,7 @@ class Project
         $this->codePath            = (string) ($project['codePath'] ?? '/lib');
         $this->description         = (string) ($project['description'] ?? '');
         $this->keywords            = $project['keywords'] ?? [];
+        $this->integrations        = $project['integrations'] ?? [];
 
         if (! isset($project['versions'])) {
             return;
@@ -160,6 +164,14 @@ class Project
     public function getKeywords() : array
     {
         return $this->keywords;
+    }
+
+    /**
+     * @return string[][]
+     */
+    public function getIntegrations() : array
+    {
+        return $this->integrations;
     }
 
     /**

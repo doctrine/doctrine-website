@@ -20,3 +20,78 @@ parameters:
         - coding-standard
         - doctrine1
         - instantiator
+
+    doctrine.website.projects_configuration:
+        cache:
+            integrations:
+                -
+                    type: Symfony
+                    name: DoctrineCacheBundle
+                    url: https://github.com/doctrine/DoctrineCacheBundle
+
+        dbal:
+            integrations:
+                -
+                    type: Symfony
+                    name: DoctrineBundle
+                    url: https://github.com/doctrine/DoctrineBundle
+
+                -
+                    type: Zend Framework
+                    name: DoctrineModule
+                    url: https://github.com/doctrine/DoctrineModule
+
+
+        doctrine2:
+            integrations:
+                -
+                    type: Symfony
+                    name: DoctrineBundle
+                    url: https://github.com/doctrine/DoctrineBundle
+
+                -
+                    type: Laravel
+                    name: Laravel Doctrine ORM
+                    url: https://github.com/laravel-doctrine/orm
+
+                -
+                    type: Zend Framework
+                    name: DoctrineORMModule
+                    url: https://github.com/doctrine/DoctrineORMModule
+
+        migrations:
+            integrations:
+                -
+                    type: Symfony
+                    name: DoctrineMigrationsBundle
+                    url: https://github.com/doctrine/DoctrineMigrationsBundle
+
+                -
+                    type: Laravel
+                    name: Laravel Doctrine Migrations
+                    url: https://github.com/laravel-doctrine/migrations
+
+        couchdb-odm:
+            integrations:
+                -
+                    type: Symfony
+                    name: DoctrineCouchDBBundle
+                    url: https://github.com/doctrine/DoctrineCouchDBBundle
+
+        mongodb-odm:
+            integrations:
+                -
+                    type: Symfony
+                    name: DoctrineMongoODMBundle
+                    url: https://github.com/doctrine/DoctrineMongoDBBundle
+                -
+                    type: Zend Framework
+                    name: DoctrineMongoODMModule
+                    url: https://github.com/doctrine/DoctrineMongoODMModule
+
+        phpcr-odm:
+            integrations:
+                -
+                    type: Symfony
+                    name: DoctrinePHPCRBundle
+                    url: https://github.com/doctrine/DoctrinePHPCRBundle
