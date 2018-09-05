@@ -45,7 +45,7 @@ parameters:
             location: 'Hamburg, Germany'
             active: true
             core: true
-            projects: ["dbal"]
+            projects: ["dbal", "coding-standard"]
         greg0ire:
             name: 'Grégoire Paris'
             twitter: greg0ire
@@ -55,7 +55,7 @@ parameters:
             location: Paris
             active: true
             core: true
-            projects: ["dbal", "orm"]
+            projects: ["dbal", "orm", "coding-standard"]
         guilhermeblanco:
             name: 'Guilherme Blanco'
             twitter: guilhermeblanco
@@ -105,7 +105,7 @@ parameters:
             location: 'Amsterdam, NL'
             active: true
             core: true
-            projects: ["orm", "dbal", "migrations", "cache"]
+            projects: ["orm", "dbal", "migrations", "cache", "coding-standard"]
         Majkl578:
             name: 'Michael Moravec'
             twitter: Majkl578
@@ -115,7 +115,7 @@ parameters:
             location: 'Prague, Czech Republic'
             active: true
             core: true
-            projects: ["orm", "dbal", "event-manager", "annotations", "persistence", "reflection"]
+            projects: ["orm", "dbal", "event-manager", "annotations", "persistence", "reflection", "coding-standard"]
         mikeSimonson:
             name: "Mike Simonson"
             twitter: _mikeSimonson
@@ -155,7 +155,7 @@ parameters:
             location: 'Frankfurt am Main'
             active: true
             core: true
-            projects: ["orm", "dbal", "reflection", "instantiator"]
+            projects: ["orm", "dbal", "reflection", "instantiator", "coding-standard"]
         TomHAnderson:
             name: 'Tom H Anderson'
             github: TomHAnderson
