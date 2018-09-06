@@ -8,6 +8,9 @@ use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use InvalidArgumentException;
+use function assert;
+use function is_string;
+use function realpath;
 
 class ProjectTest extends TestCase
 {
@@ -17,13 +20,13 @@ class ProjectTest extends TestCase
     protected function setUp() : void
     {
         $this->project = new Project([
-            'name' => 'Object Relational Mapper',
-            'shortName' => 'ORM',
-            'slug' => 'orm',
-            'docsSlug' => 'doctrine-orm',
-            'composerPackageName' => 'doctrine/orm',
-            'repositoryName' => 'doctrine2',
-            'docsRepositoryName' => 'doctrine2',
+            'name' => 'Test Project',
+            'shortName' => 'Test Project',
+            'slug' => 'test-project',
+            'docsSlug' => 'doctrine-test-project',
+            'composerPackageName' => 'doctrine/test-project',
+            'repositoryName' => 'test-project',
+            'docsRepositoryName' => 'test-project',
             'docsPath' => '/docs',
             'codePath' => '/src',
             'hasDocs' => true,
@@ -53,32 +56,32 @@ class ProjectTest extends TestCase
 
     public function testGetName() : void
     {
-        self::assertSame('Object Relational Mapper', $this->project->getName());
+        self::assertSame('Test Project', $this->project->getName());
     }
 
     public function testGetShortName() : void
     {
-        self::assertSame('ORM', $this->project->getShortName());
+        self::assertSame('Test Project', $this->project->getShortName());
     }
 
     public function testGetSlug() : void
     {
-        self::assertSame('orm', $this->project->getSlug());
+        self::assertSame('test-project', $this->project->getSlug());
     }
 
     public function testGetDocsSlug() : void
     {
-        self::assertSame('doctrine-orm', $this->project->getDocsSlug());
+        self::assertSame('doctrine-test-project', $this->project->getDocsSlug());
     }
 
     public function testGetComposerPackageName() : void
     {
-        self::assertSame('doctrine/orm', $this->project->getComposerPackageName());
+        self::assertSame('doctrine/test-project', $this->project->getComposerPackageName());
     }
 
     public function testGetRepositoryName() : void
     {
-        self::assertSame('doctrine2', $this->project->getRepositoryName());
+        self::assertSame('test-project', $this->project->getRepositoryName());
     }
 
     public function testHasDocs() : void
@@ -88,7 +91,7 @@ class ProjectTest extends TestCase
 
     public function testGetDocsRepositoryName() : void
     {
-        self::assertSame('doctrine2', $this->project->getDocsRepositoryName());
+        self::assertSame('test-project', $this->project->getDocsRepositoryName());
     }
 
     public function testGetDocsPath() : void
@@ -149,7 +152,7 @@ class ProjectTest extends TestCase
     public function testGetVersionThrowsInvalidArgumentExceptionWithInvalidVersion() : void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Could not find version 10.0 for project orm');
+        $this->expectExceptionMessage('Could not find version 10.0 for project test-project');
 
         $version = $this->project->getVersion('10.0');
 
@@ -167,16 +170,23 @@ class ProjectTest extends TestCase
 
     public function testGetProjectDocsRepositoryPath() : void
     {
-        self::assertSame('/test/doctrine2', $this->project->getProjectDocsRepositoryPath('/test'));
+        self::assertSame('/test/test-project', $this->project->getProjectDocsRepositoryPath('/test'));
     }
 
     public function testGetProjectRepositoryPath() : void
     {
-        self::assertSame('/test/doctrine2', $this->project->getProjectRepositoryPath('/test'));
+        self::assertSame('/test/test-project', $this->project->getProjectRepositoryPath('/test'));
     }
 
     public function testGetAbsoluteDocsPath() : void
     {
-        self::assertSame('/test/doctrine2/docs', $this->project->getAbsoluteDocsPath('/test'));
+        $testProjectsPath = realpath(__DIR__ . '/../test-projects');
+
+        assert(is_string($testProjectsPath));
+
+        self::assertSame(
+            $testProjectsPath . '/test-project/docs',
+            $this->project->getAbsoluteDocsPath($testProjectsPath)
+        );
     }
 }

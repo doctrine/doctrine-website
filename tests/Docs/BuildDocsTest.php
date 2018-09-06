@@ -6,7 +6,9 @@ namespace Doctrine\Website\Tests\Docs;
 
 use Doctrine\Website\Docs\APIBuilder;
 use Doctrine\Website\Docs\BuildDocs;
-use Doctrine\Website\Docs\RSTBuilder;
+use Doctrine\Website\Docs\RST\RSTBuilder;
+use Doctrine\Website\Docs\RST\RSTLanguage;
+use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Docs\SearchIndexer;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectGitSyncer;
@@ -27,6 +29,9 @@ class BuildDocsTest extends TestCase
     /** @var APIBuilder|MockObject */
     private $apiBuilder;
 
+    /** @var RSTLanguagesDetector|MockObject */
+    private $rstLanguagesDetector;
+
     /** @var RSTBuilder|MockObject */
     private $rstBuilder;
 
@@ -38,16 +43,18 @@ class BuildDocsTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->projectRepository = $this->createMock(ProjectRepository::class);
-        $this->projectGitSyncer  = $this->createMock(ProjectGitSyncer::class);
-        $this->apiBuilder        = $this->createMock(APIBuilder::class);
-        $this->rstBuilder        = $this->createMock(RSTBuilder::class);
-        $this->searchIndexer     = $this->createMock(SearchIndexer::class);
+        $this->projectRepository    = $this->createMock(ProjectRepository::class);
+        $this->projectGitSyncer     = $this->createMock(ProjectGitSyncer::class);
+        $this->apiBuilder           = $this->createMock(APIBuilder::class);
+        $this->rstLanguagesDetector = $this->createMock(RSTLanguagesDetector::class);
+        $this->rstBuilder           = $this->createMock(RSTBuilder::class);
+        $this->searchIndexer        = $this->createMock(SearchIndexer::class);
 
         $this->buildDocs = new BuildDocs(
             $this->projectRepository,
             $this->projectGitSyncer,
             $this->apiBuilder,
+            $this->rstLanguagesDetector,
             $this->rstBuilder,
             $this->searchIndexer
         );
@@ -79,14 +86,16 @@ class BuildDocsTest extends TestCase
             ->method('buildAPIDocs')
             ->with($project, $version);
 
-        $this->rstBuilder->expects(self::once())
-            ->method('projectHasDocs')
-            ->with($project)
-            ->willReturn(true);
+        $english = new RSTLanguage('en', '/en');
+
+        $this->rstLanguagesDetector->expects(self::once())
+            ->method('detectLanguages')
+            ->with($project, $version)
+            ->willReturn([$english]);
 
         $this->rstBuilder->expects(self::once())
             ->method('buildRSTDocs')
-            ->with($project, $version);
+            ->with($project, $version, $english);
 
         $this->searchIndexer->expects(self::once())
             ->method('buildSearchIndexes')

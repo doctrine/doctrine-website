@@ -231,4 +231,17 @@ class Project
     {
         return $this->getProjectDocsRepositoryPath($projectsPath) . $this->getDocsPath();
     }
+
+    public function getProjectVersionDocsPath(string $docsPath, ProjectVersion $version, string $language) : string
+    {
+        return $docsPath . '/' . $this->getDocsSlug() . '/' . $language . '/' . $version->getSlug();
+    }
+
+    public function getProjectVersionDocsOutputPath(
+        string $outputPath,
+        ProjectVersion $version,
+        string $language
+    ) : string {
+        return $outputPath . '/projects/' . $this->getDocsSlug() . '/' . $language . '/' . $version->getSlug();
+    }
 }
