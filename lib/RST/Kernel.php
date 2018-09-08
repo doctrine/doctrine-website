@@ -7,6 +7,7 @@ namespace Doctrine\Website\RST;
 use Doctrine\RST\Builder;
 use Doctrine\RST\Directive;
 use Doctrine\RST\Document;
+use Doctrine\RST\Factory;
 use Doctrine\RST\HTML\Kernel as HtmlKernel;
 use Doctrine\RST\Kernel as BaseKernel;
 use Doctrine\RST\Reference;
@@ -27,6 +28,8 @@ class Kernel extends BaseKernel
     {
         $this->baseKernel = $baseKernel;
         $this->directives = $directives;
+
+        parent::__construct($directives);
     }
 
     public function getName() : string
@@ -47,13 +50,9 @@ class Kernel extends BaseKernel
         return $this->baseKernel->getFileExtension();
     }
 
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
-     *
-     */
-    public function getClass(string $name) : string
+    public function getFactory() : Factory
     {
-        return $this->baseKernel->getClass($name);
+        return $this->baseKernel->getFactory();
     }
 
     /**

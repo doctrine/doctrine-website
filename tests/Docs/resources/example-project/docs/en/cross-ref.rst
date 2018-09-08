@@ -11,7 +11,7 @@ Cross Ref Section 1
 Cross Ref Section 2
 -------------------
 
-.. _cross_ref_section_1_anchor:
+.. _cross_ref_section_2_anchor:
 
 Cross Ref Section A
 ~~~~~~~~~~~~~~~~~~~

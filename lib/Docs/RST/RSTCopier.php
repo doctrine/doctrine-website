@@ -151,6 +151,7 @@ SIDEBAR;
         // this corrects code blocks that don't render properly.
         // we should update the docs code but this makes old docs code render properly.
         $content = preg_replace("/\n::\n/", "\n.. code-block::\n", $content);
+        $content = preg_replace("/\n:: \n/", "\n.. code-block::\n", $content);
         $content = preg_replace("/\n.. code-block :: (.*)\n/", "\n.. code-block:: $1\n", $content);
 
         // stuff from doctrine1 docs
