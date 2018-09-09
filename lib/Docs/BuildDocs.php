@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs;
 
+use Doctrine\Website\Docs\RST\RSTBuilder;
+use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectRepository;
@@ -24,6 +26,9 @@ class BuildDocs
     /** @var APIBuilder */
     private $apiBuilder;
 
+    /** @var RSTLanguagesDetector */
+    private $rstLanguagesDetector;
+
     /** @var RSTBuilder */
     private $rstBuilder;
 
@@ -34,14 +39,16 @@ class BuildDocs
         ProjectRepository $projectRepository,
         ProjectGitSyncer $projectGitSyncer,
         APIBuilder $apiBuilder,
+        RSTLanguagesDetector $rstLanguagesDetector,
         RSTBuilder $rstBuilder,
         SearchIndexer $searchIndexer
     ) {
-        $this->projectRepository = $projectRepository;
-        $this->projectGitSyncer  = $projectGitSyncer;
-        $this->apiBuilder        = $apiBuilder;
-        $this->rstBuilder        = $rstBuilder;
-        $this->searchIndexer     = $searchIndexer;
+        $this->projectRepository    = $projectRepository;
+        $this->projectGitSyncer     = $projectGitSyncer;
+        $this->apiBuilder           = $apiBuilder;
+        $this->rstLanguagesDetector = $rstLanguagesDetector;
+        $this->rstBuilder           = $rstBuilder;
+        $this->searchIndexer        = $searchIndexer;
     }
 
     public function build(
@@ -87,15 +94,21 @@ class BuildDocs
                     }
                 }
 
-                if (! $this->rstBuilder->projectHasDocs($project)) {
-                    $output->writeln(' - <warning>no docs found</warning>');
+                $languages = $this->rstLanguagesDetector->detectLanguages($project, $version);
 
-                    continue;
+                $searchDocuments = [];
+
+                foreach ($languages as $language) {
+                    $output->writeln(sprintf(' - building %s rst docs', $language->getCode()));
+
+                    $documents = $this->rstBuilder->buildRSTDocs($project, $version, $language);
+
+                    if ($language->getCode() !== RSTLanguagesDetector::ENGLISH_LANGUAGE_CODE) {
+                        continue;
+                    }
+
+                    $searchDocuments = $documents;
                 }
-
-                $output->writeln(' - building rst docs');
-
-                $this->rstBuilder->buildRSTDocs($project, $version);
 
                 if (! $buildSearchIndexes) {
                     continue;
@@ -103,7 +116,7 @@ class BuildDocs
 
                 $output->writeln(' - building search indexes');
 
-                $this->searchIndexer->buildSearchIndexes($project, $version);
+                $this->searchIndexer->buildSearchIndexes($project, $version, $searchDocuments);
             }
 
             if (! $syncGit) {

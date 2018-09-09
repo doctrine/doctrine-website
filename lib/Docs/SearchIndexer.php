@@ -29,13 +29,9 @@ class SearchIndexer
     /** @var Client */
     private $client;
 
-    /** @var RSTBuilder */
-    private $rstBuilder;
-
-    public function __construct(Client $client, RSTBuilder $rstBuilder)
+    public function __construct(Client $client)
     {
-        $this->client     = $client;
-        $this->rstBuilder = $rstBuilder;
+        $this->client = $client;
     }
 
     public function initSearchIndex() : void
@@ -58,13 +54,17 @@ class SearchIndexer
         $index->clearIndex();
     }
 
+    /**
+     * @param Document[] $documents
+     */
     public function buildSearchIndexes(
         Project $project,
-        ProjectVersion $version
+        ProjectVersion $version,
+        array $documents
     ) : void {
         $records = [];
 
-        foreach ($this->rstBuilder->getDocuments() as $document) {
+        foreach ($documents as $document) {
             $this->buildDocumentSearchRecords($document, $records, $project, $version);
         }
 

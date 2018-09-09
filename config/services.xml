@@ -8,6 +8,7 @@
             <bind key="$rootDir">%doctrine.website.root_dir%</bind>
             <bind key="$env">%doctrine.website.env%</bind>
             <bind key="$projectsPath">%doctrine.website.projects_path%</bind>
+            <bind key="$docsPath">%doctrine.website.docs_path%</bind>
             <bind key="$sourcePath">%doctrine.website.source_path%</bind>
             <bind key="$projectRepositoryNames">%doctrine.website.project_repository_names%</bind>
             <bind key="$teamMembers">%doctrine.website.team_members%</bind>

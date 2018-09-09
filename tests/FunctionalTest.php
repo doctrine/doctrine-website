@@ -34,6 +34,57 @@ class FunctionalTest extends TestCase
         self::markTestSkipped('This test requires ./bin/console build-website to have been ran.');
     }
 
+    public function testHomepageEditLink() : void
+    {
+        $crawler = self::assertValid('/index.html');
+
+        $editLink = $crawler->filter('.layout-edit-button a')->last();
+
+        self::assertSame('Edit', $editLink->text());
+
+        self::assertSame(
+            'https://github.com/doctrine/doctrine-website/edit/master/source/index.html',
+            $editLink->attr('href')
+        );
+    }
+
+    public function testProjectEditLink() : void
+    {
+        $crawler = self::assertValid('/projects/annotations.html');
+
+        $editLink = $crawler->filter('.layout-edit-button a')->last();
+
+        self::assertSame('Edit', $editLink->text());
+
+        self::assertSame(
+            'https://github.com/doctrine/doctrine-website/edit/master/source/projects/annotations.html',
+            $editLink->attr('href')
+        );
+    }
+
+    public function testDocumentationEditLink() : void
+    {
+        $crawler = self::assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
+
+        $editLink = $crawler->filter('.layout-edit-button a')->last();
+
+        self::assertSame('Edit', $editLink->text());
+
+        self::assertSame(
+            'https://github.com/doctrine/annotations/edit/1.6/docs/en/custom.rst',
+            $editLink->attr('href')
+        );
+    }
+
+    public function testDocumentationPageBreadcrumbs() : void
+    {
+        $crawler = self::assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
+
+        $lastLi = $crawler->filter('.breadcrumbs ol li')->last();
+
+        self::assertSame('Custom Annotation Classes', $lastLi->text());
+    }
+
     public function testHomepageWhoUsesDoctrine() : void
     {
         $crawler = self::assertValid('/index.html');

@@ -11,7 +11,6 @@ use Doctrine\RST\HTML\Document;
 use Doctrine\RST\HTML\Nodes\ParagraphNode;
 use Doctrine\RST\HTML\Nodes\TitleNode;
 use Doctrine\RST\Nodes\RawNode;
-use Doctrine\Website\Docs\RSTBuilder;
 use Doctrine\Website\Docs\SearchIndexer;
 use Doctrine\Website\Projects\Project;
 use Doctrine\Website\Projects\ProjectVersion;
@@ -23,20 +22,15 @@ class SearchIndexerTest extends TestCase
     /** @var Client|MockObject */
     private $client;
 
-    /** @var RSTBuilder|MockObject */
-    private $rstBuilder;
-
     /** @var SearchIndexer */
     private $searchIndexer;
 
     protected function setUp() : void
     {
-        $this->client     = $this->createMock(Client::class);
-        $this->rstBuilder = $this->createMock(RSTBuilder::class);
+        $this->client = $this->createMock(Client::class);
 
         $this->searchIndexer = new SearchIndexer(
-            $this->client,
-            $this->rstBuilder
+            $this->client
         );
     }
 
@@ -133,10 +127,6 @@ class SearchIndexerTest extends TestCase
             ->willReturn($nodes);
 
         $documents = [$document];
-
-        $this->rstBuilder->expects(self::once())
-            ->method('getDocuments')
-            ->willReturn($documents);
 
         $expectedRecords = [
             [
@@ -275,6 +265,6 @@ class SearchIndexerTest extends TestCase
             ->method('addObjects')
             ->with($expectedRecords);
 
-        $this->searchIndexer->buildSearchIndexes($project, $version);
+        $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
     }
 }
