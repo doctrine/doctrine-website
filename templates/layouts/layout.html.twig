@@ -167,13 +167,15 @@
                                 <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ site.url }}/projects.html">View All</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown{% if menuSlug == 'contribute' %} active{% endif %}">
-                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/contribute/" id="navbarContributeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contribute</a>
+                        <li class="nav-item dropdown{% if menuSlug == 'development' %} active{% endif %}">
+                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/contribute/" id="navbarDevelopmentDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Development</a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarContributeDropdown">
                                 <a class="dropdown-item" href="{{ site.url }}/contribute/">Contributor Workflow</a>
                                 <a class="dropdown-item" href="{{ site.url }}/contribute/maintainer/">Maintainer Workflow</a>
                                 <a class="dropdown-item" href="{{ site.url }}/contribute/website/">Contribute to Website</a>
+                                <a class="dropdown-item" href="{{ site.url }}/policies.html">Policies</a>
+                                <a class="dropdown-item" href="https://github.com/doctrine" target="_blank">GitHub</a>
                             </div>
                         </li>
                         <li class="nav-item{% if menuSlug == 'community' %} active{% endif %}">

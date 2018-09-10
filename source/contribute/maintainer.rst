@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Maintainer Workflow
-menuSlug: contribute
+menuSlug: development
 permalink: /contribute/maintainer/index.html
 ---
 
