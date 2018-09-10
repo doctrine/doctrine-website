@@ -158,7 +158,7 @@ class FunctionalTest extends TestCase
     public function testLinks() : void
     {
         $crawler = self::assertValid('/projects/doctrine-orm/en/2.6/reference/events.html');
-        self::assertContains('<a href="#reference-events-lifecycle-events">lifecycle events</a>', $crawler->html());
+        self::assertContains('<a href="events.html#reference-events-lifecycle-events">lifecycle events</a>', $crawler->html());
 
         $crawler = self::assertValid('/projects/doctrine-dbal/en/2.8/reference/data-retrieval-and-manipulation.html');
         self::assertContains('<a href="types.html#mappingMatrix">Types</a>', $crawler->html());
