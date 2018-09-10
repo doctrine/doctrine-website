@@ -275,6 +275,11 @@ dependencies (default). To run the tests:
 
     $ ./vendor/bin/phpunit
 
+Security Disclosures
+--------------------
+
+You can read more about how to report security issues in our `Security Policy <https://www.doctrine-project.org/policies/security.html>`_.
+
 Maintainer Workflow
 -------------------
 
