@@ -161,7 +161,7 @@
                                 Projects
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarProjectsDropdown">
-                                {% for project in get_projects() if project.active is defined and project.active == true %}
+                                {% for project in get_menu_projects() %}
                                     <a class="dropdown-item notranslate" href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a>
                                 {% endfor %}
                                 <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ site.url }}/projects.html">View All</a>

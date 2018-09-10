@@ -1,23 +1,79 @@
 parameters:
-    doctrine.website.project_repository_names:
-        - doctrine2
-        - dbal
-        - mongodb-odm
-        - phpcr-odm
-        - couchdb-odm
-        - migrations
-        - common
-        - mongodb
-        - orientdb-odm
-        - annotations
-        - collections
-        - inflector
-        - cache
-        - lexer
-        - event-manager
-        - persistence
-        - reflection
-        - coding-standard
-        - doctrine1
-        - instantiator
-        - rst-parser
+    doctrine.website.projects_data:
+        -
+            repositoryName: doctrine2
+
+        -
+            repositoryName: dbal
+
+        -
+            repositoryName: mongodb-odm
+
+        -
+            repositoryName: phpcr-odm
+
+        -
+            repositoryName: couchdb-odm
+
+        -
+            repositoryName: migrations
+
+        -
+            repositoryName: common
+
+        -
+            repositoryName: mongodb
+
+        -
+            repositoryName: orientdb-odm
+
+        -
+            repositoryName: annotations
+
+        -
+            repositoryName: collections
+
+        -
+            repositoryName: inflector
+
+        -
+            repositoryName: cache
+
+        -
+            repositoryName: lexer
+
+        -
+            repositoryName: event-manager
+
+        -
+            repositoryName: persistence
+
+        -
+            repositoryName: reflection
+
+        -
+            repositoryName: coding-standard
+
+        -
+            repositoryName: doctrine1
+
+        -
+            repositoryName: instantiator
+
+        -
+            repositoryName: rst-parser
+
+        -
+            repositoryName: DoctrineBundle
+            isIntegration: true
+            integrationFor: orm
+
+        -
+            repositoryName: DoctrineCacheBundle
+            isIntegration: true
+            integrationFor: cache
+
+        -
+            repositoryName: DoctrineMigrationsBundle
+            isIntegration: true
+            integrationFor: migrations

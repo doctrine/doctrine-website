@@ -133,7 +133,15 @@ class BuildDocs
     private function getProjectsToBuild(string $projectToBuild) : array
     {
         return array_filter($this->projectRepository->findAll(), function (Project $project) use ($projectToBuild) : bool {
-            if ($projectToBuild !== '' && $project->getSlug() !== $projectToBuild) {
+            if ($projectToBuild !== '') {
+                if ($project->getSlug() === $projectToBuild) {
+                    return true;
+                }
+
+                if ($project->getRepositoryName() === $projectToBuild) {
+                    return true;
+                }
+
                 return false;
             }
 

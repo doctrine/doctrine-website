@@ -26,7 +26,10 @@ class ProjectController
     public function index(SourceFile $sourceFile) : ControllerResult
     {
         return new ControllerResult([
-            'projects' => $this->projectRepository->findAll(),
+            'primaryProjects' => $this->projectRepository->findPrimaryProjects(),
+            'inactiveProjects' => $this->projectRepository->findInactiveProjects(),
+            'archivedProjects' => $this->projectRepository->findArchivedProjects(),
+            'integrationProjects' => $this->projectRepository->findIntegrationProjects(),
         ]);
     }
 
@@ -39,6 +42,7 @@ class ProjectController
             'allTeamMembers' => $this->teamRepository->getAllProjectTeamMembers($project),
             'activeTeamMembers' => $this->teamRepository->getActiveProjectTeamMembers($project),
             'inactiveTeamMembers' => $this->teamRepository->getInactiveProjectTeamMembers($project),
+            'integrationProjects' => $this->projectRepository->findProjectIntegrations($project),
         ]);
     }
 }

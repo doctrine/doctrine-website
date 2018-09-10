@@ -68,9 +68,38 @@
         </div>
     {% endif %}
 
+    {% if integrationProjects|length > 0 %}
+        <h2>Integrations</h2>
+
+        <ul class="list-group">
+            {% for project in integrationProjects %}
+                <li class="list-group-item">
+                    <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
+
+                    <ul class="list-inline mt-2">
+                        <li class="list-inline-item">
+                            <i class="fas fa-book"></i>
+                            <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <i class="fas fa-eye"></i>
+                            <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     {% if project.archived or not project.active %}
         {% if allTeamMembers %}
-            <h2>Team</h2>
+            <h2 class="mt-4">Team</h2>
 
             {% include "team-members-short-list.html.twig" with {members:allTeamMembers} %}
         {% endif %}
@@ -78,13 +107,13 @@
     {% else %}
 
         {% if activeTeamMembers %}
-            <h2>Team</h2>
+            <h2 class="mt-4">Team</h2>
 
             {% include "team-members-short-list.html.twig" with {members:activeTeamMembers} %}
         {% endif %}
 
         {% if inactiveTeamMembers %}
-            <h2 class="mt-2">Inactive</h2>
+            <h2 class="mt-4">Inactive</h2>
 
             {% include "team-members-short-list.html.twig" with {members:inactiveTeamMembers} %}
         {% endif %}

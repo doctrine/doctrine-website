@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
+use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Projects\ProjectFactory;
-use Doctrine\Website\Projects\ProjectJsonReader;
 use Doctrine\Website\Tests\TestCase;
 
 class ProjectFactoryTest extends TestCase
 {
-    /** @var ProjectJsonReader */
-    private $projectJsonReader;
+    /** @var ProjectDataReader */
+    private $projectDataReader;
 
     /** @var ProjectFactory */
     private $projectFactory;
 
     protected function setUp() : void
     {
-        $this->projectJsonReader = new ProjectJsonReader(__DIR__ . '/../test-projects');
+        $this->projectDataReader = new ProjectDataReader(__DIR__ . '/../test-projects', []);
 
-        $this->projectFactory = new ProjectFactory($this->projectJsonReader);
+        $this->projectFactory = new ProjectFactory($this->projectDataReader);
     }
 
     public function testCreate() : void

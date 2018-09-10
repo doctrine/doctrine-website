@@ -35,12 +35,12 @@ class HomepageController
 
     public function index(SourceFile $sourceFile) : ControllerResult
     {
-        $blogPosts = $this->blogPostRepository->findPaginated(1, 10);
-        $projects  = $this->projectRepository->findAll();
+        $blogPosts       = $this->blogPostRepository->findPaginated(1, 10);
+        $primaryProjects = $this->projectRepository->findPrimaryProjects();
 
         return new ControllerResult([
             'blogPosts' => $blogPosts,
-            'projects' => $projects,
+            'primaryProjects' => $primaryProjects,
             'whoUsesDoctrine' => $this->whoUsesDoctrine,
         ]);
     }

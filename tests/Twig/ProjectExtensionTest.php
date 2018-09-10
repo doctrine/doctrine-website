@@ -33,20 +33,6 @@ class ProjectExtensionTest extends TestCase
         ;
     }
 
-    public function testGetProjects() : void
-    {
-        $projects = [
-            'dbal' => [],
-            'orm' => [],
-        ];
-
-        $this->projectRepository->expects(self::once())
-            ->method('findAll')
-            ->willReturn($projects);
-
-        self::assertCount(2, $this->projectExtension->getProjects());
-    }
-
     public function testGetProject() : void
     {
         $project = new Project([]);

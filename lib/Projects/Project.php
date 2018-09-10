@@ -39,6 +39,12 @@ class Project
     /** @var bool */
     private $hasDocs = false;
 
+    /** @var bool */
+    private $isIntegration = false;
+
+    /** @var string */
+    private $integrationFor;
+
     /** @var string */
     private $docsRepositoryName;
 
@@ -71,6 +77,8 @@ class Project
         $this->composerPackageName = (string) ($project['composerPackageName'] ?? '');
         $this->repositoryName      = (string) ($project['repositoryName'] ?? '');
         $this->hasDocs             = $project['hasDocs'] ?? true;
+        $this->isIntegration       = $project['isIntegration'] ?? false;
+        $this->integrationFor      = $project['integrationFor'] ?? '';
         $this->docsRepositoryName  = (string) ($project['docsRepositoryName'] ?? $this->repositoryName);
         $this->docsPath            = (string) ($project['docsPath'] ?? '/docs');
         $this->codePath            = (string) ($project['codePath'] ?? '/lib');
@@ -132,6 +140,16 @@ class Project
     public function hasDocs() : bool
     {
         return $this->hasDocs;
+    }
+
+    public function isIntegration() : bool
+    {
+        return $this->isIntegration;
+    }
+
+    public function getIntegrationFor() : string
+    {
+        return $this->integrationFor;
     }
 
     public function getDocsRepositoryName() : string

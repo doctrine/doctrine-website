@@ -12,7 +12,10 @@ class CodeBlockLanguageDetector
      * We use some language aliases not supported by our highlighter library
      * so we manage a mapping layer here.
      */
-    private const ALIASES = ['html+php' => 'php'];
+    private const ALIASES = [
+        'html+php' => 'php',
+        'php-annotations' => 'php',
+    ];
 
     /**
      * @param string[] $lines

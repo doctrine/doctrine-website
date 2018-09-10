@@ -11,8 +11,11 @@ use Doctrine\Website\Tests\TestCase;
 
 class ProjectRepositoryTest extends TestCase
 {
-    /** @var string[] */
-    private $projects = ['doctrine2', 'dbal'];
+    /** @var mixed[] */
+    private $projectsData = [
+        ['repositoryName' => 'doctrine2'],
+        ['repositoryName' => 'dbal'],
+    ];
 
     /** @var ProjectFactory */
     private $projectFactory;
@@ -46,7 +49,7 @@ class ProjectRepositoryTest extends TestCase
             ->with('dbal')
             ->willReturn($project2);
 
-        $this->projectRepository = new ProjectRepository($this->projects, $this->projectFactory);
+        $this->projectRepository = new ProjectRepository($this->projectsData, $this->projectFactory);
     }
 
     public function testFindOneBySlug() : void

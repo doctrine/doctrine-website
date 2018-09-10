@@ -33,18 +33,10 @@ class ProjectExtension extends Twig_Extension
     public function getFunctions() : array
     {
         return [
-            new Twig_SimpleFunction('get_projects', [$this, 'getProjects']),
+            new Twig_SimpleFunction('get_menu_projects', [$this->projectRepository, 'findPrimaryProjects']),
             new Twig_SimpleFunction('get_project', [$this, 'getProject']),
             new Twig_SimpleFunction('get_url_version', [$this, 'getUrlVersion']),
         ];
-    }
-
-    /**
-     * @return Project[]
-     */
-    public function getProjects() : array
-    {
-        return $this->projectRepository->findAll();
     }
 
     public function getProject(string $slug) : Project
