@@ -256,8 +256,16 @@ em {
     margin-bottom: 20px;
 }
 
+.alert {
+    padding-bottom: 0;
+}
+
 .alert p {
-    display: inline;
+    margin-bottom: 10px;
+}
+
+.version-added .new-version {
+    font-color: ;
 }
 
 .bg-light-yellow {

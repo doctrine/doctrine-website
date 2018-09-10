@@ -4,28 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\RST\Directive;
 
-use Doctrine\RST\Nodes\Node;
-use Doctrine\RST\Nodes\WrapperNode;
-use Doctrine\RST\Parser;
-use Doctrine\RST\SubDirective;
-
-class WarningDirective extends SubDirective
+class WarningDirective extends AdmonitionDirective
 {
-    public function getName() : string
+    public function __construct()
     {
-        return 'warning';
-    }
-
-    /**
-     * @param string[] $options
-     */
-    public function processSub(
-        Parser $parser,
-        ?Node $document,
-        string $variable,
-        string $data,
-        array $options
-    ) : ?Node {
-        return new WrapperNode($document, '<div class="alert warning bg-light-yellow text-dark border"><i class="fas fa-exclamation-circle text-warning mr-2"></i>', '</div>');
+        parent::__construct('warning', 'bg-light-yellow', 'text-dark', 'fas fa-exclamation-circle text-warning');
     }
 }
