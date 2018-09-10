@@ -6,16 +6,16 @@ namespace Doctrine\Website\Projects;
 
 class ProjectFactory
 {
-    /** @var ProjectJsonReader */
-    private $projectJsonReader;
+    /** @var ProjectDataReader */
+    private $projectDataReader;
 
-    public function __construct(ProjectJsonReader $projectJsonReader)
+    public function __construct(ProjectDataReader $projectDataReader)
     {
-        $this->projectJsonReader = $projectJsonReader;
+        $this->projectDataReader = $projectDataReader;
     }
 
     public function create(string $repositoryName) : Project
     {
-        return new Project($this->projectJsonReader->read($repositoryName));
+        return new Project($this->projectDataReader->read($repositoryName));
     }
 }

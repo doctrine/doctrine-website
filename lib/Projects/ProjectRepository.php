@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Doctrine\Website\Projects;
 
 use InvalidArgumentException;
+use function array_filter;
 use function array_map;
 use function sprintf;
 use function usort;
 
 class ProjectRepository
 {
-    /** @var string[] */
-    private $projectRepositoryNames = [];
+    /** @var mixed[][] */
+    private $projectsData = [];
 
     /** @var ProjectFactory */
     private $projectFactory;
@@ -21,12 +22,12 @@ class ProjectRepository
     private $projects = [];
 
     /**
-     * @param string[] $projectRepositoryNames
+     * @param mixed[][] $projectsData
      */
-    public function __construct(array $projectRepositoryNames, ProjectFactory $projectFactory)
+    public function __construct(array $projectsData, ProjectFactory $projectFactory)
     {
-        $this->projectRepositoryNames = $projectRepositoryNames;
-        $this->projectFactory         = $projectFactory;
+        $this->projectsData   = $projectsData;
+        $this->projectFactory = $projectFactory;
     }
 
     /**
@@ -34,7 +35,13 @@ class ProjectRepository
      */
     public function getProjectRepositoryNames() : array
     {
-        return $this->projectRepositoryNames;
+        $projectRepositoryNames = [];
+
+        foreach ($this->projectsData as $projectData) {
+            $projectRepositoryNames[] = $projectData['repositoryName'];
+        }
+
+        return $projectRepositoryNames;
     }
 
     public function findOneBySlug(string $slug) : Project
@@ -60,15 +67,65 @@ class ProjectRepository
         return $this->projects;
     }
 
+    /**
+     * @return Project[]
+     */
+    public function findPrimaryProjects() : array
+    {
+        return array_filter($this->findAll(), function (Project $project) : bool {
+            return $project->isActive() && ! $project->isIntegration();
+        });
+    }
+
+    /**
+     * @return Project[]
+     */
+    public function findInactiveProjects() : array
+    {
+        return array_filter($this->findAll(), function (Project $project) : bool {
+            return ! $project->isActive() && ! $project->isArchived();
+        });
+    }
+
+    /**
+     * @return Project[]
+     */
+    public function findArchivedProjects() : array
+    {
+        return array_filter($this->findAll(), function (Project $project) : bool {
+            return ! $project->isActive() && $project->isArchived();
+        });
+    }
+
+    /**
+     * @return Project[]
+     */
+    public function findIntegrationProjects() : array
+    {
+        return array_filter($this->findAll(), function (Project $project) : bool {
+            return $project->isActive() && $project->isIntegration();
+        });
+    }
+
+    /**
+     * @return Project[]
+     */
+    public function findProjectIntegrations(Project $project) : array
+    {
+        return array_filter($this->findAll(), function (Project $p) use ($project) : bool {
+            return $p->isIntegration() && $p->getIntegrationFor() === $project->getSlug();
+        });
+    }
+
     private function init() : void
     {
         if ($this->projects !== []) {
             return;
         }
 
-        $this->projects = array_map(function (string $repositoryName) : Project {
-            return $this->projectFactory->create($repositoryName);
-        }, $this->projectRepositoryNames);
+        $this->projects = array_map(function (array $projectData) : Project {
+            return $this->projectFactory->create($projectData['repositoryName']);
+        }, $this->projectsData);
 
         usort($this->projects, function (Project $a, Project $b) {
             return $a->getName() <=> $b->getName();
