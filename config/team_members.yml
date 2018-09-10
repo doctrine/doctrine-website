@@ -86,7 +86,7 @@ parameters:
             active: true
             core: true
             documentation: true
-            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager", "persistence", "reflection"]
+            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager", "persistence", "reflection", "rst-parser"]
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
             twitter: kimhemsoe
@@ -181,6 +181,7 @@ parameters:
             location: 'Grand Rapids MI'
             active: true
             documentation: true
+            projects: ["rst-parser"]
         SenseException:
             name: 'Claudio Zizza'
             github: 'SenseException'

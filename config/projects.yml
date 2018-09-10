@@ -20,3 +20,4 @@ parameters:
         - coding-standard
         - doctrine1
         - instantiator
+        - rst-parser
