@@ -76,6 +76,8 @@
                 <argument type="service" id="Doctrine\Website\RST\Directive\NoticeDirective" />
                 <argument type="service" id="Doctrine\Website\RST\Directive\RoleDirective" />
                 <argument type="service" id="Doctrine\Website\RST\Directive\SectionAuthorDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\SeeAlsoDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\SidebarDirective" />
                 <argument type="service" id="Doctrine\Website\RST\Directive\TipDirective" />
                 <argument type="service" id="Doctrine\Website\RST\Directive\TocDirective" />
                 <argument type="service" id="Doctrine\Website\RST\Directive\TocHeaderDirective" />

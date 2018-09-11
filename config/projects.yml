@@ -77,3 +77,9 @@ parameters:
             repositoryName: DoctrineMigrationsBundle
             isIntegration: true
             integrationFor: migrations
+
+        -
+            repositoryName: DoctrineMongoDBBundle
+            slug: doctrine-mongodb-bundle
+            isIntegration: true
+            integrationFor: mongodb-odm

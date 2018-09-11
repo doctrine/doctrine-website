@@ -21,7 +21,6 @@ class ProjectDataReaderTest extends TestCase
             'docsPath' => '/docs',
             'codePath' => '/src',
             'slug' => 'test-project',
-            'docsSlug' => 'test-project',
             'versions' => [
                 [
                     'name' => 'master',
@@ -48,7 +47,6 @@ class ProjectDataReaderTest extends TestCase
             'docsPath' => null,
             'codePath' => '/',
             'slug' => 'no-project-json',
-            'docsSlug' => 'no-project-json',
             'versions' => [
                 [
                     'name' => 'master',
