@@ -73,7 +73,7 @@ class Project
         $this->name                = (string) ($project['name'] ?? '');
         $this->shortName           = (string) ($project['shortName'] ?? $this->name);
         $this->slug                = (string) ($project['slug'] ?? '');
-        $this->docsSlug            = (string) ($project['docsSlug'] ?? '');
+        $this->docsSlug            = (string) ($project['docsSlug'] ?? $this->slug);
         $this->composerPackageName = (string) ($project['composerPackageName'] ?? '');
         $this->repositoryName      = (string) ($project['repositoryName'] ?? '');
         $this->hasDocs             = $project['hasDocs'] ?? true;

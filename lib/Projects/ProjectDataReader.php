@@ -65,7 +65,6 @@ class ProjectDataReader
             'docsPath' => $this->detectDocsPath($repositoryName),
             'codePath' => $this->detectCodePath($repositoryName),
             'slug' => $slug,
-            'docsSlug' => $slug,
             'versions' => [
                 [
                     'name' => 'master',

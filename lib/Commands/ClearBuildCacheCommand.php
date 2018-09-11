@@ -67,6 +67,13 @@ class ClearBuildCacheCommand extends Command
                 $project->getDocsSlug()
             );
 
+            // copied rst docs
+            $remove[] = sprintf(
+                '%s/docs/%s',
+                $this->rootDir,
+                $project->getDocsSlug()
+            );
+
             // built api docs
             $remove[] = sprintf(
                 '%s/source/api/%s',

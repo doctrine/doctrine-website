@@ -14,6 +14,7 @@ class CodeBlockLanguageDetector
      */
     private const ALIASES = [
         'html+php' => 'php',
+        'html+jinja' => 'html',
         'php-annotations' => 'php',
     ];
 
