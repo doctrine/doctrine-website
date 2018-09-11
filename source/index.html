@@ -20,6 +20,10 @@ controller: ['Doctrine\Website\Controllers\HomepageController', 'index']
             <p class="lead">
                 <a class="btn bg-doctrine-orange text-white btn-lg" href="{{ site.url }}/projects/doctrine-orm/en/current/tutorials/getting-started.html" role="button">Get Started</a>
                 <a class="btn bg-doctrine-dark-blue text-white btn-lg" href="{{ site.url }}/projects.html" role="button">View Projects</a>
+
+                <div class="btn btn-lg tidelift-badge">
+                    <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank"><img src="{{ get_asset_url('/images/tidelift-icon.png', site.url) }}" class="tidelift-icon" /> <span>Get professional support for Doctrine</span></a>
+                </div>
             </p>
         </div>
     </div>
@@ -82,7 +86,7 @@ controller: ['Doctrine\Website\Controllers\HomepageController', 'index']
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-12">
             <div class="card">
                 <h5 class="card-header">Want to support Doctrine?</h5>
@@ -99,6 +103,26 @@ controller: ['Doctrine\Website\Controllers\HomepageController', 'index']
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                         <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Get professional support for Doctrine ORM</h5>
+                <div class="card-body">
+                    Available as part of the <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank">Tidelift Subscription</a>. It includes support for Doctrine ORM and many of the other open source packages you depend on. Here’s how it provides the professional assurances you need.
+
+                    <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank"><img src="{{ get_asset_url('/images/tidelift-logo.png', site.url) }}" class="w-100" /></a>
+
+                    <ul>
+                        <li><strong>Security:</strong> Timely notifications and help addressing vulnerabilities</li>
+                        <li><strong>Maintenance:</strong> Assurance of ongoing high-quality maintenance into the future</li>
+                        <li><strong>Licensing:</strong> Legal assurances documenting license status and whether current usage is compatible</li>
+                        <li><strong>Comprehensive view:</strong> A clear way to understand all of your organization’s open source dependencies and better manage risk</li>
+                    </ul>
                 </div>
             </div>
         </div>
