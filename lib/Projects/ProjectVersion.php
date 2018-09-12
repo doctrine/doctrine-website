@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
+use function array_merge;
+
 class ProjectVersion
 {
     /** @var string */
@@ -39,6 +41,12 @@ class ProjectVersion
         $this->maintained = (bool) ($version['maintained'] ?? true);
         $this->upcoming   = (bool) ($version['upcoming'] ?? false);
         $this->aliases    = $version['aliases'] ?? [];
+
+        if (! $this->current) {
+            return;
+        }
+
+        $this->aliases = array_merge($this->aliases, ['current', 'stable']);
     }
 
     public function getName() : string

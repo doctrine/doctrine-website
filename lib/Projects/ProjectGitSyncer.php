@@ -39,47 +39,56 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
-    public function sync(
-        Project $project,
-        ProjectVersion $version
-    ) : void {
+    public function sync(Project $project) : void
+    {
         // handle when docs are in a different repository then the code
         if ($project->getDocsRepositoryName() !== $project->getRepositoryName()) {
             $this->syncRepository(
-                $project->getRepositoryName(),
-                $version->getBranchName(),
                 $project->getProjectRepositoryPath($this->projectsPath)
             );
         }
 
         // sync docs repository
         $this->syncRepository(
-            $project->getDocsRepositoryName(),
-            $version->getBranchName(),
             $project->getProjectDocsRepositoryPath($this->projectsPath)
         );
     }
 
     public function checkoutMaster(Project $project) : void
     {
-        $this->syncRepository(
-            $project->getRepositoryName(),
-            'master',
-            $project->getProjectRepositoryPath($this->projectsPath)
-        );
+        $this->checkoutBranch($project, 'master');
     }
 
-    private function syncRepository(
-        string $repositoryName,
-        string $branchName,
-        string $dir
-    ) : void {
-        $this->initRepository($repositoryName);
+    public function checkoutProjectVersion(Project $project, ProjectVersion $version) : void
+    {
+        $this->checkoutBranch($project, $version->getBranchName());
+    }
 
+    private function checkoutBranch(Project $project, string $branchName) : void
+    {
+        if ($project->getDocsRepositoryName() !== $project->getRepositoryName()) {
+            $this->doCheckoutBranch($project->getProjectRepositoryPath($this->projectsPath), $branchName);
+        }
+
+        $this->doCheckoutBranch($project->getProjectDocsRepositoryPath($this->projectsPath), $branchName);
+    }
+
+    private function doCheckoutBranch(string $directory, string $branchName) : void
+    {
         $command = sprintf(
-            'cd %s && git clean -xdf && git fetch origin && git checkout origin/%s',
-            $dir,
+            'cd %s && git clean -xdf && git checkout origin/%s',
+            $directory,
             $branchName
+        );
+
+        $this->processFactory->run($command);
+    }
+
+    private function syncRepository(string $directory) : void
+    {
+        $command = sprintf(
+            'cd %s && git clean -xdf && git fetch origin',
+            $directory
         );
 
         $this->processFactory->run($command);

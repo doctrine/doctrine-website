@@ -80,7 +80,7 @@ class BuildDocsTest extends TestCase
 
         $this->projectGitSyncer->expects(self::once())
             ->method('sync')
-            ->with($project, $version);
+            ->with($project);
 
         $this->apiBuilder->expects(self::once())
             ->method('buildAPIDocs')
