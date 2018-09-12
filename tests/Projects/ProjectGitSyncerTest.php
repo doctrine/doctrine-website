@@ -34,42 +34,95 @@ class ProjectGitSyncerTest extends TestCase
         );
     }
 
+    public function testInitRepository() : void
+    {
+        $repositoryName = 'example-project';
+
+        $this->processFactory->expects(self::at(0))
+            ->method('run')
+            ->with(sprintf(
+                'git clone https://github.com/doctrine/%s.git %s/%s',
+                $repositoryName,
+                $this->projectsPath,
+                $repositoryName
+            ));
+
+        $this->projectGitSyncer->initRepository($repositoryName);
+    }
+
     public function testSync() : void
     {
-        $project        = new Project([
-            'repositoryName' => 'example-project-docs',
-            'docsRepositoryName' => 'example-project',
+        $project = new Project([
+            'repositoryName' => 'example-project',
+            'docsRepositoryName' => 'example-project-docs',
         ]);
+
         $projectVersion = new ProjectVersion(['branchName' => '1.0']);
 
         $this->processFactory->expects(self::at(0))
             ->method('run')
             ->with(sprintf(
-                'git clone https://github.com/doctrine/example-project-docs.git %s/example-project-docs',
+                'cd %s/example-project && git clean -xdf && git fetch origin',
                 $this->projectsPath
             ));
 
         $this->processFactory->expects(self::at(1))
             ->method('run')
             ->with(sprintf(
-                'cd %s/example-project-docs && git clean -xdf && git fetch origin && git checkout origin/1.0',
+                'cd %s/example-project-docs && git clean -xdf && git fetch origin',
                 $this->projectsPath
             ));
 
-        $this->processFactory->expects(self::at(2))
+        $this->projectGitSyncer->sync($project);
+    }
+
+    public function testCheckoutMaster() : void
+    {
+        $project = new Project([
+            'repositoryName' => 'example-project',
+            'docsRepositoryName' => 'example-project-docs',
+        ]);
+
+        $this->processFactory->expects(self::at(0))
             ->method('run')
             ->with(sprintf(
-                'git clone https://github.com/doctrine/example-project.git %s/example-project',
+                'cd %s/example-project && git clean -xdf && git checkout origin/master',
                 $this->projectsPath
             ));
 
-        $this->processFactory->expects(self::at(3))
+        $this->processFactory->expects(self::at(1))
             ->method('run')
             ->with(sprintf(
-                'cd %s/example-project && git clean -xdf && git fetch origin && git checkout origin/1.0',
+                'cd %s/example-project-docs && git clean -xdf && git checkout origin/master',
                 $this->projectsPath
             ));
 
-        $this->projectGitSyncer->sync($project, $projectVersion);
+        $this->projectGitSyncer->checkoutMaster($project);
+    }
+
+    public function testCheckoutProjectVersion() : void
+    {
+        $project = new Project([
+            'repositoryName' => 'example-project',
+            'docsRepositoryName' => 'example-project-docs',
+        ]);
+
+        $projectVersion = new ProjectVersion(['branchName' => '1.0']);
+
+        $this->processFactory->expects(self::at(0))
+            ->method('run')
+            ->with(sprintf(
+                'cd %s/example-project && git clean -xdf && git checkout origin/1.0',
+                $this->projectsPath
+            ));
+
+        $this->processFactory->expects(self::at(1))
+            ->method('run')
+            ->with(sprintf(
+                'cd %s/example-project-docs && git clean -xdf && git checkout origin/1.0',
+                $this->projectsPath
+            ));
+
+        $this->projectGitSyncer->checkoutProjectVersion($project, $projectVersion);
     }
 }

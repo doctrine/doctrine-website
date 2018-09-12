@@ -20,6 +20,7 @@ class ProjectVersionTest extends TestCase
             'slug' => '1.0',
             'current' => true,
             'upcoming' => true,
+            'aliases' => ['alias'],
         ]);
     }
 
@@ -30,5 +31,6 @@ class ProjectVersionTest extends TestCase
         self::assertSame('1.0', $this->projectVersion->getSlug());
         self::assertTrue($this->projectVersion->isCurrent());
         self::assertTrue($this->projectVersion->isUpcoming());
+        self::assertSame(['alias', 'current', 'stable'], $this->projectVersion->getAliases());
     }
 }

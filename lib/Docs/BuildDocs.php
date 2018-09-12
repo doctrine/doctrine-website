@@ -63,13 +63,13 @@ class BuildDocs
             $this->searchIndexer->initSearchIndex();
         }
 
-        foreach ($this->projectRepository->getProjectRepositoryNames() as $repositoryName) {
-            $this->projectGitSyncer->initRepository($repositoryName);
-        }
+        $projects = $this->projectRepository->findAll();
 
-        $projects = $this->getProjectsToBuild($projectToBuild);
+        $this->initRepositories($projects);
 
-        foreach ($projects as $project) {
+        $projectsToBuild = $this->getProjectsToBuild($projects, $projectToBuild);
+
+        foreach ($projectsToBuild as $project) {
             foreach ($this->getProjectVersionsToBuild($project, $versionToBuild) as $version) {
                 $output->writeln(sprintf(
                     '<info>%s</info> (<comment>%s</comment>)',
@@ -80,8 +80,12 @@ class BuildDocs
                 if ($syncGit) {
                     $output->writeln(' - syncing git');
 
-                    $this->projectGitSyncer->sync($project, $version);
+                    $this->projectGitSyncer->sync($project);
                 }
+
+                $output->writeln(sprintf(' - checking out %s', $version->getName()));
+
+                $this->projectGitSyncer->checkoutProjectVersion($project, $version);
 
                 if ($buildApiDocs) {
                     $output->writeln(' - building api docs');
@@ -119,20 +123,36 @@ class BuildDocs
                 $this->searchIndexer->buildSearchIndexes($project, $version, $searchDocuments);
             }
 
-            if (! $syncGit) {
-                continue;
-            }
-
             $this->projectGitSyncer->checkoutMaster($project);
         }
     }
 
     /**
+     * @param Project[] $projects
+     */
+    private function initRepositories(array $projects) : void
+    {
+        foreach ($this->projectRepository->getProjectRepositoryNames() as $repositoryName) {
+            $this->projectGitSyncer->initRepository($repositoryName);
+        }
+
+        foreach ($projects as $project) {
+            if ($project->getRepositoryName() === $project->getDocsRepositoryName()) {
+                continue;
+            }
+
+            $this->projectGitSyncer->initRepository($project->getDocsRepositoryName());
+        }
+    }
+
+    /**
+     * @param Project[] $projects
+     *
      * @return Project[]
      */
-    private function getProjectsToBuild(string $projectToBuild) : array
+    private function getProjectsToBuild(array $projects, string $projectToBuild) : array
     {
-        return array_filter($this->projectRepository->findAll(), function (Project $project) use ($projectToBuild) : bool {
+        return array_filter($projects, function (Project $project) use ($projectToBuild) : bool {
             if ($projectToBuild !== '') {
                 if ($project->getSlug() === $projectToBuild) {
                     return true;
