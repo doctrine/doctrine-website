@@ -15,7 +15,7 @@ Using ``@deprecated`` and ``PHPStan Deprecation Rules``
 
 The primary and preferred method for deprecating functionality within Doctrine is by using
 the ``@deprecated`` annotation. To have usages of functionality in your dependencies analyzed
-and reported, you must use a tool like `PHPStan Deprecation Rules`_ or `Pslam Static Analysis`_.
+and reported, you must use a tool like `PHPStan Deprecation Rules`_ or `Psalm Static Analysis`_.
 
 Here is an example of how this would be used in Doctrine:
 
@@ -38,7 +38,7 @@ Here is an example of how this would be used in Doctrine:
 
 Then, if your code directly depends on ``doctrine/orm`` which provides the
 ``Doctrine\ORM\EntityManager`` class, you will get a warning about it when you run
-`PHPStan Deprecation Rules`_ or `Pslam Static Analysis`_. Here is an example:
+`PHPStan Deprecation Rules`_ or `Psalm Static Analysis`_. Here is an example:
 
 .. code-block:: php
 
@@ -137,7 +137,7 @@ Now you can run the ``vendor/bin/phpstan`` command:
 
     $ ./vendor/bin/phpstan analyze
 
-Pslam Static Analysis
+Psalm Static Analysis
 ~~~~~~~~~~~~~~~~~~~~~
 
 Psalm_ is a static analysis tool for finding errors in PHP applications, built on top of `PHP Parser`_.
@@ -157,7 +157,7 @@ The `PHPUnit Bridge`_ provides utilities to report legacy tests and usage of dep
 
     $ composer require --dev "symfony/phpunit-bridge:*"
 
-.. _Pslam: https://github.com/vimeo/psalm
+.. _Psalm: https://github.com/vimeo/psalm
 .. _PHPStan: https://github.com/phpstan/phpstan
 .. _PHP Parser: https://github.com/nikic/php-parser
 .. _PHPUnit Bridge: https://github.com/symfony/phpunit-bridge
