@@ -82,16 +82,7 @@
                 {% endif %}
 
                 {% if alertMessage is defined %}
-                    <div class="alert caution bg-light-yellow text-dark border">
-                        <table width="100%">
-                            <tr>
-                                <td width="10" class="align-top">
-                                    <i class="fas fa-exclamation-circle text-warning mr-2"></i>
-                                </td>
-                                <td><p>{{ alertMessage | raw }}</p></td>
-                            </tr>
-                        </table>
-                    </div>
+                    {% include "alert.html.twig" with {alertMessage:alertMessage} %}
                 {% endif %}
 
                 <div class="row">
