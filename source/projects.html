@@ -12,119 +12,133 @@ controller: ['Doctrine\Website\Controllers\ProjectController', 'index']
     Doctrine is a collection of projects built for <a href="https://php.net" target="_blank">PHP</a>. Each project can be used standalone and installed with <a href="https://getcomposer.org/" target="_blank">Composer</a>.
 </p>
 
-<div class="row">
-    {% for project in primaryProjects %}
-        <div class="col-lg-6 d-flex align-items-stretch">
-            <div class="card mb-4 box-shadow">
-                <div class="card-body">
+<ul class="nav nav-tabs" id="projects" role="tablist">
+    <li class="nav-item mr-1">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Active</a>
+    </li>
+    <li class="nav-item mr-1">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Integrations</a>
+    </li>
+    <li class="nav-item mr-1">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Inactive</a>
+    </li>
+</ul>
+
+<div class="tab-content p-4 border-left border-right border-bottom" id="projectsContent">
+    <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+            {% for project in primaryProjects %}
+                <div class="col-lg-6 d-flex align-items-stretch">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
+
+                            <p class="card-text">{{ project.description }}</p>
+                        </div>
+                        <div class="card-footer bg-doctrine-dark-blue text-white">
+                            <i class="fas fa-book"></i>
+                            <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2 text-white">Docs</a>
+
+                            <i class="fas fa-eye"></i>
+                            <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2 text-white">API</a>
+
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2 text-white" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <p class="lead">
+            These are projects that integrate Doctrine with other libraries and/or frameworks and are officially supported by Doctrine.
+        </p>
+
+        <ul class="list-group">
+            {% for project in integrationProjects %}
+                <li class="list-group-item">
                     <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
 
-                    <p class="card-text">{{ project.description }}</p>
-                </div>
-                <div class="card-footer">
-                    <i class="fas fa-book"></i>
-                    <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
+                    <ul class="list-inline mt-2">
+                        <li class="list-inline-item">
+                            <i class="fas fa-book"></i>
+                            <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
+                        </li>
 
-                    <i class="fas fa-eye"></i>
-                    <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
+                        <li class="list-inline-item">
+                            <i class="fas fa-eye"></i>
+                            <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
+                        </li>
 
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
-<h3>Integration Projects</h3>
-
-<p class="lead">
-    These are projects that integrate Doctrine with other libraries and/or frameworks and are officially supported by Doctrine.
-</p>
-
-<ul class="list-group">
-    {% for project in integrationProjects %}
-        <li class="list-group-item">
-            <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
-
-            <ul class="list-inline mt-2">
-                <li class="list-inline-item">
-                    <i class="fas fa-book"></i>
-                    <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
+                        <li class="list-inline-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
+                        </li>
+                    </ul>
                 </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-                <li class="list-inline-item">
-                    <i class="fas fa-eye"></i>
-                    <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
+    <div class="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <p class="lead">
+            These were once active and maintained projects. If you are interested in helping to maintain any Doctrine project take a look at the open issues on <a href="https://github.com/doctrine/" target="_blank">GitHub</a> and submit pull requests.
+        </p>
+
+        <ul class="list-group">
+            {% for project in inactiveProjects %}
+                <li class="list-group-item">
+                    <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
+
+                    <ul class="list-inline mt-2">
+                        <li class="list-inline-item">
+                            <i class="fas fa-book"></i>
+                            <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <i class="fas fa-eye"></i>
+                            <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
+                        </li>
+                    </ul>
                 </li>
+            {% endfor %}
+        </ul>
 
-                <li class="list-inline-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
+        <p class="lead mt-4">
+            These project are no longer maintained with no chance of revival and have been archived.
+        </p>
+
+        <ul class="list-group">
+            {% for project in archivedProjects %}
+                <li class="list-group-item">
+                    <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
+
+                    <ul class="list-inline mt-2">
+                        <li class="list-inline-item">
+                            <i class="fas fa-book"></i>
+                            <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <i class="fas fa-eye"></i>
+                            <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
+                        </li>
+                    </ul>
                 </li>
-            </ul>
-        </li>
-    {% endfor %}
-</div>
-
-<h3 class="mt-4">Inactive Projects</h3>
-
-<p class="lead">
-    These were once active and maintained projects. If you are interested in helping to maintain any Doctrine project take a look at the open issues on <a href="https://github.com/doctrine/" target="_blank">GitHub</a> and submit pull requests.
-</p>
-
-<ul class="list-group">
-    {% for project in inactiveProjects %}
-        <li class="list-group-item">
-            <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
-
-            <ul class="list-inline mt-2">
-                <li class="list-inline-item">
-                    <i class="fas fa-book"></i>
-                    <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
-                </li>
-
-                <li class="list-inline-item">
-                    <i class="fas fa-eye"></i>
-                    <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
-                </li>
-
-                <li class="list-inline-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
-                </li>
-            </ul>
-        </li>
-    {% endfor %}
-</div>
-
-<h3 class="mt-4">Archived Projects</h3>
-
-<p class="lead">
-    These project are no longer maintained with no chance of revival and have been archived.
-</p>
-
-<ul class="list-group">
-    {% for project in archivedProjects %}
-        <li class="list-group-item">
-            <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
-
-            <ul class="list-inline mt-2">
-                <li class="list-inline-item">
-                    <i class="fas fa-book"></i>
-                    <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">Docs</a>
-                </li>
-
-                <li class="list-inline-item">
-                    <i class="fas fa-eye"></i>
-                    <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2">API</a>
-                </li>
-
-                <li class="list-inline-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2" target="_blank">GitHub</a>
-                </li>
-            </ul>
-        </li>
-    {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
 </div>
