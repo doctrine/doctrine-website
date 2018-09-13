@@ -64,6 +64,9 @@ parameters:
             repositoryName: rst-parser
 
         -
+            repositoryName: couchdb-client
+
+        -
             repositoryName: DoctrineBundle
             isIntegration: true
             integrationFor: orm
