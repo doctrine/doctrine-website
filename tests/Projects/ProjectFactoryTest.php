@@ -18,7 +18,7 @@ class ProjectFactoryTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->projectDataReader = new ProjectDataReader(__DIR__ . '/../test-projects', []);
+        $this->projectDataReader = new ProjectDataReader(__DIR__ . '/../test-projects', [], []);
 
         $this->projectFactory = new ProjectFactory($this->projectDataReader);
     }

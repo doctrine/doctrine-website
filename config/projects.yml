@@ -1,4 +1,10 @@
 parameters:
+    doctrine.website.project_integration.types:
+        symfony:
+            name: Symfony
+            url: https://symfony.com
+            icon: https://symfony.com/logos/symfony_black_03.png
+
     doctrine.website.projects_data:
         -
             repositoryName: doctrine2
@@ -70,19 +76,23 @@ parameters:
             repositoryName: DoctrineBundle
             isIntegration: true
             integrationFor: orm
+            integrationType: symfony
 
         -
             repositoryName: DoctrineCacheBundle
             isIntegration: true
             integrationFor: cache
+            integrationType: symfony
 
         -
             repositoryName: DoctrineMigrationsBundle
             isIntegration: true
             integrationFor: migrations
+            integrationType: symfony
 
         -
             repositoryName: DoctrineMongoDBBundle
             slug: doctrine-mongodb-bundle
             isIntegration: true
             integrationFor: mongodb-odm
+            integrationType: symfony

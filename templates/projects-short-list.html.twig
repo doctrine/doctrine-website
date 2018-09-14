@@ -1,7 +1,13 @@
 <ul class="list-group">
     {% for project in projects %}
         <li class="list-group-item">
-            <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
+            <h5 class="card-title">
+                {% if project.isIntegration %}
+                    <a href="{{ project.type.url }}" target="_blank"><img src="{{ project.type.icon }}" title="{{ project.type.name }}" width="30" class="mr-2" /></a>
+                {% endif %}
+
+                <a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a>
+            </h5>
 
             <ul class="list-inline mt-2">
                 <li class="list-inline-item">

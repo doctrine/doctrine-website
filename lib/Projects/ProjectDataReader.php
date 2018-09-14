@@ -30,13 +30,21 @@ class ProjectDataReader
     /** @var mixed[] */
     private $projectsData;
 
+    /** @var mixed[] */
+    private $projectIntegrationTypes;
+
     /**
      * @param mixed[] $projectsData
+     * @param mixed[] $projectIntegrationTypes
      */
-    public function __construct(string $projectsPath, array $projectsData)
-    {
-        $this->projectsPath = $projectsPath;
-        $this->projectsData = $projectsData;
+    public function __construct(
+        string $projectsPath,
+        array $projectsData,
+        array $projectIntegrationTypes
+    ) {
+        $this->projectsPath            = $projectsPath;
+        $this->projectsData            = $projectsData;
+        $this->projectIntegrationTypes = $projectIntegrationTypes;
     }
 
     /**
@@ -44,12 +52,33 @@ class ProjectDataReader
      */
     public function read(string $repositoryName) : array
     {
-        return array_replace(
+        $projectData = array_replace(
             $this->createDefaultProjectData($repositoryName),
             $this->getProjectData($repositoryName),
             $this->readComposerData($repositoryName),
             $this->readJsonFile($repositoryName, self::DOCTRINE_PROJECT_JSON_FILE_NAME)
         );
+
+        if (isset($projectData['isIntegration']) && $projectData['isIntegration'] === true) {
+            if (! isset($projectData['integrationType'])) {
+                throw new InvalidArgumentException(sprintf(
+                    'Project integration %s requires a type.',
+                    $projectData['name']
+                ));
+            }
+
+            if (! isset($this->projectIntegrationTypes[$projectData['integrationType']])) {
+                throw new InvalidArgumentException(sprintf(
+                    'Project integration %s has a type of %s which does not exist.',
+                    $projectData['name'],
+                    $projectData['integrationType']
+                ));
+            }
+
+            $projectData['integrationType'] = $this->projectIntegrationTypes[$projectData['integrationType']];
+        }
+
+        return $projectData;
     }
 
     /**

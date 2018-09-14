@@ -10,6 +10,9 @@ use InvalidArgumentException;
 
 class ProjectDataReaderTest extends TestCase
 {
+    /** @var string[][] */
+    private $projectIntegrationTypes;
+
     /** @var ProjectDataReader */
     private $projectDataReader;
 
@@ -58,7 +61,6 @@ class ProjectDataReaderTest extends TestCase
                     ],
                 ],
             ],
-            'keywords' => ['keyword1', 'keyword2'],
         ], $this->projectDataReader->read('no-project-json'));
     }
 
@@ -69,13 +71,33 @@ class ProjectDataReaderTest extends TestCase
         $this->projectDataReader->read('invalid-project-json');
     }
 
+    public function testProjectIntegrationType() : void
+    {
+        $projectData = $this->projectDataReader->read('test-integration-project');
+
+        self::assertSame($this->projectIntegrationTypes['symfony'], $projectData['integrationType']);
+    }
+
     protected function setUp() : void
     {
-        $this->projectDataReader = new ProjectDataReader(__DIR__ . '/../test-projects', [
-            [
-                'repositoryName' => 'no-project-json',
-                'keywords' => ['keyword1', 'keyword2'],
+        $this->projectIntegrationTypes = [
+            'symfony' => [
+                'name' => 'Symfony',
+                'url' => 'https://symfony.com',
+                'icon' => 'https://symfony.com/logos/symfony_black_03.png',
             ],
-        ]);
+        ];
+
+        $this->projectDataReader = new ProjectDataReader(
+            __DIR__ . '/../test-projects',
+            [
+                [
+                    'repositoryName' => 'test-integration-project',
+                    'isIntegration' => true,
+                    'integrationType' => 'symfony',
+                ],
+            ],
+            $this->projectIntegrationTypes
+        );
     }
 }
