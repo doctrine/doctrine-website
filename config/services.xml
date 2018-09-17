@@ -14,6 +14,7 @@
             <bind key="$teamMembers">%doctrine.website.team_members%</bind>
             <bind key="$templatesPath">%doctrine.website.templates_path%</bind>
             <bind key="$whoUsesDoctrine">%doctrine.website.who_uses_doctrine%</bind>
+            <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
         </defaults>
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />

@@ -1,0 +1,23 @@
+<div class="row">
+    {% for project in projects %}
+        <div class="col-lg-6 d-flex align-items-stretch">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a></h5>
+
+                    <p class="card-text">{{ project.description }}</p>
+                </div>
+                <div class="card-footer bg-doctrine-dark-blue text-white">
+                    <i class="fas fa-book"></i>
+                    <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2 text-white">Docs</a>
+
+                    <i class="fas fa-eye"></i>
+                    <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="mr-2 text-white">API</a>
+
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/doctrine/{{ project.repositoryName }}" class="mr-2 text-white" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

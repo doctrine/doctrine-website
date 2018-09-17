@@ -16,6 +16,12 @@ class ProjectFactory
 
     public function create(string $repositoryName) : Project
     {
-        return new Project($this->projectDataReader->read($repositoryName));
+        $projectData = $this->projectDataReader->read($repositoryName);
+
+        if (isset($projectData['isIntegration']) && $projectData['isIntegration'] === true) {
+            return new ProjectIntegration($projectData);
+        }
+
+        return new Project($projectData);
     }
 }
