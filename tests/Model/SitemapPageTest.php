@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Tests\Sitemap;
+namespace Doctrine\Website\Tests\Model;
 
 use DateTimeImmutable;
-use Doctrine\Website\Sitemap\SitemapPage;
+use Doctrine\Website\Model\SitemapPage;
 use Doctrine\Website\Tests\TestCase;
 
 class SitemapPageTest extends TestCase

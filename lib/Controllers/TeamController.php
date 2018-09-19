@@ -6,24 +6,24 @@ namespace Doctrine\Website\Controllers;
 
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
-use Doctrine\Website\Team\TeamRepository;
+use Doctrine\Website\Repositories\TeamMemberRepository;
 
 class TeamController
 {
-    /** @var TeamRepository */
-    private $teamRepository;
+    /** @var TeamMemberRepository */
+    private $teamMemberRepository;
 
-    public function __construct(TeamRepository $teamRepository)
+    public function __construct(TeamMemberRepository $teamMemberRepository)
     {
-        $this->teamRepository = $teamRepository;
+        $this->teamMemberRepository = $teamMemberRepository;
     }
 
     public function index(SourceFile $sourceFile) : ControllerResult
     {
         return new ControllerResult([
-            'activeCoreTeamMembers' => $this->teamRepository->getActiveCoreTeamMembers(),
-            'activeDocumentationTeamMembers' => $this->teamRepository->getActiveDocumentationTeamMembers(),
-            'inactiveTeamMembers' => $this->teamRepository->getInactiveTeamMembers(),
+            'activeCoreTeamMembers' => $this->teamMemberRepository->getActiveCoreTeamMembers(),
+            'activeDocumentationTeamMembers' => $this->teamMemberRepository->getActiveDocumentationTeamMembers(),
+            'inactiveTeamMembers' => $this->teamMemberRepository->getInactiveTeamMembers(),
         ]);
     }
 }

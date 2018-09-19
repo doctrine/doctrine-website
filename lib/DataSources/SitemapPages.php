@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Sitemap;
+namespace Doctrine\Website\DataSources;
 
 use DateTimeImmutable;
+use Doctrine\Website\DataSource\DataSource;
 use Iterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -16,7 +17,7 @@ use function filemtime;
 use function is_int;
 use function str_replace;
 
-class SitemapPageRepository
+class SitemapPages implements DataSource
 {
     /** @var string */
     private $sourcePath;
@@ -27,21 +28,26 @@ class SitemapPageRepository
     }
 
     /**
-     * @return SitemapPage[]
+     * @return mixed[][]
      */
-    public function findAll() : array
+    public function getData() : array
     {
         return array_merge(
-            [new SitemapPage('/', new DateTimeImmutable())],
-            $this->getUrlsFromFiles('projects'),
-            $this->getUrlsFromFiles('api')
+            [
+                [
+                    'url' => '/',
+                    'date' => new DateTimeImmutable(),
+                ],
+            ],
+            $this->getSitemapPagesDataFromFiles('projects'),
+            $this->getSitemapPagesDataFromFiles('api')
         );
     }
 
     /**
-     * @return SitemapPage[]
+     * @return mixed[][]
      */
-    private function getUrlsFromFiles(string $path) : array
+    private function getSitemapPagesDataFromFiles(string $path) : array
     {
         $path = $this->sourcePath . '/' . $path;
 
@@ -80,7 +86,10 @@ class SitemapPageRepository
 
             $date = (new DateTimeImmutable())->setTimestamp($timestamp);
 
-            $urls[] = new SitemapPage($url, $date);
+            $urls[] = [
+                'url' => $url,
+                'date' => $date,
+            ];
         }
 
         return $urls;

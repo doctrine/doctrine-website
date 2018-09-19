@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Projects;
+namespace Doctrine\Website\Model;
 
 class ProjectIntegrationType
 {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Twig;
 
-use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectRepository;
-use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
+use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Tests\TestCase;
 use Doctrine\Website\Twig\ProjectExtension;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -38,7 +38,7 @@ class ProjectExtensionTest extends TestCase
         $project = new Project([]);
 
         $this->projectRepository->expects(self::once())
-            ->method('findOneBySlug')
+            ->method('findOneByDocsSlug')
             ->with('orm')
             ->willReturn($project);
 

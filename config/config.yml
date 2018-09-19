@@ -18,7 +18,7 @@ parameters:
         Layer (DBAL) it is built upon.
     doctrine.website.google_analytics_tracking_id: ''
 
-    doctrine.website.who_uses_doctrine:
+    doctrine.website.doctrine_users:
         -
             name: Symfony
             url: https://symfony.com/

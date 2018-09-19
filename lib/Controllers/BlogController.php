@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\Website\Blog\BlogPostRepository;
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
+use Doctrine\Website\Repositories\BlogPostRepository;
 
 class BlogController
 {
@@ -35,7 +35,7 @@ class BlogController
     public function view(SourceFile $sourceFile) : ControllerResult
     {
         return new ControllerResult([
-            'blogPost' => $this->blogPostRepository->find($sourceFile),
+            'blogPost' => $this->blogPostRepository->find($sourceFile->getParameter('url')),
         ]);
     }
 }

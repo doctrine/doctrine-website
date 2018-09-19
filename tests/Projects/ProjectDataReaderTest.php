@@ -39,6 +39,7 @@ class ProjectDataReaderTest extends TestCase
             'description' => 'Test description',
             'keywords' => ['keyword1', 'keyword2'],
             'shortName' => 'test',
+            'docsSlug' => 'test-project',
         ], $this->projectDataReader->read('test-project'));
     }
 
@@ -61,6 +62,7 @@ class ProjectDataReaderTest extends TestCase
                     ],
                 ],
             ],
+            'docsSlug' => 'no-project-json',
         ], $this->projectDataReader->read('no-project-json'));
     }
 
@@ -93,7 +95,7 @@ class ProjectDataReaderTest extends TestCase
             [
                 [
                     'repositoryName' => 'test-integration-project',
-                    'isIntegration' => true,
+                    'integration' => true,
                     'integrationType' => 'symfony',
                 ],
             ],

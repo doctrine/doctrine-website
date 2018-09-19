@@ -6,9 +6,9 @@ namespace Doctrine\Website;
 
 use Doctrine\Website\Builder\SourceFileBuilder;
 use Doctrine\Website\Builder\SourceFileRepository;
-use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectRepository;
-use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
+use Doctrine\Website\Repositories\ProjectRepository;
 use RuntimeException;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -130,6 +130,7 @@ class WebsiteBuilder
 
     private function createProjectVersionAliases(string $buildDir) : void
     {
+        /** @var Project[] $projects */
         $projects = $this->projectRepository->findAll();
 
         foreach ($projects as $project) {

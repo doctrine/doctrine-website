@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Blog;
+namespace Doctrine\Website\Model;
 
 use DateTimeImmutable;
+use Doctrine\SkeletonMapper\Hydrator\HydratableInterface;
+use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
+use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
+use Doctrine\SkeletonMapper\ObjectManagerInterface;
 
-class BlogPost
+class BlogPost implements HydratableInterface, LoadMetadataInterface
 {
     /** @var string */
     private $url;
@@ -40,6 +44,24 @@ class BlogPost
         $this->authorEmail = $authorEmail;
         $this->contents    = $contents;
         $this->date        = $date;
+    }
+
+    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    {
+        $metadata->setIdentifier(['url']);
+    }
+
+    /**
+     * @param mixed[] $project
+     */
+    public function hydrate(array $project, ObjectManagerInterface $objectManager) : void
+    {
+        $this->url         = $project['url'];
+        $this->title       = $project['title'];
+        $this->authorName  = $project['authorName'];
+        $this->authorEmail = $project['authorEmail'];
+        $this->contents    = $project['contents'];
+        $this->date        = $project['date'];
     }
 
     public function getUrl() : string

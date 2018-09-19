@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Tests\Blog;
+namespace Doctrine\Website\Tests\Model;
 
 use DateTimeImmutable;
-use Doctrine\Website\Blog\BlogPost;
+use Doctrine\Website\Model\BlogPost;
 use Doctrine\Website\Tests\TestCase;
 
 class BlogPostTest extends TestCase

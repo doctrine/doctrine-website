@@ -12,8 +12,8 @@ use Doctrine\RST\HTML\Nodes\ParagraphNode;
 use Doctrine\RST\HTML\Nodes\TitleNode;
 use Doctrine\RST\Nodes\RawNode;
 use Doctrine\Website\Docs\SearchIndexer;
-use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 

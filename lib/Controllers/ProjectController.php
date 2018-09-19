@@ -6,21 +6,21 @@ namespace Doctrine\Website\Controllers;
 
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
-use Doctrine\Website\Projects\ProjectRepository;
-use Doctrine\Website\Team\TeamRepository;
+use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\Repositories\TeamMemberRepository;
 
 class ProjectController
 {
     /** @var ProjectRepository */
     private $projectRepository;
 
-    /** @var TeamRepository */
-    private $teamRepository;
+    /** @var TeamMemberRepository */
+    private $teamMemberRepository;
 
-    public function __construct(ProjectRepository $projectRepository, TeamRepository $teamRepository)
+    public function __construct(ProjectRepository $projectRepository, TeamMemberRepository $teamMemberRepository)
     {
-        $this->projectRepository = $projectRepository;
-        $this->teamRepository    = $teamRepository;
+        $this->projectRepository    = $projectRepository;
+        $this->teamMemberRepository = $teamMemberRepository;
     }
 
     public function index(SourceFile $sourceFile) : ControllerResult
@@ -35,13 +35,13 @@ class ProjectController
 
     public function view(SourceFile $sourceFile) : ControllerResult
     {
-        $project = $this->projectRepository->findOneBySlug($sourceFile->getParameter('docsSlug'));
+        $project = $this->projectRepository->findOneByDocsSlug($sourceFile->getParameter('docsSlug'));
 
         return new ControllerResult([
             'project' => $project,
-            'allTeamMembers' => $this->teamRepository->getAllProjectTeamMembers($project),
-            'activeTeamMembers' => $this->teamRepository->getActiveProjectTeamMembers($project),
-            'inactiveTeamMembers' => $this->teamRepository->getInactiveProjectTeamMembers($project),
+            'allTeamMembers' => $this->teamMemberRepository->getAllProjectTeamMembers($project),
+            'activeTeamMembers' => $this->teamMemberRepository->getActiveProjectTeamMembers($project),
+            'inactiveTeamMembers' => $this->teamMemberRepository->getInactiveProjectTeamMembers($project),
             'integrationProjects' => $this->projectRepository->findProjectIntegrations($project),
         ]);
     }

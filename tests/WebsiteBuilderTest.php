@@ -7,7 +7,7 @@ namespace Doctrine\Website\Tests;
 use Doctrine\Website\Builder\SourceFileBuilder;
 use Doctrine\Website\Builder\SourceFileRepository;
 use Doctrine\Website\ProcessFactory;
-use Doctrine\Website\Projects\ProjectRepository;
+use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Console\Output\OutputInterface;

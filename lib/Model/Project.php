@@ -2,16 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Projects;
+namespace Doctrine\Website\Model;
 
 use Closure;
+use Doctrine\SkeletonMapper\Hydrator\HydratableInterface;
+use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
+use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
+use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use InvalidArgumentException;
 use function array_filter;
 use function array_values;
 use function sprintf;
 
-class Project
+class Project implements HydratableInterface, LoadMetadataInterface
 {
+    /** @var null|ProjectIntegrationType */
+    private $projectIntegrationType;
+
     /** @var bool */
     private $active;
 
@@ -68,6 +75,27 @@ class Project
      */
     public function __construct(array $project)
     {
+        $this->doHydrate($project);
+    }
+
+    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    {
+        $metadata->setIdentifier(['slug']);
+    }
+
+    /**
+     * @param mixed[] $project
+     */
+    public function hydrate(array $project, ObjectManagerInterface $objectManager) : void
+    {
+        $this->doHydrate($project);
+    }
+
+    /**
+     * @param mixed[] $project
+     */
+    public function doHydrate(array $project) : void
+    {
         $this->active              = (bool) ($project['active'] ?? true);
         $this->archived            = (bool) ($project['archived'] ?? false);
         $this->name                = (string) ($project['name'] ?? '');
@@ -76,9 +104,9 @@ class Project
         $this->docsSlug            = (string) ($project['docsSlug'] ?? $this->slug);
         $this->composerPackageName = (string) ($project['composerPackageName'] ?? '');
         $this->repositoryName      = (string) ($project['repositoryName'] ?? '');
-        $this->hasDocs             = $project['hasDocs'] ?? true;
-        $this->isIntegration       = $project['isIntegration'] ?? false;
-        $this->integrationFor      = $project['integrationFor'] ?? '';
+        $this->hasDocs             = (bool) ($project['hasDocs'] ?? true);
+        $this->isIntegration       = (bool) ($project['integration'] ?? false);
+        $this->integrationFor      = (string) ($project['integrationFor'] ?? '');
         $this->docsRepositoryName  = (string) ($project['docsRepositoryName'] ?? $this->repositoryName);
         $this->docsPath            = (string) ($project['docsPath'] ?? '/docs');
         $this->codePath            = (string) ($project['codePath'] ?? '/lib');
@@ -95,6 +123,17 @@ class Project
                 : new ProjectVersion($version)
             ;
         }
+
+        if (! $this->isIntegration) {
+            return;
+        }
+
+        $this->projectIntegrationType = new ProjectIntegrationType($project['integrationType']);
+    }
+
+    public function getProjectIntegrationType() : ?ProjectIntegrationType
+    {
+        return $this->projectIntegrationType;
     }
 
     public function isActive() : bool

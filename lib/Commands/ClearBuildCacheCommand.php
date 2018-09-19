@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Commands;
 
-use Doctrine\Website\Projects\ProjectRepository;
+use Doctrine\Website\Repositories\ProjectRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
