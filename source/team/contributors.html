@@ -1,0 +1,18 @@
+---
+layout: default
+title: Doctrine Contributors
+menuSlug: team
+permalink: /team/contributors.html
+controller: ['Doctrine\Website\Controllers\TeamController', 'contributors']
+---
+
+<h1>Contributors</h1>
+
+<p class="lead">
+    In addition to the <a href="{{ site.url }}/team/maintainers.html">core maintainers</a>, Doctrine has received contributions from {{ contributors|length }}
+    different people from all over the world. Could you be the next contributor? Head on over to the
+    <a href="{{ site.url }}/contribute/">Contributor Workflow</a> to learn how to
+    contribute to your favorite Doctrine project today!
+</p>
+
+{% include "contributors-list.html.twig" with {contributors:contributors} %}

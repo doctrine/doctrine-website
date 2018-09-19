@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\ProcessFactory;
 use function is_dir;
 use function sprintf;
@@ -20,6 +22,11 @@ class ProjectGitSyncer
     {
         $this->processFactory = $processFactory;
         $this->projectsPath   = $projectsPath;
+    }
+
+    public function isRepositoryInitialized(string $repositoryName) : bool
+    {
+        return is_dir($this->projectsPath . '/' . $repositoryName);
     }
 
     public function initRepository(string $repositoryName) : void

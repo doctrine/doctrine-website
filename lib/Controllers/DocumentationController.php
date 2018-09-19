@@ -6,7 +6,7 @@ namespace Doctrine\Website\Controllers;
 
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
-use Doctrine\Website\Projects\ProjectRepository;
+use Doctrine\Website\Repositories\ProjectRepository;
 
 class DocumentationController
 {
@@ -20,7 +20,7 @@ class DocumentationController
 
     public function view(SourceFile $sourceFile) : ControllerResult
     {
-        $project = $this->projectRepository->findOneBySlug($sourceFile->getParameter('docsSlug'));
+        $project = $this->projectRepository->findOneByDocsSlug($sourceFile->getParameter('docsSlug'));
 
         return new ControllerResult([
             'project' => $project,

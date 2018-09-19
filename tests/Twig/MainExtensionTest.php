@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Twig;
 
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
-use Doctrine\Website\Projects\Project;
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Tests\TestCase;
 use Doctrine\Website\Twig\MainExtension;
 use Parsedown;

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\Website\Blog\BlogPostRepository;
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
-use Doctrine\Website\Projects\ProjectRepository;
+use Doctrine\Website\Repositories\BlogPostRepository;
+use Doctrine\Website\Repositories\DoctrineUserRepository;
+use Doctrine\Website\Repositories\ProjectRepository;
 
 class HomepageController
 {
@@ -17,31 +18,29 @@ class HomepageController
     /** @var ProjectRepository */
     private $projectRepository;
 
-    /** @var string[][] */
-    private $whoUsesDoctrine;
+    /** @var DoctrineUserRepository */
+    private $doctrineUserRepository;
 
-    /**
-     * @param string[][] $whoUsesDoctrine
-     */
     public function __construct(
         BlogPostRepository $blogPostRepository,
         ProjectRepository $projectRepository,
-        array $whoUsesDoctrine
+        DoctrineUserRepository $doctrineUserRepository
     ) {
-        $this->blogPostRepository = $blogPostRepository;
-        $this->projectRepository  = $projectRepository;
-        $this->whoUsesDoctrine    = $whoUsesDoctrine;
+        $this->blogPostRepository     = $blogPostRepository;
+        $this->projectRepository      = $projectRepository;
+        $this->doctrineUserRepository = $doctrineUserRepository;
     }
 
     public function index(SourceFile $sourceFile) : ControllerResult
     {
         $blogPosts       = $this->blogPostRepository->findPaginated(1, 10);
         $primaryProjects = $this->projectRepository->findPrimaryProjects();
+        $doctrineUsers   = $this->doctrineUserRepository->findAll();
 
         return new ControllerResult([
             'blogPosts' => $blogPosts,
             'primaryProjects' => $primaryProjects,
-            'whoUsesDoctrine' => $this->whoUsesDoctrine,
+            'doctrineUsers' => $doctrineUsers,
         ]);
     }
 }

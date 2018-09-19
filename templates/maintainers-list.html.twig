@@ -1,0 +1,33 @@
+<ul class="list-group">
+    {% for contributor in contributors %}
+        <li class="list-group-item">
+            <img src="{{ contributor.avatarUrl }}" class="rounded float-left mr-5" style="width: 50px;" />
+
+            <strong>
+                <a href="https://github.com/{{ contributor.github }}/" target="_blank">
+                    {{ contributor.teamMember.name ?? member.github }}
+
+                    {% if contributor.teamMember.name %}
+                        <small>({{ contributor.teamMember.github }})</small>
+                    {% endif %}
+                </a>
+            </strong>
+
+            {% if contributor.teamMember %}
+                <ul class="list-inline">
+                    {% if contributor.teamMember.twitter %}
+                        <li class="list-inline-item" target="_blank"><a href="https://twitter.com/{{ contributor.teamMember.twitter }}/" target="_blank"><i class="fab fa-twitter mr-2"></i></a></li>
+                    {% endif %}
+
+                    {% if contributor.teamMember.website %}
+                        <li class="list-inline-item" target="_blank"><a href="{{ contributor.teamMember.website }}" target="_blank"><i class="fas fa-link mr-2"></i></a></li>
+                    {% endif %}
+
+                    {% if contributor.teamMember.github %}
+                        <li class="list-inline-item" target="_blank"><a href="https://github.com/{{ contributor.teamMember.github }}/" target="_blank"><i class="fab fa-github mr-2"></i></a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests;
 
-use Doctrine\Website\Projects\ProjectRepository;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Repositories\ProjectRepository;
 use SimpleXMLElement;
 use Symfony\Component\DomCrawler\Crawler;
 use function explode;
@@ -104,7 +105,8 @@ class FunctionalTest extends TestCase
         self::assertValid('/contribute/website/index.html');
         self::assertValid('/community/index.html');
         self::assertValid('/blog/index.html');
-        self::assertValid('/team/index.html');
+        self::assertValid('/team/maintainers.html');
+        self::assertValid('/team/contributors.html');
         self::assertValid('/2018/04/06/new-website.html');
         self::assertValid('/projects.html');
 
@@ -113,7 +115,10 @@ class FunctionalTest extends TestCase
         /** @var ProjectRepository $projectRepository */
         $projectRepository = $container->get(ProjectRepository::class);
 
-        foreach ($projectRepository->findAll() as $project) {
+        /** @var Project[] $projects */
+        $projects = $projectRepository->findAll();
+
+        foreach ($projects as $project) {
             // project homepage
             $crawler = self::assertValid(sprintf(
                 '/projects/%s.html',

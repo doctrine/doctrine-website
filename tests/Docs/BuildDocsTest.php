@@ -10,16 +10,20 @@ use Doctrine\Website\Docs\RST\RSTBuilder;
 use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Docs\SearchIndexer;
-use Doctrine\Website\Projects\Project;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
+use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
-use Doctrine\Website\Projects\ProjectRepository;
-use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class BuildDocsTest extends TestCase
 {
+    /** @var ProjectDataRepository|MockObject */
+    private $projectDataRepository;
+
     /** @var ProjectRepository|MockObject */
     private $projectRepository;
 
@@ -43,14 +47,16 @@ class BuildDocsTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->projectRepository    = $this->createMock(ProjectRepository::class);
-        $this->projectGitSyncer     = $this->createMock(ProjectGitSyncer::class);
-        $this->apiBuilder           = $this->createMock(APIBuilder::class);
-        $this->rstLanguagesDetector = $this->createMock(RSTLanguagesDetector::class);
-        $this->rstBuilder           = $this->createMock(RSTBuilder::class);
-        $this->searchIndexer        = $this->createMock(SearchIndexer::class);
+        $this->projectDataRepository = $this->createMock(ProjectDataRepository::class);
+        $this->projectRepository     = $this->createMock(ProjectRepository::class);
+        $this->projectGitSyncer      = $this->createMock(ProjectGitSyncer::class);
+        $this->apiBuilder            = $this->createMock(APIBuilder::class);
+        $this->rstLanguagesDetector  = $this->createMock(RSTLanguagesDetector::class);
+        $this->rstBuilder            = $this->createMock(RSTBuilder::class);
+        $this->searchIndexer         = $this->createMock(SearchIndexer::class);
 
         $this->buildDocs = new BuildDocs(
+            $this->projectDataRepository,
             $this->projectRepository,
             $this->projectGitSyncer,
             $this->apiBuilder,

@@ -1,0 +1,17 @@
+---
+layout: default
+title: Doctrine Maintainers
+menuSlug: team
+permalink: /team/maintainers.html
+controller: ['Doctrine\Website\Controllers\TeamController', 'maintainers']
+---
+
+<h1>Maintainers</h1>
+
+<p class="lead">
+    Doctrine is maintained by a core group of {{ contributors|length }} developers. Each maintainer has
+    their own areas of responsibilities and together we are able to keep the various Doctrine projects
+    moving forward as the PHP ecosystem evolves.
+</p>
+
+{% include "maintainers-list.html.twig" with {contributors:contributors} %}

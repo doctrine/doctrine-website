@@ -77,25 +77,25 @@ parameters:
 
         -
             repositoryName: DoctrineBundle
-            isIntegration: true
+            integration: true
             integrationFor: orm
             integrationType: symfony
 
         -
             repositoryName: DoctrineCacheBundle
-            isIntegration: true
+            integration: true
             integrationFor: cache
             integrationType: symfony
 
         -
             repositoryName: DoctrineMigrationsBundle
-            isIntegration: true
+            integration: true
             integrationFor: migrations
             integrationType: symfony
 
         -
             repositoryName: DoctrineMongoDBBundle
             slug: doctrine-mongodb-bundle
-            isIntegration: true
+            integration: true
             integrationFor: mongodb-odm
             integrationType: symfony

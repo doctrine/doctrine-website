@@ -6,8 +6,8 @@ namespace Doctrine\Website\Docs\RST;
 
 use Doctrine\RST\Builder;
 use Doctrine\RST\Document;
-use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Filesystem\Filesystem;
 
 class RSTBuilder
