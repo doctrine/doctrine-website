@@ -86,7 +86,7 @@ parameters:
             active: true
             core: true
             documentation: true
-            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager", "persistence", "reflection", "rst-parser"]
+            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager", "persistence", "reflection", "rst-parser", "skeleton-mapper"]
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
             twitter: kimhemsoe

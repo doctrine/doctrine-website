@@ -73,6 +73,9 @@ parameters:
             repositoryName: couchdb-client
 
         -
+            repositoryName: skeleton-mapper
+
+        -
             repositoryName: DoctrineBundle
             isIntegration: true
             integrationFor: orm
