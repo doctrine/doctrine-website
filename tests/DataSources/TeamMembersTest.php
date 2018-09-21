@@ -15,23 +15,9 @@ class TeamMembersTest extends TestCase
     protected function setUp() : void
     {
         $this->teamMembers = new TeamMembers([
-            [
-                'name' => 'ocramius',
-                'active' => true,
-                'core' => true,
-                'projects' => ['orm'],
-            ],
-            [
-                'name' => 'jwage',
-                'active' => true,
-                'documentation' => true,
-                'projects' => ['orm'],
-            ],
-            [
-                'name' => 'romanb',
-                'active' => false,
-                'projects' => ['orm'],
-            ],
+            ['name' => 'ocramius'],
+            ['name' => 'jwage'],
+            ['name' => 'romanb'],
         ]);
     }
 
@@ -40,27 +26,9 @@ class TeamMembersTest extends TestCase
         $teamMembers = $this->teamMembers->getData();
 
         self::assertSame([
-            [
-                'active' => true,
-                'core' => false,
-                'documentation' => true,
-                'name' => 'jwage',
-                'projects' => ['orm'],
-            ],
-            [
-                'active' => true,
-                'core' => true,
-                'documentation' => false,
-                'name' => 'ocramius',
-                'projects' => ['orm'],
-            ],
-            [
-                'active' => false,
-                'core' => false,
-                'documentation' => false,
-                'name' => 'romanb',
-                'projects' => ['orm'],
-            ],
+            ['name' => 'ocramius'],
+            ['name' => 'jwage'],
+            ['name' => 'romanb'],
         ], $teamMembers);
     }
 }

@@ -8,16 +8,8 @@ controller: ['Doctrine\Website\Controllers\TeamController', 'index']
 
 <h1>Core Team</h1>
 
-<div class="row">
-    {% include "team-members-list.html.twig" with {members:activeCoreTeamMembers} %}
-</div>
+{% include "contributors-list.html.twig" with {contributors:coreContributors} %}
 
-<h1>Documentation Team</h1>
+<h1 class="mt-4">Contributors</h1>
 
-<div class="row">
-    {% include "team-members-list.html.twig" with {members:activeDocumentationTeamMembers} %}
-</div>
-
-<h3>Inactive</h3>
-
-{% include "team-members-short-list.html.twig" with {members:inactiveTeamMembers} %}
+{% include "contributors-list.html.twig" with {contributors:contributors} %}

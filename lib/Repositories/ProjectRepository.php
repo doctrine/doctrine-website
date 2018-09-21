@@ -41,7 +41,7 @@ class ProjectRepository extends BasicObjectRepository
         return $this->findBy([
             'active' => true,
             'integration' => false,
-        ]);
+        ], ['name' => 'asc']);
     }
 
     /**
@@ -52,7 +52,7 @@ class ProjectRepository extends BasicObjectRepository
         return $this->findBy([
             'active' => false,
             'archived' => false,
-        ]);
+        ], ['name' => 'asc']);
     }
 
     /**
@@ -63,7 +63,7 @@ class ProjectRepository extends BasicObjectRepository
         return $this->findBy([
             'active' => false,
             'archived' => true,
-        ]);
+        ], ['name' => 'asc']);
     }
 
     /**
@@ -74,7 +74,7 @@ class ProjectRepository extends BasicObjectRepository
         return $this->findBy([
             'active' => true,
             'integration' => true,
-        ]);
+        ], ['name' => 'asc']);
     }
 
     /**
@@ -85,6 +85,6 @@ class ProjectRepository extends BasicObjectRepository
         return $this->findBy([
             'integration' => true,
             'integrationFor' => $project->getSlug(),
-        ]);
+        ], ['name' => 'asc']);
     }
 }

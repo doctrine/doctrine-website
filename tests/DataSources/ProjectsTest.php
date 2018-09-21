@@ -56,16 +56,16 @@ class ProjectsTest extends TestCase
                 'archived' => false,
                 'hasDocs' => true,
                 'integration' => false,
-                'name' => 'Database Abstraction Layer',
-                'repositoryName' => 'dbal',
+                'name' => 'Object Relational Mapper',
+                'repositoryName' => 'doctrine2',
             ],
             [
                 'active' => true,
                 'archived' => false,
                 'hasDocs' => true,
                 'integration' => false,
-                'name' => 'Object Relational Mapper',
-                'repositoryName' => 'doctrine2',
+                'name' => 'Database Abstraction Layer',
+                'repositoryName' => 'dbal',
             ],
         ], $projectsData);
     }

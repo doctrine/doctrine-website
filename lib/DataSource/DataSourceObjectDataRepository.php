@@ -6,9 +6,9 @@ namespace Doctrine\Website\DataSource;
 
 use Doctrine\SkeletonMapper\DataRepository\BasicObjectDataRepository;
 use Doctrine\SkeletonMapper\ObjectManagerInterface;
-use InvalidArgumentException;
 use function array_slice;
 use function in_array;
+use function usort;
 
 class DataSourceObjectDataRepository extends BasicObjectDataRepository
 {
@@ -58,7 +58,7 @@ class DataSourceObjectDataRepository extends BasicObjectDataRepository
         }
 
         if ($orderBy !== null && $orderBy !== []) {
-            throw new InvalidArgumentException('orderBy has not been implemented.');
+            $objects = $this->sort($objects, $orderBy);
         }
 
         if ($limit !== null || $offset !== null) {
@@ -111,6 +111,21 @@ class DataSourceObjectDataRepository extends BasicObjectDataRepository
         }
 
         return $matches;
+    }
+
+    /**
+     * @param mixed[][] $objects
+     * @param int[]     $orderBy
+     *
+     * @return mixed[][] $objects
+     */
+    private function sort(array $objects, array $orderBy) : array
+    {
+        $sorter = new Sorter($orderBy);
+
+        usort($objects, $sorter);
+
+        return $objects;
     }
 
     /**

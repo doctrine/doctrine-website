@@ -6,21 +6,23 @@ namespace Doctrine\Website\Controllers;
 
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
+use Doctrine\Website\Repositories\ProjectContributorRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
-use Doctrine\Website\Repositories\TeamMemberRepository;
 
 class ProjectController
 {
     /** @var ProjectRepository */
     private $projectRepository;
 
-    /** @var TeamMemberRepository */
-    private $teamMemberRepository;
+    /** @var ProjectContributorRepository */
+    private $projectContributorRepository;
 
-    public function __construct(ProjectRepository $projectRepository, TeamMemberRepository $teamMemberRepository)
-    {
-        $this->projectRepository    = $projectRepository;
-        $this->teamMemberRepository = $teamMemberRepository;
+    public function __construct(
+        ProjectRepository $projectRepository,
+        ProjectContributorRepository $projectContributorRepository
+    ) {
+        $this->projectRepository            = $projectRepository;
+        $this->projectContributorRepository = $projectContributorRepository;
     }
 
     public function index(SourceFile $sourceFile) : ControllerResult
@@ -39,10 +41,9 @@ class ProjectController
 
         return new ControllerResult([
             'project' => $project,
-            'allTeamMembers' => $this->teamMemberRepository->getAllProjectTeamMembers($project),
-            'activeTeamMembers' => $this->teamMemberRepository->getActiveProjectTeamMembers($project),
-            'inactiveTeamMembers' => $this->teamMemberRepository->getInactiveProjectTeamMembers($project),
             'integrationProjects' => $this->projectRepository->findProjectIntegrations($project),
+            'coreProjectContributors' => $this->projectContributorRepository->findCoreProjectContributorsByProject($project),
+            'projectContributors' => $this->projectContributorRepository->findProjectContributorsByProject($project),
         ]);
     }
 }

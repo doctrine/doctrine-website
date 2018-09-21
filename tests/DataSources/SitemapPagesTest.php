@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\DataSources;
 
+use Doctrine\Website\DataSource\Sorter;
 use Doctrine\Website\DataSources\SitemapPages;
 use Doctrine\Website\Tests\TestCase;
 use function date;
+use function usort;
 
 class SitemapPagesTest extends TestCase
 {
@@ -17,15 +19,17 @@ class SitemapPagesTest extends TestCase
     {
         $sitemapPages = $this->sitemapPages->getData();
 
+        usort($sitemapPages, new Sorter(['url' => 'asc']));
+
         self::assertCount(5, $sitemapPages);
 
         self::assertSame(date('Y-m-d'), $sitemapPages[0]['date']->format('Y-m-d'));
 
         self::assertSame('/', $sitemapPages[0]['url']);
-        self::assertSame('/projects/doctrine-inflector.html', $sitemapPages[1]['url']);
-        self::assertSame('/projects/doctrine-orm.html', $sitemapPages[2]['url']);
-        self::assertSame('/api/inflector.html', $sitemapPages[3]['url']);
-        self::assertSame('/api/orm.html', $sitemapPages[4]['url']);
+        self::assertSame('/api/inflector.html', $sitemapPages[1]['url']);
+        self::assertSame('/api/orm.html', $sitemapPages[2]['url']);
+        self::assertSame('/projects/doctrine-inflector.html', $sitemapPages[3]['url']);
+        self::assertSame('/projects/doctrine-orm.html', $sitemapPages[4]['url']);
     }
 
     protected function setUp() : void

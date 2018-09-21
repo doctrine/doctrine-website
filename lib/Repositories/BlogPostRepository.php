@@ -13,6 +13,14 @@ class BlogPostRepository extends BasicObjectRepository
     /**
      * @return BlogPost[]
      */
+    public function findAll() : array
+    {
+        return $this->findBy([], ['date' => 'desc']);
+    }
+
+    /**
+     * @return BlogPost[]
+     */
     public function findPaginated(int $page = 1, int $perPage = 10) : array
     {
         if ($page < 1 || $perPage < 1) {
@@ -21,6 +29,6 @@ class BlogPostRepository extends BasicObjectRepository
 
         $offset = ($page - 1) * $perPage;
 
-        return $this->findBy([], null, $perPage, $offset);
+        return $this->findBy([], ['date' => 'desc'], $perPage, $offset);
     }
 }

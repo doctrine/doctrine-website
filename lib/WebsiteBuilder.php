@@ -122,7 +122,7 @@ class WebsiteBuilder
                 throw new RuntimeException(sprintf(
                     'Failed building file "%s" with error "%s',
                     $file->getWritePath(),
-                    $e->getMessage()
+                    $e->getMessage() . "\n\n" . $e->getTraceAsString()
                 ));
             }
         }

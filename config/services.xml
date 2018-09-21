@@ -33,10 +33,27 @@
         </service>
 
         <service id="Doctrine\RST\HTML\Kernel" autowire="true" />
+        <service id="Github\Client">
+            <call method="authenticate">
+                <argument>%doctrine.website.github.http_token%</argument>
+                <argument></argument>
+                <argument>http_token</argument>
+            </call>
+            <call method="addCache">
+                <argument type="service">
+                    <service class="Cache\Adapter\Doctrine\DoctrineCachePool" autowire="false">
+                        <argument type="service" id="Doctrine\Common\Cache\FilesystemCache" />
+                    </service>
+                </argument>
+            </call>
+        </service>
         <service id="Highlight\Highlighter" autowire="true" />
         <service id="Parsedown" class="Parsedown" autowire="true" />
         <service id="Symfony\Component\Console\Application" autowire="true" />
         <service id="Symfony\Component\Filesystem\Filesystem" autowire="true" />
+        <service id="Doctrine\Common\Cache\FilesystemCache" autowire="false">
+            <argument>%doctrine.website.cache_dir%</argument>
+        </service>
 
         <service id="Doctrine\Website\Controller\ControllerProvider">
             <argument type="collection">
@@ -119,6 +136,25 @@
             <argument>Doctrine\Website\Model\BlogPost</argument>
         </service>
 
+        <service id="Doctrine\Website\Repositories\ContributorRepository" autowire="false">
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+            <argument type="service">
+                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                    <argument type="service" id="Doctrine\Website\DataSources\Contributors" />
+                    <argument>Doctrine\Website\Model\Contributor</argument>
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
+            <argument type="service">
+                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\Common\EventManager" />
+            <argument>Doctrine\Website\Model\Contributor</argument>
+        </service>
+
         <service id="Doctrine\Website\Repositories\DoctrineUserRepository" autowire="false" public="true">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
@@ -155,6 +191,32 @@
             </argument>
             <argument type="service" id="Doctrine\Common\EventManager" />
             <argument>Doctrine\Website\Model\Project</argument>
+        </service>
+
+        <service id="Doctrine\Website\Repositories\ProjectContributorRepository" autowire="false" public="true">
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+            <argument type="service">
+                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                    <argument type="service">
+                        <service class="Doctrine\Website\DataSource\CachedDataSource">
+                            <argument type="service" id="Doctrine\Website\DataSources\ProjectContributors" />
+                            <argument type="service" id="Doctrine\Common\Cache\FilesystemCache" />
+                            <argument>doctrine-project-contributors-data</argument>
+                            <argument>86400</argument>
+                        </service>
+                    </argument>
+                    <argument>Doctrine\Website\Model\BlogPost</argument>
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
+            <argument type="service">
+                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\Common\EventManager" />
+            <argument>Doctrine\Website\Model\ProjectContributor</argument>
         </service>
 
         <service id="Doctrine\Website\Repositories\SitemapPageRepository" autowire="false">
@@ -202,6 +264,11 @@
             </call>
 
             <call method="addObjectRepository">
+                <argument>Doctrine\Website\Model\Contributor</argument>
+                <argument type="service" id="Doctrine\Website\Repositories\ContributorRepository" />
+            </call>
+
+            <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\DoctrineUser</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\DoctrineUserRepository" />
             </call>
@@ -209,6 +276,11 @@
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\Project</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\ProjectRepository" />
+            </call>
+
+            <call method="addObjectRepository">
+                <argument>Doctrine\Website\Model\ProjectContributor</argument>
+                <argument type="service" id="Doctrine\Website\Repositories\ProjectContributorRepository" />
             </call>
 
             <call method="addObjectRepository">

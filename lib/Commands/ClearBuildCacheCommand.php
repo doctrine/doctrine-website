@@ -10,6 +10,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use function array_filter;
+use function glob;
 use function sprintf;
 
 class ClearBuildCacheCommand extends Command
@@ -87,6 +89,12 @@ class ClearBuildCacheCommand extends Command
                 $this->rootDir,
                 $project->getRepositoryName()
             );
+        }
+
+        $cacheDirectories = array_filter(glob($this->rootDir . '/cache/*'), 'is_dir');
+
+        foreach ($cacheDirectories as $cacheDirectory) {
+            $remove[] = $cacheDirectory;
         }
 
         foreach ($remove as $path) {

@@ -8,9 +8,11 @@ use DateTimeImmutable;
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Builder\SourceFileParameters;
 use Doctrine\Website\Builder\SourceFileRepository;
+use Doctrine\Website\DataSource\Sorter;
 use Doctrine\Website\DataSources\BlogPosts;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use function usort;
 
 class BlogPostsTest extends TestCase
 {
@@ -56,6 +58,8 @@ class BlogPostsTest extends TestCase
             ->willReturn($files);
 
         $blogPostsData = $this->blogPosts->getData();
+
+        usort($blogPostsData, new Sorter(['date' => 'desc']));
 
         $expected = [
             [

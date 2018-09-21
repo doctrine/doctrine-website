@@ -78,26 +78,11 @@
         {% include "projects-short-list.html.twig" with {projects:integrationProjects} %}
     {% endif %}
 
-    {% if project.archived or not project.active %}
-        {% if allTeamMembers %}
-            <h2 class="mt-4">Team</h2>
+    <h2 class="mt-4">Core Team</h2>
 
-            {% include "team-members-short-list.html.twig" with {members:allTeamMembers} %}
-        {% endif %}
+    {% include "contributors-list.html.twig" with {contributors:coreProjectContributors} %}
 
-    {% else %}
+    <h2 class="mt-4">Contributors</h2>
 
-        {% if activeTeamMembers %}
-            <h2 class="mt-4">Team</h2>
-
-            {% include "team-members-short-list.html.twig" with {members:activeTeamMembers} %}
-        {% endif %}
-
-        {% if inactiveTeamMembers %}
-            <h2 class="mt-4">Inactive</h2>
-
-            {% include "team-members-short-list.html.twig" with {members:inactiveTeamMembers} %}
-        {% endif %}
-
-    {% endif %}
+    {% include "contributors-list.html.twig" with {contributors:projectContributors} %}
 {% endblock %}

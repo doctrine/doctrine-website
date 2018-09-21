@@ -29,18 +29,6 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
     /** @var string */
     private $location;
 
-    /** @var string[] */
-    private $projects;
-
-    /** @var bool */
-    private $isActive = false;
-
-    /** @var bool */
-    private $isCore = false;
-
-    /** @var bool */
-    private $isDocumentation = false;
-
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['github']);
@@ -51,16 +39,12 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
      */
     public function hydrate(array $teamMember, ObjectManagerInterface $objectManager) : void
     {
-        $this->name            = $teamMember['name'] ?? '';
-        $this->github          = $teamMember['github'] ?? '';
-        $this->twitter         = $teamMember['twitter'] ?? '';
-        $this->avatarUrl       = $teamMember['avatarUrl'] ?? '';
-        $this->website         = $teamMember['website'] ?? '';
-        $this->location        = $teamMember['location'] ?? '';
-        $this->projects        = $teamMember['projects'] ?? [];
-        $this->isActive        = $teamMember['active'] ?? false;
-        $this->isCore          = $teamMember['core'] ?? false;
-        $this->isDocumentation = $teamMember['documentation'] ?? false;
+        $this->name      = $teamMember['name'] ?? '';
+        $this->github    = $teamMember['github'] ?? '';
+        $this->twitter   = $teamMember['twitter'] ?? '';
+        $this->avatarUrl = $teamMember['avatarUrl'] ?? '';
+        $this->website   = $teamMember['website'] ?? '';
+        $this->location  = $teamMember['location'] ?? '';
     }
 
     public function getName() : string
@@ -91,28 +75,5 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
     public function getLocation() : string
     {
         return $this->location;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getProjects() : array
-    {
-        return $this->projects;
-    }
-
-    public function isActive() : bool
-    {
-        return $this->isActive;
-    }
-
-    public function isCore() : bool
-    {
-        return $this->isCore;
-    }
-
-    public function isDocumentation() : bool
-    {
-        return $this->isDocumentation;
     }
 }

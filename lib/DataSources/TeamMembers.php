@@ -5,18 +5,9 @@ declare(strict_types=1);
 namespace Doctrine\Website\DataSources;
 
 use Doctrine\Website\DataSource\DataSource;
-use function array_replace;
-use function array_values;
-use function ksort;
 
 class TeamMembers implements DataSource
 {
-    private const DEFAULTS = [
-        'active'        => false,
-        'core'          => false,
-        'documentation' => false,
-    ];
-
     /** @var mixed[] */
     private $teamMembers;
 
@@ -36,13 +27,9 @@ class TeamMembers implements DataSource
         $teamMembers = [];
 
         foreach ($this->teamMembers as $key => $teamMember) {
-            $name = $teamMember['name'] ?? $key;
-
-            $teamMembers[$name] = array_replace(self::DEFAULTS, $teamMember);
+            $teamMembers[] = $teamMember;
         }
 
-        ksort($teamMembers);
-
-        return array_values($teamMembers);
+        return $teamMembers;
     }
 }

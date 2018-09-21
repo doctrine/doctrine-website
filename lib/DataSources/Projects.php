@@ -7,8 +7,6 @@ namespace Doctrine\Website\DataSources;
 use Doctrine\Website\DataSource\DataSource;
 use Doctrine\Website\Projects\ProjectDataReader;
 use function array_replace;
-use function array_values;
-use function ksort;
 
 class Projects implements DataSource
 {
@@ -42,16 +40,12 @@ class Projects implements DataSource
         $projectsData = [];
 
         foreach ($this->projectsData as $projectData) {
-            $fullProjectData = array_replace(
+            $projectsData[] = array_replace(
                 self::DEFAULTS,
                 $this->projectDataReader->read($projectData['repositoryName'])
             );
-
-            $projectsData[$fullProjectData['name']] = $fullProjectData;
         }
 
-        ksort($projectsData);
-
-        return array_values($projectsData);
+        return $projectsData;
     }
 }

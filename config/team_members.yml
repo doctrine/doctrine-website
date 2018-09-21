@@ -1,32 +1,23 @@
 parameters:
     doctrine.website.team_members:
-        # active
         alcaeus:
             name: Andreas
             github: alcaeus
             avatarUrl: 'https://avatars2.githubusercontent.com/u/383198?v=4'
             website: ~
             location: Munich
-            active: true
-            core: true
-            projects: ["mongodb-odm", "mongodb"]
         beberlei:
             name: 'Benjamin Eberlei'
             github: beberlei
             avatarUrl: 'https://avatars2.githubusercontent.com/u/26936?v=4'
             website: 'https://beberlei.de'
             location: Germany
-            active: true
-            core: true
-            projects: ["orm", "dbal", "couchdb-odm"]
         billschaller:
             name: 'Bill Schaller'
             github: billschaller
             avatarUrl: 'https://avatars1.githubusercontent.com/u/4266849?v=4'
             website: ~
             location: 'New York, NY'
-            active: true
-            core: true
         carusogabriel:
             name: 'Gabriel Caruso'
             twitter: carusogabriel
@@ -34,18 +25,12 @@ parameters:
             avatarUrl: 'https://avatars3.githubusercontent.com/u/16328050?v=4'
             website: ~
             location: Brazil
-            active: true
-            core: true
-            projects: ["coding-standard"]
         deeky666:
             name: 'Steve Müller'
             github: deeky666
             avatarUrl: 'https://avatars2.githubusercontent.com/u/1411514?v=4'
             website: 'http://dzh-online.de/'
             location: 'Hamburg, Germany'
-            active: true
-            core: true
-            projects: ["dbal", "coding-standard"]
         greg0ire:
             name: 'Grégoire Paris'
             twitter: greg0ire
@@ -53,9 +38,6 @@ parameters:
             avatarUrl: 'https://avatars1.githubusercontent.com/u/657779?v=4'
             website: 'https://greg0ire.fr'
             location: Paris
-            active: true
-            core: true
-            projects: ["dbal", "orm", "coding-standard"]
         guilhermeblanco:
             name: 'Guilherme Blanco'
             twitter: guilhermeblanco
@@ -63,9 +45,6 @@ parameters:
             avatarUrl: 'https://avatars1.githubusercontent.com/u/208883?v=4'
             website: 'http://www.doctrine-project.org'
             location: 'Toronto, ON, Canada'
-            active: true
-            core: true
-            projects: ["orm", "dbal", "annotations", "doctrine1"]
         jmikola:
             name: 'Jeremy Mikola'
             twitter: jmikola
@@ -73,9 +52,6 @@ parameters:
             avatarUrl: 'https://avatars3.githubusercontent.com/u/244663?v=4'
             website: 'http://jmikola.net'
             location: 'Hoboken, NJ'
-            active: true
-            core: true
-            projects: ["mongodb", "mongodb-odm"]
         jwage:
             name: 'Jonathan H. Wage'
             twitter: jwage
@@ -83,10 +59,6 @@ parameters:
             github: jwage
             avatarUrl: 'https://avatars0.githubusercontent.com/u/97422?v=4'
             location: 'Nashville, TN'
-            active: true
-            core: true
-            documentation: true
-            projects: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager", "persistence", "reflection", "rst-parser", "skeleton-mapper"]
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
             twitter: kimhemsoe
@@ -94,8 +66,6 @@ parameters:
             avatarUrl: 'https://avatars3.githubusercontent.com/u/568787?v=4'
             website: ~
             location: Copenhagen
-            active: true
-            core: true
         lcobucci:
             name: 'Luís Cobucci'
             twitter: lcobucci
@@ -103,9 +73,6 @@ parameters:
             avatarUrl: 'https://avatars2.githubusercontent.com/u/201963?v=4'
             website: ~
             location: 'Amsterdam, NL'
-            active: true
-            core: true
-            projects: ["orm", "dbal", "migrations", "cache", "coding-standard"]
         Majkl578:
             name: 'Michael Moravec'
             twitter: Majkl578
@@ -113,9 +80,6 @@ parameters:
             avatarUrl: 'https://avatars2.githubusercontent.com/u/144181?v=4'
             website: 'https://majkl.me'
             location: 'Prague, Czech Republic'
-            active: true
-            core: true
-            projects: ["orm", "dbal", "event-manager", "annotations", "persistence", "reflection", "coding-standard"]
         mikeSimonson:
             name: "Mike Simonson"
             twitter: _mikeSimonson
@@ -123,9 +87,6 @@ parameters:
             avatarUrl: 'https://avatars3.githubusercontent.com/u/907613?v=4'
             website: ~
             location: ~
-            active: true
-            core: true
-            projects: ["migrations"]
         malarzm:
             name: 'Maciej Malarz'
             twitter: malarzm
@@ -133,9 +94,6 @@ parameters:
             avatarUrl: 'https://avatars1.githubusercontent.com/u/4947711?v=4'
             website: ~
             location: Cracow
-            active: true
-            core: true
-            projects: ["mongodb", "mongodb-odm"]
         morozov:
             name: 'Sergei Morozov'
             twitter: srgmrzv
@@ -143,9 +101,6 @@ parameters:
             avatarUrl: 'https://avatars1.githubusercontent.com/u/59683?v=4'
             website: 'http://morozov.livejournal.com/'
             location: 'San Jose, CA'
-            active: true
-            core: true
-            projects: ["dbal"]
         Ocramius:
             name: 'Marco Pivetta'
             twitter: ocramius
@@ -153,243 +108,27 @@ parameters:
             github: Ocramius
             avatarUrl: 'https://avatars2.githubusercontent.com/u/154256?v=4'
             location: 'Frankfurt am Main'
-            active: true
-            core: true
-            projects: ["orm", "dbal", "reflection", "instantiator", "coding-standard"]
         TomHAnderson:
             name: 'Tom H Anderson'
             github: TomHAnderson
             avatarUrl: 'https://avatars1.githubusercontent.com/u/493920?v=4'
             website: 'http://tomhanderson.com'
             location: 'Salt Lake City, Utah'
-            active: true
-            core: true
         dbu:
             name: 'David Buchmann'
             github: dbu
             avatarUrl: 'https://avatars3.githubusercontent.com/u/76576?v=4'
             website: 'http://davidbu.ch'
             location: Switzerland
-            active: true
-            core: true
-            projects: ["phpcr-odm"]
         weaverryan:
             name: 'Ryan Weaver'
             github: weaverryan
             avatarUrl: 'https://avatars1.githubusercontent.com/u/121003?v=4'
             website: 'http://knpuniversity.com'
             location: 'Grand Rapids MI'
-            active: true
-            documentation: true
-            projects: ["rst-parser"]
         SenseException:
             name: 'Claudio Zizza'
             github: 'SenseException'
             avatarUrl: 'https://avatars3.githubusercontent.com/u/859964?v=4'
             website: 'http://php.budgegeria.de/'
             location: 'Karlsruhe'
-            active: true
-            documentation: true
-
-        # inactive
-        zYne-:
-            name: Konsta Vesterinen
-            github: kvesteri
-            avatarUrl: https://avatars3.githubusercontent.com/u/398714?v=4
-            website: 'http://www.fastmonkeys.com/'
-            location: Espoo, Finland
-            active: false
-            founder: true
-            projects: ["doctrine1"]
-        romanb:
-            name: Roman Borschel
-            github: romanb
-            avatarUrl: https://avatars1.githubusercontent.com/u/177309?v=4
-            website: ~
-            location: Berlin, Germany
-            active: false
-            projects: ["doctrine1", "orm", "dbal", "common", "annotations", "lexer", "collections", "cache", "inflector"]
-        asm89:
-            name: Alexander
-            github: asm89
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/657357?v=4'
-            website: ~
-            location: ~
-        avalanche123:
-            name: 'Bulat Shakirzyanov'
-            github: avalanche123
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/83289?v=4'
-            website: 'http://avalanche123.com/'
-            location: 'Conshohocken, PA'
-        Baachi:
-            name: 'Markus Bachmann'
-            github: Baachi
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/833645?v=4'
-            website: 'http://www.bachi.biz'
-            location: Germany
-        bakura10:
-            name: 'Michaël Gallego'
-            github: bakura10
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/1198915?v=4'
-            website: 'http://www.michaelgallego.fr'
-            location: 'Paris, France'
-        dantleech:
-            name: Dan Leech
-            github: dantleech
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/530801?v=4'
-            website: 'http://www.dantleech.com'
-            location: Europe
-            projects: ["phpcr-odm"]
-        davidino:
-            name: 'David Funaro'
-            github: davidino
-            avatarUrl: 'https://avatars2.githubusercontent.com/u/265253?v=4'
-            website: 'http://www.davidfunaro.com'
-            location: Dubai
-        ElectricMaxxx:
-            name: 'Maximilian Berghoff'
-            github: ElectricMaxxx
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/2905834?v=4'
-            website: ~
-            location: 'Ansbach, Germany'
-        EmanueleMinotto:
-            name: 'Emanuele Minotto'
-            github: EmanueleMinotto
-            avatarUrl: 'https://avatars2.githubusercontent.com/u/417201?v=4'
-            website: 'http://emanueleminotto.github.io'
-            location: ~
-        FabioBatSilva:
-            name: 'Fabio B. Silva'
-            twitter: FabioBatSilva
-            github: FabioBatSilva
-            avatarUrl: 'https://avatars2.githubusercontent.com/u/588172?v=4'
-            website: ~
-            location: 'Toronto, Canada'
-        fabpot:
-            name: 'Fabien Potencier'
-            github: fabpot
-            avatarUrl: 'https://avatars3.githubusercontent.com/u/47313?v=4'
-            website: 'http://fabien.potencier.org/'
-            location: 'San Francisco'
-        gianarb:
-            name: 'Gianluca Arbezzano'
-            github: gianarb
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/1630267?v=4'
-            website: 'https://gianarb.it'
-            location: ~
-        igorgolovanov:
-            name: 'Igor Golovanov'
-            github: igorgolovanov
-            avatarUrl: 'https://avatars3.githubusercontent.com/u/363810?v=4'
-            website: 'https://www.linkedin.com/in/igorgolovanov'
-            location: ~
-        igorw:
-            name: Igor
-            github: igorw
-            avatarUrl: 'https://avatars2.githubusercontent.com/u/88061?v=4'
-            website: ~
-            location: ~
-        kore:
-            name: 'Kore Nordmann'
-            github: kore
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/154398?v=4'
-            website: 'http://kore-nordmann.de'
-            location: ~
-        kriswallsmith:
-            name: 'Kris Wallsmith'
-            github: kriswallsmith
-            avatarUrl: 'https://avatars2.githubusercontent.com/u/33886?v=4'
-            website: 'http://kriswallsmith.net'
-            location: 'Portland, Oregon USA'
-        lavoiesl:
-            name: 'Sébastien Lavoie'
-            github: lavoiesl
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/1216046?v=4'
-            website: 'http://blog.lavoie.sl'
-            location: 'California, US'
-        lsmith77:
-            name: 'Lukas Kahwe Smith'
-            github: lsmith77
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/300279?v=4'
-            website: 'http://pooteeweet.org'
-            location: 'Zurich, Switzerland'
-            projects: ["couchdb-odm", "phpcr-odm"]
-        mikelohmann:
-            name: 'Mike Lohmann'
-            github: mikelohmann
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/600423?v=4'
-            website: 'http://elbstack.com'
-            location: Hamburg
-        MrHash:
-            name: 'Hasham Ahmad'
-            github: MrHash
-            avatarUrl: 'https://avatars3.githubusercontent.com/u/390925?v=4'
-            website: ~
-            location: 'Berlin, London, Tokyo, and more'
-        naderman:
-            name: 'Nils Adermann'
-            github: naderman
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/154844?v=4'
-            website: 'http://www.naderman.de'
-            location: 'Berlin, Germany'
-        nicam:
-            name: 'Pascal Helfenstein'
-            github: nicam
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/182071?v=4'
-            website: 'https://nicam.ch/'
-            location: 'Zürich Switzerland'
-        nrk:
-            name: 'Daniele Alessandri'
-            github: nrk
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/17923?v=4'
-            website: 'http://clorophilla.net/'
-            location: 'Milan, Italy'
-        odino:
-            name: 'Alessandro Nadalin'
-            github: odino
-            avatarUrl: 'https://avatars3.githubusercontent.com/u/328420?v=4'
-            website: 'https://odino.org/'
-            location: 'Dubai, UAE'
-            projects: [orientdb-odm]
-        richardfullmer:
-            name: 'Richard Fullmer'
-            github: richardfullmer
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/384602?v=4'
-            website: ~
-            location: 'Las Vegas'
-        rndstr:
-            name: 'Roland Schilter'
-            github: rndstr
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/32963?v=4'
-            website: ~
-            location: 'San Francisco'
-        schmittjoh:
-            name: Johannes
-            github: schmittjoh
-            avatarUrl: 'https://avatars2.githubusercontent.com/u/197017?v=4'
-            website: 'https://scrutinizer-ci.com'
-            location: ~
-        Seldaek:
-            name: 'Jordi Boggiano'
-            github: Seldaek
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/183678?v=4'
-            website: 'https://seld.be/'
-            location: 'Zürich, Zurich, Switzerland'
-        sixty-nine:
-            name: Dan
-            github: sixty-nine
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/398679?v=4'
-            website: ~
-            location: ~
-        stof:
-            name: 'Christophe Coevoet'
-            github: stof
-            avatarUrl: 'https://avatars0.githubusercontent.com/u/439401?v=4'
-            website: ~
-            location: Paris
-        superdweebie:
-            name: 'Tim Roediger'
-            github: superdweebie
-            avatarUrl: 'https://avatars1.githubusercontent.com/u/1670364?v=4'
-            website: ~
-            location: 'Sydney, Australia'

@@ -1,0 +1,31 @@
+<ul class="list-group">
+    {% for contributor in contributors %}
+        <li class="list-group-item">
+            <img src="{{ contributor.avatarUrl }}" class="rounded float-left mr-5" style="width: 50px;" />
+
+            <strong>
+                <a href="https://github.com/{{ contributor.github }}/" target="_blank">{{ contributor.github }}</a>
+            </strong>
+
+            <br/>
+
+            <small>
+                {{ contributor.numCommits }} commits
+
+                <span class="text-success">{{ contributor.numAdditions }} ++</span>
+
+                <span class="text-danger">{{ contributor.numDeletions }} --</span>
+            </small>
+
+            {% if contributor.projects is defined and contributor.projects %}
+                <p>
+                    <small>
+                    {% for project in contributor.projects %}
+                        <a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a>{{ not loop.last ? ', ' : '' }}
+                    {% endfor %}
+                    </small>
+                </p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
