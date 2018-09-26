@@ -29,8 +29,7 @@ class ProjectExtensionTest extends TestCase
                 '',
             ])
             ->setMethods(['fileExists'])
-            ->getMock()
-        ;
+            ->getMock();
     }
 
     public function testGetProject() : void

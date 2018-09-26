@@ -131,9 +131,7 @@ SIDEBAR;
 
         // append the source file name to the content so we can parse it back out
         // for use in the build process
-        $content .= sprintf('{{ SOURCE_FILE:%s }}', $sourceFile);
-
-        return $content;
+        return $content . sprintf('{{ SOURCE_FILE:%s }}', $sourceFile);
     }
 
     private function fixRSTSyntax(Project $project, string $content) : string

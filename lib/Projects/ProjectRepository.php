@@ -72,7 +72,7 @@ class ProjectRepository
      */
     public function findPrimaryProjects() : array
     {
-        return array_filter($this->findAll(), function (Project $project) : bool {
+        return array_filter($this->findAll(), static function (Project $project) : bool {
             return $project->isActive() && ! $project->isIntegration();
         });
     }
@@ -82,7 +82,7 @@ class ProjectRepository
      */
     public function findInactiveProjects() : array
     {
-        return array_filter($this->findAll(), function (Project $project) : bool {
+        return array_filter($this->findAll(), static function (Project $project) : bool {
             return ! $project->isActive() && ! $project->isArchived();
         });
     }
@@ -92,7 +92,7 @@ class ProjectRepository
      */
     public function findArchivedProjects() : array
     {
-        return array_filter($this->findAll(), function (Project $project) : bool {
+        return array_filter($this->findAll(), static function (Project $project) : bool {
             return ! $project->isActive() && $project->isArchived();
         });
     }
@@ -102,7 +102,7 @@ class ProjectRepository
      */
     public function findIntegrationProjects() : array
     {
-        return array_filter($this->findAll(), function (Project $project) : bool {
+        return array_filter($this->findAll(), static function (Project $project) : bool {
             return $project->isActive() && $project->isIntegration();
         });
     }
@@ -112,7 +112,7 @@ class ProjectRepository
      */
     public function findProjectIntegrations(Project $project) : array
     {
-        return array_filter($this->findAll(), function (Project $p) use ($project) : bool {
+        return array_filter($this->findAll(), static function (Project $p) use ($project) : bool {
             return $p->isIntegration() && $p->getIntegrationFor() === $project->getSlug();
         });
     }
@@ -127,7 +127,7 @@ class ProjectRepository
             return $this->projectFactory->create($projectData['repositoryName']);
         }, $this->projectsData);
 
-        usort($this->projects, function (Project $a, Project $b) {
+        usort($this->projects, static function (Project $a, Project $b) {
             return $a->getName() <=> $b->getName();
         });
     }

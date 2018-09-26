@@ -152,7 +152,7 @@ class BuildDocs
      */
     private function getProjectsToBuild(array $projects, string $projectToBuild) : array
     {
-        return array_filter($projects, function (Project $project) use ($projectToBuild) : bool {
+        return array_filter($projects, static function (Project $project) use ($projectToBuild) : bool {
             if ($projectToBuild !== '') {
                 if ($project->getSlug() === $projectToBuild) {
                     return true;
@@ -174,7 +174,7 @@ class BuildDocs
      */
     private function getProjectVersionsToBuild(Project $project, string $versionToBuild) : array
     {
-        return array_filter($project->getVersions(), function (ProjectVersion $version) use ($versionToBuild) : bool {
+        return array_filter($project->getVersions(), static function (ProjectVersion $version) use ($versionToBuild) : bool {
             if ($versionToBuild !== '' && $version->getSlug() !== $versionToBuild) {
                 return false;
             }

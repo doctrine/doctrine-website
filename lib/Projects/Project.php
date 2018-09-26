@@ -92,8 +92,7 @@ class Project
         foreach ($project['versions'] as $version) {
             $this->versions[] = $version instanceof ProjectVersion
                 ? $version
-                : new ProjectVersion($version)
-            ;
+                : new ProjectVersion($version);
         }
     }
 
@@ -197,7 +196,7 @@ class Project
      */
     public function getMaintainedVersions() : array
     {
-        return $this->getVersions(function (ProjectVersion $version) {
+        return $this->getVersions(static function (ProjectVersion $version) {
             return $version->isMaintained();
         });
     }
@@ -207,7 +206,7 @@ class Project
      */
     public function getUnmaintainedVersions() : array
     {
-        return $this->getVersions(function (ProjectVersion $version) {
+        return $this->getVersions(static function (ProjectVersion $version) {
             return ! $version->isMaintained();
         });
     }
@@ -217,7 +216,7 @@ class Project
      */
     public function getVersion(string $slug) : ProjectVersion
     {
-        $projectVersion = $this->getVersions(function (ProjectVersion $version) use ($slug) {
+        $projectVersion = $this->getVersions(static function (ProjectVersion $version) use ($slug) {
             return $version->getSlug() === $slug;
         })[0] ?? null;
 
@@ -230,7 +229,7 @@ class Project
 
     public function getCurrentVersion() : ?ProjectVersion
     {
-        return $this->getVersions(function (ProjectVersion $version) {
+        return $this->getVersions(static function (ProjectVersion $version) {
             return $version->isCurrent();
         })[0] ?? ($this->versions[0] ?? null);
     }

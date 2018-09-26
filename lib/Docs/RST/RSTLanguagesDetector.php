@@ -41,11 +41,11 @@ class RSTLanguagesDetector
             ->directories()
             ->in($docsPath);
 
-        $files = array_values(array_map(function (SplFileInfo $file) {
+        $files = array_values(array_map(static function (SplFileInfo $file) {
             return $file->getRealPath();
         }, iterator_to_array($finder)));
 
-        $languageCodes = array_map(function (string $file) {
+        $languageCodes = array_map(static function (string $file) {
             $e = explode('/', $file);
 
             return end($e);

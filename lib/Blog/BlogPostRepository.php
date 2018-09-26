@@ -55,7 +55,7 @@ class BlogPostRepository
     {
         $sourceFiles = $this->sourceFileRepository->getFiles('', 'source/blog');
 
-        usort($sourceFiles, function (SourceFile $a, SourceFile $b) : int {
+        usort($sourceFiles, static function (SourceFile $a, SourceFile $b) : int {
             return $a->getDate()->getTimestamp() - $b->getDate()->getTimestamp();
         });
 

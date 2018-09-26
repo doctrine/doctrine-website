@@ -50,8 +50,7 @@ class WebsiteBuilderTest extends TestCase
                 $this->sourceFileBuilder,
             ])
             ->setMethods(['filePutContents'])
-            ->getMock()
-        ;
+            ->getMock();
     }
 
     public function testBuild() : void

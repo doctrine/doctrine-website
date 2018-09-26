@@ -83,7 +83,7 @@ class RSTFileRepository
      */
     private function finderToArray(Finder $finder) : array
     {
-        return array_values(array_map(function (SplFileInfo $file) {
+        return array_values(array_map(static function (SplFileInfo $file) {
             return $file->getRealPath();
         }, iterator_to_array($finder)));
     }
