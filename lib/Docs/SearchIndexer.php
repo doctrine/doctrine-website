@@ -95,7 +95,7 @@ class SearchIndexer
 
         $nodeTypes = [TitleNode::class, ParagraphNode::class];
 
-        $nodes = $document->getNodes(function (Node $node) use ($nodeTypes) {
+        $nodes = $document->getNodes(static function (Node $node) use ($nodeTypes) {
             return in_array(get_class($node), $nodeTypes, true);
         });
 

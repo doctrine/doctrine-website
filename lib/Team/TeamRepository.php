@@ -50,7 +50,7 @@ class TeamRepository
      */
     public function getActiveCoreTeamMembers() : array
     {
-        return $this->getTeamMembers(function (array $teamMember) {
+        return $this->getTeamMembers(static function (array $teamMember) {
             $active = $teamMember['active'] ?? false;
             $core   = $teamMember['core'] ?? false;
 
@@ -63,7 +63,7 @@ class TeamRepository
      */
     public function getActiveDocumentationTeamMembers() : array
     {
-        return $this->getTeamMembers(function (array $teamMember) {
+        return $this->getTeamMembers(static function (array $teamMember) {
             $active        = $teamMember['active'] ?? false;
             $documentation = $teamMember['documentation'] ?? false;
 
@@ -76,7 +76,7 @@ class TeamRepository
      */
     public function getInactiveTeamMembers() : array
     {
-        return $this->getTeamMembers(function (array $teamMember) {
+        return $this->getTeamMembers(static function (array $teamMember) {
             $active = $teamMember['active'] ?? false;
 
             return $active === false;
@@ -88,7 +88,7 @@ class TeamRepository
      */
     public function getAllProjectTeamMembers(Project $project) : array
     {
-        return $this->getTeamMembers(function (array $teamMember) use ($project) {
+        return $this->getTeamMembers(static function (array $teamMember) use ($project) {
             return in_array($project->getSlug(), $teamMember['projects'] ?? [], true);
         });
     }
@@ -98,7 +98,7 @@ class TeamRepository
      */
     public function getActiveProjectTeamMembers(Project $project) : array
     {
-        return $this->getTeamMembers(function (array $teamMember) use ($project) {
+        return $this->getTeamMembers(static function (array $teamMember) use ($project) {
             $active = $teamMember['active'] ?? false;
 
             return $active && in_array($project->getSlug(), $teamMember['projects'] ?? [], true);
@@ -110,7 +110,7 @@ class TeamRepository
      */
     public function getInactiveProjectTeamMembers(Project $project) : array
     {
-        return $this->getTeamMembers(function (array $teamMember) use ($project) {
+        return $this->getTeamMembers(static function (array $teamMember) use ($project) {
             $active = $teamMember['active'] ?? false;
 
             return ! $active && in_array($project->getSlug(), $teamMember['projects'] ?? [], true);

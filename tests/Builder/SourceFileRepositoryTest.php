@@ -85,7 +85,7 @@ class SourceFileRepositoryTest extends TestCase
      */
     private function sortFiles(array $files) : array
     {
-        usort($files, function (SourceFile $a, SourceFile $b) : int {
+        usort($files, static function (SourceFile $a, SourceFile $b) : int {
             return strcmp($a->getWritePath(), $b->getWritePath());
         });
 

@@ -50,7 +50,7 @@ class SourceFileRenderer
         if (isset($parameters['page']['controller'])) {
             $controllerParameters = $this->controllerExecutor->execute($sourceFile);
 
-            $parameters = $parameters + $controllerParameters;
+            $parameters += $controllerParameters;
         }
 
         return $this->twigRenderer->render($template, $parameters);

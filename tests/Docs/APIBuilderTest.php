@@ -38,8 +38,7 @@ class APIBuilderTest extends TestCase
                 $this->sculpinSourcePath,
             ])
             ->setMethods(['filePutContents', 'unlinkFile'])
-            ->getMock()
-        ;
+            ->getMock();
     }
 
     public function testBuildAPIDocs() : void

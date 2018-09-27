@@ -68,7 +68,7 @@ class Deployer
             $deployRef
         );
 
-        $this->processFactory->run($updateCommand, function ($type, $buffer) use ($output) : void {
+        $this->processFactory->run($updateCommand, static function ($type, $buffer) use ($output) : void {
             $output->write($buffer);
         });
 
@@ -80,7 +80,7 @@ class Deployer
             $this->env
         );
 
-        $this->processFactory->run($deployCommand, function ($type, $buffer) use ($output) : void {
+        $this->processFactory->run($deployCommand, static function ($type, $buffer) use ($output) : void {
             $output->write($buffer);
         });
     }
@@ -95,7 +95,7 @@ class Deployer
             $this->env
         );
 
-        $this->processFactory->run($command, function ($type, $buffer) use ($output) : void {
+        $this->processFactory->run($command, static function ($type, $buffer) use ($output) : void {
             $output->write($buffer);
         });
     }

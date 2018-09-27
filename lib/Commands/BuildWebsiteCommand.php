@@ -63,8 +63,7 @@ class BuildWebsiteCommand extends Command
                 'e',
                 InputOption::VALUE_REQUIRED,
                 'The environment.'
-            )
-        ;
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int

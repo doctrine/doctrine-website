@@ -41,7 +41,6 @@ class CodeBlockRendererTest extends TestCase
 
     /**
      * @dataProvider getConsoleLanguages
-     *
      */
     public function testRenderConsole(string $consoleLanguage) : void
     {
