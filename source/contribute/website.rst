@@ -52,6 +52,22 @@ repository:
 
     $ cp config/local.yml.dist config/local.yml
 
+GitHub API
+~~~~~~~~~~
+
+In order to build the website, you will need to configure a GitHub API key
+with the ``doctrine.website.github.http_token`` parameter in your ``config/local.yml`` file.
+You can create an API token by going to the `Personal access tokens <https://github.com/settings/tokens>`_
+section on the GitHub website.
+
+Algolia Search Indexes
+~~~~~~~~~~~~~~~~~~~~~~
+
+In order to build the Algolia search indexes you will need to configure the
+``doctrine.website.algolia.admin_api_key`` parameter in your ``config/local.yml`` file.
+This key is not distribute to anyone, is optional and is not required in order to build
+the website.
+
 Edit your Hosts File
 --------------------
 
