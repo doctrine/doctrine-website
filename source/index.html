@@ -70,13 +70,13 @@ controller: ['Doctrine\Website\Controllers\HomepageController', 'index']
                     <p class="card-text">Many other popular PHP projects use libraries from Doctrine. Some use the full <a href="/projects/orm.html" class="text-white font-weight-bold">ORM</a> and others may only use one small library such as the <a href="/projects/inflector.html" class="text-white font-weight-bold">Inflector</a>. Here are some projects that use Doctrine.</p>
                 </div>
                 <table id="who-uses-doctrine-table" class="table table-striped table-responsive-xl">
-                    {% for batch in whoUsesDoctrine|batch(3, 'and many more&hellip;') %}
+                    {% for batch in doctrineUsers|batch(3, 'and many more&hellip;') %}
                         <tr>
-                            {% for project in batch %}
-                                {% if project.url is defined %}
-                                    <td><a href="{{ project.url }}" target="_blank" class="mr-4">{{ project.name }}</a></td>
+                            {% for doctrineUser in batch %}
+                                {% if doctrineUser.url is defined %}
+                                    <td><a href="{{ doctrineUser.url }}" target="_blank" class="mr-4">{{ doctrineUser.name }}</a></td>
                                 {% else %}
-                                    <td><span class="font-italic">{{ project|raw }}</span></a></td>
+                                    <td><span class="font-italic">{{ doctrineUser|raw }}</span></a></td>
                                 {% endif %}
                             {% endfor %}
                         </tr>

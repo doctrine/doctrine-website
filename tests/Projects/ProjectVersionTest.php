@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
-use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 
 class ProjectVersionTest extends TestCase

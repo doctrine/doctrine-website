@@ -6,7 +6,7 @@ namespace Doctrine\Website\Controllers;
 
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
-use Doctrine\Website\Sitemap\SitemapPageRepository;
+use Doctrine\Website\Repositories\SitemapPageRepository;
 
 class SitemapController
 {

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Commands;
 
-use Doctrine\Website\Projects\ProjectRepository;
+use Doctrine\Website\Repositories\ProjectRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use function array_filter;
+use function glob;
 use function sprintf;
 
 class ClearBuildCacheCommand extends Command
@@ -86,6 +88,12 @@ class ClearBuildCacheCommand extends Command
                 $this->rootDir,
                 $project->getRepositoryName()
             );
+        }
+
+        $cacheDirectories = array_filter(glob($this->rootDir . '/cache/*'), 'is_dir');
+
+        foreach ($cacheDirectories as $cacheDirectory) {
+            $remove[] = $cacheDirectory;
         }
 
         foreach ($remove as $path) {

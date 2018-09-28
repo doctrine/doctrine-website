@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use function file_exists;
+use function getenv;
 use function realpath;
 use function sprintf;
 
@@ -65,6 +66,8 @@ class Application
         $container->setParameter('doctrine.website.env', $env);
         $container->setParameter('doctrine.website.root_dir', realpath(__DIR__ . '/..'));
         $container->setParameter('doctrine.website.config_dir', realpath(__DIR__ . '/../config'));
+        $container->setParameter('doctrine.website.cache_dir', realpath(__DIR__ . '/../cache'));
+        $container->setParameter('doctrine.website.github.http_token', getenv('doctrine_website_github_http_token'));
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
         $loader->load('services.xml');

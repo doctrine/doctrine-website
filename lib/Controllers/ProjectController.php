@@ -6,21 +6,23 @@ namespace Doctrine\Website\Controllers;
 
 use Doctrine\Website\Builder\SourceFile;
 use Doctrine\Website\Controller\ControllerResult;
-use Doctrine\Website\Projects\ProjectRepository;
-use Doctrine\Website\Team\TeamRepository;
+use Doctrine\Website\Repositories\ProjectContributorRepository;
+use Doctrine\Website\Repositories\ProjectRepository;
 
 class ProjectController
 {
     /** @var ProjectRepository */
     private $projectRepository;
 
-    /** @var TeamRepository */
-    private $teamRepository;
+    /** @var ProjectContributorRepository */
+    private $projectContributorRepository;
 
-    public function __construct(ProjectRepository $projectRepository, TeamRepository $teamRepository)
-    {
-        $this->projectRepository = $projectRepository;
-        $this->teamRepository    = $teamRepository;
+    public function __construct(
+        ProjectRepository $projectRepository,
+        ProjectContributorRepository $projectContributorRepository
+    ) {
+        $this->projectRepository            = $projectRepository;
+        $this->projectContributorRepository = $projectContributorRepository;
     }
 
     public function index(SourceFile $sourceFile) : ControllerResult
@@ -35,14 +37,13 @@ class ProjectController
 
     public function view(SourceFile $sourceFile) : ControllerResult
     {
-        $project = $this->projectRepository->findOneBySlug($sourceFile->getParameter('docsSlug'));
+        $project = $this->projectRepository->findOneByDocsSlug($sourceFile->getParameter('docsSlug'));
 
         return new ControllerResult([
             'project' => $project,
-            'allTeamMembers' => $this->teamRepository->getAllProjectTeamMembers($project),
-            'activeTeamMembers' => $this->teamRepository->getActiveProjectTeamMembers($project),
-            'inactiveTeamMembers' => $this->teamRepository->getInactiveProjectTeamMembers($project),
             'integrationProjects' => $this->projectRepository->findProjectIntegrations($project),
+            'maintainers' => $this->projectContributorRepository->findMaintainersByProject($project),
+            'contributors' => $this->projectContributorRepository->findContributorsByProject($project),
         ]);
     }
 }

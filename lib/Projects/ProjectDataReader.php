@@ -59,7 +59,7 @@ class ProjectDataReader
             $this->readJsonFile($repositoryName, self::DOCTRINE_PROJECT_JSON_FILE_NAME)
         );
 
-        if (isset($projectData['isIntegration']) && $projectData['isIntegration'] === true) {
+        if (isset($projectData['integration']) && $projectData['integration'] === true) {
             if (! isset($projectData['integrationType'])) {
                 throw new InvalidArgumentException(sprintf(
                     'Project integration %s requires a type.',
@@ -76,6 +76,10 @@ class ProjectDataReader
             }
 
             $projectData['integrationType'] = $this->projectIntegrationTypes[$projectData['integrationType']];
+        }
+
+        if (! isset($projectData['docsSlug'])) {
+            $projectData['docsSlug'] = $projectData['slug'];
         }
 
         return $projectData;

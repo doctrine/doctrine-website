@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Docs;
 
 use Doctrine\Website\Docs\APIBuilder;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\ProcessFactory;
-use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 

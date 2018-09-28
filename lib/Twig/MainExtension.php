@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Twig;
 
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
-use Doctrine\Website\Projects\Project;
+use Doctrine\Website\Model\Project;
 use Parsedown;
 use Twig_Extension;
 use Twig_SimpleFilter;

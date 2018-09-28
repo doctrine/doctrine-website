@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs\RST;
 
-use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use function array_map;

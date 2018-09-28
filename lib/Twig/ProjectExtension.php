@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Twig;
 
-use Doctrine\Website\Projects\Project;
-use Doctrine\Website\Projects\ProjectRepository;
-use Doctrine\Website\Projects\ProjectVersion;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
+use Doctrine\Website\Repositories\ProjectRepository;
 use Twig_Extension;
 use Twig_SimpleFunction;
 use function file_exists;
@@ -39,9 +39,9 @@ class ProjectExtension extends Twig_Extension
         ];
     }
 
-    public function getProject(string $slug) : Project
+    public function getProject(string $docsSlug) : Project
     {
-        return $this->projectRepository->findOneBySlug($slug);
+        return $this->projectRepository->findOneByDocsSlug($docsSlug);
     }
 
     public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion) : ?string

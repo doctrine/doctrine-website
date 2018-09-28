@@ -184,8 +184,13 @@
                         <li class="nav-item{% if menuSlug == 'blog' %} active{% endif %}">
                             <a class="nav-link" href="{{ site.url }}/blog/">Blog</a>
                         </li>
-                        <li class="nav-item{% if menuSlug == 'team' %} active{% endif %}">
-                            <a class="nav-link" href="{{ site.url }}/team/">Team</a>
+                       <li class="nav-item dropdown{% if menuSlug == 'team' %} active{% endif %}">
+                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/team/maintainers.html" id="navbarTeamDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Team</a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarTeamDropdown">
+                                <a class="dropdown-item" href="{{ site.url }}/team/maintainers.html">Maintainers</a>
+                                <a class="dropdown-item" href="{{ site.url }}/team/contributors.html">Contributors</a>
+                            </div>
                         </li>
                     </ul>
 
