@@ -5,16 +5,30 @@ declare(strict_types=1);
 namespace Doctrine\Website\DataSources;
 
 use Doctrine\SkeletonMapper\DataSource\DataSource;
-use Doctrine\Website\Repositories\ProjectContributorRepository;
+use Doctrine\Website\DataBuilder\ContributorDataBuilder;
+use Doctrine\Website\DataBuilder\WebsiteDataReader;
+use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\Repositories\TeamMemberRepository;
 
 class Contributors implements DataSource
 {
-    /** @var ProjectContributorRepository */
-    private $projectContributorRepository;
+    /** @var WebsiteDataReader */
+    private $dataReader;
 
-    public function __construct(ProjectContributorRepository $projectContributorRepository)
-    {
-        $this->projectContributorRepository = $projectContributorRepository;
+    /** @var TeamMemberRepository */
+    private $teamMemberRepository;
+
+    /** @var ProjectRepository */
+    private $projectRepository;
+
+    public function __construct(
+        WebsiteDataReader $dataReader,
+        TeamMemberRepository $teamMemberRepository,
+        ProjectRepository $projectRepository
+    ) {
+        $this->dataReader           = $dataReader;
+        $this->teamMemberRepository = $teamMemberRepository;
+        $this->projectRepository    = $projectRepository;
     }
 
     /**
@@ -22,32 +36,23 @@ class Contributors implements DataSource
      */
     public function getSourceRows() : array
     {
-        $projectContributors = $this->projectContributorRepository->findAll();
+        $contributors = $this->dataReader
+            ->read(ContributorDataBuilder::DATA_FILE)
+            ->getData();
 
-        $contributorRows = [];
+        foreach ($contributors as $key => $contributor) {
+            $contributors[$key]['teamMember'] = $this->teamMemberRepository
+                ->findOneByGithub($contributor['github']);
 
-        foreach ($projectContributors as $projectContributor) {
-            $github = $projectContributor->getGithub();
+            $projects = [];
 
-            if (! isset($contributorRows[$github])) {
-                $contributorRows[$github] = [
-                    'teamMember' => $projectContributor->getTeamMember(),
-                    'isTeamMember' => $projectContributor->isTeamMember(),
-                    'github' => $github,
-                    'avatarUrl' => $projectContributor->getAvatarUrl(),
-                    'numCommits' => 0,
-                    'numAdditions' => 0,
-                    'numDeletions' => 0,
-                    'projects' => [],
-                ];
+            foreach ($contributor['projects'] as $slug) {
+                $projects[] = $this->projectRepository->findOneBySlug($slug);
             }
 
-            $contributorRows[$github]['numCommits']   += $projectContributor->getNumCommits();
-            $contributorRows[$github]['numAdditions'] += $projectContributor->getNumAdditions();
-            $contributorRows[$github]['numDeletions'] += $projectContributor->getNumDeletions();
-            $contributorRows[$github]['projects'][]    = $projectContributor->getProject();
+            $contributors[$key]['projects'] = $projects;
         }
 
-        return $contributorRows;
+        return $contributors;
     }
 }

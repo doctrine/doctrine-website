@@ -8,7 +8,6 @@ use Doctrine\Website\Docs\RST\RSTBuilder;
 use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
-use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,9 +17,6 @@ use function sprintf;
 
 class BuildDocs
 {
-    /** @var ProjectDataRepository */
-    private $projectDataRepository;
-
     /** @var ProjectRepository */
     private $projectRepository;
 
@@ -30,9 +26,6 @@ class BuildDocs
     /** @var APIBuilder */
     private $apiBuilder;
 
-    /** @var RSTLanguagesDetector */
-    private $rstLanguagesDetector;
-
     /** @var RSTBuilder */
     private $rstBuilder;
 
@@ -40,21 +33,17 @@ class BuildDocs
     private $searchIndexer;
 
     public function __construct(
-        ProjectDataRepository $projectDataRepository,
         ProjectRepository $projectRepository,
         ProjectGitSyncer $projectGitSyncer,
         APIBuilder $apiBuilder,
-        RSTLanguagesDetector $rstLanguagesDetector,
         RSTBuilder $rstBuilder,
         SearchIndexer $searchIndexer
     ) {
-        $this->projectDataRepository = $projectDataRepository;
-        $this->projectRepository     = $projectRepository;
-        $this->projectGitSyncer      = $projectGitSyncer;
-        $this->apiBuilder            = $apiBuilder;
-        $this->rstLanguagesDetector  = $rstLanguagesDetector;
-        $this->rstBuilder            = $rstBuilder;
-        $this->searchIndexer         = $searchIndexer;
+        $this->projectRepository = $projectRepository;
+        $this->projectGitSyncer  = $projectGitSyncer;
+        $this->apiBuilder        = $apiBuilder;
+        $this->rstBuilder        = $rstBuilder;
+        $this->searchIndexer     = $searchIndexer;
     }
 
     public function build(
@@ -69,19 +58,7 @@ class BuildDocs
             $this->searchIndexer->initSearchIndex();
         }
 
-        foreach ($this->projectDataRepository->getProjectRepositoryNames() as $repositoryName) {
-            if ($this->projectGitSyncer->isRepositoryInitialized($repositoryName)) {
-                continue;
-            }
-
-            $output->writeln(sprintf('Initializing <info>%s</info> repository', $repositoryName));
-
-            $this->projectGitSyncer->initRepository($repositoryName);
-        }
-
         $projects = $this->projectRepository->findAll();
-
-        $this->initDocsRepositories($output, $projects);
 
         $projectsToBuild = $this->getProjectsToBuild($projects, $projectToBuild);
 
@@ -96,12 +73,15 @@ class BuildDocs
                 if ($syncGit) {
                     $output->writeln(' - syncing git');
 
-                    $this->projectGitSyncer->sync($project);
+                    $this->projectGitSyncer->sync($project->getRepositoryName());
                 }
 
                 $output->writeln(sprintf(' - checking out %s', $version->getName()));
 
-                $this->projectGitSyncer->checkoutProjectVersion($project, $version);
+                $this->projectGitSyncer->checkoutBranch(
+                    $project->getRepositoryName(),
+                    $version->getBranchName()
+                );
 
                 if ($buildApiDocs) {
                     $output->writeln(' - building api docs');
@@ -114,11 +94,9 @@ class BuildDocs
                     }
                 }
 
-                $languages = $this->rstLanguagesDetector->detectLanguages($project, $version);
-
                 $searchDocuments = [];
 
-                foreach ($languages as $language) {
+                foreach ($version->getDocsLanguages() as $language) {
                     $output->writeln(sprintf(' - building %s rst docs', $language->getCode()));
 
                     $documents = $this->rstBuilder->buildRSTDocs($project, $version, $language);
@@ -139,29 +117,7 @@ class BuildDocs
                 $this->searchIndexer->buildSearchIndexes($project, $version, $searchDocuments);
             }
 
-            $this->projectGitSyncer->checkoutMaster($project);
-        }
-    }
-
-    /**
-     * @param Project[] $projects
-     */
-    private function initDocsRepositories(OutputInterface $output, array $projects) : void
-    {
-        foreach ($projects as $project) {
-            if ($project->getRepositoryName() === $project->getDocsRepositoryName()) {
-                continue;
-            }
-
-            $repositoryName = $project->getDocsRepositoryName();
-
-            if ($this->projectGitSyncer->isRepositoryInitialized($repositoryName)) {
-                continue;
-            }
-
-            $output->writeln(sprintf('Initializing <info>%s</info> repository', $repositoryName));
-
-            $this->projectGitSyncer->initRepository($repositoryName);
+            $this->projectGitSyncer->checkoutMaster($project->getRepositoryName());
         }
     }
 

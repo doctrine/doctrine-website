@@ -37,6 +37,7 @@ jobs:
         - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
         - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
       script:
+        - ./bin/console build-website-data
         - ./bin/console build-docs --sync-git --env=test
         - ./bin/console build-website --env=test
         - ./vendor/bin/phpunit --coverage-clover clover.xml

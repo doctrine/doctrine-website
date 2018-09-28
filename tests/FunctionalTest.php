@@ -10,6 +10,7 @@ use SimpleXMLElement;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\DomCrawler\Link;
 use function array_map;
+use function end;
 use function explode;
 use function file_exists;
 use function file_get_contents;
@@ -35,6 +36,29 @@ class FunctionalTest extends TestCase
         }
 
         self::markTestSkipped('This test requires ./bin/console build-website to have been ran.');
+    }
+
+    public function testProjectVersionsAndTags() : void
+    {
+        $container = $this->getContainer();
+
+        /** @var ProjectRepository $projectRepository */
+        $projectRepository = $container->get(ProjectRepository::class);
+
+        $project = $projectRepository->findOneBySlug('orm');
+
+        $versions = $project->getVersions();
+
+        $firstVersion = end($versions);
+
+        self::assertSame('2.0', $firstVersion->getName());
+
+        $tags = $firstVersion->getTags();
+
+        self::assertCount(14, $tags);
+
+        self::assertSame('2.0.7', $firstVersion->getLatestTag()->getName());
+        self::assertSame('2.0.0-BETA1', $firstVersion->getFirstTag()->getName());
     }
 
     public function testHomepageEditLink() : void
@@ -134,6 +158,10 @@ class FunctionalTest extends TestCase
             self::assertSame($project->getDescription(), $crawler->filter('p.lead')->text());
 
             foreach ($project->getVersions() as $version) {
+                if (! $version->hasDocs()) {
+                    continue;
+                }
+
                 // rst docs
                 $crawler = self::assertValid(sprintf(
                     '/projects/%s/en/%s/index.html',

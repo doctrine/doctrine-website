@@ -5,31 +5,17 @@ declare(strict_types=1);
 namespace Doctrine\Website\DataSources;
 
 use Doctrine\SkeletonMapper\DataSource\DataSource;
-use Doctrine\Website\Projects\ProjectDataReader;
-use function array_replace;
+use Doctrine\Website\DataBuilder\ProjectDataBuilder;
+use Doctrine\Website\DataBuilder\WebsiteDataReader;
 
 class Projects implements DataSource
 {
-    private const DEFAULTS = [
-        'active'        => true,
-        'archived'      => false,
-        'hasDocs'       => true,
-        'integration'   => false,
-    ];
+    /** @var WebsiteDataReader */
+    private $dataReader;
 
-    /** @var ProjectDataReader */
-    private $projectDataReader;
-
-    /** @var mixed[][] */
-    private $projectsData = [];
-
-    /**
-     * @param mixed[][] $projectsData
-     */
-    public function __construct(ProjectDataReader $projectDataReader, array $projectsData)
+    public function __construct(WebsiteDataReader $dataReader)
     {
-        $this->projectDataReader = $projectDataReader;
-        $this->projectsData      = $projectsData;
+        $this->dataReader = $dataReader;
     }
 
     /**
@@ -37,15 +23,8 @@ class Projects implements DataSource
      */
     public function getSourceRows() : array
     {
-        $projectRows = [];
-
-        foreach ($this->projectsData as $projectData) {
-            $projectRows[] = array_replace(
-                self::DEFAULTS,
-                $this->projectDataReader->read($projectData['repositoryName'])
-            );
-        }
-
-        return $projectRows;
+        return $this->dataReader
+            ->read(ProjectDataBuilder::DATA_FILE)
+            ->getData();
     }
 }

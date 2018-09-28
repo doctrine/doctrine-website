@@ -73,15 +73,28 @@ your local web server. You will need to setup a virtual host in your web
 server and point the root directory at
 ``/data/doctrine-website/build-dev``.
 
+Build Website Data
+------------------
+
+The website build process relies on data that is dynamically pulled from Git, GitHub API
+and YAML files in the ``config`` folder. To build the website data, run the ``build-website-data``
+command.
+
+.. code-block:: console
+
+    $ ./bin/console build-website-data
+
 Build Documentation
 -------------------
 
-Now are you ready to start building the website! First, build the
-documentation with the ``build-docs`` command.
+Now are you ready to start building the website! Build the documentation with the
+``build-docs`` command.
 
-This command will clone all the repositories for the documentation and
-switch to the appropriate branches for each version of a project when
-you pass the ``--sync-git`` option.
+.. code-block:: console
+
+    $ ./bin/console build-docs
+
+If you want to update the git repositories, pass the ``--sync-git`` option:
 
 .. code-block:: console
 

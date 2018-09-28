@@ -4,7 +4,7 @@ parameters:
 
     doctrine.website.webpack_build_dir: '%doctrine.website.root_dir%/.webpack-build'
     doctrine.website.projects_dir: '%doctrine.website.root_dir%/projects'
-    doctrine.website.docs_dir: '%doctrine.website.root_dir%/docs'
+    doctrine.website.docs_dir: '%doctrine.website.cache_dir%/docs'
     doctrine.website.source_dir: '%doctrine.website.root_dir%/source'
     doctrine.website.templates_dir: '%doctrine.website.root_dir%/templates'
 

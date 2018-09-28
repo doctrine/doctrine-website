@@ -8,11 +8,9 @@ use Doctrine\Website\Docs\APIBuilder;
 use Doctrine\Website\Docs\BuildDocs;
 use Doctrine\Website\Docs\RST\RSTBuilder;
 use Doctrine\Website\Docs\RST\RSTLanguage;
-use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Docs\SearchIndexer;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
-use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Tests\TestCase;
@@ -21,9 +19,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class BuildDocsTest extends TestCase
 {
-    /** @var ProjectDataRepository|MockObject */
-    private $projectDataRepository;
-
     /** @var ProjectRepository|MockObject */
     private $projectRepository;
 
@@ -32,9 +27,6 @@ class BuildDocsTest extends TestCase
 
     /** @var APIBuilder|MockObject */
     private $apiBuilder;
-
-    /** @var RSTLanguagesDetector|MockObject */
-    private $rstLanguagesDetector;
 
     /** @var RSTBuilder|MockObject */
     private $rstBuilder;
@@ -47,20 +39,16 @@ class BuildDocsTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->projectDataRepository = $this->createMock(ProjectDataRepository::class);
-        $this->projectRepository     = $this->createMock(ProjectRepository::class);
-        $this->projectGitSyncer      = $this->createMock(ProjectGitSyncer::class);
-        $this->apiBuilder            = $this->createMock(APIBuilder::class);
-        $this->rstLanguagesDetector  = $this->createMock(RSTLanguagesDetector::class);
-        $this->rstBuilder            = $this->createMock(RSTBuilder::class);
-        $this->searchIndexer         = $this->createMock(SearchIndexer::class);
+        $this->projectRepository = $this->createMock(ProjectRepository::class);
+        $this->projectGitSyncer  = $this->createMock(ProjectGitSyncer::class);
+        $this->apiBuilder        = $this->createMock(APIBuilder::class);
+        $this->rstBuilder        = $this->createMock(RSTBuilder::class);
+        $this->searchIndexer     = $this->createMock(SearchIndexer::class);
 
         $this->buildDocs = new BuildDocs(
-            $this->projectDataRepository,
             $this->projectRepository,
             $this->projectGitSyncer,
             $this->apiBuilder,
-            $this->rstLanguagesDetector,
             $this->rstBuilder,
             $this->searchIndexer
         );
@@ -70,7 +58,14 @@ class BuildDocsTest extends TestCase
     {
         $output = $this->createMock(OutputInterface::class);
 
+        $repositoryName = 'test-project';
+
         $project = $this->createMock(Project::class);
+
+        $project->expects(self::any())
+            ->method('getRepositoryName')
+            ->willReturn($repositoryName);
+
         $version = $this->createMock(ProjectVersion::class);
 
         $projects = [$project];
@@ -86,7 +81,7 @@ class BuildDocsTest extends TestCase
 
         $this->projectGitSyncer->expects(self::once())
             ->method('sync')
-            ->with($project);
+            ->with($repositoryName);
 
         $this->apiBuilder->expects(self::once())
             ->method('buildAPIDocs')
@@ -94,9 +89,8 @@ class BuildDocsTest extends TestCase
 
         $english = new RSTLanguage('en', '/en');
 
-        $this->rstLanguagesDetector->expects(self::once())
-            ->method('detectLanguages')
-            ->with($project, $version)
+        $version->expects(self::once())
+            ->method('getDocsLanguages')
             ->willReturn([$english]);
 
         $this->rstBuilder->expects(self::once())

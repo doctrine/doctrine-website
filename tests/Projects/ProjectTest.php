@@ -29,7 +29,6 @@ class ProjectTest extends TestCase
             'docsRepositoryName' => 'test-project',
             'docsDir' => '/docs',
             'codePath' => '/src',
-            'hasDocs' => true,
             'description' => 'Test description.',
             'keywords' => ['keyword1', 'keyword2'],
             'versions' => [
@@ -82,11 +81,6 @@ class ProjectTest extends TestCase
     public function testGetRepositoryName() : void
     {
         self::assertSame('test-project', $this->project->getRepositoryName());
-    }
-
-    public function testHasDocs() : void
-    {
-        self::assertTrue($this->project->hasDocs());
     }
 
     public function testGetDocsRepositoryName() : void

@@ -49,9 +49,6 @@ SIDEBAR;
     /** @var RSTFileRepository */
     private $rstFileRepository;
 
-    /** @var RSTLanguagesDetector */
-    private $rstLanguagesDetector;
-
     /** @var Filesystem */
     private $filesystem;
 
@@ -60,21 +57,17 @@ SIDEBAR;
 
     public function __construct(
         RSTFileRepository $rstFileRepository,
-        RSTLanguagesDetector $rstLanguagesDetector,
         Filesystem $filesystem,
         string $docsDir
     ) {
-        $this->rstFileRepository    = $rstFileRepository;
-        $this->rstLanguagesDetector = $rstLanguagesDetector;
-        $this->filesystem           = $filesystem;
-        $this->docsDir              = $docsDir;
+        $this->rstFileRepository = $rstFileRepository;
+        $this->filesystem        = $filesystem;
+        $this->docsDir           = $docsDir;
     }
 
     public function copyRst(Project $project, ProjectVersion $version) : void
     {
-        $languages = $this->rstLanguagesDetector->detectLanguages($project, $version);
-
-        foreach ($languages as $language) {
+        foreach ($version->getDocsLanguages() as $language) {
             $outputPath = $project->getProjectVersionDocsPath($this->docsDir, $version, $language->getCode());
 
             // clear existing files before copying the rst over
@@ -168,6 +161,9 @@ SIDEBAR;
             $content = preg_replace("/.. sidebar:: (.*)\n/", '$1', $content);
             $content = str_replace('.. sidebar::', '', $content);
         }
+
+        // we don't support :term:`*` syntax
+        $content = preg_replace('/:term:`(.*)`/', '$1', $content);
 
         return $content;
     }

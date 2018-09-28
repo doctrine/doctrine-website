@@ -44,9 +44,6 @@ class Project implements HydratableInterface, LoadMetadataInterface
     private $repositoryName;
 
     /** @var bool */
-    private $hasDocs = false;
-
-    /** @var bool */
     private $isIntegration = false;
 
     /** @var string */
@@ -104,7 +101,6 @@ class Project implements HydratableInterface, LoadMetadataInterface
         $this->docsSlug            = (string) ($project['docsSlug'] ?? $this->slug);
         $this->composerPackageName = (string) ($project['composerPackageName'] ?? '');
         $this->repositoryName      = (string) ($project['repositoryName'] ?? '');
-        $this->hasDocs             = (bool) ($project['hasDocs'] ?? true);
         $this->isIntegration       = (bool) ($project['integration'] ?? false);
         $this->integrationFor      = (string) ($project['integrationFor'] ?? '');
         $this->docsRepositoryName  = (string) ($project['docsRepositoryName'] ?? $this->repositoryName);
@@ -173,11 +169,6 @@ class Project implements HydratableInterface, LoadMetadataInterface
     public function getRepositoryName() : string
     {
         return $this->repositoryName;
-    }
-
-    public function hasDocs() : bool
-    {
-        return $this->hasDocs;
     }
 
     public function isIntegration() : bool

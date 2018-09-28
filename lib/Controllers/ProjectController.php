@@ -45,4 +45,17 @@ class ProjectController
             'contributors' => $this->projectContributorRepository->findContributorsByProject($project),
         ], '/project.html.twig');
     }
+
+    public function version(string $slug, string $versionSlug) : Response
+    {
+        $project = $this->projectRepository->findOneBySlug($slug);
+
+        $version = $project->getVersion($versionSlug);
+
+        return new Response([
+            'project' => $project,
+            'version' => $version,
+            'latestTag' => $version->getLatestTag(),
+        ], '/project-version.html.twig');
+    }
 }
