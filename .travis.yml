@@ -26,7 +26,6 @@ jobs:
         - rm composer.lock
         - travis_retry composer update --prefer-dist --prefer-lowest
       script:
-        - cp config/local.yml.dist config/local.yml
         - ./vendor/bin/phpunit
 
     - stage: Test
@@ -35,7 +34,6 @@ jobs:
         - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
         - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
       script:
-        - cp config/local.yml.dist config/local.yml
         - ./bin/console build-docs --sync-git
         - ./bin/console build-website
         - ./vendor/bin/phpunit --coverage-clover clover.xml
