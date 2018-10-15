@@ -13,14 +13,14 @@ use function realpath;
 class AssetIntegrityGenerator
 {
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     /** @var string[] */
     private $cache = [];
 
-    public function __construct(string $sourcePath)
+    public function __construct(string $sourceDir)
     {
-        $this->sourcePath = $sourcePath;
+        $this->sourceDir = $sourceDir;
     }
 
     public function getAssetIntegrity(string $path) : string
@@ -36,7 +36,7 @@ class AssetIntegrityGenerator
 
     private function getFileContents(string $path) : string
     {
-        $assetPath = realpath($this->sourcePath . '/' . $path);
+        $assetPath = realpath($this->sourceDir . '/' . $path);
         assert($assetPath !== false);
 
         $contents = file_get_contents($assetPath);

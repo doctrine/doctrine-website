@@ -16,22 +16,22 @@ class ProjectGitSyncer
     private $processFactory;
 
     /** @var string */
-    private $projectsPath;
+    private $projectsDir;
 
-    public function __construct(ProcessFactory $processFactory, string $projectsPath)
+    public function __construct(ProcessFactory $processFactory, string $projectsDir)
     {
         $this->processFactory = $processFactory;
-        $this->projectsPath   = $projectsPath;
+        $this->projectsDir    = $projectsDir;
     }
 
     public function isRepositoryInitialized(string $repositoryName) : bool
     {
-        return is_dir($this->projectsPath . '/' . $repositoryName);
+        return is_dir($this->projectsDir . '/' . $repositoryName);
     }
 
     public function initRepository(string $repositoryName) : void
     {
-        $repositoryPath = $this->projectsPath . '/' . $repositoryName;
+        $repositoryPath = $this->projectsDir . '/' . $repositoryName;
 
         if (is_dir($repositoryPath)) {
             return;
@@ -51,13 +51,13 @@ class ProjectGitSyncer
         // handle when docs are in a different repository then the code
         if ($project->getDocsRepositoryName() !== $project->getRepositoryName()) {
             $this->syncRepository(
-                $project->getProjectRepositoryPath($this->projectsPath)
+                $project->getProjectRepositoryPath($this->projectsDir)
             );
         }
 
         // sync docs repository
         $this->syncRepository(
-            $project->getProjectDocsRepositoryPath($this->projectsPath)
+            $project->getProjectDocsRepositoryPath($this->projectsDir)
         );
     }
 
@@ -74,10 +74,10 @@ class ProjectGitSyncer
     private function checkoutBranch(Project $project, string $branchName) : void
     {
         if ($project->getDocsRepositoryName() !== $project->getRepositoryName()) {
-            $this->doCheckoutBranch($project->getProjectRepositoryPath($this->projectsPath), $branchName);
+            $this->doCheckoutBranch($project->getProjectRepositoryPath($this->projectsDir), $branchName);
         }
 
-        $this->doCheckoutBranch($project->getProjectDocsRepositoryPath($this->projectsPath), $branchName);
+        $this->doCheckoutBranch($project->getProjectDocsRepositoryPath($this->projectsDir), $branchName);
     }
 
     private function doCheckoutBranch(string $directory, string $branchName) : void

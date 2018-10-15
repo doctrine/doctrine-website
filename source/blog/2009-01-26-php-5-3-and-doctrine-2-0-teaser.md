@@ -1,8 +1,5 @@
 ---
 title: "PHP 5.3 and Doctrine 2.0 Teaser"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

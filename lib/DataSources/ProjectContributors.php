@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataSources;
 
-use Doctrine\Website\DataSource\DataSource;
+use Doctrine\SkeletonMapper\DataSource\DataSource;
 use Doctrine\Website\Github\GithubProjectContributors;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
@@ -51,7 +51,13 @@ class ProjectContributors implements DataSource
                     $numDeletions += $week['d'];
                 }
 
-                $teamMember = $this->teamMemberRepository->findOneByGithub($contributor['author']['login']);
+                if (! isset($contributor['author']['login'])) {
+                    continue;
+                }
+
+                $teamMember = $this->teamMemberRepository->findOneByGithub(
+                    $contributor['author']['login']
+                );
 
                 $isMaintainer = $teamMember !== null
                     ? $teamMember->isProjectMaintainer($project)

@@ -1,8 +1,5 @@
 ---
 title: "Phasing out Doctrine Common & release of DBAL 2.8 and ORM 2.6.2"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Michael Moravec
 authorEmail: doctrine@majkl.me
 permalink: /2018/07/12/common-2-9-and-dbal-2-8-and-orm-2-6-2.html

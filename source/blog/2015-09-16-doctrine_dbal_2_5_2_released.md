@@ -1,8 +1,5 @@
 ---
 title: "Doctrine DBAL 2.5.2 released"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Steve Müller
 authorEmail: deeky666@googlemail.com
 categories: []

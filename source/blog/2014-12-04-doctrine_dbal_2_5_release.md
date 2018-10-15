@@ -1,8 +1,5 @@
 ---
 title: "Doctrine DBAL 2.5 Release"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Benjamin Eberlei
 authorEmail:
 categories: [release]

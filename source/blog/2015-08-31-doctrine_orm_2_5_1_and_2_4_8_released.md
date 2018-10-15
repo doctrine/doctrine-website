@@ -1,8 +1,5 @@
 ---
 title: "Doctrine ORM 2.5.1 and 2.4.8 released"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: default
 authorEmail:
 categories: []

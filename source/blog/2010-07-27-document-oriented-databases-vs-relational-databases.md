@@ -1,8 +1,5 @@
 ---
 title: "MongoDB ODM: Document-Oriented Databases vs. Relational Databases."
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: avalanche123
 authorEmail:
 categories: []

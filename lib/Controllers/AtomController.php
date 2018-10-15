@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\Website\Builder\SourceFile;
-use Doctrine\Website\Controller\ControllerResult;
+use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Repositories\BlogPostRepository;
 
 class AtomController
@@ -18,9 +17,9 @@ class AtomController
         $this->blogPostRepository = $blogPostRepository;
     }
 
-    public function index(SourceFile $sourceFile) : ControllerResult
+    public function index() : Response
     {
-        return new ControllerResult([
+        return new Response([
             'blogPosts' => $this->blogPostRepository->findPaginated(),
         ]);
     }

@@ -25,7 +25,7 @@ class ProjectDataReader
     private const COMPOSER_JSON_FILE_NAME = 'composer.json';
 
     /** @var string */
-    private $projectsPath;
+    private $projectsDir;
 
     /** @var mixed[] */
     private $projectsData;
@@ -38,11 +38,11 @@ class ProjectDataReader
      * @param mixed[] $projectIntegrationTypes
      */
     public function __construct(
-        string $projectsPath,
+        string $projectsDir,
         array $projectsData,
         array $projectIntegrationTypes
     ) {
-        $this->projectsPath            = $projectsPath;
+        $this->projectsDir             = $projectsDir;
         $this->projectsData            = $projectsData;
         $this->projectIntegrationTypes = $projectIntegrationTypes;
     }
@@ -142,7 +142,7 @@ class ProjectDataReader
     private function detectPath(string $repositoryName, array $pathsToCheck, ?string $default) : ?string
     {
         foreach ($pathsToCheck as $path) {
-            $check = $this->projectsPath . '/' . $repositoryName . $path;
+            $check = $this->projectsDir . '/' . $repositoryName . $path;
 
             if (is_dir($check)) {
                 return $path;
@@ -181,7 +181,7 @@ class ProjectDataReader
      */
     private function readJsonFile(string $repositoryName, string $fileName) : array
     {
-        $filePath = $this->projectsPath . '/' . $repositoryName . '/' . $fileName;
+        $filePath = $this->projectsDir . '/' . $repositoryName . '/' . $fileName;
 
         if (! file_exists($filePath)) {
             return [];

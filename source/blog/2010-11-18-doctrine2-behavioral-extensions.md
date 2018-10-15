@@ -1,8 +1,5 @@
 ---
 title: "Doctrine2 Behavioral Extensions"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: gmorkevicius
 authorEmail:
 categories: []

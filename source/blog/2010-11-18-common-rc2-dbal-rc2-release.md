@@ -1,8 +1,5 @@
 ---
 title: "Common RC2 and DBAL RC3 released"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: [release]

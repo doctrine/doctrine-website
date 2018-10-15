@@ -1,8 +1,5 @@
 ---
 title: "0.10.4 Released - 46 Closed Tickets"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: [release]

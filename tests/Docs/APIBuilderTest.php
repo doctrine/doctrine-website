@@ -17,7 +17,7 @@ class APIBuilderTest extends TestCase
     private $processFactory;
 
     /** @var string */
-    private $projectsPath;
+    private $projectsDir;
 
     /** @var string */
     private $sculpinSourcePath;
@@ -28,13 +28,13 @@ class APIBuilderTest extends TestCase
     protected function setUp() : void
     {
         $this->processFactory    = $this->createMock(ProcessFactory::class);
-        $this->projectsPath      = '/data/doctrine';
+        $this->projectsDir       = '/data/doctrine';
         $this->sculpinSourcePath = '/data/doctrine-website/source';
 
         $this->apiBuilder = $this->getMockBuilder(APIBuilder::class)
             ->setConstructorArgs([
                 $this->processFactory,
-                $this->projectsPath,
+                $this->projectsDir,
                 $this->sculpinSourcePath,
             ])
             ->setMethods(['filePutContents', 'unlinkFile'])

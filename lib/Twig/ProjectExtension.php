@@ -19,12 +19,12 @@ class ProjectExtension extends Twig_Extension
     private $projectRepository;
 
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
-    public function __construct(ProjectRepository $projectRepository, string $sourcePath)
+    public function __construct(ProjectRepository $projectRepository, string $sourceDir)
     {
         $this->projectRepository = $projectRepository;
-        $this->sourcePath        = $sourcePath;
+        $this->sourceDir         = $sourceDir;
     }
 
     /**
@@ -52,7 +52,7 @@ class ProjectExtension extends Twig_Extension
             $otherVersionUrl = str_replace($currentVersion, $projectVersion->getSlug(), $url);
         }
 
-        $otherVersionFile = $this->sourcePath . $otherVersionUrl;
+        $otherVersionFile = $this->sourceDir . $otherVersionUrl;
 
         if (! $this->fileExists($otherVersionFile)) {
             return null;

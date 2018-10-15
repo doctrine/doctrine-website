@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataSources;
 
-use Doctrine\Website\DataSource\DataSource;
+use Doctrine\SkeletonMapper\DataSource\DataSource;
 
 class TeamMembers implements DataSource
 {

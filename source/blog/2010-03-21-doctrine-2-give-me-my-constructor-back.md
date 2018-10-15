@@ -1,8 +1,5 @@
 ---
 title: "Doctrine 2: Give me my constructor back"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

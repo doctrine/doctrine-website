@@ -1,8 +1,5 @@
 ---
 title: "Maintenance Releases of Common, DBAL, ORM"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: [release]

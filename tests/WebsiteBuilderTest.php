@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests;
 
-use Doctrine\Website\Builder\SourceFileBuilder;
-use Doctrine\Website\Builder\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\Routing\Router;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
@@ -27,11 +28,14 @@ class WebsiteBuilderTest extends TestCase
     /** @var SourceFileRepository|MockObject */
     private $sourceFileRepository;
 
-    /** @var SourceFileBuilder|MockObject */
-    private $sourceFileBuilder;
+    /** @var SourceFilesBuilder|MockObject */
+    private $sourceFilesBuilder;
 
     /** @var WebsiteBuilder|MockObject */
     private $websiteBuilder;
+
+    /** @var Router|MockObject */
+    private $router;
 
     protected function setUp() : void
     {
@@ -39,7 +43,8 @@ class WebsiteBuilderTest extends TestCase
         $this->projectRepository    = $this->createMock(ProjectRepository::class);
         $this->filesystem           = $this->createMock(Filesystem::class);
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
-        $this->sourceFileBuilder    = $this->createMock(SourceFileBuilder::class);
+        $this->sourceFilesBuilder   = $this->createMock(SourceFilesBuilder::class);
+        $this->router               = $this->createMock(Router::class);
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
             ->setConstructorArgs([
@@ -47,7 +52,8 @@ class WebsiteBuilderTest extends TestCase
                 $this->projectRepository,
                 $this->filesystem,
                 $this->sourceFileRepository,
-                $this->sourceFileBuilder,
+                $this->sourceFilesBuilder,
+                $this->router,
             ])
             ->setMethods(['filePutContents'])
             ->getMock();

@@ -1,8 +1,5 @@
 ---
 title: "New Website"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Jonathan H. Wage
 authorEmail: jonwage@gmail.com
 permalink: /2018/04/06/new-website.html

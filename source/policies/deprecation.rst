@@ -1,10 +1,3 @@
----
-layout: default
-title: Deprecation Policy
-menuSlug: development
-permalink: /policies/deprecation.html
----
-
 Deprecation Policy
 ==================
 

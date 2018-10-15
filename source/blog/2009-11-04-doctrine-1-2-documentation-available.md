@@ -1,8 +1,5 @@
 ---
 title: "Doctrine 1.2 Documentation Available"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

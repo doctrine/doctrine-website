@@ -14,6 +14,9 @@ class BlogPostTest extends TestCase
     private $url;
 
     /** @var string */
+    private $slug;
+
+    /** @var string */
     private $title;
 
     /** @var string */
@@ -34,6 +37,11 @@ class BlogPostTest extends TestCase
     public function testGetUrl() : void
     {
         self::assertSame($this->url, $this->blogPost->getUrl());
+    }
+
+    public function testGetSlug() : void
+    {
+        self::assertSame($this->slug, $this->blogPost->getSlug());
     }
 
     public function testGetTitle() : void
@@ -64,6 +72,7 @@ class BlogPostTest extends TestCase
     protected function setUp() : void
     {
         $this->url         = 'http://lcl.doctrine-project.org';
+        $this->slug        = 'test-blog-post';
         $this->title       = 'Test Blog Post';
         $this->authorName  = 'Jonathan H. Wage';
         $this->authorEmail = 'jonwage@gmail.com';
@@ -72,6 +81,7 @@ class BlogPostTest extends TestCase
 
         $this->blogPost = new BlogPost(
             $this->url,
+            $this->slug,
             $this->title,
             $this->authorName,
             $this->authorEmail,

@@ -11,6 +11,7 @@ use Doctrine\Website\Commands\DeployCommand;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -52,6 +53,15 @@ class Application
 
     public function run(InputInterface $input) : int
     {
+        $inputOption = new InputOption(
+            'env',
+            'e',
+            InputOption::VALUE_REQUIRED,
+            'The environment.',
+            'dev'
+        );
+        $this->application->getDefinition()->addOption($inputOption);
+
         $this->application->add($this->buildDocsCommand);
         $this->application->add($this->buildWebsiteCommand);
         $this->application->add($this->clearBuildCacheCommand);
@@ -75,6 +85,7 @@ class Application
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
         $loader->load('projects.yml');
         $loader->load('team_members.yml');
+        $loader->load('routes.yml');
 
         $loader->load(sprintf('config_%s.yml', $env));
 

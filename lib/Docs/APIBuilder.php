@@ -17,19 +17,19 @@ class APIBuilder
     private $processFactory;
 
     /** @var string */
-    private $projectsPath;
+    private $projectsDir;
 
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     public function __construct(
         ProcessFactory $processFactory,
-        string $projectsPath,
-        string $sourcePath
+        string $projectsDir,
+        string $sourceDir
     ) {
         $this->processFactory = $processFactory;
-        $this->projectsPath   = $projectsPath;
-        $this->sourcePath     = $sourcePath;
+        $this->projectsDir    = $projectsDir;
+        $this->sourceDir      = $sourceDir;
     }
 
     public function buildAPIDocs(
@@ -49,9 +49,9 @@ return new Sami\Sami('%s', [
 ]);
 CONFIG;
 
-        $codeDir  = $this->projectsPath . '/' . $project->getRepositoryName() . $project->getCodePath();
-        $buildDir = $this->sourcePath . '/api/' . $project->getSlug() . '/' . $version->getSlug();
-        $cacheDir = $this->projectsPath . '/' . $project->getRepositoryName() . '/cache';
+        $codeDir  = $this->projectsDir . '/' . $project->getRepositoryName() . $project->getCodePath();
+        $buildDir = $this->sourceDir . '/api/' . $project->getSlug() . '/' . $version->getSlug();
+        $cacheDir = $this->projectsDir . '/' . $project->getRepositoryName() . '/cache';
 
         $renderedConfigContent = sprintf(
             $configContent,
@@ -59,12 +59,12 @@ CONFIG;
             $buildDir,
             $cacheDir,
             'doctrine/' . $project->getRepositoryName(),
-            $this->projectsPath . '/' . $project->getRepositoryName(),
+            $this->projectsDir . '/' . $project->getRepositoryName(),
             $version->getBranchName()
         );
 
-        $configPath   = $this->projectsPath . '/' . $project->getRepositoryName() . '/sami.php';
-        $samiPharPath = $this->sourcePath . '/../sami.phar';
+        $configPath   = $this->projectsDir . '/' . $project->getRepositoryName() . '/sami.php';
+        $samiPharPath = $this->sourceDir . '/../sami.phar';
 
         $this->filePutContents($configPath, $renderedConfigContent);
 

@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Doctrine\Website;
 
-use Doctrine\Website\Builder\SourceFileBuilder;
-use Doctrine\Website\Builder\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use RuntimeException;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Throwable;
 use function chdir;
 use function file_exists;
 use function file_put_contents;
@@ -47,21 +46,21 @@ class WebsiteBuilder
     /** @var SourceFileRepository */
     private $sourceFileRepository;
 
-    /** @var SourceFileBuilder */
-    private $sourceFileBuilder;
+    /** @var SourceFilesBuilder */
+    private $sourceFilesBuilder;
 
     public function __construct(
         ProcessFactory $processFactory,
         ProjectRepository $projectRepository,
         Filesystem $filesystem,
         SourceFileRepository $sourceFileRepository,
-        SourceFileBuilder $sourceFileBuilder
+        SourceFilesBuilder $sourceFilesBuilder
     ) {
         $this->processFactory       = $processFactory;
         $this->projectRepository    = $projectRepository;
         $this->filesystem           = $filesystem;
         $this->sourceFileRepository = $sourceFileRepository;
-        $this->sourceFileBuilder    = $sourceFileBuilder;
+        $this->sourceFilesBuilder   = $sourceFilesBuilder;
     }
 
     public function build(
@@ -115,17 +114,9 @@ class WebsiteBuilder
         // cleanup the build directory
         $this->filesystem->remove(glob($buildDir . '/*'));
 
-        foreach ($this->sourceFileRepository->getFiles($buildDir) as $file) {
-            try {
-                $this->sourceFileBuilder->buildFile($file, $buildDir);
-            } catch (Throwable $e) {
-                throw new RuntimeException(sprintf(
-                    'Failed building file "%s" with error "%s',
-                    $file->getWritePath(),
-                    $e->getMessage() . "\n\n" . $e->getTraceAsString()
-                ));
-            }
-        }
+        $this->sourceFilesBuilder->buildSourceFiles(
+            $this->sourceFileRepository->getSourceFiles($buildDir)
+        );
     }
 
     private function createProjectVersionAliases(string $buildDir) : void

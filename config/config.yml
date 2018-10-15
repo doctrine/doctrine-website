@@ -2,10 +2,10 @@ parameters:
     doctrine.website.algolia.app_id: 'YVYTFT9XMW'
     doctrine.website.algolia.admin_api_key: '1234'
 
-    doctrine.website.projects_path: '%doctrine.website.root_dir%/projects'
-    doctrine.website.docs_path: '%doctrine.website.root_dir%/docs'
-    doctrine.website.source_path: '%doctrine.website.root_dir%/source'
-    doctrine.website.templates_path: '%doctrine.website.root_dir%/templates'
+    doctrine.website.projects_dir: '%doctrine.website.root_dir%/projects'
+    doctrine.website.docs_dir: '%doctrine.website.root_dir%/docs'
+    doctrine.website.source_dir: '%doctrine.website.root_dir%/source'
+    doctrine.website.templates_dir: '%doctrine.website.root_dir%/templates'
 
     doctrine.website.title: Doctrine
     doctrine.website.subtitle: PHP Database Tools

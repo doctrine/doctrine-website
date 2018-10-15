@@ -28,10 +28,10 @@ class RSTBuilder
     private $filesystem;
 
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     /** @var string */
-    private $docsPath;
+    private $docsDir;
 
     public function __construct(
         RSTFileRepository $rstFileRepository,
@@ -39,16 +39,16 @@ class RSTBuilder
         Builder $builder,
         RSTPostBuildProcessor $rstPostBuildProcessor,
         Filesystem $filesystem,
-        string $sourcePath,
-        string $docsPath
+        string $sourceDir,
+        string $docsDir
     ) {
         $this->rstFileRepository     = $rstFileRepository;
         $this->rstCopier             = $rstCopier;
         $this->builder               = $builder;
         $this->rstPostBuildProcessor = $rstPostBuildProcessor;
         $this->filesystem            = $filesystem;
-        $this->sourcePath            = $sourcePath;
-        $this->docsPath              = $docsPath;
+        $this->sourceDir             = $sourceDir;
+        $this->docsDir               = $docsDir;
     }
 
     /**
@@ -56,7 +56,7 @@ class RSTBuilder
      */
     public function buildRSTDocs(Project $project, ProjectVersion $version, RSTLanguage $language) : array
     {
-        // copy the docs from the project to a central location in $docsPath
+        // copy the docs from the project to a central location in $docsDir
         $this->rstCopier->copyRst($project, $version);
 
         // build the rst and prepare html for ./bin/console build-website
@@ -70,7 +70,7 @@ class RSTBuilder
 
     private function buildRst(Project $project, ProjectVersion $version, RSTLanguage $language) : void
     {
-        $outputPath = $project->getProjectVersionDocsOutputPath($this->sourcePath, $version, $language->getCode());
+        $outputPath = $project->getProjectVersionDocsOutputPath($this->sourceDir, $version, $language->getCode());
 
         // clear the files in the output path first
         $this->filesystem->remove($this->rstFileRepository->findFiles($outputPath));
@@ -78,10 +78,10 @@ class RSTBuilder
         // we have to get a fresh builder due to how the RST parser works
         $this->builder = $this->builder->recreate();
 
-        // build the docs from the files in $docsPath and write them to $outputPath
-        // which is contained inside the $sourcePath
+        // build the docs from the files in $docsDir and write them to $outputPath
+        // which is contained inside the $sourceDir
         $this->builder->build(
-            $project->getProjectVersionDocsPath($this->docsPath, $version, $language->getCode()),
+            $project->getProjectVersionDocsPath($this->docsDir, $version, $language->getCode()),
             $outputPath,
             false
         );

@@ -11,7 +11,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use function array_filter;
+use function assert;
 use function glob;
+use function is_string;
 use function sprintf;
 
 class ClearBuildCacheCommand extends Command
@@ -54,6 +56,7 @@ class ClearBuildCacheCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $buildDir = $input->getArgument('build-dir');
+        assert(is_string($buildDir));
 
         // clear build directory
         $remove = [$buildDir];

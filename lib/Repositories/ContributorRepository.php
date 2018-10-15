@@ -9,6 +9,11 @@ use Doctrine\Website\Model\Contributor;
 
 class ContributorRepository extends BasicObjectRepository
 {
+    public function findOneByGithub(string $github) : Contributor
+    {
+        return $this->findOneBy(['github' => $github]);
+    }
+
     /**
      * @return Contributor[]
      */

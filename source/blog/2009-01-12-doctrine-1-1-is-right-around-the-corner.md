@@ -1,8 +1,5 @@
 ---
 title: "Doctrine 1.1 is right around the corner"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class AssetIntegrityGeneratorTest extends TestCase
 {
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     /** @var AssetIntegrityGenerator */
     private $assetIntegrityGenerator;
@@ -24,8 +24,8 @@ class AssetIntegrityGeneratorTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->sourcePath = __DIR__ . '/../source';
+        $this->sourceDir = __DIR__ . '/../source';
 
-        $this->assetIntegrityGenerator = new AssetIntegrityGenerator($this->sourcePath);
+        $this->assetIntegrityGenerator = new AssetIntegrityGenerator($this->sourceDir);
     }
 }

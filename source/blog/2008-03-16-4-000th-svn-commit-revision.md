@@ -1,8 +1,5 @@
 ---
 title: "4,000th svn commit/revision"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

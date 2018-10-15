@@ -7,7 +7,6 @@ namespace Doctrine\Website\Commands;
 use Doctrine\Website\Deployer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class DeployCommand extends Command
@@ -26,13 +25,7 @@ class DeployCommand extends Command
     {
         $this
             ->setName('deploy')
-            ->setDescription('Deploy the Doctrine website.')
-            ->addOption(
-                'env',
-                'e',
-                InputOption::VALUE_REQUIRED,
-                'The environment.'
-            );
+            ->setDescription('Deploy the Doctrine website.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
