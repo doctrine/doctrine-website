@@ -12,15 +12,15 @@
             {% if contributor.teamMember %}
                 <ul class="list-inline">
                     {% if contributor.teamMember.twitter %}
-                        <li class="list-inline-item" target="_blank"><a href="https://twitter.com/{{ contributor.teamMember.twitter }}/" target="_blank"><i class="fab fa-twitter mr-2"></i></a></li>
+                        <li class="list-inline-item"><a href="https://twitter.com/{{ contributor.teamMember.twitter }}/" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter mr-2"></i></a></li>
                     {% endif %}
 
                     {% if contributor.teamMember.website %}
-                        <li class="list-inline-item" target="_blank"><a href="{{ contributor.teamMember.website }}" target="_blank"><i class="fas fa-link mr-2"></i></a></li>
+                        <li class="list-inline-item"><a href="{{ contributor.teamMember.website }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-link mr-2"></i></a></li>
                     {% endif %}
 
                     {% if contributor.teamMember.github %}
-                        <li class="list-inline-item" target="_blank"><a href="https://github.com/{{ contributor.teamMember.github }}/" target="_blank"><i class="fab fa-github mr-2"></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/{{ contributor.teamMember.github }}/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i></a></li>
                     {% endif %}
                 </ul>
             {% endif %}
