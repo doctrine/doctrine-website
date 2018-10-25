@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Twig;
 
-use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Twig_Extension;
@@ -34,14 +33,8 @@ class ProjectExtension extends Twig_Extension
     {
         return [
             new Twig_SimpleFunction('get_menu_projects', [$this->projectRepository, 'findPrimaryProjects']),
-            new Twig_SimpleFunction('get_project', [$this, 'getProject']),
             new Twig_SimpleFunction('get_url_version', [$this, 'getUrlVersion']),
         ];
-    }
-
-    public function getProject(string $docsSlug) : Project
-    {
-        return $this->projectRepository->findOneByDocsSlug($docsSlug);
     }
 
     public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion) : ?string

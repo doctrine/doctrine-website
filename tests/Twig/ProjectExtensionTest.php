@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Twig;
 
-use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Tests\TestCase;
@@ -30,18 +29,6 @@ class ProjectExtensionTest extends TestCase
             ])
             ->setMethods(['fileExists'])
             ->getMock();
-    }
-
-    public function testGetProject() : void
-    {
-        $project = new Project([]);
-
-        $this->projectRepository->expects(self::once())
-            ->method('findOneByDocsSlug')
-            ->with('orm')
-            ->willReturn($project);
-
-        self::assertSame($project, $this->projectExtension->getProject('orm'));
     }
 
     public function testGetUrlVersion() : void

@@ -121,9 +121,9 @@ parameters:
         project:
             path: /projects/{slug}.html
             controller: Doctrine\Website\Controllers\ProjectController::view
+            provider: Doctrine\Website\Requests\ProjectRequests::getProjects
             defaults:
                 menuSlug: projects
-                layout: project
 
         project_docs_section:
             path: /projects/{docsSlug}/{language}/{docsVersion}/{section}.html
