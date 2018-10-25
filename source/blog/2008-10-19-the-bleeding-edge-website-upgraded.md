@@ -1,8 +1,5 @@
 ---
 title: "The Bleeding Edge: Website Upgraded"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

@@ -1,8 +1,5 @@
 ---
 title: "DoctrineModule 1.0.0 we have a stable release"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Gianluca Arbezzano
 authorEmail: gianarb92@gmail.com
 categories: []

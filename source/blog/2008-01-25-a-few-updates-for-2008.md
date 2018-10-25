@@ -1,8 +1,5 @@
 ---
 title: "A few updates for 2008"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

@@ -1,8 +1,5 @@
 ---
 title: "What to expect from Doctrine 1"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

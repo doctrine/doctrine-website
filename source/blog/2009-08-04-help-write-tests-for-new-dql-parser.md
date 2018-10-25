@@ -1,8 +1,5 @@
 ---
 title: "Help write tests for new DQL Parser"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: guilhermeblanco
 authorEmail:
 categories: []

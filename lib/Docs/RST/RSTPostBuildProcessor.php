@@ -17,18 +17,9 @@ class RSTPostBuildProcessor
 {
     public const PARAMETERS_TEMPLATE = <<<TEMPLATE
 ---
-layout: "documentation"
-indexed: true
 title: "%s"
-menuSlug: "projects"
-docsSlug: "%s"
-docsPage: true
 docsIndex: %s
-docsVersion: "%s"
-sourceFile: "%s"
-lanuage: "%s"
-permalink: "none"
-controller: ['Doctrine\Website\Controllers\DocumentationController', 'view']
+docsSourcePath: "%s"
 ---
 %s
 TEMPLATE;
@@ -40,22 +31,22 @@ TEMPLATE;
     private $filesystem;
 
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     public function __construct(
         RSTFileRepository $rstFileRepository,
         Filesystem $filesystem,
-        string $sourcePath
+        string $sourceDir
     ) {
         $this->rstFileRepository = $rstFileRepository;
         $this->filesystem        = $filesystem;
-        $this->sourcePath        = $sourcePath;
+        $this->sourceDir         = $sourceDir;
     }
 
     public function postRstBuild(Project $project, ProjectVersion $version, RSTLanguage $language) : void
     {
         $projectVersionDocsOutputPath = $project->getProjectVersionDocsOutputPath(
-            $this->sourcePath,
+            $this->sourceDir,
             $version,
             $language->getCode()
         );
@@ -110,11 +101,11 @@ TEMPLATE;
         string $contents
     ) : string {
         // parse out the source file that generated this file
-        preg_match('/<p>{{ SOURCE_FILE:(.*) }}<\/p>/', $contents, $match);
+        preg_match('/<p>{{ DOCS_SOURCE_PATH:(.*) }}<\/p>/', $contents, $match);
 
-        $sourceFile = $match[1];
+        $docsSourcePath = $match[1];
 
-        // get rid of the special SOURCE_FILE: syntax in the contents
+        // get rid of the special DOCS_SOURCE_PATH: syntax in the contents
         $contents = str_replace($match[0], '', $contents);
 
         $title = $this->extractTitle($contents);
@@ -124,11 +115,8 @@ TEMPLATE;
         return sprintf(
             self::PARAMETERS_TEMPLATE,
             $title,
-            $project->getDocsSlug(),
             strpos($file, 'index.html') !== false ? 'true' : 'false',
-            $version->getSlug(),
-            $sourceFile,
-            $language->getCode(),
+            $docsSourcePath,
             $contents
         );
     }

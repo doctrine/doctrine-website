@@ -1,8 +1,5 @@
 ---
 title: "Doctrine at LatinoWare 2008"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: guilhermeblanco
 authorEmail:
 categories: []

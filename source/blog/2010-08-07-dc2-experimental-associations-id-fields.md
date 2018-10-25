@@ -1,8 +1,5 @@
 ---
 title: "Experimental Doctrine 2 Feature: Associated Entities as Id Fields"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: []

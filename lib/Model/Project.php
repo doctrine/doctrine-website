@@ -273,19 +273,19 @@ class Project implements HydratableInterface, LoadMetadataInterface
         })[0] ?? ($this->versions[0] ?? null);
     }
 
-    public function getProjectDocsRepositoryPath(string $projectsPath) : string
+    public function getProjectDocsRepositoryPath(string $projectsDir) : string
     {
-        return $projectsPath . '/' . $this->getDocsRepositoryName();
+        return $projectsDir . '/' . $this->getDocsRepositoryName();
     }
 
-    public function getProjectRepositoryPath(string $projectsPath) : string
+    public function getProjectRepositoryPath(string $projectsDir) : string
     {
-        return $projectsPath . '/' . $this->getRepositoryName();
+        return $projectsDir . '/' . $this->getRepositoryName();
     }
 
-    public function getAbsoluteDocsPath(string $projectsPath) : string
+    public function getAbsoluteDocsPath(string $projectsDir) : string
     {
-        return $this->getProjectDocsRepositoryPath($projectsPath) . $this->getDocsPath();
+        return $this->getProjectDocsRepositoryPath($projectsDir) . $this->getDocsPath();
     }
 
     public function getProjectVersionDocsPath(string $docsPath, ProjectVersion $version, string $language) : string

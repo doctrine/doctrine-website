@@ -1,8 +1,5 @@
 ---
 title: "MongoDB ODM: Mixing Types of Documents"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

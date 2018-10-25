@@ -1,0 +1,142 @@
+parameters:
+    doctrine.website.routes:
+        homepage:
+            path: /index.html
+            controller: Doctrine\Website\Controllers\HomepageController::index
+            defaults:
+                title: Home
+                menuSlug: home
+
+        atom:
+            path: /atom.xml
+            controller: Doctrine\Website\Controllers\AtomController::index
+
+        robots:
+            path: /robots.txt
+
+        sitemap:
+            path: /sitemap.xml
+            controller: Doctrine\Website\Controllers\SitemapController::index
+
+        rst_examples:
+            path: /rst-examples.html
+            defaults:
+                title: RST Example
+
+        blog:
+            path: /blog/index.html
+            controller: Doctrine\Website\Controllers\BlogController::index
+            defaults:
+                title: Blog
+                menuSlug: blog
+
+        blog_archive:
+            path: /blog/archive.html
+            controller: Doctrine\Website\Controllers\BlogController::archive
+            defaults:
+                title: Blog Archive
+                menuSlug: blog
+
+        blog_post:
+            path: /{year}/{month}/{day}/{slug}.html
+            controller: Doctrine\Website\Controllers\BlogController::view
+            defaults:
+                menuSlug: blog
+                layout: blog-post
+
+        community:
+            path: /community/index.html
+            defaults:
+                title: Community
+                menuSlug: community
+
+        team_maintainers:
+            path: /team/maintainers.html
+            controller: Doctrine\Website\Controllers\TeamController::maintainers
+            defaults:
+                title: Doctrine Maintaiers
+                menuSlug: team
+
+        team_contributors:
+            path: /team/contributors.html
+            controller: Doctrine\Website\Controllers\TeamController::contributors
+            defaults:
+                title: Doctrine Contributors
+                menuSlug: team
+
+        team_contributor:
+            path: /team/{github}.html
+            controller: Doctrine\Website\Controllers\TeamController::contributor
+            provider: Doctrine\Website\Requests\ContributorRequests::getContributors
+
+        contribute:
+            path: /contribute/index.html
+            defaults:
+                title: Contribute
+                menuSlug: development
+
+        contribute_maintainer:
+            path: /contribute/maintainer/index.html
+            defaults:
+                title: Contribute to Website
+                menuSlug: development
+
+        contribute_website:
+            path: /contribute/website/index.html
+            defaults:
+                title: Contribute to Website
+                menuSlug: development
+
+        policies:
+            path: /policies.html
+            defaults:
+                title: Policies
+                menuSlug: development
+
+        policies_deprecation:
+            path: /policies/deprecation.html
+            defaults:
+                title: Deprecation Policy
+                menuSlug: development
+
+        policies_releases:
+            path: /policies/releases.html
+            defaults:
+                title: Release Policy
+                menuSlug: development
+
+        policies_security:
+            path: /policies/security.html
+            defaults:
+                title: Security Policy
+                menuSlug: development
+
+        projects:
+            path: /projects.html
+            controller: Doctrine\Website\Controllers\ProjectController::index
+            defaults:
+                title: Projects
+                menuSlug: projects
+
+        project:
+            path: /projects/{slug}.html
+            controller: Doctrine\Website\Controllers\ProjectController::view
+            defaults:
+                menuSlug: projects
+                layout: project
+
+        project_docs_section:
+            path: /projects/{docsSlug}/{language}/{docsVersion}/{section}.html
+            controller: Doctrine\Website\Controllers\DocumentationController::view
+            defaults:
+                layout: documentation
+                indexed: true
+                menuSlug: projects
+                docsPage: true
+            requirements:
+                section: .+
+
+        project_api_docs_page:
+            path: /api/{slug}}/{docsVersion}/{page}.html
+            requirements:
+                section: .+

@@ -1,8 +1,5 @@
 ---
 title: "Doctrine Data Fixtures 1.0.1"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Sebastien Lavoie
 authorEmail:
 categories: []

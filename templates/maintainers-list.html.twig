@@ -4,8 +4,8 @@
             <img src="{{ contributor.avatarUrl }}" class="rounded float-left mr-5" style="width: 50px;" />
 
             <strong>
-                <a href="https://github.com/{{ contributor.github }}/" target="_blank">
-                    {{ contributor.teamMember.name ?? member.github }}
+                <a href="{{ path('team_contributor', {github:contributor.github}) }}">
+                    {{ contributor.teamMember.name ?? contributor.github }}
 
                     {% if contributor.teamMember.name %}
                         <small>({{ contributor.teamMember.github }})</small>

@@ -1,8 +1,5 @@
 ---
 title: "Maintenance Releases 2.0.2 DBAL and ORM"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: [release]

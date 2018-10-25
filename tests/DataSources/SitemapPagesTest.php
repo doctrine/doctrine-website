@@ -4,36 +4,46 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\DataSources;
 
-use Doctrine\Website\DataSource\Sorter;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFile;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileParameters;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\DataSources\SitemapPages;
 use Doctrine\Website\Tests\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use function date;
-use function usort;
 
 class SitemapPagesTest extends TestCase
 {
+    /** @var SourceFileRepository|MockObject */
+    private $sourceFileRepository;
+
     /** @var SitemapPages */
     private $sitemapPages;
 
     public function testGetSourceRows() : void
     {
+        $this->sourceFileRepository->expects(self::once())
+            ->method('getSourceFiles')
+            ->willReturn(new SourceFiles([
+                new SourceFile('/index.html', '', new SourceFileParameters(['url' => '/'])),
+                new SourceFile('/api/inflector.html', '', new SourceFileParameters(['url' => '/api/inflector.html'])),
+            ]));
+
         $sitemapPageRows = $this->sitemapPages->getSourceRows();
 
-        usort($sitemapPageRows, new Sorter(['url' => 'asc']));
-
-        self::assertCount(5, $sitemapPageRows);
+        self::assertCount(2, $sitemapPageRows);
 
         self::assertSame(date('Y-m-d'), $sitemapPageRows[0]['date']->format('Y-m-d'));
 
         self::assertSame('/', $sitemapPageRows[0]['url']);
         self::assertSame('/api/inflector.html', $sitemapPageRows[1]['url']);
-        self::assertSame('/api/orm.html', $sitemapPageRows[2]['url']);
-        self::assertSame('/projects/doctrine-inflector.html', $sitemapPageRows[3]['url']);
-        self::assertSame('/projects/doctrine-orm.html', $sitemapPageRows[4]['url']);
     }
 
     protected function setUp() : void
     {
-        $this->sitemapPages = new SitemapPages(__DIR__ . '/../source');
+        $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
+
+        $this->sitemapPages = new SitemapPages($this->sourceFileRepository);
     }
 }

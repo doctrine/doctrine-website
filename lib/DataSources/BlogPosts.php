@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataSources;
 
-use Doctrine\Website\Builder\SourceFileRepository;
-use Doctrine\Website\DataSource\DataSource;
-use function array_reverse;
+use Doctrine\SkeletonMapper\DataSource\DataSource;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
 
 class BlogPosts implements DataSource
 {
-    /** @var SourceFileRepository */
-    private $sourceFileRepository;
+    /** @var SourceFileFilesystemReader */
+    private $sourceFileFilesystemReader;
 
-    public function __construct(SourceFileRepository $sourceFileRepository)
+    public function __construct(SourceFileFilesystemReader $sourceFileFilesystemReader)
     {
-        $this->sourceFileRepository = $sourceFileRepository;
+        $this->sourceFileFilesystemReader = $sourceFileFilesystemReader;
     }
 
     /**
@@ -23,15 +22,15 @@ class BlogPosts implements DataSource
      */
     public function getSourceRows() : array
     {
-        $sourceFiles = $this->sourceFileRepository->getFiles('', 'source/blog');
-
-        $reversedSourceFiles = array_reverse($sourceFiles);
+        $sourceFiles = $this->sourceFileFilesystemReader
+            ->getSourceFiles()->in('/blog/');
 
         $blogPostRows = [];
 
-        foreach ($reversedSourceFiles as $sourceFile) {
+        foreach ($sourceFiles as $sourceFile) {
             $blogPostRows[] = [
                 'url' => $sourceFile->getParameter('url'),
+                'slug' => $sourceFile->getParameter('slug'),
                 'title' => $sourceFile->getParameter('title'),
                 'authorName' => (string) $sourceFile->getParameter('authorName'),
                 'authorEmail' => (string) $sourceFile->getParameter('authorEmail'),

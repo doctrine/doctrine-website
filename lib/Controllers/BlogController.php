@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\Website\Builder\SourceFile;
-use Doctrine\Website\Controller\ControllerResult;
+use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Repositories\BlogPostRepository;
 
 class BlogController
@@ -18,24 +17,24 @@ class BlogController
         $this->blogPostRepository = $blogPostRepository;
     }
 
-    public function index(SourceFile $sourceFile) : ControllerResult
+    public function index() : Response
     {
-        return new ControllerResult([
+        return new Response([
             'blogPosts' => $this->blogPostRepository->findPaginated(),
         ]);
     }
 
-    public function archive(SourceFile $sourceFile) : ControllerResult
+    public function archive() : Response
     {
-        return new ControllerResult([
+        return new Response([
             'blogPosts' => $this->blogPostRepository->findAll(),
         ]);
     }
 
-    public function view(SourceFile $sourceFile) : ControllerResult
+    public function view(string $slug) : Response
     {
-        return new ControllerResult([
-            'blogPost' => $this->blogPostRepository->find($sourceFile->getParameter('url')),
+        return new Response([
+            'blogPost' => $this->blogPostRepository->find($slug),
         ]);
     }
 }

@@ -26,13 +26,13 @@ class MainExtension extends Twig_Extension
     private $assetIntegrityGenerator;
 
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
-    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourcePath)
+    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourceDir)
     {
         $this->parsedown               = $parsedown;
         $this->assetIntegrityGenerator = $assetIntegrityGenerator;
-        $this->sourcePath              = $sourcePath;
+        $this->sourceDir               = $sourceDir;
     }
 
     /**
@@ -81,7 +81,7 @@ class MainExtension extends Twig_Extension
 
     private function getAssetCacheBuster(string $path) : string
     {
-        $assetPath = realpath($this->sourcePath . $path);
+        $assetPath = realpath($this->sourceDir . $path);
         assert(is_string($assetPath));
 
         $contents = file_get_contents($assetPath);

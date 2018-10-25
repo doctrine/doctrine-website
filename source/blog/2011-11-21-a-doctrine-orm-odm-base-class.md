@@ -1,8 +1,5 @@
 ---
 title: "An ORM/ODM Base Class"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Benjamin Eberlei
 authorEmail:
 categories: []

@@ -16,6 +16,9 @@ class BlogPost implements HydratableInterface, LoadMetadataInterface
     private $url;
 
     /** @var string */
+    private $slug;
+
+    /** @var string */
     private $title;
 
     /** @var string */
@@ -32,6 +35,7 @@ class BlogPost implements HydratableInterface, LoadMetadataInterface
 
     public function __construct(
         string $url,
+        string $slug,
         string $title,
         string $authorName,
         string $authorEmail,
@@ -39,6 +43,7 @@ class BlogPost implements HydratableInterface, LoadMetadataInterface
         DateTimeImmutable $date
     ) {
         $this->url         = $url;
+        $this->slug        = $slug;
         $this->title       = $title;
         $this->authorName  = $authorName;
         $this->authorEmail = $authorEmail;
@@ -48,7 +53,7 @@ class BlogPost implements HydratableInterface, LoadMetadataInterface
 
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
-        $metadata->setIdentifier(['url']);
+        $metadata->setIdentifier(['slug']);
     }
 
     /**
@@ -57,6 +62,7 @@ class BlogPost implements HydratableInterface, LoadMetadataInterface
     public function hydrate(array $project, ObjectManagerInterface $objectManager) : void
     {
         $this->url         = (string) $project['url'] ?? '';
+        $this->slug        = (string) $project['slug'] ?? '';
         $this->title       = (string) $project['title'] ?? '';
         $this->authorName  = (string) $project['authorName'] ?? '';
         $this->authorEmail = (string) $project['authorEmail'] ?? '';
@@ -67,6 +73,11 @@ class BlogPost implements HydratableInterface, LoadMetadataInterface
     public function getUrl() : string
     {
         return $this->url;
+    }
+
+    public function getSlug() : string
+    {
+        return $this->slug;
     }
 
     public function getTitle() : string

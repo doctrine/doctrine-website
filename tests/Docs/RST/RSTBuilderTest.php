@@ -35,10 +35,10 @@ class RSTBuilderTest extends TestCase
     private $filesystem;
 
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     /** @var string */
-    private $docsPath;
+    private $docsDir;
 
     /** @var RSTBuilder */
     private $rstBuilder;
@@ -50,8 +50,8 @@ class RSTBuilderTest extends TestCase
         $this->builder               = $this->createMock(Builder::class);
         $this->rstPostBuildProcessor = $this->createMock(RSTPostBuildProcessor::class);
         $this->filesystem            = $this->createMock(Filesystem::class);
-        $this->sourcePath            = '/source';
-        $this->docsPath              = '/docs';
+        $this->sourceDir             = '/source';
+        $this->docsDir               = '/docs';
 
         $this->rstBuilder = new RSTBuilder(
             $this->rstFileRepository,
@@ -59,8 +59,8 @@ class RSTBuilderTest extends TestCase
             $this->builder,
             $this->rstPostBuildProcessor,
             $this->filesystem,
-            $this->sourcePath,
-            $this->docsPath
+            $this->sourceDir,
+            $this->docsDir
         );
     }
 

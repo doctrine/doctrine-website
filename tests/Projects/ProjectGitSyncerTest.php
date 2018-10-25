@@ -18,7 +18,7 @@ class ProjectGitSyncerTest extends TestCase
     private $processFactory;
 
     /** @var string */
-    private $projectsPath;
+    private $projectsDir;
 
     /** @var ProjectGitSyncer */
     private $projectGitSyncer;
@@ -26,11 +26,11 @@ class ProjectGitSyncerTest extends TestCase
     protected function setUp() : void
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
-        $this->projectsPath   = __DIR__;
+        $this->projectsDir    = __DIR__;
 
         $this->projectGitSyncer = new ProjectGitSyncer(
             $this->processFactory,
-            $this->projectsPath
+            $this->projectsDir
         );
     }
 
@@ -43,7 +43,7 @@ class ProjectGitSyncerTest extends TestCase
             ->with(sprintf(
                 'git clone https://github.com/doctrine/%s.git %s/%s',
                 $repositoryName,
-                $this->projectsPath,
+                $this->projectsDir,
                 $repositoryName
             ));
 
@@ -63,14 +63,14 @@ class ProjectGitSyncerTest extends TestCase
             ->method('run')
             ->with(sprintf(
                 'cd %s/example-project && git clean -xdf && git fetch origin',
-                $this->projectsPath
+                $this->projectsDir
             ));
 
         $this->processFactory->expects(self::at(1))
             ->method('run')
             ->with(sprintf(
                 'cd %s/example-project-docs && git clean -xdf && git fetch origin',
-                $this->projectsPath
+                $this->projectsDir
             ));
 
         $this->projectGitSyncer->sync($project);
@@ -87,14 +87,14 @@ class ProjectGitSyncerTest extends TestCase
             ->method('run')
             ->with(sprintf(
                 'cd %s/example-project && git clean -xdf && git checkout origin/master',
-                $this->projectsPath
+                $this->projectsDir
             ));
 
         $this->processFactory->expects(self::at(1))
             ->method('run')
             ->with(sprintf(
                 'cd %s/example-project-docs && git clean -xdf && git checkout origin/master',
-                $this->projectsPath
+                $this->projectsDir
             ));
 
         $this->projectGitSyncer->checkoutMaster($project);
@@ -113,14 +113,14 @@ class ProjectGitSyncerTest extends TestCase
             ->method('run')
             ->with(sprintf(
                 'cd %s/example-project && git clean -xdf && git checkout origin/1.0',
-                $this->projectsPath
+                $this->projectsDir
             ));
 
         $this->processFactory->expects(self::at(1))
             ->method('run')
             ->with(sprintf(
                 'cd %s/example-project-docs && git clean -xdf && git checkout origin/1.0',
-                $this->projectsPath
+                $this->projectsDir
             ));
 
         $this->projectGitSyncer->checkoutProjectVersion($project, $projectVersion);

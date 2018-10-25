@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\Website\Builder\SourceFile;
-use Doctrine\Website\Controller\ControllerResult;
+use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Repositories\ProjectRepository;
 
 class DocumentationController
@@ -18,13 +17,13 @@ class DocumentationController
         $this->projectRepository = $projectRepository;
     }
 
-    public function view(SourceFile $sourceFile) : ControllerResult
+    public function view(string $docsSlug, string $docsVersion) : Response
     {
-        $project = $this->projectRepository->findOneByDocsSlug($sourceFile->getParameter('docsSlug'));
+        $project = $this->projectRepository->findOneByDocsSlug($docsSlug);
 
-        return new ControllerResult([
+        return new Response([
             'project' => $project,
-            'projectVersion' => $project->getVersion($sourceFile->getParameter('docsVersion')),
+            'projectVersion' => $project->getVersion($docsVersion),
         ]);
     }
 }
