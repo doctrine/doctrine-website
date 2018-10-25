@@ -128,7 +128,7 @@ class ProjectDataReader
 
     private function detectDocsPath(string $repositoryName) : ?string
     {
-        return $this->detectPath($repositoryName, ['/docs', '/Resources/doc', '/source'], null);
+        return $this->detectPath($repositoryName, ['/docs', '/doc', '/Resources/doc', '/source'], null);
     }
 
     private function detectCodePath(string $repositoryName) : ?string
