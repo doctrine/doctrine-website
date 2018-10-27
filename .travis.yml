@@ -25,6 +25,7 @@ jobs:
       install:
         - rm composer.lock
         - travis_retry composer update --prefer-dist --prefer-lowest
+        - travis_retry yarn install
       script:
         - ./vendor/bin/phpunit
 
