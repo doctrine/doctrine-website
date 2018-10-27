@@ -10,3 +10,5 @@
 /.phpcs-cache
 /build-*
 /projects
+/node_modules
+.webpack-build
