@@ -1,79 +1,77 @@
 var Search = function(projectSlug, versionSlug, searchBoxSettings) {
-    var searchParameters = {
-        tagFilters: [],
-        hitsPerPage: 5
-    };
+  var searchParameters = {
+    tagFilters: [],
+    hitsPerPage: 5
+  };
 
-    if (projectSlug) {
-        searchParameters.tagFilters.push(projectSlug);
+  if (projectSlug) {
+    searchParameters.tagFilters.push(projectSlug);
+  }
+
+  if (versionSlug) {
+    searchParameters.tagFilters.push(versionSlug);
+  }
+
+  var search = instantsearch({
+    appId: 'YVYTFT9XMW',
+    apiKey: 'a6dada5f33f148586b92cc3afefeaaf6',
+    indexName: 'pages',
+    autofocus: false,
+    poweredBy: false,
+    reset: false,
+    searchParameters: searchParameters,
+    searchFunction: function(helper) {
+      if (helper.state.query === '') {
+        $('.search-results').hide();
+        $('.container-wrapper').css('opacity', '1');
+
+        return;
+      }
+
+      helper.search();
+
+      $('.container-wrapper').css('opacity', '.25');
+      $('.search-results').show();
     }
+  });
 
-    if (versionSlug) {
-        searchParameters.tagFilters.push(versionSlug);
+  search.addWidget(instantsearch.widgets.searchBox(searchBoxSettings));
+
+  search.addWidget(
+    instantsearch.widgets.hits({
+      container: '#hits',
+      templates: {
+        empty: 'No results',
+        item: $('#instantsearch-template').html()
+      }
+    })
+  );
+
+  search.start();
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  $('#search-box input').on('blur', function() {
+    setTimeout(function() {
+      $('.container-wrapper').css('opacity', '1');
+      $('.search-results').hide();
+    }, 200);
+  });
+
+  $(function() {
+    var q = getParameterByName('q', window.location.href);
+
+    if (q) {
+      $('#search-box input').val(q);
+      search.helper.setQuery(q).search();
     }
-
-    var search = instantsearch({
-        appId: 'YVYTFT9XMW',
-        apiKey: 'a6dada5f33f148586b92cc3afefeaaf6',
-        indexName: 'pages',
-        autofocus: false,
-        poweredBy: false,
-        reset: false,
-        searchParameters: searchParameters,
-        searchFunction: function(helper) {
-            if (helper.state.query === "") {
-                $('.search-results').hide();
-                $('.container-wrapper').css('opacity', '1');
-
-                return;
-            }
-
-            helper.search();
-
-            $('.container-wrapper').css('opacity', '.25');
-            $('.search-results').show();
-        }
-    });
-
-    search.addWidget(
-        instantsearch.widgets.searchBox(searchBoxSettings)
-    );
-
-    search.addWidget(
-        instantsearch.widgets.hits({
-            container: '#hits',
-            templates: {
-                empty: 'No results',
-                item: $('#instantsearch-template').html()
-            }
-        })
-    );
-
-    search.start();
-
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    };
-
-    $('#search-box input').on('blur', function() {
-        setTimeout(function() {
-            $('.container-wrapper').css('opacity', '1');
-            $('.search-results').hide();
-        }, 200);
-    });
-
-    $(function() {
-        var q = getParameterByName('q', window.location.href);
-
-        if (q) {
-            $('#search-box input').val(q);
-            search.helper.setQuery(q).search();
-        }
-    });
+  });
 };

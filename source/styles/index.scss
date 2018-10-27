@@ -12,7 +12,12 @@ body > .container {
   margin-top: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 1rem;
 }
 
@@ -53,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-  background: linear-gradient(-90deg, #2C374C, #1F2E4B);
+  background: linear-gradient(-90deg, #2c374c, #1f2e4b);
   color: white;
   padding: 0 10px 0 10px;
 }
@@ -84,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar-sticky .toc-section .toc-header {
   padding: 8px;
   font-size: 20px;
-  background-color: #1F2E4B;
+  background-color: #1f2e4b;
   margin-bottom: 0;
   color: #fff;
 }
@@ -129,12 +134,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar-sticky .toc ul ul li a {
   padding: 2px;
-  color: #FA6A3C;
+  color: #fa6a3c;
 }
 
 .sidebar-sticky .toc ul ul li.opened a {
   background: none;
-  color: #FA6A3C;
+  color: #fa6a3c;
 }
 
 /** 3rd Level */
@@ -164,7 +169,7 @@ button.copy-to-clipboard {
 pre {
   background-color: #232323;
   color: white;
-  padding: .5em;
+  padding: 0.5em;
   margin-bottom: 1rem;
 }
 
@@ -189,14 +194,14 @@ div.console {
 div.console:before {
   background-color: #777;
   border-radius: 50%;
-  box-shadow: 0 0 0 2px #777,1.5em 0 0 2px #777,3em 0 0 2px #777;
-  content: "";
+  box-shadow: 0 0 0 2px #777, 1.5em 0 0 2px #777, 3em 0 0 2px #777;
+  content: '';
   display: block;
-  height: .5em;
+  height: 0.5em;
   left: 1em;
   position: absolute;
   top: -1.25em;
-  width: .5em;
+  width: 0.5em;
 }
 
 div.console span.noselect {
@@ -269,7 +274,7 @@ em {
 }
 
 .bg-doctrine-orange {
-  background-color: #FA6A3C;
+  background-color: #fa6a3c;
 }
 
 .bg-doctrine-light-blue {
@@ -277,7 +282,7 @@ em {
 }
 
 .bg-doctrine-dark-blue {
-  background-color: #1F2E4B;
+  background-color: #1f2e4b;
 }
 
 .footer {
@@ -296,7 +301,7 @@ em {
 
 .section-header a i {
   margin-left: 5px;
-  color: #FA6A3C;
+  color: #fa6a3c;
   opacity: 0.7;
   font-size: 50%;
   vertical-align: middle;
@@ -310,112 +315,98 @@ em {
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #1F2E4B;
+  background-color: #1f2e4b;
   color: white;
   cursor: pointer;
   padding: 15px;
   border-radius: 10px;
   font-size: 18px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, .5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 #back-to-top:hover {
   background-color: #555;
 }
 
-div.configuration-block ul.simple
-{
+div.configuration-block ul.simple {
   margin: 0;
   padding: 0;
 }
 
-div.configuration-block ul.simple li
-{
+div.configuration-block ul.simple li {
   margin: 0 !important;
   margin-right: 5px !important;
   display: inline;
   margin-left: 10px;
 }
 
-div.configuration-block em
-{
+div.configuration-block em {
   margin-bottom: 10px;
 }
 
-div.configuration-block li
-{
+div.configuration-block li {
   padding: 5px;
 }
 
-div.configuration-block em
-{
+div.configuration-block em {
   font-style: normal;
   font-size: 90%;
 }
 
-div.jsactive
-{
+div.jsactive {
   position: relative;
 }
 
-div.jsactive ul
-{
+div.jsactive ul {
   list-style: none;
 }
 
-div.jsactive li
-{
+div.jsactive li {
   float: left;
   list-style: none;
   margin-left: 0;
-  -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   background-color: #ddd;
   margin-right: 5px;
 }
 
-div.jsactive .selected
-{
+div.jsactive .selected {
   background-color: #000;
 }
 
-div.jsactive .selected a
-{
+div.jsactive .selected a {
   color: #fff;
   text-decoration: none;
 }
 
-div.jsactive .selected a:hover
-{
+div.jsactive .selected a:hover {
   color: #fff;
   text-decoration: underline;
 }
 
-div.jsactive a
-{
+div.jsactive a {
   color: #000;
   text-decoration: none;
 }
 
-div.jsactive a:hover
-{
+div.jsactive a:hover {
   color: #000;
   text-decoration: underline;
 }
 
-div.jsactive div
-{
+div.jsactive div {
   position: absolute;
   top: 30px;
   left: 0;
 }
 
-div.jsactive div div
-{
+div.jsactive div div {
   position: static;
 }
 
-div.jsactive pre
-{
+div.jsactive pre {
   margin: 0;
 }
 
@@ -429,7 +420,7 @@ div.jsactive pre
   border-radius: 3px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
   text-decoration: none;
   background-color: #002b36;
   color: white;
@@ -520,9 +511,9 @@ div.jsactive pre
 @media screen and (max-width: 768px) {
   .row-offcanvas {
     position: relative;
-    -webkit-transition: all .25s ease-out;
-    -o-transition: all .25s ease-out;
-    transition: all .25s ease-out;
+    -webkit-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
   }
 
   .row-offcanvas-right {
@@ -533,23 +524,19 @@ div.jsactive pre
     left: 0;
   }
 
-  .row-offcanvas-right
-  .sidebar-offcanvas {
+  .row-offcanvas-right .sidebar-offcanvas {
     right: -100%; /* 12 columns */
   }
 
-  .row-offcanvas-right.active
-  .sidebar-offcanvas {
+  .row-offcanvas-right.active .sidebar-offcanvas {
     right: -80%; /* 6 columns */
   }
 
-  .row-offcanvas-left
-  .sidebar-offcanvas {
+  .row-offcanvas-left .sidebar-offcanvas {
     left: -100%; /* 12 columns */
   }
 
-  .row-offcanvas-left.active
-  .sidebar-offcanvas {
+  .row-offcanvas-left.active .sidebar-offcanvas {
     left: -80%; /* 6 columns */
   }
 
