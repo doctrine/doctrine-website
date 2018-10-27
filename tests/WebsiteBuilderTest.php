@@ -30,6 +30,9 @@ class WebsiteBuilderTest extends TestCase
     /** @var SourceFileBuilder|MockObject */
     private $sourceFileBuilder;
 
+    /** @var string */
+    private $webpackBuildPath;
+
     /** @var WebsiteBuilder|MockObject */
     private $websiteBuilder;
 
@@ -40,6 +43,7 @@ class WebsiteBuilderTest extends TestCase
         $this->filesystem           = $this->createMock(Filesystem::class);
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
         $this->sourceFileBuilder    = $this->createMock(SourceFileBuilder::class);
+        $this->webpackBuildPath     = __DIR__ . '/../.webpack-build';
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
             ->setConstructorArgs([
@@ -48,6 +52,7 @@ class WebsiteBuilderTest extends TestCase
                 $this->filesystem,
                 $this->sourceFileRepository,
                 $this->sourceFileBuilder,
+                $this->webpackBuildPath,
             ])
             ->setMethods(['filePutContents'])
             ->getMock();
@@ -64,7 +69,7 @@ class WebsiteBuilderTest extends TestCase
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && git pull origin master');
 
-        $this->filesystem->expects(self::once())
+        $this->filesystem->expects(self::exactly(2))
             ->method('remove');
 
         $this->websiteBuilder->expects(self::once())
@@ -75,6 +80,13 @@ class WebsiteBuilderTest extends TestCase
             );
 
         $this->processFactory->expects(self::at(1))
+            ->method('run')
+            ->with('cd /data/doctrine-website-build-staging && npm run build');
+
+        $this->filesystem->expects(self::once())
+            ->method('mirror');
+
+        $this->processFactory->expects(self::at(2))
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master');
 

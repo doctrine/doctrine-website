@@ -21,6 +21,9 @@ class MainExtensionTest extends TestCase
     /** @var string */
     private $sourcePath;
 
+    /** @var string */
+    private $webpackBuildPath;
+
     /** @var MainExtension */
     private $mainExtension;
 
@@ -29,11 +32,13 @@ class MainExtensionTest extends TestCase
         $this->parsedown               = $this->createMock(Parsedown::class);
         $this->assetIntegrityGenerator = $this->createMock(AssetIntegrityGenerator::class);
         $this->sourcePath              = __DIR__ . '/../../source';
+        $this->webpackBuildPath        = __DIR__ . '/../../.webpack-build';
 
         $this->mainExtension = new MainExtension(
             $this->parsedown,
             $this->assetIntegrityGenerator,
-            $this->sourcePath
+            $this->sourcePath,
+            $this->webpackBuildPath
         );
     }
 

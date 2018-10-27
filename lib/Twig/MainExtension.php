@@ -28,11 +28,15 @@ class MainExtension extends Twig_Extension
     /** @var string */
     private $sourcePath;
 
-    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourcePath)
+    /** @var string */
+    private $webpackBuildPath;
+
+    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourcePath, string $webpackBuildPath)
     {
         $this->parsedown               = $parsedown;
         $this->assetIntegrityGenerator = $assetIntegrityGenerator;
         $this->sourcePath              = $sourcePath;
+        $this->webpackBuildPath        = $webpackBuildPath;
     }
 
     /**
@@ -43,7 +47,9 @@ class MainExtension extends Twig_Extension
         return [
             new Twig_SimpleFunction('get_search_box_placeholder', [$this, 'getSearchBoxPlaceholder']),
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
+            new Twig_SimpleFunction('get_webpack_asset_url', [$this, 'getWebpackAssetUrl']),
             new Twig_SimpleFunction('get_asset_integrity', [$this->assetIntegrityGenerator, 'getAssetIntegrity']),
+            new Twig_SimpleFunction('get_webpack_asset_integrity', [$this->assetIntegrityGenerator, 'getWebpackAssetIntegrity']),
         ];
     }
 
@@ -74,14 +80,19 @@ class MainExtension extends Twig_Extension
         return 'Search';
     }
 
-    public function getAssetUrl(string $path, string $siteUrl) : string
+    public function getAssetUrl(string $path, string $siteUrl, string $rootPath = null) : string
     {
-        return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path);
+        return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path, $rootPath ?? $this->sourcePath);
     }
 
-    private function getAssetCacheBuster(string $path) : string
+    public function getWebpackAssetUrl(string $path, string $siteUrl) : string
     {
-        $assetPath = realpath($this->sourcePath . $path);
+        return $this->getAssetUrl($path, $siteUrl, $this->webpackBuildPath);
+    }
+
+    private function getAssetCacheBuster(string $path, string $rootPath) : string
+    {
+        $assetPath = realpath($rootPath . '/' . $path);
         assert(is_string($assetPath));
 
         $contents = file_get_contents($assetPath);

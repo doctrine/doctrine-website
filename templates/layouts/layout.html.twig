@@ -39,8 +39,10 @@
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{ get_asset_url('/css/style.css', site.url) }}"
-            integrity="{{ get_asset_integrity('/css/style.css') }}"
+            href="{{ get_webpack_asset_url('/css/index.css', site.url) }}"
+            {% if site.env == 'prod' %}
+            integrity="{{ get_webpack_asset_integrity('/css/index.css') }}"
+            {% endif %}
             crossorigin="anonymous"
         />
 
@@ -57,14 +59,6 @@
             type="text/css"
             href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"
             integrity="sha384-VzUGdSDk+HLoSg+ptudZxGZyaFVN7q7Eqh7QaUU19cWL2fK0kyz1belH38z7MbcZ"
-            crossorigin="anonymous"
-        />
-
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="{{ get_asset_url('/css/railscasts.css', site.url) }}"
-            integrity="sha384-K7nnw0wrUNTkBLTS8aN3AOx/e095lEJ1g60EJX7ash3cfsHTpQV6kWKoCPxPc9AJ"
             crossorigin="anonymous"
         />
 

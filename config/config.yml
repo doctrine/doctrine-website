@@ -5,6 +5,7 @@ parameters:
     doctrine.website.projects_path: '%doctrine.website.root_dir%/projects'
     doctrine.website.docs_path: '%doctrine.website.root_dir%/docs'
     doctrine.website.source_path: '%doctrine.website.root_dir%/source'
+    doctrine.website.webpack_build_path: '%doctrine.website.root_dir%/.webpack-build'
     doctrine.website.templates_path: '%doctrine.website.root_dir%/templates'
 
     doctrine.website.title: Doctrine

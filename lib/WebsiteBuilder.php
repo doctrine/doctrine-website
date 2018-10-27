@@ -50,18 +50,23 @@ class WebsiteBuilder
     /** @var SourceFileBuilder */
     private $sourceFileBuilder;
 
+    /** @var string */
+    private $webpackBuildPath;
+
     public function __construct(
         ProcessFactory $processFactory,
         ProjectRepository $projectRepository,
         Filesystem $filesystem,
         SourceFileRepository $sourceFileRepository,
-        SourceFileBuilder $sourceFileBuilder
+        SourceFileBuilder $sourceFileBuilder,
+        string $webpackBuildPath
     ) {
-        $this->processFactory       = $processFactory;
-        $this->projectRepository    = $projectRepository;
-        $this->filesystem           = $filesystem;
-        $this->sourceFileRepository = $sourceFileRepository;
-        $this->sourceFileBuilder    = $sourceFileBuilder;
+        $this->processFactory           = $processFactory;
+        $this->projectRepository        = $projectRepository;
+        $this->filesystem               = $filesystem;
+        $this->sourceFileRepository     = $sourceFileRepository;
+        $this->sourceFileBuilder        = $sourceFileBuilder;
+        $this->webpackBuildPath   = $webpackBuildPath;
     }
 
     public function build(
@@ -76,6 +81,7 @@ class WebsiteBuilder
             $buildDir
         ));
 
+        $isPublishableEnv = in_array($env, self::PUBLISHABLE_ENVS, true);
         if ($publish) {
             $output->writeln(' - updating from git');
 
@@ -84,10 +90,10 @@ class WebsiteBuilder
 
         $output->writeln(' - building website');
 
-        $this->buildWebsite($buildDir);
+        $this->buildWebsite($buildDir, $isPublishableEnv);
 
         // put the CNAME file back for publishable envs
-        if (in_array($env, self::PUBLISHABLE_ENVS, true)) {
+        if ($isPublishableEnv) {
             $this->filePutContents($buildDir . '/CNAME', self::PUBLISHABLE_ENV_URLS[$env]);
         }
 
@@ -110,10 +116,13 @@ class WebsiteBuilder
     /**
      * @throws RuntimeException
      */
-    private function buildWebsite(string $buildDir) : void
+    private function buildWebsite(string $buildDir, bool $isPublishableEnv) : void
     {
         // cleanup the build directory
         $this->filesystem->remove(glob($buildDir . '/*'));
+
+        // Move webpack assets into build directory
+        $this->buildWebpackAssets($buildDir, $isPublishableEnv);
 
         foreach ($this->sourceFileRepository->getFiles($buildDir) as $file) {
             try {
@@ -126,6 +135,24 @@ class WebsiteBuilder
                 ));
             }
         }
+    }
+
+    private function buildWebpackAssets(string $buildDir, bool $isPublishableEnv) : void
+    {
+        $this->filesystem->remove(glob($this->webpackBuildPath . '/*'));
+        $this->processFactory->run(sprintf('cd %s && npm run %s',
+            $buildDir, $isPublishableEnv ? 'build' : 'dev'));
+
+        // Copy built assets if this is a publishable build
+        if ($isPublishableEnv) {
+            $this->filesystem->mirror($this->webpackBuildPath, $buildDir);
+            return;
+        }
+
+        // Symlink files to allow files to auto update using webpack --watch
+        $this->filesystem->mkdir($buildDir);
+        $this->filesystem->symlink($this->webpackBuildPath . '/css', $buildDir . '/css', true);
+        $this->filesystem->symlink($this->webpackBuildPath . '/js', $buildDir . '/js', true);
     }
 
     private function createProjectVersionAliases(string $buildDir) : void
