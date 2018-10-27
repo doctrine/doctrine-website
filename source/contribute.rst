@@ -1,7 +1,4 @@
 ---
-layout: default
-title: Contribute
-menuSlug: development
 permalink: /contribute/index.html
 ---
 

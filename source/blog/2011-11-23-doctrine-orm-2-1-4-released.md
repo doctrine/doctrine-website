@@ -1,8 +1,5 @@
 ---
 title: "Doctrine ORM 2.1.4 released"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Benjamin Eberlei
 authorEmail:
 categories: [release]

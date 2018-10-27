@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Doctrine\Website\RST;
 
 use Doctrine\RST\Builder;
+use Doctrine\RST\Configuration;
 use Doctrine\RST\Directive;
 use Doctrine\RST\Document;
-use Doctrine\RST\Factory;
+use Doctrine\RST\Environment as BaseEnvironment;
 use Doctrine\RST\HTML\Kernel as HtmlKernel;
 use Doctrine\RST\Kernel as BaseKernel;
+use Doctrine\RST\NodeFactory;
 use Doctrine\RST\Reference;
 use function array_merge;
 
@@ -19,7 +21,7 @@ class Kernel extends BaseKernel
     private $baseKernel;
 
     /** @var Directive[] */
-    private $directives;
+    protected $directives;
 
     /**
      * @param Directive[] $directives
@@ -29,7 +31,7 @@ class Kernel extends BaseKernel
         $this->baseKernel = $baseKernel;
         $this->directives = $directives;
 
-        parent::__construct($directives);
+        parent::__construct(null, $directives);
     }
 
     public function getName() : string
@@ -40,19 +42,19 @@ class Kernel extends BaseKernel
     /**
      * @return Directive[]
      */
-    public function getDirectives() : array
+    public function createDirectives() : array
     {
-        return array_merge($this->baseKernel->getDirectives(), $this->directives);
+        return array_merge($this->baseKernel->createDirectives(), $this->directives);
+    }
+
+    public function createEnvironment(?Configuration $configuration = null) : BaseEnvironment
+    {
+        return $this->baseKernel->createEnvironment($configuration);
     }
 
     public function getFileExtension() : string
     {
         return $this->baseKernel->getFileExtension();
-    }
-
-    public function getFactory() : Factory
-    {
-        return $this->baseKernel->getFactory();
     }
 
     /**
@@ -71,5 +73,10 @@ class Kernel extends BaseKernel
     public function initBuilder(Builder $builder) : void
     {
         $this->baseKernel->initBuilder($builder);
+    }
+
+    protected function createNodeFactory() : NodeFactory
+    {
+        return $this->baseKernel->createNodeFactory();
     }
 }

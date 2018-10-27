@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\DataSources;
 
 use DateTimeImmutable;
-use Doctrine\Website\Builder\SourceFile;
-use Doctrine\Website\Builder\SourceFileParameters;
-use Doctrine\Website\Builder\SourceFileRepository;
-use Doctrine\Website\DataSource\Sorter;
+use Doctrine\SkeletonMapper\DataSource\Sorter;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFile;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileParameters;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\DataSources\BlogPosts;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -16,8 +17,8 @@ use function usort;
 
 class BlogPostsTest extends TestCase
 {
-    /** @var SourceFileRepository|MockObject */
-    private $sourceFileRepository;
+    /** @var SourceFileFilesystemReader|MockObject */
+    private $sourceFileFilesystemReader;
 
     /** @var BlogPosts */
     private $blogPosts;
@@ -25,37 +26,34 @@ class BlogPostsTest extends TestCase
     public function testGetSourceRows() : void
     {
         $sourceFile1 = new SourceFile(
-            'md',
-            '/tmp/test1.html',
-            '/tmp/test1.html',
+            '/tmp/blog/test1.html',
             'test1',
             new SourceFileParameters([
                 'url' => '/2018/09/02/test1.html',
                 'title' => 'Test Blog Post',
                 'authorName' => 'Jonathan H. Wage',
                 'authorEmail' => 'jonwage@gmail.com',
+                'slug' => 'test1',
             ])
         );
 
         $sourceFile2 = new SourceFile(
-            'md',
-            '/tmp/test.html',
-            '/tmp/test.html',
+            '/tmp/blog/test2.html',
             'test2',
             new SourceFileParameters([
                 'url' => '/2018/09/01/test2.html',
                 'title' => 'Test Blog Post',
                 'authorName' => 'Jonathan H. Wage',
                 'authorEmail' => 'jonwage@gmail.com',
+                'slug' => 'test2',
             ])
         );
 
-        $files = [$sourceFile1, $sourceFile2];
+        $sourceFiles = [$sourceFile1, $sourceFile2];
 
-        $this->sourceFileRepository->expects(self::once())
-            ->method('getFiles')
-            ->with('', 'source/blog')
-            ->willReturn($files);
+        $this->sourceFileFilesystemReader->expects(self::once())
+            ->method('getSourceFiles')
+            ->willReturn(new SourceFiles($sourceFiles));
 
         $blogPostRows = $this->blogPosts->getSourceRows();
 
@@ -69,6 +67,7 @@ class BlogPostsTest extends TestCase
                 'authorEmail' => 'jonwage@gmail.com',
                 'contents' => 'test1',
                 'date' => new DateTimeImmutable('2018-09-02'),
+                'slug' => 'test1',
             ],
             [
                 'url' => '/2018/09/01/test2.html',
@@ -77,6 +76,7 @@ class BlogPostsTest extends TestCase
                 'authorEmail' => 'jonwage@gmail.com',
                 'contents' => 'test2',
                 'date' => new DateTimeImmutable('2018-09-01'),
+                'slug' => 'test2',
             ],
 
         ];
@@ -86,10 +86,10 @@ class BlogPostsTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
+        $this->sourceFileFilesystemReader = $this->createMock(SourceFileFilesystemReader::class);
 
         $this->blogPosts = new BlogPosts(
-            $this->sourceFileRepository
+            $this->sourceFileFilesystemReader
         );
     }
 }

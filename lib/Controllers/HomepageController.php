@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\Website\Builder\SourceFile;
-use Doctrine\Website\Controller\ControllerResult;
+use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Repositories\BlogPostRepository;
 use Doctrine\Website\Repositories\DoctrineUserRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
@@ -31,13 +30,13 @@ class HomepageController
         $this->doctrineUserRepository = $doctrineUserRepository;
     }
 
-    public function index(SourceFile $sourceFile) : ControllerResult
+    public function index() : Response
     {
         $blogPosts       = $this->blogPostRepository->findPaginated(1, 10);
         $primaryProjects = $this->projectRepository->findPrimaryProjects();
         $doctrineUsers   = $this->doctrineUserRepository->findAll();
 
-        return new ControllerResult([
+        return new Response([
             'blogPosts' => $blogPosts,
             'primaryProjects' => $primaryProjects,
             'doctrineUsers' => $doctrineUsers,

@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Doctrine\Website;
 
-use Doctrine\Website\Builder\SourceFileBuilder;
-use Doctrine\Website\Builder\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use RuntimeException;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Throwable;
 use function chdir;
 use function file_exists;
 use function file_put_contents;
@@ -47,26 +46,26 @@ class WebsiteBuilder
     /** @var SourceFileRepository */
     private $sourceFileRepository;
 
-    /** @var SourceFileBuilder */
-    private $sourceFileBuilder;
+    /** @var SourceFilesBuilder */
+    private $sourceFilesBuilder;
 
     /** @var string */
-    private $webpackBuildPath;
+    private $webpackBuildDir;
 
     public function __construct(
         ProcessFactory $processFactory,
         ProjectRepository $projectRepository,
         Filesystem $filesystem,
         SourceFileRepository $sourceFileRepository,
-        SourceFileBuilder $sourceFileBuilder,
-        string $webpackBuildPath
+        SourceFilesBuilder $sourceFilesBuilder,
+        string $webpackBuildDir
     ) {
-        $this->processFactory           = $processFactory;
-        $this->projectRepository        = $projectRepository;
-        $this->filesystem               = $filesystem;
-        $this->sourceFileRepository     = $sourceFileRepository;
-        $this->sourceFileBuilder        = $sourceFileBuilder;
-        $this->webpackBuildPath   = $webpackBuildPath;
+        $this->processFactory       = $processFactory;
+        $this->projectRepository    = $projectRepository;
+        $this->filesystem           = $filesystem;
+        $this->sourceFileRepository = $sourceFileRepository;
+        $this->sourceFilesBuilder   = $sourceFilesBuilder;
+        $this->webpackBuildDir   = $webpackBuildDir;
     }
 
     public function build(
@@ -124,35 +123,27 @@ class WebsiteBuilder
         // Move webpack assets into build directory
         $this->buildWebpackAssets($buildDir, $isPublishableEnv);
 
-        foreach ($this->sourceFileRepository->getFiles($buildDir) as $file) {
-            try {
-                $this->sourceFileBuilder->buildFile($file, $buildDir);
-            } catch (Throwable $e) {
-                throw new RuntimeException(sprintf(
-                    'Failed building file "%s" with error "%s',
-                    $file->getWritePath(),
-                    $e->getMessage() . "\n\n" . $e->getTraceAsString()
-                ));
-            }
-        }
+        $this->sourceFilesBuilder->buildSourceFiles(
+            $this->sourceFileRepository->getSourceFiles($buildDir)
+        );
     }
 
     private function buildWebpackAssets(string $buildDir, bool $isPublishableEnv) : void
     {
-        $this->filesystem->remove(glob($this->webpackBuildPath . '/*'));
+        $this->filesystem->remove(glob($this->webpackBuildDir . '/*'));
         $this->processFactory->run(sprintf('cd %s && npm run %s',
             $buildDir, $isPublishableEnv ? 'build' : 'dev'));
 
         // Copy built assets if this is a publishable build
         if ($isPublishableEnv) {
-            $this->filesystem->mirror($this->webpackBuildPath, $buildDir);
+            $this->filesystem->mirror($this->webpackBuildDir, $buildDir);
             return;
         }
 
         // Symlink files to allow files to auto update using webpack --watch
         $this->filesystem->mkdir($buildDir);
-        $this->filesystem->symlink($this->webpackBuildPath . '/css', $buildDir . '/css', true);
-        $this->filesystem->symlink($this->webpackBuildPath . '/js', $buildDir . '/js', true);
+        $this->filesystem->symlink($this->webpackBuildDir . '/css', $buildDir . '/css', true);
+        $this->filesystem->symlink($this->webpackBuildDir . '/js', $buildDir . '/js', true);
     }
 
     private function createProjectVersionAliases(string $buildDir) : void

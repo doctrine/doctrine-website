@@ -13,24 +13,24 @@ use function realpath;
 class AssetIntegrityGenerator
 {
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     /** @var string */
-    private $webpackBuildPath;
+    private $webpackBuildDir;
 
     /** @var string[] */
     private $cache = [];
 
-    public function __construct(string $sourcePath, string $webpackBuildPath)
+    public function __construct(string $sourceDir, string $webpackBuildDir)
     {
-        $this->sourcePath       = $sourcePath;
-        $this->webpackBuildPath = $webpackBuildPath;
+        $this->sourceDir = $sourceDir;
+        $this->webpackBuildDir = $webpackBuildDir;
     }
 
     public function getAssetIntegrity(string $path, string $rootPath = null) : string
     {
         if (! isset($this->cache[$path])) {
-            $contents = $this->getFileContents($path, $rootPath ?? $this->sourcePath);
+            $contents = $this->getFileContents($path, $rootPath ?? $this->sourceDir);
 
             $this->cache[$path] = $this->buildAssetIntegrityString($contents);
         }
@@ -40,7 +40,7 @@ class AssetIntegrityGenerator
 
     public function getWebpackAssetIntegrity(string $path) : string
     {
-        return $this->getAssetIntegrity($path, $this->webpackBuildPath);
+        return $this->getAssetIntegrity($path, $this->webpackBuildDir);
     }
 
     private function getFileContents(string $path, string $rootPath) : string

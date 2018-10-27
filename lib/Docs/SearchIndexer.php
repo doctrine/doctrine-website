@@ -102,7 +102,7 @@ class SearchIndexer
         foreach ($nodes as $node) {
             $value = (string) $node->getValue();
 
-            if (strpos($value, '{{ SOURCE_FILE') !== false) {
+            if (strpos($value, '{{ DOCS_SOURCE_PATH') !== false) {
                 continue;
             }
 

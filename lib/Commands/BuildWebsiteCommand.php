@@ -11,9 +11,12 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use function assert;
 use function in_array;
 use function ini_set;
+use function is_bool;
 use function is_dir;
+use function is_string;
 use function mkdir;
 use function realpath;
 use function sprintf;
@@ -57,12 +60,6 @@ class BuildWebsiteCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Publish the build to GitHub Pages.'
-            )
-            ->addOption(
-                'env',
-                'e',
-                InputOption::VALUE_REQUIRED,
-                'The environment.'
             );
     }
 
@@ -70,13 +67,15 @@ class BuildWebsiteCommand extends Command
     {
         ini_set('memory_limit', '1024M');
 
-        $publish = (bool) $input->getOption('publish');
+        $publish = $input->getOption('publish');
+        assert(is_bool($publish));
 
         if ($publish && ! in_array($this->env, WebsiteBuilder::PUBLISHABLE_ENVS, true)) {
             throw new InvalidArgumentException(sprintf('You cannot publish the "%s" environment.', $this->env));
         }
 
         $buildDir = $input->getArgument('build-dir');
+        assert(is_string($buildDir));
 
         if (! is_dir($buildDir)) {
             mkdir($buildDir, 0777, true);

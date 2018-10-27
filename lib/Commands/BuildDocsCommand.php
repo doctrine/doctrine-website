@@ -9,6 +9,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use function assert;
+use function is_bool;
+use function is_string;
 
 class BuildDocsCommand extends Command
 {
@@ -31,13 +34,15 @@ class BuildDocsCommand extends Command
                 'project',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'The project to build the docs for.'
+                'The project to build the docs for.',
+                ''
             )
             ->addOption(
                 'v',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'The project version to build the docs for.'
+                'The project version to build the docs for.',
+                ''
             )
             ->addOption(
                 'api',
@@ -56,22 +61,25 @@ class BuildDocsCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Sync git repositories before building.'
-            )
-            ->addOption(
-                'env',
-                'e',
-                InputOption::VALUE_REQUIRED,
-                'The environment.'
             );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $projectToBuild     = (string) $input->getOption('project');
-        $versionToBuild     = (string) $input->getOption('v');
-        $buildApiDocs       = (bool) $input->getOption('api');
-        $buildSearchIndexes = (bool) $input->getOption('search');
-        $syncGit            = (bool) $input->getOption('sync-git');
+        $projectToBuild = $input->getOption('project');
+        assert(is_string($projectToBuild));
+
+        $versionToBuild = $input->getOption('v');
+        assert(is_string($versionToBuild));
+
+        $buildApiDocs = $input->getOption('api');
+        assert(is_bool($buildApiDocs));
+
+        $buildSearchIndexes = $input->getOption('search');
+        assert(is_bool($buildSearchIndexes));
+
+        $syncGit = $input->getOption('sync-git');
+        assert(is_bool($syncGit));
 
         $this->buildDocs->build(
             $output,

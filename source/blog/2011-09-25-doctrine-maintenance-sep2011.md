@@ -1,8 +1,5 @@
 ---
 title: "Maintenance 2.1 Releases for Common, DBAL and ORM and DBAL 2.0.9"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: [release]

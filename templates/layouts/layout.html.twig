@@ -144,55 +144,55 @@
             {% set menuSlug = page.menuSlug is defined and page.menuSlug ? page.menuSlug : '' %}
 
             <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap">
-                <a class="navbar-brand text-hide" href="{{ site.url }}/"><img src="{{ get_asset_url('/images/doctrine-logo.svg', site.url) }}" />{{ site.title }}</a>
+                <a class="navbar-brand text-hide" href="{{ path('homepage') }}"><img src="{{ get_asset_url('/images/doctrine-logo.svg', site.url) }}" />{{ site.title }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown{% if menuSlug == 'projects' %} active{% endif %}">
-                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/projects.html" id="navbarProjectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="{{ path('projects') }}" id="navbarProjectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Projects
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarProjectsDropdown">
                                 {% for project in get_menu_projects() %}
-                                    <a class="dropdown-item notranslate" href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a>
+                                    <a class="dropdown-item notranslate" href="{{ path('project', {slug:project.slug}) }}">{{ project.shortName }}</a>
                                 {% endfor %}
-                                <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ site.url }}/projects.html">View All</a>
+                                <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ path('projects') }}">View All</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown{% if menuSlug == 'development' %} active{% endif %}">
-                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/contribute/" id="navbarDevelopmentDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Development</a>
+                            <a class="nav-link dropdown-toggle" href="{{ path('contribute') }}" id="navbarDevelopmentDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Development</a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarContributeDropdown">
-                                <a class="dropdown-item" href="{{ site.url }}/contribute/">Contributor Workflow</a>
-                                <a class="dropdown-item" href="{{ site.url }}/contribute/maintainer/">Maintainer Workflow</a>
-                                <a class="dropdown-item" href="{{ site.url }}/contribute/website/">Contribute to Website</a>
-                                <a class="dropdown-item" href="{{ site.url }}/policies.html">Policies</a>
+                                <a class="dropdown-item" href="{{ path('contribute') }}">Contributor Workflow</a>
+                                <a class="dropdown-item" href="{{ path('contribute_maintainer') }}">Maintainer Workflow</a>
+                                <a class="dropdown-item" href="{{ path('contribute_website') }}">Contribute to Website</a>
+                                <a class="dropdown-item" href="{{ path('policies') }}">Policies</a>
                                 <a class="dropdown-item" href="https://github.com/doctrine" target="_blank">GitHub</a>
                             </div>
                         </li>
                         <li class="nav-item{% if menuSlug == 'community' %} active{% endif %}">
-                            <a class="nav-link" href="{{ site.url }}/community/">Community</a>
+                            <a class="nav-link" href="{{ path('community') }}">Community</a>
                         </li>
                         <li class="nav-item{% if menuSlug == 'blog' %} active{% endif %}">
-                            <a class="nav-link" href="{{ site.url }}/blog/">Blog</a>
+                            <a class="nav-link" href="{{ path('blog') }}">Blog</a>
                         </li>
                        <li class="nav-item dropdown{% if menuSlug == 'team' %} active{% endif %}">
-                            <a class="nav-link dropdown-toggle" href="{{ site.url }}/team/maintainers.html" id="navbarTeamDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Team</a>
+                            <a class="nav-link dropdown-toggle" href="{{ path('team_maintainers') }}" id="navbarTeamDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Team</a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarTeamDropdown">
-                                <a class="dropdown-item" href="{{ site.url }}/team/maintainers.html">Maintainers</a>
-                                <a class="dropdown-item" href="{{ site.url }}/team/contributors.html">Contributors</a>
+                                <a class="dropdown-item" href="{{ path('team_maintainers') }}">Maintainers</a>
+                                <a class="dropdown-item" href="{{ path('team_contributors') }}">Contributors</a>
                             </div>
                         </li>
                     </ul>
 
                     <div class="layout-edit-button d-inline-block mr-2">
                         {% if page.docsSlug is defined and page.docsSlug and project is defined and projectVersion is defined %}
-                            <a href="https://github.com/doctrine/{{ project.docsRepositoryName }}/edit/{{ projectVersion.branchName }}{{ project.docsPath }}{{ page.sourceFile }}" class="btn btn-light" target="_blank">Edit</a>
+                            <a href="https://github.com/doctrine/{{ project.docsRepositoryName }}/edit/{{ projectVersion.branchName }}{{ project.docsPath }}{{ page.docsSourcePath }}" class="btn btn-light" target="_blank">Edit</a>
                         {% else %}
-                            <a href="https://github.com/doctrine/doctrine-website/edit/master{{ page.sourceFile }}" class="btn btn-light" target="_blank">Edit</a>
+                            <a href="https://github.com/doctrine/doctrine-website/edit/master/source{{ page.sourcePath }}" class="btn btn-light" target="_blank">Edit</a>
                         {% endif %}
                     </div>
 

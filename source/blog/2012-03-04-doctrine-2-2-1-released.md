@@ -1,8 +1,5 @@
 ---
 title: "Doctrine 2.2.1 released"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: [release]

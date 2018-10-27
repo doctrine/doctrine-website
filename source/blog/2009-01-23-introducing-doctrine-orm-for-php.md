@@ -1,8 +1,5 @@
 ---
 title: "Introducing: Doctrine ORM for PHP"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

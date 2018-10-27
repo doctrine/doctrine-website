@@ -1,8 +1,5 @@
 ---
 title: "Want to get trained by Doctrine experts?"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []

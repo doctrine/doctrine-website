@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\Website\Builder\SourceFile;
-use Doctrine\Website\Controller\ControllerResult;
+use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Repositories\SitemapPageRepository;
 
 class SitemapController
@@ -18,8 +17,8 @@ class SitemapController
         $this->sitemapPageRepository = $sitemapPageRepository;
     }
 
-    public function index(SourceFile $sourceFile) : ControllerResult
+    public function index() : Response
     {
-        return new ControllerResult(['pages' => $this->sitemapPageRepository->findAll()]);
+        return new Response(['pages' => $this->sitemapPageRepository->findAll()]);
     }
 }

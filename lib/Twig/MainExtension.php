@@ -26,17 +26,17 @@ class MainExtension extends Twig_Extension
     private $assetIntegrityGenerator;
 
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     /** @var string */
-    private $webpackBuildPath;
+    private $webpackBuildDir;
 
-    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourcePath, string $webpackBuildPath)
+    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourceDir, string $webpackBuildDir)
     {
         $this->parsedown               = $parsedown;
         $this->assetIntegrityGenerator = $assetIntegrityGenerator;
-        $this->sourcePath              = $sourcePath;
-        $this->webpackBuildPath        = $webpackBuildPath;
+        $this->sourceDir              = $sourceDir;
+        $this->webpackBuildDir        = $webpackBuildDir;
     }
 
     /**
@@ -82,12 +82,12 @@ class MainExtension extends Twig_Extension
 
     public function getAssetUrl(string $path, string $siteUrl, string $rootPath = null) : string
     {
-        return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path, $rootPath ?? $this->sourcePath);
+        return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path, $rootPath ?? $this->sourceDir);
     }
 
     public function getWebpackAssetUrl(string $path, string $siteUrl) : string
     {
-        return $this->getAssetUrl($path, $siteUrl, $this->webpackBuildPath);
+        return $this->getAssetUrl($path, $siteUrl, $this->webpackBuildDir);
     }
 
     private function getAssetCacheBuster(string $path, string $rootPath) : string

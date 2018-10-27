@@ -1,7 +1,3 @@
----
-permalink: /robots.txt
----
-
 Sitemap: {{ site.url }}/sitemap.xml
 
 {% if site.env == 'prod' %}

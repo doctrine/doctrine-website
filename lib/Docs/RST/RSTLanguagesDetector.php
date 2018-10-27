@@ -21,11 +21,11 @@ class RSTLanguagesDetector
     public const ENGLISH_LANGUAGE_CODE = 'en';
 
     /** @var string */
-    private $projectsPath;
+    private $projectsDir;
 
-    public function __construct(string $projectsPath)
+    public function __construct(string $projectsDir)
     {
-        $this->projectsPath = $projectsPath;
+        $this->projectsDir = $projectsDir;
     }
 
     /**
@@ -35,11 +35,11 @@ class RSTLanguagesDetector
     {
         $finder = new Finder();
 
-        $docsPath = $project->getAbsoluteDocsPath($this->projectsPath);
+        $docsDir = $project->getAbsoluteDocsPath($this->projectsDir);
 
         $finder
             ->directories()
-            ->in($docsPath);
+            ->in($docsDir);
 
         $files = array_values(array_map(static function (SplFileInfo $file) {
             return $file->getRealPath();
@@ -59,7 +59,7 @@ class RSTLanguagesDetector
                     continue;
                 }
 
-                $languagePath = $project->getAbsoluteDocsPath($this->projectsPath) . '/' . $languageCode;
+                $languagePath = $project->getAbsoluteDocsPath($this->projectsDir) . '/' . $languageCode;
 
                 $languages[] = new RSTLanguage(
                     $languageCode,
@@ -71,7 +71,7 @@ class RSTLanguagesDetector
         }
 
         return [
-            new RSTLanguage(self::ENGLISH_LANGUAGE_CODE, $project->getAbsoluteDocsPath($this->projectsPath)),
+            new RSTLanguage(self::ENGLISH_LANGUAGE_CODE, $project->getAbsoluteDocsPath($this->projectsDir)),
         ];
     }
 }

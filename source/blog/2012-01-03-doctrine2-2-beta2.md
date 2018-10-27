@@ -1,8 +1,5 @@
 ---
 title: "Doctrine 2.2 Beta 2"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Benjamin Eberlei
 authorEmail:
 categories: []

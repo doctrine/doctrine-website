@@ -4,7 +4,9 @@
             <img src="{{ contributor.avatarUrl }}" class="rounded float-left mr-5" style="width: 50px;" />
 
             <strong>
-                <a href="https://github.com/{{ contributor.github }}/" target="_blank">{{ contributor.github }}</a>
+                <a href="{{ path('team_contributor', {github:contributor.github}) }}">
+                    {{ contributor.github }}
+                </a>
             </strong>
 
             {% if contributor.teamMember %}

@@ -1,8 +1,5 @@
 ---
 title: "Our Symfony Bundles move to Doctrine organization"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Benjamin Eberlei
 authorEmail:
 categories: []

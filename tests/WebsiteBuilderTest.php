@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests;
 
-use Doctrine\Website\Builder\SourceFileBuilder;
-use Doctrine\Website\Builder\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\Routing\Router;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
@@ -27,11 +28,11 @@ class WebsiteBuilderTest extends TestCase
     /** @var SourceFileRepository|MockObject */
     private $sourceFileRepository;
 
-    /** @var SourceFileBuilder|MockObject */
-    private $sourceFileBuilder;
+    /** @var SourceFilesBuilder|MockObject */
+    private $sourceFilesBuilder;
 
     /** @var string */
-    private $webpackBuildPath;
+    private $webpackBuildDir;
 
     /** @var WebsiteBuilder|MockObject */
     private $websiteBuilder;
@@ -42,8 +43,8 @@ class WebsiteBuilderTest extends TestCase
         $this->projectRepository    = $this->createMock(ProjectRepository::class);
         $this->filesystem           = $this->createMock(Filesystem::class);
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
-        $this->sourceFileBuilder    = $this->createMock(SourceFileBuilder::class);
-        $this->webpackBuildPath     = __DIR__ . '/../.webpack-build';
+        $this->sourceFilesBuilder   = $this->createMock(SourceFilesBuilder::class);
+        $this->webpackBuildDir     = __DIR__ . '/../.webpack-build';
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
             ->setConstructorArgs([
@@ -51,8 +52,8 @@ class WebsiteBuilderTest extends TestCase
                 $this->projectRepository,
                 $this->filesystem,
                 $this->sourceFileRepository,
-                $this->sourceFileBuilder,
-                $this->webpackBuildPath,
+                $this->sourceFilesBuilder,
+                $this->webpackBuildDir,
             ])
             ->setMethods(['filePutContents'])
             ->getMock();

@@ -7,18 +7,52 @@
         <defaults autowire="true" autoconfigure="true" public="false">
             <bind key="$rootDir">%doctrine.website.root_dir%</bind>
             <bind key="$env">%doctrine.website.env%</bind>
-            <bind key="$projectsPath">%doctrine.website.projects_path%</bind>
-            <bind key="$docsPath">%doctrine.website.docs_path%</bind>
-            <bind key="$sourcePath">%doctrine.website.source_path%</bind>
+            <bind key="$projectsDir">%doctrine.website.projects_dir%</bind>
+            <bind key="$docsDir">%doctrine.website.docs_dir%</bind>
+            <bind key="$sourceDir">%doctrine.website.source_dir%</bind>
             <bind key="$projectsData">%doctrine.website.projects_data%</bind>
-            <bind key="$webpackBuildPath">%doctrine.website.webpack_build_path%</bind>
+            <bind key="$webpackBuildDir">%doctrine.website.webpack_build_dir%</bind>
             <bind key="$teamMembers">%doctrine.website.team_members%</bind>
-            <bind key="$templatesPath">%doctrine.website.templates_path%</bind>
+            <bind key="$templatesDir">%doctrine.website.templates_dir%</bind>
             <bind key="$doctrineUsers">%doctrine.website.doctrine_users%</bind>
             <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
+            <bind key="$routes">%doctrine.website.routes%</bind>
         </defaults>
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />
+
+        <prototype namespace="Doctrine\StaticWebsiteGenerator\" resource="../vendor/doctrine/static-website-generator/lib/*" />
+
+        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\MarkdownConverter">
+            <argument type="service" id="Parsedown" />
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\ReStructuredTextConverter">
+            <argument type="service" id="Doctrine\RST\Parser" />
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileBuilder">
+            <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRenderer" />
+            <argument type="service" id="Symfony\Component\Filesystem\Filesystem" />
+            <argument type="collection">
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\MarkdownConverter" />
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\ReStructuredTextConverter" />
+            </argument>
+            <argument type="collection">
+                <argument>/\/api\//</argument>
+            </argument>
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" autowire="false">
+            <argument>%doctrine.website.templates_dir%</argument>
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Twig\MainExtension" />
+                <argument type="service" id="Doctrine\Website\Twig\ProjectExtension" />
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\Twig\RoutingExtension" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\Twig\TwigRenderer" alias="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" />
 
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
 
@@ -31,6 +65,13 @@
         <service id="Doctrine\RST\Parser">
             <argument></argument>
             <argument type="service" id="Doctrine\Website\RST\Kernel" />
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader" />
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRouteReader" />
+            </argument>
         </service>
 
         <service id="Doctrine\RST\HTML\Kernel" autowire="true" />
@@ -52,11 +93,12 @@
         <service id="Parsedown" class="Parsedown" autowire="true" />
         <service id="Symfony\Component\Console\Application" autowire="true" />
         <service id="Symfony\Component\Filesystem\Filesystem" autowire="true" />
+        <service id="Symfony\Component\HttpKernel\Controller\ArgumentResolver" autowire="true" />
         <service id="Doctrine\Common\Cache\FilesystemCache" autowire="false">
             <argument>%doctrine.website.cache_dir%</argument>
         </service>
 
-        <service id="Doctrine\Website\Controller\ControllerProvider">
+        <service id="Doctrine\StaticWebsiteGenerator\Controller\ControllerProvider">
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Controllers\AtomController" />
                 <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
@@ -68,12 +110,18 @@
             </argument>
         </service>
 
+        <service id="Doctrine\StaticWebsiteGenerator\Request\RequestCollectionProvider">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
+            </argument>
+        </service>
+
         <service id="AlgoliaSearch\Client">
             <argument>%doctrine.website.algolia.app_id%</argument>
             <argument>%doctrine.website.algolia.admin_api_key%</argument>
         </service>
 
-        <service id="Doctrine\Website\Site">
+        <service id="Doctrine\StaticWebsiteGenerator\Site">
             <argument>%doctrine.website.title%</argument>
             <argument>%doctrine.website.subtitle%</argument>
             <argument>%doctrine.website.url%</argument>
@@ -121,7 +169,7 @@
         <service id="Doctrine\Website\Repositories\BlogPostRepository" autowire="false">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
-                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                     <argument type="service" id="Doctrine\Website\DataSources\BlogPosts" />
                     <argument>Doctrine\Website\Model\BlogPost</argument>
@@ -140,7 +188,7 @@
         <service id="Doctrine\Website\Repositories\ContributorRepository" autowire="false">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
-                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                     <argument type="service" id="Doctrine\Website\DataSources\Contributors" />
                     <argument>Doctrine\Website\Model\Contributor</argument>
@@ -159,7 +207,7 @@
         <service id="Doctrine\Website\Repositories\DoctrineUserRepository" autowire="false" public="true">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
-                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                     <argument type="service" id="Doctrine\Website\DataSources\DoctrineUsers" />
                     <argument>Doctrine\Website\Model\DoctrineUser</argument>
@@ -178,7 +226,7 @@
         <service id="Doctrine\Website\Repositories\ProjectRepository" autowire="false" public="true">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
-                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                     <argument type="service" id="Doctrine\Website\DataSources\Projects" />
                     <argument>Doctrine\Website\Model\Project</argument>
@@ -197,7 +245,7 @@
         <service id="Doctrine\Website\Repositories\ProjectContributorRepository" autowire="false" public="true">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
-                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                     <argument type="service" id="Doctrine\Website\DataSources\ProjectContributors" />
                     <argument>Doctrine\Website\Model\ProjectContributor</argument>
@@ -216,7 +264,7 @@
         <service id="Doctrine\Website\Repositories\SitemapPageRepository" autowire="false">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
-                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                     <argument type="service" id="Doctrine\Website\DataSources\SitemapPages" />
                     <argument>Doctrine\Website\Model\SitemapPage</argument>
@@ -235,7 +283,7 @@
         <service id="Doctrine\Website\Repositories\TeamMemberRepository" autowire="false">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
-                <service class="Doctrine\Website\DataSource\DataSourceObjectDataRepository" autowire="false">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                     <argument type="service" id="Doctrine\Website\DataSources\TeamMembers" />
                     <argument>Doctrine\Website\Model\TeamMember</argument>

@@ -1,8 +1,5 @@
 ---
 title: "Doctrine Inflector release 1.1.0"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: Marco Pivetta
 authorEmail: ocramius@gmail.com
 categories: []

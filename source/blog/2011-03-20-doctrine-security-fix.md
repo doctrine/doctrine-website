@@ -1,8 +1,5 @@
 ---
 title: "Security Fix: Upgrade to 1.2.4 and 2.0.3 immediately"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: []

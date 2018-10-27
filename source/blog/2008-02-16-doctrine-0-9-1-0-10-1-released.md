@@ -1,8 +1,5 @@
 ---
 title: "Doctrine 0.9.1 / 0.10.1 Released"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: [release]

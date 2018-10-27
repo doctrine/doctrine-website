@@ -10,10 +10,10 @@ use PHPUnit\Framework\TestCase;
 class AssetIntegrityGeneratorTest extends TestCase
 {
     /** @var string */
-    private $sourcePath;
+    private $sourceDir;
 
     /** @var string */
-    private $webpackBuildPath;
+    private $webpackBuildDir;
 
     /** @var AssetIntegrityGenerator */
     private $assetIntegrityGenerator;
@@ -27,9 +27,9 @@ class AssetIntegrityGeneratorTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->sourcePath = __DIR__ . '/../source';
-        $this->webpackBuildPath = __DIR__ . '/../.webpack-build';
+        $this->sourceDir = __DIR__ . '/../source';
+        $this->webpackBuildDir = __DIR__ . '/../.webpack-build';
 
-        $this->assetIntegrityGenerator = new AssetIntegrityGenerator($this->sourcePath, $this->webpackBuildPath);
+        $this->assetIntegrityGenerator = new AssetIntegrityGenerator($this->sourceDir, $this->webpackBuildDir);
     }
 }

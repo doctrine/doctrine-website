@@ -1,8 +1,5 @@
 ---
 title: "Doctrine 2 \"Behaviours\" in a Nutshell"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: beberlei
 authorEmail:
 categories: []

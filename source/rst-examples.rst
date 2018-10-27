@@ -1,9 +1,3 @@
----
-layout: default
-title: RST Example
-permalink: /rst-examples.html
----
-
 RST Examples
 ============
 

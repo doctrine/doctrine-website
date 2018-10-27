@@ -1,8 +1,5 @@
 ---
 title: "PHP Benchmarking Mythbusters"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: romanb
 authorEmail:
 categories: []

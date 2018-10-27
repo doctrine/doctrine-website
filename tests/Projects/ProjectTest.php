@@ -27,7 +27,7 @@ class ProjectTest extends TestCase
             'composerPackageName' => 'doctrine/test-project',
             'repositoryName' => 'test-project',
             'docsRepositoryName' => 'test-project',
-            'docsPath' => '/docs',
+            'docsDir' => '/docs',
             'codePath' => '/src',
             'hasDocs' => true,
             'description' => 'Test description.',

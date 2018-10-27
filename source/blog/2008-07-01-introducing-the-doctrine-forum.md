@@ -1,8 +1,5 @@
 ---
 title: "Introducing the Doctrine Forum"
-menuSlug: blog
-layout: blog-post
-controller: ['Doctrine\Website\Controllers\BlogController', 'view']
 authorName: jwage
 authorEmail:
 categories: []
