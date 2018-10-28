@@ -98,7 +98,7 @@ is to sort incoming proposals by their category:
 -  **security fixes** are changes to the codebase that correct existing
    behavior in the codebase that may lead to substantial financial or
    personal damage to consumers of the packages due to malicious
-   attack vectors.
+   attack vectors. Read about our `Security Policy <https://www.doctrine-project.org/policies/security.html>`_
 -  **deprecations** are changes to the codebase that do mark existing
    API as "to be removed in future". Read about our `Deprecation Policy <https://www.doctrine-project.org/policies/deprecation.html>`_
 -  **backwards-compatibility breakages** (or **BC breaks** in short)
