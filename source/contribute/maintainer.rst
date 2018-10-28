@@ -100,7 +100,7 @@ is to sort incoming proposals by their category:
    personal damage to consumers of the packages due to malicious
    attack vectors.
 -  **deprecations** are changes to the codebase that do mark existing
-   API as "to be removed in future"
+   API as "to be removed in future". Read about our `Deprecation Policy <https://www.doctrine-project.org/policies/deprecation.html>`_
 -  **backwards-compatibility breakages** (or **BC breaks** in short)
    are modifications to the existing API or implementation that would
    result in downstream users having to correct their software to
