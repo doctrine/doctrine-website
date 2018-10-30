@@ -15,7 +15,7 @@
                 <a class="btn bg-doctrine-dark-blue text-white btn-lg" href="{{ site.url }}/projects.html" role="button">View Projects</a>
 
                 <div class="btn btn-lg tidelift-badge">
-                    <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank"><img src="{{ get_asset_url('/images/tidelift-icon.png', site.url) }}" class="tidelift-icon" /> <span>Get professional support for Doctrine</span></a>
+                    <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank" rel="noopener noreferrer"><img src="{{ get_asset_url('/images/tidelift-icon.png', site.url) }}" class="tidelift-icon" /> <span>Get professional support for Doctrine</span></a>
                 </div>
             </p>
         </div>
@@ -67,7 +67,7 @@
                         <tr>
                             {% for doctrineUser in batch %}
                                 {% if doctrineUser.url is defined %}
-                                    <td><a href="{{ doctrineUser.url }}" target="_blank" class="mr-4">{{ doctrineUser.name }}</a></td>
+                                    <td><a href="{{ doctrineUser.url }}" target="_blank" rel="noopener noreferrer" class="mr-4">{{ doctrineUser.name }}</a></td>
                                 {% else %}
                                     <td><span class="font-italic">{{ doctrineUser|raw }}</span></a></td>
                                 {% endif %}
@@ -106,9 +106,9 @@
             <div class="card">
                 <h5 class="card-header">Get professional support for Doctrine ORM</h5>
                 <div class="card-body">
-                    Available as part of the <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank">Tidelift Subscription</a>. It includes support for Doctrine ORM and many of the other open source packages you depend on. Here’s how it provides the professional assurances you need.
+                    Available as part of the <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank" rel="noopener noreferrer">Tidelift Subscription</a>. It includes support for Doctrine ORM and many of the other open source packages you depend on. Here’s how it provides the professional assurances you need.
 
-                    <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank"><img src="{{ get_asset_url('/images/tidelift-logo.png', site.url) }}" class="w-100" /></a>
+                    <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank" rel="noopener noreferrer"><img src="{{ get_asset_url('/images/tidelift-logo.png', site.url) }}" class="w-100" /></a>
 
                     <ul>
                         <li><strong>Security:</strong> Timely notifications and help addressing vulnerabilities</li>
