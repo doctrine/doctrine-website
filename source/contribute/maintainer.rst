@@ -139,7 +139,7 @@ Branching Model
 In order to maintain all the stability invariants that SemVer imposes,
 it is vital that maintainers know where to merge incoming patches.
 
-Packages in the doctrine organisation should use following branching
+Packages in the Doctrine organisation should use the following branching
 structure:
 
  * ``develop`` - extremely unstable, points at the next planned
