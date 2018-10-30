@@ -167,7 +167,7 @@ corresponding **MAJOR.MINOR.x** branch should be branched off the tag.
 **MAJOR.MINOR.1+** releases must be tagged from the corresponding
 ``MAJOR.MINOR.x`` branch.
 
-This effectively means that a typical doctrine package should have a
+This effectively means that a typical Doctrine package should have a
 git graph like following:
 
 .. code-block:: console
