@@ -23,11 +23,11 @@ class AssetIntegrityGenerator
 
     public function __construct(string $sourceDir, string $webpackBuildDir)
     {
-        $this->sourceDir = $sourceDir;
+        $this->sourceDir       = $sourceDir;
         $this->webpackBuildDir = $webpackBuildDir;
     }
 
-    public function getAssetIntegrity(string $path, string $rootPath = null) : string
+    public function getAssetIntegrity(string $path, ?string $rootPath = null) : string
     {
         if (! isset($this->cache[$path])) {
             $contents = $this->getFileContents($path, $rootPath ?? $this->sourceDir);

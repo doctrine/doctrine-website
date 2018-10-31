@@ -35,8 +35,8 @@ class MainExtension extends Twig_Extension
     {
         $this->parsedown               = $parsedown;
         $this->assetIntegrityGenerator = $assetIntegrityGenerator;
-        $this->sourceDir              = $sourceDir;
-        $this->webpackBuildDir        = $webpackBuildDir;
+        $this->sourceDir               = $sourceDir;
+        $this->webpackBuildDir         = $webpackBuildDir;
     }
 
     /**
@@ -80,7 +80,7 @@ class MainExtension extends Twig_Extension
         return 'Search';
     }
 
-    public function getAssetUrl(string $path, string $siteUrl, string $rootPath = null) : string
+    public function getAssetUrl(string $path, string $siteUrl, ?string $rootPath = null) : string
     {
         return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path, $rootPath ?? $this->sourceDir);
     }

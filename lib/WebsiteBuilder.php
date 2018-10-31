@@ -65,7 +65,7 @@ class WebsiteBuilder
         $this->filesystem           = $filesystem;
         $this->sourceFileRepository = $sourceFileRepository;
         $this->sourceFilesBuilder   = $sourceFilesBuilder;
-        $this->webpackBuildDir   = $webpackBuildDir;
+        $this->webpackBuildDir      = $webpackBuildDir;
     }
 
     public function build(
@@ -131,8 +131,11 @@ class WebsiteBuilder
     private function buildWebpackAssets(string $buildDir, bool $isPublishableEnv) : void
     {
         $this->filesystem->remove(glob($this->webpackBuildDir . '/*'));
-        $this->processFactory->run(sprintf('cd %s && npm run %s',
-            $buildDir, $isPublishableEnv ? 'build' : 'dev'));
+        $this->processFactory->run(sprintf(
+            'cd %s && npm run %s',
+            $buildDir,
+            $isPublishableEnv ? 'build' : 'dev'
+        ));
 
         // Copy built assets if this is a publishable build
         if ($isPublishableEnv) {

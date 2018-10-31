@@ -32,7 +32,7 @@ class MainExtensionTest extends TestCase
         $this->parsedown               = $this->createMock(Parsedown::class);
         $this->assetIntegrityGenerator = $this->createMock(AssetIntegrityGenerator::class);
         $this->sourceDir               = __DIR__ . '/../../source';
-        $this->webpackBuildDir        = __DIR__ . '/../../.webpack-build';
+        $this->webpackBuildDir         = __DIR__ . '/../../.webpack-build';
 
         $this->mainExtension = new MainExtension(
             $this->parsedown,

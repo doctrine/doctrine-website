@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests;
 
-use Doctrine\StaticWebsiteGenerator\Routing\Router;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\ProcessFactory;
@@ -44,7 +43,7 @@ class WebsiteBuilderTest extends TestCase
         $this->filesystem           = $this->createMock(Filesystem::class);
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
         $this->sourceFilesBuilder   = $this->createMock(SourceFilesBuilder::class);
-        $this->webpackBuildDir     = __DIR__ . '/../.webpack-build';
+        $this->webpackBuildDir      = __DIR__ . '/../.webpack-build';
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
             ->setConstructorArgs([
