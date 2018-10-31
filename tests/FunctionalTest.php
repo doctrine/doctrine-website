@@ -20,15 +20,15 @@ class FunctionalTest extends TestCase
     /** @var string */
     private $rootDir;
 
-    /** @var string */
+    /** @var string|null */
     private $buildDir;
 
     protected function setUp() : void
     {
         $this->rootDir  = __DIR__ . '/..';
-        $this->buildDir = $this->rootDir . '/build-dev';
+        $this->buildDir = $this->getBuildDir();
 
-        if (is_dir($this->buildDir)) {
+        if ($this->buildDir !== null) {
             return;
         }
 
@@ -289,5 +289,23 @@ class FunctionalTest extends TestCase
         self::assertCount(1, $crawler->filter('body'), sprintf('%s has a body', $path));
 
         return $crawler;
+    }
+
+    private function getBuildDir() : ?string
+    {
+        $foldersToCheck = [
+            'build-test',
+            'build-dev',
+        ];
+
+        foreach ($foldersToCheck as $foldersToCheck) {
+            $path = $this->rootDir . '/' . $foldersToCheck;
+
+            if (is_dir($path)) {
+                return $path;
+            }
+        }
+
+        return null;
     }
 }
