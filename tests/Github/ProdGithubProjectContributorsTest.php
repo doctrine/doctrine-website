@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Github;
 
 use Doctrine\Common\Cache\FilesystemCache;
-use Doctrine\Website\Github\GithubProjectContributors;
+use Doctrine\Website\Github\ProdGithubProjectContributors;
 use Doctrine\Website\Model\Project;
 use Github\Api\Repo;
 use Github\Client;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class GithubProjectContributorsTest extends TestCase
+class ProdGithubProjectContributorsTest extends TestCase
 {
     /** @var FilesystemCache|MockObject */
     private $filesystemCache;
@@ -20,7 +20,7 @@ class GithubProjectContributorsTest extends TestCase
     /** @var Client|MockObject */
     private $githubClient;
 
-    /** @var GithubProjectContributors */
+    /** @var ProdGithubProjectContributors */
     private $githubProjectContributors;
 
     protected function setUp() : void
@@ -28,7 +28,7 @@ class GithubProjectContributorsTest extends TestCase
         $this->filesystemCache = $this->createMock(FilesystemCache::class);
         $this->githubClient    = $this->createMock(Client::class);
 
-        $this->githubProjectContributors = new GithubProjectContributors(
+        $this->githubProjectContributors = new ProdGithubProjectContributors(
             $this->filesystemCache,
             $this->githubClient
         );

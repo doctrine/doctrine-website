@@ -53,6 +53,8 @@
 
         <service id="Doctrine\StaticWebsiteGenerator\Twig\TwigRenderer" alias="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" />
 
+        <service id="Doctrine\Website\Github\GithubProjectContributors" alias="Doctrine\Website\Github\ProdGithubProjectContributors" />
+
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
 
         <service id="Doctrine\Website\Projects\ProjectDataRepository" autowire="true" />
