@@ -4,8 +4,9 @@ language: php
 
 cache:
     directories:
-        - vendor
+        - cache
         - projects
+        - vendor
         - $HOME/.composer/cache
 
 php:
