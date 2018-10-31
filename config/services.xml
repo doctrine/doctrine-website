@@ -53,6 +53,8 @@
 
         <service id="Doctrine\StaticWebsiteGenerator\Twig\TwigRenderer" alias="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" />
 
+        <service id="Doctrine\Website\Github\GithubProjectContributors" alias="Doctrine\Website\Github\ProdGithubProjectContributors" />
+
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
 
         <service id="Doctrine\Website\Projects\ProjectDataRepository" autowire="true" />
@@ -74,12 +76,18 @@
         </service>
 
         <service id="Doctrine\RST\HTML\Kernel" autowire="true" />
+
+        <service id="Doctrine\Website\Github\GithubClientProvider">
+            <argument type="service">
+                <service class="Github\Client" />
+            </argument>
+            <argument>%doctrine.website.github.http_token%</argument>
+        </service>
+
         <service id="Github\Client">
-            <call method="authenticate">
-                <argument>%doctrine.website.github.http_token%</argument>
-                <argument></argument>
-                <argument>http_token</argument>
-            </call>
+            <factory service="Doctrine\Website\Github\GithubClientProvider"
+                method="getGithubClient"
+            />
             <call method="addCache">
                 <argument type="service">
                     <service class="Cache\Adapter\Doctrine\DoctrineCachePool" autowire="false">
@@ -88,6 +96,7 @@
                 </argument>
             </call>
         </service>
+
         <service id="Highlight\Highlighter" autowire="true" />
         <service id="Parsedown" class="Parsedown" autowire="true" />
         <service id="Symfony\Component\Console\Application" autowire="true" />
