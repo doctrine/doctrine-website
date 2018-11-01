@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests\Twig;
 
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
 use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use Doctrine\Website\Twig\MainExtension;
 use Parsedown;
@@ -59,7 +60,9 @@ class MainExtensionTest extends TestCase
             ],
         ]);
 
-        $placeholder = $this->mainExtension->getSearchBoxPlaceholder($project, 'latest');
+        $projectVersion = new ProjectVersion(['name' => '1.0']);
+
+        $placeholder = $this->mainExtension->getSearchBoxPlaceholder($project, $projectVersion);
 
         self::assertSame('Search ORM 1.0', $placeholder);
     }

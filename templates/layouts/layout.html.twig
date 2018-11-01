@@ -283,21 +283,16 @@
             crossorigin="anonymous">
         </script>
 
-        {% set project = null %}
-
-        {% if page.docsSlug is defined and page.docsSlug %}
-            {% set project = get_project(page.docsSlug) %}
-        {% endif %}
-
-        {% set docsVersion = page.docsVersion ?? null %}
+        {% set project = project is defined ? project : null %}
+        {% set projectVersion = projectVersion is defined ? projectVersion : null %}
 
         <script type="text/javascript">
             var projectSlug = '{{ project and project.slug ? project.slug : null }}';
-            var versionSlug = '{{ docsVersion ? docsVersion : "latest" }}';
+            var versionSlug = '{{ projectVersion and projectVersion.slug ? projectVersion.slug : "latest" }}';
 
             var searchBoxSettings = {
                 container: '#search-box',
-                placeholder: '{{ get_search_box_placeholder(project, docsVersion) }}'
+                placeholder: '{{ get_search_box_placeholder(project, projectVersion) }}'
             };
 
             new Main();

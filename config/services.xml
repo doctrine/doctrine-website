@@ -121,6 +121,7 @@
         <service id="Doctrine\StaticWebsiteGenerator\Request\RequestCollectionProvider">
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
             </argument>
         </service>
 
