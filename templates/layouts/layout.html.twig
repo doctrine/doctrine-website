@@ -169,7 +169,7 @@
                                 <a class="dropdown-item" href="{{ path('contribute_maintainer') }}">Maintainer Workflow</a>
                                 <a class="dropdown-item" href="{{ path('contribute_website') }}">Contribute to Website</a>
                                 <a class="dropdown-item" href="{{ path('policies') }}">Policies</a>
-                                <a class="dropdown-item" href="https://github.com/doctrine" target="_blank">GitHub</a>
+                                <a class="dropdown-item" href="https://github.com/doctrine" target="_blank" rel="noopener noreferrer">GitHub</a>
                             </div>
                         </li>
                         <li class="nav-item{% if menuSlug == 'community' %} active{% endif %}">
@@ -190,9 +190,9 @@
 
                     <div class="layout-edit-button d-inline-block mr-2">
                         {% if page.docsSlug is defined and page.docsSlug and project is defined and projectVersion is defined %}
-                            <a href="https://github.com/doctrine/{{ project.docsRepositoryName }}/edit/{{ projectVersion.branchName }}{{ project.docsPath }}{{ page.docsSourcePath }}" class="btn btn-light" target="_blank">Edit</a>
+                            <a href="https://github.com/doctrine/{{ project.docsRepositoryName }}/edit/{{ projectVersion.branchName }}{{ project.docsPath }}{{ page.docsSourcePath }}" class="btn btn-light" target="_blank" rel="noopener noreferrer">Edit</a>
                         {% else %}
-                            <a href="https://github.com/doctrine/doctrine-website/edit/master/source{{ page.sourcePath }}" class="btn btn-light" target="_blank">Edit</a>
+                            <a href="https://github.com/doctrine/doctrine-website/edit/master/source{{ page.sourcePath }}" class="btn btn-light" target="_blank" rel="noopener noreferrer">Edit</a>
                         {% endif %}
                     </div>
 
@@ -217,7 +217,7 @@
                     <!-- Hits widget will appear here -->
                 </div>
 
-                <a href="https://www.algolia.com" target="_blank"><img src="{{ site.url }}/images/search-by-algolia.png" class="float-right" style="width: 150px;" /></a>
+                <a href="https://www.algolia.com" target="_blank" rel="noopener noreferrer"><img src="{{ site.url }}/images/search-by-algolia.png" class="float-right" style="width: 150px;" /></a>
             </div>
         {% endblock %}
 
