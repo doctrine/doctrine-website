@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
     protected function getContainer() : ContainerBuilder
     {
         if ($this->container === null) {
-            $this->container = Application::getContainer('dev');
+            $this->container = Application::getContainer('test');
         }
 
         return $this->container;
