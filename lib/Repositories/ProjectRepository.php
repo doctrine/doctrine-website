@@ -22,6 +22,17 @@ class ProjectRepository extends BasicObjectRepository
         return $projects;
     }
 
+    public function findOneBySlug(string $slug) : Project
+    {
+        $project = $this->findOneBy(['slug' => $slug]);
+
+        if ($project === null) {
+            throw new InvalidArgumentException(sprintf('Could not find Project with slug "%s"', $slug));
+        }
+
+        return $project;
+    }
+
     public function findOneByDocsSlug(string $docsSlug) : Project
     {
         $project = $this->findOneBy(['docsSlug' => $docsSlug]);

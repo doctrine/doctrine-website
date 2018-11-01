@@ -34,15 +34,15 @@ class ProjectController
         ]);
     }
 
-    public function view(string $docsSlug) : Response
+    public function view(string $slug) : Response
     {
-        $project = $this->projectRepository->findOneByDocsSlug($docsSlug);
+        $project = $this->projectRepository->findOneBySlug($slug);
 
         return new Response([
             'project' => $project,
             'integrationProjects' => $this->projectRepository->findProjectIntegrations($project),
             'maintainers' => $this->projectContributorRepository->findMaintainersByProject($project),
             'contributors' => $this->projectContributorRepository->findContributorsByProject($project),
-        ]);
+        ], '/project.html.twig');
     }
 }

@@ -6,6 +6,7 @@ namespace Doctrine\Website\Twig;
 
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
 use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
 use Parsedown;
 use Twig_Extension;
 use Twig_SimpleFilter;
@@ -63,12 +64,8 @@ class MainExtension extends Twig_Extension
         ];
     }
 
-    public function getSearchBoxPlaceholder(?Project $project = null, ?string $version = null) : string
+    public function getSearchBoxPlaceholder(?Project $project = null, ?ProjectVersion $projectVersion = null) : string
     {
-        $projectVersion = $project !== null && $version !== null
-            ? $project->getVersion($version)
-            : null;
-
         if ($project !== null && $projectVersion !== null) {
             return 'Search ' . $project->getShortName() . ' ' . $projectVersion->getName();
         }
