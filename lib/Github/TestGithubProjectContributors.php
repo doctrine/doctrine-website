@@ -19,6 +19,21 @@ class TestGithubProjectContributors implements GithubProjectContributors
     }
 
     /**
+     * @param Project[] $projects
+     */
+    public function warmProjectsContributors(array $projects) : void
+    {
+    }
+
+    public function warmProjectContributors(Project $project) : void
+    {
+    }
+
+    public function waitForProjectContributorsData(Project $project) : void
+    {
+    }
+
+    /**
      * @return mixed[]
      */
     public function getProjectContributors(Project $project) : array

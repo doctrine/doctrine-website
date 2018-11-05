@@ -6,16 +6,16 @@ namespace Doctrine\Website\Tests\Docs;
 
 use AlgoliaSearch\Client;
 use AlgoliaSearch\Index;
+use Doctrine\RST\Builder;
+use Doctrine\RST\Configuration;
 use Doctrine\RST\Environment;
-use Doctrine\RST\HTML\Document;
-use Doctrine\RST\HTML\Nodes\ParagraphNode;
-use Doctrine\RST\HTML\Nodes\TitleNode;
-use Doctrine\RST\Nodes\RawNode;
+use Doctrine\RST\Kernel;
 use Doctrine\Website\Docs\SearchIndexer;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use function sys_get_temp_dir;
 
 class SearchIndexerTest extends TestCase
 {
@@ -80,182 +80,131 @@ class SearchIndexerTest extends TestCase
             ->with(SearchIndexer::INDEX_NAME)
             ->willReturn($index);
 
-        $document    = $this->createMock(Document::class);
-        $environment = $this->createMock(Environment::class);
+        $configuration = new Configuration();
+        $configuration->setUseCachedMetas(false);
+        $kernel      = new Kernel($configuration);
+        $environment = new Environment($configuration);
+        $builder     = new Builder($kernel);
 
-        $document->expects(self::once())
-            ->method('getEnvironment')
-            ->willReturn($environment);
+        $builder->build(__DIR__ . '/resources/search-indexer', sys_get_temp_dir() . '/search-indexer');
 
-        $environment->expects(self::once())
-            ->method('getUrl')
-            ->willReturn('index');
-
-        $node1 = new RawNode('Test 1');
-        $node2 = new RawNode('Test 2');
-        $node3 = new RawNode('Test 3');
-        $node4 = new RawNode('Test 4');
-        $node5 = new RawNode('Test 5');
-
-        $h1Node = new TitleNode($node1, 1, 'title.1');
-        $h2Node = new TitleNode($node2, 2, 'title.1.1');
-        $h3Node = new TitleNode($node3, 3, 'title.1.2');
-        $h4Node = new TitleNode($node4, 4, 'title.1.3');
-        $h5Node = new TitleNode($node5, 5, 'title.1.4');
-
-        $paragraph1Node = new ParagraphNode('Paragraph 1');
-        $paragraph2Node = new ParagraphNode('Paragraph 2');
-        $paragraph3Node = new ParagraphNode('Paragraph 3');
-        $paragraph4Node = new ParagraphNode('Paragraph 4');
-        $paragraph5Node = new ParagraphNode('Paragraph 5');
-
-        $nodes = [
-            $h1Node,
-            $paragraph1Node,
-            $h2Node,
-            $paragraph2Node,
-            $h3Node,
-            $paragraph3Node,
-            $h4Node,
-            $paragraph4Node,
-            $h5Node,
-            $paragraph5Node,
-        ];
-
-        $document->expects(self::once())
-            ->method('getNodes')
-            ->willReturn($nodes);
-
-        $documents = [$document];
+        $documents = $builder->getDocuments()->getAll();
 
         $expectedRecords = [
             [
-                'objectID' => '1.0-index.html#test-1-206a9b642b3e16c89a61696ab28f3d5c',
+                'objectID' => '1.0-index.html-8cf04a9734132302f96da8e113e80ce5',
                 'rank' => 0,
-                'h1' => 'Test 1',
+                'h1' => 'Home',
                 'h2' => null,
                 'h3' => null,
                 'h4' => null,
                 'h5' => null,
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-1',
-                'content' => null,
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => '',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
             [
-                'objectID' => '1.0-index.html#test-1-1d2b10371e2bd1744379389efd2dd8ee',
-                'rank' => 5,
-                'h1' => 'Test 1',
-                'h2' => null,
-                'h3' => null,
-                'h4' => null,
-                'h5' => null,
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-1',
-                'content' => 'Paragraph 1',
-                'projectName' => 'ORM',
-                '_tags' => ['1.0', 'orm'],
-            ],
-            [
-                'objectID' => '1.0-index.html#test-2-605e79544a68819ce664c088aba92658',
+                'objectID' => '1.0-index.html-0aed5e2da8c50d700cc1aafd30de809e',
                 'rank' => 1,
-                'h1' => 'Test 1',
-                'h2' => 'Test 2',
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
                 'h3' => null,
                 'h4' => null,
                 'h5' => null,
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-2',
-                'content' => null,
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => '',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
             [
-                'objectID' => '1.0-index.html#test-2-9bd0adbe2a6bcfba0f571b1b60fdecc3',
+                'objectID' => '1.0-index.html-dc4fb8880607a7c6b97dde83611834bc',
                 'rank' => 5,
-                'h1' => 'Test 1',
-                'h2' => 'Test 2',
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
                 'h3' => null,
                 'h4' => null,
                 'h5' => null,
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-2',
-                'content' => 'Paragraph 2',
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => 'Home Section 1 Content',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
             [
-                'objectID' => '1.0-index.html#test-3-863f29a9ae33b0a6e8f02d9d17ce8ea1',
+                'objectID' => '1.0-index.html-a041c6359be2ca2e25e7acf458595316',
                 'rank' => 2,
-                'h1' => 'Test 1',
-                'h2' => 'Test 2',
-                'h3' => 'Test 3',
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
+                'h3' => 'Home Section 2',
                 'h4' => null,
                 'h5' => null,
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-3',
-                'content' => null,
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => '',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
             [
-                'objectID' => '1.0-index.html#test-3-ab51e222bb465867a494cac86ee3d069',
+                'objectID' => '1.0-index.html-fdc52e368cad3bcea0424d1e90a52ec7',
                 'rank' => 5,
-                'h1' => 'Test 1',
-                'h2' => 'Test 2',
-                'h3' => 'Test 3',
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
+                'h3' => 'Home Section 2',
                 'h4' => null,
                 'h5' => null,
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-3',
-                'content' => 'Paragraph 3',
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => 'Home Section 2 Content',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
             [
-                'objectID' => '1.0-index.html#test-4-9fe74bb46baed663321329a1fc479e8b',
+                'objectID' => '1.0-index.html-3161aa72d4d81b937bda257622f5892e',
                 'rank' => 3,
-                'h1' => 'Test 1',
-                'h2' => 'Test 2',
-                'h3' => 'Test 3',
-                'h4' => 'Test 4',
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
+                'h3' => 'Home Section 2',
+                'h4' => 'Home Section 3',
                 'h5' => null,
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-4',
-                'content' => null,
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => '',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
             [
-                'objectID' => '1.0-index.html#test-4-5bba714e83ac2a57bc1a60eb2b336197',
+                'objectID' => '1.0-index.html-0474a95e4451409dbba46e596d225dae',
                 'rank' => 5,
-                'h1' => 'Test 1',
-                'h2' => 'Test 2',
-                'h3' => 'Test 3',
-                'h4' => 'Test 4',
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
+                'h3' => 'Home Section 2',
+                'h4' => 'Home Section 3',
                 'h5' => null,
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-4',
-                'content' => 'Paragraph 4',
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => 'Home Section 3 Content',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
             [
-                'objectID' => '1.0-index.html#test-5-ce03a4296e564386d37eb22a7dce0623',
+                'objectID' => '1.0-index.html-271aeb79d10e9e0f4b0be8476cff12e4',
                 'rank' => 4,
-                'h1' => 'Test 1',
-                'h2' => 'Test 2',
-                'h3' => 'Test 3',
-                'h4' => 'Test 4',
-                'h5' => 'Test 5',
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-5',
-                'content' => null,
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
+                'h3' => 'Home Section 2',
+                'h4' => 'Home Section 3',
+                'h5' => 'Home Section 4',
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => '',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
             [
-                'objectID' => '1.0-index.html#test-5-9b6bd277e5c781811b4123f260fe3380',
+                'objectID' => '1.0-index.html-29903ed67d76dc043116657bb5b0fc5d',
                 'rank' => 5,
-                'h1' => 'Test 1',
-                'h2' => 'Test 2',
-                'h3' => 'Test 3',
-                'h4' => 'Test 4',
-                'h5' => 'Test 5',
-                'url' => '/projects/doctrine-orm/en/1.0/index.html#test-5',
-                'content' => 'Paragraph 5',
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
+                'h3' => 'Home Section 2',
+                'h4' => 'Home Section 3',
+                'h5' => 'Home Section 4',
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => 'Home Section 4 Content',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],

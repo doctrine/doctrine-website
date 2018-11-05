@@ -130,30 +130,31 @@ h6 {
 }
 
 /** 2nd Level */
-.sidebar-sticky .toc ul ul {
+.sidebar-sticky .toc ul li ul {
   margin-top: 10px;
   margin-left: 16px;
   display: none;
 }
 
-.sidebar-sticky .toc ul ul li {
+.sidebar-sticky .toc ul li ul li {
   font-size: 12px;
   line-height: 20px;
   border-bottom: none;
 }
 
-.sidebar-sticky .toc ul ul li a {
-  padding: 2px;
-  color: #fa6a3c;
+.sidebar-sticky .toc ul li ul li a {
+  background: none !important;
+  padding: 2px !important;
+  color: #fa6a3c !important;
+  font-weight: normal !important;
 }
 
-.sidebar-sticky .toc ul ul li.opened a {
-  background: none;
-  color: #fa6a3c;
+.sidebar-sticky .toc ul li ul li.opened a {
+  font-weight: bold !important;
 }
 
 /** 3rd Level */
-.sidebar-sticky .toc ul ul ul {
+.sidebar-sticky .toc ul li ul li ul {
   margin-top: 0;
 }
 

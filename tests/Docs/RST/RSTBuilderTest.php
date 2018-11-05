@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Docs\RST;
 
 use Doctrine\RST\Builder;
-use Doctrine\RST\Document;
+use Doctrine\RST\Builder\Documents;
+use Doctrine\RST\Nodes\DocumentNode;
 use Doctrine\Website\Docs\RST\RSTBuilder;
 use Doctrine\Website\Docs\RST\RSTCopier;
 use Doctrine\Website\Docs\RST\RSTFileRepository;
@@ -93,18 +94,22 @@ class RSTBuilderTest extends TestCase
             ->method('build')
             ->with(
                 '/docs/docs-slug/en/version-slug',
-                '/source/projects/docs-slug/en/version-slug',
-                false
+                '/source/projects/docs-slug/en/version-slug'
             );
 
         $this->rstPostBuildProcessor->expects(self::once())
             ->method('postRstBuild')
             ->with($project, $version);
 
-        $document1 = $this->createMock(Document::class);
-        $document2 = $this->createMock(Document::class);
+        $document1 = $this->createMock(DocumentNode::class);
+        $document2 = $this->createMock(DocumentNode::class);
 
-        $documents = [$document1, $document2];
+        $documentsArray = [$document1, $document2];
+        $documents      = $this->createMock(Documents::class);
+
+        $documents->expects(self::once())
+            ->method('getAll')
+            ->willReturn($documentsArray);
 
         $this->builder->expects(self::once())
             ->method('getDocuments')
@@ -112,6 +117,9 @@ class RSTBuilderTest extends TestCase
 
         $english = new RSTLanguage('en', '/en');
 
-        self::assertSame($documents, $this->rstBuilder->buildRSTDocs($project, $version, $english));
+        self::assertSame(
+            $documentsArray,
+            $this->rstBuilder->buildRSTDocs($project, $version, $english)
+        );
     }
 }

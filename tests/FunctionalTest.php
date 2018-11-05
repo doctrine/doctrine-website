@@ -269,7 +269,7 @@ class FunctionalTest extends TestCase
     {
         $crawler = $this->assertValid('/contribute/index.html');
 
-        self::assertContains('<a id="contribute"></a>', $crawler->html());
+        self::assertContains('<div class="section" id="contribute">', $crawler->html());
         self::assertContains('<h1>Contribute</h1>', $crawler->html());
     }
 
@@ -277,7 +277,7 @@ class FunctionalTest extends TestCase
     {
         $crawler = $this->assertValid('/contribute/maintainer/index.html');
 
-        self::assertContains('<a id="maintainer-workflow"></a>', $crawler->html());
+        self::assertContains('<div class="section" id="maintainer-workflow">', $crawler->html());
         self::assertContains('<h1>Maintainer Workflow</h1>', $crawler->html());
     }
 
@@ -285,7 +285,7 @@ class FunctionalTest extends TestCase
     {
         $crawler = $this->assertValid('/contribute/website/index.html');
 
-        self::assertContains('<a id="contribute-to-website"></a>', $crawler->html());
+        self::assertContains('<div class="section" id="contribute-to-website">', $crawler->html());
         self::assertContains('<h1>Contribute to Website</h1>', $crawler->html());
     }
 

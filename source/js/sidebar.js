@@ -140,7 +140,8 @@ Sidebar.prototype.openElement = function(elem) {
 
   // top level clicked, open children
   elem
-    .next('ul')
+    .find('ul')
+    .first()
     .addClass('opened-ul')
     .removeClass('closed-ul');
 
@@ -151,7 +152,7 @@ Sidebar.prototype.openElement = function(elem) {
     .removeClass('closed-ul');
   elem
     .parents('ul')
-    .prev('li')
+    .parent('li')
     .addClass('opened');
 };
 

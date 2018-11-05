@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Docs\RST;
 
 use Doctrine\RST\Builder;
-use Doctrine\RST\Document;
+use Doctrine\RST\Nodes\DocumentNode;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Filesystem\Filesystem;
@@ -52,7 +52,7 @@ class RSTBuilder
     }
 
     /**
-     * @return Document[]
+     * @return DocumentNode[]
      */
     public function buildRSTDocs(Project $project, ProjectVersion $version, RSTLanguage $language) : array
     {
@@ -65,7 +65,7 @@ class RSTBuilder
         // process the built html and do extra things to the html
         $this->rstPostBuildProcessor->postRstBuild($project, $version, $language);
 
-        return $this->builder->getDocuments();
+        return $this->builder->getDocuments()->getAll();
     }
 
     private function buildRst(Project $project, ProjectVersion $version, RSTLanguage $language) : void
@@ -82,8 +82,7 @@ class RSTBuilder
         // which is contained inside the $sourceDir
         $this->builder->build(
             $project->getProjectVersionDocsPath($this->docsDir, $version, $language->getCode()),
-            $outputPath,
-            false
+            $outputPath
         );
     }
 }
