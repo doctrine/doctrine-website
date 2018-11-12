@@ -61,3 +61,12 @@ parameters:
         -
             name: Sonata Project
             url: https://sonata-project.org/
+        -
+            name: Akeneo PIM
+            url: https://www.akeneo.com
+        -
+            name: Pimcore
+            url: https://pimcore.com
+        -
+            name: Sylius
+            url: https://sylius.com
