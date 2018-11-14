@@ -8,6 +8,8 @@ use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
 use SimpleXMLElement;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\DomCrawler\Link;
+use function array_map;
 use function explode;
 use function file_exists;
 use function file_get_contents;
@@ -90,12 +92,15 @@ class FunctionalTest extends TestCase
     {
         $crawler = self::assertValid('/index.html');
 
-        $table = $crawler->filter('#who-uses-doctrine-table');
-        $first = $table->filter('tr td a')->first();
+        $table = $crawler->filter('#who-uses-doctrine-table a');
 
-        self::assertCount(5, $table->children());
-        self::assertSame('https://symfony.com/', $first->attr('href'));
-        self::assertSame('Symfony', $first->text());
+        $parsedDoctrineUsers = array_map(static function (Link $link) : array {
+            return ['name' => $link->getNode()->textContent, 'url' => $link->getUri()];
+        }, $table->links());
+
+        $expectedDoctrineUsers = $this->getContainer()->getParameter('doctrine.website.doctrine_users');
+
+        self::assertSame($expectedDoctrineUsers, $parsedDoctrineUsers);
     }
 
     public function testFunctional() : void
@@ -284,7 +289,7 @@ class FunctionalTest extends TestCase
 
         $html = $this->getFileContents($fullPath);
 
-        $crawler = new Crawler($html);
+        $crawler = new Crawler($html, $path, 'http://localhost');
 
         self::assertCount(1, $crawler->filter('body'), sprintf('%s has a body', $path));
 
