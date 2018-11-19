@@ -47,14 +47,14 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: 'assets/[name].[ext]',
-                    publicPath: '/'
+                    publicPath: '/frontend/'
                 }
             }
         ]
     },
     output: {
         path: path.resolve(__dirname, '.webpack-build'),
-        publicPath: '/',
+        publicPath: '/frontend/',
         filename: 'js/[name].js',
         crossOriginLoading: 'anonymous',
     }

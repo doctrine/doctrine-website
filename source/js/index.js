@@ -1,7 +1,7 @@
-window.$ = window.jQuery = require('jquery');
-import { init } from '@sentry/browser';
-init({
-    dsn: 'https://09ce137590054cfd8f0b7e9324d6ec14@sentry.io/1197701'
+import(/* webpackChunkName: "sentry" */ '@sentry/browser').then(module => {
+    module.init({
+        dsn: 'https://09ce137590054cfd8f0b7e9324d6ec14@sentry.io/1197701'
+    });
 });
 
 import('bootstrap/js/src/index');

@@ -84,7 +84,7 @@ class MainExtension extends Twig_Extension
 
     public function getWebpackAssetUrl(string $path, string $siteUrl) : string
     {
-        return $this->getAssetUrl($path, $siteUrl, $this->webpackBuildDir);
+        return $this->getAssetUrl($path, $siteUrl . '/frontend', $this->webpackBuildDir);
     }
 
     private function getAssetCacheBuster(string $path, string $rootPath) : string

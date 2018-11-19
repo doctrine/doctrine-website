@@ -50,6 +50,9 @@ class WebsiteBuilder
     private $sourceFilesBuilder;
 
     /** @var string */
+    private $rootDir;
+
+    /** @var string */
     private $webpackBuildDir;
 
     public function __construct(
@@ -58,6 +61,7 @@ class WebsiteBuilder
         Filesystem $filesystem,
         SourceFileRepository $sourceFileRepository,
         SourceFilesBuilder $sourceFilesBuilder,
+        string $rootDir,
         string $webpackBuildDir
     ) {
         $this->processFactory       = $processFactory;
@@ -65,6 +69,7 @@ class WebsiteBuilder
         $this->filesystem           = $filesystem;
         $this->sourceFileRepository = $sourceFileRepository;
         $this->sourceFilesBuilder   = $sourceFilesBuilder;
+        $this->rootDir              = $rootDir;
         $this->webpackBuildDir      = $webpackBuildDir;
     }
 
@@ -89,7 +94,7 @@ class WebsiteBuilder
 
         $output->writeln(' - building website');
 
-        $this->buildWebsite($buildDir, $isPublishableEnv);
+        $this->buildWebsite($output, $buildDir, $isPublishableEnv);
 
         // put the CNAME file back for publishable envs
         if ($isPublishableEnv) {
@@ -115,44 +120,39 @@ class WebsiteBuilder
     /**
      * @throws RuntimeException
      */
-    private function buildWebsite(string $buildDir, bool $isPublishableEnv) : void
+    private function buildWebsite(OutputInterface $output, string $buildDir, bool $isPublishableEnv) : void
     {
         // cleanup the build directory
         $this->filesystem->remove(glob($buildDir . '/*'));
 
         // Move webpack assets into build directory
-        $this->buildWebpackAssets($buildDir, $isPublishableEnv);
+        $this->buildWebpackAssets($output, $buildDir, $isPublishableEnv);
 
         $this->sourceFilesBuilder->buildSourceFiles(
             $this->sourceFileRepository->getSourceFiles($buildDir)
         );
     }
 
-    private function buildWebpackAssets(string $buildDir, bool $isPublishableEnv) : void
+    private function buildWebpackAssets(OutputInterface $output, string $buildDir, bool $isPublishableEnv) : void
     {
+        $output->writeln(sprintf(' - running npm run %s ', $isPublishableEnv ? 'build' : 'dev'));
         $this->filesystem->remove(glob($this->webpackBuildDir . '/*'));
-        $this->processFactory->run(sprintf(
-            'cd %s && npm run %s',
-            $buildDir,
+        $process = $this->processFactory->run(sprintf(
+            'cd %s && npm run dev',
+            $this->rootDir,
             $isPublishableEnv ? 'build' : 'dev'
         ));
-        fwrite(STDOUT, sprintf(
-            'cd %s && npm run %s',
-            $buildDir,
-            $isPublishableEnv ? 'build' : 'dev'
-        ));
+        $output->write($process->getOutput());
 
         // Copy built assets if this is a publishable build
         if ($isPublishableEnv) {
-            $this->filesystem->mirror($this->webpackBuildDir, $buildDir);
+            $this->filesystem->mirror($this->webpackBuildDir, $buildDir . '/frontend');
             return;
         }
 
         // Symlink files to allow files to auto update using webpack --watch
         $this->filesystem->mkdir($buildDir);
-        $this->filesystem->symlink($this->webpackBuildDir . '/assets', $buildDir . '/assets', true);
-        $this->filesystem->symlink($this->webpackBuildDir . '/css', $buildDir . '/css', true);
-        $this->filesystem->symlink($this->webpackBuildDir . '/js', $buildDir . '/js', true);
+        $this->filesystem->symlink($this->webpackBuildDir, $buildDir . '/frontend', true);
     }
 
     private function createProjectVersionAliases(string $buildDir) : void
