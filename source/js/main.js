@@ -4,7 +4,7 @@ String.prototype.replaceAll = function(search, replacement) {
   return target.split(search).join(replacement);
 };
 
-var Main = function() {
+export default function() {
   function scrollFunction() {
     if (
       document.body.scrollTop > 20 ||
@@ -63,7 +63,8 @@ var Main = function() {
       $('li:first', $(this)).addClass('selected');
     });
 
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="$: \'jquery\',\n' +
+        '  jQuery: \'jquery\'"]').tooltip();
 
     $('button.copy-to-clipboard').on('click', function() {
       var copyElementId = $(this).data('copy-element-id');

@@ -90,10 +90,10 @@ class MainExtension extends Twig_Extension
     private function getAssetCacheBuster(string $path, string $rootPath) : string
     {
         $assetPath = realpath($rootPath . '/' . $path);
-        assert(is_string($assetPath));
+        assert(is_string($assetPath), sprintf('Failed to determine the path for the asset "%s"', $rootPath . '/' . $path));
 
         $contents = file_get_contents($assetPath);
-        assert(is_string($contents));
+        assert(is_string($contents), sprintf('Failed to load the asset located at "%s"', $rootPath . '/' . $path));
 
         return substr(sha1($contents), 0, 6);
     }

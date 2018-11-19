@@ -1,4 +1,7 @@
-var Search = function(projectSlug, versionSlug, searchBoxSettings) {
+import instantsearch from 'instantsearch.js';
+import {searchBox, hits} from 'instantsearch.js/es/widgets';
+
+export default function(projectSlug, versionSlug, searchBoxSettings) {
   var searchParameters = {
     tagFilters: [],
     hitsPerPage: 5
@@ -35,10 +38,10 @@ var Search = function(projectSlug, versionSlug, searchBoxSettings) {
     }
   });
 
-  search.addWidget(instantsearch.widgets.searchBox(searchBoxSettings));
+  search.addWidget(searchBox(searchBoxSettings));
 
   search.addWidget(
-    instantsearch.widgets.hits({
+    hits({
       container: '#hits',
       templates: {
         empty: 'No results',

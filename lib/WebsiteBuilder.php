@@ -136,6 +136,11 @@ class WebsiteBuilder
             $buildDir,
             $isPublishableEnv ? 'build' : 'dev'
         ));
+        fwrite(STDOUT, sprintf(
+            'cd %s && npm run %s',
+            $buildDir,
+            $isPublishableEnv ? 'build' : 'dev'
+        ));
 
         // Copy built assets if this is a publishable build
         if ($isPublishableEnv) {
@@ -145,6 +150,7 @@ class WebsiteBuilder
 
         // Symlink files to allow files to auto update using webpack --watch
         $this->filesystem->mkdir($buildDir);
+        $this->filesystem->symlink($this->webpackBuildDir . '/assets', $buildDir . '/assets', true);
         $this->filesystem->symlink($this->webpackBuildDir . '/css', $buildDir . '/css', true);
         $this->filesystem->symlink($this->webpackBuildDir . '/js', $buildDir . '/js', true);
     }

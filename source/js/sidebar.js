@@ -162,3 +162,5 @@ Sidebar.prototype.loadCurrentDocsMenu = function() {
 
   this.scrollToElement(currentDocsMenu);
 };
+
+export default Sidebar;
