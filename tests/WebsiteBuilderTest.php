@@ -86,7 +86,7 @@ class WebsiteBuilderTest extends TestCase
 
         $this->processFactory->expects(self::at(1))
             ->method('run')
-            ->with('cd /data/doctrine-website-build-staging && npm run dev');
+            ->with('cd /data/doctrine-website-build-staging && npm run build');
 
         $this->filesystem->expects(self::once())
             ->method('mirror');

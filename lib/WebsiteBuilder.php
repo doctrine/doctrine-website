@@ -138,7 +138,7 @@ class WebsiteBuilder
         $output->writeln(sprintf(' - running npm run %s ', $isPublishableEnv ? 'build' : 'dev'));
         $this->filesystem->remove(glob($this->webpackBuildDir . '/*'));
         $process = $this->processFactory->run(sprintf(
-            'cd %s && npm run dev',
+            'cd %s && npm run %s',
             $this->rootDir,
             $isPublishableEnv ? 'build' : 'dev'
         ));
