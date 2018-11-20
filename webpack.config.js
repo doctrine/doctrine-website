@@ -1,26 +1,16 @@
 const path = require('path'),
     glob = require('glob'),
     isDevMode = process.env.NODE_ENV !== 'production',
+    isWatching = process.env.WEBPACK_WATCH === '1',
     webpack = require('webpack'),
     MiniCssExtractPlugin = require('mini-css-extract-plugin'),
     PurgecssPlugin = require('purgecss-webpack-plugin');
 
-module.exports = {
-    mode: isDevMode ? 'development' : 'production',
-    entry: {
-        'index': path.join(__dirname, 'source/styles/index.scss'),
-        'bundle': path.join(__dirname, 'source/js/index.js'),
-    },
-    plugins: [
+const plugins = () => {
+    let plugins = [
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
             chunkFilename: 'css/[id].css',
-        }),
-        new PurgecssPlugin({
-            whitelistPatterns: [/^ais/],
-            paths: []
-                .concat(glob.sync(__dirname + '/templates/**/*.twig'))
-                .concat(glob.sync(__dirname + '/source/**/*.html'))
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
@@ -28,7 +18,31 @@ module.exports = {
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
         })
-    ],
+    ];
+
+    // Purgecss significantly slows down the compilation time so we'll skip it
+    // when we run `npm run watch`
+    if (!isWatching) {
+        plugins.push(
+            new PurgecssPlugin({
+                whitelistPatterns: [/^ais/],
+                paths: []
+                    .concat(glob.sync(__dirname + '/templates/**/*.twig'))
+                    .concat(glob.sync(__dirname + '/source/**/*.html'))
+            })
+        )
+    }
+
+    return plugins;
+};
+
+module.exports = {
+    mode: isDevMode ? 'development' : 'production',
+    entry: {
+        'index': path.join(__dirname, 'source/styles/index.scss'),
+        'bundle': path.join(__dirname, 'source/js/index.js'),
+    },
+    plugins: plugins(),
     module: {
         rules: [
             {
