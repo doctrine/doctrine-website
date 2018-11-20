@@ -31,6 +31,9 @@ class WebsiteBuilderTest extends TestCase
     private $sourceFilesBuilder;
 
     /** @var string */
+    private $rootDir;
+
+    /** @var string */
     private $webpackBuildDir;
 
     /** @var WebsiteBuilder|MockObject */
@@ -43,7 +46,8 @@ class WebsiteBuilderTest extends TestCase
         $this->filesystem           = $this->createMock(Filesystem::class);
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
         $this->sourceFilesBuilder   = $this->createMock(SourceFilesBuilder::class);
-        $this->webpackBuildDir      = __DIR__ . '/../.webpack-build';
+        $this->rootDir              = '/data/doctrine-website-build-staging';
+        $this->webpackBuildDir      = '/data/doctrine-website-build-staging/.webpack-build';
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
             ->setConstructorArgs([
@@ -52,6 +56,7 @@ class WebsiteBuilderTest extends TestCase
                 $this->filesystem,
                 $this->sourceFileRepository,
                 $this->sourceFilesBuilder,
+                $this->rootDir,
                 $this->webpackBuildDir,
             ])
             ->setMethods(['filePutContents'])
@@ -81,7 +86,7 @@ class WebsiteBuilderTest extends TestCase
 
         $this->processFactory->expects(self::at(1))
             ->method('run')
-            ->with('cd /data/doctrine-website-build-staging && npm run build');
+            ->with('cd /data/doctrine-website-build-staging && npm run dev');
 
         $this->filesystem->expects(self::once())
             ->method('mirror');
