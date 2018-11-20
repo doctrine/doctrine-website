@@ -16,6 +16,7 @@ use function file_get_contents;
 use function is_string;
 use function realpath;
 use function sha1;
+use function sprintf;
 use function substr;
 
 class MainExtension extends Twig_Extension
