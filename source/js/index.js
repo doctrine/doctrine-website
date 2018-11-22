@@ -4,7 +4,8 @@ import(/* webpackChunkName: "sentry" */ '@sentry/browser').then(module => {
     });
 });
 
-import('bootstrap/js/src/index');
+import 'bootstrap/js/src/index';
+
 import(/* webpackChunkName: "main" */ './main').then(module => {
     module.default();
 });
@@ -20,7 +21,6 @@ if ($('#sidebar').length > 0) {
 }
 
 window.googleTranslateElementInit = () => {
-    console.log(window.$);
     $('#google_translate_element').html('');
 
     new google.translate.TranslateElement(
