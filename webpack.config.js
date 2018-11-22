@@ -29,6 +29,7 @@ const plugins = () => {
                 paths: []
                     .concat(glob.sync(__dirname + '/templates/**/*.twig'))
                     .concat(glob.sync(__dirname + '/source/**/*.html'))
+                    .concat(glob.sync(__dirname + '/source/**/*.js'))
             })
         )
     }
