@@ -6,12 +6,17 @@ namespace Doctrine\Website\Repositories;
 
 use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Contributor;
+use function assert;
 
 class ContributorRepository extends BasicObjectRepository
 {
     public function findOneByGithub(string $github) : Contributor
     {
-        return $this->findOneBy(['github' => $github]);
+        $contributor = $this->findOneBy(['github' => $github]);
+
+        assert($contributor instanceof Contributor || $contributor !== null);
+
+        return $contributor;
     }
 
     /**

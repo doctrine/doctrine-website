@@ -61,8 +61,6 @@ class CodeBlockDirective extends Directive
             return;
         }
 
-        $kernel = $parser->getKernel();
-
         $nodeValue = $node->getValue();
         assert(is_string($nodeValue));
 
