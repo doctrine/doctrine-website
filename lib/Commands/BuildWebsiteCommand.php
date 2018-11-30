@@ -65,7 +65,7 @@ class BuildWebsiteCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        ini_set('memory_limit', '1024M');
+        ini_set('memory_limit', '2048M');
 
         $publish = $input->getOption('publish');
         assert(is_bool($publish));
