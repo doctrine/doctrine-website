@@ -82,7 +82,7 @@ class DeployerTest extends TestCase
 
         $this->processFactory->expects(self::at(1))
             ->method('run')
-            ->with('cd /data/doctrine-website-staging && git fetch && git checkout 1234 && git pull origin 1234 && php composer.phar install --no-dev')
+            ->with('cd /data/doctrine-website-staging && git fetch && git checkout 1234 && git pull origin 1234 && php composer.phar install --no-dev && yarn install')
             ->willReturn($process);
 
         $this->processFactory->expects(self::at(2))

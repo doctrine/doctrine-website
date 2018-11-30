@@ -11,6 +11,7 @@
             <bind key="$docsDir">%doctrine.website.docs_dir%</bind>
             <bind key="$sourceDir">%doctrine.website.source_dir%</bind>
             <bind key="$projectsData">%doctrine.website.projects_data%</bind>
+            <bind key="$webpackBuildDir">%doctrine.website.webpack_build_dir%</bind>
             <bind key="$teamMembers">%doctrine.website.team_members%</bind>
             <bind key="$templatesDir">%doctrine.website.templates_dir%</bind>
             <bind key="$doctrineUsers">%doctrine.website.doctrine_users%</bind>

@@ -62,7 +62,7 @@ class Deployer
 
         // update the code from git and run composer install first
         $updateCommand = sprintf(
-            'cd /data/doctrine-website-%s && git fetch && git checkout %s && git pull origin %s && php composer.phar install --no-dev',
+            'cd /data/doctrine-website-%s && git fetch && git checkout %s && git pull origin %s && php composer.phar install --no-dev && yarn install',
             $this->env,
             $deployRef,
             $deployRef

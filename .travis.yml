@@ -18,6 +18,7 @@ before_install:
 install:
   - rm composer.lock
   - travis_retry composer update -n --prefer-dist
+  - travis_retry yarn install
 
 jobs:
   include:
@@ -26,6 +27,7 @@ jobs:
       install:
         - rm composer.lock
         - travis_retry composer update --prefer-dist --prefer-lowest
+        - travis_retry yarn install
       script:
         - ./vendor/bin/phpunit
 

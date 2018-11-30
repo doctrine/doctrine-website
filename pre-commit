@@ -3,3 +3,10 @@
 ./vendor/bin/phpcbf
 git add .
 
+# Frontend asset formatting
+prettierFiles=$(git diff --cached --name-only --diff-filter=ACM "*.js" "*.scss" | tr '\n' ' ')
+if [ -n "$prettierFiles" ]
+    then
+        echo "$prettierFiles" | xargs ./node_modules/.bin/prettier --write  --single-quote
+        echo "$prettierFiles" | xargs git add
+fi

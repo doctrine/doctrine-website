@@ -22,6 +22,9 @@ class MainExtensionTest extends TestCase
     /** @var string */
     private $sourceDir;
 
+    /** @var string */
+    private $webpackBuildDir;
+
     /** @var MainExtension */
     private $mainExtension;
 
@@ -30,11 +33,13 @@ class MainExtensionTest extends TestCase
         $this->parsedown               = $this->createMock(Parsedown::class);
         $this->assetIntegrityGenerator = $this->createMock(AssetIntegrityGenerator::class);
         $this->sourceDir               = __DIR__ . '/../../source';
+        $this->webpackBuildDir         = __DIR__ . '/../../.webpack-build';
 
         $this->mainExtension = new MainExtension(
             $this->parsedown,
             $this->assetIntegrityGenerator,
-            $this->sourceDir
+            $this->sourceDir,
+            $this->webpackBuildDir
         );
     }
 
@@ -74,6 +79,6 @@ class MainExtensionTest extends TestCase
             'http://lcl.doctrine-project.org'
         );
 
-        self::assertSame('http://lcl.doctrine-project.org/js/main.js?4138a7', $url);
+        self::assertSame('http://lcl.doctrine-project.org/js/main.js?14f499', $url);
     }
 }

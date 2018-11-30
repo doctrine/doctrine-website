@@ -16,6 +16,7 @@ use function file_get_contents;
 use function is_string;
 use function realpath;
 use function sha1;
+use function sprintf;
 use function substr;
 
 class MainExtension extends Twig_Extension
@@ -29,11 +30,15 @@ class MainExtension extends Twig_Extension
     /** @var string */
     private $sourceDir;
 
-    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourceDir)
+    /** @var string */
+    private $webpackBuildDir;
+
+    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourceDir, string $webpackBuildDir)
     {
         $this->parsedown               = $parsedown;
         $this->assetIntegrityGenerator = $assetIntegrityGenerator;
         $this->sourceDir               = $sourceDir;
+        $this->webpackBuildDir         = $webpackBuildDir;
     }
 
     /**
@@ -44,7 +49,9 @@ class MainExtension extends Twig_Extension
         return [
             new Twig_SimpleFunction('get_search_box_placeholder', [$this, 'getSearchBoxPlaceholder']),
             new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
+            new Twig_SimpleFunction('get_webpack_asset_url', [$this, 'getWebpackAssetUrl']),
             new Twig_SimpleFunction('get_asset_integrity', [$this->assetIntegrityGenerator, 'getAssetIntegrity']),
+            new Twig_SimpleFunction('get_webpack_asset_integrity', [$this->assetIntegrityGenerator, 'getWebpackAssetIntegrity']),
         ];
     }
 
@@ -71,18 +78,23 @@ class MainExtension extends Twig_Extension
         return 'Search';
     }
 
-    public function getAssetUrl(string $path, string $siteUrl) : string
+    public function getAssetUrl(string $path, string $siteUrl, ?string $rootPath = null) : string
     {
-        return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path);
+        return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path, $rootPath ?? $this->sourceDir);
     }
 
-    private function getAssetCacheBuster(string $path) : string
+    public function getWebpackAssetUrl(string $path, string $siteUrl) : string
     {
-        $assetPath = realpath($this->sourceDir . $path);
-        assert(is_string($assetPath));
+        return $this->getAssetUrl($path, $siteUrl . '/frontend', $this->webpackBuildDir);
+    }
+
+    private function getAssetCacheBuster(string $path, string $rootPath) : string
+    {
+        $assetPath = realpath($rootPath . '/' . $path);
+        assert(is_string($assetPath), sprintf('Failed to determine the path for the asset "%s"', $rootPath . '/' . $path));
 
         $contents = file_get_contents($assetPath);
-        assert(is_string($contents));
+        assert(is_string($contents), sprintf('Failed to load the asset located at "%s"', $rootPath . '/' . $path));
 
         return substr(sha1($contents), 0, 6);
     }

@@ -22,12 +22,12 @@ it to a directory like ``/data``:
     $ cd /data
     $ git clone git@github.com:username/doctrine-website.git
 
-Next run ``composer install`` to install all of the dependencies.
+Next run ``composer install && yarn install`` to install all of the dependencies.
 
 .. code-block:: console
 
     $ cd doctrine-website
-    $ composer install
+    $ composer install && yarn install
 
 Coding Standards
 ----------------
@@ -125,6 +125,17 @@ Now you are ready to build the website for the first time:
 Go take a look at ``lcl.doctrine-project.org`` and the local website
 should render. The built code for the website is written to
 ``/data/doctrine-website/build-dev``.
+
+Watch Frontend Assets
+-------------------
+
+After the initial build you can watch for frontend asset changes to update the stylesheets.
+
+.. code-block:: console
+
+    $ npm run watch
+
+This process will run in the foreground and recompile the assets when a change is made to them. After refreshing the browser you should see the new assets loaded.
 
 reStructuredText
 ----------------

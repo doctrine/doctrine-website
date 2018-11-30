@@ -12,6 +12,9 @@ class AssetIntegrityGeneratorTest extends TestCase
     /** @var string */
     private $sourceDir;
 
+    /** @var string */
+    private $webpackBuildDir;
+
     /** @var AssetIntegrityGenerator */
     private $assetIntegrityGenerator;
 
@@ -24,8 +27,9 @@ class AssetIntegrityGeneratorTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->sourceDir = __DIR__ . '/../source';
+        $this->sourceDir       = __DIR__ . '/../source';
+        $this->webpackBuildDir = __DIR__ . '/../.webpack-build';
 
-        $this->assetIntegrityGenerator = new AssetIntegrityGenerator($this->sourceDir);
+        $this->assetIntegrityGenerator = new AssetIntegrityGenerator($this->sourceDir, $this->webpackBuildDir);
     }
 }

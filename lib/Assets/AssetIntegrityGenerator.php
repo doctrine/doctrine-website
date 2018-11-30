@@ -15,18 +15,22 @@ class AssetIntegrityGenerator
     /** @var string */
     private $sourceDir;
 
+    /** @var string */
+    private $webpackBuildDir;
+
     /** @var string[] */
     private $cache = [];
 
-    public function __construct(string $sourceDir)
+    public function __construct(string $sourceDir, string $webpackBuildDir)
     {
-        $this->sourceDir = $sourceDir;
+        $this->sourceDir       = $sourceDir;
+        $this->webpackBuildDir = $webpackBuildDir;
     }
 
-    public function getAssetIntegrity(string $path) : string
+    public function getAssetIntegrity(string $path, ?string $rootPath = null) : string
     {
         if (! isset($this->cache[$path])) {
-            $contents = $this->getFileContents($path);
+            $contents = $this->getFileContents($path, $rootPath ?? $this->sourceDir);
 
             $this->cache[$path] = $this->buildAssetIntegrityString($contents);
         }
@@ -34,9 +38,14 @@ class AssetIntegrityGenerator
         return $this->cache[$path];
     }
 
-    private function getFileContents(string $path) : string
+    public function getWebpackAssetIntegrity(string $path) : string
     {
-        $assetPath = realpath($this->sourceDir . '/' . $path);
+        return $this->getAssetIntegrity($path, $this->webpackBuildDir);
+    }
+
+    private function getFileContents(string $path, string $rootPath) : string
+    {
+        $assetPath = realpath($rootPath . '/' . $path);
         assert($assetPath !== false);
 
         $contents = file_get_contents($assetPath);

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests;
 
-use Doctrine\StaticWebsiteGenerator\Routing\Router;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\ProcessFactory;
@@ -31,11 +30,14 @@ class WebsiteBuilderTest extends TestCase
     /** @var SourceFilesBuilder|MockObject */
     private $sourceFilesBuilder;
 
+    /** @var string */
+    private $rootDir;
+
+    /** @var string */
+    private $webpackBuildDir;
+
     /** @var WebsiteBuilder|MockObject */
     private $websiteBuilder;
-
-    /** @var Router|MockObject */
-    private $router;
 
     protected function setUp() : void
     {
@@ -44,7 +46,8 @@ class WebsiteBuilderTest extends TestCase
         $this->filesystem           = $this->createMock(Filesystem::class);
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
         $this->sourceFilesBuilder   = $this->createMock(SourceFilesBuilder::class);
-        $this->router               = $this->createMock(Router::class);
+        $this->rootDir              = '/data/doctrine-website-build-staging';
+        $this->webpackBuildDir      = '/data/doctrine-website-build-staging/.webpack-build';
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
             ->setConstructorArgs([
@@ -53,7 +56,8 @@ class WebsiteBuilderTest extends TestCase
                 $this->filesystem,
                 $this->sourceFileRepository,
                 $this->sourceFilesBuilder,
-                $this->router,
+                $this->rootDir,
+                $this->webpackBuildDir,
             ])
             ->setMethods(['filePutContents'])
             ->getMock();
@@ -70,7 +74,7 @@ class WebsiteBuilderTest extends TestCase
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && git pull origin master');
 
-        $this->filesystem->expects(self::once())
+        $this->filesystem->expects(self::exactly(2))
             ->method('remove');
 
         $this->websiteBuilder->expects(self::once())
@@ -81,6 +85,13 @@ class WebsiteBuilderTest extends TestCase
             );
 
         $this->processFactory->expects(self::at(1))
+            ->method('run')
+            ->with('cd /data/doctrine-website-build-staging && npm run build');
+
+        $this->filesystem->expects(self::once())
+            ->method('mirror');
+
+        $this->processFactory->expects(self::at(2))
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master');
 
