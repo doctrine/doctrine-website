@@ -10,14 +10,26 @@
             <a href="{{ site.url }}/projects/dbal.html">Database Abstraction Layer (DBAL)</a> it is
             built upon.</p>
 
-            <p class="lead">
-                <a class="btn bg-doctrine-orange text-white btn-lg" href="{{ site.url }}/projects/doctrine-orm/en/current/tutorials/getting-started.html" role="button">Get Started</a>
-                <a class="btn bg-doctrine-dark-blue text-white btn-lg" href="{{ site.url }}/projects.html" role="button">View Projects</a>
-
-                <div class="btn btn-lg tidelift-badge">
-                    <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank" rel="noopener noreferrer"><img src="{{ get_asset_url('/images/tidelift-icon.png', site.url) }}" class="tidelift-icon" /> <span>Get professional support for Doctrine</span></a>
+            <div class="row">
+                <div class="col-12">
+                    <a class="btn bg-doctrine-orange text-white btn-lg" href="{{ site.url }}/projects/doctrine-orm/en/current/tutorials/getting-started.html" role="button">Get Started</a>
+                    <a class="btn bg-doctrine-dark-blue text-white btn-lg" href="{{ site.url }}/projects.html" role="button">View Projects</a>
                 </div>
-            </p>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="btn btn-lg tidelift-badge mt-2">
+                        <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank" rel="noopener noreferrer"><img src="{{ get_asset_url('/images/tidelift-icon.png', site.url) }}" class="tidelift-icon" /> <span>Get professional support for Doctrine</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col">
+                    {% include "carbonad-standard.html.twig" %}
+                </div>
+            </div>
         </div>
     </div>
 

@@ -1,10 +1,17 @@
 <h1>Contributors</h1>
 
-<p class="lead">
-    In addition to the <a href="{{ site.url }}/team/maintainers.html">core maintainers</a>, Doctrine has received contributions from {{ contributors|length }}
-    different people from all over the world. Could you be the next contributor? Head on over to the
-    <a href="{{ site.url }}/contribute/">Contributor Workflow</a> to learn how to
-    contribute to your favorite Doctrine project today!
-</p>
+<div class="row">
+    <div class="col-lg-8 col-sm-12">
+        <p class="lead">
+            In addition to the <a href="{{ site.url }}/team/maintainers.html">core maintainers</a>, Doctrine has received contributions from {{ contributors|length }}
+            different people from all over the world. Could you be the next contributor? Head on over to the
+            <a href="{{ site.url }}/contribute/">Contributor Workflow</a> to learn how to
+            contribute to your favorite Doctrine project today!
+        </p>
+    </div>
+    <div class="col-4 d-none d-lg-block">
+        {% include "carbonad-standard.html.twig" %}
+    </div>
+</div>
 
 {% include "contributors-list.html.twig" with {contributors:contributors} %}

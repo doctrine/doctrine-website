@@ -1,0 +1,71 @@
+#carbonads {
+  display: block;
+  overflow: hidden;
+  padding: 10px;
+  border: 1px dashed #ccc;
+  font-size: 12px;
+  max-width: 360px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  background-color: white;
+}
+
+#carbonads span {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.carbon-img {
+  float: left;
+  margin-right: 1em;
+}
+
+.carbon-img img {
+  display: block;
+}
+
+.carbon-text {
+  display: block;
+  float: left;
+  max-width: calc(100% - 130px - 1em);
+  text-align: left;
+}
+
+.carbon-poweredby {
+  color: #cccccc;
+  position: absolute;
+  left: 142px;
+  bottom: 0;
+  display: block;
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 1200px) {
+  .sidebar-sticky {
+    .carbon-img {
+      float: none;
+      margin: 0;
+    }
+
+    .carbon-img img {
+      margin: 0 auto 1em;
+    }
+
+    .carbon-text {
+      margin-bottom: 1em;
+      max-width: none;
+      text-align: center;
+    }
+
+    .carbon-poweredby {
+      position: relative;
+      left: auto;
+      text-align: center;
+    }
+  }
+}
