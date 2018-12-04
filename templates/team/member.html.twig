@@ -3,27 +3,35 @@
         {{ contributor.github }}
     </div>
     <div class="card-body">
-        <img src="{{ contributor.avatarUrl }}" class="rounded float-left mr-5" style="width: 100px;" />
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <img src="{{ contributor.avatarUrl }}" class="rounded float-left mr-5" style="width: 100px;" />
 
-        <strong>
-            {{ contributor.teamMember.name ?? contributor.github }}
-        </strong>
+                <strong>
+                    {{ contributor.teamMember.name ?? contributor.github }}
+                </strong>
 
-        <ul class="list-inline">
-            {% if contributor.teamMember and contributor.teamMember.twitter %}
-                <li class="list-inline-item"><a href="https://twitter.com/{{ contributor.teamMember.twitter }}/" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter mr-2"></i></a></li>
-            {% endif %}
+                <ul class="list-inline">
+                    {% if contributor.teamMember and contributor.teamMember.twitter %}
+                        <li class="list-inline-item"><a href="https://twitter.com/{{ contributor.teamMember.twitter }}/" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter mr-2"></i></a></li>
+                    {% endif %}
 
-            {% if contributor.teamMember and contributor.teamMember.website %}
-                <li class="list-inline-item"><a href="{{ contributor.teamMember.website }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-link mr-2"></i></a></li>
-            {% endif %}
+                    {% if contributor.teamMember and contributor.teamMember.website %}
+                        <li class="list-inline-item"><a href="{{ contributor.teamMember.website }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-link mr-2"></i></a></li>
+                    {% endif %}
 
-            {% if contributor.github %}
-                <li class="list-inline-item"><a href="https://github.com/{{ contributor.github }}/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i></a></li>
-            {% endif %}
-        </ul>
+                    {% if contributor.github %}
+                        <li class="list-inline-item"><a href="https://github.com/{{ contributor.github }}/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i></a></li>
+                    {% endif %}
+                </ul>
 
-        {{ contributor.numCommits }} commits <span class="text-success">{{ contributor.numAdditions }} ++</span> <span class="text-danger">{{ contributor.numDeletions }} --</span>
+                {{ contributor.numCommits }} commits <span class="text-success">{{ contributor.numAdditions }} ++</span> <span class="text-danger">{{ contributor.numDeletions }} --</span>
+            </div>
+
+            <div class="col-4 d-none d-lg-block">
+                {% include "carbonad-standard.html.twig" %}
+            </div>
+        </div>
     </div>
 </div>
 

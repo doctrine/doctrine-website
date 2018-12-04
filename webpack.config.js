@@ -25,7 +25,7 @@ const plugins = () => {
     if (!isWatching) {
         plugins.push(
             new PurgecssPlugin({
-                whitelistPatterns: [/^ais/],
+                whitelistPatterns: [/^ais/, /^carbon/],
                 paths: []
                     .concat(glob.sync(__dirname + '/templates/**/*.twig'))
                     .concat(glob.sync(__dirname + '/source/**/*.html'))
