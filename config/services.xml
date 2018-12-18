@@ -6,6 +6,7 @@
     <services>
         <defaults autowire="true" autoconfigure="true" public="false">
             <bind key="$rootDir">%doctrine.website.root_dir%</bind>
+            <bind key="$cacheDir">%doctrine.website.cache_dir%</bind>
             <bind key="$env">%doctrine.website.env%</bind>
             <bind key="$projectsDir">%doctrine.website.projects_dir%</bind>
             <bind key="$docsDir">%doctrine.website.docs_dir%</bind>
@@ -104,7 +105,7 @@
         <service id="Symfony\Component\Filesystem\Filesystem" autowire="true" />
         <service id="Symfony\Component\HttpKernel\Controller\ArgumentResolver" autowire="true" />
         <service id="Doctrine\Common\Cache\FilesystemCache" autowire="false">
-            <argument>%doctrine.website.cache_dir%</argument>
+            <argument>%doctrine.website.cache_dir%/fscache</argument>
         </service>
 
         <service id="Doctrine\StaticWebsiteGenerator\Controller\ControllerProvider">
@@ -123,6 +124,7 @@
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\ProjectVersionRequests" />
             </argument>
         </service>
 

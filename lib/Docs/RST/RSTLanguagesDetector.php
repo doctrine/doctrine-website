@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs\RST;
 
-use Doctrine\Website\Model\Project;
-use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use function array_filter;
 use function array_map;
 use function array_values;
 use function end;
 use function explode;
 use function in_array;
+use function is_dir;
 use function iterator_to_array;
 use function strlen;
 
@@ -20,24 +20,28 @@ class RSTLanguagesDetector
 {
     public const ENGLISH_LANGUAGE_CODE = 'en';
 
-    /** @var string */
-    private $projectsDir;
-
-    public function __construct(string $projectsDir)
+    /**
+     * @return RSTLanguage[]
+     */
+    public function detectLanguages(string $docsDir) : array
     {
-        $this->projectsDir = $projectsDir;
+        if (! is_dir($docsDir)) {
+            return [];
+        }
+
+        $languages = $this->detectLanguagesInDirectory($docsDir);
+
+        return array_filter($languages, function (RSTLanguage $language) : bool {
+            return $this->hasRSTIndex($language);
+        });
     }
 
     /**
      * @return RSTLanguage[]
      */
-    public function detectLanguages(Project $project, ProjectVersion $version) : array
+    private function detectLanguagesInDirectory(string $docsDir) : array
     {
-        $finder = new Finder();
-
-        $docsDir = $project->getAbsoluteDocsPath($this->projectsDir);
-
-        $finder
+        $finder = (new Finder())
             ->directories()
             ->in($docsDir);
 
@@ -59,7 +63,7 @@ class RSTLanguagesDetector
                     continue;
                 }
 
-                $languagePath = $project->getAbsoluteDocsPath($this->projectsDir) . '/' . $languageCode;
+                $languagePath = $docsDir . '/' . $languageCode;
 
                 $languages[] = new RSTLanguage(
                     $languageCode,
@@ -71,7 +75,17 @@ class RSTLanguagesDetector
         }
 
         return [
-            new RSTLanguage(self::ENGLISH_LANGUAGE_CODE, $project->getAbsoluteDocsPath($this->projectsDir)),
+            new RSTLanguage(self::ENGLISH_LANGUAGE_CODE, $docsDir),
         ];
+    }
+
+    private function hasRSTIndex(RSTLanguage $language) : bool
+    {
+        $finder = (new Finder())
+            ->files()
+            ->name('index.rst')
+            ->in($language->getPath());
+
+        return $finder->count() > 0;
     }
 }

@@ -4,101 +4,100 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\DataSources;
 
-use Doctrine\SkeletonMapper\ObjectManagerInterface;
+use Doctrine\Website\DataBuilder\ContributorDataBuilder;
+use Doctrine\Website\DataBuilder\WebsiteData;
+use Doctrine\Website\DataBuilder\WebsiteDataReader;
 use Doctrine\Website\DataSources\Contributors;
 use Doctrine\Website\Model\Project;
-use Doctrine\Website\Model\ProjectContributor;
 use Doctrine\Website\Model\TeamMember;
-use Doctrine\Website\Repositories\ProjectContributorRepository;
+use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\Repositories\TeamMemberRepository;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class ContributorsTest extends TestCase
 {
-    /** @var ProjectContributorRepository|MockObject */
-    private $projectContributorRepository;
+    /** @var WebsiteDataReader|MockObject */
+    private $dataReader;
+
+    /** @var TeamMemberRepository|MockObject */
+    private $teamMemberRepository;
+
+    /** @var ProjectRepository|MockObject */
+    private $projectRepository;
 
     /** @var Contributors */
     private $contributors;
 
     protected function setUp() : void
     {
-        $this->projectContributorRepository = $this->createMock(ProjectContributorRepository::class);
+        $this->dataReader           = $this->createMock(WebsiteDataReader::class);
+        $this->teamMemberRepository = $this->createMock(TeamMemberRepository::class);
+        $this->projectRepository    = $this->createMock(ProjectRepository::class);
 
-        $this->contributors = new Contributors($this->projectContributorRepository);
+        $this->contributors = new Contributors(
+            $this->dataReader,
+            $this->teamMemberRepository,
+            $this->projectRepository
+        );
     }
 
     public function testGetSourceRows() : void
     {
-        $project1 = new Project([]);
-        $project2 = new Project([]);
+        $projectContributors = [
+            [
+                'github' => 'jwage',
+                'projects' => ['orm'],
+            ],
+            [
+                'github' => 'Ocramius',
+                'projects' => ['dbal'],
+            ],
+        ];
 
-        $jwageTeamMember    = new TeamMember();
-        $ocramiusTeamMember = new TeamMember();
+        $jwageTeamMember    = $this->createMock(TeamMember::class);
+        $ocramiusTeamMember = $this->createMock(TeamMember::class);
 
-        $objectManager = $this->createMock(ObjectManagerInterface::class);
+        $ormProject  = $this->createMock(Project::class);
+        $dbalProject = $this->createMock(Project::class);
 
-        $projectContributor1 = new ProjectContributor();
-        $projectContributor1->hydrate([
-            'github' => 'jwage',
-            'teamMember' => $jwageTeamMember,
-            'avatarUrl' => 'https://avatars1.githubusercontent.com/u/97422?s=460&v=4',
-            'numCommits' => 1,
-            'numAdditions' => 1,
-            'numDeletions' => 1,
-            'project' => $project1,
-        ], $objectManager);
+        $this->dataReader->expects(self::once())
+            ->method('read')
+            ->with(ContributorDataBuilder::DATA_FILE)
+            ->willReturn(new WebsiteData(ContributorDataBuilder::DATA_FILE, $projectContributors));
 
-        $projectContributor2 = new ProjectContributor();
-        $projectContributor2->hydrate([
-            'github' => 'jwage',
-            'teamMember' => $jwageTeamMember,
-            'avatarUrl' => 'https://avatars1.githubusercontent.com/u/97422?s=460&v=4',
-            'numCommits' => 1,
-            'numAdditions' => 1,
-            'numDeletions' => 1,
-            'project' => $project2,
-        ], $objectManager);
+        $this->teamMemberRepository->expects(self::at(0))
+            ->method('findOneByGithub')
+            ->with('jwage')
+            ->willReturn($jwageTeamMember);
 
-        $projectContributor3 = new ProjectContributor();
-        $projectContributor3->hydrate([
-            'github' => 'ocramius',
-            'teamMember' => $ocramiusTeamMember,
-            'avatarUrl' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
-            'numCommits' => 1,
-            'numAdditions' => 1,
-            'numDeletions' => 1,
-            'project' => $project2,
-        ], $objectManager);
+        $this->projectRepository->expects(self::at(0))
+            ->method('findOneBySlug')
+            ->with('orm')
+            ->willReturn($ormProject);
 
-        $projectContributors = [$projectContributor1, $projectContributor2, $projectContributor3];
+        $this->teamMemberRepository->expects(self::at(1))
+            ->method('findOneByGithub')
+            ->with('Ocramius')
+            ->willReturn($ocramiusTeamMember);
 
-        $this->projectContributorRepository->expects(self::once())
-            ->method('findAll')
-            ->willReturn($projectContributors);
+        $this->projectRepository->expects(self::at(1))
+            ->method('findOneBySlug')
+            ->with('dbal')
+            ->willReturn($dbalProject);
 
         $rows = $this->contributors->getSourceRows();
 
         self::assertEquals([
-            'jwage' => [
-                'teamMember' => $jwageTeamMember,
-                'isTeamMember' => true,
+            [
                 'github' => 'jwage',
-                'avatarUrl' => 'https://avatars1.githubusercontent.com/u/97422?s=460&v=4',
-                'numCommits' => 2,
-                'numAdditions' => 2,
-                'numDeletions' => 2,
-                'projects' => [$project1, $project2],
+                'projects' => [$ormProject],
+                'teamMember' => $jwageTeamMember,
             ],
-            'ocramius' => [
+            [
+                'github' => 'Ocramius',
+                'projects' => [$dbalProject],
                 'teamMember' => $ocramiusTeamMember,
-                'isTeamMember' => true,
-                'github' => 'ocramius',
-                'avatarUrl' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
-                'numCommits' => 1,
-                'numAdditions' => 1,
-                'numDeletions' => 1,
-                'projects' => [$project2],
             ],
         ], $rows);
     }

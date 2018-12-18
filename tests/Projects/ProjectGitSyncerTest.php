@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
-use Doctrine\Website\Model\Project;
-use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Tests\TestCase;
@@ -52,12 +50,7 @@ class ProjectGitSyncerTest extends TestCase
 
     public function testSync() : void
     {
-        $project = new Project([
-            'repositoryName' => 'example-project',
-            'docsRepositoryName' => 'example-project-docs',
-        ]);
-
-        $projectVersion = new ProjectVersion(['branchName' => '1.0']);
+        $repositoryName = 'example-project';
 
         $this->processFactory->expects(self::at(0))
             ->method('run')
@@ -66,22 +59,12 @@ class ProjectGitSyncerTest extends TestCase
                 $this->projectsDir
             ));
 
-        $this->processFactory->expects(self::at(1))
-            ->method('run')
-            ->with(sprintf(
-                'cd %s/example-project-docs && git clean -xdf && git fetch origin',
-                $this->projectsDir
-            ));
-
-        $this->projectGitSyncer->sync($project);
+        $this->projectGitSyncer->sync($repositoryName);
     }
 
     public function testCheckoutMaster() : void
     {
-        $project = new Project([
-            'repositoryName' => 'example-project',
-            'docsRepositoryName' => 'example-project-docs',
-        ]);
+        $repositoryName = 'example-project';
 
         $this->processFactory->expects(self::at(0))
             ->method('run')
@@ -90,24 +73,13 @@ class ProjectGitSyncerTest extends TestCase
                 $this->projectsDir
             ));
 
-        $this->processFactory->expects(self::at(1))
-            ->method('run')
-            ->with(sprintf(
-                'cd %s/example-project-docs && git clean -xdf && git checkout origin/master',
-                $this->projectsDir
-            ));
-
-        $this->projectGitSyncer->checkoutMaster($project);
+        $this->projectGitSyncer->checkoutMaster($repositoryName);
     }
 
-    public function testCheckoutProjectVersion() : void
+    public function testCheckoutBranch() : void
     {
-        $project = new Project([
-            'repositoryName' => 'example-project',
-            'docsRepositoryName' => 'example-project-docs',
-        ]);
-
-        $projectVersion = new ProjectVersion(['branchName' => '1.0']);
+        $repositoryName = 'example-project';
+        $branchName     = '1.0';
 
         $this->processFactory->expects(self::at(0))
             ->method('run')
@@ -116,13 +88,6 @@ class ProjectGitSyncerTest extends TestCase
                 $this->projectsDir
             ));
 
-        $this->processFactory->expects(self::at(1))
-            ->method('run')
-            ->with(sprintf(
-                'cd %s/example-project-docs && git clean -xdf && git checkout origin/1.0',
-                $this->projectsDir
-            ));
-
-        $this->projectGitSyncer->checkoutProjectVersion($project, $projectVersion);
+        $this->projectGitSyncer->checkoutBranch($repositoryName, $branchName);
     }
 }

@@ -4,69 +4,58 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\DataSources;
 
+use Doctrine\Website\DataBuilder\ProjectDataBuilder;
+use Doctrine\Website\DataBuilder\WebsiteData;
+use Doctrine\Website\DataBuilder\WebsiteDataReader;
 use Doctrine\Website\DataSources\Projects;
-use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectsTest extends TestCase
 {
-    /** @var mixed[] */
-    private $projectsData = [
-        ['repositoryName' => 'doctrine2'],
-        ['repositoryName' => 'dbal'],
-    ];
-
-    /** @var ProjectDataReader|MockObject */
-    private $projectDataReader;
+    /** @var WebsiteDataReader|MockObject */
+    private $dataReader;
 
     /** @var Projects */
     private $projects;
 
     protected function setUp() : void
     {
-        $this->projectDataReader = $this->createMock(ProjectDataReader::class);
+        $this->dataReader = $this->createMock(WebsiteDataReader::class);
 
-        $this->projects = new Projects($this->projectDataReader, $this->projectsData);
+        $this->projects = new Projects(
+            $this->dataReader
+        );
     }
 
     public function testGetSourceRows() : void
     {
-        $this->projectDataReader->expects(self::at(0))
-            ->method('read')
-            ->with('doctrine2')
-            ->willReturn([
+        $expected = [
+            [
+                'active' => true,
+                'archived' => false,
+                'integration' => false,
                 'name' => 'Object Relational Mapper',
                 'repositoryName' => 'doctrine2',
-            ]);
-
-        $this->projectDataReader->expects(self::at(1))
-            ->method('read')
-            ->with('dbal')
-            ->willReturn([
+                'versions' => [],
+            ],
+            [
+                'active' => true,
+                'archived' => false,
+                'integration' => false,
                 'name' => 'Database Abstraction Layer',
                 'repositoryName' => 'dbal',
-            ]);
+                'versions' => [],
+            ],
+        ];
+
+        $this->dataReader->expects(self::once())
+            ->method('read')
+            ->with(ProjectDataBuilder::DATA_FILE)
+            ->willReturn(new WebsiteData('test', $expected));
 
         $projectRows = $this->projects->getSourceRows();
 
-        self::assertSame([
-            [
-                'active' => true,
-                'archived' => false,
-                'hasDocs' => true,
-                'integration' => false,
-                'name' => 'Object Relational Mapper',
-                'repositoryName' => 'doctrine2',
-            ],
-            [
-                'active' => true,
-                'archived' => false,
-                'hasDocs' => true,
-                'integration' => false,
-                'name' => 'Database Abstraction Layer',
-                'repositoryName' => 'dbal',
-            ],
-        ], $projectRows);
+        self::assertSame($expected, $projectRows);
     }
 }

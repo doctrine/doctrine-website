@@ -23,27 +23,6 @@ parameters:
             defaults:
                 title: RST Example
 
-        blog:
-            path: /blog/index.html
-            controller: Doctrine\Website\Controllers\BlogController::index
-            defaults:
-                title: Blog
-                menuSlug: blog
-
-        blog_archive:
-            path: /blog/archive.html
-            controller: Doctrine\Website\Controllers\BlogController::archive
-            defaults:
-                title: Blog Archive
-                menuSlug: blog
-
-        blog_post:
-            path: /{year}/{month}/{day}/{slug}.html
-            controller: Doctrine\Website\Controllers\BlogController::view
-            defaults:
-                menuSlug: blog
-                layout: blog-post
-
         community:
             path: /community/index.html
             defaults:
@@ -136,7 +115,37 @@ parameters:
             requirements:
                 section: .+
 
+        project_version:
+            path: /projects/{slug}/{versionSlug}.html
+            controller: Doctrine\Website\Controllers\ProjectController::version
+            provider: Doctrine\Website\Requests\ProjectVersionRequests::getProjectVersions
+            defaults:
+                menuSlug: projects
+            requirements:
+                versionSlug: .+
+
         project_api_docs_page:
             path: /api/{slug}}/{docsVersion}/{page}.html
             requirements:
                 section: .+
+
+        blog:
+            path: /blog/index.html
+            controller: Doctrine\Website\Controllers\BlogController::index
+            defaults:
+                title: Blog
+                menuSlug: blog
+
+        blog_archive:
+            path: /blog/archive.html
+            controller: Doctrine\Website\Controllers\BlogController::archive
+            defaults:
+                title: Blog Archive
+                menuSlug: blog
+
+        blog_post:
+            path: /{year}/{month}/{day}/{slug}.html
+            controller: Doctrine\Website\Controllers\BlogController::view
+            defaults:
+                menuSlug: blog
+                layout: blog-post

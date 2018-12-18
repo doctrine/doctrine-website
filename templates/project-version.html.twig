@@ -1,0 +1,84 @@
+{% block title %}{{ project.name }} - {{ site.title }} - {{ site.subtitle }}{% endblock %}
+
+{% block meta_description project.description %}
+
+{% block meta_keywords project.keywords|join(',') %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('projects') }}">Projects</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('project', {slug:project.slug}) }}">{{ project.shortName }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ version.name }}</li>
+        </ol>
+    </nav>
+
+    {% include "project-status-alert.html.twig" with {
+        project:project,
+        version:version
+    } %}
+
+    <h2>{{ project.name }}</h2>
+
+    <h5>
+        {% if latestTag %}
+            {{ latestTag.composerRequireVersionString }}
+        {% else %}
+            {{ version.name }}
+        {% endif %}
+
+        <span class="badge badge-pill badge-{{ version.stabilityColor }}">{{ version.stability }}</span>
+    </h5>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-8 col-sm-12">
+            <p class="lead">{{ project.description }}</p>
+        </div>
+        <div class="col-4 d-none d-lg-block">
+            {% include "carbonad-standard.html.twig" %}
+        </div>
+    </div>
+
+    {% if version.hasDocs %}
+        <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">Docs</a>
+    {% endif %}
+
+    <a href="{{ site.url }}/api/{{ project.slug }}/{{ version.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">API</a>
+
+    <a href="https://github.com/doctrine/{{ project.repositoryName }}/tree/{{ version.branchName }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">GitHub</a>
+
+    <hr />
+
+    {% if project.composerPackageName %}
+        <h2>Install</h2>
+
+        {% if latestTag %}
+            {% if not latestTag.preComposer %}
+                <div class="console"><pre><code class="console"><span class="noselect">$ </span>composer require {{ project.composerPackageName }}:{{ latestTag.composerRequireVersionString }}</code></pre></div>
+            {% endif %}
+        {% else %}
+            <div class="console"><pre><code class="console"><span class="noselect">$ </span>composer require {{ project.composerPackageName }}:{{ version.name }}.x-dev</code></pre></div>
+        {% endif %}
+    {% endif %}
+
+    {% if version.tags %}
+        <h2>Releases</h2>
+
+        <div class="border-left border-right border-bottom rounded mb-4">
+            <table class="table mb-0">
+                <tbody>
+                {% for tag in version.tags|reverse %}
+                    <tr>
+                        <td><date>{{ tag.date|date('Y-m-d') }}</date></td>
+                        <td><a href="https://github.com/doctrine/{{ project.repositoryName }}/releases/tag/{{ tag.name }}" target="_blank" rel="noopener noreferrer">{{ tag.displayName }}</a></td>
+                        <td><span class="badge badge-{{ version.stabilityColor(tag.stability) }}">{{ tag.stability }}</span></td>
+                        <td><a href="https://github.com/doctrine/{{ project.repositoryName }}/archive/{{ tag.name }}.zip"><i class="fas fa-download"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
-use Doctrine\Website\Model\Project;
-use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\ProcessFactory;
 use function is_dir;
 use function sprintf;
@@ -46,58 +44,39 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
-    public function sync(Project $project) : void
+    public function sync(string $repositoryName) : void
     {
-        // handle when docs are in a different repository then the code
-        if ($project->getDocsRepositoryName() !== $project->getRepositoryName()) {
-            $this->syncRepository(
-                $project->getProjectRepositoryPath($this->projectsDir)
-            );
-        }
-
-        // sync docs repository
-        $this->syncRepository(
-            $project->getProjectDocsRepositoryPath($this->projectsDir)
-        );
+        $this->syncRepository($repositoryName);
     }
 
-    public function checkoutMaster(Project $project) : void
+    public function checkoutMaster(string $repositoryName) : void
     {
-        $this->checkoutBranch($project, 'master');
+        $this->checkoutBranch($repositoryName, 'master');
     }
 
-    public function checkoutProjectVersion(Project $project, ProjectVersion $version) : void
-    {
-        $this->checkoutBranch($project, $version->getBranchName());
-    }
-
-    private function checkoutBranch(Project $project, string $branchName) : void
-    {
-        if ($project->getDocsRepositoryName() !== $project->getRepositoryName()) {
-            $this->doCheckoutBranch($project->getProjectRepositoryPath($this->projectsDir), $branchName);
-        }
-
-        $this->doCheckoutBranch($project->getProjectDocsRepositoryPath($this->projectsDir), $branchName);
-    }
-
-    private function doCheckoutBranch(string $directory, string $branchName) : void
+    public function checkoutBranch(string $repositoryName, string $branchName) : void
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git checkout origin/%s',
-            $directory,
+            $this->getRepositoryPath($repositoryName),
             $branchName
         );
 
         $this->processFactory->run($command);
     }
 
-    private function syncRepository(string $directory) : void
+    private function syncRepository(string $repositoryName) : void
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git fetch origin',
-            $directory
+            $this->getRepositoryPath($repositoryName)
         );
 
         $this->processFactory->run($command);
+    }
+
+    private function getRepositoryPath(string $repositoryName) : string
+    {
+        return $this->projectsDir . '/' . $repositoryName;
     }
 }

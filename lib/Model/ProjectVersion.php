@@ -4,10 +4,19 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
+use DateTimeImmutable;
+use Doctrine\Website\Docs\RST\RSTLanguage;
+use Doctrine\Website\Git\Tag;
+use function array_map;
 use function array_merge;
+use function end;
 
 class ProjectVersion
 {
+    private const UPCOMING     = 'upcoming';
+    private const STABLE       = 'stable';
+    private const UNMAINTAINED = 'unmaintained';
+
     /** @var string */
     private $name;
 
@@ -26,8 +35,17 @@ class ProjectVersion
     /** @var bool */
     private $upcoming = false;
 
+    /** @var bool */
+    private $hasDocs = true;
+
+    /** @var RSTLanguage[] */
+    private $docsLanguages = [];
+
     /** @var string[] */
     private $aliases;
+
+    /** @var Tag[] */
+    private $tags;
 
     /**
      * @param mixed[] $version
@@ -40,7 +58,17 @@ class ProjectVersion
         $this->current    = (bool) ($version['current'] ?? false);
         $this->maintained = (bool) ($version['maintained'] ?? true);
         $this->upcoming   = (bool) ($version['upcoming'] ?? false);
-        $this->aliases    = $version['aliases'] ?? [];
+        $this->hasDocs    = (bool) ($version['hasDocs'] ?? true);
+
+        $this->docsLanguages = array_map(static function (array $language) : RSTLanguage {
+            return new RSTLanguage($language['code'], $language['path']);
+        }, $version['docsLanguages'] ?? []);
+
+        $this->tags = array_map(static function (array $tag) {
+            return new Tag($tag['name'], new DateTimeImmutable($tag['date']));
+        }, $version['tags'] ?? []);
+
+        $this->aliases = $version['aliases'] ?? [];
 
         if (! $this->current) {
             return;
@@ -79,11 +107,83 @@ class ProjectVersion
         return $this->upcoming;
     }
 
+    public function hasDocs() : bool
+    {
+        return $this->hasDocs;
+    }
+
+    /**
+     * @return RSTLanguage[]
+     */
+    public function getDocsLanguages() : array
+    {
+        return $this->docsLanguages;
+    }
+
     /**
      * @return string[]
      */
     public function getAliases() : array
     {
         return $this->aliases;
+    }
+
+    /**
+     * @return Tag[]
+     */
+    public function getTags() : array
+    {
+        return $this->tags;
+    }
+
+    public function getFirstTag() : ?Tag
+    {
+        return $this->tags[0] ?? null;
+    }
+
+    public function getLatestTag() : ?Tag
+    {
+        $latestTag = end($this->tags);
+
+        if ($latestTag === false) {
+            return null;
+        }
+
+        return $latestTag;
+    }
+
+    public function getStability() : string
+    {
+        if ($this->maintained === false) {
+            return self::UNMAINTAINED;
+        }
+
+        $latestTag = $this->getLatestTag();
+
+        if ($latestTag !== null) {
+            return $latestTag->getStability();
+        }
+
+        if ($this->current === true) {
+            return self::STABLE;
+        }
+
+        return self::UPCOMING;
+    }
+
+    public function getStabilityColor(?string $stability = null) : string
+    {
+        $map = [
+            'upcoming' => 'warning',
+            'alpha' => 'warning',
+            'beta' => 'warning',
+            'rc' => 'warning',
+            'stable' => 'primary',
+            'unmaintained' => 'danger',
+        ];
+
+        $stability = $stability ?? $this->getStability();
+
+        return $map[$stability] ?? 'secondary';
     }
 }

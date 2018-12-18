@@ -73,19 +73,10 @@
                     {% endif %}
                 </div>
 
-                {% if project.archived == true %}
-                    {% set alertMessage = 'This project is no longer maintained and has been archived.' %}
-                {% elseif project.active == false %}
-                    {% set alertMessage = 'This project is not being actively maintained. If you are interested in helping to maintain this project, take a look at the open issues on <a href="https://github.com/doctrine/{{ project.repositoryName }}/" target="_blank" rel="noopener noreferrer">GitHub</a> and submit pull requests.' %}
-                {% elseif project.getVersion(page.docsVersion).maintained == false %}
-                    {% set alertMessage = 'You are browsing documentation for a version that is no longer maintained.' %}
-                {% elseif project.getVersion(page.docsVersion).upcoming == true %}
-                    {% set alertMessage = 'You are browsing documentation for a version that has not yet been released.' %}
-                {% endif %}
-
-                {% if alertMessage is defined %}
-                    {% include "alert.html.twig" with {alertMessage:alertMessage} %}
-                {% endif %}
+                {% include "project-status-alert.html.twig" with {
+                    project:project,
+                    version:project.getVersion(page.docsVersion)
+                } %}
 
                 <div class="row">
                     <div class="col-12">
@@ -104,7 +95,7 @@
                                         {% if project.maintainedVersions %}
                                             <h6 class="dropdown-header">Maintained</h6>
 
-                                            {% for version in project.maintainedVersions %}
+                                            {% for version in project.maintainedVersions if version.hasDocs %}
                                                 {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
 
                                                 <a class="project-version-switcher dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">
@@ -124,7 +115,7 @@
                                         {% if project.unmaintainedVersions %}
                                             <h6 class="dropdown-header">Unmaintained</h6>
 
-                                            {% for version in project.unmaintainedVersions %}
+                                            {% for version in project.unmaintainedVersions if version.hasDocs %}
                                                 {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
 
                                                 <a class="dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">{{ version.name }}</a>

@@ -6,6 +6,7 @@ namespace Doctrine\Website;
 
 use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
+use Doctrine\Website\Commands\BuildWebsiteDataCommand;
 use Doctrine\Website\Commands\ClearBuildCacheCommand;
 use Doctrine\Website\Commands\DeployCommand;
 use Symfony\Component\Config\FileLocator;
@@ -31,6 +32,9 @@ class Application
     /** @var BuildWebsiteCommand */
     private $buildWebsiteCommand;
 
+    /** @var BuildWebsiteDataCommand */
+    private $buildWebsiteDataCommand;
+
     /** @var ClearBuildCacheCommand */
     private $clearBuildCacheCommand;
 
@@ -41,14 +45,16 @@ class Application
         BaseApplication $application,
         BuildDocsCommand $buildDocsCommand,
         BuildWebsiteCommand $buildWebsiteCommand,
+        BuildWebsiteDataCommand $buildWebsiteDataCommand,
         ClearBuildCacheCommand $clearBuildCacheCommand,
         DeployCommand $deployCommand
     ) {
-        $this->application            = $application;
-        $this->buildDocsCommand       = $buildDocsCommand;
-        $this->buildWebsiteCommand    = $buildWebsiteCommand;
-        $this->clearBuildCacheCommand = $clearBuildCacheCommand;
-        $this->deployCommand          = $deployCommand;
+        $this->application             = $application;
+        $this->buildDocsCommand        = $buildDocsCommand;
+        $this->buildWebsiteCommand     = $buildWebsiteCommand;
+        $this->buildWebsiteDataCommand = $buildWebsiteDataCommand;
+        $this->clearBuildCacheCommand  = $clearBuildCacheCommand;
+        $this->deployCommand           = $deployCommand;
     }
 
     public function run(InputInterface $input) : int
@@ -64,6 +70,7 @@ class Application
 
         $this->application->add($this->buildDocsCommand);
         $this->application->add($this->buildWebsiteCommand);
+        $this->application->add($this->buildWebsiteDataCommand);
         $this->application->add($this->clearBuildCacheCommand);
         $this->application->add($this->deployCommand);
 

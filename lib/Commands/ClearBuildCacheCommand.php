@@ -4,25 +4,19 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Commands;
 
-use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\Cache\CacheClearer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use function array_filter;
 use function assert;
-use function glob;
 use function is_string;
 use function sprintf;
 
 class ClearBuildCacheCommand extends Command
 {
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var Filesystem */
-    private $filesystem;
+    /** @var CacheClearer */
+    private $cacheClearer;
 
     /** @var string */
     private $rootDir;
@@ -30,12 +24,11 @@ class ClearBuildCacheCommand extends Command
     /** @var string */
     private $env;
 
-    public function __construct(ProjectRepository $projectRepository, Filesystem $filesystem, string $rootDir, string $env)
+    public function __construct(CacheClearer $cacheClearer, string $rootDir, string $env)
     {
-        $this->projectRepository = $projectRepository;
-        $this->filesystem        = $filesystem;
-        $this->rootDir           = $rootDir;
-        $this->env               = $env;
+        $this->cacheClearer = $cacheClearer;
+        $this->rootDir      = $rootDir;
+        $this->env          = $env;
 
         parent::__construct();
     }
@@ -58,51 +51,10 @@ class ClearBuildCacheCommand extends Command
         $buildDir = $input->getArgument('build-dir');
         assert(is_string($buildDir));
 
-        // clear build directory
-        $remove = [$buildDir];
+        $dirs = $this->cacheClearer->clear($buildDir);
 
-        $projects = $this->projectRepository->findAll();
-
-        foreach ($projects as $project) {
-            // built rst docs
-            $remove[] = sprintf(
-                '%s/source/projects/%s',
-                $this->rootDir,
-                $project->getDocsSlug()
-            );
-
-            // copied rst docs
-            $remove[] = sprintf(
-                '%s/docs/%s',
-                $this->rootDir,
-                $project->getDocsSlug()
-            );
-
-            // built api docs
-            $remove[] = sprintf(
-                '%s/source/api/%s',
-                $this->rootDir,
-                $project->getSlug()
-            );
-
-            // api docs cache folder
-            $remove[] = sprintf(
-                '%s/projects/%s/cache',
-                $this->rootDir,
-                $project->getRepositoryName()
-            );
-        }
-
-        $cacheDirectories = array_filter(glob($this->rootDir . '/cache/*'), 'is_dir');
-
-        foreach ($cacheDirectories as $cacheDirectory) {
-            $remove[] = $cacheDirectory;
-        }
-
-        foreach ($remove as $path) {
-            $output->writeln(sprintf('Removing <info>%s</info>', $path));
-
-            $this->filesystem->remove($path);
+        foreach ($dirs as $dir) {
+            $output->writeln(sprintf('Removed <info>%s</info>', $dir));
         }
 
         return 0;
