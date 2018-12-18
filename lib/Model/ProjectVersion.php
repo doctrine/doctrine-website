@@ -53,8 +53,8 @@ class ProjectVersion
     public function __construct(array $version)
     {
         $this->name       = (string) ($version['name'] ?? '');
-        $this->branchName = (string) ($version['branchName'] ?? '');
-        $this->slug       = (string) ($version['slug'] ?? '');
+        $this->branchName = (string) ($version['branchName'] ?? $this->name);
+        $this->slug       = (string) ($version['slug'] ?? $this->name);
         $this->current    = (bool) ($version['current'] ?? false);
         $this->maintained = (bool) ($version['maintained'] ?? true);
         $this->upcoming   = (bool) ($version['upcoming'] ?? false);

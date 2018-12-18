@@ -27,10 +27,45 @@ class ProjectVersionTest extends TestCase
     public function testGetName() : void
     {
         self::assertSame('1.0', $this->projectVersion->getName());
+    }
+
+    public function testGetBranchName() : void
+    {
         self::assertSame('1.0', $this->projectVersion->getBranchName());
+    }
+
+    public function testGetSlug() : void
+    {
         self::assertSame('1.0', $this->projectVersion->getSlug());
+    }
+
+    public function testIsCurrent() : void
+    {
         self::assertTrue($this->projectVersion->isCurrent());
+    }
+
+    public function testIsUpcoming() : void
+    {
         self::assertTrue($this->projectVersion->isUpcoming());
+    }
+
+    public function testGetAliases() : void
+    {
         self::assertSame(['alias', 'current', 'stable'], $this->projectVersion->getAliases());
+    }
+
+    public function testDefaults() : void
+    {
+        $projectVersion = new ProjectVersion(['name' => '1.0']);
+
+        self::assertSame('1.0', $projectVersion->getName());
+        self::assertSame('1.0', $projectVersion->getBranchName());
+        self::assertSame('1.0', $projectVersion->getSlug());
+        self::assertFalse($projectVersion->isCurrent());
+        self::assertFalse($projectVersion->isUpcoming());
+        self::assertTrue($projectVersion->hasDocs());
+        self::assertEmpty($projectVersion->getTags());
+        self::assertEmpty($projectVersion->getDocsLanguages());
+        self::assertEmpty($projectVersion->getAliases());
     }
 }
