@@ -24,7 +24,7 @@ class ProjectGitSyncer
 
     public function isRepositoryInitialized(string $repositoryName) : bool
     {
-        return is_dir($this->projectsDir . '/' . $repositoryName);
+        return is_dir($this->projectsDir . '/' . $repositoryName . '/.git');
     }
 
     public function initRepository(string $repositoryName) : void
@@ -44,11 +44,6 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
-    public function sync(string $repositoryName) : void
-    {
-        $this->syncRepository($repositoryName);
-    }
-
     public function checkoutMaster(string $repositoryName) : void
     {
         $this->checkoutBranch($repositoryName, 'master');
@@ -65,7 +60,7 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
-    private function syncRepository(string $repositoryName) : void
+    public function syncRepository(string $repositoryName) : void
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git fetch origin',

@@ -73,6 +73,15 @@ your local web server. You will need to setup a virtual host in your web
 server and point the root directory at
 ``/data/doctrine-website/build-dev``.
 
+Sync Project Repositories
+-------------------------
+
+First you need to checkout or update the repositories for each project.
+
+.. code-block:: console
+
+    $ ./bin/console sync-repositories
+
 Build Website Data
 ------------------
 
@@ -94,12 +103,6 @@ Now are you ready to start building the website! Build the documentation with th
 
     $ ./bin/console build-docs
 
-If you want to update the git repositories, pass the ``--sync-git`` option:
-
-.. code-block:: console
-
-    $ ./bin/console build-docs --sync-git
-
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
@@ -108,7 +111,7 @@ option to also generate the API docs:
 
 .. code-block:: console
 
-    $ ./bin/console build-docs --sync-git --api
+    $ ./bin/console build-docs --api
 
 We use `Sami <https://github.com/FriendsOfPHP/Sami>`_ for generating the
 PHP API documentation for each project.
@@ -120,7 +123,7 @@ To build the Algolia search indexes pass the ``--search`` option:
 
 .. code-block:: console
 
-    $ ./bin/console build-docs --sync-git --search
+    $ ./bin/console build-docs --search
 
 You will need to have the ``doctrine.website.algolia.admin_api_key``
 parameter in ``config/local.yml`` in order to update the Algolia search

@@ -79,10 +79,6 @@ class BuildDocsTest extends TestCase
             ->method('findAll')
             ->willReturn($projects);
 
-        $this->projectGitSyncer->expects(self::once())
-            ->method('sync')
-            ->with($repositoryName);
-
         $this->apiBuilder->expects(self::once())
             ->method('buildAPIDocs')
             ->with($project, $version);
@@ -101,6 +97,6 @@ class BuildDocsTest extends TestCase
             ->method('buildSearchIndexes')
             ->with($project, $version);
 
-        $this->buildDocs->build($output, '', '', true, true, true);
+        $this->buildDocs->build($output, '', '', true, true);
     }
 }

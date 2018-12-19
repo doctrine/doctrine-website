@@ -48,7 +48,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->projectGitSyncer->initRepository($repositoryName);
     }
 
-    public function testSync() : void
+    public function testSyncRepository() : void
     {
         $repositoryName = 'example-project';
 
@@ -59,7 +59,7 @@ class ProjectGitSyncerTest extends TestCase
                 $this->projectsDir
             ));
 
-        $this->projectGitSyncer->sync($repositoryName);
+        $this->projectGitSyncer->syncRepository($repositoryName);
     }
 
     public function testCheckoutMaster() : void

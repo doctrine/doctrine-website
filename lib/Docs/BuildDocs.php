@@ -13,6 +13,7 @@ use Doctrine\Website\Repositories\ProjectRepository;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use function array_filter;
+use function count;
 use function sprintf;
 
 class BuildDocs
@@ -51,8 +52,7 @@ class BuildDocs
         string $projectToBuild,
         string $versionToBuild,
         bool $buildApiDocs,
-        bool $buildSearchIndexes,
-        bool $syncGit
+        bool $buildSearchIndexes
     ) : void {
         if ($buildSearchIndexes) {
             $this->searchIndexer->initSearchIndex();
@@ -64,17 +64,23 @@ class BuildDocs
 
         foreach ($projectsToBuild as $project) {
             foreach ($this->getProjectVersionsToBuild($project, $versionToBuild) as $version) {
+                $shouldBuildDocs = $buildApiDocs || count($version->getDocsLanguages()) > 0;
+
+                if ($shouldBuildDocs === false) {
+                    $output->writeln(sprintf(
+                        'Nothing to build for <info>%s</info> (<comment>%s</comment>)',
+                        $project->getSlug(),
+                        $version->getSlug()
+                    ));
+
+                    continue;
+                }
+
                 $output->writeln(sprintf(
                     '<info>%s</info> (<comment>%s</comment>)',
                     $project->getSlug(),
                     $version->getSlug()
                 ));
-
-                if ($syncGit) {
-                    $output->writeln(' - syncing git');
-
-                    $this->projectGitSyncer->sync($project->getRepositoryName());
-                }
 
                 $output->writeln(sprintf(' - checking out %s', $version->getName()));
 
