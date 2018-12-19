@@ -45,16 +45,7 @@ class ProjectDataBuilderTest extends TestCase
             ->method('getProjectRepositoryNames')
             ->willReturn(['orm']);
 
-        $this->projectGitSyncer->expects(self::once())
-            ->method('isRepositoryInitialized')
-            ->with('orm')
-            ->willReturn(false);
-
-        $this->projectGitSyncer->expects(self::once())
-            ->method('initRepository')
-            ->with('orm');
-
-        $this->projectGitSyncer->expects(self::at(2))
+        $this->projectGitSyncer->expects(self::at(0))
             ->method('checkoutMaster')
             ->with('orm');
 
@@ -94,7 +85,7 @@ class ProjectDataBuilderTest extends TestCase
                 ],
             ]);
 
-        $this->projectGitSyncer->expects(self::at(3))
+        $this->projectGitSyncer->expects(self::at(1))
             ->method('checkoutBranch')
             ->with('orm', '1.1');
 
@@ -105,7 +96,7 @@ class ProjectDataBuilderTest extends TestCase
                 new RSTLanguage('en', '/path/to/en'),
             ]);
 
-        $this->projectGitSyncer->expects(self::at(4))
+        $this->projectGitSyncer->expects(self::at(2))
             ->method('checkoutBranch')
             ->with('orm', '1.0');
 

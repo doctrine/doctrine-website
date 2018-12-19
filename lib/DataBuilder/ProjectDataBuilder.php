@@ -62,31 +62,20 @@ class ProjectDataBuilder implements DataBuilder
         $this->projectsDir           = $projectsDir;
     }
 
+    public function getName() : string
+    {
+        return self::DATA_FILE;
+    }
+
     public function build() : WebsiteData
     {
         $repositoryNames = $this->projectDataRepository->getProjectRepositoryNames();
-
-        $this->initializeRepositories($repositoryNames);
 
         $projects = array_map(function (string $repositoryName) : array {
             return $this->buildProjectData($repositoryName);
         }, $repositoryNames);
 
         return new WebsiteData(self::DATA_FILE, $projects);
-    }
-
-    /**
-     * @param string[] $repositoryNames
-     */
-    private function initializeRepositories(array $repositoryNames) : void
-    {
-        foreach ($repositoryNames as $repositoryName) {
-            if ($this->projectGitSyncer->isRepositoryInitialized($repositoryName)) {
-                continue;
-            }
-
-            $this->projectGitSyncer->initRepository($repositoryName);
-        }
     }
 
     /**

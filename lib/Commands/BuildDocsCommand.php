@@ -55,12 +55,6 @@ class BuildDocsCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Build the search indexes.'
-            )
-            ->addOption(
-                'sync-git',
-                null,
-                InputOption::VALUE_NONE,
-                'Sync git repositories before building.'
             );
     }
 
@@ -78,16 +72,12 @@ class BuildDocsCommand extends Command
         $buildSearchIndexes = $input->getOption('search');
         assert(is_bool($buildSearchIndexes));
 
-        $syncGit = $input->getOption('sync-git');
-        assert(is_bool($syncGit));
-
         $this->buildDocs->build(
             $output,
             $projectToBuild,
             $versionToBuild,
             $buildApiDocs,
-            $buildSearchIndexes,
-            $syncGit
+            $buildSearchIndexes
         );
 
         return 0;

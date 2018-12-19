@@ -18,6 +18,11 @@ class ContributorDataBuilder implements DataBuilder
         $this->projectContributorRepository = $projectContributorRepository;
     }
 
+    public function getName() : string
+    {
+        return self::DATA_FILE;
+    }
+
     public function build() : WebsiteData
     {
         $projectContributors = $this->projectContributorRepository->findAll();

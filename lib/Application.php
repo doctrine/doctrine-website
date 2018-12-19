@@ -9,6 +9,7 @@ use Doctrine\Website\Commands\BuildWebsiteCommand;
 use Doctrine\Website\Commands\BuildWebsiteDataCommand;
 use Doctrine\Website\Commands\ClearBuildCacheCommand;
 use Doctrine\Website\Commands\DeployCommand;
+use Doctrine\Website\Commands\SyncRepositoriesCommand;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
@@ -41,13 +42,17 @@ class Application
     /** @var DeployCommand */
     private $deployCommand;
 
+    /** @var SyncRepositoriesCommand */
+    private $syncRepositoriesCommand;
+
     public function __construct(
         BaseApplication $application,
         BuildDocsCommand $buildDocsCommand,
         BuildWebsiteCommand $buildWebsiteCommand,
         BuildWebsiteDataCommand $buildWebsiteDataCommand,
         ClearBuildCacheCommand $clearBuildCacheCommand,
-        DeployCommand $deployCommand
+        DeployCommand $deployCommand,
+        SyncRepositoriesCommand $syncRepositoriesCommand
     ) {
         $this->application             = $application;
         $this->buildDocsCommand        = $buildDocsCommand;
@@ -55,6 +60,7 @@ class Application
         $this->buildWebsiteDataCommand = $buildWebsiteDataCommand;
         $this->clearBuildCacheCommand  = $clearBuildCacheCommand;
         $this->deployCommand           = $deployCommand;
+        $this->syncRepositoriesCommand = $syncRepositoriesCommand;
     }
 
     public function run(InputInterface $input) : int
@@ -73,6 +79,7 @@ class Application
         $this->application->add($this->buildWebsiteDataCommand);
         $this->application->add($this->clearBuildCacheCommand);
         $this->application->add($this->deployCommand);
+        $this->application->add($this->syncRepositoriesCommand);
 
         return $this->application->run($input);
     }
