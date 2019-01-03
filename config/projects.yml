@@ -7,7 +7,7 @@ parameters:
 
     doctrine.website.projects_data:
         -
-            repositoryName: doctrine2
+            repositoryName: orm
 
         -
             repositoryName: dbal
