@@ -109,10 +109,10 @@ How?
 
 If you need help with keeping track of how many queries you have per
 page, frameworks like
-[Symfony](http://www.symfony-project.org/book/1_0/16-Application-Management-Tools#chapter_16_sub_web_debug_toolbar)
+[Symfony](https://symfony.com/legacy/doc/gentle-introduction/1_4/en/16-Application-Management-Tools#chapter_16_sub_web_debug_toolbar)
 and [Zend Framework](http://framework.zend.com) give you debug tools to
 show you how many queries you have per page. Or of course you can always
 use the
-[Profiling](http://www.doctrine-project.org/documentation/manual/1_1/en/component-overview:profiler)
+[Profiling](https://www.doctrine-project.org/projects/doctrine1/en/latest/manual/component-overview.html#profiler)
 tool built in to Doctrine to log the queries in your application and
 keep track of it that way.

@@ -12,11 +12,11 @@ cycles before releasing the stable version.
 
 This new version is sporting dozens of enhancements and even more bug
 fixes. Primarily the [new scalar hydration
-type](http://www.doctrine-project.org/blog/new-hydration-modes-for-doctrine-1-1)
+type](https://www.doctrine-project.org/2008/10/12/new-hydration-modes-for-doctrine-1-1.html)
 , [the migration diff
-tool](http://www.doctrine-project.org/blog/new-to-migrations-in-1-1) ,
+tool](https://www.doctrine-project.org/2008/10/18/new-to-migrations-in-1-1.html) ,
 and other [miscellaneous new
-features](http://www.doctrine-project.org/blog/doctrine-1-1-development-begins).
+features](https://www.doctrine-project.org/2008/10/02/doctrine-1-1-development-begins.html).
 
 You can download the package
 [here](http://www.doctrine-project.org/download) and read some

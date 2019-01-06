@@ -7,7 +7,7 @@ permalink: /2010/06/15/doctrine2-beta2-released.html
 ---
 Today we are happy to announce the immediate availability of the second
 beta version of Doctrine2. This is the first release after the
-[split](http://www.doctrine-project.org/blog/bringing-it-all-together)
+[split](https://www.doctrine-project.org/2010/05/27/bringing-it-all-together.html)
 of Doctrine2 into three independent projects, Common, DBAL and ORM. This
 change took longer than we expected but we are back to our SVN
 productivity now and strive to surpass it utilizing Git.
@@ -21,7 +21,7 @@ Common
 
 -   Added ClassLoader\#classExists as well as
     ClassLoader\#getClassLoader methods
-    [DCOM-7](http://www.doctrine-project.org/jira/browse/DCOM-7)
+    [DCOM-7](https://github.com/doctrine/common/issues/669)
 -   Changes to Annotation Parser with regards to Autoloading Annotation
     Classes
 
@@ -29,21 +29,21 @@ DBAL
 ====
 
 -   New Driver support for Microsoft PDO Sqlsrv Extension
-    [DBAL-10](http://www.doctrine-project.org/jira/browse/DBAL-10)
+    [DBAL-10](https://github.com/doctrine/dbal/issues/927)
 -   Fixed Mssql/Sqlsrv Platforms and SchemaManager
-    [DBAL-8](http://www.doctrine-project.org/jira/browse/DBAL-8)
+    [DBAL-8](https://github.com/doctrine/dbal/issues/2031)
 -   New Driver and Platform Support for DB2 (PDO\_DB2 and IBM\_DB2
     Extensions)
-    [DDC-494](http://www.doctrine-project.org/jira/browse/DDC-494)
+    [DDC-494](https://github.com/doctrine/orm/issues/4999)
 
 ORM
 ===
 
 -   Basic Pessimistic Locking support using FOR UPDATE or vendor
     specific shared locks
-    [DDC-178](http://www.doctrine-project.org/jira/browse/DDC-178)
+    [DDC-178](https://github.com/doctrine/orm/issues/2432)
 -   Added a Validate Mapping CLI Task
-    [DDC-515](http://www.doctrine-project.org/jira/browse/DDC-515)
+    [DDC-515](https://github.com/doctrine/orm/issues/5023)
 
 Download
 --------

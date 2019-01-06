@@ -198,7 +198,7 @@ Good stuff!
 More information on bulk operations with Doctrine 2 can be found in the
 (very new) online manual that is still a work in progress:
 
-http://www.doctrine-project.org/documentation/manual/2\_0/en/batch-processing
+https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/batch-processing.html#batch-processing
 
 UPDATE
 ======

@@ -10,13 +10,13 @@ awesomeness that is [symfony](http://www.symfony-project.com) 1.2. I
 upgraded the Doctrine website to 1.2 as well as Doctrine 1.1. I had
 several schema changes that I migrated to production with the new
 [Migrations
-features](http://www.doctrine-project.org/blog/new-to-migrations-in-1-1)
+features](https://www.doctrine-project.org/2008/10/18/new-to-migrations-in-1-1.html)
 that were mentioned previously on the blog. It made the upgrade of the
 website much easier. The primary motivation for diving in to this was a
 blog post made on
-[10/18/2008](http://www.symfony-project.org/blog/2008/10/18/spice-up-your-forms-with-some-nice-widgets-and-validators)
+[10/18/2008](https://symfony.com/blog/spice-up-your-forms-with-some-nice-widgets-and-validators)
 and
-[10/14/2008](http://www.symfony-project.org/blog/2008/10/14/new-in-symfony-1-2-make-your-choice)
+[10/14/2008](https://symfony.com/blog/new-in-symfony-1-2-make-your-choice)
 where Fabien talks about forms in symfony 1.2.
 
 Below is an overview of some of the changes made.

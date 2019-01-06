@@ -11,12 +11,12 @@ released Doctrine DBAL 2.0.0BETA3 today. Noteworthy changes include:
 -   BC Break: Changed behaviour of Postgres and Oracle DateTime now
     without Timezone (TIMESTAMP WITHOUT TIME ZONE instead of TIMESTAMP
     WITH TIME ZONE) See [Ticket
-    DBAL-22](http://www.doctrine-project.org/jira/browse/DBAL-22) for
+    DBAL-22](https://github.com/doctrine/dbal/issues/1394) for
     more details aswell as migration issues for PostgreSQL and Oracle.
     This will be re-announced for the ORM Beta 3 release, which is
     affected from this change.
 -   SQL Loggers can now log execution times of queries
-    [DBAL-11](http://www.doctrine-project.org/jira/browse/DBAL-11)
+    [DBAL-11](https://github.com/doctrine/dbal/issues/1037)
 -   Several Issue with AutoIncrement Detection in Doctrine
 
 A total of 13 issues on DBAL has been fixed.

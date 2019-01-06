@@ -7,7 +7,7 @@ permalink: /2009/03/03/doctrine-1-1-documentation.html
 ---
 Today I have begun updating the documentation to reflect the changes
 made in 1.1 and [The Guide to Doctrine for
-PHP](http://www.doctrine-project.org/documentation/manual/1_1/en) is now
+PHP](https://www.doctrine-project.org/projects/doctrine1/en/latest/) is now
 available. We still have some more changes to make but most things have
 been updated and added.
 

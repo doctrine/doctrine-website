@@ -21,7 +21,7 @@ be required to add another column `id` on the article\_translations
 table and enforce a unique constraint on article\_id + language.
 
 Under the umbrella of
-[DDC-117](http://www.doctrine-project.org/jira/browse/DDC-117) and some
+[DDC-117](https://github.com/doctrine/orm/issues/1772) and some
 related tickets there were discussions about adding a feature that would
 help solve this problem: Allowing to add @Id to @ManyToOne or @OneToOne
 mappings. I committed this feature into an experimental Git branch today

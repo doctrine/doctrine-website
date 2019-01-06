@@ -225,7 +225,7 @@ $em->merge($searchedBlogPosts[0]);
 
 Read about Merging, Detached instances and other cool stuff of Doctrines
 object model in the [Working with
-Objects](http://www.doctrine-project.org/documentation/manual/2_0/en/working-with-objects#merging-entities)
+Objects](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/working-with-objects.html#merging-entities)
 chapter of the manual.
 
 Versionable
