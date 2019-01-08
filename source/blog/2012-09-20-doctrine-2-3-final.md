@@ -34,11 +34,11 @@ many little optimizations:
 The complete changelogs are listed on JIRA:
 
 -   [Common
-    Changelog](http://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10183)
+    Changelog](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10183)
 -   [DBAL
-    Changelog](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10184)
+    Changelog](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10184)
 -   [ORM
-    Changelog](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10185)
+    Changelog](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10185)
 
 We will flesh out the documentation and information about all new
 features in the coming month. If you want to contribute to the
@@ -49,7 +49,7 @@ on Github.
 
 You can install the final release through
 [Github](https://github.com/doctrine/doctrine2) or
-[Composer](http://www.packagist.org):
+[Composer](https://packagist.org):
 
     {
         "require": {

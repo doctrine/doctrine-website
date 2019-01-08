@@ -6,7 +6,7 @@ categories: []
 permalink: /2009/02/03/doctrine-1-0-7-is-available.html
 ---
 Today I have made available [Doctrine
-1.0.7](http://www.doctrine-project.org/download) , the latest bug fix
+1.0.7](https://www.doctrine-project.org/download) , the latest bug fix
 release for the 1.0 version of Doctrine. This release is a significant
 one with a few dozen bugs fixed. Below is a list that highlights some of
 the fixes.
@@ -27,4 +27,4 @@ Highlights
 
 Lots of other fixes have been made in this release so if you want to see
 a list of all the changes be sure to check the
-[changelog](http://www.doctrine-project.org/change_log/1_0_7).
+[changelog](https://www.doctrine-project.org/change_log/1_0_7).

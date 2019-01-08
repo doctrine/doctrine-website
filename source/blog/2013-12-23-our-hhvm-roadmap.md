@@ -6,7 +6,7 @@ categories: []
 permalink: /2013/12/23/our-hhvm-roadmap.html
 ---
 Facebook has been [pushing HHVM alot
-lately](http://www.hhvm.com/blog/2813/we-are-the-98-5-and-the-16) ,
+lately](https://hhvm.com/blog/2813/we-are-the-98-5-and-the-16) ,
 helping open source projects to get their test-suite running 100%. For
 Doctrine HHVM is particularly interesting, because of the performance
 gains that the complex PHP algorithms inside ORM would probably get.
@@ -17,7 +17,7 @@ improvement will be.
 
 One roadblock for us to investigate HHVM in more detail was missing CI
 support. But then Travis CI [announced support for
-HHVM](http://about.travis-ci.org/blog/2013-12-16-test-php-code-with-the-hiphop-vm)
+HHVM](https://blog.travis-ci.com/2013-12-16-test-php-code-with-the-hiphop-vm)
 last week. With automated testing support available we think it is time
 to announce our official HHVM roadmap.
 

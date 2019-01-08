@@ -87,7 +87,7 @@ Read all the information about Security in Doctrine in the
 documentation.
 
 -   [DBAL
-    Security](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/security.html)
+    Security](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html)
 -   [ORM
-    Security](http://docs.doctrine-project.org/en/latest/reference/security.html)
+    Security](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/security.html)
 

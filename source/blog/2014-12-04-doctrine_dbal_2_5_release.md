@@ -49,7 +49,7 @@ See all the changes for the 2.5.0 Release on Jira, an amazing total of
 316 issues:
 
 -   [DBAL
-    2.5.0](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10523/)
+    2.5.0](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10523/)
 
 If you find any problems or backwards compatibility breaks with this
 release please report them on JIRA or open up Pull Requests on Github.

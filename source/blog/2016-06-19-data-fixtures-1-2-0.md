@@ -23,7 +23,7 @@ from tables with quoted names.
 
 Please also be aware that this release drops support for PHP 5.5 and
 below. Given that PHP 5.5 is going to exit its official [security
-support schedule](http://php.net/supported-versions.php) very soon, we
+support schedule](https://secure.php.net/supported-versions.php) very soon, we
 strongly recommend that all users upgrade their PHP installations as
 well.
 

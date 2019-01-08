@@ -14,9 +14,9 @@ final release in March as well.
 
 For details about all the new features in DBAL 2.5, see the [previous
 release blog
-post](http://www.doctrine-project.org/2014/01/01/dbal-242-252beta1.html)
+post](https://www.doctrine-project.org/2014/01/01/dbal-242-252beta1.html)
 and the [Jira
-Release](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10523).
+Release](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10523).
 
 You can install the BETA through Composer with the following version
 constraint::
@@ -32,4 +32,4 @@ small details (See UPGRADE.md). You can even test Doctrine DBAL 2.5 with
 a stable DBAL 2.4 version.
 
 If you find any problems with this beta, please report a bug [on
-Jira](http://www.doctrine-project.org/jira).
+Jira](https://www.doctrine-project.org/jira).

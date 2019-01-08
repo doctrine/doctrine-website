@@ -18,11 +18,11 @@ Highlights
 -   XML Mapping Driver Improvements: [DDC-243], [DDC-242], [DDC-159]
 
 View the complete [change
-log](http://www.doctrine-project.org/change_log/2_0_0_ALPHA4) to see a
+log](https://www.doctrine-project.org/change_log/2_0_0_ALPHA4) to see a
 detailed list of every change contained in this release. You can
-[download](http://www.doctrine-project.org/download#2_0) this release
+[download](https://www.doctrine-project.org/download#2_0) this release
 and report any issues you find in
-[Jira](http://www.doctrine-project.org/jira).
+[Jira](https://www.doctrine-project.org/jira).
 
 We would like to thank everyone who participated in this release through
 bug reports, patches and suggestions.

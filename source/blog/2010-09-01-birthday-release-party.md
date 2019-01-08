@@ -13,24 +13,24 @@ Doctrine Common RC1
 
 The first release candidate of the Doctrine Common project.
 
--   [Installation](http://www.doctrine-project.org/projects/common/2.0/download/2.0.0RC1)
--   [Changelog](http://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10081)
+-   [Installation](https://www.doctrine-project.org/projects/common/2.0/download/2.0.0RC1)
+-   [Changelog](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10081)
 
 Doctrine DBAL BETA4
 ===================
 
 The last beta release of the Doctrine DBAL project.
 
--   [Installation](http://www.doctrine-project.org/projects/dbal/2.0/download/2.0.0BETA4)
--   [Changelog](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10071)
+-   [Installation](https://www.doctrine-project.org/projects/dbal/2.0/download/2.0.0BETA4)
+-   [Changelog](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10071)
 
 Doctrine ORM BETA4
 ==================
 
 The last beta release of the Doctrine ORM project.
 
--   [Installation](http://www.doctrine-project.org/projects/orm/2.0/download/2.0.0BETA4)
--   [Changelog](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10072)
+-   [Installation](https://www.doctrine-project.org/projects/orm/2.0/download/2.0.0BETA4)
+-   [Changelog](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10072)
 
 Again we want to thank everyone who participated in the ongoing
 development efforts, whether it was through bug reports, comments,

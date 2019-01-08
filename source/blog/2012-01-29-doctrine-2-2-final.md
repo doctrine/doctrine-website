@@ -24,9 +24,9 @@ A top list of the new features includes:
 
 See the changelogs of all three projects Common, DBAL, ORM:
 
--   [ORM](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10157)
--   [DBAL](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10142)
--   [Common](http://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10152)
+-   [ORM](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10157)
+-   [DBAL](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10142)
+-   [Common](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10152)
 
 See the
 [UPGRADE\_2\_2](https://github.com/doctrine/doctrine2/blob/master/UPGRADE_TO_2_2)
@@ -35,7 +35,7 @@ file to see backwards incompatible changes.
 You can install the release through
 [Github](https://github.com/doctrine/doctrine2) ,
 [PEAR](http://pear.doctrine-project.org) or through
-[Composer](http://www.packagist.org):
+[Composer](https://packagist.org):
 
 > {
 > :   "require": { "doctrine/orm": "2.2.0" }

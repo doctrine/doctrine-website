@@ -19,7 +19,7 @@ years. I hope everyone enjoyed the holidays as much as I did.
 Anyways, on my first day back I am happy to introduce the freshly
 packaged Doctrine 1.0.6 bug fix release. This release contains dozens of
 fixes and the change log can be read
-[here](http://www.doctrine-project.org/change_log/1_0_6). It is strongly
+[here](https://www.doctrine-project.org/change_log/1_0_6). It is strongly
 encouraged that you upgrade as soon as possible.
 
 Doctrine 1.1
@@ -29,4 +29,4 @@ On a side note, we will be releasing the 2nd beta of 1.1 later this week
 and we have a few other surprises that will be a part of the 1.1 stable
 release. So, you will have to stick around to see what we have planned.
 You can check out what is new in 1.1 by reading the
-[upgrade](http://www.doctrine-project.org/upgrade/1_1) file.
+[upgrade](https://www.doctrine-project.org/upgrade/1_1) file.

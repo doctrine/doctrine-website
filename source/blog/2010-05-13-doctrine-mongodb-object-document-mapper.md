@@ -15,7 +15,7 @@ A few weekends ago I decided to install MongoDB and give it a try. It
 was pretty fun and interesting. I quickly learned that it being a
 document based storage system lends itself well to a object mapper so
 the experimental [Doctrine MongoDB Object Document
-Mapper](http://github.com/jwage/odm) was born.
+Mapper](https://github.com/jwage/odm) was born.
 
 Introducing Doctrine MongoDB Object Document Mapper (ODM)
 =========================================================
@@ -85,7 +85,7 @@ Below you can find an overview list of the features available:
 -   Create references between documents in different databases.
 -   Map documents with Annotations, XML, YAML or plain old PHP code.
 -   Documents can be stored on the
-    [MongoGridFS](http://www.php.net/MongoGridFS).
+    [MongoGridFS](https://secure.php.net/MongoGridFS).
 -   Collection per class(concrete) and single collection inheritance
     supported.
 -   Map your Doctrine 2 ORM Entities to the ODM and use mixed data
@@ -102,20 +102,20 @@ We've put together a little documentation to help you get familiar with
 the ODM quickly.
 
 -   [Reference
-    Documentation](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/en)
+    Documentation](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/en)
 -   [Getting Started Cookbook
-    Article](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/cookbook/getting-started/en)
+    Article](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/cookbook/getting-started/en)
 -   [API
-    Documentation](http://www.doctrine-project.org/projects/mongodb_odm/1.0/api)
+    Documentation](https://www.doctrine-project.org/projects/mongodb_odm/1.0/api)
 
 How can I contribute?
 =====================
 
 Get your fork on! All you need to do is fork a Doctrine
-[repository](http://github.com/doctrine) on github.com and [submit your
-modifications](http://github.com/guides/fork-a-project-and-submit-your-modifications/7)
+[repository](https://github.com/doctrine) on github.com and [submit your
+modifications](https://github.com/guides/fork-a-project-and-submit-your-modifications/7)
 to us by sending a pull request.
 
 You can also take part in discussions on our [mailing
-list](http://groups.google.com/group/doctrine-user) or join \#doctrine
+list](https://groups.google.com/forum/#!forum/doctrine-user) or join \#doctrine
 on irc.freenode.net for live support from the community.

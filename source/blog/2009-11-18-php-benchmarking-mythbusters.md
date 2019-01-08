@@ -248,6 +248,6 @@ around easily. That just shows how meaningless these comparisons are.
 
 > **NOTE** All the code used to run these benchmarks can be downloaded
 > from
-> [here](http://www.doctrine-project.org/downloads/doctrine2outletbenchmark.zip).
+> [here](https://www.doctrine-project.org/downloads/doctrine2outletbenchmark.zip).
 > It is a zip archive containing all the code you need to run the
 > benchmarks yourself.

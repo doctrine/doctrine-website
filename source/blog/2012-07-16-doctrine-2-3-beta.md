@@ -39,7 +39,7 @@ feedback about issues that you find.
 
 You can install the Beta through
 [Github](https://github.com/doctrine/doctrine2) or
-[Composer](http://www.packagist.org):
+[Composer](https://packagist.org):
 
     {
         "require": {

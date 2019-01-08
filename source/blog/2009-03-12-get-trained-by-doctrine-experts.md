@@ -60,5 +60,5 @@ session that works for you. You can reach me via e-mail at
 <hr />
 
 You can always see the live up-to-date SensioLabs training schedule
-[here](http://www.sensiolabs.com/en/training) or on the
-[homepage](http://www.doctrine-project.org) of the Doctrine website.
+[here](https://training.sensiolabs.com/en/) or on the
+[homepage](https://www.doctrine-project.org) of the Doctrine website.

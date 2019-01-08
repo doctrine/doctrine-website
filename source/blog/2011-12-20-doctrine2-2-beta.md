@@ -26,9 +26,9 @@ A top list of the changes includes:
 
 See the changelogs of all three projects Common, DBAL, ORM:
 
--   [ORM](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10157)
--   [DBAL](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10142)
--   [Common](http://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10152)
+-   [ORM](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10157)
+-   [DBAL](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10142)
+-   [Common](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10152)
 
 In the next weeks will stabilize this code and add documentation for all
 the new features. Additionally we try to drive the bug count down in the
@@ -42,7 +42,7 @@ file to see backwards incompatible changes.
 You can install the Beta through
 [Github](https://github.com/doctrine/doctrine2) , \`PEAR
 [http://pear.doctrine-project.org](http://pear.doctrine-project.org)\>\`\_
-or through [Composer](http://www.packagist.org):
+or through [Composer](https://packagist.org):
 
 > {
 > :   "require": { "doctrine/orm": "2.2.0-BETA1" }

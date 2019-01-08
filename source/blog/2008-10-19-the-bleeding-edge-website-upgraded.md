@@ -44,7 +44,7 @@ releases were added thanks to my custom theme built specifically for the
 Doctrine backend.
 
 ![Doctrine Releases
-](http://www.doctrine-project.com/uploads/assets/api_release_list.png)
+](https://www.doctrine-project.com/uploads/assets/api_release_list.png)
 
 Edit User SVN Access
 ====================
@@ -54,7 +54,7 @@ widget for editing the website users svn access for all the different
 Doctrine versions.
 
 ![Edit User SVN Access
-](http://www.doctrine-project.com/uploads/assets/edit_user_svn_access.png)
+](https://www.doctrine-project.com/uploads/assets/edit_user_svn_access.png)
 
 Doctrine Release Points
 =======================
@@ -62,7 +62,7 @@ Doctrine Release Points
 List of all the Doctrine sub-release points.
 
 ![Doctrine Release Points
-](http://www.doctrine-project.com/uploads/assets/api_release_points_list.png)
+](https://www.doctrine-project.com/uploads/assets/api_release_points_list.png)
 
 Edit Doctrine Release
 =====================
@@ -71,7 +71,7 @@ Edit a Doctrine release and control its stability as well as other
 information.
 
 ![Edit Doctrine Release
-](http://www.doctrine-project.com/uploads/assets/edit_api_release.png)
+](https://www.doctrine-project.com/uploads/assets/edit_api_release.png)
 
 Edit Blog Post
 ==============
@@ -79,4 +79,4 @@ Edit Blog Post
 Edit a blog post entry using markdown syntax.
 
 ![Edit Blog
-Post](http://www.doctrine-project.com/uploads/assets/edit_blog_post.png)
+Post](https://www.doctrine-project.com/uploads/assets/edit_blog_post.png)

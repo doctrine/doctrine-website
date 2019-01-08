@@ -33,10 +33,10 @@ sure that it works correctly and does not have to many problematic
 edge-cases. Therefore we need your feedback.
 
 -   Go to
-    [[http://github.com/doctrine/doctrine2/commits/DDC-117](http://github.com/doctrine/doctrine2/commits/DDC-117)](http://github.com/doctrine/doctrine2/commits/DDC-117)
+    [[https://github.com/doctrine/doctrine2/commits/DDC-117](https://github.com/doctrine/doctrine2/commits/DDC-117)](https://github.com/doctrine/doctrine2/commits/DDC-117)
     to see the code
 -   [Have a look at the functional
-    tests](http://github.com/doctrine/doctrine2/blob/DDC-117/tests/Doctrine/Tests/ORM/Functional/Ticket/DDC117Test.php)
+    tests](https://github.com/doctrine/doctrine2/blob/DDC-117/tests/Doctrine/Tests/ORM/Functional/Ticket/DDC117Test.php)
     to see the synatx
 -   Checkout the Git Repository and switch to the experimental branch
     `git checkout DDC-117`

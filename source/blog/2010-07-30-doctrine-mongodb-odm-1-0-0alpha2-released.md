@@ -101,7 +101,7 @@ Download
 ========
 
 You can directly download the PEAR package file
-[here](http://www.doctrine-project.org/downloads/DoctrineMongoDBODM-1.0.0ALPHA2.tgz).
+[here](https://www.doctrine-project.org/downloads/DoctrineMongoDBODM-1.0.0ALPHA2.tgz).
 You can manually extract the code or you can install the PEAR package
 file locally.
 

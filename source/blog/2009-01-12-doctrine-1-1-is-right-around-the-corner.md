@@ -22,7 +22,7 @@ having a third beta but as the amount of tickets that came in was
 practically none, we decided to move on to the release candidate stage.
 
 As always, you can [download
-here](http://www.doctrine-project.org/download) and check out the
-[change log](http://www.doctrine-project.org/change_log/1_1_0_RC1) and
-the [upgrade](http://www.doctrine-project.org/upgrade/1_1) document to
+here](https://www.doctrine-project.org/download) and check out the
+[change log](https://www.doctrine-project.org/change_log/1_1_0_RC1) and
+the [upgrade](https://www.doctrine-project.org/upgrade/1_1) document to
 find out what has changed in 1.1.

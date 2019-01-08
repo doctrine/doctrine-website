@@ -19,6 +19,6 @@ and other [miscellaneous new
 features](https://www.doctrine-project.org/2008/10/02/doctrine-1-1-development-begins.html).
 
 You can download the package
-[here](http://www.doctrine-project.org/download) and read some
+[here](https://www.doctrine-project.org/download) and read some
 documentation on the changes and new features
 [here](http://trac.doctrine-project.org/browser/branches/1.1/UPGRADE_TO_1_1).

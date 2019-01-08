@@ -8,7 +8,7 @@ permalink: /2015/03/22/data-fixtures-1-0-1.html
 We are happy to announce the immediate availability Doctrine Data
 Fixtures `1.0.1`.
 
-In all [semver](http://semver.org/) fashion, this is a bug fix release.
+In all [semver](https://semver.org/) fashion, this is a bug fix release.
 
 What is new in 1.0.x?
 =====================

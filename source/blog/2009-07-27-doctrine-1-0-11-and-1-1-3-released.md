@@ -11,10 +11,10 @@ contain dozens of bug fixes. Below you will find links to view the
 changelogs for both releases.
 
 -   [Doctrine 1.0.11
-    Changelog](http://www.doctrine-project.org/change_log/1_0_11)
+    Changelog](https://www.doctrine-project.org/change_log/1_0_11)
 -   [Doctrine 1.1.3
-    Changelog](http://www.doctrine-project.org/change_log/1_1_3)
+    Changelog](https://www.doctrine-project.org/change_log/1_1_3)
 
 It is recommended that you upgrade as soon as possible. You can download
 the new versions from the
-[download](http://www.doctrine-project.org/download) page.
+[download](https://www.doctrine-project.org/download) page.

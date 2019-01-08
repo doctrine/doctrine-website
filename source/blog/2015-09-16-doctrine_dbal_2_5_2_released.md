@@ -14,7 +14,7 @@ didn't work properly anymore as well as several other issues.
 You can find all the changes on JIRA:
 
 -   [DBAL
-    2.5.2](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10731)
+    2.5.2](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10731)
     - 24 issues fixed
 
 You can install the DBAL using Composer and the following
@@ -29,4 +29,4 @@ You can install the DBAL using Composer and the following
 ~~~~
 
 Please report any issues you may have with the update on the mailing
-list or on [Jira](http://www.doctrine-project.org/jira).
+list or on [Jira](https://www.doctrine-project.org/jira).

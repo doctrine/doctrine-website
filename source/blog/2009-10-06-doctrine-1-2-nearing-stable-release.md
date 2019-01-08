@@ -11,9 +11,9 @@ with the new things in Doctrine 1.2 and we know lots of people have
 upgraded and using it so we feel it is a pretty stable release already.
 
 You can view what all changed in this release by checking the
-[changelog](http://www.doctrine-project.org/change_log/1_2_0_ALPHA2) and
+[changelog](https://www.doctrine-project.org/change_log/1_2_0_ALPHA2) and
 you can snag it from the
-[download](http://www.doctrine-project.org/download) page.
+[download](https://www.doctrine-project.org/download) page.
 
 We hope that everything goes fine from here and the next release will be
 BETA1 followed by an RC and stable release. Please give 1.2 a try and

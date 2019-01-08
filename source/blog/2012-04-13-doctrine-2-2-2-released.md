@@ -9,16 +9,16 @@ We released version 2.2.2 of the Doctrine ORM, Common and DBAL today,
 fixing a total of 20 bugs.
 
 -   [ORM
-    Changelog](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10195)
+    Changelog](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10195)
 -   [DBAL
-    Changelog](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10197)
+    Changelog](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10197)
 -   [Common
-    Changelog](http://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10199)
+    Changelog](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10199)
 
 You can install the release through
 [Github](https://github.com/doctrine/doctrine2) ,
 [PEAR](http://pear.doctrine-project.org) , download from the website or
-through [Composer](http://www.packagist.org):
+through [Composer](https://packagist.org):
 
     {
         "require": {

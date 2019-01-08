@@ -15,16 +15,16 @@ well!
 You can now find dedicated sections of the website for both the Object
 Relational Mapper and Database Abstraction Layer projects:
 
--   [ORM Project](http://www.doctrine-project.org/projects/orm)
--   [DBAL Project](http://www.doctrine-project.org/projects/dbal)
+-   [ORM Project](https://www.doctrine-project.org/projects/orm)
+-   [DBAL Project](https://www.doctrine-project.org/projects/dbal)
 
 The new website also introduces a new API Documentation thanks to [PHP
 Doctor](http://peej.github.com/phpdoctor/)!
 
 -   [Doctrine 2 ORM API
-    Documentation](http://www.doctrine-project.org/projects/orm/2.0/api)
+    Documentation](https://www.doctrine-project.org/projects/orm/2.0/api)
 -   [Doctrine 2 DBAL API
-    Documentation](http://www.doctrine-project.org/projects/dbal/2.0/api)
+    Documentation](https://www.doctrine-project.org/projects/dbal/2.0/api)
 
 If you have any problems with the website please let me know by e-mail
 at jonwage [at] gmail.com.

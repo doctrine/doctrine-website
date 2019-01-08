@@ -60,10 +60,10 @@ How to get Indoctrinator?
 
 Indoctrinator has its own dedicated [documentation section in the
 doctrine
-website](http://www.doctrine-project.org/projects/indoctrinator.html).
+website](https://www.doctrine-project.org/projects/indoctrinator.html).
 
 Reporting Issues
 ================
 
 Please report any issues you may have with the project on the mailing
-list or on [JIRA](http://www.doctrine-project.org/jira/browse/).
+list or on [JIRA](https://www.doctrine-project.org/jira/browse/).

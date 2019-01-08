@@ -7,7 +7,7 @@ permalink: /2010/04/20/orm-is-not-a-choice.html
 ---
 **NOTE** When speaking of "ORM" or "object-relational mapping" in
 :   this post I am referring to the act of mapping an [object-oriented
-    domain model](http://martinfowler.com/eaaCatalog/domainModel.html)
+    domain model](https://martinfowler.com/eaaCatalog/domainModel.html)
     to a relational database. There are other, alternative forms of
     object-relational mapping.
 
@@ -17,9 +17,9 @@ either use or not. The choices are elsewhere. Furthermore, if there is a
 dislike for ORM tools it helps to clarify what exactly is the cause. The
 cause can be a dislike of object-oriented domain models. For example, if
 you prefer to separate data from behavior/logic, as [I've read recently
-on Twitter](http://twitter.com/elazar/status/12492601691) , then it is a
+on Twitter](https://twitter.com/elazar/status/12492601691) , then it is a
 sign that you don't like domain models, at least not rich ones, maybe
-[anemic ones](http://martinfowler.com/bliki/AnemicDomainModel.html) ,
+[anemic ones](https://martinfowler.com/bliki/AnemicDomainModel.html) ,
 and you probably don't like OOP much at all then, because bundling data
 with behavior is what OO is about, usually.
 

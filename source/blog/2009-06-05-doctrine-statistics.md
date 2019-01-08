@@ -31,7 +31,7 @@ Downloads
 > **NOTE** **These statistics don't count downloads through other
 > sources such as symfony, Doctrine SVN, etc. They only track the
 > downloads through the Doctrine website on the
-> [Download](http://www.doctrine-project.org/download) page.**
+> [Download](https://www.doctrine-project.org/download) page.**
 
 Hopefully I can make this same post a year from now about the same thing
 and Doctrine will have grown with many new versions.

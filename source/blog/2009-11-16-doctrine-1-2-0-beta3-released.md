@@ -12,7 +12,7 @@ planned we will have a stable release hopefully a little before the end
 of November.
 
 You can view the [change
-log](http://www.doctrine-project.org/change_log/1_2_0_BETA3) or
-[download](http://www.doctrine-project.org/download#1_2) this release
+log](https://www.doctrine-project.org/change_log/1_2_0_BETA3) or
+[download](https://www.doctrine-project.org/download#1_2) this release
 now. If you find any issues please open tickets in
-[Jira](http://www.doctrine-project.org/jira).
+[Jira](https://www.doctrine-project.org/jira).

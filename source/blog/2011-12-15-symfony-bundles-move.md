@@ -33,7 +33,7 @@ DoctrineBundle for example the following:
 
     >     [empty]
     >     [DoctrineBundle]
-    >         git=http://github.com/doctrine/DoctrineBundle.git
+    >         git=https://github.com/doctrine/DoctrineBundle.git
     >         target=/bundles/Doctrine/Bundle/DoctrineBundle
 
 -   Change the Bundle class
@@ -48,21 +48,21 @@ A full deps file for all Doctrine bundles now looks like:
 
     [empty]
     [data-fixtures]
-        git=http://github.com/doctrine/data-fixtures.git
+        git=https://github.com/doctrine/data-fixtures.git
 
     [migrations]
-        git=http://github.com/doctrine/migrations.git
+        git=https://github.com/doctrine/migrations.git
 
     [DoctrineBundle]
-        git=http://github.com/doctrine/DoctrineBundle.git
+        git=https://github.com/doctrine/DoctrineBundle.git
         target=/bundles/Doctrine/Bundle/DoctrineBundle
 
     [DoctrineMigrationsBundle]
-        git=http://github.com/doctrine/DoctrineMigrationsBundle.git
+        git=https://github.com/doctrine/DoctrineMigrationsBundle.git
         target=/bundles/Doctrine/Bundle/MigrationsBundle
 
     [DoctrineFixturesBundle]
-        git=http://github.com/doctrine/DoctrineFixturesBundle.git
+        git=https://github.com/doctrine/DoctrineFixturesBundle.git
         target=/bundles/Doctrine/Bundle/FixturesBundle
 
 And the autoload.php:

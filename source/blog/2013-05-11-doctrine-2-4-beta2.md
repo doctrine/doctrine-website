@@ -17,9 +17,9 @@ Most of the new functionality is already documented and marked with
 all the new functionality in one place.
 
 You can find a list of changes on
-[Jira](http://www.doctrine-project.org/jira/issues/?jql=project%20in%20(DDC%2C%20DBAL%2C%20DCOM)%20AND%20fixVersion%20%3D%20%222.4%22%20AND%20status%20%3D%20Resolved%20ORDER%20BY%20priority%20DESC).
+[Jira](https://www.doctrine-project.org/jira/issues/?jql=project%20in%20(DDC%2C%20DBAL%2C%20DCOM)%20AND%20fixVersion%20%3D%20%222.4%22%20AND%20status%20%3D%20Resolved%20ORDER%20BY%20priority%20DESC).
 
-You can install the release with [Composer](http://www.packagist.org):
+You can install the release with [Composer](https://packagist.org):
 
     {
         "require": {

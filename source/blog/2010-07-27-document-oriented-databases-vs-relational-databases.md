@@ -13,7 +13,7 @@ and approaches and gotchas one should remember when dealing with either.
 I had some thoughts on the subject, but they didn't feel complete, so I
 decided to do some research. I started out by googling ["document
 -oriented databases vs relational
-databases"](http://www.google.com/search?q=document+-oriented+databases+vs+relational+databases)
+databases"](https://www.google.com/search?q=document+-oriented+databases+vs+relational+databases)
 , which brought a number of interesting results. After some intense
 reading and analyzing, I think I have a good enough understanding of the
 concepts, strengths and weaknesses of different data stores to write and
@@ -25,8 +25,8 @@ internet user-base, the number of reads and writes a typical application
 needed to perform grew rapidly. This led to the need for scaling.
 Traditional RDBMSs were hard to scale (SQL operation or Transaction
 spanning multiple nodes doesn't scale well). With solutions like [MySQL
-Cluster](http://www.mysql.com/products/database/cluster/) and [Oracle
-RAC](http://www.oracle.com/technology/products/database/clustering/index.html)
+Cluster](https://www.mysql.com/products/cluster/) and [Oracle
+RAC](https://www.oracle.com/database/technologies/rac.html)
 , this is much less of a problem now, but it wasn't the case for a
 while, which led to many companies abandoning traditional RDBMSs for
 "noSQL" data stores.

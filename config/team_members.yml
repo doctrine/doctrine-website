@@ -26,7 +26,7 @@ parameters:
             name: 'Steve Müller'
             github: deeky666
             avatarUrl: 'https://avatars2.githubusercontent.com/u/1411514?v=4'
-            website: 'http://dzh-online.de/'
+            website: 'https://www.dzh-online.de/'
             location: 'Hamburg, Germany'
             maintains: ["dbal", "coding-standard"]
         greg0ire:
@@ -42,7 +42,7 @@ parameters:
             twitter: guilhermeblanco
             github: guilhermeblanco
             avatarUrl: 'https://avatars1.githubusercontent.com/u/208883?v=4'
-            website: 'http://www.doctrine-project.org'
+            website: 'https://www.doctrine-project.org'
             location: 'Toronto, ON, Canada'
             maintains: ["orm", "dbal", "annotations", "doctrine1", "common", "cache", "event-manager", "lexer", "doctrine-cache-bundle"]
         jmikola:
@@ -106,7 +106,7 @@ parameters:
             twitter: srgmrzv
             github: morozov
             avatarUrl: 'https://avatars1.githubusercontent.com/u/59683?v=4'
-            website: 'http://morozov.livejournal.com/'
+            website: 'https://morozov.livejournal.com/'
             location: 'San Jose, CA'
             maintains: ["dbal"]
         Ocramius:
@@ -121,7 +121,7 @@ parameters:
             name: 'Tom H Anderson'
             github: TomHAnderson
             avatarUrl: 'https://avatars1.githubusercontent.com/u/493920?v=4'
-            website: 'http://tomhanderson.com'
+            website: 'https://tomhanderson.com/'
             location: 'Salt Lake City, Utah'
             maintains: ["doctrine-module"]
         dbu:
@@ -135,12 +135,12 @@ parameters:
             name: 'Ryan Weaver'
             github: weaverryan
             avatarUrl: 'https://avatars1.githubusercontent.com/u/121003?v=4'
-            website: 'http://knpuniversity.com'
+            website: 'https://symfonycasts.com/'
             location: 'Grand Rapids MI'
             maintains: ["rst-parser", "doctrine-bundle"]
         SenseException:
             name: 'Claudio Zizza'
             github: 'SenseException'
             avatarUrl: 'https://avatars3.githubusercontent.com/u/859964?v=4'
-            website: 'http://php.budgegeria.de/'
+            website: 'https://php.budgegeria.de/'
             location: 'Karlsruhe'

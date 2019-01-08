@@ -22,6 +22,6 @@ Below are some highlights for the release.
 
 If you're curious about what all was committed in this release you can
 check the [change
-log](http://www.doctrine-project.org/change_log/2_0_0_ALPHA2) page and
+log](https://www.doctrine-project.org/change_log/2_0_0_ALPHA2) page and
 you can snag the packages from the
-[download](http://www.doctrine-project.org/download) page.
+[download](https://www.doctrine-project.org/download) page.

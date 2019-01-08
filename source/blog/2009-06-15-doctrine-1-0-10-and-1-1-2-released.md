@@ -8,11 +8,11 @@ permalink: /2009/06/15/doctrine-1-0-10-and-1-1-2-released.html
 Today I am happy to release two new maintenance releases for Doctrine.
 As usual we have a new version for the 1.0 branch and a new version for
 the 1.1 branch. The new versions can be gotten on the
-[Download](http://www.doctrine-project.org/download) page.
+[Download](https://www.doctrine-project.org/download) page.
 
 You can review the changelogs for
-[1.0.10](http://www.doctrine-project.org/change_log/1_0_10) and
-[1.1.2](http://www.doctrine-project.org/change_log/1_1_2) to see what
+[1.0.10](https://www.doctrine-project.org/change_log/1_0_10) and
+[1.1.2](https://www.doctrine-project.org/change_log/1_1_2) to see what
 all issues have been addressed in these releases.
 
 On a side note, development on the Doctrine 1.2 version will begin very

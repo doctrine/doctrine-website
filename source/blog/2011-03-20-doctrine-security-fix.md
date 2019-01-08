@@ -28,8 +28,8 @@ hole.
 You can grab the packages from PEAR, Archive or Github, see the
 respective links more details:
 
--   [ORM](http://www.doctrine-project.org/projects/orm/download)
--   [DBAL](http://www.doctrine-project.org/projects/dbal/download)
+-   [ORM](https://www.doctrine-project.org/projects/orm/download)
+-   [DBAL](https://www.doctrine-project.org/projects/dbal/download)
 
 The fix for this security hole breaks backwards compatibility for
 developers that extend the

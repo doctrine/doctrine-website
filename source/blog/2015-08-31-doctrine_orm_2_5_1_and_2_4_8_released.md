@@ -9,7 +9,7 @@ We are happy to announce the immediate availability of Doctrine ORM
 2.5.1 and 2.4.8.
 
 This versions include a fix for the [Security Misconfiguration
-Vulnerability](http://www.doctrine-project.org/2015/08/31/security_misconfiguration_vulnerability_in_various_doctrine_projects.html)
+Vulnerability](https://www.doctrine-project.org/2015/08/31/security_misconfiguration_vulnerability_in_various_doctrine_projects.html)
 described in an earlier blog post today.
 
 Here are the changelogs:

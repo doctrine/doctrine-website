@@ -30,13 +30,13 @@ Highlights
 -   Plenty of other bug fixes
 
 You can read a detailed list of all the changes made in 1.1
-[here](http://www.doctrine-project.org/upgrade/1_1) in the upgrade file.
+[here](https://www.doctrine-project.org/upgrade/1_1) in the upgrade file.
 
 Download
 ========
 
 As always you can get Doctrine on the
-[download](http://www.doctrine-project.org/download) page or via pear.
+[download](https://www.doctrine-project.org/download) page or via pear.
 
     $ pear install pear.phpdoctrine.org/Doctrine-1.1.0
 
@@ -47,4 +47,4 @@ You can also check it out via svn.
 If you find any problems with this release please report it on our
 [trac](http://trac.doctrine-project.org) or if you have any questions
 you can send it to one of our [mailing
-lists](http://www.doctrine-project.org/community).
+lists](https://www.doctrine-project.org/community).

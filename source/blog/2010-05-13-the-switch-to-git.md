@@ -7,9 +7,9 @@ permalink: /2010/05/13/the-switch-to-git.html
 ---
 Now that the dust has settled from the move to git I suppose it is time
 for a blog post. About a month ago, we made the decision to switch the
-Doctrine projects source control to [git](http://git-scm.com). Like many
+Doctrine projects source control to [git](https://git-scm.com). Like many
 other [open source projects](http://www.symfony-project.org) , we also
-chose [github.com](http://www.github.com) to host our repositories.
+chose [github.com](https://www.github.com) to host our repositories.
 Github brings a whole new level of collaborative coding to the Doctrine
 community and I can already see more people getting involved because of
 it.
@@ -26,7 +26,7 @@ do so by using the read-only SVN features of github.com:
     [http://svn.github.com/doctrine/doctrine2.git](http://svn.github.com/doctrine/doctrine2.git)
 
 You can read about this feature on the github
-[blog](http://github.com/blog/626-announcing-svn-support).
+[blog](https://github.com/blog/626-announcing-svn-support).
 
 Need to learn git?
 ==================
@@ -43,8 +43,8 @@ Want to contribute to Doctrine?
 
 If you are interested in contributing to the Doctrine project, you will
 need to fork one of the Doctrine
-[repositories](http://github.com/doctrine) and submit your
+[repositories](https://github.com/doctrine) and submit your
 modifications. You can read more about how to ["Fork a project and
 submit your
-modifications"](http://github.com/guides/fork-a-project-and-submit-your-modifications/7)
+modifications"](https://github.com/guides/fork-a-project-and-submit-your-modifications/7)
 on the github website.

@@ -33,10 +33,10 @@ requirements. Something as obvious as the "item you add to cart" could
 be overly complicated when it comes to data.
 
 There is a good example of how to model the database for handling
-variable product attributes; [Magento](http://www.magentocommerce.com)
+variable product attributes; [Magento](https://magento.com/)
 is one of the most advanced open source eCommerce solutions available
 today. It uses [EAV (Entity Attribute
-Value)](http://en.wikipedia.org/wiki/Entity-attribute-value_model) ,
+Value)](https://en.wikipedia.org/wiki/Entity-attribute-value_model) ,
 which solves the problem of variable attributes by sacrificing database
 level integrity and application performance. The amount of queries you
 need to perform to select one entity will grow with every attribute data
@@ -48,16 +48,16 @@ structure it is also possible to add or remove a document's properties
 after saving - it's a database that adapts to your data structure on the
 fly.
 
-At [OpenSky](http://www.theopenskyproject.com/) , we decided to use
-[MongoDB](http://www.mongodb.org/) for storage of products and use
+At [OpenSky](https://www.theopenskyproject.com/) , we decided to use
+[MongoDB](https://www.mongodb.com/) for storage of products and use
 relational databases for order-related data since
-[MongoDB](http://www.mongodb.org/) doesn't support transactions.
+[MongoDB](https://www.mongodb.com/) doesn't support transactions.
 
-So what is the benefit of using [MongoDB](http://www.mongodb.org/) over
+So what is the benefit of using [MongoDB](https://www.mongodb.com/) over
 MySQL, or any other RDBMS, for storing variable attribute data.
 Performance. This is the pseudo-query we would have to write to select
 one product, with id 1, and all of its attributes in a typical [EAV
-model](http://en.wikipedia.org/wiki/Entity-attribute-value_model):
+model](https://en.wikipedia.org/wiki/Entity-attribute-value_model):
 
 <div class="right">
 
@@ -74,9 +74,9 @@ model](http://en.wikipedia.org/wiki/Entity-attribute-value_model):
 
 After the above queries are run, there would be a huge step of data
 hydration into the product object, which
-[Magento](http://www.magentocommerce.com) handles quite well, albeit
+[Magento](https://magento.com/) handles quite well, albeit
 slowly. Contrast this with what we would do in
-[MongoDB](http://www.mongodb.org/):
+[MongoDB](https://www.mongodb.com/):
 
     [javascript]
     db.products.find({'_id': '1'});
@@ -84,7 +84,7 @@ slowly. Contrast this with what we would do in
 Not only is the selection simpler, but it also returns a JSON object,
 which can easily be hydrated into a native PHP object. And here is how a
 configurable product could be represented in
-[MongoDB](http://www.mongodb.org/):
+[MongoDB](https://www.mongodb.com/):
 
     [javascript]
     {
@@ -115,27 +115,27 @@ configurable product could be represented in
     and reference them from the product document.
 
 Of course, there are [plenty of ORM
-libraries](http://www.mongodb.org/display/DOCS/PHP+Language+Center#PHPLanguageCenter-LibraryandFrameworkTools)
-for [MongoDB](http://www.mongodb.org/) , which were either
+libraries](https://docs.mongodb.com/ecosystem/drivers/php/#PHPLanguageCenter-LibraryandFrameworkTools)
+for [MongoDB](https://www.mongodb.com/) , which were either
 hard-to-extract parts of frameworks, not quite ORMs or used the
 [ActiveRecord
-pattern](http://martinfowler.com/eaaCatalog/activeRecord.html) (which
+pattern](https://martinfowler.com/eaaCatalog/activeRecord.html) (which
 after using
-[DataMapper](http://martinfowler.com/eaaCatalog/dataMapper.html) for
+[DataMapper](https://martinfowler.com/eaaCatalog/dataMapper.html) for
 quite some time, I wouldn't want to go back to). The very same day I
 started writing an object document mapper (ODM) to use at
-[OpenSky](http://www.theopenskyproject.com/) , [Jon
-Wage](http://www.twitter.com/jwage) (developer for the Doctrine project)
+[OpenSky](https://www.theopenskyproject.com/) , [Jon
+Wage](https://www.twitter.com/jwage) (developer for the Doctrine project)
 released a proof-of-concept [MongoDB
-ODM](http://www.doctrine-project.org/projects/mongodb_odm) , which you
-can [find on github](http://github.com/doctrine/mongodb-odm). After
+ODM](https://www.doctrine-project.org/projects/mongodb_odm) , which you
+can [find on github](https://github.com/doctrine/mongodb-odm). After
 contacting Jon and giving his library a couple of tries and
-[tests](http://www.phpunit.de/) , I decided to use it for
-[OpenSky](http://www.theopenskyproject.com/)'s products domain layer.
+[tests](https://www.phpunit.de/) , I decided to use it for
+[OpenSky](https://www.theopenskyproject.com/)'s products domain layer.
 
-I started to submit patches and [unit tests](http://www.phpunit.de/) to
+I started to submit patches and [unit tests](https://www.phpunit.de/) to
 the project and soon joined the core team for [MongoDB
-ODM](http://www.doctrine-project.org/projects/mongodb_odm). Today, we
+ODM](https://www.doctrine-project.org/projects/mongodb_odm). Today, we
 are past first alpha release of the project, and this is my first post
 on the Doctrine blog (yay!).
 
@@ -263,21 +263,21 @@ $documentManager->persist($product);
 $documentManager->flush();
 
 **NOTE** MongoDB ODM intelligently uses
-`atomic operators <http://www.mongodb.org/display/DOCS/Atomic+Operations>`_
+`atomic operators <https://docs.mongodb.com/manual/core/write-operations-atomicity/>`_
 to update data, which makes it really fast. It also supports
 inheritance (collection-per-class and single-collection
 inheritances), which is similar to table inheritance design
 patterns for ORMs. Check out the official Mongo ODM
-`project documentation <http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/en>`_
+`project documentation <https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/en>`_
 for more information and examples. Complete instructions on how to
 setup your DocumentManager instance
-`can be found here <http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/introduction/en>`_.
+`can be found here <https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/introduction/en>`_.
 ~~~~
 
 The above code would store the product object as a document in
-[MongoDB](http://www.mongodb.org/).
+[MongoDB](https://www.mongodb.com/).
 
 There is much more to talk about in terms or technologies, techniques
 and practices we adopt and use at
-[OpenSky](http://www.theopenskyproject.com/) , so this post is
+[OpenSky](https://www.theopenskyproject.com/) , so this post is
 definitely not the last one.

@@ -39,7 +39,7 @@ While ODM still relies on legacy MongoDB driver ([i.e.
 ext-mongo](https://pecl.php.net/package/mongo)) and no dates are
 scheduled for the 2.0 release, it is possible to run ODM's development
 branch with the new MongoDB driver (i.e.
-[ext-mongodb](http://php.net/manual/en/mongodb.installation.php)) on
+[ext-mongodb](https://secure.php.net/manual/en/mongodb.installation.php)) on
 PHP 7 and HHVM! [(see: this
 tweet)](https://twitter.com/alcaeus/status/697659616172359680) The new
 driver should be properly supported once we release versions 1.1 and 1.3

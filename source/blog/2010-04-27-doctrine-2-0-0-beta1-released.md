@@ -15,17 +15,17 @@ incompatible changes to be much lower.
 
 Since the ALPHA4 release over 160 issues have been resolved. You can
 find the full changelog
-[here](http://www.doctrine-project.org/jira/secure/ReleaseNote.jspa?projectId=10032&styleName=Html&version=10030).
+[here](https://www.doctrine-project.org/jira/secure/ReleaseNote.jspa?projectId=10032&styleName=Html&version=10030).
 
 Some of the most important changes were the shift towards the Symfony
 (2) Console component for the CLI as well as the introduction of the
 inversedBy attribute for bidirectional associations, among others. For
 some help with upgrading from ALPHA4 to BETA1, please consult [the
-upgrade page](http://www.doctrine-project.org/upgrade/2_0).
+upgrade page](https://www.doctrine-project.org/upgrade/2_0).
 
 You can get the new release as usual from our [download
-page](http://www.doctrine-project.org/download) or [directly from
-github](http://github.com/doctrine/doctrine2).
+page](https://www.doctrine-project.org/download) or [directly from
+github](https://github.com/doctrine/doctrine2).
 
 We would like to thank all the adopters of the early alpha releases. All
 your issue reports, feature and enhancement requests and general

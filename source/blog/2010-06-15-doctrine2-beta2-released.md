@@ -49,9 +49,9 @@ Download
 --------
 
 You can get the code a few different ways which are described in detail
-[here](http://www.doctrine-project.org/projects/orm/2.0/download/2.0.0BETA2).
+[here](https://www.doctrine-project.org/projects/orm/2.0/download/2.0.0BETA2).
 If you have any issues with Doctrine you can report them on
-[Jira](http://www.doctrine-project.org/jira).
+[Jira](https://www.doctrine-project.org/jira).
 
 Contributions
 -------------
@@ -59,6 +59,6 @@ Contributions
 We thank all the contributors and early adopters for their extensive
 feedback and reports. If you are interesting in contributing to the
 Doctrine project too, check out our new [contributors
-guide](http://www.doctrine-project.org/contribute) and
-[community](http://www.doctrine-project.org/community) page for
+guide](https://www.doctrine-project.org/contribute) and
+[community](https://www.doctrine-project.org/community) page for
 information about how you can get involved!

@@ -6,7 +6,7 @@ categories: [release]
 permalink: /2011/02/19/doctrine-mongodb-odm-beta2-released.html
 ---
 After a long wait, I am happy to bring you the second beta release of
-the new Doctrine persistence layer for [MongoDB](http://mongodb.org).
+the new Doctrine persistence layer for [MongoDB](https://www.mongodb.com).
 This release includes dozens of bug fixes and improvements and it is
 recommended that you upgrade as soon as possible. You can learn about
 how to get the code here.
@@ -20,27 +20,27 @@ been doing there. The changelog is very large as the development spanned
 almost 5 months with commits from over 15 developers all over the world.
 Here are some of the people who've contributed this release:
 
--   [avalanche123](http://github.com/avalanche123)
--   [bobthecow](http://github.com/bobthecow)
--   [kriswallsmith](http://github.com/kriswallsmith)
--   [jmikola](http://github.com/jmikola)
--   [ornicar](http://github.com/ornicar)
--   [jseverson](http://github.com/jseverson)
--   [pgodel](http://github.com/pgodel)
--   [weaverryan](http://github.com/weaverryan)
--   [docteurklein](http://github.com/docteurklein)
+-   [avalanche123](https://github.com/avalanche123)
+-   [bobthecow](https://github.com/bobthecow)
+-   [kriswallsmith](https://github.com/kriswallsmith)
+-   [jmikola](https://github.com/jmikola)
+-   [ornicar](https://github.com/ornicar)
+-   [jseverson](https://github.com/jseverson)
+-   [pgodel](https://github.com/pgodel)
+-   [weaverryan](https://github.com/weaverryan)
+-   [docteurklein](https://github.com/docteurklein)
 -   [ThomasAdam](https://github.com/ThomasAdam)
--   [dan](http://github.com/dan)
--   [fabpot](http://github.com/fabpot)
--   [IamPersistent](http://github.com/IamPersistent)
--   [igorw](http://github.com/igorw)
--   [Vrtak-CZ](http://github.com/Vrtak-CZ)
+-   [dan](https://github.com/dan)
+-   [fabpot](https://github.com/fabpot)
+-   [IamPersistent](https://github.com/IamPersistent)
+-   [igorw](https://github.com/igorw)
+-   [Vrtak-CZ](https://github.com/Vrtak-CZ)
 
 Documentation
 =============
 
 Check out the
-[documentation](http://www.doctrine-project.org/docs/mongodb_odm/1.0/en)
+[documentation](https://www.doctrine-project.org/docs/mongodb_odm/1.0/en)
 as it is has been completely updated and improved for this release. We
 fully migrated the docs to use reST and Sphinx to generate our
 documentation so it is much improved over the previous versions.

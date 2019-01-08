@@ -31,7 +31,7 @@ following data for any given `PersistentCollection`:
     alternative)
 
 You can get this extension from the [DoctrineExtensions Github
-repository](http://github.com/beberlei/DoctrineExtensions).
+repository](https://github.com/beberlei/DoctrineExtensions).
 
 Working with a LargeCollection
 ==============================

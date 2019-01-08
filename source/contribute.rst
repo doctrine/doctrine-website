@@ -41,8 +41,8 @@ back to a Doctrine project.
 Initial Setup
 -------------
 
--  Setup a `github <http://github.com>`_ account.
--  Fork the `repository <http://github.com/doctrine/doctrine2>`_ of the
+-  Setup a `github <https://github.com>`_ account.
+-  Fork the `repository <https://github.com/doctrine/doctrine2>`_ of the
    project you want to contribute to.
 -  Clone your fork locally
 

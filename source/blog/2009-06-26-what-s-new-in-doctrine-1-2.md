@@ -35,7 +35,7 @@ Doctrine Extensions
 
 All the above changes lend themselves well to creating extensions and
 behaviors for Doctrine. This has led to the creation of the Doctrine
-[extensions](http://www.doctrine-project.org/extensions) repository.
+[extensions](https://www.doctrine-project.org/extensions) repository.
 
 You can now write standalone code bundled as a Doctrine extension that
 can be dropped in to an extensions folder and loaded by Doctrine. So now
@@ -43,7 +43,7 @@ when you all write custom behaviors and custom extensions you can make
 them available for other people to use and drop in to projects.
 
 I have started the repository by committing the
-[Sortable](http://www.doctrine-project.org/extension/Sortable/1_2-1_0)
+[Sortable](https://www.doctrine-project.org/extension/Sortable/1_2-1_0)
 behavior which was contributed by a Doctrine user on our trac. So
 whoever you are, if you would like to maintain this extension please
 contact me.
@@ -52,7 +52,7 @@ Follow 1.2 Development
 ======================
 
 If you want to know more about Doctrine 1.2 you can read the [What's new
-in Doctrine 1.2](http://www.doctrine-project.org/upgrade/1_2) document
+in Doctrine 1.2](https://www.doctrine-project.org/upgrade/1_2) document
 which will be kept up to date as we develop and change things in 1.2!
 
 > **CAUTION** Some of the implemented features in 1.2 are still being
