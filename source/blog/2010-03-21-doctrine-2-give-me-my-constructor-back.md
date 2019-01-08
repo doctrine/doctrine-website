@@ -6,7 +6,7 @@ categories: []
 permalink: /2010/03/21/doctrine-2-give-me-my-constructor-back.html
 ---
 At [ConFoo
-2010](http://www.doctrine-project.org/blog/doctrine-2-at-confoo-2010)
+2010](https://www.doctrine-project.org/2010/03/15/doctrine-2-at-confoo-2010.html)
 during my presentation, someone asked about the constructor of entities
 in Doctrine 2 and whether or not it could be used. I think this is
 something worth writing about since in Doctrine 1 this was not possible.

@@ -15,8 +15,8 @@ New Chapters
 ============
 
 -   [Data
-    Hydrators](http://www.doctrine-project.org/documentation/manual/1_2/en/data-hydrators)
--   [Extensions](http://www.doctrine-project.org/documentation/manual/1_2/en/extensions)
+    Hydrators](https://www.doctrine-project.org/projects/doctrine1/en/latest/manual/data-hydrators.html)
+-   [Extensions](https://www.doctrine-project.org/projects/doctrine1/en/latest/manual/extensions.html)
 
 Please read over it and create
 [Jira](http://www.doctrine-project.org/jira) issues for any problems or

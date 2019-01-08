@@ -10,7 +10,7 @@ Doctrine MongoDB Object Document Mapper (ODM). The release contains
 several bug fixes and a few enhancements. You now have the ability to
 mix types of documents in references and embedded documents. You can
 read the [blog
-post](http://www.doctrine-project.org/blog/mixing-types-of-documents)
+post](https://www.doctrine-project.org/2010/07/20/mixing-types-of-documents.html)
 about mixing types of documents to learn more.
 
 <h2>

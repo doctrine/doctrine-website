@@ -29,7 +29,7 @@ You can already start testing 2.1 development with two new features as
 of last week:
 
 -   [Foreign Keys as Primary
-    Keys](http://www.doctrine-project.org/jira/browse/DDC-117)
+    Keys](https://github.com/doctrine/orm/issues/1772)
 -   [Extra Lazy
-    Collections](http://www.doctrine-project.org/jira/browse/DDC-546)
+    Collections](https://github.com/doctrine/orm/issues/5053)
 

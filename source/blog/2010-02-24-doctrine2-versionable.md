@@ -109,7 +109,7 @@ class ResourceVersion
 Now we need to solve the problem of generating the `ResourceVersion`
 whenever an `Versionable` entity is persisted or updated. This can be
 done by using the [Doctrine EventManager
-API](http://www.doctrine-project.org/documentation/manual/2_0/en/events).
+API](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/events.html).
 We will implement the `EventSubscriber` interface and hook into the
 "onFlush" event.
 

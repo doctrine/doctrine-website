@@ -17,6 +17,6 @@ ORM 2.1.2.
 
 A total of 20 bugs have been fixed in all 3 components. The DBAL release
 contains a security fix for the Oracle driver fixing [a possible SQL
-injection issue](http://www.doctrine-project.org/jira/browse/DBAL-164).
+injection issue](https://github.com/doctrine/dbal/issues/1321).
 If you are using Oracle please update immediately. This security fix was
 backported to 2.0 and a new 2.0.9 version was released.

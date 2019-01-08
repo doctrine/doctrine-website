@@ -17,25 +17,25 @@ started, code examples, best practices, etc.
 
 The Guide to Doctrine for PHP starts off with the following chapters...
 
--   [Introduction](http://www.doctrine-project.org/documentation/manual/2_0/en/introduction)
--   [Architecture](http://www.doctrine-project.org/documentation/manual/2_0/en/architecture)
--   [Configuration](http://www.doctrine-project.org/documentation/manual/2_0/en/configuration)
+-   [Introduction](https://www.doctrine-project.org/projects/doctrine-orm/en/current/tutorials/getting-started.html)
+-   [Architecture](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/architecture.html)
+-   [Configuration](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/configuration.html)
 -   [Basic
-    Mapping](http://www.doctrine-project.org/documentation/manual/2_0/en/basic-mapping)
+    Mapping](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/basic-mapping.html)
 -   [...and
-    more](http://www.doctrine-project.org/documentation/manual/2_0/en)
+    more](https://www.doctrine-project.org/projects/doctrine-orm/en/current/)
 
 The following chapters have been completed and updated recently...
 
--   [Events](http://www.doctrine-project.org/documentation/manual/2_0/en/events)
--   [Tools](http://www.doctrine-project.org/documentation/manual/2_0/en/tools)
+-   [Events](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/events.html)
+-   [Tools](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/tools.html)
 
 We also have a cookbook with a few articles already too...
 
 -   [Implementing ArrayAccess for domain
-    objects](http://www.doctrine-project.org/documentation/cookbook/2_0/en/implementing-arrayaccess-for-domain-objects)
+    objects](https://www.doctrine-project.org/projects/doctrine-orm/en/current/cookbook/implementing-arrayaccess-for-domain-objects.html)
 -   [Implementing the NOTIFY changetracking
-    policy](http://www.doctrine-project.org/documentation/cookbook/2_0/en/implementing-the-notify-changetracking-policy)
+    policy](https://www.doctrine-project.org/projects/doctrine-orm/en/current/cookbook/implementing-the-notify-changetracking-policy.html)
 
 We hope this helps you a little bit with getting started using Doctrine
 2 and that you enjoy it! :)

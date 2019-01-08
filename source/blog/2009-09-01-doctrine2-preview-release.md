@@ -61,7 +61,7 @@ Documentation
 =============
 
 The documentation for Doctrine 2 can be found
-[here](http://www.doctrine-project.org/documentation/2_0/en). Please be
+[here](https://www.doctrine-project.org/projects/doctrine-orm/en/current/). Please be
 aware that the documentation is still a work in progress and not all
 areas have been completed.
 
@@ -69,7 +69,7 @@ Sandbox
 =======
 
 To get started quickly, please check out our [sandbox quickstart
-tutorial](http://www.doctrine-project.org/documentation/manual/2_0/en/introduction#sandbox-quickstart).
+tutorial](https://www.doctrine-project.org/projects/doctrine-orm/en/current/tutorials/getting-started.html).
 You can also obtain Doctrine 2.0.0 ALPHA1 via a PEAR package like normal
 which can be found on the
 [download](http://www.doctrine-project.org/download)

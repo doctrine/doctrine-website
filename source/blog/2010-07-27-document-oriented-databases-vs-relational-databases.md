@@ -6,7 +6,7 @@ categories: []
 permalink: /2010/07/27/document-oriented-databases-vs-relational-databases.html
 ---
 [My last
-post](http://www.doctrine-project.org/blog/mongodb-for-ecommerce)
+post](https://www.doctrine-project.org/2010/07/22/mongodb-for-ecommerce.html)
 brought up a lot of questions on the differences between
 document-oriented and relational databases, possible use cases for each
 and approaches and gotchas one should remember when dealing with either.

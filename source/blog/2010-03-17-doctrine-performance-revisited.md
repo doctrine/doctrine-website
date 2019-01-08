@@ -10,7 +10,7 @@ performant ORM experience we are often confronted with benchmarks and
 have been talking about performance topics since last year in several
 talks at many different conferences, and Roman has [talked about his
 opinion on such benchmarks on this
-blog](http://www.doctrine-project.org/blog/php-benchmarking-mythbusters).
+blog](https://www.doctrine-project.org/2009/11/18/php-benchmarking-mythbusters.html).
 
 Recently Francois Zaninotto, lead developer of the soon to be released
 Propel 1.5 (currently in beta) [wrote a blog

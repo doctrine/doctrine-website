@@ -15,9 +15,9 @@ Something I've always thought would be fun to build and has been one of
 the most requested items by users is a nice web based interface for
 managing your schema and generate your models from it. With the [new
 form
-framework](http://www.symfony-project.org/blog/2008/10/18/spice-up-your-forms-with-some-nice-widgets-and-validators)
+framework](https://symfony.com/blog/spice-up-your-forms-with-some-nice-widgets-and-validators)
 as of [symfony
-1.1](http://www.symfony-project.org/blog/2008/06/30/the-wait-is-over-symfony-1-1-released)
+1.1](https://symfony.com/blog/the-wait-is-over-symfony-1-1-released)
 , you can build rich forms with a nice OOP interface. This made it
 extremely easy to make the schema manager feature of the
 [sfDoctrineManagerPlugin](http://www.symfony-project.com/plugins/sfDoctrineManagerPlugin).

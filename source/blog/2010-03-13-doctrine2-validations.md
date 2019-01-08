@@ -133,7 +133,7 @@ extension, which requires another type of event called "onFlush".
 Also read:
 
 -   [Doctrine 2 Manual:
-    Events](http://www.doctrine-project.org/documentation/manual/2_0/en/events#lifecycle-events)
+    Events](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/events.html#lifecycle-events)
 -   [Doctrine 2 Blog: A reusable Versionable
-    Behaviour](http://www.doctrine-project.org/blog/doctrine2-versionable)
+    Behaviour](https://www.doctrine-project.org/2010/02/24/doctrine2-versionable.html)
 

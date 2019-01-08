@@ -86,7 +86,7 @@ As you can see this is very simple to use, but also missing some bits:
     basis, which would eliminate possible max memory problems compared
     to the complete hydration of a collection.
 -   Methods link()/unlink() like described in
-    [DDC-128](http://www.doctrine-project.org/jira/browse/DDC-128)
+    [DDC-128](https://github.com/doctrine/orm/issues/1892)
 
 I hope I got your attention and maybe someone has an interest in
 extending the LargeCollection a little bit more.

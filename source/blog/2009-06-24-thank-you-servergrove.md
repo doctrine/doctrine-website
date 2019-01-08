@@ -6,7 +6,7 @@ categories: []
 permalink: /2009/06/24/thank-you-servergrove.html
 ---
 As you all may know, we recently
-[moved](http://www.doctrine-project.org/blog/doctrine-changing-homes)
+[moved](https://www.doctrine-project.org/2009/06/16/doctrine-changing-homes.html)
 the Doctrine infrastructure to a brand new home. This is all thanks to
 [ServerGrove](http://www.servergrove.net/). I contacted them a few
 months ago about potentially sponsoring us and they did not hesitate one

@@ -61,4 +61,4 @@ More on NativeQuery and ResultSetMapping can be found in the new
 documentation under:
 
 [Documentation - Native
-Sql](http://www.doctrine-project.org/documentation/manual/2_0/en/native-sql)
+Sql](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/native-sql.html#native-sql)
