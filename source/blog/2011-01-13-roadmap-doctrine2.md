@@ -23,7 +23,7 @@ for June 30th 2011.
 You can follow the Tracker with all the features that are planned for
 2.1:
 
-[[http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10022](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10022)](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10022)
+[[https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10022](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10022)](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10022)
 
 You can already start testing 2.1 development with two new features as
 of last week:

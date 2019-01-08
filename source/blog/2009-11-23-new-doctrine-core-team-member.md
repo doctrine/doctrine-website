@@ -14,4 +14,4 @@ to the team.
 Benjamin is a contributor to the Zend Framework as well so he will be
 responsible for leading the integration between the projects. You can
 read a little more about Benjamin on his [about
-page](http://www.doctrine-project.org/contributor/beberlei).
+page](https://www.doctrine-project.org/contributor/beberlei).

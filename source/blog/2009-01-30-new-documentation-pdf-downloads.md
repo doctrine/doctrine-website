@@ -10,9 +10,9 @@ project](http://www.symfony-project.org) , we now have a new way to
 generate the PDF version of our documentation. The new PDFs are a MAJOR
 step up from the previous style of PDF and am very pleased with it!
 Check it out by viewing the 1.0 version of [The Guide to Doctrine for
-PHP](http://www.doctrine-project.org/documentation/manual/1_0/en/pdf) or
+PHP](https://www.doctrine-project.org/documentation/manual/1_0/en/pdf) or
 [The Doctrine
-Cookbook](http://www.doctrine-project.org/documentation/cookbook/1_0/en/pdf).
+Cookbook](https://www.doctrine-project.org/documentation/cookbook/1_0/en/pdf).
 
 What is next?
 =============

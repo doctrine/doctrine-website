@@ -9,11 +9,11 @@ We have released the maintenance versions Common 2.1.2, DBAL 2.1.3 and
 ORM 2.1.2.
 
 -   [Common 2.1.2
-    Changelog](http://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10161)
+    Changelog](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10161)
 -   [DBAL 2.1.3
-    Changelog](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10162)
+    Changelog](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10162)
 -   [ORM 2.1.2
-    Changelog](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10154)
+    Changelog](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10154)
 
 A total of 20 bugs have been fixed in all 3 components. The DBAL release
 contains a security fix for the Oracle driver fixing [a possible SQL

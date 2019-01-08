@@ -8,7 +8,7 @@ permalink: /2011/03/06/doctrine-oxm-intro.html
 Greetings programmers!
 
 Some of you may have noticed a new project being hosted by Doctrine's
-[github](http://github.com/doctrine) named [Object XML
+[github](https://github.com/doctrine) named [Object XML
 Mapper(OXM)](https://github.com/doctrine/oxm). The OXM is the newest
 member of the Doctrine family, and serves as persistence and marshalling
 framework for PHP objects to XML, and back again. I'd like to take a
@@ -33,7 +33,7 @@ XML.
 
 As a PHP enthusiest and fan of Doctrine, I created a small project that
 was capable of marshalling, unmarshalling, and persisting PHP objects to
-XML using [Doctrine Common](http://github.com/doctrine/common) package
+XML using [Doctrine Common](https://github.com/doctrine/common) package
 as a base, and many ideas from the ORM, and ODM projects. The Java
 [Castor](http://www.castor.org) project also brought a lot of ideas to
 give a high degree of control to the developer during the

@@ -161,22 +161,22 @@ Where do I start?
 =================
 
 You can download Doctrine 2 [from our downloads
-section](http://www.doctrine-project.org/projects/orm/download) ,
+section](https://www.doctrine-project.org/projects/orm/download) ,
 [install it via PEAR](http://pear.doctrine-project.org/) or find it in
-the [Github repository](http://github.com/doctrine/doctrine2). Symfony 2
+the [Github repository](https://github.com/doctrine/doctrine2). Symfony 2
 also ships with a current version of Doctrine 2. After you installed
 Doctrine 2 you can [go to the
-documentation](http://www.doctrine-project.org/docs/orm/2.0/en/) and
+documentation](https://www.doctrine-project.org/docs/orm/2.0/en/) and
 start reading the reference guide or [the
-tutorial](http://www.doctrine-project.org/docs/orm/2.0/en/tutorials/getting-started-xml-edition.html).
+tutorial](https://www.doctrine-project.org/docs/orm/2.0/en/tutorials/getting-started-xml-edition.html).
 
 If you find any bugs or have feature requests you should check our
 [Bug-Tracker and report bugs or feature
-requests](http://www.doctrine-project.org/jira). If you want to discuss
+requests](https://www.doctrine-project.org/jira). If you want to discuss
 about Doctrine 2 you can either [use the Google Group or join the
 \#doctrine channel on the Freenode IRC
-Network](http://www.doctrine-project.org/community). Also make sure to
+Network](https://www.doctrine-project.org/community). Also make sure to
 check the current [Limitations and Known Issues
-section](http://www.doctrine-project.org/docs/orm/2.0/en/reference/limitations-and-known-issues.html)
+section](https://www.doctrine-project.org/docs/orm/2.0/en/reference/limitations-and-known-issues.html)
 in the docs. We are trying to be honest about what Doctrine 2 can and
 can't do but might do in the future.

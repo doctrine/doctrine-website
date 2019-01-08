@@ -11,13 +11,13 @@ are releasing another Beta of Doctrine DBAL and ORM. The final release
 is rescheduled to 19th January.
 
 -   DBAL Changelog
-    \<[http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10189](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10189)\>\`\_
+    \<[https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10189](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10189)\>\`\_
 -   ORM Changelog
-    \<[http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10188](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10188)\>\`\_
+    \<[https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10188](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10188)\>\`\_
 
 Please try and test this code with your production applications and
 report any backwards compatibility breaks to the [Bug
-Tracker](http://www.doctrine-project.org/jira) or the Mailing List. See
+Tracker](https://www.doctrine-project.org/jira) or the Mailing List. See
 the
 [UPGRADE\_2\_2](https://github.com/doctrine/doctrine2/blob/master/UPGRADE_TO_2_2)
 file to see backwards incompatible changes.
@@ -25,7 +25,7 @@ file to see backwards incompatible changes.
 You can install the Beta through
 [Github](https://github.com/doctrine/doctrine2) ,
 [PEAR](http://pear.doctrine-project.org) by download or through
-[Composer](http://www.packagist.org):
+[Composer](https://packagist.org):
 
 > {
 > :   "require": { "doctrine/orm": "2.2.0-BETA2" }

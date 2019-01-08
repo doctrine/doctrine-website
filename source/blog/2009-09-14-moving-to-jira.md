@@ -8,14 +8,14 @@ permalink: /2009/09/14/moving-to-jira.html
 While we really like Trac, especially its subversion integration, it has
 a lot of shortcomings for bigger projects in the area of project &
 issue/ticket management. Hence we decided to evaluate alternatives and
-ended up with choosing [JIRA](http://www.atlassian.com/software/jira/).
+ended up with choosing [JIRA](https://www.atlassian.com/software/jira).
 Its normally not free software but the generous guys from Atlassian
 granted us a free open source license. A big thanks from all of us to
 Atlassian for their support of open source projects.
 
 From now on all the project management, release management and
 issue/ticket management will happen in our [new JIRA
-instance](http://doctrine-project.org/jira). While it is open for
+instance](https://www.doctrine-project.org/jira). While it is open for
 everyone in read-only mode, we strongly encourage you to create an
 account soon so that you can create/modify/comment issues and content in
 JIRA.
@@ -51,5 +51,5 @@ improvement for all users. We hope you enjoy all the new functionality
 provided by JIRA, like voting for issues that are important to you,
 tracking issues and much more.
 
-So, head over to our [JIRA instance](http://doctrine-project.org/jira) ,
+So, head over to our [JIRA instance](https://www.doctrine-project.org/jira) ,
 create an account and start creating issues and explore the features.

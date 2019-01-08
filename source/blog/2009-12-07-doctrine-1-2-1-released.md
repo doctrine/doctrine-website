@@ -71,7 +71,7 @@ directory is clean
 </ul>
 
 You can view the full [change
-log](http://www.doctrine-project.org/change_log/1_2_1) and
-[download](http://www.doctrine-project.org/download#1_2) now! If you
+log](https://www.doctrine-project.org/change_log/1_2_1) and
+[download](https://www.doctrine-project.org/download#1_2) now! If you
 encounter any issues please report them in
-[Jira](http://www.doctrine-project.org/jira).
+[Jira](https://www.doctrine-project.org/jira).

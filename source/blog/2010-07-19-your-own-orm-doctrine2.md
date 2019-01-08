@@ -47,7 +47,7 @@ dependent library.
 This article will describe some possible extensions and show where you
 can hook into the Doctrine2 core to implement your own ORM. The article
 will be very code focused and also comes with a [Github
-project](http://github.com/beberlei/Doctrine-ActiveEntity) where all the
+project](https://github.com/beberlei/Doctrine-ActiveEntity) where all the
 code and some tests are hosted.
 
 Doctrine2 and ActiveRecord
@@ -66,7 +66,7 @@ Some while ago Jonathan already released his approach, called the
 entities have to implement, the code is still [in our SVN
 repository](http://trac.doctrine-project.org/browser/extensions/ActiveEntity/branches/2.0-1.0/DoctrineExtensions/ActiveEntity.php).
 However a more recent version of this code is available as [a project on
-Github](http://github.com/beberlei/Doctrine-ActiveEntity). I won't
+Github](https://github.com/beberlei/Doctrine-ActiveEntity). I won't
 support this experiment any further, I hope somebody picks it up and
 starts maintaining it.
 
@@ -362,7 +362,7 @@ Using Traits for Behaviours
 
 We want to add a simple "Timestampable" behaviour now, hooking into the
 `loadClassMetadata` event [as described in the
-documentation](http://www.doctrine-project.org/projects/orm/2.0/docs/reference/events/en#load-classmetadata-event):
+documentation](https://www.doctrine-project.org/projects/orm/2.0/docs/reference/events/en#load-classmetadata-event):
 
 Now this is untested code, as i don't have a PHP-5.3.99-DEV version
 compiled at this machine.
@@ -456,4 +456,4 @@ required some understanding of the inner workings of Doctrine2, however
 not many changes were required in the end.
 
 [See the code on
-GitHub!](http://github.com/beberlei/Doctrine-ActiveEntity)
+GitHub!](https://github.com/beberlei/Doctrine-ActiveEntity)

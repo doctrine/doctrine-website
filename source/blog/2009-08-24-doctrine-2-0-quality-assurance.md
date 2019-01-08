@@ -9,10 +9,10 @@ Greetings folks!
 
 Today I'd like to talk about Quality Assurance in PHP projects.
 Currently, PHP lacks good tools for QA, but thanks to a special PHP
-user, [Sebastian Bergmann](http://sebastian-bergmann.de) , this is
+user, [Sebastian Bergmann](https://sebastian-bergmann.de/) , this is
 changing gradually. If you don't know him, you can visit his blog and
 check about projects he's on. For lazy people, he's the author of
-[PHPUnit](http://www.phpunit.de) , a de-facto Unit Test suite in PHP.
+[PHPUnit](https://www.phpunit.de) , a de-facto Unit Test suite in PHP.
 
 Doctrine 2.0 uses PHPUnit as our Unit Test suite. It relies on PEAR to
 be installed, but you can also install it via SVN.
@@ -26,7 +26,7 @@ I have applied some of these tests against [Doctrine
 2.0](http://trac.doctrine-project.org/browser/trunk) to see how complex
 it is and if it can be optimized more. The first test I run is a trace
 about how complex our code base is. The tool I used is
-[phploc](http://github.com/sebastianbergmann/phploc/tree/master). Check
+[phploc](https://github.com/sebastianbergmann/phploc/tree/master). Check
 out the results:
 
     [bash]
@@ -50,7 +50,7 @@ Of course it still misses a couple of code to implement (CLI Tasks,
 Locking strategies, ID Generators), but now we know how big Doctrine 2.0
 is. Then, I decided to check duplicated code (possible optimization
 locations). The tool
-[phpcpd](http://github.com/sebastianbergmann/phpcpd/tree/master) gave me
+[phpcpd](https://github.com/sebastianbergmann/phpcpd/tree/master) gave me
 this feedback:
 
     [bash]
@@ -102,10 +102,10 @@ Finally, some metrics are good to inspect how stable is our code. I
 applied [pdepend](http://pdepend.org) , and it gave me these results:
 
 ![jdepend chart
-](http://www.doctrine-project.org/blog-images/doctrine-2-0-qa/picture2.png)
+](https://www.doctrine-project.org/blog-images/doctrine-2-0-qa/picture2.png)
 
 ![pyramid overview
-](http://www.doctrine-project.org/blog-images/doctrine-2-0-qa/picture3.png)
+](https://www.doctrine-project.org/blog-images/doctrine-2-0-qa/picture3.png)
 
 The command I ran was:
 

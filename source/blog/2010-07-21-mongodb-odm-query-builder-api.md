@@ -162,4 +162,4 @@ to right. We hope to enhance and improve this API even more before we
 release the stable 1.0 version.
 
 You can read more about the Query Builder API in the
-[documentation](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/query-builder-api/en#query-builder-api).
+[documentation](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/query-builder-api/en#query-builder-api).

@@ -24,7 +24,7 @@ bug for this problem is \`DDC-3120\`\_.
 [Doctrine Instantiator](https://github.com/doctrine/instantiator)
 provides a simple API to build objects without directly relying on the
 [serialization
-hack](http://www.doctrine-project.org/2010/03/21/doctrine-2-give-me-my-constructor-back.html)
+hack](https://www.doctrine-project.org/2010/03/21/doctrine-2-give-me-my-constructor-back.html)
 that has been explicitly used by all of our data mappers for quite some
 time.
 

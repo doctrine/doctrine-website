@@ -120,7 +120,7 @@ FunctionNode somewhere in the AST of the dql statement.
 
 The `ArithmeticPrimary` method call is the most common denominator of
 valid EBNF tokens taken from the [DQL EBNF
-grammer](http://www.doctrine-project.org/documentation/manual/2_0/en/dql-doctrine-query-language#ebnf)
+grammer](https://www.doctrine-project.org/documentation/manual/2_0/en/dql-doctrine-query-language#ebnf)
 that matches our requirements for valid input into the DateDiff Dql
 function. Picking the right tokens for your methods is a tricky
 business, but the EBNF grammer is pretty helpful finding it, as is
@@ -229,4 +229,4 @@ sql functions and extend the DQL languages scope.
 
 Code for this Extension to DQL and other Doctrine Extensions can be
 found [in my Github DoctrineExtensions
-repository](http://github.com/beberlei/DoctrineExtensions).
+repository](https://github.com/beberlei/DoctrineExtensions).

@@ -7,7 +7,7 @@ permalink: /2009/01/23/introducing-doctrine-orm-for-php.html
 ---
 Today I am very happy to announce that we have a first draft available
 of the new main Doctrine documentation which is titled, "[Doctrine ORM
-for PHP](http://www.doctrine-project.org/documentation/manual/1_0/en)".
+for PHP](https://www.doctrine-project.org/documentation/manual/1_0/en)".
 The content of this documentation was re-organized and completely
 re-written from the "Old Manual". The order of the chapters and sections
 have been re-thought and we've tried to put them in a more logical
@@ -64,7 +64,7 @@ We have a few more bugs to fix in the 1.1 version then we will release
 the second stable version of Doctrine, 1.1. Right before we release
 Doctrine 1.1(which will hopefully also be in a week or so), we will
 branch the new documentation for 1.1 and make all the necessary updates
-based on [what's changed](http://www.doctrine-project.org/upgrade/1_0).
+based on [what's changed](https://www.doctrine-project.org/upgrade/1_0).
 Then we will release and open it to your suggestions.
 
 Printed Book: "Doctrine ORM for PHP"
@@ -80,11 +80,11 @@ appreciation for the project and support it by purchasing a copy.
 > **TIP** If you want to print a rich text version of the Book yourself
 > instead of using the PDF or ordering a copy, we have implemented a
 > print stylesheet so when you access the documentation
-> [here](http://www.doctrine-project.org/documentation/manual/1_0/en/one-page/print)
+> [here](https://www.doctrine-project.org/documentation/manual/1_0/en/one-page/print)
 > you will get the version styled for printing.
 
 * * * * *
 
 Now go ahead and check out [Doctrine ORM for PHP - Guide to Doctrine for
-PHP](http://www.doctrine-project.org/documentation/manual/1_0/en) and
+PHP](https://www.doctrine-project.org/documentation/manual/1_0/en) and
 bring me some feedback. :)

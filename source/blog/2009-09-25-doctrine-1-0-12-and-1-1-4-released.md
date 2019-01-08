@@ -17,4 +17,4 @@ releases and only contain bug fixes.
 > will have **18** months of support from the date it is released.
 
 You can view the change logs and download these releases on the
-[download](http://www.doctrine-project.org) page.
+[download](https://www.doctrine-project.org) page.

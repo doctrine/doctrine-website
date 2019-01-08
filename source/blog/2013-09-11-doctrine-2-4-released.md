@@ -15,7 +15,7 @@ features.
 Starting with version 2.4 Doctrine will not be available over PEAR
 anymore. The maintenance of this deployment channel is too complicated,
 compared to the small number of people using it. We focus on shipping
-Doctrine with [Composer](http://getcomposer.org) , which is a superior
+Doctrine with [Composer](https://getcomposer.org) , which is a superior
 packaging tool in our opinion. We will continue to make Doctrine
 available as standalone download through the Github releases pages.
 

@@ -11,7 +11,7 @@ packed with new features that will make your life easier:
 -   **Indexed associations:** You can force Doctrine to hydrate
     collection elements by using a field of the target entity as key,
     for example the ID or any unique field. See the [tutorial for this
-    feature](http://www.doctrine-project.org/docs/orm/2.0/en/tutorials/working-with-indexed-associations.html).
+    feature](https://www.doctrine-project.org/docs/orm/2.0/en/tutorials/working-with-indexed-associations.html).
 -   **Extra Lazy Collections:** Instead of always initializing the
     complete collection in memory you can now mark a collection as extra
     lazy, leading to special SQL executed for Collection\#count(),
@@ -19,12 +19,12 @@ packed with new features that will make your life easier:
     implement efficient pagination on collections without having to use
     DQL. It also allows to save some memory for common use-cases with
     very large collections. See the [tutorial for this
-    feature](http://www.doctrine-project.org/docs/orm/2.0/en/tutorials/extra-lazy-associations.html).
+    feature](https://www.doctrine-project.org/docs/orm/2.0/en/tutorials/extra-lazy-associations.html).
 -   **Identity through Foreign Entities or derived entities:** You can
     now use a foreign key as identifier of an entity. This translates to
     using @Id on a @ManyToOne or @OneToOne association. You can read up
     on this [feature in the
-    tutorial](http://www.doctrine-project.org/docs/orm/2.0/en/tutorials/composite-primary-keys.html#identity-through-foreign-entities).
+    tutorial](https://www.doctrine-project.org/docs/orm/2.0/en/tutorials/composite-primary-keys.html#identity-through-foreign-entities).
 -   **Persister Refactoring:** Instead of reimplementing hydration in
     the persisters we now use the hydration mechanism that is used by
     DQL aswell. Sadly performance for hydration in the persisters drops

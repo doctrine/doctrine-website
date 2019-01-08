@@ -9,9 +9,9 @@ Slightly delayed but here are the releases of DBAL and ORM versions
 2.0.2:
 
 -   [ORM 2.0.2
-    Changeset](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10116)
+    Changeset](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10116)
 -   [DBAL 2.0.2
-    Changeset](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10118)
+    Changeset](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10118)
 
 A total of 22 issues was fixed.
 

@@ -13,9 +13,9 @@ In the Common package 3 bugs have been fixed, in the DBAL package 9 bugs
 have been fixed. See the changelogs for details:
 
 -   [Common RC1
-    Changelog](http://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10093)
+    Changelog](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10093)
 -   [DBAL RC3
-    Changelogt](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10094)
+    Changelogt](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10094)
 
 We are especially thankful for the support Microsoft has been giving us
 to integrate PDO Sqlsrv. Juozas was invited to [Jumpin

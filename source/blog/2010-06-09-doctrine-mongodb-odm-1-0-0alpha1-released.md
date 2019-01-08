@@ -6,7 +6,7 @@ categories: [release]
 permalink: /2010/06/09/doctrine-mongodb-odm-1-0-0alpha1-released.html
 ---
 Today I am very happy to announce the release of the first alpha version
-of the Doctrine [MongoDB](http://www.mongodb.org) Object Document
+of the Doctrine [MongoDB](https://www.mongodb.com/) Object Document
 Mapper. This is exciting as it is the beginning of a whole new chapter
 in the life of the Doctrine Project. We hope to continue adding packages
 to allow you to transparently persist your domain objects to a variety
@@ -20,23 +20,23 @@ Doctrine MongoDB Object Document Mapper:
 
 -   Transparent persistence.
 -   Map one or many
-    [embedded](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/embedded-mapping/en)
+    [embedded](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/embedded-mapping/en)
     documents.
 -   Map one or many
-    [referenced](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/reference-mapping/en)
+    [referenced](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/reference-mapping/en)
     documents.
 -   Create references between documents in different databases.
 -   Map documents with
-    [Annotations](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/annotations-reference/en)
+    [Annotations](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/annotations-reference/en)
     ,
-    [XML](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/xml-mapping/en#xml-mapping)
+    [XML](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/xml-mapping/en#xml-mapping)
     ,
-    [YAML](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/yml-mapping/en#yml-mapping)
+    [YAML](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/yml-mapping/en#yml-mapping)
     or plain old PHP code.
 -   Documents can be stored on the
-    [MongoGridFS](http://www.php.net/MongoGridFS).
+    [MongoGridFS](https://secure.php.net/MongoGridFS).
 -   Collection per class(concrete) and single collection
-    [inheritance](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/inheritance-mapping/en)
+    [inheritance](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/inheritance-mapping/en)
     supported.
 -   Map your Doctrine 2 ORM Entities to the ODM and use mixed data
     stores.
@@ -44,17 +44,17 @@ Doctrine MongoDB Object Document Mapper:
     [MongoCollection::batchInsert()](http://us.php.net/manual/en/mongocollection.batchinsert.php)
 -   Updates are performed using the atomic operators \$set, \$pullAll,
     \$pushAll and \$increment instead of saving the entire document.
--   [Migrate](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/migrating-schemas/en)
+-   [Migrate](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/migrating-schemas/en)
     your schema as your domain model evolves and changes.
 -   [Fluent Object Oriented
-    Interface](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/query-api/en)
+    Interface](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/query-api/en)
     for building and executing queries.
 -   [Map
-    Reduce](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/map-reduce/en)
+    Reduce](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/map-reduce/en)
     integration.
 
 You can continue reading the
-[Introduction](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/introduction/en)
+[Introduction](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/introduction/en)
 chapter in the reference documentation to get a grasp of what exactly
 the Doctrine MongoDB Object Document Mapper does by looking at some
 examples!
@@ -66,14 +66,14 @@ Want documentation? You got it! Check out the links below to get started
 learning about the Doctrine MongoDB Object Document Mapper:
 
 -   [Reference
-    Documentation](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/en)
+    Documentation](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/reference/en)
 -   [Getting Started Cookbook
-    Article](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/cookbook/getting-started/en)
+    Article](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/cookbook/getting-started/en)
 -   [API
-    Documentation](http://www.doctrine-project.org/projects/mongodb_odm/1.0/api)
+    Documentation](https://www.doctrine-project.org/projects/mongodb_odm/1.0/api)
 
 We'll be adding more
-[Cookbook](http://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/cookbook)
+[Cookbook](https://www.doctrine-project.org/projects/mongodb_odm/1.0/docs/cookbook)
 articles in the coming weeks so check back for more documentation!
 
 Download
@@ -81,7 +81,7 @@ Download
 
 You can see all the download information for the Doctrine MongoDB ODM on
 the projects
-[download](http://www.doctrine-project.org/projects/mongodb_odm/download)
+[download](https://www.doctrine-project.org/projects/mongodb_odm/download)
 page. You have several ways to get the code which are described below as
 well:
 
@@ -96,7 +96,7 @@ Download PEAR Package
 ---------------------
 
 You can manually download the PEAR package
-[here](http://www.doctrine-project.org/downloads/DoctrineMongoDBODM-1.0.0ALPHA1.tgz).
+[here](https://www.doctrine-project.org/downloads/DoctrineMongoDBODM-1.0.0ALPHA1.tgz).
 If you want you can manually unarchive the code or you can
 `pear install` the downloaded package:
 
@@ -115,7 +115,7 @@ Reporting Issues
 
 If you encounter any problems with the Doctrine MongoDB Object Document
 Mapper you can report new issues to the
-[Jira](http://www.doctrine-project.org/jira/browse/MODM) project. For
+[Jira](https://www.doctrine-project.org/jira/browse/MODM) project. For
 more information about contributing to Doctrine you can checkout the
 documentation for our [Contributor
-Workflow](http://www.doctrine-project.org/contribute).
+Workflow](https://www.doctrine-project.org/contribute).

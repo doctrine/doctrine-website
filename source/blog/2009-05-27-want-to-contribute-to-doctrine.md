@@ -22,7 +22,7 @@ You can see Roman made a call to the Doctrine developers mailing list
 [here](http://groups.google.com/group/doctrine-dev/browse_thread/thread/c6e4c74e1a392909)
 about the issue. We are taking all the feedback in to consideration and
 we have started by creating a
-[contribute](http://www.doctrine-project.org/contribute) page that is
+[contribute](https://www.doctrine-project.org/contribute) page that is
 linked from the primary menu of the website. We hope that this will help
 with new users finding information faster about how they can get started
 contributing.

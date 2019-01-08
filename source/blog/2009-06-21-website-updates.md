@@ -11,7 +11,7 @@ of you.
 
 I have decided to remove the Doctrine Forum forever and consolidate the
 user discussions in to the
-[doctrine-user](http://groups.google.com/group/doctrine-user) mailing
+[doctrine-user](https://groups.google.com/forum/#!forum/doctrine-user) mailing
 list which is hosted on Google Groups. I chose to do this for a few
 reasons.
 
@@ -29,10 +29,10 @@ time...**developing Doctrine**..instead of maintaining the forum.
 Some other changes I have made/fixed.
 
 -   Change Logs are now fixed from the move
--   The [blog](http://www.doctrine-project.org/blog) has been enhanced
+-   The [blog](https://www.doctrine-project.org/blog) has been enhanced
     and tags fixed
 -   [API
-    Documentation](http://www.doctrine-project.org/Doctrine_Record/1_1)
+    Documentation](https://www.doctrine-project.org/Doctrine_Record/1_1)
     Enhanced to include browse code links so you can see the code for
     each class, function, etc.
 -   A bunch of other small little things tweaked and fixed.

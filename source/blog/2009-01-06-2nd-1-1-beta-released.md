@@ -30,7 +30,7 @@ Development Highlights
     with temporary generated models not being cleaned up properly
 
 You can also check out the [detailed
-documentation](http://www.doctrine-project.org/upgrade/1_1) of all the
+documentation](https://www.doctrine-project.org/upgrade/1_1) of all the
 changes that are contained in the 1.1 version of Doctrine as well as the
-[changelog](http://www.doctrine-project.org/change_log/1_1_0_BETA2) to
+[changelog](https://www.doctrine-project.org/change_log/1_1_0_BETA2) to
 help ease the upgrade process.

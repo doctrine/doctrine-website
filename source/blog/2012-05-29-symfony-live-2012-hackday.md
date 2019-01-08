@@ -6,7 +6,7 @@ categories: []
 permalink: /2012/05/29/symfony-live-2012-hackday.html
 ---
 Next week will be [Symfony Live
-2012](http://paris2012.live.symfony.com/) in Paris and the Doctrine
+2012](https://paris2012.live.symfony.com/) in Paris and the Doctrine
 DBAL/ORM Team will be represented by Guilherme, Alexander, Marco and me.
 Jeremy is also there and knows the MongoDB ODM inside out.
 

@@ -154,5 +154,5 @@ The `PHPUnit Bridge`_ provides utilities to report legacy tests and usage of dep
 .. _PHPStan: https://github.com/phpstan/phpstan
 .. _PHP Parser: https://github.com/nikic/php-parser
 .. _PHPUnit Bridge: https://github.com/symfony/phpunit-bridge
-.. _error_reporting: http://php.net/manual/en/function.error-reporting.php
-.. _set_error_handler: http://php.net/manual/en/function.set-error-handler.php
+.. _error_reporting: https://secure.php.net/manual/en/function.error-reporting.php
+.. _set_error_handler: https://secure.php.net/manual/en/function.set-error-handler.php

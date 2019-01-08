@@ -17,7 +17,7 @@ grammar, usually known as LL(k).
 
 We mapped the entire supported DQL into a document, which is an [EBNF
 (Extended Backus-Naur
-Form)](http://en.wikipedia.org/wiki/Extended_Backus–Naur_Form) , which
+Form)](https://en.wikipedia.org/wiki/Extended_Backus–Naur_Form) , which
 is a meta-syntax notation to express context-free grammars. This one is
 quite simple to be readable by humans. Yes, we are humans if you raise
 the question! =)
@@ -47,7 +47,7 @@ How does it do that?
 ====================
 
 Each piece of DQL is converted to a series of tokens. Some tokens are
-defined in our [Symbol Table](http://en.wikipedia.org/wiki/Symbol_table)
+defined in our [Symbol Table](https://en.wikipedia.org/wiki/Symbol_table)
 , which is then validated and correctly typed into the right token type.
 For example... when it finds the "`FROM`", it'll return for us
 internally a token in an array format of:
@@ -107,7 +107,7 @@ Running tests
 =============
 
 It is not hard to execute new test suite. Once you have
-[PHPUnit](http://phpunit.de) and [XDebug](http://xdebug.org) installed,
+[PHPUnit](https://phpunit.de) and [XDebug](https://xdebug.org) installed,
 go to tests folder of trunk, create the directory `_coverage` (CHMOD
 0777) and execute:
 

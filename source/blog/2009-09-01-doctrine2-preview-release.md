@@ -72,7 +72,7 @@ To get started quickly, please check out our [sandbox quickstart
 tutorial](https://www.doctrine-project.org/projects/doctrine-orm/en/current/tutorials/getting-started.html).
 You can also obtain Doctrine 2.0.0 ALPHA1 via a PEAR package like normal
 which can be found on the
-[download](http://www.doctrine-project.org/download)
+[download](https://www.doctrine-project.org/download)
 
 We want to encourage everyone to start experimenting with the new
 generation of Doctrine in order to get familiar with it and to help find

@@ -23,8 +23,8 @@ A total of 13 issues on DBAL has been fixed.
 
 Links:
 
--   [Changelog](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10066)
--   [Installation](http://www.doctrine-project.org/projects/dbal/2.0/download/2.0.0BETA3)
+-   [Changelog](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10066)
+-   [Installation](https://www.doctrine-project.org/projects/dbal/2.0/download/2.0.0BETA3)
 
     > **NOTE** DBAL BETA 3 is not currently compatible with the ORM
     > master, we still have to make some changes. Please wait to use

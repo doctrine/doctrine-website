@@ -5,7 +5,7 @@ authorEmail:
 categories: []
 permalink: /2009/06/17/special-price-offer-symfony-1-2-doctrine-training-workshop.html
 ---
-As you all may know, I work for [Sensio Labs](http://www.sensiolabs.com)
+As you all may know, I work for [Sensio Labs](https://sensiolabs.com)
 , the creators of the [Symfony](http://www.symfony-project.org)
 framework. Sensio offers trainings in many topics, but primarily Symfony
 and Doctrine. I will be teaching a training session June 29th to July

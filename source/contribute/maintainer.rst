@@ -7,7 +7,7 @@ Maintainer Workflow
 
 Who is a maintainer? Maintainers are those who have been granted write
 access to the main repository of a project. In the example of the ORM,
-it would be this `repository <http://github.com/doctrine/doctrine2>`_.
+it would be this `repository <https://github.com/doctrine/doctrine2>`_.
 This repository will be referred to as **doctrine** in this document.
 
 You might want want to know how a maintainer is different from a
@@ -23,7 +23,7 @@ Setup
 -----
 
 First you must Fork the
-`repository <http://github.com/doctrine/doctrine2>`_ and clone your fork
+`repository <https://github.com/doctrine/doctrine2>`_ and clone your fork
 locally:
 
 .. code-block:: console

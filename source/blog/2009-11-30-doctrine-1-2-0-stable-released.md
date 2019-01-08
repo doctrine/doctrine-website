@@ -27,21 +27,21 @@ Release Highlights
 
 Below you will find some of the highlights from this release. Of course
 you can view the full
-[upgrade](http://www.doctrine-project.org/upgrade/1_2) page to see all
+[upgrade](https://www.doctrine-project.org/upgrade/1_2) page to see all
 the new things in Doctrine 1.2.
 
 -   [Custom
-    Hydrators](http://www.doctrine-project.org/upgrade/1_2#Custom%20Hydrators)
+    Hydrators](https://www.doctrine-project.org/upgrade/1_2#Custom%20Hydrators)
 -   [Improved Magic
-    Finders](http://www.doctrine-project.org/upgrade/1_2#Expanded%20Magic%20Finders%20to%20Multiple%20Fields)
+    Finders](https://www.doctrine-project.org/upgrade/1_2#Expanded%20Magic%20Finders%20to%20Multiple%20Fields)
 -   [On-Demand
-    Hydration](http://www.doctrine-project.org/upgrade/1_2#On%20Demand%20Hydration)
+    Hydration](https://www.doctrine-project.org/upgrade/1_2#On%20Demand%20Hydration)
 -   [Nested Set
-    Hierarchy](http://www.doctrine-project.org/upgrade/1_2#Doctrine%20Nested%20Set%20Hierarchy%20Structure)
+    Hierarchy](https://www.doctrine-project.org/upgrade/1_2#Doctrine%20Nested%20Set%20Hierarchy%20Structure)
 -   [Result Cache
-    Improvements](http://www.doctrine-project.org/upgrade/1_2#Result%20Cache%20Improvements)
+    Improvements](https://www.doctrine-project.org/upgrade/1_2#Result%20Cache%20Improvements)
 
-Please, [download](http://www.doctrine-project.org/download#1_2)
+Please, [download](https://www.doctrine-project.org/download#1_2)
 Doctrine 1.2 today and give it a try. Let us know any problems you have
 by reporting a new issue in
-[Jira](http://www.doctrine-project.org/jira).
+[Jira](https://www.doctrine-project.org/jira).

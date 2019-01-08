@@ -10,9 +10,9 @@ We released the last maintenance version of the 2.0.x branch Doctrine
 master branches. You can find the list of fixes in the Changelog:
 
 -   [ORM Changelog
-    2.0.7](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10150)
+    2.0.7](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10150)
 -   [DBAL Changelog
-    2.0.7](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10151)
+    2.0.7](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10151)
 
 This release marks the end of line of the 2.0.x branch. We will not port
 bugs for this branch anymore only security issues will get applied.

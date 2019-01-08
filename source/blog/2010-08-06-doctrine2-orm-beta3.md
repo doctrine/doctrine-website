@@ -7,8 +7,8 @@ permalink: /2010/08/06/doctrine2-orm-beta3.html
 ---
 We would like to announce the immediate release of Doctrine ORM BETA 3:
 
--   [Installation](http://www.doctrine-project.org/projects/orm/2.0/download/2.0.0BETA3)
--   [Changelog](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10060)
+-   [Installation](https://www.doctrine-project.org/projects/orm/2.0/download/2.0.0BETA3)
+-   [Changelog](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10060)
 
 We fixed 45 issues, most of them bugs reported by our users. The ORM
 package is now in a state where no new features will be added and we
@@ -36,7 +36,7 @@ The DBAL Type "datetime" included the Timezone Offset in both Postgres
 and Oracle. As of this version they are now generated without Timezone
 (TIMESTAMP WITHOUT TIME ZONE instead of TIMESTAMP WITH TIME ZONE). See
 [this comment to Ticket
-DBAL-22](http://www.doctrine-project.org/jira/browse/DBAL-22?focusedCommentId=13396&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#action_13396)
+DBAL-22](https://www.doctrine-project.org/jira/browse/DBAL-22?focusedCommentId=13396&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#action_13396)
 for more details as well as migration issues for PostgreSQL and Oracle.
 
 Both Postgres and Oracle will throw Exceptions during hydration of

@@ -13,11 +13,11 @@ should now use the "charset" option in DriverManager::getConnection()
 instead of the MysqlSessionInit listener.
 
 -   [DBAL Changelog (4 Tickets
-    closed)](http://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10132)
+    closed)](https://www.doctrine-project.org/jira/browse/DBAL/fixforversion/10132)
 -   [ORM Changelog (15 Tickets
-    closed)](http://www.doctrine-project.org/jira/browse/DDC/fixforversion/10133)
+    closed)](https://www.doctrine-project.org/jira/browse/DDC/fixforversion/10133)
 
 You can grab the packages from the download page or our [Github
-repository](http://github.com/doctrine).
+repository](https://github.com/doctrine).
 
 Please report any problems to the Jira Bugtracker.
