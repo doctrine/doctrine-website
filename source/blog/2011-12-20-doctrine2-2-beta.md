@@ -36,11 +36,11 @@ the new features. Additionally we try to drive the bug count down in the
 
 Please test this beta with your projects to find any incompatibilities.
 See the
-[UPGRADE\_2\_2](https://github.com/doctrine/doctrine2/blob/master/UPGRADE_TO_2_2)
+[UPGRADE\_2\_2](https://github.com/doctrine/orm/blob/master/UPGRADE.md#upgrade-to-22)
 file to see backwards incompatible changes.
 
 You can install the Beta through
-[Github](https://github.com/doctrine/doctrine2) , \`PEAR
+[Github](https://github.com/doctrine/orm) , \`PEAR
 [http://pear.doctrine-project.org](http://pear.doctrine-project.org)\>\`\_
 or through [Composer](https://packagist.org):
 

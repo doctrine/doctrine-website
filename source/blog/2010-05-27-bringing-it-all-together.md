@@ -39,7 +39,7 @@ ORM packages are truly separated.
 
 -   [Common](https://github.com/doctrine/common)
 -   [DBAL](https://github.com/doctrine/dbal)
--   [ORM](https://github.com/doctrine/doctrine2)
+-   [ORM](https://github.com/doctrine/orm)
 
 This means the packages can evolve independently and will be maintained
 separately from now on. The website also has dedicated project pages for

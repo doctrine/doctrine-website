@@ -19,6 +19,6 @@ bugs for this branch anymore only security issues will get applied.
 Please upgrade to 2.1.1 when it will be released later this week. The
 upgrade to 2.1 is painless and the small number of backwards
 incompatible changes [is
-documented](https://github.com/doctrine/doctrine2/blob/master/UPGRADE_TO_2_1).
+documented](https://github.com/doctrine/orm/blob/master/UPGRADE.md#upgrade-to-21).
 Also most of the BC related bugs in the 2.1.0 release will be fixed in
 2.1.1.

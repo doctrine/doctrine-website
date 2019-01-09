@@ -15,8 +15,8 @@ release as much as possible, however some slight changes might be
 necessary to your applications. See the UPGRADE files of each project
 for details:
 
--   [ORM](https://github.com/doctrine/doctrine2/blob/master/UPGRADE.md)
--   [DBAL](https://github.com/doctrine/dbal/blob/master/UPGRADE)
+-   [ORM](https://github.com/doctrine/orm/blob/master/UPGRADE.md)
+-   [DBAL](https://github.com/doctrine/dbal/blob/master/UPGRADE.md)
 
 This new release contains not single blockbuster feature, but very many
 little ones:
@@ -38,7 +38,7 @@ Please test this release with your applications and provide us with
 feedback about issues that you find.
 
 You can install the Beta through
-[Github](https://github.com/doctrine/doctrine2) or
+[Github](https://github.com/doctrine/orm) or
 [Composer](https://packagist.org):
 
     {

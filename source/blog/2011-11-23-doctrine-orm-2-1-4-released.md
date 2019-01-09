@@ -12,4 +12,4 @@ release. See the
 
 Get the package from [PEAR](http://pear.doctrine-project.org) ,
 [Downloads](https://www.doctrine-project.org/projects) or from
-[Github](https://github.com/doctrine/doctrine2).
+[Github](https://github.com/doctrine/orm).

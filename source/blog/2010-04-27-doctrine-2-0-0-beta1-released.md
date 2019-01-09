@@ -25,7 +25,7 @@ upgrade page](https://www.doctrine-project.org/upgrade/2_0).
 
 You can get the new release as usual from our [download
 page](https://www.doctrine-project.org/download) or [directly from
-github](https://github.com/doctrine/doctrine2).
+github](https://github.com/doctrine/orm).
 
 We would like to thank all the adopters of the early alpha releases. All
 your issue reports, feature and enhancement requests and general

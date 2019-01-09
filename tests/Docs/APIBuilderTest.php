@@ -45,7 +45,7 @@ class APIBuilderTest extends TestCase
     {
         $project = new Project([
             'slug' => 'orm',
-            'repositoryName' => 'doctrine2',
+            'repositoryName' => 'orm',
             'codePath' => '/src',
         ]);
         $version = new ProjectVersion(['slug' => '2.0', 'branchName' => '2.0']);
@@ -55,25 +55,25 @@ class APIBuilderTest extends TestCase
 
 use Sami\RemoteRepository\GitHubRemoteRepository;
 
-return new Sami\Sami('/data/doctrine/doctrine2/src', [
+return new Sami\Sami('/data/doctrine/orm/src', [
     'build_dir' => '/data/doctrine-website/source/api/orm/2.0',
-    'cache_dir' => '/data/doctrine/doctrine2/cache',
-    'remote_repository' => new GitHubRemoteRepository('doctrine/doctrine2', '/data/doctrine/doctrine2'),
+    'cache_dir' => '/data/doctrine/orm/cache',
+    'remote_repository' => new GitHubRemoteRepository('doctrine/orm', '/data/doctrine/orm'),
     'versions' => '2.0',
 ]);
 CONFIG;
 
         $this->apiBuilder->expects(self::once())
             ->method('filePutContents')
-            ->with('/data/doctrine/doctrine2/sami.php', $configContent);
+            ->with('/data/doctrine/orm/sami.php', $configContent);
 
         $this->processFactory->expects(self::once())
             ->method('run')
-            ->with('php /data/doctrine-website/source/../sami.phar update /data/doctrine/doctrine2/sami.php --verbose');
+            ->with('php /data/doctrine-website/source/../sami.phar update /data/doctrine/orm/sami.php --verbose');
 
         $this->apiBuilder->expects(self::once())
             ->method('unlinkFile')
-            ->with('/data/doctrine/doctrine2/sami.php');
+            ->with('/data/doctrine/orm/sami.php');
 
         $this->apiBuilder->buildAPIDocs($project, $version);
     }

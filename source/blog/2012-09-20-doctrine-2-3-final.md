@@ -16,8 +16,8 @@ release as much as possible, however some slight changes might be
 necessary to your applications. See the UPGRADE files of each project
 for details:
 
--   [ORM](https://github.com/doctrine/doctrine2/blob/master/UPGRADE.md)
--   [DBAL](https://github.com/doctrine/dbal/blob/master/UPGRADE)
+-   [ORM](https://github.com/doctrine/orm/blob/master/UPGRADE.md)
+-   [DBAL](https://github.com/doctrine/dbal/blob/master/UPGRADE.md)
 
 Compared to previous versions there are no new blockbuster feature, but
 many little optimizations:
@@ -48,7 +48,7 @@ documentation of new features see the
 on Github.
 
 You can install the final release through
-[Github](https://github.com/doctrine/doctrine2) or
+[Github](https://github.com/doctrine/orm) or
 [Composer](https://packagist.org):
 
     {

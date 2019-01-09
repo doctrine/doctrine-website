@@ -32,7 +32,7 @@ Jira has been changed into Read-Only mode for Common, DBAL and ORM
 projects, please use the Github based issue trackers instead from now
 on:
 
--   [ORM](https://github.com/doctrine/doctrine2/issues)
+-   [ORM](https://github.com/doctrine/orm/issues)
 -   [DBAL](https://github.com/doctrine/dbal/issues)
 -   [Common](https://github.com/doctrine/common/issues)
 

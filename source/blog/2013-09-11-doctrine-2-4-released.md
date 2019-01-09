@@ -27,7 +27,7 @@ releases:
 -   [Doctrine DBAL v2.4.0
     Changelog](https://github.com/doctrine/dbal/releases/tag/v2.4.0)
 -   [Doctrine ORM v2.4.0
-    Changelog](https://github.com/doctrine/doctrine2/releases/tag/v2.4.0)
+    Changelog](https://github.com/doctrine/orm/releases/tag/v2.4.0)
 
 Backwards Incompatible Changes
 ==============================
@@ -43,7 +43,7 @@ here:
 
 You can read up in detail on BC breaks on the
 [DBAL](https://github.com/doctrine/dbal/blob/2.4/UPGRADE) and
-[ORM](https://github.com/doctrine/doctrine2/blob/2.4/UPGRADE.md) UPGRADE
+[ORM](https://github.com/doctrine/orm/blob/2.4/UPGRADE.md) UPGRADE
 docs.
 
 Installation
