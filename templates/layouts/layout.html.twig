@@ -146,13 +146,16 @@
                         <li class="nav-item{% if menuSlug == 'blog' %} active{% endif %}">
                             <a class="nav-link" href="{{ path('blog') }}">Blog</a>
                         </li>
-                       <li class="nav-item dropdown{% if menuSlug == 'team' %} active{% endif %}">
+                        <li class="nav-item dropdown{% if menuSlug == 'team' %} active{% endif %}">
                             <a class="nav-link dropdown-toggle" href="{{ path('team_maintainers') }}" id="navbarTeamDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Team</a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarTeamDropdown">
                                 <a class="dropdown-item" href="{{ path('team_maintainers') }}">Maintainers</a>
                                 <a class="dropdown-item" href="{{ path('team_contributors') }}">Contributors</a>
                             </div>
+                        </li>
+                        <li class="nav-item{% if menuSlug == 'sponsorship' %} active{% endif %}">
+                            <a class="nav-link" href="{{ path('sponsorship') }}">Sponsorship</a>
                         </li>
                     </ul>
 

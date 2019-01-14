@@ -23,6 +23,12 @@ parameters:
             defaults:
                 title: RST Example
 
+        sponsorship:
+            path: /sponsorship.html
+            defaults:
+                title: Sponsorship
+                menuSlug: sponsorship
+
         community:
             path: /community/index.html
             defaults:
