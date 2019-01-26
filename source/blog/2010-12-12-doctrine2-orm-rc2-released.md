@@ -37,7 +37,7 @@ major issues are discovered in the next week.
 
 You can grab the code from our [downloads
 section](https://www.doctrine-project.org/projects) or [directly from
-Github](https://github.com/doctrine/doctrine2/commits/2.0.0RC2).
+Github](https://github.com/doctrine/orm/commits/2.0.0RC2).
 
 In these last days before the final release we will focus on the
 documentation. As you might have noticed we already switched the ORM

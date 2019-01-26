@@ -37,5 +37,5 @@ need only one RC and that the final release will follow shortly.
 You should make yourself familiar with the UPGRADE documents, as we had
 to make some backwards compatibility breaks to fix nasty bugs:
 
--   [ORM](https://github.com/doctrine/doctrine2/blob/master/UPGRADE.md)
+-   [ORM](https://github.com/doctrine/orm/blob/master/UPGRADE.md)
 

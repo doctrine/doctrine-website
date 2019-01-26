@@ -42,20 +42,20 @@ Initial Setup
 -------------
 
 -  Setup a `github <https://github.com>`_ account.
--  Fork the `repository <https://github.com/doctrine/doctrine2>`_ of the
+-  Fork the `repository <https://github.com/doctrine/orm>`_ of the
    project you want to contribute to.
 -  Clone your fork locally
 
 .. code-block:: console
 
-    $ git clone git@github.com:username/doctrine2.git
+    $ git clone git@github.com:username/orm.git
 
 -  Enter the doctrine2 directory and add the **doctrine** remote
 
 .. code-block:: console
 
     $ cd doctrine2
-    $ git remote add doctrine git://github.com/doctrine/doctrine2.git
+    $ git remote add doctrine git://github.com/doctrine/orm.git
 
 -  Adjust your branch to track the doctrine master remote branch, by
    default it'll track your origin remote's master:
@@ -202,7 +202,7 @@ Finished topic branches should be pushed to **origin** for a
 .. code-block:: console
 
     $ git push origin fix-weird-bug
-    To git@github.com:hobodave/doctrine2.git
+    To git@github.com:hobodave/orm.git
         * [new branch]      fix-weird-bug -> fix-weird-bug
 
 Now you are ready to send a pull request from this branch and ask for a

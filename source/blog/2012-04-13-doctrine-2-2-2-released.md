@@ -16,7 +16,7 @@ fixing a total of 20 bugs.
     Changelog](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10199)
 
 You can install the release through
-[Github](https://github.com/doctrine/doctrine2) ,
+[Github](https://github.com/doctrine/orm) ,
 [PEAR](http://pear.doctrine-project.org) , download from the website or
 through [Composer](https://packagist.org):
 

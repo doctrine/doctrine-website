@@ -7,7 +7,7 @@ Maintainer Workflow
 
 Who is a maintainer? Maintainers are those who have been granted write
 access to the main repository of a project. In the example of the ORM,
-it would be this `repository <https://github.com/doctrine/doctrine2>`_.
+it would be this `repository <https://github.com/doctrine/orm>`_.
 This repository will be referred to as **doctrine** in this document.
 
 You might want want to know how a maintainer is different from a
@@ -23,12 +23,12 @@ Setup
 -----
 
 First you must Fork the
-`repository <https://github.com/doctrine/doctrine2>`_ and clone your fork
+`repository <https://github.com/doctrine/orm>`_ and clone your fork
 locally:
 
 .. code-block:: console
 
-    $ git clone git@github.com:username/doctrine2.git doctrine2-orm
+    $ git clone git@github.com:username/orm.git doctrine2-orm
     $ cd doctrine2-orm
 
 Fetch dependencies using `composer <https://getcomposer.org/>`_:
@@ -41,7 +41,7 @@ Now add the **doctrine** remote for maintainers:
 
 .. code-block:: console
 
-    $ git remote add doctrine git@github.com:doctrine/doctrine2.git
+    $ git remote add doctrine git@github.com:doctrine/orm.git
 
 Adjust your branch to track the doctrine master remote branch, by
 default it'll track your origin remote's master:
@@ -54,7 +54,7 @@ Optionally, add any additional contributor/maintainer forks, e.g.:
 
 .. code-block:: console
 
-    $ git remote add romanb git://github.com/romanb/doctrine2.git
+    $ git remote add romanb git://github.com/romanb/orm.git
 
 Branching Model
 ---------------
@@ -75,7 +75,7 @@ be done once per maintainer):
 
 .. code-block:: console
 
-    $ git remote add hobodave git://github.com/hobodave/doctrine2.git
+    $ git remote add hobodave git://github.com/hobodave/orm.git
 
 Fetch remote:
 

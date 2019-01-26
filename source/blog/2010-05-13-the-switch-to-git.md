@@ -23,7 +23,7 @@ do so by using the read-only SVN features of github.com:
 -   Doctrine 1.2 -
     [http://svn.github.com/doctrine/doctrine1.git](http://svn.github.com/doctrine/doctrine1.git)
 -   Doctrine 2.0 -
-    [http://svn.github.com/doctrine/doctrine2.git](http://svn.github.com/doctrine/doctrine2.git)
+    [http://svn.github.com/doctrine/orm.git](http://svn.github.com/doctrine/orm.git)
 
 You can read about this feature on the github
 [blog](https://github.com/blog/626-announcing-svn-support).

@@ -163,7 +163,7 @@ Where do I start?
 You can download Doctrine 2 [from our downloads
 section](https://www.doctrine-project.org/projects/orm/download) ,
 [install it via PEAR](http://pear.doctrine-project.org/) or find it in
-the [Github repository](https://github.com/doctrine/doctrine2). Symfony 2
+the [Github repository](https://github.com/doctrine/orm). Symfony 2
 also ships with a current version of Doctrine 2. After you installed
 Doctrine 2 you can [go to the
 documentation](https://www.doctrine-project.org/docs/orm/2.0/en/) and

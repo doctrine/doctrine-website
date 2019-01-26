@@ -43,7 +43,7 @@ Guilherme is working on getting
 [Common](https://travis-ci.org/doctrine/common) mainproject will be
 evaluated shortly after all the common projects succeed.
 [DBAL](https://travis-ci.org/doctrine/dbal) and
-[ORM](https://travis-ci.org/doctrine/doctrine2) will be much more work,
+[ORM](https://travis-ci.org/doctrine/orm) will be much more work,
 but we are very confident to achieve this goal.
 
 If you want to help us with this goal, you can check the current Travis

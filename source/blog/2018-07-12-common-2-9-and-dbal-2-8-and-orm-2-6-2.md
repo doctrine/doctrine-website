@@ -57,4 +57,4 @@ ORM 2.6.2 comes as a regular bugfix release.
 It no longer uses the long ago deprecated Lexer and Inflector from `doctrine/common`.
 
 For complete release notes,
-[visit GitHub](https://github.com/doctrine/doctrine2/releases/tag/v2.6.2).
+[visit GitHub](https://github.com/doctrine/orm/releases/tag/v2.6.2).

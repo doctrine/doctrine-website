@@ -38,7 +38,7 @@ contribute. The code for the site is open source and can be found
 [here](https://github.com/doctrine/doctrine-website/). If you want to
 contribute to the documentation for a project, you can find the docs in
 a folder named `/docs` in the root of the project repository.
-[Here](https://github.com/doctrine/doctrine2/tree/master/docs) is the
+[Here](https://github.com/doctrine/orm/tree/master/docs) is the
 ORM for example.
 
 If you discover any issues, please report them on the [GitHub

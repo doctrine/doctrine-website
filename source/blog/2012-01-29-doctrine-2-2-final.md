@@ -29,11 +29,11 @@ See the changelogs of all three projects Common, DBAL, ORM:
 -   [Common](https://www.doctrine-project.org/jira/browse/DCOM/fixforversion/10152)
 
 See the
-[UPGRADE\_2\_2](https://github.com/doctrine/doctrine2/blob/master/UPGRADE_TO_2_2)
+[UPGRADE\_2\_2](https://github.com/doctrine/orm/blob/master/UPGRADE.md#upgrade-to-22)
 file to see backwards incompatible changes.
 
 You can install the release through
-[Github](https://github.com/doctrine/doctrine2) ,
+[Github](https://github.com/doctrine/orm) ,
 [PEAR](http://pear.doctrine-project.org) or through
 [Composer](https://packagist.org):
 
