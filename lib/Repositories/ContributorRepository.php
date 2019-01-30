@@ -6,7 +6,8 @@ namespace Doctrine\Website\Repositories;
 
 use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Contributor;
-use function assert;
+use UnexpectedValueException;
+use function sprintf;
 
 class ContributorRepository extends BasicObjectRepository
 {
@@ -14,7 +15,9 @@ class ContributorRepository extends BasicObjectRepository
     {
         $contributor = $this->findOneBy(['github' => $github]);
 
-        assert($contributor instanceof Contributor || $contributor !== null);
+        if (! $contributor instanceof Contributor) {
+            throw new UnexpectedValueException(sprintf('No contributor was found by "%s"', $github));
+        }
 
         return $contributor;
     }
