@@ -145,6 +145,9 @@ SIDEBAR;
         $content = preg_replace("/\n:: \n/", "\n.. code-block::\n", $content);
         $content = preg_replace("/\n.. code-block :: (.*)\n/", "\n.. code-block:: $1\n", $content);
 
+        // replace .. code:: with .. code-block::
+        $content = str_replace('.. code::', '.. code-block::', $content);
+
         // fix list syntax
         $content = str_replace("\n- \n", "\n- ", $content);
 

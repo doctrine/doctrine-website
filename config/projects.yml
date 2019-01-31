@@ -3,7 +3,12 @@ parameters:
         symfony:
             name: Symfony
             url: https://symfony.com
-            icon: https://symfony.com/logos/symfony_black_03.png
+            icon: /images/symfony-logo.png
+
+        zend-framework:
+            name: Zend Framework
+            url: https://framework.zend.com/
+            icon: /images/zend-framework-logo.png
 
     doctrine.website.projects_data:
         -
@@ -99,3 +104,10 @@ parameters:
             integration: true
             integrationFor: mongodb-odm
             integrationType: symfony
+
+        -
+            repositoryName: DoctrineORMModule
+            slug: doctrine-orm-module
+            integration: true
+            integrationFor: orm
+            integrationType: zend-framework
