@@ -185,7 +185,7 @@ git graph like following:
 Preparing a release
 -------------------
 
-Assuming that all tasks for a planned release are completed, a
+Given that all tasks for a planned release are completed, a
 maintainer would then be in the position of preparing a git tag,
 which for a Doctrine project also corresponds to a release.
 
