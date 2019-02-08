@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f54ca170a3725a40dc55b39050da60b",
+    "content-hash": "8de39f284f4e6dfdf915bcfc4f3ef960",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -2172,20 +2172,24 @@
         },
         {
             "name": "scrivo/highlight.php",
-            "version": "v9.12.0.4",
+            "version": "v9.14.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "d5b40c678b79ac9faffb32df601dc69e5d11da50"
+                "reference": "4f76c8411a36a89b003e3919e216c81cef0b6cb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/d5b40c678b79ac9faffb32df601dc69e5d11da50",
-                "reference": "d5b40c678b79ac9faffb32df601dc69e5d11da50",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/4f76c8411a36a89b003e3919e216c81cef0b6cb7",
+                "reference": "4f76c8411a36a89b003e3919e216c81cef0b6cb7",
                 "shasum": ""
             },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*"
+            },
             "require-dev": {
-                "phpunit/phpunit": "^4.8",
+                "phpunit/phpunit": "^4.8|^5.7",
                 "symfony/finder": "^2.8"
             },
             "type": "library",
@@ -2215,7 +2219,7 @@
                     "role": "Contributor"
                 }
             ],
-            "description": "Server side syntax highlighter that supports 176 languages. It's a PHP port of highlight.js",
+            "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js",
             "keywords": [
                 "code",
                 "highlight",
@@ -2223,7 +2227,7 @@
                 "highlight.php",
                 "syntax"
             ],
-            "time": "2018-08-05T06:14:48+00:00"
+            "time": "2019-02-08T05:41:13+00:00"
         },
         {
             "name": "symfony/config",
