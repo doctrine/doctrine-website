@@ -39,18 +39,6 @@ class CacheClearer
             $this->rootDir
         );
 
-        // built api docs
-        $remove[] = sprintf(
-            '%s/source/api/*',
-            $this->rootDir
-        );
-
-        // api docs cache folder
-        $remove[] = sprintf(
-            '%s/projects/*/cache',
-            $this->rootDir
-        );
-
         $remove[] = sprintf(
             '%s/cache/*',
             $this->rootDir

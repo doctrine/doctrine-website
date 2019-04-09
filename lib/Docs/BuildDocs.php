@@ -11,7 +11,6 @@ use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use function array_filter;
 use function count;
 use function sprintf;
@@ -24,9 +23,6 @@ class BuildDocs
     /** @var ProjectGitSyncer */
     private $projectGitSyncer;
 
-    /** @var APIBuilder */
-    private $apiBuilder;
-
     /** @var RSTBuilder */
     private $rstBuilder;
 
@@ -36,13 +32,11 @@ class BuildDocs
     public function __construct(
         ProjectRepository $projectRepository,
         ProjectGitSyncer $projectGitSyncer,
-        APIBuilder $apiBuilder,
         RSTBuilder $rstBuilder,
         SearchIndexer $searchIndexer
     ) {
         $this->projectRepository = $projectRepository;
         $this->projectGitSyncer  = $projectGitSyncer;
-        $this->apiBuilder        = $apiBuilder;
         $this->rstBuilder        = $rstBuilder;
         $this->searchIndexer     = $searchIndexer;
     }
@@ -51,7 +45,6 @@ class BuildDocs
         OutputInterface $output,
         string $projectToBuild,
         string $versionToBuild,
-        bool $buildApiDocs,
         bool $buildSearchIndexes
     ) : void {
         if ($buildSearchIndexes) {
@@ -64,7 +57,9 @@ class BuildDocs
 
         foreach ($projectsToBuild as $project) {
             foreach ($this->getProjectVersionsToBuild($project, $versionToBuild) as $version) {
-                $shouldBuildDocs = $buildApiDocs || count($version->getDocsLanguages()) > 0;
+                $docsLanguages = $version->getDocsLanguages();
+
+                $shouldBuildDocs = count($docsLanguages) > 0;
 
                 if ($shouldBuildDocs === false) {
                     $output->writeln(sprintf(
@@ -89,20 +84,9 @@ class BuildDocs
                     $version->getBranchName()
                 );
 
-                if ($buildApiDocs) {
-                    $output->writeln(' - building api docs');
-
-                    try {
-                        $this->apiBuilder->buildAPIDocs($project, $version);
-                    } catch (ProcessFailedException $e) {
-                        $output->writeln(' - <error>building api docs failed</error>');
-                        $output->writeln($e->getMessage());
-                    }
-                }
-
                 $searchDocuments = [];
 
-                foreach ($version->getDocsLanguages() as $language) {
+                foreach ($docsLanguages as $language) {
                     $output->writeln(sprintf(' - building %s rst docs', $language->getCode()));
 
                     $documents = $this->rstBuilder->buildRSTDocs($project, $version, $language);

@@ -87,7 +87,7 @@ class DeployerTest extends TestCase
 
         $this->processFactory->expects(self::at(2))
             ->method('run')
-            ->with('cd /data/doctrine-website-staging && ./bin/console sync-repositories && ./bin/console build-website-data && ./bin/console build-docs --api && ./bin/console build-website /data/doctrine-website-build-staging --env=staging --publish')
+            ->with('cd /data/doctrine-website-staging && ./bin/console sync-repositories && ./bin/console build-website-data && ./bin/console build-docs && ./bin/console build-website /data/doctrine-website-build-staging --env=staging --publish')
             ->willReturn($process);
 
         $deployer->deploy($output);

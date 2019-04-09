@@ -74,7 +74,7 @@ class Deployer
 
         // build the docs, website and publish
         $deployCommand = sprintf(
-            'cd /data/doctrine-website-%s && ./bin/console sync-repositories && ./bin/console build-website-data && ./bin/console build-docs --api && ./bin/console build-website /data/doctrine-website-build-%s --env=%s --publish',
+            'cd /data/doctrine-website-%s && ./bin/console sync-repositories && ./bin/console build-website-data && ./bin/console build-docs && ./bin/console build-website /data/doctrine-website-build-%s --env=%s --publish',
             $this->env,
             $this->env,
             $this->env

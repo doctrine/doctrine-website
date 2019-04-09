@@ -27,17 +27,15 @@ class SitemapPagesTest extends TestCase
             ->method('getSourceFiles')
             ->willReturn(new SourceFiles([
                 new SourceFile('/index.html', '', new SourceFileParameters(['url' => '/'])),
-                new SourceFile('/api/inflector.html', '', new SourceFileParameters(['url' => '/api/inflector.html'])),
             ]));
 
         $sitemapPageRows = $this->sitemapPages->getSourceRows();
 
-        self::assertCount(2, $sitemapPageRows);
+        self::assertCount(1, $sitemapPageRows);
 
         self::assertSame(date('Y-m-d'), $sitemapPageRows[0]['date']->format('Y-m-d'));
 
         self::assertSame('/', $sitemapPageRows[0]['url']);
-        self::assertSame('/api/inflector.html', $sitemapPageRows[1]['url']);
     }
 
     protected function setUp() : void
