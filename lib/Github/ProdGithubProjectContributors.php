@@ -8,6 +8,7 @@ use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Website\Model\Project;
 use Github\Api\Repo;
 use Github\Client;
+use RuntimeException;
 use function sprintf;
 
 class ProdGithubProjectContributors implements GithubProjectContributors
@@ -41,6 +42,10 @@ class ProdGithubProjectContributors implements GithubProjectContributors
         $repo = $this->githubClient->api('repo');
 
         $contributors = $repo->statistics('doctrine', $project->getRepositoryName());
+
+        if ($contributors === []) {
+            throw new RuntimeException('The GitHub API should not return an empty array here.');
+        }
 
         $this->filesystemCache->save($id, $contributors, 86400);
 

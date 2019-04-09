@@ -10,7 +10,7 @@ parameters:
 
     doctrine.website.title: Doctrine
     doctrine.website.subtitle: PHP Database Tools
-    doctrine.website.url: http://lcl.doctrine-project.org:8080
+    doctrine.website.url: http://lcl.doctrine-project.org
     doctrine.website.keywords: [php, mysql, orm, dbal, database, mongodb, odm, annotations, migrations, cache, couchdb]
     doctrine.website.description: >
         The Doctrine Project is the home to several PHP libraries primarily
