@@ -11,6 +11,7 @@ use Github\Api\Repo;
 use Github\Client;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class ProdGithubProjectContributorsTest extends TestCase
 {
@@ -101,5 +102,47 @@ class ProdGithubProjectContributorsTest extends TestCase
         $projectContributors = $this->githubProjectContributors->getProjectContributors($project);
 
         self::assertEquals($expected, $projectContributors);
+    }
+
+    public function testGetProjectContributorsThrowsRuntimeExceptionWhenGitHubReturnsEmptyArray() : void
+    {
+        $id = 'doctrine-orm-contributors-data';
+
+        $expected = [];
+
+        $project = $this->createMock(Project::class);
+
+        $project->expects(self::once())
+            ->method('getSlug')
+            ->willReturn('orm');
+
+        $project->expects(self::once())
+            ->method('getRepositoryName')
+            ->willReturn('doctrine2');
+
+        $this->filesystemCache->expects(self::once())
+            ->method('contains')
+            ->with($id)
+            ->willReturn(false);
+
+        $repo = $this->createMock(Repo::class);
+
+        $this->githubClient->expects(self::once())
+            ->method('api')
+            ->with('repo')
+            ->willReturn($repo);
+
+        $repo->expects(self::once())
+            ->method('statistics')
+            ->with('doctrine', 'doctrine2')
+            ->willReturn($expected);
+
+        $this->filesystemCache->expects(self::never())
+            ->method('save');
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('The GitHub API should not return an empty array here.');
+
+        $this->githubProjectContributors->getProjectContributors($project);
     }
 }
