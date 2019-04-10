@@ -82,6 +82,17 @@ class ProjectVersion
         return $this->name;
     }
 
+    public function getDisplayName() : string
+    {
+        $latestTag = $this->getLatestTag();
+
+        if ($latestTag !== null) {
+            return $latestTag->getDisplayName();
+        }
+
+        return $this->name;
+    }
+
     public function getBranchName() : string
     {
         return $this->branchName;
@@ -180,6 +191,7 @@ class ProjectVersion
             'rc' => 'warning',
             'stable' => 'primary',
             'unmaintained' => 'danger',
+            'dev' => 'primary',
         ];
 
         $stability = $stability ?? $this->getStability();

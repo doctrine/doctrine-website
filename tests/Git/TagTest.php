@@ -39,6 +39,76 @@ class TagTest extends TestCase
         self::assertTrue($this->tag->isPreComposer());
     }
 
+    public function testStableStability() : void
+    {
+        $tag = new Tag(
+            'v1.0.0',
+            new DateTimeImmutable('1985-09-01')
+        );
+
+        self::assertSame('stable', $tag->getStability());
+    }
+
+    public function testAlphaStability() : void
+    {
+        $tag = new Tag(
+            'v1.0.0-alpha1',
+            new DateTimeImmutable('1985-09-01')
+        );
+
+        self::assertSame('alpha', $tag->getStability());
+    }
+
+    public function testBetaStability() : void
+    {
+        $tag = new Tag(
+            'v1.0.0-beta1',
+            new DateTimeImmutable('1985-09-01')
+        );
+
+        self::assertSame('beta', $tag->getStability());
+    }
+
+    public function testRcStability() : void
+    {
+        $tag = new Tag(
+            'v1.0.0-rc1',
+            new DateTimeImmutable('1985-09-01')
+        );
+
+        self::assertSame('rc', $tag->getStability());
+    }
+
+    public function testDevStability() : void
+    {
+        $tag = new Tag(
+            'v0.0.1',
+            new DateTimeImmutable('1985-09-01')
+        );
+
+        self::assertSame('dev', $tag->getStability());
+    }
+
+    public function testIsMajorReleaseZeroTrue() : void
+    {
+        $tag = new Tag(
+            'v0.0.1',
+            new DateTimeImmutable('1985-09-01')
+        );
+
+        self::assertTrue($tag->isMajorReleaseZero());
+    }
+
+    public function testIsMajorReleaseZeroFalse() : void
+    {
+        $tag = new Tag(
+            'v1.0.1',
+            new DateTimeImmutable('1985-09-01')
+        );
+
+        self::assertFalse($tag->isMajorReleaseZero());
+    }
+
     protected function setUp() : void
     {
         $this->date = new DateTimeImmutable('1985-09-01');

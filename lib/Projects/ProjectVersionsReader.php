@@ -56,6 +56,12 @@ class ProjectVersionsReader
                 'branchName' => $branchName,
                 'tags' => [$tag],
             ];
+
+            if (! $tag->isMajorReleaseZero()) {
+                continue;
+            }
+
+            $versions[$branchSlug]['branchName'] = 'master';
         }
 
         return array_values($versions);

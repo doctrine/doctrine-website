@@ -32,8 +32,9 @@ class ProjectVersionsReaderTest extends TestCase
         $tag2 = new Tag('v2.0.1', new DateTimeImmutable());
         $tag3 = new Tag('v3.0.0', new DateTimeImmutable());
         $tag4 = new Tag('dev-test', new DateTimeImmutable());
+        $tag5 = new Tag('0.0.1', new DateTimeImmutable());
 
-        $tags = [$tag1, $tag2, $tag3, $tag4];
+        $tags = [$tag1, $tag2, $tag3, $tag4, $tag5];
 
         $this->tagReader->expects(self::once())
             ->method('getRepositoryTags')
@@ -73,11 +74,22 @@ class ProjectVersionsReaderTest extends TestCase
             ->with($repositoryPath, $tag3)
             ->willReturn('3.0');
 
+        // tag5
+        $this->tagBranchGuesser->expects(self::at(6))
+            ->method('generateTagBranchSlug')
+            ->with($tag5)
+            ->willReturn('0.0');
+
+        $this->tagBranchGuesser->expects(self::at(7))
+            ->method('guessTagBranchName')
+            ->with($repositoryPath, $tag5)
+            ->willReturn(null);
+
         $versions = $this->projectVersionsReader->readProjectVersions(
             $repositoryPath
         );
 
-        self::assertCount(2, $versions);
+        self::assertCount(3, $versions);
 
         self::assertCount(2, $versions[0]['tags']);
         self::assertSame('v2.0.0', $versions[0]['tags'][0]->getName());
@@ -85,6 +97,10 @@ class ProjectVersionsReaderTest extends TestCase
 
         self::assertCount(1, $versions[1]['tags']);
         self::assertSame('v3.0.0', $versions[1]['tags'][0]->getName());
+
+        self::assertCount(1, $versions[2]['tags']);
+        self::assertSame('0.0.1', $versions[2]['tags'][0]->getName());
+        self::assertSame('master', $versions[2]['branchName']);
     }
 
     protected function setUp() : void

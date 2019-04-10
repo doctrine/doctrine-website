@@ -15,6 +15,7 @@ class Tag
     private const ALPHA  = 'alpha';
     private const BETA   = 'beta';
     private const RC     = 'rc';
+    private const DEV    = 'dev';
     private const STABLE = 'stable';
 
     private const TAG_STABILITIES = [
@@ -67,8 +68,17 @@ class Tag
         return strpos($this->name, 'dev-') === 0;
     }
 
+    public function isMajorReleaseZero() : bool
+    {
+        return strpos($this->getComposerRequireVersionString(), '0.') === 0;
+    }
+
     public function getStability() : string
     {
+        if ($this->isMajorReleaseZero()) {
+            return self::DEV;
+        }
+
         foreach (self::TAG_STABILITIES as $stability) {
             if (stripos($this->name, $stability) !== false) {
                 return $stability;

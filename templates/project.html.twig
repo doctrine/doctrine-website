@@ -51,7 +51,7 @@
                     <tr{% if not version.maintained %} style="opacity: .40;"{% endif %}>
                         <td{% if version.current %} class="font-weight-bold"{% endif %}>
                             <a href="{{ path('project_version', {slug:project.slug, versionSlug:version.slug}) }}">
-                                {{ version.latestTag ? version.latestTag.displayName : version.name }}
+                                {{ version.displayName }}
                             </a>
                         </td>
                         <td><span class="badge badge-{{ version.stabilityColor }}">{{ version.stability }}</span></td>
