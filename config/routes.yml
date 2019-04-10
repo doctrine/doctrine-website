@@ -130,11 +130,6 @@ parameters:
             requirements:
                 versionSlug: .+
 
-        project_api_docs_page:
-            path: /api/{slug}}/{docsVersion}/{page}.html
-            requirements:
-                section: .+
-
         blog:
             path: /blog/index.html
             controller: Doctrine\Website\Controllers\BlogController::index

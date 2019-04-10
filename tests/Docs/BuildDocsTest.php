@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Docs;
 
-use Doctrine\Website\Docs\APIBuilder;
 use Doctrine\Website\Docs\BuildDocs;
 use Doctrine\Website\Docs\RST\RSTBuilder;
 use Doctrine\Website\Docs\RST\RSTLanguage;
@@ -25,9 +24,6 @@ class BuildDocsTest extends TestCase
     /** @var ProjectGitSyncer|MockObject */
     private $projectGitSyncer;
 
-    /** @var APIBuilder|MockObject */
-    private $apiBuilder;
-
     /** @var RSTBuilder|MockObject */
     private $rstBuilder;
 
@@ -41,14 +37,12 @@ class BuildDocsTest extends TestCase
     {
         $this->projectRepository = $this->createMock(ProjectRepository::class);
         $this->projectGitSyncer  = $this->createMock(ProjectGitSyncer::class);
-        $this->apiBuilder        = $this->createMock(APIBuilder::class);
         $this->rstBuilder        = $this->createMock(RSTBuilder::class);
         $this->searchIndexer     = $this->createMock(SearchIndexer::class);
 
         $this->buildDocs = new BuildDocs(
             $this->projectRepository,
             $this->projectGitSyncer,
-            $this->apiBuilder,
             $this->rstBuilder,
             $this->searchIndexer
         );
@@ -79,10 +73,6 @@ class BuildDocsTest extends TestCase
             ->method('findAll')
             ->willReturn($projects);
 
-        $this->apiBuilder->expects(self::once())
-            ->method('buildAPIDocs')
-            ->with($project, $version);
-
         $english = new RSTLanguage('en', '/en');
 
         $version->expects(self::once())
@@ -97,6 +87,6 @@ class BuildDocsTest extends TestCase
             ->method('buildSearchIndexes')
             ->with($project, $version);
 
-        $this->buildDocs->build($output, '', '', true, true);
+        $this->buildDocs->build($output, '', '', true);
     }
 }

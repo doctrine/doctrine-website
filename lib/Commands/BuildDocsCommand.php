@@ -29,7 +29,7 @@ class BuildDocsCommand extends Command
     {
         $this
             ->setName('build-docs')
-            ->setDescription('Build the RST and API docs.')
+            ->setDescription('Build the RST docs.')
             ->addOption(
                 'project',
                 null,
@@ -43,12 +43,6 @@ class BuildDocsCommand extends Command
                 InputOption::VALUE_REQUIRED,
                 'The project version to build the docs for.',
                 ''
-            )
-            ->addOption(
-                'api',
-                null,
-                InputOption::VALUE_NONE,
-                'Build the api documentation.'
             )
             ->addOption(
                 'search',
@@ -66,9 +60,6 @@ class BuildDocsCommand extends Command
         $versionToBuild = $input->getOption('v');
         assert(is_string($versionToBuild));
 
-        $buildApiDocs = $input->getOption('api');
-        assert(is_bool($buildApiDocs));
-
         $buildSearchIndexes = $input->getOption('search');
         assert(is_bool($buildSearchIndexes));
 
@@ -76,7 +67,6 @@ class BuildDocsCommand extends Command
             $output,
             $projectToBuild,
             $versionToBuild,
-            $buildApiDocs,
             $buildSearchIndexes
         );
 

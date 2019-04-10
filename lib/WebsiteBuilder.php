@@ -163,13 +163,6 @@ class WebsiteBuilder
         foreach ($projects as $project) {
             foreach ($project->getVersions() as $version) {
                 foreach ($version->getAliases() as $alias) {
-                    $this->createApiDocsProjectVersionAlias(
-                        $buildDir,
-                        $project,
-                        $version,
-                        $alias
-                    );
-
                     $this->createDocsProjectVersionAlias(
                         $buildDir,
                         $project,
@@ -179,21 +172,6 @@ class WebsiteBuilder
                 }
             }
         }
-    }
-
-    private function createApiDocsProjectVersionAlias(
-        string $buildDir,
-        Project $project,
-        ProjectVersion $version,
-        string $alias
-    ) : void {
-        $dir = sprintf(
-            '%s/api/%s',
-            $buildDir,
-            $project->getSlug()
-        );
-
-        $this->createVersionAlias($dir, $version, $alias);
     }
 
     private function createDocsProjectVersionAlias(

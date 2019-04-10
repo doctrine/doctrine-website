@@ -30,8 +30,6 @@
 
     <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">Docs</a>
 
-    <a href="{{ site.url }}/api/{{ project.slug }}/{{ project.currentVersion.slug ?? 'latest' }}/index.html" class="btn btn-primary mr-2">API</a>
-
     <a href="https://github.com/doctrine/{{ project.repositoryName }}/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">GitHub</a>
 
     <hr />
@@ -60,7 +58,6 @@
                                 <a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ version.slug ?? 'latest' }}/index.html">Docs</a>
                             {% endif %}
                         </td>
-                        <td><a href="{{ site.url }}/api/{{ project.slug }}/{{ version.slug ?? 'latest' }}/index.html">API</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

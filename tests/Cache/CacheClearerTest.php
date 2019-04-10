@@ -39,24 +39,12 @@ class CacheClearerTest extends TestCase
 
         $this->cacheClearer->expects(self::at(2))
             ->method('glob')
-            ->with(__DIR__ . '/source/api/*')
-            ->willReturn([__DIR__]);
-
-        $this->cacheClearer->expects(self::at(3))
-            ->method('glob')
-            ->with(__DIR__ . '/projects/*/cache')
-            ->willReturn([__DIR__]);
-
-        $this->cacheClearer->expects(self::at(4))
-            ->method('glob')
             ->with(__DIR__ . '/cache/*')
             ->willReturn([__DIR__]);
 
         $dirs = $this->cacheClearer->clear($buildDir);
 
         self::assertSame([
-            __DIR__,
-            __DIR__,
             __DIR__,
             __DIR__,
             __DIR__,
