@@ -34,6 +34,9 @@ class WebsiteBuilderTest extends TestCase
     private $rootDir;
 
     /** @var string */
+    private $cacheDir;
+
+    /** @var string */
     private $webpackBuildDir;
 
     /** @var WebsiteBuilder|MockObject */
@@ -47,6 +50,7 @@ class WebsiteBuilderTest extends TestCase
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
         $this->sourceFilesBuilder   = $this->createMock(SourceFilesBuilder::class);
         $this->rootDir              = '/data/doctrine-website-build-staging';
+        $this->cacheDir             = '/data/doctrine-website-build-staging/cache';
         $this->webpackBuildDir      = '/data/doctrine-website-build-staging/.webpack-build';
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
@@ -57,6 +61,7 @@ class WebsiteBuilderTest extends TestCase
                 $this->sourceFileRepository,
                 $this->sourceFilesBuilder,
                 $this->rootDir,
+                $this->cacheDir,
                 $this->webpackBuildDir,
             ])
             ->setMethods(['filePutContents'])
@@ -74,8 +79,13 @@ class WebsiteBuilderTest extends TestCase
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && git pull origin master');
 
-        $this->filesystem->expects(self::exactly(2))
-            ->method('remove');
+        $this->filesystem->expects(self::at(0))
+            ->method('remove')
+            ->with([]);
+
+        $this->filesystem->expects(self::at(1))
+            ->method('remove')
+            ->with([]);
 
         $this->websiteBuilder->expects(self::once())
             ->method('filePutContents')
@@ -88,8 +98,13 @@ class WebsiteBuilderTest extends TestCase
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && npm run build');
 
-        $this->filesystem->expects(self::once())
-            ->method('mirror');
+        $this->filesystem->expects(self::at(2))
+            ->method('mirror')
+            ->with($this->webpackBuildDir, $buildDir . '/frontend');
+
+        $this->filesystem->expects(self::at(3))
+            ->method('mirror')
+            ->with($this->cacheDir . '/data', $buildDir . '/website-data');
 
         $this->processFactory->expects(self::at(2))
             ->method('run')

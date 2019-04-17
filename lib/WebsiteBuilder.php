@@ -53,6 +53,9 @@ class WebsiteBuilder
     private $rootDir;
 
     /** @var string */
+    private $cacheDir;
+
+    /** @var string */
     private $webpackBuildDir;
 
     public function __construct(
@@ -62,6 +65,7 @@ class WebsiteBuilder
         SourceFileRepository $sourceFileRepository,
         SourceFilesBuilder $sourceFilesBuilder,
         string $rootDir,
+        string $cacheDir,
         string $webpackBuildDir
     ) {
         $this->processFactory       = $processFactory;
@@ -70,6 +74,7 @@ class WebsiteBuilder
         $this->sourceFileRepository = $sourceFileRepository;
         $this->sourceFilesBuilder   = $sourceFilesBuilder;
         $this->rootDir              = $rootDir;
+        $this->cacheDir             = $cacheDir;
         $this->webpackBuildDir      = $webpackBuildDir;
     }
 
@@ -102,6 +107,8 @@ class WebsiteBuilder
         }
 
         $this->createProjectVersionAliases($buildDir);
+
+        $this->copyWebsiteBuildData($buildDir);
 
         if ($publish) {
             $output->writeln(' - publishing build');
@@ -172,6 +179,11 @@ class WebsiteBuilder
                 }
             }
         }
+    }
+
+    private function copyWebsiteBuildData(string $buildDir) : void
+    {
+        $this->filesystem->mirror($this->cacheDir . '/data', $buildDir . '/website-data');
     }
 
     private function createDocsProjectVersionAlias(
