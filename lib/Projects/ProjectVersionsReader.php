@@ -50,18 +50,17 @@ class ProjectVersionsReader
                 continue;
             }
 
+            // if 0.x release doesn't have an associated branch, assume master
+            if ($tag->isMajorReleaseZero() && $branchName === null) {
+                $branchName = 'master';
+            }
+
             $versions[$branchSlug] = [
                 'name' => $branchSlug,
                 'slug' => $branchSlug,
                 'branchName' => $branchName,
                 'tags' => [$tag],
             ];
-
-            if (! $tag->isMajorReleaseZero()) {
-                continue;
-            }
-
-            $versions[$branchSlug]['branchName'] = 'master';
         }
 
         return array_values($versions);
