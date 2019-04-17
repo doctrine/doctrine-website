@@ -101,16 +101,22 @@ TEMPLATE;
         string $contents
     ) : string {
         // parse out the source file that generated this file
-        preg_match('/<p>{{ DOCS_SOURCE_PATH:(.*) }}<\/p>/', $contents, $match);
+        preg_match('/<p>{{ DOCS_SOURCE_PATH : (.*) }}<\/p>/', $contents, $match);
 
         $docsSourcePath = $match[1];
 
-        // get rid of the special DOCS_SOURCE_PATH: syntax in the contents
+        // get rid of the special DOCS_SOURCE_PATH : syntax in the contents
         $contents = str_replace($match[0], '', $contents);
 
         $title = $this->extractTitle($contents);
 
         $contents = $this->fixHeaderAnchors($contents);
+
+        $contents = str_replace('<p>SIDEBAR BEGIN</p>', '{% block sidebar %}', $contents);
+        $contents = str_replace('<p>CONTENT BEGIN</p>', '{% endblock %}{% block content %}{% verbatim %}', $contents);
+
+        $contents .= '{% endverbatim %}';
+        $contents .= '{% endblock %}';
 
         return sprintf(
             self::PARAMETERS_TEMPLATE,
@@ -134,8 +140,8 @@ TEMPLATE;
     private function fixHeaderAnchors(string $contents) : string
     {
         return preg_replace(
-            '/<a id="(.*)"><\/a><h(\d)>(.*)<\/h(\d)>/',
-            '<a class="section-anchor" id="$1" name="$1"></a><h$2 class="section-header"><a href="#$1">$3<i class="fas fa-link"></i></a></h$2>',
+            '/<div class="section" id="(.*)">\n<h(\d)>(.*)<\/h(\d)>/',
+            '<div class="section"><a class="section-anchor" id="$1" name="$1"></a><h$2 class="section-header"><a href="#$1">$3<i class="fas fa-link"></i></a></h$2>',
             $contents
         );
     }

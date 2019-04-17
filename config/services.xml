@@ -61,13 +61,27 @@
 
         <service id="Doctrine\Website\Projects\ProjectDataRepository" autowire="true" />
 
+        <service id="Doctrine\RST\Configuration">
+            <call method="abortOnError">
+                <argument>false</argument>
+            </call>
+            <call method="setIgnoreInvalidReferences">
+                <argument>true</argument>
+            </call>
+            <call method="setUseCachedMetas">
+                <argument>false</argument>
+            </call>
+            <call method="setFileExtension">
+                <argument>html</argument>
+            </call>
+        </service>
+
         <service id="Doctrine\RST\Builder">
-            <argument type="service" id="Doctrine\Website\RST\Kernel" />
+            <argument type="service" id="Doctrine\RST\Kernel" />
         </service>
 
         <service id="Doctrine\RST\Parser">
-            <argument></argument>
-            <argument type="service" id="Doctrine\Website\RST\Kernel" />
+            <argument type="service" id="Doctrine\RST\Kernel" />
         </service>
 
         <service id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository">
@@ -76,8 +90,6 @@
                 <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRouteReader" />
             </argument>
         </service>
-
-        <service id="Doctrine\RST\HTML\Kernel" autowire="true" />
 
         <service id="Doctrine\Website\Github\GithubClientProvider">
             <argument type="service">
@@ -143,8 +155,9 @@
             <argument>%doctrine.website.google_analytics_tracking_id%</argument>
         </service>
 
-        <service id="Doctrine\Website\RST\Kernel" autowire="true" public="true">
-            <argument type="service" id="Doctrine\RST\HTML\Kernel" />
+        <service id="Doctrine\RST\Kernel">
+            <argument type="service" id="Doctrine\RST\Configuration" />
+
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\RST\Directive\CautionDirective" />
                 <argument type="service" id="Doctrine\Website\RST\Directive\CodeBlockDirective" />

@@ -141,7 +141,7 @@ class ProdGithubProjectContributorsTest extends TestCase
             ->method('save');
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('The GitHub API should not return an empty array here.');
+        $this->expectExceptionMessage('The GitHub API should not return an empty array here for repository doctrine2.');
 
         $this->githubProjectContributors->getProjectContributors($project);
     }

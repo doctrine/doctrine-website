@@ -6,14 +6,15 @@ namespace Doctrine\Website\Docs;
 
 use AlgoliaSearch\Client;
 use AlgoliaSearch\Index;
-use Doctrine\RST\Document;
-use Doctrine\RST\HTML\Nodes\ParagraphNode;
-use Doctrine\RST\HTML\Nodes\TitleNode;
+use Doctrine\RST\Nodes\DocumentNode;
 use Doctrine\RST\Nodes\Node;
+use Doctrine\RST\Nodes\ParagraphNode;
+use Doctrine\RST\Nodes\TitleNode;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use function get_class;
 use function in_array;
+use function is_string;
 use function md5;
 use function preg_match;
 use function strip_tags;
@@ -55,7 +56,7 @@ class SearchIndexer
     }
 
     /**
-     * @param Document[] $documents
+     * @param DocumentNode[] $documents
      */
     public function buildSearchIndexes(
         Project $project,
@@ -75,7 +76,7 @@ class SearchIndexer
      * @param mixed[][] $records
      */
     private function buildDocumentSearchRecords(
-        Document $document,
+        DocumentNode $document,
         array &$records,
         Project $project,
         ProjectVersion $version
@@ -100,7 +101,7 @@ class SearchIndexer
         });
 
         foreach ($nodes as $node) {
-            $value = (string) $node->getValue();
+            $value = $this->renderNodeValue($node);
 
             if (strpos($value, '{{ DOCS_SOURCE_PATH') !== false) {
                 continue;
@@ -111,7 +112,7 @@ class SearchIndexer
             if ($node instanceof TitleNode) {
                 preg_match('/<a id=\"([^\"]*)\">.*<\/a>/iU', $html, $match);
 
-                $currentLink = $slug . '.html#' . $match[1];
+                $currentLink = $slug . '.html' . (isset($match[1]) ? '#' . $match[1] : '');
             }
 
             $records[] = $this->getNodeSearchRecord(
@@ -139,7 +140,7 @@ class SearchIndexer
         $level = $node instanceof TitleNode ? $node->getLevel() : false;
 
         if ($level !== false) {
-            $current['h' . $level] = (string) $node->getValue();
+            $current['h' . $level] = $this->renderNodeValue($node);
 
             for ($i = ($level + 1); $i <= 5; $i++) {
                 $current['h' . $i] = null;
@@ -147,11 +148,11 @@ class SearchIndexer
 
             $content = '';
         } else {
-            $content = (string) $node->getValue();
+            $content = $this->renderNodeValue($node);
         }
 
         return [
-            'objectID' => $version->getSlug() . '-' . $currentLink . '-' . md5((string) $node->getValue()),
+            'objectID' => $version->getSlug() . '-' . $currentLink . '-' . md5($this->renderNodeValue($node)),
             'rank' => $this->getRank($node),
             'h1' => $current['h1'],
             'h2'  => $current['h2'],
@@ -188,6 +189,21 @@ class SearchIndexer
         }
 
         return $ranks[$elementName];
+    }
+
+    private function renderNodeValue(Node $node) : string
+    {
+        $nodeValue = $node->getValue();
+
+        if ($nodeValue instanceof Node) {
+            return $nodeValue->render();
+        }
+
+        if (is_string($nodeValue)) {
+            return $nodeValue;
+        }
+
+        return (string) $nodeValue;
     }
 
     private function getSearchIndex() : Index

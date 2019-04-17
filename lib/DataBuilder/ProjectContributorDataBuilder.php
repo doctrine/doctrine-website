@@ -42,6 +42,8 @@ class ProjectContributorDataBuilder implements DataBuilder
 
         $projectContributors = [];
 
+        $this->githubProjectContributors->warmProjectsContributors($projects);
+
         foreach ($projects as $project) {
             $contributors = $this->githubProjectContributors->getProjectContributors($project);
 

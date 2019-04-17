@@ -12,7 +12,7 @@ class ProcessFactory
 {
     public function create(string $command) : Process
     {
-        $process = new Process($command);
+        $process = Process::fromShellCommandline($command);
         $process->setTimeout(null);
 
         return $process;

@@ -52,6 +52,10 @@ class ProjectContributorDataBuilderTest extends TestCase
             ->willReturn([$project1, $project2]);
 
         $this->githubProjectContributors->expects(self::at(0))
+            ->method('warmProjectsContributors')
+            ->with([$project1, $project2]);
+
+        $this->githubProjectContributors->expects(self::at(1))
             ->method('getProjectContributors')
             ->with($project1)
             ->willReturn([
@@ -90,7 +94,7 @@ class ProjectContributorDataBuilderTest extends TestCase
                 ],
             ]);
 
-        $this->githubProjectContributors->expects(self::at(1))
+        $this->githubProjectContributors->expects(self::at(2))
             ->method('getProjectContributors')
             ->with($project2)
             ->willReturn([

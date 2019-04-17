@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\RST\Directive;
 
-use Doctrine\RST\Document;
+use Doctrine\RST\Directives\SubDirective;
 use Doctrine\RST\Nodes\CodeNode;
+use Doctrine\RST\Nodes\DocumentNode;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Nodes\RawNode;
 use Doctrine\RST\Parser;
-use Doctrine\RST\SubDirective;
 use function strtoupper;
 
 class ConfigurationBlockDirective extends SubDirective
@@ -29,7 +29,7 @@ class ConfigurationBlockDirective extends SubDirective
         string $data,
         array $options
     ) : ?Node {
-        if (! $document instanceof Document) {
+        if (! $document instanceof DocumentNode) {
             return null;
         }
 

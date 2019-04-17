@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\RST\Directive;
 
-use Doctrine\RST\Directive;
+use Doctrine\RST\Directives\Directive;
 use Doctrine\RST\Nodes\CodeNode;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Parser;
@@ -13,7 +13,6 @@ use Doctrine\Website\Docs\CodeBlockRenderer;
 use function array_reverse;
 use function assert;
 use function is_array;
-use function is_string;
 use function preg_split;
 use function trim;
 
@@ -62,7 +61,6 @@ class CodeBlockDirective extends Directive
         }
 
         $nodeValue = $node->getValue();
-        assert(is_string($nodeValue));
 
         $lines = $this->getLines($nodeValue);
 
