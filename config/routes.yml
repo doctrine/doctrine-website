@@ -47,6 +47,12 @@ parameters:
             controller: Doctrine\Website\Controllers\PartnersController::view
             provider: Doctrine\Website\Requests\PartnerRequests::getPartners
 
+        consulting:
+            path: /consulting.html
+            controller: Doctrine\Website\Controllers\ConsultingController::index
+            defaults:
+                menuSlug: consulting
+
         community:
             path: /community/index.html
             defaults:

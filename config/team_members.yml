@@ -61,6 +61,11 @@ parameters:
             avatarUrl: 'https://avatars0.githubusercontent.com/u/97422?v=4'
             location: 'Nashville, TN'
             maintains: ["mongodb", "mongodb-odm", "migrations", "doctrine1", "event-manager", "persistence", "reflection", "rst-parser", "skeleton-mapper", "common", "doctrine-migrations-bundle", "inflector", "lexer"]
+            consultant: true
+            headshot: '/images/jwage.png'
+            bio: >
+                Jonathan has been developing software for nearly 20 years and has been
+                contributing to Doctrine for half of that time.
         kimhemsoe:
             name: 'Kim Hemsø Rasmussen'
             twitter: kimhemsoe
@@ -117,6 +122,12 @@ parameters:
             avatarUrl: 'https://avatars2.githubusercontent.com/u/154256?v=4'
             location: 'Frankfurt am Main'
             maintains: ["orm", "dbal", "reflection", "instantiator", "coding-standard", "common", "cache", "annotations", "collections", "event-manager", "lexer"]
+            consultant: true
+            headshot: '/images/marco.png'
+            bio: >
+                Marco is a professional software developer, and a passionate open source software contributor and
+                evangelist. He is part of the Doctrine core team and contributes to many other popular open source
+                projects.
         TomHAnderson:
             name: 'Tom H Anderson'
             github: TomHAnderson

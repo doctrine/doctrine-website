@@ -126,6 +126,7 @@
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Controllers\AtomController" />
                 <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
+                <argument type="service" id="Doctrine\Website\Controllers\ConsultingController" />
                 <argument type="service" id="Doctrine\Website\Controllers\DocumentationController" />
                 <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
                 <argument type="service" id="Doctrine\Website\Controllers\PartnersController" />

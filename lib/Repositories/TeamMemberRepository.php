@@ -13,4 +13,12 @@ class TeamMemberRepository extends BasicObjectRepository
     {
         return $this->findOneBy(['github' => $github]);
     }
+
+    /**
+     * @return TeamMember[]
+     */
+    public function findConsultants() : array
+    {
+        return $this->findBy(['consultant' => true], ['github' => 'asc']);
+    }
 }
