@@ -59,7 +59,7 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
         $this->website    = (string) ($teamMember['website'] ?? '');
         $this->location   = (string) ($teamMember['location'] ?? '');
         $this->maintains  = $teamMember['maintains'] ?? [];
-        $this->consultant = $teamMember['consultant'] ?? false;
+        $this->consultant = (bool) ($teamMember['consultant'] ?? false);
         $this->headshot   = (string) ($teamMember['headshot'] ?? '');
         $this->bio        = (string) ($teamMember['bio'] ?? '');
     }
