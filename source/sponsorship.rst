@@ -8,11 +8,24 @@ funds for swag and travel costs when visiting conferences to support the project
 This page aims to document all the ways in which you can contribute to the project financially. Of course,
 if you can't contribute financially, consider `contributing with code </contribute/index.html>`_.
 
+Our Sponsors
+------------
+
+Thanks to the following sponsors for funding Doctrine development. If you are interested in becoming a sponsor, please take a look at the Doctrine `Patreon page <https://www.patreon.com/bePatron?u=14252462>`_.
+
+.. raw:: html
+
+    <ul>
+    {% for sponsor in sponsors %}
+        <li><a href="{{ sponsor.url }}?utm_source=doctrine&utm_medium=website&utm_campaign=sponsors" target="_blank" rel="noopener noreferrer"{% if sponsor.highlighted %} class="font-weight-bold"{% endif %} data-ga-category="sponsors" data-ga-action="click" data-ga-label="{{ sponsor.name }}">{{ sponsor.name }}</a></li>
+    {% endfor %}
+    </ul>
+
 Patreon
 -------
 
 If you or your company uses Doctrine and would like to financially contribute to the project,
-you can do so through our `Patreon <https://www.patreon.com/phpdoctrine>`_.
+you can do so through our `Patreon <https://www.patreon.com/bePatron?u=14252462>`_.
 
 Patreon is a membership platform that provides business tools for open source projects to run a
 subscription content service, with ways for open source project maintainers to build relationships

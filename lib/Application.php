@@ -97,9 +97,11 @@ class Application
         $loader->load('services.xml');
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
+        $loader->load('partners.yml');
         $loader->load('projects.yml');
-        $loader->load('team_members.yml');
         $loader->load('routes.yml');
+        $loader->load('sponsors.yml');
+        $loader->load('team_members.yml');
 
         $loader->load(sprintf('config_%s.yml', $env));
 

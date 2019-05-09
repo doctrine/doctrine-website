@@ -1,0 +1,14 @@
+parameters:
+    doctrine.website.sponsors:
+        -
+            name: 'SymfonyCasts'
+            url: 'https://symfonycasts.com/'
+            highlighted: true
+        -
+            name: 'Tideways'
+            url: 'https://tideways.com/'
+            highlighted: true
+        -
+            name: 'Intracto'
+            url: 'https://www.intracto.com'
+            highlighted: false

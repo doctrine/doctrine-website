@@ -72,5 +72,19 @@ export default function() {
       document.execCommand('copy');
       document.body.removeChild(element);
     });
+
+    if(window.ga && window.ga.create) {
+      $('a').on('click', function() {
+        var eventCategory = $(this).data('ga-category');
+        var eventAction = $(this).data('ga-action');
+        var eventLabel = $(this).data('ga-label');
+        var eventValue = $(this).data('ga-value');
+        var fieldsObject = $(this).data('ga-fields-object');
+
+        if (eventCategory && eventAction) {
+          ga('send', 'event', eventCategory, eventAction, eventLabel, eventValue, fieldsObject);
+        }
+      });
+    }
   });
 };
