@@ -23,6 +23,11 @@ parameters:
             defaults:
                 title: RST Example
 
+        styleguide:
+            path: /styleguide.html
+            defaults:
+                title: Styleguide
+
         sponsorship:
             path: /sponsorship.html
             defaults:

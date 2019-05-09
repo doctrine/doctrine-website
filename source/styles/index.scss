@@ -8,6 +8,10 @@ $fa-font-path: '../../node_modules/@fortawesome/fontawesome-free/webfonts';
 @import '../../node_modules/instantsearch.js/dist/instantsearch.css';
 @import '../../node_modules/instantsearch.js/dist/instantsearch-theme-algolia.css';
 
+$doctrine-orange: #fa6a3c;
+$doctrine-light-blue: #2e6bc8;
+$doctrine-dark-blue: #1f2e4b;
+
 html {
   position: relative;
   min-height: 100%;
@@ -99,7 +103,7 @@ h6 {
 .sidebar-sticky .toc-section .toc-header {
   padding: 8px;
   font-size: 20px;
-  background-color: #1f2e4b;
+  background-color: $doctrine-dark-blue;
   margin-bottom: 0;
   color: #fff;
 }
@@ -145,7 +149,7 @@ h6 {
 .sidebar-sticky .toc ul li ul li a {
   background: none !important;
   padding: 2px !important;
-  color: #fa6a3c !important;
+  color: $doctrine-orange !important;
   font-weight: normal !important;
 }
 
@@ -285,15 +289,15 @@ em {
 }
 
 .bg-doctrine-orange {
-  background-color: #fa6a3c;
+  background-color: $doctrine-orange;
 }
 
 .bg-doctrine-light-blue {
-  background-color: #2e6bc8;
+  background-color: $doctrine-light-blue;
 }
 
 .bg-doctrine-dark-blue {
-  background-color: #1f2e4b;
+  background-color: $doctrine-dark-blue;
 }
 
 .footer {
@@ -312,7 +316,7 @@ em {
 
 .section-header a i {
   margin-left: 5px;
-  color: #fa6a3c;
+  color: $doctrine-orange;
   opacity: 0.7;
   font-size: 50%;
   vertical-align: middle;
@@ -326,7 +330,7 @@ em {
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #1f2e4b;
+  background-color: $doctrine-dark-blue;
   color: white;
   cursor: pointer;
   padding: 15px;

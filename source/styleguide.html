@@ -1,0 +1,32 @@
+<h2>SVG Logos</h2>
+
+{% set logos = [
+    get_asset_url('/logos/doctrine-logo.svg', site.url),
+    get_asset_url('/logos/doctrine-logo-black-text.svg', site.url),
+    get_asset_url('/logos/doctrine-logo-outline-orange-text.svg', site.url)
+] %}
+
+<table class="table">
+    <tr>
+        {% for logo in logos %}
+            <td><a href="{{ logo }}" target="_blank"><img src="{{ logo }}" width="200" /></a></td>
+        {% endfor %}
+    </tr>
+</table>
+
+<h2>Colors</h2>
+
+<table class="table">
+    <tr>
+        <td class="bg-doctrine-orange">&nbsp;</td>
+        <th>Orange #fa6a3c</th>
+    </tr>
+    <tr>
+        <td class="bg-doctrine-light-blue">&nbsp;</td>
+        <th>Light Blue #2e6bc8</th>
+    </tr>
+    <tr>
+        <td class="bg-doctrine-dark-blue">&nbsp;</td>
+        <th>Dark Blue #1f2e4b</th>
+    </tr>
+</table>
