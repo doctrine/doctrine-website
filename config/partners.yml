@@ -6,9 +6,8 @@ parameters:
             url: 'https://symfonycasts.com/'
             logo: '/images/partners/symfonycasts.svg'
             bio: >
-                Simply the Best PHP & Symfony Tutorials and the official way to learn Symfony.
-                Trusted by devs like you. PHP and Symfony tutorials written by the experts.
-                Code downloads for each tutorial. English Language Captions on Video Tutorials.
+                Simply the Best PHP & Symfony Tutorials written by experts with code downloads
+                for each tutorial, English language captions and dinosaur puns.
             details:
                 label: Courses
                 items:
