@@ -16,6 +16,8 @@
             <bind key="$teamMembers">%doctrine.website.team_members%</bind>
             <bind key="$templatesDir">%doctrine.website.templates_dir%</bind>
             <bind key="$doctrineUsers">%doctrine.website.doctrine_users%</bind>
+            <bind key="$sponsors">%doctrine.website.sponsors%</bind>
+            <bind key="$partners">%doctrine.website.partners%</bind>
             <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
             <bind key="$routes">%doctrine.website.routes%</bind>
         </defaults>
@@ -126,7 +128,9 @@
                 <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
                 <argument type="service" id="Doctrine\Website\Controllers\DocumentationController" />
                 <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
+                <argument type="service" id="Doctrine\Website\Controllers\PartnersController" />
                 <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
+                <argument type="service" id="Doctrine\Website\Controllers\SponsorshipController" />
                 <argument type="service" id="Doctrine\Website\Controllers\SitemapController" />
                 <argument type="service" id="Doctrine\Website\Controllers\TeamController" />
             </argument>
@@ -135,6 +139,7 @@
         <service id="Doctrine\StaticWebsiteGenerator\Request\RequestCollectionProvider">
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\PartnerRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectVersionRequests" />
             </argument>
@@ -248,6 +253,44 @@
             <argument>Doctrine\Website\Model\DoctrineUser</argument>
         </service>
 
+        <service id="Doctrine\Website\Repositories\SponsorRepository" autowire="false" public="true">
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+            <argument type="service">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                    <argument type="service" id="Doctrine\Website\DataSources\Sponsors" />
+                    <argument>Doctrine\Website\Model\Sponsor</argument>
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
+            <argument type="service">
+                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\Common\EventManager" />
+            <argument>Doctrine\Website\Model\Sponsor</argument>
+        </service>
+
+        <service id="Doctrine\Website\Repositories\PartnerRepository" autowire="false" public="true">
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+            <argument type="service">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                    <argument type="service" id="Doctrine\Website\DataSources\Partners" />
+                    <argument>Doctrine\Website\Model\Partner</argument>
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
+            <argument type="service">
+                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\Common\EventManager" />
+            <argument>Doctrine\Website\Model\Partner</argument>
+        </service>
+
         <service id="Doctrine\Website\Repositories\ProjectRepository" autowire="false" public="true">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
@@ -338,6 +381,16 @@
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\DoctrineUser</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\DoctrineUserRepository" />
+            </call>
+
+            <call method="addObjectRepository">
+                <argument>Doctrine\Website\Model\Sponsor</argument>
+                <argument type="service" id="Doctrine\Website\Repositories\SponsorRepository" />
+            </call>
+
+            <call method="addObjectRepository">
+                <argument>Doctrine\Website\Model\Partner</argument>
+                <argument type="service" id="Doctrine\Website\Repositories\PartnerRepository" />
             </call>
 
             <call method="addObjectRepository">

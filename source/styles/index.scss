@@ -71,24 +71,24 @@ h6 {
   width: 100%;
 }
 
-.navbar {
+.doctrine-navbar {
   background: linear-gradient(-90deg, #2c374c, #1f2e4b);
   color: white;
   padding: 0 10px 0 10px;
 }
 
-.navbar input {
+.doctrine-navbar input {
   height: 40px;
   margin-top: 2px;
   color: black;
   background-color: white;
 }
 
-.navbar a:hover {
+.doctrine-navbar a:hover {
   text-decoration: underline;
 }
 
-.navbar-brand img {
+.doctrine-navbar .navbar-brand img {
   width: 30px;
 }
 
@@ -301,12 +301,18 @@ em {
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background-color: #f5f5f5;
+
+  .nav-link {
+    padding: 0;
+  }
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .section-header a {

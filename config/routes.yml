@@ -30,9 +30,22 @@ parameters:
 
         sponsorship:
             path: /sponsorship.html
+            controller: Doctrine\Website\Controllers\SponsorshipController::index
             defaults:
                 title: Sponsorship
                 menuSlug: sponsorship
+
+        partners:
+            path: /partners.html
+            controller: Doctrine\Website\Controllers\PartnersController::index
+            defaults:
+                title: Partners
+                menuSlug: partners
+
+        partner:
+            path: /partners/{slug}.html
+            controller: Doctrine\Website\Controllers\PartnersController::view
+            provider: Doctrine\Website\Requests\PartnerRequests::getPartners
 
         community:
             path: /community/index.html

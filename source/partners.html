@@ -1,0 +1,18 @@
+<h1>Our Partners</h1>
+
+<p class="lead">
+    Doctrine Partners are businesses that offer software and/or services that complement Doctrine and can be used to level up your overall software development practices. If you are interested in becoming a partner,
+    please contact us at <a href="mailto:partners@doctrine-project.org?subject=Partner Inquiry">partners@doctrine-project.org</a>
+</p>
+
+<div class="card-deck mb-3">
+    {% for partner in partners %}
+        <div class="card mb-4 box-shadow">
+            <a href="{{ path('partner', {slug:partner.slug}) }}"><img class="card-img-top" height="100" src="{{ partner.logo }}" alt="{{ partner.name }}"></a>
+
+            <div class="card-body">
+                <p class="card-text">{{ partner.bio }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

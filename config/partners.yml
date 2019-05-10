@@ -1,0 +1,40 @@
+parameters:
+    doctrine.website.partners:
+        -
+            name: 'SymfonyCasts'
+            slug: 'symfony-casts'
+            url: 'https://symfonycasts.com/'
+            logo: '/images/partners/symfonycasts.svg'
+            bio: >
+                Simply the Best PHP & Symfony Tutorials and the official way to learn Symfony.
+                Trusted by devs like you. PHP and Symfony tutorials written by the experts.
+                Code downloads for each tutorial. English Language Captions on Video Tutorials.
+            details:
+                label: Courses
+                items:
+                    - PHP
+                    - JavaScript
+                    - Symfony
+                    - Drupal
+                    - REST
+                    - OOP
+                    - Testing
+
+        -
+            name: 'Tideways'
+            slug: 'tideways'
+            url: 'https://tideways.com/'
+            logo: '/images/partners/tideways.svg'
+            bio: >
+                Your mission control center for PHP application performance. Tideways saves you
+                time by taking the guesswork out of your app's backend performance. Gain detailed
+                insights, spot performance bottlenecks, and get real-time error detection alerts.
+            details:
+                label: Features
+                items:
+                    - Performance Monitoring
+                    - Function-level callgraphs
+                    - Automatic instrumentation
+                    - Response Time Monitoring
+                    - Error & Exception Tracking
+                    - Customizable Alerts
