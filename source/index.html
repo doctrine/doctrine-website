@@ -1,9 +1,10 @@
 {% block title 'Doctrine, The Open-Source PHP ORM and Persistence Tools Project' %}
 
 {% block content %}
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
+    <div class="row">
+        <div class="col-12 col-md-{{ featuredPartner ? 6 : 12 }} mb-4">
             <h1 class="display-4 notranslate">{{ site.title }}</h1>
+
             <p class="lead">The Doctrine Project is the home to several PHP libraries primarily
             focused on database storage and object mapping. The core projects are the
             <a href="{{ site.url }}/projects/orm.html">Object Relational Mapper (ORM)</a> and the
@@ -16,21 +17,23 @@
                     <a class="btn bg-doctrine-dark-blue text-white btn-lg" href="{{ site.url }}/projects.html" role="button">View Projects</a>
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="btn btn-lg tidelift-badge mt-2">
-                        <a href="https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website" target="_blank" rel="noopener noreferrer"><img src="{{ get_asset_url('/images/tidelift-icon.png', site.url) }}" class="tidelift-icon" /> <span>Get professional support for Doctrine</span></a>
+        {% if featuredPartner %}
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card box-shadow">
+                    <div class="card-header font-weight-bold">Featured Partner</div>
+
+                    <a href="{{ path('partner', {slug:featuredPartner.slug}) }}"><img class="card-img-top p-2" height="100" src="{{ featuredPartner.logo }}" alt="{{ featuredPartner.name }}"></a>
+
+                    <div class="card-body">
+                        <p class="card-text">{{ featuredPartner.bio|truncate(150) }}</p>
+
+                        <a href="{{ path('partner', {slug:featuredPartner.slug}) }}" class="card-link">View More</a>
                     </div>
                 </div>
             </div>
-
-            <div class="row mt-2">
-                <div class="col">
-                    {% include "carbonad-standard.html.twig" %}
-                </div>
-            </div>
-        </div>
+        {% endif %}
     </div>
 
     <div class="row">

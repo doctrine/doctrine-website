@@ -32,4 +32,9 @@ class PartnerRepository extends BasicObjectRepository
 
         return $partner;
     }
+
+    public function findFeaturedPartner() : ?Partner
+    {
+        return $this->findOneBy(['featured' => true]);
+    }
 }
