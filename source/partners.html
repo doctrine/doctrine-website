@@ -8,10 +8,12 @@
 <div class="card-deck mb-3">
     {% for partner in partners %}
         <div class="card mb-4 box-shadow">
-            <a href="{{ path('partner', {slug:partner.slug}) }}"><img class="card-img-top" height="100" src="{{ partner.logo }}" alt="{{ partner.name }}"></a>
+            <a href="{{ path('partner', {slug:partner.slug}) }}"><img class="card-img-top p-2" height="100" src="{{ partner.logo }}" alt="{{ partner.name }}"></a>
 
             <div class="card-body">
-                <p class="card-text">{{ partner.bio }}</p>
+                <p class="card-text">{{ partner.bio|truncate(150) }}</p>
+
+                <a href="{{ path('partner', {slug:partner.slug}) }}" class="card-link">View More</a>
             </div>
         </div>
     {% endfor %}

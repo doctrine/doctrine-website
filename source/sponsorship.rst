@@ -17,7 +17,7 @@ Thanks to the following sponsors for funding Doctrine development. If you are in
 
     <ul>
     {% for sponsor in sponsors %}
-        <li><a href="{{ sponsor.url }}?utm_source=doctrine&utm_medium=website&utm_campaign=sponsors" target="_blank" rel="noopener noreferrer"{% if sponsor.highlighted %} class="font-weight-bold"{% endif %} data-ga-category="sponsors" data-ga-action="click" data-ga-label="{{ sponsor.name }}">{{ sponsor.name }}</a></li>
+        <li><a href="{{ sponsor.urlWithUtmParameters({utm_medium:'sponsors-list'}) }}" target="_blank" rel="noopener noreferrer"{% if sponsor.highlighted %} class="font-weight-bold"{% endif %} data-ga-category="sponsors" data-ga-action="click" data-ga-label="{{ sponsor.name }}">{{ sponsor.name }}</a></li>
     {% endfor %}
     </ul>
 

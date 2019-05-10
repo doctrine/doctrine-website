@@ -1,6 +1,14 @@
 parameters:
     doctrine.website.sponsors:
         -
+            name: 'Blackfire.io'
+            url: 'https://blackfire.io/'
+            utmParameters:
+                utm_source: 'doctrine'
+                utm_campaign: 'profiler'
+                utm_medium: 'sponsorship'
+            highlighted: true
+        -
             name: 'SymfonyCasts'
             url: 'https://symfonycasts.com/'
             highlighted: true
