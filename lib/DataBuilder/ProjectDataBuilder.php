@@ -7,6 +7,7 @@ namespace Doctrine\Website\DataBuilder;
 use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Git\Tag;
+use Doctrine\Website\Projects\GetProjectPackagistData;
 use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
@@ -43,6 +44,9 @@ class ProjectDataBuilder implements DataBuilder
     /** @var RSTLanguagesDetector */
     private $rstLanguagesDetector;
 
+    /** @var GetProjectPackagistData */
+    private $getProjectPackagistData;
+
     /** @var string */
     private $projectsDir;
 
@@ -52,14 +56,16 @@ class ProjectDataBuilder implements DataBuilder
         ProjectDataReader $projectDataReader,
         ProjectVersionsReader $projectVersionsReader,
         RSTLanguagesDetector $rstLanguagesDetector,
+        GetProjectPackagistData $getProjectPackagistData,
         string $projectsDir
     ) {
-        $this->projectDataRepository = $projectDataRepository;
-        $this->projectGitSyncer      = $projectGitSyncer;
-        $this->projectDataReader     = $projectDataReader;
-        $this->projectVersionsReader = $projectVersionsReader;
-        $this->rstLanguagesDetector  = $rstLanguagesDetector;
-        $this->projectsDir           = $projectsDir;
+        $this->projectDataRepository   = $projectDataRepository;
+        $this->projectGitSyncer        = $projectGitSyncer;
+        $this->projectDataReader       = $projectDataReader;
+        $this->projectVersionsReader   = $projectVersionsReader;
+        $this->getProjectPackagistData = $getProjectPackagistData;
+        $this->rstLanguagesDetector    = $rstLanguagesDetector;
+        $this->projectsDir             = $projectsDir;
     }
 
     public function getName() : string
@@ -94,6 +100,10 @@ class ProjectDataBuilder implements DataBuilder
         $projectData['versions'] = $this->buildProjectVersions(
             $repositoryName,
             $projectData
+        );
+
+        $projectData['packagistData'] = $this->getProjectPackagistData->__invoke(
+            $projectData['composerPackageName']
         );
 
         return $projectData;

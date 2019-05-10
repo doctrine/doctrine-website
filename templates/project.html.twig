@@ -64,6 +64,51 @@
         </table>
     </div>
 
+    <h2>Statistics</h2>
+
+    <div class="border-left border-right border-bottom rounded mb-4">
+        <table class="table mb-0">
+            <tbody>
+                <tr>
+                    <th>GitHub Stars</th>
+                    <td>{{ project.projectStats.githubStars|number_format }}</td>
+                </tr>
+                <tr>
+                    <th>GitHub Watchers</th>
+                    <td>{{ project.projectStats.githubWatchers|number_format }}</td>
+                </tr>
+                <tr>
+                    <th>GitHub Forks</th>
+                    <td>{{ project.projectStats.githubForks|number_format }}</td>
+                </tr>
+                <tr>
+                    <th>GitHub Open Issues</th>
+                    <td>{{ project.projectStats.githubOpenIssues|number_format }}</td>
+                </tr>
+                <tr>
+                    <th>Dependents</th>
+                    <td>{{ project.projectStats.dependents|number_format }}</td>
+                </tr>
+                <tr>
+                    <th>Suggesters</th>
+                    <td>{{ project.projectStats.suggesters|number_format }}</td>
+                </tr>
+                <tr>
+                    <th>Total Downloads</th>
+                    <td>{{ project.projectStats.totalDownloads|number_format }}</td>
+                </tr>
+                <tr>
+                    <th>Monthly Downloads</th>
+                    <td>{{ project.projectStats.monthlyDownloads|number_format }}</td>
+                </tr>
+                <tr>
+                    <th>Daily Downloads</th>
+                    <td>{{ project.projectStats.dailyDownloads|number_format }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     {% if integrationProjects|length > 0 %}
         <h2>Integrations</h2>
 

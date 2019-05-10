@@ -9,6 +9,7 @@ use Doctrine\Website\DataBuilder\ProjectDataBuilder;
 use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Git\Tag;
+use Doctrine\Website\Projects\GetProjectPackagistData;
 use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
@@ -33,6 +34,9 @@ class ProjectDataBuilderTest extends TestCase
     /** @var RSTLanguagesDetector|MockObject */
     private $rstLanguagesDetector;
 
+    /** @var GetProjectPackagistData|MockObject */
+    private $getProjectPackagistData;
+
     /** @var string */
     private $projectsDir;
 
@@ -53,6 +57,7 @@ class ProjectDataBuilderTest extends TestCase
             ->method('read')
             ->with('orm')
             ->willReturn([
+                'composerPackageName' => 'doctrine/orm',
                 'repositoryName' => 'orm',
                 'docsPath' => '/docs',
                 'versions' => [
@@ -105,6 +110,11 @@ class ProjectDataBuilderTest extends TestCase
             ->with('/path/to/projects/orm/docs')
             ->willReturn([]);
 
+        $this->getProjectPackagistData->expects(self::once())
+            ->method('__invoke')
+            ->with('doctrine/orm')
+            ->willReturn(['package' => []]);
+
         $data = $this->projectDataBuilder->build()->getData();
 
         $expected = [
@@ -112,6 +122,7 @@ class ProjectDataBuilderTest extends TestCase
                 'active' => true,
                 'archived' => false,
                 'integration' => false,
+                'composerPackageName' => 'doctrine/orm',
                 'repositoryName' => 'orm',
                 'docsPath' => '/docs',
                 'versions' => [
@@ -154,6 +165,7 @@ class ProjectDataBuilderTest extends TestCase
                         'docsLanguages' => [],
                     ],
                 ],
+                'packagistData' => ['package' => []],
             ],
         ];
 
@@ -162,12 +174,13 @@ class ProjectDataBuilderTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->projectDataRepository = $this->createMock(ProjectDataRepository::class);
-        $this->projectGitSyncer      = $this->createMock(ProjectGitSyncer::class);
-        $this->projectDataReader     = $this->createMock(ProjectDataReader::class);
-        $this->projectVersionsReader = $this->createMock(ProjectVersionsReader::class);
-        $this->rstLanguagesDetector  = $this->createMock(RSTLanguagesDetector::class);
-        $this->projectsDir           = '/path/to/projects';
+        $this->projectDataRepository   = $this->createMock(ProjectDataRepository::class);
+        $this->projectGitSyncer        = $this->createMock(ProjectGitSyncer::class);
+        $this->projectDataReader       = $this->createMock(ProjectDataReader::class);
+        $this->projectVersionsReader   = $this->createMock(ProjectVersionsReader::class);
+        $this->rstLanguagesDetector    = $this->createMock(RSTLanguagesDetector::class);
+        $this->getProjectPackagistData = $this->createMock(GetProjectPackagistData::class);
+        $this->projectsDir             = '/path/to/projects';
 
         $this->projectDataBuilder = new ProjectDataBuilder(
             $this->projectDataRepository,
@@ -175,6 +188,7 @@ class ProjectDataBuilderTest extends TestCase
             $this->projectDataReader,
             $this->projectVersionsReader,
             $this->rstLanguagesDetector,
+            $this->getProjectPackagistData,
             $this->projectsDir
         );
     }

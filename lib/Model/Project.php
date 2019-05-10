@@ -19,6 +19,9 @@ class Project implements HydratableInterface, LoadMetadataInterface
     /** @var ProjectIntegrationType|null */
     private $projectIntegrationType;
 
+    /** @var ProjectStats */
+    private $projectStats;
+
     /** @var bool */
     private $active;
 
@@ -119,16 +122,31 @@ class Project implements HydratableInterface, LoadMetadataInterface
                 : new ProjectVersion($version);
         }
 
-        if (! $this->isIntegration) {
-            return;
+        if ($this->isIntegration) {
+            $this->projectIntegrationType = new ProjectIntegrationType($project['integrationType']);
         }
 
-        $this->projectIntegrationType = new ProjectIntegrationType($project['integrationType']);
+        $this->projectStats = new ProjectStats(
+            (int) ($project['packagistData']['package']['github_stars'] ?? 0),
+            (int) ($project['packagistData']['package']['github_watchers'] ?? 0),
+            (int) ($project['packagistData']['package']['github_forks'] ?? 0),
+            (int) ($project['packagistData']['package']['github_open_issues'] ?? 0),
+            (int) ($project['packagistData']['package']['dependents'] ?? 0),
+            (int) ($project['packagistData']['package']['suggesters'] ?? 0),
+            (int) ($project['packagistData']['package']['downloads']['total'] ?? 0),
+            (int) ($project['packagistData']['package']['downloads']['monthly'] ?? 0),
+            (int) ($project['packagistData']['package']['downloads']['daily'] ?? 0)
+        );
     }
 
     public function getProjectIntegrationType() : ?ProjectIntegrationType
     {
         return $this->projectIntegrationType;
+    }
+
+    public function getProjectStats() : ProjectStats
+    {
+        return $this->projectStats;
     }
 
     public function isActive() : bool
