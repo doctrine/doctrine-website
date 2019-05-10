@@ -1,6 +1,38 @@
 parameters:
     doctrine.website.partners:
         -
+            name: 'Blackfire.io'
+            slug: 'blackfire'
+            url: 'https://blackfire.io/'
+            utmParameters:
+                utm_source: 'doctrine'
+                utm_campaign: 'profiler'
+            logo: '/images/partners/blackfire.svg'
+            bio: >
+                Blackfire.io empowers PHP developers to continuously measure and improve their app’s
+                performance in development, testing, staging and production. It makes it possible
+                to drill down to function/method call level to understand and fix performance bottlenecks.
+                Its wide variety of profiling automation options makes it a breathe to add it to a development
+                and testing workflow.
+
+
+                The Blackfire Player, a powerful Open Source Web Crawling, Web Tester,
+                and Web Scraper enables teams to setup a fully automated testing pipeline.
+            details:
+                label: Features
+                items:
+                    - 'Supports all PHP versions'
+                    - 'Free trial'
+                    - 'Profiling Web Pages, CLI scripts, API Calls'
+                    - 'Call-graph and timeline views'
+                    - 'Wall Time, CPU, I/O, Memory, Network, HTTP and SQL dimensions'
+                    - 'Performance optimization recommendations'
+                    - 'Performance assertions'
+                    - 'Flexible integrations to automate profiling in test, staging and production'
+                    - 'Notifications via Slack, Hipchat, GitHub, Gitlab, Bitbucket'
+                    - 'SDK'
+                    - 'Blackfire Player: HTTP-based scenario runner for functional and performance testing'
+        -
             name: 'SymfonyCasts'
             slug: 'symfony-casts'
             url: 'https://symfonycasts.com/'

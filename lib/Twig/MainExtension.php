@@ -13,10 +13,13 @@ use Twig_SimpleFilter;
 use Twig_SimpleFunction;
 use function assert;
 use function file_get_contents;
+use function is_int;
 use function is_string;
 use function realpath;
 use function sha1;
 use function sprintf;
+use function strlen;
+use function strrpos;
 use function substr;
 
 class MainExtension extends Twig_Extension
@@ -62,6 +65,7 @@ class MainExtension extends Twig_Extension
     {
         return [
             new Twig_SimpleFilter('markdown', [$this->parsedown, 'text'], ['is_safe' => ['html']]),
+            new Twig_SimpleFilter('truncate', [$this, 'truncate']),
         ];
     }
 
@@ -86,6 +90,22 @@ class MainExtension extends Twig_Extension
     public function getWebpackAssetUrl(string $path, string $siteUrl) : string
     {
         return $this->getAssetUrl($path, $siteUrl . '/frontend', $this->webpackBuildDir);
+    }
+
+    public function truncate(string $string, int $limit, string $separator = '...') : string
+    {
+        if (strlen($string) > $limit) {
+            $newlimit = $limit - strlen($separator);
+
+            $truncatedString = substr($string, 0, $newlimit + 1);
+
+            $lastSpacePosition = strrpos($truncatedString, ' ');
+            assert(is_int($lastSpacePosition));
+
+            return substr($truncatedString, 0, $lastSpacePosition) . $separator;
+        }
+
+        return $string;
     }
 
     private function getAssetCacheBuster(string $path, string $rootPath) : string

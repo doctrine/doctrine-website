@@ -11,21 +11,21 @@
     </nav>
 
     <div class="card mb-4 box-shadow">
-        <a href="{{ partner.url }}" target="_blank" rel="noopener noreferrer"><img class="card-img-top" height="100" src="{{ partner.logo }}" alt="{{ partner.name }}"></a>
+        <a href="{{ partner.urlWithUtmParameters({utm_medium:'partner-view'}) }}" target="_blank" rel="noopener noreferrer" data-ga-category="partners" data-ga-action="click" data-ga-label="{{ partner.name }}"><img class="card-img-top p-2" height="100" src="{{ partner.logo }}" alt="{{ partner.name }}"></a>
 
-        <div class="card-body">
-            <p class="card-text">{{ partner.bio }}</p>
+        <div class="card-body border-bottom">
+            <p class="card-text">{{ partner.bio|nl2br }}</p>
 
-            <a href="{{ partner.url }}?utm_source=doctrine&utm_medium=website&utm_campaign=partners" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-ga-category="partners" data-ga-action="click" data-ga-label="{{ partner.name }}">Visit Website</a>
+            <a href="{{ partner.urlWithUtmParameters({utm_medium:'partner-view'}) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-ga-category="partners" data-ga-action="click" data-ga-label="{{ partner.name }}">Visit Website</a>
         </div>
 
-        <div class="card-header">
+        <div class="card-header font-weight-bold">
             {{ partner.details.label }}
         </div>
 
         <ul class="list-group list-group-flush">
             {% for item in partner.details.items %}
-                <li class="list-group-item">{{ item }}</li>
+                <li class="list-group-item"><i class="fa fa-check text-success mr-2"></i> {{ item }}</li>
             {% endfor %}
         </ul>
     </div>
