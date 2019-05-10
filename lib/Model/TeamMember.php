@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
+use Closure;
 use Doctrine\SkeletonMapper\Hydrator\HydratableInterface;
 use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 use Doctrine\SkeletonMapper\ObjectManagerInterface;
+use Doctrine\Website\Repositories\ContributorRepository;
+use function assert;
 use function in_array;
 
-class TeamMember implements HydratableInterface, LoadMetadataInterface
+class TeamMember implements HydratableInterface, LoadMetadataInterface, CommitterStats
 {
     /** @var string */
     private $name;
@@ -42,6 +45,9 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
     /** @var string */
     private $bio;
 
+    /** @var Closure|Contributor */
+    private $contributor;
+
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['github']);
@@ -52,16 +58,24 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
      */
     public function hydrate(array $teamMember, ObjectManagerInterface $objectManager) : void
     {
-        $this->name       = (string) ($teamMember['name'] ?? '');
-        $this->github     = (string) ($teamMember['github'] ?? '');
-        $this->twitter    = (string) ($teamMember['twitter'] ?? '');
-        $this->avatarUrl  = (string) ($teamMember['avatarUrl'] ?? '');
-        $this->website    = (string) ($teamMember['website'] ?? '');
-        $this->location   = (string) ($teamMember['location'] ?? '');
-        $this->maintains  = $teamMember['maintains'] ?? [];
-        $this->consultant = (bool) ($teamMember['consultant'] ?? false);
-        $this->headshot   = (string) ($teamMember['headshot'] ?? '');
-        $this->bio        = (string) ($teamMember['bio'] ?? '');
+        $this->name        = (string) ($teamMember['name'] ?? '');
+        $this->github      = (string) ($teamMember['github'] ?? '');
+        $this->twitter     = (string) ($teamMember['twitter'] ?? '');
+        $this->avatarUrl   = (string) ($teamMember['avatarUrl'] ?? '');
+        $this->website     = (string) ($teamMember['website'] ?? '');
+        $this->location    = (string) ($teamMember['location'] ?? '');
+        $this->maintains   = $teamMember['maintains'] ?? [];
+        $this->consultant  = (bool) ($teamMember['consultant'] ?? false);
+        $this->headshot    = (string) ($teamMember['headshot'] ?? '');
+        $this->bio         = (string) ($teamMember['bio'] ?? '');
+        $this->contributor = static function (string $github) use ($objectManager) : Contributor {
+            $contributorRepository = $objectManager
+                ->getRepository(Contributor::class);
+
+            assert($contributorRepository instanceof ContributorRepository);
+
+            return $contributorRepository->findOneByGithub($github);
+        };
     }
 
     public function getName() : string
@@ -112,5 +126,29 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
     public function getBio() : string
     {
         return $this->bio;
+    }
+
+    public function getContributor() : Contributor
+    {
+        if ($this->contributor instanceof Closure) {
+            $this->contributor = ($this->contributor)($this->github);
+        }
+
+        return $this->contributor;
+    }
+
+    public function getNumCommits() : int
+    {
+        return $this->getContributor()->getNumCommits();
+    }
+
+    public function getNumAdditions() : int
+    {
+        return $this->getContributor()->getNumAdditions();
+    }
+
+    public function getNumDeletions() : int
+    {
+        return $this->getContributor()->getNumDeletions();
     }
 }
