@@ -33,6 +33,15 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
     /** @var string[] */
     private $maintains = [];
 
+    /** @var bool */
+    private $consultant = false;
+
+    /** @var string */
+    private $headshot;
+
+    /** @var string */
+    private $bio;
+
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['github']);
@@ -43,13 +52,16 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
      */
     public function hydrate(array $teamMember, ObjectManagerInterface $objectManager) : void
     {
-        $this->name      = (string) ($teamMember['name'] ?? '');
-        $this->github    = (string) ($teamMember['github'] ?? '');
-        $this->twitter   = (string) ($teamMember['twitter'] ?? '');
-        $this->avatarUrl = (string) ($teamMember['avatarUrl'] ?? '');
-        $this->website   = (string) ($teamMember['website'] ?? '');
-        $this->location  = (string) ($teamMember['location'] ?? '');
-        $this->maintains = $teamMember['maintains'] ?? [];
+        $this->name       = (string) ($teamMember['name'] ?? '');
+        $this->github     = (string) ($teamMember['github'] ?? '');
+        $this->twitter    = (string) ($teamMember['twitter'] ?? '');
+        $this->avatarUrl  = (string) ($teamMember['avatarUrl'] ?? '');
+        $this->website    = (string) ($teamMember['website'] ?? '');
+        $this->location   = (string) ($teamMember['location'] ?? '');
+        $this->maintains  = $teamMember['maintains'] ?? [];
+        $this->consultant = (bool) ($teamMember['consultant'] ?? false);
+        $this->headshot   = (string) ($teamMember['headshot'] ?? '');
+        $this->bio        = (string) ($teamMember['bio'] ?? '');
     }
 
     public function getName() : string
@@ -85,5 +97,20 @@ class TeamMember implements HydratableInterface, LoadMetadataInterface
     public function isProjectMaintainer(Project $project) : bool
     {
         return in_array($project->getSlug(), $this->maintains, true);
+    }
+
+    public function isConsultant() : bool
+    {
+        return $this->consultant;
+    }
+
+    public function getHeadshot() : string
+    {
+        return $this->headshot;
+    }
+
+    public function getBio() : string
+    {
+        return $this->bio;
     }
 }
