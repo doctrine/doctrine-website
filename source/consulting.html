@@ -1,4 +1,4 @@
-{% block title %}Consulting{% endblock %}
+{% block title %}Doctrine PHP Consulting{% endblock %}
 
 {% block content %}
     <h1>Consulting</h1>
@@ -58,7 +58,11 @@
         </div>
     </div>
 
-    <h2>Our Team of Experts</h2>
+    <h2>Our Team</h2>
+
+    <p class="lead">
+        Our team of experts have contributed <strong>{{ consultantsStats.numCommits }}</strong> commits to Doctrine adding <span class="text-success">{{ consultantsStats.numAdditions }} ++</span> lines and deleting <span class="text-danger">{{ consultantsStats.numDeletions }} --</span> lines of code. To hire us, please e-mail <a href="mailto:consulting@doctrine-project.org">consulting@doctrine-project.org</a>.</p>
+    </p>
 
     <ul class="list-group">
         {% for consultant in consultants %}

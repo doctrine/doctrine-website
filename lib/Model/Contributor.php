@@ -9,7 +9,7 @@ use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 use Doctrine\SkeletonMapper\ObjectManagerInterface;
 
-class Contributor implements HydratableInterface, LoadMetadataInterface
+class Contributor implements HydratableInterface, LoadMetadataInterface, CommitterStats
 {
     /** @var TeamMember|null */
     private $teamMember;
