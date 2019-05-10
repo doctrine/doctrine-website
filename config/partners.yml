@@ -32,6 +32,7 @@ parameters:
                     - 'Notifications via Slack, Hipchat, GitHub, Gitlab, Bitbucket'
                     - 'SDK'
                     - 'Blackfire Player: HTTP-based scenario runner for functional and performance testing'
+            featured: true
         -
             name: 'SymfonyCasts'
             slug: 'symfony-casts'
@@ -50,6 +51,7 @@ parameters:
                     - REST
                     - OOP
                     - Testing
+            featured: false
 
         -
             name: 'Tideways'
@@ -69,3 +71,4 @@ parameters:
                     - Response Time Monitoring
                     - Error & Exception Tracking
                     - Customizable Alerts
+            featured: false

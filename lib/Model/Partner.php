@@ -33,6 +33,9 @@ final class Partner implements HydratableInterface, LoadMetadataInterface
     /** @var PartnerDetails */
     private $details;
 
+    /** @var bool */
+    private $featured;
+
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['slug']);
@@ -62,6 +65,7 @@ final class Partner implements HydratableInterface, LoadMetadataInterface
             (string) ($partner['details']['label'] ?? ''),
             $partner['details']['items'] ?? []
         );
+        $this->featured      = (bool) ($partner['featured'] ?? false);
     }
 
     public function getName() : string
@@ -100,5 +104,10 @@ final class Partner implements HydratableInterface, LoadMetadataInterface
     public function getDetails() : PartnerDetails
     {
         return $this->details;
+    }
+
+    public function isFeatured() : bool
+    {
+        return $this->featured;
     }
 }
