@@ -8,8 +8,8 @@ use DateTimeImmutable;
 use Doctrine\Website\Git\Tag;
 use Doctrine\Website\Git\TagBranchGuesser;
 use Doctrine\Website\ProcessFactory;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
 
 class TagBranchGuesserTest extends TestCase

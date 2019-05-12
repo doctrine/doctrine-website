@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
-use Doctrine\SkeletonMapper\Hydrator\HydratableInterface;
 use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
-use Doctrine\SkeletonMapper\ObjectManagerInterface;
 
-class Contributor implements HydratableInterface, LoadMetadataInterface, CommitterStats
+class Contributor implements LoadMetadataInterface, CommitterStats
 {
     /** @var TeamMember|null */
     private $teamMember;
@@ -35,20 +33,6 @@ class Contributor implements HydratableInterface, LoadMetadataInterface, Committ
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['github']);
-    }
-
-    /**
-     * @param mixed[] $contributor
-     */
-    public function hydrate(array $contributor, ObjectManagerInterface $objectManager) : void
-    {
-        $this->teamMember   = $contributor['teamMember'] ?? null;
-        $this->github       = (string) ($contributor['github'] ?? '');
-        $this->avatarUrl    = (string) ($contributor['avatarUrl'] ?? '');
-        $this->numCommits   = (int) ($contributor['numCommits'] ?? 0);
-        $this->numAdditions = (int) ($contributor['numAdditions'] ?? 0);
-        $this->numDeletions = (int) ($contributor['numDeletions'] ?? 0);
-        $this->projects     = $contributor['projects'] ?? [];
     }
 
     public function getTeamMember() : ?TeamMember

@@ -12,8 +12,8 @@ use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class ContributorsTest extends TestCase
 {

@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\DataBuilder;
 
-use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use Doctrine\Website\DataBuilder\ProjectContributorDataBuilder;
 use Doctrine\Website\Github\GithubProjectContributors;
-use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class ProjectContributorDataBuilderTest extends TestCase
 {
@@ -30,10 +28,8 @@ class ProjectContributorDataBuilderTest extends TestCase
 
     public function testBuild() : void
     {
-        $objectManager = $this->createMock(ObjectManagerInterface::class);
-
-        $project1 = new Project(['slug' => 'orm']);
-        $project2 = new Project(['slug' => 'dbal']);
+        $project1 = $this->createProject(['slug' => 'orm']);
+        $project2 = $this->createProject(['slug' => 'dbal']);
 
         $jwageTeamMember = $this->createMock(TeamMember::class);
 

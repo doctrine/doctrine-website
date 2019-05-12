@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Assets;
 
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class AssetIntegrityGeneratorTest extends TestCase
 {

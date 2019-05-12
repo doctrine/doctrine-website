@@ -7,10 +7,10 @@ namespace Doctrine\Website\Tests\Github;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Website\Github\ProdGithubProjectContributors;
 use Doctrine\Website\Model\Project;
+use Doctrine\Website\Tests\TestCase;
 use Github\Api\Repo;
 use Github\Client;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 class ProdGithubProjectContributorsTest extends TestCase

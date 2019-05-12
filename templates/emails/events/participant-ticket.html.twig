@@ -1,0 +1,21 @@
+{% extends 'emails/layout.html.twig' %}
+
+{% block subject %}
+    [Doctrine Event] {{ event.name }}
+{% endblock %}
+
+{% block body_html %}
+    <p>Hi {{ participant.email }},</p>
+
+    <p>You are receiving this e-mail because you registered for the Doctrine Event named <strong>{{ event.name }}</strong>.</p>
+
+    {% if event.conference %}
+        <p>This event is hosted at <strong>{{ event.location.name }}</strong> which is located at <a href="https://www.google.com/maps?q={{ event.location.address.string }}" target="_blank" >{{ event.location.address.string }}</a>.</p>
+    {% else %}
+        <p>You can join the event at the following url: <a href="{{ event.joinUrl }}">{{ event.joinUrl }}</a></p>
+    {% endif %}
+
+    <p>If you need help, e-mail us at <a href="mailto:events@doctrine-project.org?subject={{ event.name }} Help">events@doctrine-project.org</a>.</p>
+
+    <p>Thanks, Doctrine Team!</p>
+{% endblock %}

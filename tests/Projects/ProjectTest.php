@@ -19,7 +19,7 @@ class ProjectTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->project = new Project([
+        $this->project = $this->createProject([
             'name' => 'Test Project',
             'shortName' => 'Test Project',
             'slug' => 'test-project',

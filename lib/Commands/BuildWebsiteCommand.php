@@ -11,7 +11,11 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
+use function array_map;
 use function assert;
+use function date;
 use function in_array;
 use function ini_set;
 use function is_bool;
@@ -20,9 +24,18 @@ use function is_string;
 use function mkdir;
 use function realpath;
 use function sprintf;
+use function time;
 
 class BuildWebsiteCommand extends Command
 {
+    private const WATCH_DIRS = [
+        'config',
+        'data',
+        'lib',
+        'source',
+        'templates',
+    ];
+
     /** @var WebsiteBuilder */
     private $websiteBuilder;
 
@@ -60,6 +73,12 @@ class BuildWebsiteCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Publish the build to GitHub Pages.'
+            )
+            ->addOption(
+                'watch',
+                null,
+                InputOption::VALUE_NONE,
+                'Watch for changes and build the website when changes are detected.'
             );
     }
 
@@ -87,8 +106,60 @@ class BuildWebsiteCommand extends Command
             throw new InvalidArgumentException(sprintf('Could not find build directory'));
         }
 
-        $this->websiteBuilder->build($output, $buildDir, $this->env, $publish);
+        $watch = $input->getOption('watch');
+        assert(is_bool($watch));
+
+        if ($watch) {
+            $this->watch($output);
+        } else {
+            $this->websiteBuilder->build($output, $buildDir, $this->env, $publish);
+        }
 
         return 0;
+    }
+
+    private function watch(OutputInterface $output) : void
+    {
+        $lastWebsiteBuild = time();
+
+        while (true) {
+            $finder = $this->createWatchFinder($lastWebsiteBuild);
+
+            if (! $finder->hasResults()) {
+                continue;
+            }
+
+            $output->writeln('Found changes');
+
+            $this->buildWebsiteSubProcess($output);
+
+            $lastWebsiteBuild = time();
+        }
+    }
+
+    private function createWatchFinder(int $lastWebsiteBuild) : Finder
+    {
+        return (new Finder())
+            ->in($this->getWatchDirs())
+            ->date(sprintf('>= %s', date('Y-m-d H:i:s', $lastWebsiteBuild)));
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getWatchDirs() : array
+    {
+        return array_map(function (string $dir) : string {
+            return $this->rootDir . '/' . $dir;
+        }, self::WATCH_DIRS);
+    }
+
+    private function buildWebsiteSubProcess(OutputInterface $output) : void
+    {
+        (new Process(['bin/console', 'build-website'], $this->rootDir))
+            ->setTty(true)
+            ->mustRun(static function ($type, $buffer) use ($output) : void {
+                $output->write($buffer);
+            });
     }
 }

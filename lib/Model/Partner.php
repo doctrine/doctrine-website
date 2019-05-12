@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
-use Doctrine\SkeletonMapper\Hydrator\HydratableInterface;
 use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
-use Doctrine\SkeletonMapper\ObjectManagerInterface;
-use function array_merge;
 
-final class Partner implements HydratableInterface, LoadMetadataInterface
+final class Partner implements LoadMetadataInterface
 {
     /** @var string */
     private $name;
@@ -39,33 +36,6 @@ final class Partner implements HydratableInterface, LoadMetadataInterface
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['slug']);
-    }
-
-    /**
-     * @param mixed[] $partner
-     */
-    public function hydrate(array $partner, ObjectManagerInterface $objectManager) : void
-    {
-        $this->name          = (string) ($partner['name'] ?? '');
-        $this->slug          = (string) ($partner['slug'] ?? '');
-        $this->url           = (string) ($partner['url'] ?? '');
-        $this->utmParameters = new UtmParameters(
-            array_merge(
-                [
-                    'utm_source'  => 'doctrine',
-                    'utm_medium'   => 'website',
-                    'utm_campaign' => 'partners',
-                ],
-                $partner['utmParameters'] ?? []
-            )
-        );
-        $this->logo          = (string) ($partner['logo'] ?? '');
-        $this->bio           = (string) ($partner['bio'] ?? '');
-        $this->details       = new PartnerDetails(
-            (string) ($partner['details']['label'] ?? ''),
-            $partner['details']['items'] ?? []
-        );
-        $this->featured      = (bool) ($partner['featured'] ?? false);
     }
 
     public function getName() : string

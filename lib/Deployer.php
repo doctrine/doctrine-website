@@ -72,9 +72,10 @@ class Deployer
             $output->write($buffer);
         });
 
-        // build the docs, website and publish
+        // execute migrations, build the website and publish it.
         $deployCommand = sprintf(
-            'cd /data/doctrine-website-%s && ./bin/console sync-repositories && ./bin/console build-website-data && ./bin/console build-docs && ./bin/console build-website /data/doctrine-website-build-%s --env=%s --publish',
+            'cd /data/doctrine-website-%s && ./bin/console migrations:migrate --no-interaction --env=%s && ./bin/console build-all /data/doctrine-website-build-%s --env=%s --publish',
+            $this->env,
             $this->env,
             $this->env,
             $this->env

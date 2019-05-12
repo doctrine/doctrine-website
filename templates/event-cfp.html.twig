@@ -1,0 +1,27 @@
+{% block title %}{{ event.name }}{% endblock %}
+
+{% block meta_description event.description %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('events') }}">Events</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('event', {id:event.id, slug:event.slug}) }}">{{ event.name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Call For Papers</li>
+        </ol>
+    </nav>
+
+    {% if event.cfp.exists %}
+        {% if event.cfp.dates.now %}
+            <p class="lead">Call for Papers started on <strong>{{ event.cfp.dates.start|date('l, F jS Y') }}</strong> and ends on <strong>{{ event.cfp.dates.end|date('l, F jS Y') }}</strong>.</p>
+
+            <iframe src="{{ event.cfp.embeddedGoogleFormUrl }}" width="640" height="930" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        {% elseif event.cfp.dates.upcoming %}
+            <p class="lead">Call for Papers starts on <strong>{{ event.cfp.dates.start|date('l, F jS Y') }}</strong> and ends on <strong>{{ event.cfp.dates.end|date('l, F jS Y') }}</strong>.</p>
+        {% else %}
+            {% include "alert.html.twig" with {alertMessage:event.name ~' call for papers has ended!'} %}
+        {% endif %}
+    {% else %}
+        {% include "alert.html.twig" with {alertMessage:event.name ~' does not have a call for papers!'} %}
+    {% endif %}
+{% endblock %}

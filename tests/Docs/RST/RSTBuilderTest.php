@@ -12,7 +12,6 @@ use Doctrine\Website\Docs\RST\RSTCopier;
 use Doctrine\Website\Docs\RST\RSTFileRepository;
 use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\RST\RSTPostBuildProcessor;
-use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -67,7 +66,7 @@ class RSTBuilderTest extends TestCase
 
     public function testBuildRSTDocs() : void
     {
-        $project = new Project([
+        $project = $this->createProject([
             'slug' => 'project-slug',
             'docsSlug' => 'docs-slug',
         ]);

@@ -15,6 +15,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use function chdir;
 use function file_exists;
 use function file_put_contents;
+use function getcwd;
 use function glob;
 use function in_array;
 use function is_dir;
@@ -108,7 +109,7 @@ class WebsiteBuilder
 
         $this->createProjectVersionAliases($buildDir);
 
-        $this->copyWebsiteBuildData($buildDir);
+        $this->copyWebsiteBuildData($output, $buildDir);
 
         if ($publish) {
             $output->writeln(' - publishing build');
@@ -129,27 +130,38 @@ class WebsiteBuilder
      */
     private function buildWebsite(OutputInterface $output, string $buildDir, bool $isPublishableEnv) : void
     {
+        $output->writeln(sprintf(' - clearing build directory <info>%s</info>', $buildDir));
+
         // cleanup the build directory
         $this->filesystem->remove(glob($buildDir . '/*'));
 
         // Move webpack assets into build directory
         $this->buildWebpackAssets($output, $buildDir, $isPublishableEnv);
 
-        $this->sourceFilesBuilder->buildSourceFiles(
-            $this->sourceFileRepository->getSourceFiles($buildDir)
-        );
+        $output->writeln(' - calculating source files to build');
+
+        $sourceFiles = $this->sourceFileRepository->getSourceFiles($buildDir);
+
+        $output->writeln(sprintf(' - building source files to <info>%s</info>', $buildDir));
+
+        $this->sourceFilesBuilder->buildSourceFiles($sourceFiles);
     }
 
     private function buildWebpackAssets(OutputInterface $output, string $buildDir, bool $isPublishableEnv) : void
     {
-        $output->writeln(sprintf(' - running npm run %s ', $isPublishableEnv ? 'build' : 'dev'));
+        $output->writeln(sprintf(' - running <info>npm run %s</info> ', $isPublishableEnv ? 'build' : 'dev'));
+
         $this->filesystem->remove(glob($this->webpackBuildDir . '/*'));
+
         $process = $this->processFactory->run(sprintf(
             'cd %s && npm run %s',
             $this->rootDir,
             $isPublishableEnv ? 'build' : 'dev'
         ));
-        $output->write($process->getOutput());
+
+        if ($output->isVerbose()) {
+            $output->write($process->getOutput());
+        }
 
         // Copy built assets if this is a publishable build
         if ($isPublishableEnv) {
@@ -181,9 +193,18 @@ class WebsiteBuilder
         }
     }
 
-    private function copyWebsiteBuildData(string $buildDir) : void
+    private function copyWebsiteBuildData(OutputInterface $output, string $buildDir) : void
     {
-        $this->filesystem->mirror($this->cacheDir . '/data', $buildDir . '/website-data');
+        $from = $this->cacheDir . '/data';
+        $to   = $buildDir . '/website-data';
+
+        $output->writeln(sprintf(
+            ' - copying website build data from <info>%s</info> to <info>%s</info>.',
+            $from,
+            $to
+        ));
+
+        $this->filesystem->mirror($from, $to);
     }
 
     private function createDocsProjectVersionAlias(
@@ -207,16 +228,22 @@ class WebsiteBuilder
             return;
         }
 
+        $cwd = getcwd();
+
         chdir($dir);
 
         if (file_exists($alias)) {
             unlink($alias);
         }
 
-        if (! file_exists($version->getSlug())) {
+        if (file_exists($version->getSlug())) {
+            symlink($version->getSlug(), $alias);
+        }
+
+        if ($cwd === false) {
             return;
         }
 
-        symlink($version->getSlug(), $alias);
+        chdir($cwd);
     }
 }

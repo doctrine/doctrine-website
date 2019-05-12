@@ -11,7 +11,6 @@ use Doctrine\RST\Configuration;
 use Doctrine\RST\Environment;
 use Doctrine\RST\Kernel;
 use Doctrine\Website\Docs\SearchIndexer;
-use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -66,7 +65,7 @@ class SearchIndexerTest extends TestCase
 
     public function testBuildSearchIndexes() : void
     {
-        $project = new Project([
+        $project = $this->createProject([
             'shortName' => 'ORM',
             'docsSlug' => 'doctrine-orm',
             'slug' => 'orm',

@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Doctrine\Website\Model;
 
 use DateTimeImmutable;
-use Doctrine\SkeletonMapper\Hydrator\HydratableInterface;
 use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
-use Doctrine\SkeletonMapper\ObjectManagerInterface;
 
-class SitemapPage implements HydratableInterface, LoadMetadataInterface
+class SitemapPage implements LoadMetadataInterface
 {
     /** @var string */
     private $url;
@@ -27,15 +25,6 @@ class SitemapPage implements HydratableInterface, LoadMetadataInterface
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['url']);
-    }
-
-    /**
-     * @param mixed[] $sitemapPage
-     */
-    public function hydrate(array $sitemapPage, ObjectManagerInterface $objectManager) : void
-    {
-        $this->url  = (string) ($sitemapPage['url'] ?? '');
-        $this->date = $sitemapPage['date'] ?? new DateTimeImmutable();
     }
 
     public function getUrl() : string

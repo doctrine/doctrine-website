@@ -6,17 +6,17 @@ namespace Doctrine\Website\DataSources;
 
 use Doctrine\SkeletonMapper\DataSource\DataSource;
 
-class TeamMembers implements DataSource
+final class ArrayDataSource implements DataSource
 {
     /** @var mixed[] */
-    private $teamMembers;
+    private $sourceRows;
 
     /**
-     * @param mixed[] $teamMembers
+     * @param mixed[] $sourceRows
      */
-    public function __construct(array $teamMembers)
+    public function __construct(array $sourceRows)
     {
-        $this->teamMembers = $teamMembers;
+        $this->sourceRows = $sourceRows;
     }
 
     /**
@@ -24,6 +24,6 @@ class TeamMembers implements DataSource
      */
     public function getSourceRows() : array
     {
-        return $this->teamMembers;
+        return $this->sourceRows;
     }
 }

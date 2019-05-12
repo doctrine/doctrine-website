@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Cache;
 
 use Doctrine\Website\Cache\CacheClearer;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 class CacheClearerTest extends TestCase

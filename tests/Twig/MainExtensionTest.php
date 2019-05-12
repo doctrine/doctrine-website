@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Twig;
 
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
-use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use Doctrine\Website\Twig\MainExtension;
@@ -39,7 +38,8 @@ class MainExtensionTest extends TestCase
             $this->parsedown,
             $this->assetIntegrityGenerator,
             $this->sourceDir,
-            $this->webpackBuildDir
+            $this->webpackBuildDir,
+            'stripe-publishable-key'
         );
     }
 
@@ -49,13 +49,13 @@ class MainExtensionTest extends TestCase
 
         self::assertSame('Search', $placeholder);
 
-        $project = new Project(['shortName' => 'ORM']);
+        $project = $this->createProject(['shortName' => 'ORM']);
 
         $placeholder = $this->mainExtension->getSearchBoxPlaceholder($project);
 
         self::assertSame('Search ORM', $placeholder);
 
-        $project = new Project([
+        $project = $this->createProject([
             'shortName' => 'ORM',
             'versions' => [
                 [

@@ -6,8 +6,8 @@ namespace Doctrine\Website\Tests\Git;
 
 use Doctrine\Website\Git\TagReader;
 use Doctrine\Website\ProcessFactory;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
 
 class TagReaderTest extends TestCase

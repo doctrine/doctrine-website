@@ -1,6 +1,9 @@
 imports:
     - { resource: config.yml }
 
+parameters:
+    doctrine.website.mysql.password: 'VdtLtifRh4gt37T'
+
 services:
     Doctrine\Website\Github\GithubProjectContributors:
         alias: Doctrine\Website\Github\TestGithubProjectContributors
