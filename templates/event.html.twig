@@ -76,12 +76,18 @@
         {% endif %}
     </div>
 
-    {% if event.conference %}
-        <h1>Location</h1>
+    <h2>Location</h2>
 
+    {% if event.conference %}
         <p class="lead">This event is hosted at <strong>{{ event.location.name }}</strong> which is located at <a href="https://www.google.com/maps?q={{ event.location.address.string }}" target="_blank" rel="noopener noreferrer">{{ event.location.address.string }}</a>.</p>
 
         <div class="mapouter mb-4"><div class="gmap_canvas"><iframe width="400" height="300" id="gmap_canvas" src="https://www.google.com/maps?q={{ event.location.address.string }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.crocothemes.net"></a></div><style>.mapouter{position:relative;text-align:right;height:300px;width:400px;}.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:400px;}</style></div>
+    {% else %}
+        {% if event.free %}
+            <p class="lead">This event is a <strong>FREE</strong> online webinar hosted with Zoom. Anyone can join this webinar. Use the "Join Event" button above to register for and join the event when it starts.</p>
+        {% else %}
+            <p class="lead">This event is an online webinar hosted with Zoom. After purchasing your ticket, you will be e-mailed a link where you can register for and join the event when it starts.</p>
+        {% endif %}
     {% endif %}
 
     {% if event.sponsors|length %}
