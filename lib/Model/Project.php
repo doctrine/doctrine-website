@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Doctrine\Website\Model;
 
 use Closure;
-use Doctrine\SkeletonMapper\Hydrator\HydratableInterface;
 use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
-use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use InvalidArgumentException;
 use function array_filter;
 use function array_values;
 use function sprintf;
 
-class Project implements HydratableInterface, LoadMetadataInterface
+class Project implements LoadMetadataInterface
 {
     /** @var ProjectIntegrationType|null */
     private $projectIntegrationType;
@@ -70,73 +68,9 @@ class Project implements HydratableInterface, LoadMetadataInterface
     /** @var ProjectVersion[] */
     private $versions = [];
 
-    /**
-     * @param mixed[] $project
-     */
-    public function __construct(array $project)
-    {
-        $this->doHydrate($project);
-    }
-
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['slug']);
-    }
-
-    /**
-     * @param mixed[] $project
-     */
-    public function hydrate(array $project, ObjectManagerInterface $objectManager) : void
-    {
-        $this->doHydrate($project);
-    }
-
-    /**
-     * @param mixed[] $project
-     */
-    public function doHydrate(array $project) : void
-    {
-        $this->active              = (bool) ($project['active'] ?? true);
-        $this->archived            = (bool) ($project['archived'] ?? false);
-        $this->name                = (string) ($project['name'] ?? '');
-        $this->shortName           = (string) ($project['shortName'] ?? $this->name);
-        $this->slug                = (string) ($project['slug'] ?? '');
-        $this->docsSlug            = (string) ($project['docsSlug'] ?? $this->slug);
-        $this->composerPackageName = (string) ($project['composerPackageName'] ?? '');
-        $this->repositoryName      = (string) ($project['repositoryName'] ?? '');
-        $this->isIntegration       = (bool) ($project['integration'] ?? false);
-        $this->integrationFor      = (string) ($project['integrationFor'] ?? '');
-        $this->docsRepositoryName  = (string) ($project['docsRepositoryName'] ?? $this->repositoryName);
-        $this->docsPath            = (string) ($project['docsPath'] ?? '/docs');
-        $this->codePath            = (string) ($project['codePath'] ?? '/lib');
-        $this->description         = (string) ($project['description'] ?? '');
-        $this->keywords            = $project['keywords'] ?? [];
-
-        if (! isset($project['versions'])) {
-            return;
-        }
-
-        foreach ($project['versions'] as $version) {
-            $this->versions[] = $version instanceof ProjectVersion
-                ? $version
-                : new ProjectVersion($version);
-        }
-
-        if ($this->isIntegration) {
-            $this->projectIntegrationType = new ProjectIntegrationType($project['integrationType']);
-        }
-
-        $this->projectStats = new ProjectStats(
-            (int) ($project['packagistData']['package']['github_stars'] ?? 0),
-            (int) ($project['packagistData']['package']['github_watchers'] ?? 0),
-            (int) ($project['packagistData']['package']['github_forks'] ?? 0),
-            (int) ($project['packagistData']['package']['github_open_issues'] ?? 0),
-            (int) ($project['packagistData']['package']['dependents'] ?? 0),
-            (int) ($project['packagistData']['package']['suggesters'] ?? 0),
-            (int) ($project['packagistData']['package']['downloads']['total'] ?? 0),
-            (int) ($project['packagistData']['package']['downloads']['monthly'] ?? 0),
-            (int) ($project['packagistData']['package']['downloads']['daily'] ?? 0)
-        );
     }
 
     public function getProjectIntegrationType() : ?ProjectIntegrationType

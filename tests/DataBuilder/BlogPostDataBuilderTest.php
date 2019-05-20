@@ -10,8 +10,8 @@ use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileParameters;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\DataBuilder\BlogPostDataBuilder;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use function usort;
 
 class BlogPostDataBuilderTest extends TestCase

@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Requests;
 
-use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use Doctrine\StaticWebsiteGenerator\Request\ArrayRequestCollection;
-use Doctrine\Website\Model\Contributor;
 use Doctrine\Website\Repositories\ContributorRepository;
 use Doctrine\Website\Requests\ContributorRequests;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class ContributorRequestsTest extends TestCase
 {
@@ -22,13 +20,9 @@ class ContributorRequestsTest extends TestCase
 
     public function testGetContributors() : void
     {
-        $objectManager = $this->createMock(ObjectManagerInterface::class);
+        $contributor1 = $this->createContributor(['github' => 'github1']);
 
-        $contributor1 = new Contributor();
-        $contributor1->hydrate(['github' => 'github1'], $objectManager);
-
-        $contributor2 = new Contributor();
-        $contributor2->hydrate(['github' => 'github2'], $objectManager);
+        $contributor2 = $this->createContributor(['github' => 'github2']);
 
         $contributors = [$contributor1, $contributor2];
 

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\DataSources;
 
-use Doctrine\Website\DataSources\DoctrineUsers;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\DataSources\ArrayDataSource;
+use Doctrine\Website\Tests\TestCase;
 
-class DoctrineUsersTest extends TestCase
+class ArrayDataSourceTest extends TestCase
 {
     public function testGetSourceRows() : void
     {
@@ -22,8 +22,8 @@ class DoctrineUsersTest extends TestCase
             ],
         ];
 
-        $doctrineUsers = new DoctrineUsers($rows);
+        $dataSource = new ArrayDataSource($rows);
 
-        self::assertEquals($rows, $doctrineUsers->getSourceRows());
+        self::assertEquals($rows, $dataSource->getSourceRows());
     }
 }

@@ -20,6 +20,12 @@ if ($('#sidebar').length > 0) {
     });
 }
 
+if (typeof window.event === 'object') {
+    import(/* webpackChunkName: "event" */ './event').then(module => {
+        module.default();
+    });
+}
+
 window.googleTranslateElementInit = () => {
     $('#google_translate_element').html('');
 
@@ -33,4 +39,5 @@ window.googleTranslateElementInit = () => {
         googleAnalyticsEvent('Translate', 'click', language);
     });
 };
+
 $.getScript('https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');

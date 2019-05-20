@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
-use Doctrine\SkeletonMapper\Hydrator\HydratableInterface;
 use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
-use Doctrine\SkeletonMapper\ObjectManagerInterface;
 
-class ProjectContributor implements HydratableInterface, LoadMetadataInterface, CommitterStats
+class ProjectContributor implements LoadMetadataInterface, CommitterStats
 {
     /** @var TeamMember|null */
     private $teamMember;
@@ -38,21 +36,6 @@ class ProjectContributor implements HydratableInterface, LoadMetadataInterface, 
     public static function loadMetadata(ClassMetadataInterface $metadata) : void
     {
         $metadata->setIdentifier(['projectSlug', 'github']);
-    }
-
-    /**
-     * @param mixed[] $projectContributor
-     */
-    public function hydrate(array $projectContributor, ObjectManagerInterface $objectManager) : void
-    {
-        $this->teamMember   = $projectContributor['teamMember'] ?? null;
-        $this->projectSlug  = (string) ($projectContributor['projectSlug'] ?? '');
-        $this->project      = $projectContributor['project'] ?? new Project([]);
-        $this->github       = (string) ($projectContributor['github'] ?? '');
-        $this->avatarUrl    = (string) ($projectContributor['avatarUrl'] ?? '');
-        $this->numCommits   = (int) ($projectContributor['numCommits'] ?? 0);
-        $this->numAdditions = (int) ($projectContributor['numAdditions'] ?? 0);
-        $this->numDeletions = (int) ($projectContributor['numDeletions'] ?? 0);
     }
 
     public function getTeamMember() : ?TeamMember

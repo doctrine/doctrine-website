@@ -464,6 +464,10 @@ div.jsactive pre {
   height: 14px;
 }
 
+.modal-backdrop.in {
+  opacity: 0.7;
+}
+
 @media (max-width: 900px) {
   .sidebar {
     display: none;

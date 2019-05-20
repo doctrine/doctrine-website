@@ -36,12 +36,21 @@ class MainExtension extends Twig_Extension
     /** @var string */
     private $webpackBuildDir;
 
-    public function __construct(Parsedown $parsedown, AssetIntegrityGenerator $assetIntegrityGenerator, string $sourceDir, string $webpackBuildDir)
-    {
+    /** @var string */
+    private $stripePublishableKey;
+
+    public function __construct(
+        Parsedown $parsedown,
+        AssetIntegrityGenerator $assetIntegrityGenerator,
+        string $sourceDir,
+        string $webpackBuildDir,
+        string $stripePublishableKey
+    ) {
         $this->parsedown               = $parsedown;
         $this->assetIntegrityGenerator = $assetIntegrityGenerator;
         $this->sourceDir               = $sourceDir;
         $this->webpackBuildDir         = $webpackBuildDir;
+        $this->stripePublishableKey    = $stripePublishableKey;
     }
 
     /**
@@ -55,6 +64,7 @@ class MainExtension extends Twig_Extension
             new Twig_SimpleFunction('get_webpack_asset_url', [$this, 'getWebpackAssetUrl']),
             new Twig_SimpleFunction('get_asset_integrity', [$this->assetIntegrityGenerator, 'getAssetIntegrity']),
             new Twig_SimpleFunction('get_webpack_asset_integrity', [$this->assetIntegrityGenerator, 'getWebpackAssetIntegrity']),
+            new Twig_SimpleFunction('get_stripe_publishable_key', [$this, 'getStripePublishableKey']),
         ];
     }
 
@@ -106,6 +116,11 @@ class MainExtension extends Twig_Extension
         }
 
         return $string;
+    }
+
+    public function getStripePublishableKey() : string
+    {
+        return $this->stripePublishableKey;
     }
 
     private function getAssetCacheBuster(string $path, string $rootPath) : string

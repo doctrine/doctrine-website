@@ -9,8 +9,8 @@ use Doctrine\Website\Git\Tag;
 use Doctrine\Website\Git\TagBranchGuesser;
 use Doctrine\Website\Git\TagReader;
 use Doctrine\Website\Projects\ProjectVersionsReader;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class ProjectVersionsReaderTest extends TestCase
 {

@@ -1,6 +1,9 @@
 parameters:
     doctrine.website.algolia.app_id: 'YVYTFT9XMW'
     doctrine.website.algolia.admin_api_key: '1234'
+    doctrine.website.stripe.publishable_key: 'pk_test_V7rmF8ac3GbakeSJYvp4u0a8003RPO66vC'
+    doctrine.website.stripe.secret_key: ''
+    doctrine.website.send_grid.api_key: ''
 
     doctrine.website.webpack_build_dir: '%doctrine.website.root_dir%/.webpack-build'
     doctrine.website.projects_dir: '%doctrine.website.root_dir%/projects'
@@ -10,7 +13,8 @@ parameters:
 
     doctrine.website.title: Doctrine
     doctrine.website.subtitle: PHP Database Tools
-    doctrine.website.url: http://lcl.doctrine-project.org
+    doctrine.website.url: https://lcl.doctrine-project.org
+    doctrine.website.assets_url: https://www.doctrine-project.org
     doctrine.website.keywords: [php, mysql, orm, dbal, database, mongodb, odm, annotations, migrations, cache, couchdb]
     doctrine.website.description: >
         The Doctrine Project is the home to several PHP libraries primarily

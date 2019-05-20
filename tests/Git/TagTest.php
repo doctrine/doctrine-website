@@ -6,7 +6,7 @@ namespace Doctrine\Website\Tests\Git;
 
 use DateTimeImmutable;
 use Doctrine\Website\Git\Tag;
-use PHPUnit\Framework\TestCase;
+use Doctrine\Website\Tests\TestCase;
 
 class TagTest extends TestCase
 {

@@ -23,6 +23,32 @@ parameters:
             defaults:
                 title: RST Example
 
+        events:
+            path: /events.html
+            controller: Doctrine\Website\Controllers\EventsController::index
+            defaults:
+                menuSlug: events
+
+        event_suggest:
+            path: /events/suggest.html
+            controller: Doctrine\Website\Controllers\EventsController::suggest
+            defaults:
+                menuSlug: events
+
+        event:
+            path: /events/{id}/{slug}.html
+            controller: Doctrine\Website\Controllers\EventsController::view
+            provider: Doctrine\Website\Requests\EventRequests::getEvents
+            defaults:
+                menuSlug: events
+
+        event_cfp:
+            path: /events/{id}/{slug}/cfp.html
+            controller: Doctrine\Website\Controllers\EventsController::cfp
+            provider: Doctrine\Website\Requests\EventRequests::getEvents
+            defaults:
+                menuSlug: events
+
         styleguide:
             path: /styleguide.html
             defaults:
@@ -46,6 +72,8 @@ parameters:
             path: /partners/{slug}.html
             controller: Doctrine\Website\Controllers\PartnersController::view
             provider: Doctrine\Website\Requests\PartnerRequests::getPartners
+            defaults:
+                menuSlug: partners
 
         consulting:
             path: /consulting.html

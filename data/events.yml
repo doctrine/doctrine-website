@@ -1,0 +1,99 @@
+parameters:
+    # New events go at the top and get an incremented ID.
+    doctrine.website.events:
+        -
+            id: 3
+            sku:
+                test: 'sku_F4LUc9SGRiCBUK'
+                prod: 'sku_F4M3RdEwiscrtD'
+            name: 'Getting started with Doctrine MongoDB ODM'
+            slug: 'getting-started-with-doctrine-mongodb-odm'
+            price: 5.00
+            joinUrl: 'https://zoom.us/webinar/register/9215578873469/WN_fwSHnCzCQ7WO_8Tao5rr7Q'
+            startDate: '2019-07-16'
+            endDate: '2019-07-16'
+            registrationStartDate: '2019-05-01'
+            registrationEndDate: '2019-07-16'
+            sponsors: []
+            speakers:
+                -
+                    name: 'alcaeus'
+                    topic: 'Getting started with Doctrine MongoDB ODM'
+                    topicSlug: 'getting-started-with-doctrine-mongodb-odm'
+                    description: >
+                        You've used Doctrine ORM but never used MongoDB? With MongoDB ODM you can use familiar
+                        tools with a different kind of database. This webinar will focus on getting MongoDB
+                        set up and designing our first documents for MongoDB. We'll cover differences in schema
+                        design between relational databases and MongoDB and also use more advanced features like
+                        aggregation pipelines and document validation.
+
+            schedule:
+                -
+                    topicSlug: 'getting-started-with-doctrine-mongodb-odm'
+                    startDate: '2019-07-16 11:00'
+                    endDate: '2019-07-16 12:00'
+
+        -
+            id: 2
+            sku:
+                test: 'sku_F4IaFRrVzZ4m4G'
+                prod: 'sku_F4M21kt1HC36by'
+            name: 'Doctrine for Beginners'
+            slug: 'doctrine-for-beginners'
+            price: 5.00
+            joinUrl: 'https://zoom.us/webinar/register/1315578887109/WN_4yo28dTASHyTqibhpuvo-Q'
+            startDate: '2019-06-25'
+            endDate: '2019-06-25'
+            registrationStartDate: '2019-05-01'
+            registrationEndDate: '2019-06-24'
+            sponsors: []
+            speakers:
+                -
+                    name: 'jwage'
+                    topic: 'Doctrine for Beginners'
+                    topicSlug: 'doctrine-for-beginners'
+                    description: >
+                        Come to this talk prepared to learn about the Doctrine PHP open source project.
+                        The Doctrine project has been around for over a decade and has evolved from database
+                        abstraction software that dates back to the PEAR days. The packages provided by the
+                        Doctrine project have been downloaded almost a billion times from packagist. In
+                        this talk we will take you through how to get started with Doctrine and how to take
+                        advantage of some of the more advanced features.
+
+            schedule:
+                -
+                    topicSlug: 'doctrine-for-beginners'
+                    startDate: '2019-06-25 11:00'
+                    endDate: '2019-06-25 12:00'
+
+        -
+            id: 1
+            sku:
+                test: 'sku_F4LV13ZF4c5aUn'
+                prod: 'sku_F4M2PSGAcfOGyO'
+            name: 'PHP Internals for the Inquisitive Developer'
+            slug: 'php-internals-for-the-inquisitive-developer'
+            price: 5.00
+            joinUrl: 'https://zoom.us/webinar/register/8515577702351/WN_OBdv-AOHRWyNeIC2FXZ-IQ'
+            startDate: '2019-09-10'
+            endDate: '2019-09-10'
+            registrationStartDate: '2019-05-01'
+            registrationEndDate: '2019-09-10'
+            sponsors: []
+            speakers:
+                -
+                    name: 'jmikola'
+                    topic: 'PHP Internals for the Inquisitive Developer'
+                    topicSlug: 'php-internals-for-the-inquisitive-developer'
+                    description: >
+                        Even if you have no intention of becoming a PHP core developer or creating a PECL
+                        extension, cursory knowledge of PHP's inner workings can prove useful. This session
+                        will examine the lifecycle of a PHP request and equip you with essential knowledge
+                        and tools that can be used to diagnose the occasional segfault or language bug,
+                        decipher what a poorly documented SPL class actually does, and confidently answer why
+                        a PHP or C implementation is most warranted for a given problem.
+            schedule:
+                -
+                    topicSlug: 'php-internals-for-the-inquisitive-developer'
+                    startDate: '2019-09-10 11:00'
+                    endDate: '2019-09-10 12:00'

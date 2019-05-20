@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Requests;
 
 use Doctrine\StaticWebsiteGenerator\Request\ArrayRequestCollection;
-use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Requests\ProjectRequests;
+use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 class ProjectRequestsTest extends TestCase
 {
@@ -21,8 +20,8 @@ class ProjectRequestsTest extends TestCase
 
     public function testGetProjects() : void
     {
-        $project1 = new Project(['slug' => 'project1']);
-        $project2 = new Project(['slug' => 'project2']);
+        $project1 = $this->createProject(['slug' => 'project1']);
+        $project2 = $this->createProject(['slug' => 'project2']);
 
         $projects = [$project1, $project2];
 

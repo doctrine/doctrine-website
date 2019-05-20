@@ -3,6 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="doctrine.website.mysql.user">root</parameter>
+        <parameter key="doctrine.website.mysql.password"></parameter>
+    </parameters>
+
     <services>
         <defaults autowire="true" autoconfigure="true" public="false">
             <bind key="$rootDir">%doctrine.website.root_dir%</bind>
@@ -13,13 +18,10 @@
             <bind key="$sourceDir">%doctrine.website.source_dir%</bind>
             <bind key="$projectsData">%doctrine.website.projects_data%</bind>
             <bind key="$webpackBuildDir">%doctrine.website.webpack_build_dir%</bind>
-            <bind key="$teamMembers">%doctrine.website.team_members%</bind>
             <bind key="$templatesDir">%doctrine.website.templates_dir%</bind>
-            <bind key="$doctrineUsers">%doctrine.website.doctrine_users%</bind>
-            <bind key="$sponsors">%doctrine.website.sponsors%</bind>
-            <bind key="$partners">%doctrine.website.partners%</bind>
             <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
             <bind key="$routes">%doctrine.website.routes%</bind>
+            <bind key="$stripePublishableKey">%doctrine.website.stripe.publishable_key%</bind>
         </defaults>
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />
@@ -47,6 +49,20 @@
         </service>
 
         <service id="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" autowire="false">
+            <argument>%doctrine.website.templates_dir%</argument>
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Twig\MainExtension" />
+                <argument type="service" id="Doctrine\Website\Twig\ProjectExtension" />
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\Twig\RoutingExtension" />
+            </argument>
+        </service>
+
+        <service id="Pelago\Emogrifier">
+            <call method="disableStyleBlocksParsing" />
+        </service>
+
+        <service id="Doctrine\Website\Email\RenderEmail" autowire="false">
+            <argument type="service" id="Pelago\Emogrifier" />
             <argument>%doctrine.website.templates_dir%</argument>
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Twig\MainExtension" />
@@ -121,6 +137,9 @@
         <service id="Doctrine\Common\Cache\FilesystemCache" autowire="false">
             <argument>%doctrine.website.cache_dir%/fscache</argument>
         </service>
+        <service id="SendGrid" class="SendGrid" autowire="true">
+            <argument>%doctrine.website.send_grid.api_key%</argument>
+        </service>
 
         <service id="Doctrine\StaticWebsiteGenerator\Controller\ControllerProvider">
             <argument type="collection">
@@ -128,6 +147,7 @@
                 <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
                 <argument type="service" id="Doctrine\Website\Controllers\ConsultingController" />
                 <argument type="service" id="Doctrine\Website\Controllers\DocumentationController" />
+                <argument type="service" id="Doctrine\Website\Controllers\EventsController" />
                 <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
                 <argument type="service" id="Doctrine\Website\Controllers\PartnersController" />
                 <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
@@ -140,6 +160,7 @@
         <service id="Doctrine\StaticWebsiteGenerator\Request\RequestCollectionProvider">
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\EventRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\PartnerRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectVersionRequests" />
@@ -151,7 +172,7 @@
             <argument>%doctrine.website.algolia.admin_api_key%</argument>
         </service>
 
-        <service id="Doctrine\StaticWebsiteGenerator\Site">
+        <service id="Doctrine\Website\Site">
             <argument>%doctrine.website.title%</argument>
             <argument>%doctrine.website.subtitle%</argument>
             <argument>%doctrine.website.url%</argument>
@@ -159,7 +180,10 @@
             <argument>%doctrine.website.description%</argument>
             <argument>%doctrine.website.env%</argument>
             <argument>%doctrine.website.google_analytics_tracking_id%</argument>
+            <argument>%doctrine.website.assets_url%</argument>
         </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\Site" alias="Doctrine\Website\Site" />
 
         <service id="Doctrine\RST\Kernel">
             <argument type="service" id="Doctrine\RST\Configuration" />
@@ -208,7 +232,7 @@
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\BlogPostHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
@@ -216,7 +240,7 @@
             <argument>Doctrine\Website\Model\BlogPost</argument>
         </service>
 
-        <service id="Doctrine\Website\Repositories\ContributorRepository" autowire="false">
+        <service id="Doctrine\Website\Repositories\ContributorRepository" autowire="false" public="true">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
                 <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
@@ -227,7 +251,7 @@
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\ContributorHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
@@ -240,13 +264,17 @@
             <argument type="service">
                 <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\DataSources\DoctrineUsers" />
+                    <argument type="service">
+                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
+                            <argument>%doctrine.website.doctrine_users%</argument>
+                        </service>
+                    </argument>
                     <argument>Doctrine\Website\Model\DoctrineUser</argument>
                 </service>
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\DoctrineUserHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
@@ -259,13 +287,17 @@
             <argument type="service">
                 <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\DataSources\Sponsors" />
+                    <argument type="service">
+                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
+                            <argument>%doctrine.website.sponsors%</argument>
+                        </service>
+                    </argument>
                     <argument>Doctrine\Website\Model\Sponsor</argument>
                 </service>
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\SponsorHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
@@ -278,13 +310,17 @@
             <argument type="service">
                 <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\DataSources\Partners" />
+                    <argument type="service">
+                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
+                            <argument>%doctrine.website.partners%</argument>
+                        </service>
+                    </argument>
                     <argument>Doctrine\Website\Model\Partner</argument>
                 </service>
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\PartnerHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
@@ -303,7 +339,7 @@
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\ProjectHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
@@ -322,7 +358,7 @@
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\ProjectContributorHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
@@ -341,7 +377,7 @@
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\SitemapPageHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
@@ -354,18 +390,47 @@
             <argument type="service">
                 <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\DataSources\TeamMembers" />
+                    <argument type="service">
+                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
+                            <argument>%doctrine.website.team_members%</argument>
+                        </service>
+                    </argument>
                     <argument>Doctrine\Website\Model\TeamMember</argument>
                 </service>
             </argument>
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
             <argument type="service">
-                <service class="Doctrine\SkeletonMapper\Hydrator\BasicObjectHydrator">
+                <service class="Doctrine\Website\Hydrators\TeamMemberHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
                 </service>
             </argument>
             <argument type="service" id="Doctrine\Common\EventManager" />
             <argument>Doctrine\Website\Model\TeamMember</argument>
+        </service>
+
+        <service id="Doctrine\Website\Repositories\EventRepository" autowire="false" public="true">
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+            <argument type="service">
+                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                    <argument type="service">
+                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
+                            <argument>%doctrine.website.events%</argument>
+                        </service>
+                    </argument>
+                    <argument>Doctrine\Website\Model\Event</argument>
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
+            <argument type="service">
+                <service class="Doctrine\Website\Hydrators\EventHydrator">
+                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
+                    <argument type="service" id="Doctrine\Website\Model\Entity\EventParticipantRepository" />
+                    <argument>%doctrine.website.env%</argument>
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\Common\EventManager" />
+            <argument>Doctrine\Website\Model\Event</argument>
         </service>
 
         <service id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" autowire="false">
@@ -410,6 +475,11 @@
             </call>
 
             <call method="addObjectRepository">
+                <argument>Doctrine\Website\Model\Event</argument>
+                <argument type="service" id="Doctrine\Website\Repositories\EventRepository" />
+            </call>
+
+            <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\SitemapPage</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\SitemapPageRepository" />
             </call>
@@ -421,6 +491,51 @@
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectIdentityMap" />
             <argument type="service" id="Doctrine\SkeletonMapper\Mapping\ClassMetadataFactory" />
             <argument type="service" id="Doctrine\Common\EventManager" />
+        </service>
+
+        <service id="Doctrine\ORM\Configuration">
+            <factory class="Doctrine\ORM\Tools\Setup" method="createAnnotationMetadataConfiguration" />
+            <argument type="collection">
+                <argument>%doctrine.website.root_dir%/lib/Model/Entity</argument>
+            </argument>
+            <argument>%doctrine.website.debug%</argument>
+        </service>
+
+        <service id="Doctrine\ORM\EntityManager">
+            <factory class="Doctrine\ORM\EntityManager" method="create" />
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <argument type="service" id="Doctrine\ORM\Configuration" />
+        </service>
+
+        <service id="Doctrine\Website\Model\Entity\EventParticipantRepository">
+            <factory service="Doctrine\ORM\EntityManager" method="getRepository" />
+            <argument>Doctrine\Website\Model\Entity\EventParticipant</argument>
+        </service>
+
+        <service id="Doctrine\DBAL\Connection">
+            <factory class="Doctrine\DBAL\DriverManager" method="getConnection" />
+            <argument type="collection">
+                <argument key="dbname">doctrine_website_%doctrine.website.env%</argument>
+                <argument key="user">%doctrine.website.mysql.user%</argument>
+                <argument key="password">%doctrine.website.mysql.password%</argument>
+                <argument key="host">localhost</argument>
+                <argument key="driver">pdo_mysql</argument>
+            </argument>
+        </service>
+
+        <service id="Doctrine\Migrations\Configuration\Configuration">
+            <call method="setName">
+                <argument>Doctrine Website Migrations</argument>
+            </call>
+            <call method="setMigrationsNamespace">
+                <argument>Doctrine\Website\Migrations</argument>
+            </call>
+            <call method="setAllOrNothing">
+                <argument>true</argument>
+            </call>
+            <call method="setMigrationsDirectory">
+                <argument>%doctrine.website.root_dir%/lib/Migrations</argument>
+            </call>
         </service>
     </services>
 </container>
