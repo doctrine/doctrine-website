@@ -31,12 +31,7 @@ final class EventTest extends TestCase
         ])->isConference());
     }
 
-    public function testGetSkuProd() : void
-    {
-        self::assertSame('prod_123', $this->createTestEvent(['env' => 'prod'])->getSku());
-    }
-
-    public function testGetSkuTest() : void
+    public function testGetSku() : void
     {
         self::assertSame('test_123', $this->createTestEvent()->getSku());
     }
