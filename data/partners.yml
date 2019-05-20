@@ -72,3 +72,27 @@ parameters:
                     - Error & Exception Tracking
                     - Customizable Alerts
             featured: false
+
+        -
+            name: 'Beachcasts'
+            slug: 'beachcasts'
+            url: 'https://beachcasts.com/'
+            logo: '/images/partners/beachcasts.svg'
+            bio: >
+                Beachcasts Programming Tutorials by Adam Culp creates freely available videos on
+                Twitch and YouTube helping programmers with web application development, through
+                new videos every week.
+            details:
+                label: Featuring
+                items:
+                    - Free Tutorial Videos
+                    - Hands-on Tutorials
+                    - PHP Community News
+                    - Advanced PHP Topics
+                    - Application Building
+                    - Doctrine ORM Usage
+                    - REST API How-to
+                    - Hypermedia Education
+                    - Code Quality Videos
+                    - Docker Best Practices
+            featured: false
