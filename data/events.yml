@@ -42,10 +42,10 @@ parameters:
             slug: 'doctrine-for-beginners'
             price: 5.00
             joinUrl: 'https://zoom.us/webinar/register/1315578887109/WN_4yo28dTASHyTqibhpuvo-Q'
-            startDate: '2019-05-28'
-            endDate: '2019-05-28'
+            startDate: '2019-06-25'
+            endDate: '2019-06-25'
             registrationStartDate: '2019-05-01'
-            registrationEndDate: '2019-05-27'
+            registrationEndDate: '2019-06-24'
             sponsors: []
             speakers:
                 -
@@ -63,8 +63,8 @@ parameters:
             schedule:
                 -
                     topicSlug: 'doctrine-for-beginners'
-                    startDate: '2019-05-28 11:00'
-                    endDate: '2019-05-28 12:00'
+                    startDate: '2019-06-25 11:00'
+                    endDate: '2019-06-25 12:00'
 
         -
             id: 1
