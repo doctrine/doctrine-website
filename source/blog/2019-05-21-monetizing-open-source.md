@@ -66,6 +66,7 @@ our users understand the tradeoff we've made by choosing to place ads on our web
 
 ## Partners
 
-Finally, we are partnering with commercial entities that use Doctrine to cross promote each other
-and introduce our users to services and offerings that they can benefit from. Thanks to our
-[Partners](/partners.html) for supporting Doctrine.
+Finally, we are partnering with commercial entities and other projects that use Doctrine to cross
+promote each other. Through our partner network we will introduce our users to services and
+offerings that they can benefit from. Thanks to our [Partners](/partners.html) for supporting
+Doctrine.
