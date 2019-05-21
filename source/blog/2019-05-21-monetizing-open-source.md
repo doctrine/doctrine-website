@@ -31,7 +31,7 @@ Depending on the tier, we offer a few different benefits:
 ## Consulting
 
 Under the Doctrine Company, we are providing [Consulting and Training](/consulting.html)
-services to companies that use PHP. The services we offer are not limited to Doctrine either.
+services to companies that use PHP. The services we offer are not limited to Doctrine itself.
 Our team specializes in writing high quality PHP. Whether you are starting a new project or
 modernizing a legacy application, we can help your team level up their skills with tools
 like the following:
