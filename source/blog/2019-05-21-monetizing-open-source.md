@@ -56,6 +56,19 @@ some great topics lined up for the next few months:
 - [Getting started with Doctrine MongoDB ODM on July 16th 2019](/events/3/getting-started-with-doctrine-mongodb-odm.html)
 - [PHP Internals for the Inquisitive Developer on September 10th 2019](/events/1/php-internals-for-the-inquisitive-developer.html)
 
+## Tidelift
+
+[Tidelift](https://tidelift.com) is a managed open source subscription service backed by
+creators and maintainers. Development teams get better maintained open source. Maintainers
+get paid.
+
+We have partnered with Tidelift as a maintainer to guarantee a high level of maintenance for their
+customers. In return, Tidelift pays Doctrine maintainers a percentage of what the customer pays.
+Tidelift is attempting to create a marketplace of open-source maintainers and customers with the
+goal of providing higher levels of confidence for commercial entities when using open-source. This
+can sometimes be one of the biggest challenges for using open-source in the corporate world.
+Tidelift is taking a unique approach to solving this problem and we are excited to be a part of it!
+
 ## Carbon Ads
 
 One of the most valuable assets we have besides software is our website and the traffic we
