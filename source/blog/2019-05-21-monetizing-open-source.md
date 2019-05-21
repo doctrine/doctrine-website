@@ -39,7 +39,7 @@ like the following:
 - [Doctrine DBAL](/projects/dbal.html) - Connect to your favorite RDBMS using Doctrine's database abstraction library.
 - [Doctrine Database Migrations](/projects/migrations.html) - Safely manage your database schema and keep it up to date.
 - [Doctrine ORM](/projects/orm.html) - Represent your domain model cleanly with plain old PHP objects and ensure the integrity of your data.
-- [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) - Keep aesthetic debates out of your code reviews by adopting a coding standard and enforcing it in your build process. We can help integrate Doctrine's own [coding standard](https://github.com/doctrine/coding-standard) into your project or help codify your own.
+- [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) - Keep aesthetic debates out of your code reviews by adopting a coding standard and enforcing it in your build process. We can help integrate Doctrine's own [coding standard](/projects/coding-standard.html) into your project or help codify your own.
 - [Psalm](https://psalm.dev/) / [PHPStan](https://github.com/phpstan/phpstan) - Statically analyze your codebase and find bugs that would otherwise only be found at runtime in production.
 
 If you are interested, take a look at our [Consulting](/consulting.html) page or contact
