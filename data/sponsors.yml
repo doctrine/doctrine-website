@@ -18,5 +18,9 @@ parameters:
             highlighted: true
         -
             name: 'Intracto'
-            url: 'https://www.intracto.com'
+            url: 'https://www.intracto.com/'
+            highlighted: false
+        -
+            name: 'Dan Revel'
+            url: 'https://nopolabs.com/'
             highlighted: false
