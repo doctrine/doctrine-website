@@ -24,3 +24,7 @@ parameters:
             name: 'Dan Revel'
             url: 'https://nopolabs.com/'
             highlighted: false
+        -
+            name: 'SolidInvoice'
+            url: 'https://solidinvoice.co/'
+            highlighted: false
