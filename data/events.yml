@@ -8,7 +8,7 @@ parameters:
                 prod: 'sku_F4M3RdEwiscrtD'
             name: 'Getting started with Doctrine MongoDB ODM'
             slug: 'getting-started-with-doctrine-mongodb-odm'
-            price: 5.00
+            price: 20.00
             joinUrl: 'https://zoom.us/webinar/register/9215578873469/WN_fwSHnCzCQ7WO_8Tao5rr7Q'
             startDate: '2019-07-16'
             endDate: '2019-07-16'
@@ -40,7 +40,7 @@ parameters:
                 prod: 'sku_F4M21kt1HC36by'
             name: 'Doctrine for Beginners'
             slug: 'doctrine-for-beginners'
-            price: 5.00
+            price: 10.00
             joinUrl: 'https://zoom.us/webinar/register/1315578887109/WN_4yo28dTASHyTqibhpuvo-Q'
             startDate: '2019-06-25'
             endDate: '2019-06-25'
@@ -73,7 +73,7 @@ parameters:
                 prod: 'sku_F4M2PSGAcfOGyO'
             name: 'PHP Internals for the Inquisitive Developer'
             slug: 'php-internals-for-the-inquisitive-developer'
-            price: 5.00
+            price: 20.00
             joinUrl: 'https://zoom.us/webinar/register/8515577702351/WN_OBdv-AOHRWyNeIC2FXZ-IQ'
             startDate: '2019-09-10'
             endDate: '2019-09-10'
