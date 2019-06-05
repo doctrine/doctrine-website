@@ -1,17 +1,23 @@
-{% block title %}{{ project.name }} - {{ site.title }} - {{ site.subtitle }}{% endblock %}
+{% block pageTitle %}{{ project.name }}{% endblock %}
 
 {% block meta_description project.description %}
 
 {% block meta_keywords project.keywords|join(',') %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('projects') }}">Projects</a></li>
-            <li class="breadcrumb-item"><a href="{{ path('project', {slug:project.slug}) }}">{{ project.shortName }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ version.name }}</li>
-        </ol>
-    </nav>
+    {% include 'breadcrumbs.html.twig' with {breadcrumbs:[
+        {
+            label: 'Projects',
+            url: url('projects')
+        },
+        {
+            label: project.shortName,
+            url: url('project', {slug:project.slug})
+        },
+        {
+            label: version.name
+        }
+    ]} %}
 
     {% include "project-status-alert.html.twig" with {
         project:project,

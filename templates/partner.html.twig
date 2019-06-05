@@ -1,14 +1,17 @@
-{% block title %}{{ partner.name }}{% endblock %}
+{% block pageTitle %}{{ partner.name }}{% endblock %}
 
 {% block meta_description partner.bio %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('partners') }}">Partners</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ partner.name }}</li>
-        </ol>
-    </nav>
+    {% include 'breadcrumbs.html.twig' with {breadcrumbs:[
+        {
+            label: 'Partners',
+            url: url('partners')
+        },
+        {
+            label: partner.name
+        }
+    ]} %}
 
     <div class="card mb-4 box-shadow">
         <a href="{{ partner.urlWithUtmParameters({utm_medium:'partner-view'}) }}" target="_blank" rel="noopener noreferrer" data-ga-category="partners" data-ga-action="click" data-ga-label="{{ partner.name }}"><img class="card-img-top p-2" height="100" src="{{ partner.logo }}" alt="{{ partner.name }}"></a>

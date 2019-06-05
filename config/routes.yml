@@ -4,7 +4,6 @@ parameters:
             path: /index.html
             controller: Doctrine\Website\Controllers\HomepageController::index
             defaults:
-                title: Home
                 menuSlug: home
 
         atom:
@@ -91,14 +90,14 @@ parameters:
             path: /team/maintainers.html
             controller: Doctrine\Website\Controllers\TeamController::maintainers
             defaults:
-                title: Doctrine Maintainers
+                title: Maintainers
                 menuSlug: team
 
         team_contributors:
             path: /team/contributors.html
             controller: Doctrine\Website\Controllers\TeamController::contributors
             defaults:
-                title: Doctrine Contributors
+                title: Contributors
                 menuSlug: team
 
         team_contributor:
@@ -161,6 +160,15 @@ parameters:
             provider: Doctrine\Website\Requests\ProjectRequests::getProjects
             defaults:
                 menuSlug: projects
+
+        project_docs:
+            path: /projects/{docsSlug}/{language}/{docsVersion}/index.html
+            controller: Doctrine\Website\Controllers\DocumentationController::view
+            defaults:
+                layout: documentation
+                indexed: true
+                menuSlug: projects
+                docsPage: true
 
         project_docs_section:
             path: /projects/{docsSlug}/{language}/{docsVersion}/{section}.html

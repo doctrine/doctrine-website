@@ -1,15 +1,21 @@
-{% block title %}{{ event.name }}{% endblock %}
+{% block pageTitle %}{{ event.name }}{% endblock %}
 
 {% block meta_description event.description %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('events') }}">Events</a></li>
-            <li class="breadcrumb-item"><a href="{{ path('event', {id:event.id, slug:event.slug}) }}">{{ event.name }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Call For Papers</li>
-        </ol>
-    </nav>
+    {% include 'breadcrumbs.html.twig' with {breadcrumbs:[
+        {
+            label: 'Events',
+            url: url('events')
+        },
+        {
+            label: event.name,
+            url: url('event', {id:event.id, slug:event.slug})
+        },
+        {
+            label: 'Call for Papers'
+        }
+    ]} %}
 
     {% if event.cfp.exists %}
         {% if event.cfp.dates.now %}

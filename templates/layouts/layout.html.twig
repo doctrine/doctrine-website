@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{{ page.title }} - {{ site.title }} - {{ site.subtitle }}{% endblock %}</title>
+        <title>
+            {%- block title -%}
+                {%- set pageTitle -%}
+                    {%- block pageTitle page.title ? page.title : '' -%}
+                {%- endset -%}
+
+                {{ (pageTitle ? pageTitle ~ ' - ' : '' ) ~ site.title ~ ': ' ~ site.subtitle }}
+            {%- endblock -%}
+        </title>
 
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -55,8 +63,8 @@
         <meta name="msapplication-square310x310logo" content="{{ site.url }}/images/mstile-310x310.png" />
 
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@doctrineorm" />
-        <meta name="twitter:creator" content="@doctrineorm" />
+        <meta name="twitter:site" content="@doctrineproject" />
+        <meta name="twitter:creator" content="@doctrineproject" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
         <meta property="og:title" content="{{ block('title') }}" />
@@ -96,7 +104,7 @@
             "name": "Doctrine",
             "url": "{{ site.url }}",
             "sameAs": [
-                "https://twitter.com/doctrineorm"
+                "https://twitter.com/doctrineproject"
             ]
         }
         </script>

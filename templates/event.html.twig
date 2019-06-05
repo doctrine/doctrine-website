@@ -1,14 +1,17 @@
-{% block title %}{{ event.name }}{% endblock %}
+{% block pageTitle %}{{ event.name }}{% endblock %}
 
 {% block meta_description event.description %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('events') }}">Events</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ event.name }}</li>
-        </ol>
-    </nav>
+    {% include 'breadcrumbs.html.twig' with {breadcrumbs:[
+        {
+            label: 'Events',
+            url: url('events')
+        },
+        {
+            label: event.name
+        }
+    ]} %}
 
     {% if event.dates.over %}
         {% set alertMessage %}
