@@ -537,5 +537,12 @@
                 <argument>%doctrine.website.root_dir%/lib/Migrations</argument>
             </call>
         </service>
+
+        <service id="Abraham\TwitterOAuth\TwitterOAuth">
+            <argument>%doctrine.website.twitter.consumer_key%</argument>
+            <argument>%doctrine.website.twitter.consumer_secret%</argument>
+            <argument>%doctrine.website.twitter.oauth_token%</argument>
+            <argument>%doctrine.website.twitter.oauth_token_secret%</argument>
+        </service>
     </services>
 </container>
