@@ -1,9 +1,11 @@
 {% extends 'layouts/layout.html.twig' %}
 
 {% if project is defined and project %}
-    {% block title %}{{ page.title }} - {{ project.name }}{% if project.name != project.shortName %} ({{ project.shortName }}){% endif %} - Doctrine{% endblock %}
+    {%- block title -%}
+        {{ page.title }} - {{ site.title }} {{ project.name }}{{ project.name != project.shortName ? ' (' ~ project.shortName ~ ')' : '' }}
+    {%- endblock -%}
 
-    {% block meta_description %}Doctrine {{ project.name }} Documentation: {{ page.title }} {% endblock %}
+    {% block meta_description %}{{ site.title }} {{ project.name }} Documentation: {{ page.title }} {% endblock %}
 
     {% set pageTitleKeywords = page.title|lower|split(' ') %}
 
@@ -51,25 +53,44 @@
                 <div class="row">
                     {# Documentation TOC #}
                     {% if page.docsIndex is defined and page.docsIndex and project is defined %}
-                        <nav class="breadcrumbs d-none d-sm-block d-md-block d-lg-block d-xl-block" aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects.html">Projects</a></li>
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Documentation</li>
-                            </ol>
-                        </nav>
+                        {% include 'breadcrumbs.html.twig' with {breadcrumbs:[
+                            {
+                                label: 'Projects',
+                                url: url('projects')
+                            },
+                            {
+                                label: project.shortName,
+                                url: url('project', {slug:project.slug})
+                            },
+                            {
+                                label: 'Documentation'
+                            }
+                        ]} %}
                     {% endif %}
 
                     {# Documentation Page #}
                     {% if page.docsPage is defined and page.docsPage == true and page.docsIndex == false and project is defined %}
-                        <nav class="breadcrumbs d-none d-sm-block d-md-block d-lg-block d-xl-block" aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects.html">Projects</a></li>
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.shortName }}</a></li>
-                                <li class="breadcrumb-item"><a href="{{ site.url }}/projects/{{ project.docsSlug }}/en/{{ page.docsVersion }}/">Documentation</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
-                            </ol>
-                        </nav>
+                        {% include 'breadcrumbs.html.twig' with {breadcrumbs:[
+                            {
+                                label: 'Projects',
+                                url: url('projects')
+                            },
+                            {
+                                label: project.shortName,
+                                url: url('project', {slug:project.slug})
+                            },
+                            {
+                                label: 'Documentation',
+                                url: url('project_docs', {
+                                    docsSlug: project.docsSlug,
+                                    language: 'en',
+                                    docsVersion: page.docsVersion
+                                })
+                            },
+                            {
+                                label: page.title
+                            }
+                        ]} %}
                     {% endif %}
                 </div>
 

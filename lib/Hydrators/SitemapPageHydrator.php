@@ -23,7 +23,7 @@ final class SitemapPageHydrator extends ModelHydrator
      */
     protected function doHydrate(array $data) : void
     {
-        $this->url  = (string) ($sitemapPage['url'] ?? '');
-        $this->date = $sitemapPage['date'] ?? new DateTimeImmutable();
+        $this->url  = (string) ($data['url'] ?? '');
+        $this->date = $data['date'] ?? new DateTimeImmutable();
     }
 }

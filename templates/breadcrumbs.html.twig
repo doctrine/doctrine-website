@@ -1,0 +1,28 @@
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {% for breadcrumb in breadcrumbs %}
+        {
+            "@type": "ListItem",
+            "position": {{ loop.index }},
+            "name": "{{ breadcrumb.label }}",
+            "item": "{{ breadcrumb.url ?? (site.url ~ page.sourceFile.url) }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+</script>
+
+<nav class="breadcrumbs d-none d-sm-block d-md-block d-lg-block d-xl-block" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+            {% if not loop.last %}
+                <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}">{{ breadcrumb.label }}</a></li>
+            {% else %}
+                <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.label }}</li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+</nav>
