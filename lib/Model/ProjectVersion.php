@@ -7,9 +7,11 @@ namespace Doctrine\Website\Model;
 use DateTimeImmutable;
 use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Git\Tag;
+use InvalidArgumentException;
 use function array_map;
 use function array_merge;
 use function end;
+use function sprintf;
 
 class ProjectVersion
 {
@@ -145,6 +147,17 @@ class ProjectVersion
     public function getTags() : array
     {
         return $this->tags;
+    }
+
+    public function getTag(string $slug) : Tag
+    {
+        foreach ($this->tags as $tag) {
+            if ($tag->getSlug() === $slug) {
+                return $tag;
+            }
+        }
+
+        throw new InvalidArgumentException(sprintf('Could not find tag "%s".', $slug));
     }
 
     public function getFirstTag() : ?Tag

@@ -13,6 +13,7 @@ use Doctrine\Migrations\Tools\Console\Helper\ConfigurationHelper;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\Command as ORMCommand;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+use Doctrine\Website\Commands\AnnounceReleaseCommand;
 use Doctrine\Website\Commands\BuildAllCommand;
 use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
@@ -54,7 +55,8 @@ class Application
         ClearBuildCacheCommand $clearBuildCacheCommand,
         DeployCommand $deployCommand,
         SyncRepositoriesCommand $syncRepositoriesCommand,
-        EventParticipantsCommand $eventParticipantsCommand
+        EventParticipantsCommand $eventParticipantsCommand,
+        AnnounceReleaseCommand $announceReleaseCommand
     ) {
         $this->application = $application;
 
@@ -66,6 +68,7 @@ class Application
         $this->application->add($deployCommand);
         $this->application->add($syncRepositoriesCommand);
         $this->application->add($eventParticipantsCommand);
+        $this->application->add($announceReleaseCommand);
 
         $this->application->setHelperSet(new HelperSet([
             'question'      => new QuestionHelper(),

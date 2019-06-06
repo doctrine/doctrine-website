@@ -43,6 +43,11 @@ class Tag
         return $this->name;
     }
 
+    public function getSlug() : string
+    {
+        return strtoupper(ltrim($this->name, 'v'));
+    }
+
     public function getDisplayName() : string
     {
         return strtoupper(ltrim($this->name, 'v'));

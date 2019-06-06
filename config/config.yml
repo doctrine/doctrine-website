@@ -5,6 +5,11 @@ parameters:
     doctrine.website.stripe.secret_key: ''
     doctrine.website.send_grid.api_key: ''
 
+    doctrine.website.twitter.consumer_key: ''
+    doctrine.website.twitter.consumer_secret: ''
+    doctrine.website.twitter.oauth_token: ''
+    doctrine.website.twitter.oauth_token_secret: ''
+
     doctrine.website.webpack_build_dir: '%doctrine.website.root_dir%/.webpack-build'
     doctrine.website.projects_dir: '%doctrine.website.root_dir%/projects'
     doctrine.website.docs_dir: '%doctrine.website.cache_dir%/docs'
