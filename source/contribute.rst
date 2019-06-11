@@ -35,8 +35,8 @@ Contributor Workflow
 --------------------
 
 Who is a contributor? A contributor can be anyone! It could be you.
-Continue reading this section if you wish to get involved and contribute
-back to a Doctrine project.
+Continue reading this section if you wish to get involved and start
+contributing back to a Doctrine project.
 
 Initial Setup
 -------------
