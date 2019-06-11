@@ -169,6 +169,34 @@ Now do some work, make some changes then commit them:
     $ git add -p
     $ git commit -v
 
+Commit messages should look like emails, meaning they should have a
+subject, but also a body. The subject should be on the first line, and
+not exceed 50 chars. It should tell us what you did, and every change in
+the diff should have to do with that subject. The body should be
+separated from it by a blank line and should tell us *why* you did what
+you did. That is also a good place to tell people about alternate
+solutions that were considered and the reasons for rejecting them. Links
+to related issues are more than welcome, but should be summarized so
+that the pull request can be understood without resorting to them.
+Ideally, the git history should be understandable without a network
+connection. Here is an example of a good although fictitious commit
+message::
+
+    Call foo::bar() instead of bar::baz()
+
+    This fixes a bug that arises when doing this or that, because baz()
+    needs a flux capacitor object that might not be defined.
+    I considered calling foobar(), but decided against because
+    $nonObviousYetVeryGoodReason
+    Fixes #42
+
+There are already a few articles (or even single purpose websites) about
+this in case you want to read more about this:
+
+- `Deliberate git <https://www.rakeroutes.com/blog/deliberate-git/>`_
+- `Commit message style for git <https://commit.style/>`_
+- `A note about git commit messages <https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_
+
 Next, merge or rebase your commit against **doctrine/master**. With your
 work done in a **local** topic branch, you'll want to assist upstream
 merge by rebasing your commits. You can either do this manually with
