@@ -166,7 +166,8 @@ Now do some work, make some changes then commit them:
 .. code-block:: console
 
     $ git status
-    $ git commit <filespec>
+    $ git add -p
+    $ git commit -v
 
 Next, merge or rebase your commit against **doctrine/master**. With your
 work done in a **local** topic branch, you'll want to assist upstream
