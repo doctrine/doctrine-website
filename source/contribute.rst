@@ -310,7 +310,7 @@ Maintainer Workflow
 -------------------
 
 You can learn more about the maintainer workflow
-`here </contribute/maintainer/>`_. Continue reading if you are
+`here </maintainer/>`_. Continue reading if you are
 interested in learning more about how to get started with your first
 contribution.
 
