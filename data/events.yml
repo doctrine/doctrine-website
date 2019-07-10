@@ -30,37 +30,6 @@ parameters:
                     topicSlug: 'learn-to-test-like-a-grumpy-programmer'
                     startDate: '2019-08-09 11:00'
                     endDate: '2019-08-09 12:00'
-        -
-            id: 3
-            sku:
-                test: 'sku_F4LUc9SGRiCBUK'
-                prod: 'sku_F4M3RdEwiscrtD'
-            name: 'Getting started with Doctrine MongoDB ODM'
-            slug: 'getting-started-with-doctrine-mongodb-odm'
-            price: 20.00
-            joinUrl: 'https://zoom.us/webinar/register/9215578873469/WN_fwSHnCzCQ7WO_8Tao5rr7Q'
-            startDate: '2019-07-16'
-            endDate: '2019-07-16'
-            registrationStartDate: '2019-05-01'
-            registrationEndDate: '2019-07-16'
-            sponsors: []
-            speakers:
-                -
-                    name: 'alcaeus'
-                    topic: 'Getting started with Doctrine MongoDB ODM'
-                    topicSlug: 'getting-started-with-doctrine-mongodb-odm'
-                    description: >
-                        You've used Doctrine ORM but never used MongoDB? With MongoDB ODM you can use familiar
-                        tools with a different kind of database. This webinar will focus on getting MongoDB
-                        set up and designing our first documents for MongoDB. We'll cover differences in schema
-                        design between relational databases and MongoDB and also use more advanced features like
-                        aggregation pipelines and document validation.
-
-            schedule:
-                -
-                    topicSlug: 'getting-started-with-doctrine-mongodb-odm'
-                    startDate: '2019-07-16 11:00'
-                    endDate: '2019-07-16 12:00'
 
         -
             id: 2
