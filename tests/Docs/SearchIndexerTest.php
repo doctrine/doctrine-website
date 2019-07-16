@@ -8,7 +8,6 @@ use AlgoliaSearch\Client;
 use AlgoliaSearch\Index;
 use Doctrine\RST\Builder;
 use Doctrine\RST\Configuration;
-use Doctrine\RST\Environment;
 use Doctrine\RST\Kernel;
 use Doctrine\Website\Docs\SearchIndexer;
 use Doctrine\Website\Model\ProjectVersion;
@@ -81,9 +80,8 @@ class SearchIndexerTest extends TestCase
 
         $configuration = new Configuration();
         $configuration->setUseCachedMetas(false);
-        $kernel      = new Kernel($configuration);
-        $environment = new Environment($configuration);
-        $builder     = new Builder($kernel);
+        $kernel  = new Kernel($configuration);
+        $builder = new Builder($kernel);
 
         $builder->build(__DIR__ . '/resources/search-indexer', sys_get_temp_dir() . '/search-indexer');
 
@@ -204,6 +202,80 @@ class SearchIndexerTest extends TestCase
                 'h5' => 'Home Section 4',
                 'url' => '/projects/doctrine-orm/en/1.0/index.html',
                 'content' => 'Home Section 4 Content',
+                'projectName' => 'ORM',
+                '_tags' => ['1.0', 'orm'],
+            ],
+        ];
+
+        $index->expects(self::once())
+            ->method('addObjects')
+            ->with($expectedRecords);
+
+        $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
+    }
+
+    public function testBuildSearchIndexesContainingQuotes() : void
+    {
+        $project = $this->createProject([
+            'shortName' => 'ORM',
+            'docsSlug' => 'doctrine-orm',
+            'slug' => 'orm',
+        ]);
+        $version = new ProjectVersion(['slug' => '1.0']);
+
+        $index = $this->createMock(Index::class);
+
+        $this->client->expects(self::once())
+            ->method('initIndex')
+            ->with(SearchIndexer::INDEX_NAME)
+            ->willReturn($index);
+
+        $configuration = new Configuration();
+        $configuration->setUseCachedMetas(false);
+        $kernel  = new Kernel($configuration);
+        $builder = new Builder($kernel);
+
+        $builder->build(__DIR__ . '/resources/search-indexer-with-quotes', sys_get_temp_dir() . '/search-indexer-with-quotes');
+
+        $documents = $builder->getDocuments()->getAll();
+
+        $expectedRecords = [
+            [
+                'objectID' => '1.0-index.html-8cf04a9734132302f96da8e113e80ce5',
+                'rank' => 0,
+                'h1' => 'Home',
+                'h2' => null,
+                'h3' => null,
+                'h4' => null,
+                'h5' => null,
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => '',
+                'projectName' => 'ORM',
+                '_tags' => ['1.0', 'orm'],
+            ],
+            [
+                'objectID' => '1.0-index.html-0aed5e2da8c50d700cc1aafd30de809e',
+                'rank' => 1,
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
+                'h3' => null,
+                'h4' => null,
+                'h5' => null,
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => '',
+                'projectName' => 'ORM',
+                '_tags' => ['1.0', 'orm'],
+            ],
+            [
+                'objectID' => '1.0-index.html-dc4fb8880607a7c6b97dde83611834bc',
+                'rank' => 5,
+                'h1' => 'Home',
+                'h2' => 'Home Section 1',
+                'h3' => null,
+                'h4' => null,
+                'h5' => null,
+                'url' => '/projects/doctrine-orm/en/1.0/index.html',
+                'content' => 'Home Section 1 Content',
                 'projectName' => 'ORM',
                 '_tags' => ['1.0', 'orm'],
             ],
