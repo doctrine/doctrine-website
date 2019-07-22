@@ -6,10 +6,13 @@ namespace Doctrine\Website\Tests\Docs;
 
 use AlgoliaSearch\Client;
 use AlgoliaSearch\Index;
+use Doctrine\Common\EventManager;
 use Doctrine\RST\Builder;
 use Doctrine\RST\Configuration;
+use Doctrine\RST\Event\PreNodeRenderEvent;
 use Doctrine\RST\Kernel;
 use Doctrine\Website\Docs\SearchIndexer;
+use Doctrine\Website\Event\NodeValue;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -230,7 +233,10 @@ class SearchIndexerTest extends TestCase
             ->with(SearchIndexer::INDEX_NAME)
             ->willReturn($index);
 
+        $eventManager = new EventManager();
+        $eventManager->addEventListener(PreNodeRenderEvent::PRE_NODE_RENDER, new NodeValue());
         $configuration = new Configuration();
+        $configuration->setEventManager($eventManager);
         $configuration->setUseCachedMetas(false);
         $kernel  = new Kernel($configuration);
         $builder = new Builder($kernel);
