@@ -28,3 +28,7 @@ parameters:
             name: 'SolidInvoice'
             url: 'https://solidinvoice.co/'
             highlighted: false
+        -
+            name: 'Lukasz Zelezny'
+            url: 'https://seo.london/'
+            highlighted: false
