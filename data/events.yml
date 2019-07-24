@@ -2,36 +2,6 @@ parameters:
     # New events go at the top and get an incremented ID.
     doctrine.website.events:
         -
-            id: 4
-            sku:
-                test: 'sku_FBm4iTIyTASrwv'
-                prod: 'sku_FBm8i1UGEGvdAJ'
-            name: 'Learn To Test Like A Grumpy Programmer'
-            slug: 'learn-to-test-like-a-grumpy-programmer'
-            price: 29.00
-            joinUrl: 'https://zoom.us/webinar/register/2715596006303/WN_Fax-VgpzQNmDSQkpupMoig'
-            startDate: '2019-08-09'
-            endDate: '2019-08-09'
-            registrationStartDate: '2019-05-01'
-            registrationEndDate: '2019-08-09'
-            sponsors: []
-            speakers:
-                -
-                    name: 'Chris Hartjes'
-                    avatarUrl: '/images/events/speakers/chris-hartjes.jpg'
-                    topic: 'Learn To Test Like A Grumpy Programmer'
-                    topicSlug: 'learn-to-test-like-a-grumpy-programmer'
-                    description: >
-                        This webinar will cover PHPUnit and what it is, how to write tests with it
-                        and some best practices you can apply when using it.
-
-            schedule:
-                -
-                    topicSlug: 'learn-to-test-like-a-grumpy-programmer'
-                    startDate: '2019-08-09 11:00'
-                    endDate: '2019-08-09 12:00'
-
-        -
             id: 2
             sku:
                 test: 'sku_F4IaFRrVzZ4m4G'
