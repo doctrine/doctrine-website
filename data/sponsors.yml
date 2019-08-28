@@ -32,3 +32,7 @@ parameters:
             name: 'Lukasz Zelezny'
             url: 'https://seo.london/'
             highlighted: false
+        -
+            name: 'LEONEX'
+            url: 'https://www.leonex.de/'
+            highlighted: false
