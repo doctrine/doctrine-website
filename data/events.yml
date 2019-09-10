@@ -47,7 +47,7 @@ parameters:
             startDate: '2019-09-10'
             endDate: '2019-09-10'
             registrationStartDate: '2019-05-01'
-            registrationEndDate: '2019-09-11'
+            registrationEndDate: '2019-09-10'
             sponsors: []
             speakers:
                 -
