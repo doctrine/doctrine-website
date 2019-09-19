@@ -17,6 +17,10 @@ parameters:
             url: 'https://tideways.com/'
             highlighted: true
         -
+            name: 'PHPFactory.io'
+            url: 'https://phpfactory.io/'
+            highlighted: true
+        -
             name: 'Intracto'
             url: 'https://www.intracto.com/'
             highlighted: false
