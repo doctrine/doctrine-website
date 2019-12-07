@@ -32,7 +32,7 @@ parameters:
                     - 'Notifications via Slack, Hipchat, GitHub, Gitlab, Bitbucket'
                     - 'SDK'
                     - 'Blackfire Player: HTTP-based scenario runner for functional and performance testing'
-            featured: true
+            featured: false
         -
             name: 'SymfonyCasts'
             slug: 'symfony-casts'
@@ -71,7 +71,7 @@ parameters:
                     - Response Time Monitoring
                     - Error & Exception Tracking
                     - Customizable Alerts
-            featured: false
+            featured: true
 
         -
             name: 'Beachcasts'
