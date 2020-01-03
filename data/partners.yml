@@ -71,7 +71,7 @@ parameters:
                     - Response Time Monitoring
                     - Error & Exception Tracking
                     - Customizable Alerts
-            featured: true
+            featured: false
 
         -
             name: 'Beachcasts'
@@ -96,3 +96,21 @@ parameters:
                     - Code Quality Videos
                     - Docker Best Practices
             featured: false
+
+        -
+            name: 'Sticker Mule'
+            slug: 'stickermule'
+            url: 'http://stickermule.com/supports/doctrineproject20-sponsorship'
+            logo: '/images/partners/stickermule.svg'
+            bio: >
+                Sticker Mule is the fastest and easiest way to buy custom printed products.
+                Thousands of people trust us to make kick ass stickers, labels, magnets, badges
+                & more. Order in seconds and get free online proofs, free shipping and super fast
+                turnaround.
+            details:
+                label: Featuring
+                items:
+                    - Get custom stickers, magnets, buttons, and more
+                    - Free online proofs
+                    - Free shipping
+            featured: true
