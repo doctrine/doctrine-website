@@ -40,3 +40,7 @@ parameters:
             name: 'LEONEX'
             url: 'https://www.leonex.de/'
             highlighted: false
+        -
+            name: 'Tradie Training'
+            url: 'https://tt.edu.au/'
+            highlighted: false
