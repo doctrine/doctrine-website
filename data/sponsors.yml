@@ -17,8 +17,8 @@ parameters:
             url: 'https://tideways.com/'
             highlighted: true
         -
-            name: 'PHPFactory.io'
-            url: 'https://phpfactory.io/'
+            name: 'Unicorn.io'
+            url: 'https://unicorn.io/'
             highlighted: true
         -
             name: 'Intracto'
