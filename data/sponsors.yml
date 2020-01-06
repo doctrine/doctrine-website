@@ -44,3 +44,7 @@ parameters:
             name: 'Tradie Training'
             url: 'https://tt.edu.au/'
             highlighted: false
+        -
+            name: 'whatisseo.com'
+            url: 'https://www.whatisseo.com/'
+            highlighted: false
