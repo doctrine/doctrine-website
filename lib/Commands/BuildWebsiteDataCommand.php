@@ -12,7 +12,6 @@ use Doctrine\Website\DataBuilder\WebsiteDataWriter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use function ini_set;
 use function sprintf;
 
 class BuildWebsiteDataCommand extends Command
@@ -57,8 +56,6 @@ class BuildWebsiteDataCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        ini_set('memory_limit', '1024M');
-
         $output->writeln('Building website data.');
 
         $dataBuilders = [
