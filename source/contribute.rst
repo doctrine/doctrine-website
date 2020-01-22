@@ -207,11 +207,6 @@ fixed with ``add``, and then continue rebasing with
 ``rebase --abort`` unlike nasty merges which will leave files strewn
 everywhere.
 
-    **caution**
-
-    Please note that once you have pushed your branch remotely you MUST
-    NOT rebase!
-
 .. code-block:: console
 
     $ git fetch doctrine
