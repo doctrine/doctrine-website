@@ -126,7 +126,10 @@ parameters:
             avatarUrl: 'https://avatars1.githubusercontent.com/u/493920?v=4'
             website: 'https://tomhanderson.com/'
             location: 'Salt Lake City, Utah'
-            maintains: ["doctrine-module"]
+            maintains: ["doctrine-module", "doctrine-orm-module", "doctrine-mongo-odm-module", "doctrine-laminas-hydrator"]
+            bio: > 
+                Tom is an intellectual architect software engineer.  Proud to contribute to open source and to work
+                along side such a talented group of programmers.
         dbu:
             name: 'David Buchmann'
             github: dbu
