@@ -50,11 +50,11 @@ Initial Setup
 
     $ git clone git@github.com:username/orm.git
 
--  Enter the doctrine2 directory and add the **doctrine** remote
+-  Enter the orm directory and add the **doctrine** remote
 
 .. code-block:: console
 
-    $ cd doctrine2
+    $ cd orm
     $ git remote add doctrine git://github.com/doctrine/orm.git
 
 -  Adjust your branch to track the doctrine master remote branch, by
