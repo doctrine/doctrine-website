@@ -580,5 +580,9 @@ div.jsactive pre {
   }
 }
 
+html, body {
+  overflow-x: hidden; 
+}
+
 @import 'railscasts';
 @import 'carbonads';
