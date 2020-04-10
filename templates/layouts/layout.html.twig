@@ -26,6 +26,10 @@
             <meta name="robots" content="noindex">
         {% endif %}
 
+        {% if page.canonical is defined and page.canonical %}
+            <link rel="canonical" href="{{ page.canonical }}">
+        {% endif %}
+
         {% block head_meta '' %}
 
         <link
