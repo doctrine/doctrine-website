@@ -9,9 +9,6 @@ cache:
         - vendor
         - $HOME/.composer/cache
 
-php:
-  - 7.2
-
 services:
   - mysql
 
@@ -30,6 +27,7 @@ install:
 jobs:
   include:
     - stage: Test
+      php: 7.2
       env: DEPENDENCIES=low
       install:
         - rm composer.lock
@@ -39,6 +37,42 @@ jobs:
         - ./vendor/bin/phpunit
 
     - stage: Test
+      php: 7.2
+      env: COVERAGE
+      before_script:
+        - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
+        - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
+      script:
+        - ./phpunit --build-all --coverage-clover clover.xml
+      after_script:
+        - wget https://scrutinizer-ci.com/ocular.phar
+        - php ocular.phar code-coverage:upload --format=php-clover clover.xml
+
+    - stage: Code Quality
+      php: 7.2
+      env: CODING_STANDARDS
+      install: travis_retry composer install --prefer-dist
+      script: ./vendor/bin/phpcs
+
+    - stage: Code Quality
+      php: 7.2
+      env: STATIC_ANALYSIS
+      install: travis_retry composer install --prefer-dist
+      script: ./vendor/bin/phpstan analyse
+
+    # PHP 7.4
+    - stage: Test
+      php: 7.4
+      env: DEPENDENCIES=low
+      install:
+        - rm composer.lock
+        - travis_retry composer update --prefer-dist --prefer-lowest
+        - travis_retry yarn install
+      script:
+        - ./vendor/bin/phpunit
+
+    - stage: Test
+      php: 7.4
       env: COVERAGE
       before_script:
         - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
@@ -49,11 +83,16 @@ jobs:
         - bash <(curl -s https://codecov.io/bash)
 
     - stage: Code Quality
+      php: 7.4
       env: CODING_STANDARDS
       install: travis_retry composer install --prefer-dist
       script: ./vendor/bin/phpcs
 
     - stage: Code Quality
+      php: 7.4
       env: STATIC_ANALYSIS
       install: travis_retry composer install --prefer-dist
       script: ./vendor/bin/phpstan analyse
+
+  allow_failures:
+    - php: 7.4
