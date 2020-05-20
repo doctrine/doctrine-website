@@ -48,3 +48,11 @@ parameters:
             name: 'whatisseo.com'
             url: 'https://www.whatisseo.com/'
             highlighted: false
+        -
+            name: 'Debricked'
+            url: 'https://debricked.com/'
+            highlighted: false
+        -
+            name: 'Levvvel'
+            url: 'https://levvvel.com/'
+            highlighted: false
