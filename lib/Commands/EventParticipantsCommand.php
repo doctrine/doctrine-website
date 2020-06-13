@@ -150,7 +150,7 @@ class EventParticipantsCommand extends Command
      */
     private function getNewEventParticipants(array $eventParticipants) : array
     {
-        return array_filter($eventParticipants, function (EventParticipant $eventParticipant) {
+        return array_filter($eventParticipants, function (EventParticipant $eventParticipant) : bool {
             return $this->eventParticipantRepository
                 ->findOneByEmail($eventParticipant->getEmail()) === null;
         });

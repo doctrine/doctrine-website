@@ -7,6 +7,9 @@ namespace Doctrine\Website\Tests\Model;
 use DateTimeImmutable;
 use Doctrine\Website\Model\Event;
 use Doctrine\Website\Model\EventLocation;
+use Doctrine\Website\Model\EventScheduleSlot;
+use Doctrine\Website\Model\EventSpeaker;
+use Doctrine\Website\Model\EventSponsor;
 use Doctrine\Website\Model\EventType;
 use Doctrine\Website\Tests\TestCase;
 use function array_merge;
@@ -168,6 +171,7 @@ final class EventTest extends TestCase
 
     public function testGetSponsors() : void
     {
+        /** @var EventSponsor $sponsor */
         $sponsor = $this->createTestEvent()->getSponsors()->first();
 
         self::assertSame('Blackfire.io', $sponsor->getName());
@@ -181,6 +185,7 @@ final class EventTest extends TestCase
 
     public function testGetSpeakers() : void
     {
+        /** @var EventSpeaker $speaker */
         $speaker = $this->createTestEvent()->getSpeakers()->first();
 
         self::assertSame('Jonathan H. Wage', $speaker->getName());
@@ -194,7 +199,8 @@ final class EventTest extends TestCase
         $event = $this->createTestEvent();
 
         $speaker = $event->getSpeakers()->first();
-        $slot    = $event->getSchedule()->first();
+        /** @var EventScheduleSlot $slot */
+        $slot = $event->getSchedule()->first();
 
         self::assertSame($speaker, $slot->getSpeaker());
     }

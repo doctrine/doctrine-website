@@ -115,7 +115,7 @@ class ProjectTest extends TestCase
 
     public function testGetVersionsWithFilter() : void
     {
-        $version = $this->project->getVersions(static function (ProjectVersion $version) {
+        $version = $this->project->getVersions(static function (ProjectVersion $version) : bool {
             return $version->getSlug() === 'latest';
         })[0];
 

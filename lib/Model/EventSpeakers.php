@@ -10,6 +10,9 @@ use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use Doctrine\Website\Repositories\TeamMemberRepository;
 use function assert;
 
+/**
+ * @template-extends AbstractLazyCollection<string, \Doctrine\Website\Model\EventSpeaker>
+ */
 final class EventSpeakers extends AbstractLazyCollection
 {
     /** @var mixed[] */

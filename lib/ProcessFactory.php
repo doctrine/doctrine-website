@@ -10,6 +10,9 @@ use Symfony\Component\Process\Process;
 
 class ProcessFactory
 {
+    /**
+     * @return Process<string, string>
+     */
     public function create(string $command) : Process
     {
         $process = Process::fromShellCommandline($command);
@@ -18,6 +21,9 @@ class ProcessFactory
         return $process;
     }
 
+    /**
+     * @return Process<string, string>
+     */
     public function run(string $command, ?Closure $callback = null) : Process
     {
         $process = $this->create($command);

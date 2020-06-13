@@ -10,6 +10,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use InvalidArgumentException;
 use function sprintf;
 
+/**
+ * @template-extends AbstractLazyCollection<int, \Doctrine\Website\Model\EventScheduleSlot>
+ */
 final class EventSchedule extends AbstractLazyCollection
 {
     /** @var mixed[] */

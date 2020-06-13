@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\AbstractLazyCollection;
 use Doctrine\Common\Collections\ArrayCollection;
 use function array_merge;
 
+/**
+ * @template-extends AbstractLazyCollection<int, \Doctrine\Website\Model\EventSponsor>
+ */
 final class EventSponsors extends AbstractLazyCollection
 {
     /** @var mixed[] */

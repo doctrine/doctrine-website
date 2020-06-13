@@ -16,6 +16,7 @@ class EventRepository extends BasicObjectRepository
 {
     public function findOneById(int $id) : Event
     {
+        /** @var Event|null $event */
         $event = $this->findOneBy(['id' => $id]);
 
         if ($event === null) {

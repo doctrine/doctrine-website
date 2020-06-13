@@ -68,6 +68,6 @@ class CacheClearer
      */
     protected function glob(string $pattern) : array
     {
-        return glob($pattern);
+        return array_filter((array) glob($pattern));
     }
 }

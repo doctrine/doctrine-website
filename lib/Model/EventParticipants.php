@@ -6,8 +6,12 @@ namespace Doctrine\Website\Model;
 
 use Doctrine\Common\Collections\AbstractLazyCollection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Website\Model\Entity\EventParticipant;
 use Doctrine\Website\Model\Entity\EventParticipantRepository;
 
+/**
+ * @template-extends AbstractLazyCollection<int, \Doctrine\Website\Model\Entity\EventParticipant>
+ */
 final class EventParticipants extends AbstractLazyCollection
 {
     /** @var int */
@@ -24,6 +28,7 @@ final class EventParticipants extends AbstractLazyCollection
 
     protected function doInitialize() : void
     {
+        /** @var EventParticipant[] $eventParticipants */
         $eventParticipants = $this->eventParticipantRepository
             ->findByEventId($this->eventId);
 

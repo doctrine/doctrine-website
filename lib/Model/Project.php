@@ -178,7 +178,7 @@ class Project implements LoadMetadataInterface
      */
     public function getMaintainedVersions() : array
     {
-        return $this->getVersions(static function (ProjectVersion $version) {
+        return $this->getVersions(static function (ProjectVersion $version) : bool {
             return $version->isMaintained();
         });
     }
@@ -188,7 +188,7 @@ class Project implements LoadMetadataInterface
      */
     public function getUnmaintainedVersions() : array
     {
-        return $this->getVersions(static function (ProjectVersion $version) {
+        return $this->getVersions(static function (ProjectVersion $version) : bool {
             return ! $version->isMaintained();
         });
     }
@@ -198,7 +198,7 @@ class Project implements LoadMetadataInterface
      */
     public function getVersion(string $slug) : ProjectVersion
     {
-        $projectVersion = $this->getVersions(static function (ProjectVersion $version) use ($slug) {
+        $projectVersion = $this->getVersions(static function (ProjectVersion $version) use ($slug) : bool {
             return $version->getSlug() === $slug;
         })[0] ?? null;
 
@@ -211,7 +211,7 @@ class Project implements LoadMetadataInterface
 
     public function getCurrentVersion() : ?ProjectVersion
     {
-        return $this->getVersions(static function (ProjectVersion $version) {
+        return $this->getVersions(static function (ProjectVersion $version) : bool {
             return $version->isCurrent();
         })[0] ?? ($this->versions[0] ?? null);
     }
