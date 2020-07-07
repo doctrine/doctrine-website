@@ -225,7 +225,7 @@ class ProjectDataBuilder implements DataBuilder
                 $projectVersion['branchName']
             );
 
-            $docsLanguages = array_map(static function (RSTLanguage $language) {
+            $docsLanguages = array_map(static function (RSTLanguage $language) : array {
                 return [
                     'code' => $language->getCode(),
                     'path' => $language->getPath(),
@@ -239,7 +239,7 @@ class ProjectDataBuilder implements DataBuilder
                 continue;
             }
 
-            $projectVersions[$key]['tags'] = array_map(static function (Tag $tag) {
+            $projectVersions[$key]['tags'] = array_map(static function (Tag $tag) : array {
                 return [
                     'name' => $tag->getName(),
                     'date' => $tag->getDate()->format('Y-m-d H:i:s'),
@@ -259,7 +259,7 @@ class ProjectDataBuilder implements DataBuilder
     private function sortProjectVersions(array &$projectVersions) : void
     {
         // sort by name so newest versions are first
-        usort($projectVersions, static function (array $a, array $b) {
+        usort($projectVersions, static function (array $a, array $b) : int {
             return strnatcmp($b['name'], $a['name']);
         });
     }

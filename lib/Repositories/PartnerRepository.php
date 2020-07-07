@@ -24,6 +24,7 @@ class PartnerRepository extends BasicObjectRepository
 
     public function findOneBySlug(string $slug) : Partner
     {
+        /** @var Partner|null $partner */
         $partner = $this->findOneBy(['slug' => $slug]);
 
         if ($partner === null) {

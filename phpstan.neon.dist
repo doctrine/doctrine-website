@@ -7,3 +7,7 @@ parameters:
     paths:
       - lib
       - tests
+    ignoreErrors:
+      # TODO Use newer Doctrine packages which are using T and TKey
+      - "#should return array<[\\a-zA-Z]+> but returns array<object>#"
+      - "#should return [\\a-zA-Z]+(.null)* but returns object(.null)*#"

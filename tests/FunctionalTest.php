@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests;
 
 use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use SimpleXMLElement;
 use Symfony\Component\DomCrawler\Crawler;
@@ -49,6 +50,7 @@ class FunctionalTest extends TestCase
 
         $versions = $project->getVersions();
 
+        /** @var ProjectVersion $firstVersion */
         $firstVersion = end($versions);
 
         self::assertSame('2.0', $firstVersion->getName());
@@ -331,8 +333,8 @@ class FunctionalTest extends TestCase
             'build-dev',
         ];
 
-        foreach ($foldersToCheck as $foldersToCheck) {
-            $path = $this->rootDir . '/' . $foldersToCheck;
+        foreach ($foldersToCheck as $folderToCheck) {
+            $path = $this->rootDir . '/' . $folderToCheck;
 
             if (is_dir($path)) {
                 return $path;

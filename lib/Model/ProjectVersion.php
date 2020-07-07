@@ -66,7 +66,7 @@ class ProjectVersion
             return new RSTLanguage($language['code'], $language['path']);
         }, $version['docsLanguages'] ?? []);
 
-        $this->tags = array_map(static function (array $tag) {
+        $this->tags = array_map(static function (array $tag) : Tag {
             return new Tag($tag['name'], new DateTimeImmutable($tag['date']));
         }, $version['tags'] ?? []);
 

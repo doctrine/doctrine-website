@@ -83,11 +83,11 @@ final class DateTimeRange
     {
         $diff = $this->end->diff($this->start);
 
-        $minutes  = $diff->days * 24 * 60;
+        $minutes  = (int) $diff->days * 24 * 60;
         $minutes += $diff->h * 60;
         $minutes += $diff->i;
 
-        return (int) $minutes;
+        return $minutes;
     }
 
     public function getDuration() : string

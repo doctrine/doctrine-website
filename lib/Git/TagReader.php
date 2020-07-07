@@ -33,7 +33,7 @@ class TagReader
 
         $tags = $this->createTagsFromLines($lines);
 
-        usort($tags, static function (Tag $a, Tag $b) {
+        usort($tags, static function (Tag $a, Tag $b) : int {
             return $a->getDate()->getTimestamp() - $b->getDate()->getTimestamp();
         });
 

@@ -133,7 +133,7 @@ class WebsiteBuilder
         $output->writeln(sprintf(' - clearing build directory <info>%s</info>', $buildDir));
 
         // cleanup the build directory
-        $this->filesystem->remove(glob($buildDir . '/*'));
+        $this->filesystem->remove((array) glob($buildDir . '/*'));
 
         // Move webpack assets into build directory
         $this->buildWebpackAssets($output, $buildDir, $isPublishableEnv);
@@ -151,7 +151,7 @@ class WebsiteBuilder
     {
         $output->writeln(sprintf(' - running <info>npm run %s</info> ', $isPublishableEnv ? 'build' : 'dev'));
 
-        $this->filesystem->remove(glob($this->webpackBuildDir . '/*'));
+        $this->filesystem->remove((array) glob($this->webpackBuildDir . '/*'));
 
         $process = $this->processFactory->run(sprintf(
             'cd %s && npm run %s',

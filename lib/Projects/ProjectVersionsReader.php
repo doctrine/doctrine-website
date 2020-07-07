@@ -73,7 +73,7 @@ class ProjectVersionsReader
     {
         $tags = $this->tagReader->getRepositoryTags($repositoryPath);
 
-        return array_filter($tags, static function (Tag $tag) {
+        return array_filter($tags, static function (Tag $tag) : bool {
             if ($tag->isDev()) {
                 return false;
             }
