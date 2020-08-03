@@ -6,6 +6,7 @@
     <parameters>
         <parameter key="doctrine.website.mysql.user">root</parameter>
         <parameter key="doctrine.website.mysql.password"></parameter>
+        <parameter key="doctrine.website.mysql.host">localhost</parameter>
     </parameters>
 
     <services>
@@ -529,7 +530,7 @@
                 <argument key="dbname">doctrine_website_%doctrine.website.env%</argument>
                 <argument key="user">%doctrine.website.mysql.user%</argument>
                 <argument key="password">%doctrine.website.mysql.password%</argument>
-                <argument key="host">localhost</argument>
+                <argument key="host">%doctrine.website.mysql.host%</argument>
                 <argument key="driver">pdo_mysql</argument>
             </argument>
         </service>
