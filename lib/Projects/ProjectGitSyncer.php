@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Projects;
 
 use Doctrine\Website\ProcessFactory;
-
+use Github\Client;
 use function is_dir;
 use function sprintf;
 
@@ -17,10 +17,14 @@ class ProjectGitSyncer
     /** @var string */
     private $projectsDir;
 
-    public function __construct(ProcessFactory $processFactory, string $projectsDir)
+    /** @var \Github\Api\Repo */
+    private $githubRepo;
+
+    public function __construct(ProcessFactory $processFactory, Client $githubClient, string $projectsDir)
     {
         $this->processFactory = $processFactory;
         $this->projectsDir    = $projectsDir;
+        $this->githubRepo     = $githubClient->repo();
     }
 
     public function isRepositoryInitialized(string $repositoryName): bool
@@ -47,7 +51,9 @@ class ProjectGitSyncer
 
     public function checkoutMaster(string $repositoryName): void
     {
-        $this->checkoutBranch($repositoryName, 'master');
+        $repoMetaData = $this->githubRepo->show('doctrine', $repositoryName);
+
+        $this->checkoutBranch($repositoryName, $repoMetaData['default_branch']);
     }
 
     public function checkoutBranch(string $repositoryName, string $branchName): void
