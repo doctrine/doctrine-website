@@ -50,7 +50,7 @@ class ProjectDataBuilderTest extends TestCase
             ->willReturn(['orm']);
 
         $this->projectGitSyncer->expects(self::at(0))
-            ->method('checkoutMaster')
+            ->method('checkoutDefaultBranch')
             ->with('orm');
 
         $this->projectDataReader->expects(self::once())

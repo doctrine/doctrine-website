@@ -49,7 +49,7 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
-    public function checkoutMaster(string $repositoryName): void
+    public function checkoutDefaultBranch(string $repositoryName): void
     {
         $repoMetaData = $this->githubRepo->show('doctrine', $repositoryName);
 
