@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
+use Doctrine\Website\Github\GithubClientProvider;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Tests\TestCase;
@@ -30,6 +31,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->processFactory = $this->createMock(ProcessFactory::class);
         $this->projectsDir    = __DIR__;
         $this->githubRepo     = $this->createMock(Repo::class);
+        $githubClientProvider = $this->createMock(GithubClientProvider::class);
         $githubClient         = $this->getMockBuilder(Client::class)
             ->disableOriginalConstructor()
             ->addMethods(['repo'])
@@ -38,9 +40,12 @@ class ProjectGitSyncerTest extends TestCase
         $githubClient->method('repo')
             ->willReturn($this->githubRepo);
 
+        $githubClientProvider->method('getGithubClient')
+            ->willReturn($githubClient);
+
         $this->projectGitSyncer = new ProjectGitSyncer(
             $this->processFactory,
-            $githubClient,
+            $githubClientProvider,
             $this->projectsDir
         );
     }
