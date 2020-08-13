@@ -193,7 +193,7 @@ message::
 There are already a few articles (or even single purpose websites) about
 this in case you want to read more about this:
 
-- `Deliberate git <https://www.rakeroutes.com/blog/deliberate-git/>`_
+- `Deliberate git <https://www.rakeroutes.com/deliberate-git>`_
 - `Commit message style for git <https://commit.style/>`_
 - `A note about git commit messages <https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_
 
