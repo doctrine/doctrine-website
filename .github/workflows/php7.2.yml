@@ -1,0 +1,59 @@
+name: "Website build"
+
+on: ["push", "pull_request"]
+
+jobs:
+  build:
+
+    runs-on: "ubuntu-18.04"
+
+    services:
+      mysql:
+        image: "mysql:5.7"
+        env:
+          MYSQL_DATABASE: "doctrine_website_test"
+          MYSQL_ROOT_PASSWORD: "VdtLtifRh4gt37T"
+        ports:
+          - "3306:3306"
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+
+    steps:
+    - uses: "actions/checkout@v2"
+
+    - name: "Cache Composer packages"
+      id: "composer-cache"
+      uses: "actions/cache@v2"
+      with:
+        path: "vendor"
+        key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: "Setup PHP Action"
+      uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: "7.2"
+
+    - name: "Install dependencies"
+      if: "steps.composer-cache.outputs.cache-hit != 'true'"
+      run: "composer install --prefer-dist --no-progress --no-suggest"
+
+    - name: "Setup Yarn Action"
+      uses: "borales/actions-yarn@v2.0.0"
+      with:
+        cmd: "install"
+
+    - name: "Run Code Sniffer"
+      run: "./vendor/bin/phpcs"
+
+    - name: "Run PHPStan"
+      run: "./vendor/bin/phpstan analyse"
+
+    - name: "Run tests"
+      run: "./vendor/bin/phpunit"
+
+    - name: "Run tests with coverage"
+      run: "./vendor/bin/phpunit --coverage-clover clover.xml"
+
+    - name: "Deliver code coverage"
+      run: "bash <(curl -s https://codecov.io/bash)"
