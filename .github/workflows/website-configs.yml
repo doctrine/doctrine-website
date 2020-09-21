@@ -4,6 +4,9 @@ on:
   schedule:
     - cron:  "0 23 * * *"
 
+env:
+  doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
+
 jobs:
   build:
 
@@ -14,7 +17,7 @@ jobs:
         image: "mysql:5.7"
         env:
           MYSQL_DATABASE: "doctrine_website_test"
-          MYSQL_ROOT_PASSWORD: "VdtLtifRh4gt37T"
+          MYSQL_ROOT_PASSWORD: "${{ secrets.doctrine_website_mysql_password }}"
         ports:
           - "3306:3306"
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
