@@ -55,7 +55,7 @@ jobs:
       uses: "shivammathur/setup-php@v2"
       with:
         php-version: "${{ env.PHP_VERSION }}"
-        coverage: "xdebug"
+        coverage: "pcov"
 
     - name: "Build website"
       run: "./bin/console --env=test -v build-all"
