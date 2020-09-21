@@ -1,0 +1,95 @@
+name: "Website build"
+
+on: ["push", "pull_request"]
+
+env:
+  PHP_VERSION: "7.2"
+
+jobs:
+  tests:
+
+    runs-on: "ubuntu-16.04"
+
+    services:
+      mysql:
+        image: "mysql:5.7"
+        env:
+          MYSQL_DATABASE: "doctrine_website_test"
+          MYSQL_ROOT_PASSWORD: "VdtLtifRh4gt37T"
+        ports:
+          - "3306:3306"
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+
+    steps:
+    - uses: "actions/checkout@v2"
+
+    - name: "Cache Composer packages"
+      id: "composer-cache"
+      uses: "actions/cache@v2"
+      with:
+        path: "vendor"
+        key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: "Setup PHP Action"
+      uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: "${{ env.PHP_VERSION }}"
+        coverage: "none"
+
+    - name: "Install PHP dependencies"
+      if: "steps.composer-cache.outputs.cache-hit != 'true'"
+      run: "composer install --prefer-dist --no-progress --no-suggest"
+
+    - name: "apt-get install yarn"
+      run: "sudo apt-get update && sudo apt-get install -y yarn"
+
+    - name: "yarn install"
+      run: "yarn install"
+
+    - name: "Run tests"
+      run: "./vendor/bin/phpunit"
+
+    - name: "Setup PHP Action"
+      uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: "${{ env.PHP_VERSION }}"
+        coverage: "pcov"
+
+    - name: "Build website"
+      run: "./bin/console --env=test -v build-all"
+
+    - name: "Run tests with coverage"
+      run: "./vendor/bin/phpunit --coverage-clover clover.xml"
+
+    - name: "Deliver code coverage"
+      run: "bash <(curl -s https://codecov.io/bash)"
+
+  code-analysis:
+
+    runs-on: "ubuntu-16.04"
+
+    steps:
+    - uses: "actions/checkout@v2"
+
+    - name: "Cache Composer packages"
+      id: "composer-cache"
+      uses: "actions/cache@v2"
+      with:
+        path: "vendor"
+        key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: "Setup PHP Action"
+      uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: "${{ env.PHP_VERSION }}"
+
+    - name: "Install dependencies"
+      if: "steps.composer-cache.outputs.cache-hit != 'true'"
+      run: "composer install --prefer-dist --no-progress --no-suggest"
+
+    - name: "Run PHPStan"
+      run: "./vendor/bin/phpstan analyse"
