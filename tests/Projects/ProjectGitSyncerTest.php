@@ -10,21 +10,23 @@ use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Tests\TestCase;
 use Github\Api\Repo;
 use Github\Client;
-use Github\HttpClient\Builder;
 use PHPUnit\Framework\MockObject\MockObject;
 
 use function sprintf;
 
 class ProjectGitSyncerTest extends TestCase
 {
-    /** @var ProcessFactory|MockObject */
+    /** @var ProcessFactory&MockObject */
     private $processFactory;
 
     /** @var string */
     private $projectsDir;
 
-    /** @var ProjectGitSyncer&MockObject */
+    /** @var ProjectGitSyncer */
     private $projectGitSyncer;
+
+    /** @var Repo&MockObject */
+    private $githubRepo;
 
     protected function setUp(): void
     {

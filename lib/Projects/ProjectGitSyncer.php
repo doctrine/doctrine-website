@@ -6,6 +6,8 @@ namespace Doctrine\Website\Projects;
 
 use Doctrine\Website\Github\GithubClientProvider;
 use Doctrine\Website\ProcessFactory;
+use Github\Api\Repo;
+
 use function is_dir;
 use function sprintf;
 
@@ -17,7 +19,7 @@ class ProjectGitSyncer
     /** @var string */
     private $projectsDir;
 
-    /** @var \Github\Api\Repo */
+    /** @var Repo */
     private $githubRepo;
 
     public function __construct(ProcessFactory $processFactory, GithubClientProvider $githubClientProvider, string $projectsDir)
@@ -25,7 +27,7 @@ class ProjectGitSyncer
         $this->processFactory = $processFactory;
         $this->projectsDir    = $projectsDir;
         // TODO Inject Repo instead of GithubClientProvider
-        $this->githubRepo     = $githubClientProvider->getGithubClient()->repo();
+        $this->githubRepo = $githubClientProvider->getGithubClient()->repo();
     }
 
     public function isRepositoryInitialized(string $repositoryName): bool
