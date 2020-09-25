@@ -13,6 +13,9 @@ use function sprintf;
 
 class SyncRepositoriesCommand extends Command
 {
+    /** @var string */
+    protected static $defaultName = 'sync-repositories';
+
     /** @var ProjectDataRepository */
     private $projectDataRepository;
 
@@ -32,7 +35,6 @@ class SyncRepositoriesCommand extends Command
     protected function configure() : void
     {
         $this
-            ->setName('sync-repositories')
             ->setDescription('Initialize or update all project repositories.');
     }
 

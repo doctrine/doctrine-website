@@ -15,6 +15,9 @@ use function sprintf;
 
 class ClearBuildCacheCommand extends Command
 {
+    /** @var string */
+    protected static $defaultName = 'clear-build-cache';
+
     /** @var CacheClearer */
     private $cacheClearer;
 
@@ -36,7 +39,6 @@ class ClearBuildCacheCommand extends Command
     protected function configure() : void
     {
         $this
-            ->setName('clear-build-cache')
             ->setDescription('Clear the build cache.')
             ->addArgument(
                 'build-dir',
