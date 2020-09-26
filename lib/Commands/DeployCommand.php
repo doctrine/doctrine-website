@@ -11,6 +11,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DeployCommand extends Command
 {
+    /** @var string */
+    protected static $defaultName = 'deploy';
+
     /** @var Deployer */
     private $deployer;
 
@@ -24,7 +27,6 @@ class DeployCommand extends Command
     protected function configure() : void
     {
         $this
-            ->setName('deploy')
             ->setDescription('Deploy the Doctrine website.');
     }
 

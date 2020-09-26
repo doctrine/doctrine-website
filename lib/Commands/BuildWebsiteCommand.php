@@ -28,6 +28,9 @@ use function time;
 
 class BuildWebsiteCommand extends Command
 {
+    /** @var string */
+    protected static $defaultName = 'build-website';
+
     private const WATCH_DIRS = [
         'config',
         'data',
@@ -60,7 +63,6 @@ class BuildWebsiteCommand extends Command
     protected function configure() : void
     {
         $this
-            ->setName('build-website')
             ->setDescription('Build the Doctrine website.')
             ->addArgument(
                 'build-dir',

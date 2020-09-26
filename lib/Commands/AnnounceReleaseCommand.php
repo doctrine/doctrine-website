@@ -16,6 +16,9 @@ use function sprintf;
 
 final class AnnounceReleaseCommand extends Command
 {
+    /** @var string */
+    protected static $defaultName = 'announce-release';
+
     /** @var AnnounceRelease */
     private $announceRelease;
 
@@ -29,7 +32,6 @@ final class AnnounceReleaseCommand extends Command
     protected function configure() : void
     {
         $this
-            ->setName('announce-release')
             ->setDescription('Announce a release on Twitter, Slack, etc.')
             ->addArgument(
                 'project',
