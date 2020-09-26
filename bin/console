@@ -5,9 +5,14 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Doctrine\Website\Application;
 use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\ErrorHandler\Debug;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(['--env', '-e'], 'dev');
+
+if (class_exists(Debug::class)) {
+    Debug::enable();
+}
 
 $container = Application::getContainer($env);
 
