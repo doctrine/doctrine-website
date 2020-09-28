@@ -5,7 +5,6 @@
 
     <parameters>
         <parameter key="doctrine.website.mysql.user">root</parameter>
-        <parameter key="doctrine.website.mysql.password"></parameter>
         <parameter key="doctrine.website.mysql.host">localhost</parameter>
         <parameter key="doctrine.website.mysql.version">5.7</parameter>
     </parameters>
