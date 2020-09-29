@@ -37,7 +37,7 @@ jobs:
 
     - name: "Install dependencies"
       if: "steps.composer-cache.outputs.cache-hit != 'true'"
-      run: "composer install --prefer-dist --no-progress --no-suggest"
+      run: "composer install --prefer-dist --no-progress --no-suggest --no-dev"
 
     - name: "Prepare Webite files"
       run: "bin/console --env=test sync-repositories && bin/console --env=test sync && bin/console --env=test clear-build-cache  && bin/console --env=test build-website-data"
