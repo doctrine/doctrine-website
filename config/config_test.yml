@@ -2,7 +2,6 @@ imports:
     - { resource: config.yml }
 
 parameters:
-    doctrine.website.mysql.password: 'VdtLtifRh4gt37T'
     doctrine.website.mysql.host: '127.0.0.1'
 
 services:
