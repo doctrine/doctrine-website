@@ -38,7 +38,7 @@ class ProjectVersionsReaderTest extends TestCase
 
         $this->tagReader->expects(self::once())
             ->method('getRepositoryTags')
-            ->willReturn($repositoryPath)
+            ->with($repositoryPath)
             ->willReturn($tags);
 
         // tag1
