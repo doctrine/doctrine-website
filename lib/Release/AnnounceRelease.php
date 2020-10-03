@@ -7,6 +7,7 @@ namespace Doctrine\Website\Release;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Twitter\TweetRelease;
 use InvalidArgumentException;
+
 use function count;
 use function explode;
 use function ltrim;
@@ -28,7 +29,7 @@ class AnnounceRelease
         $this->tweetRelease      = $tweetRelease;
     }
 
-    public function __invoke(string $projectSlug, string $tag) : bool
+    public function __invoke(string $projectSlug, string $tag): bool
     {
         $project = $this->projectRepository->findOneBySlug($projectSlug);
 

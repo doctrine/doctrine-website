@@ -12,7 +12,7 @@ class DoctrineUserRepository extends BasicObjectRepository
     /**
      * @return DoctrineUser[]
      */
-    public function findAll() : array
+    public function findAll(): array
     {
         /** @var DoctrineUser[] $doctrineUsers */
         $doctrineUsers = parent::findAll();

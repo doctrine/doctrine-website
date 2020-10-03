@@ -19,7 +19,7 @@ class ProjectVersionRequests
         $this->projectRepository = $projectRepository;
     }
 
-    public function getProjectVersions() : RequestCollection
+    public function getProjectVersions(): RequestCollection
     {
         /** @var Project[] $projects */
         $projects = $this->projectRepository->findAll();

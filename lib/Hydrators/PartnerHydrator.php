@@ -7,6 +7,7 @@ namespace Doctrine\Website\Hydrators;
 use Doctrine\Website\Model\Partner;
 use Doctrine\Website\Model\PartnerDetails;
 use Doctrine\Website\Model\UtmParameters;
+
 use function array_merge;
 
 /**
@@ -21,7 +22,7 @@ use function array_merge;
  */
 final class PartnerHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return Partner::class;
     }
@@ -29,7 +30,7 @@ final class PartnerHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->name     = (string) ($data['name'] ?? '');
         $this->slug     = (string) ($data['slug'] ?? '');

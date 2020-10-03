@@ -42,7 +42,7 @@ class WebsiteBuilderTest extends TestCase
     /** @var WebsiteBuilder|MockObject */
     private $websiteBuilder;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->processFactory       = $this->createMock(ProcessFactory::class);
         $this->projectRepository    = $this->createMock(ProjectRepository::class);
@@ -68,7 +68,7 @@ class WebsiteBuilderTest extends TestCase
             ->getMock();
     }
 
-    public function testBuild() : void
+    public function testBuild(): void
     {
         $output   = $this->createMock(OutputInterface::class);
         $buildDir = '/data/doctrine-website-build-staging';

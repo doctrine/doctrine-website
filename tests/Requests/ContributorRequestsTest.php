@@ -18,7 +18,7 @@ class ContributorRequestsTest extends TestCase
     /** @var ContributorRequests */
     private $contributorRequests;
 
-    public function testGetContributors() : void
+    public function testGetContributors(): void
     {
         $contributor1 = $this->createContributor(['github' => 'github1']);
 
@@ -38,7 +38,7 @@ class ContributorRequestsTest extends TestCase
         ]), $contributorRequests);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->contributorRepository = $this->createMock(ContributorRepository::class);
 

@@ -26,12 +26,12 @@ final class EventSponsor
         $this->utmParameters = $utmParameters;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -39,12 +39,12 @@ final class EventSponsor
     /**
      * @param string[] $parameters
      */
-    public function getUrlWithUtmParameters(array $parameters = []) : string
+    public function getUrlWithUtmParameters(array $parameters = []): string
     {
         return $this->utmParameters->buildUrl($this->url, $parameters);
     }
 
-    public function getLogo() : string
+    public function getLogo(): string
     {
         return $this->logo;
     }

@@ -26,7 +26,7 @@ class ProjectContributorDataBuilderTest extends TestCase
     /** @var ProjectContributorDataBuilder */
     private $projectContributorDataBuilder;
 
-    public function testBuild() : void
+    public function testBuild(): void
     {
         $project1 = $this->createProject(['slug' => 'orm']);
         $project2 = $this->createProject(['slug' => 'dbal']);
@@ -225,7 +225,7 @@ class ProjectContributorDataBuilderTest extends TestCase
         ], $rows);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->projectRepository         = $this->createMock(ProjectRepository::class);
         $this->teamMemberRepository      = $this->createMock(TeamMemberRepository::class);

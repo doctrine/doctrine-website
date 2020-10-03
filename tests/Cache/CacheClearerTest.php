@@ -23,7 +23,7 @@ class CacheClearerTest extends TestCase
     /** @var CacheClearer|MockObject */
     private $cacheClearer;
 
-    public function testClear() : void
+    public function testClear(): void
     {
         $buildDir = __DIR__;
 
@@ -51,7 +51,7 @@ class CacheClearerTest extends TestCase
         ], $dirs);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->filesystem = $this->createMock(Filesystem::class);
         $this->rootDir    = __DIR__;

@@ -21,7 +21,7 @@ class SitemapPages implements DataSource
     /**
      * @return mixed[][]
      */
-    public function getSourceRows() : array
+    public function getSourceRows(): array
     {
         $sitemapPages = [];
 

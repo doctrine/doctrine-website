@@ -11,7 +11,7 @@ use Doctrine\RST\Parser;
 
 class RoleDirective extends SubDirective
 {
-    public function getName() : string
+    public function getName(): string
     {
         return 'role';
     }
@@ -25,7 +25,7 @@ class RoleDirective extends SubDirective
         string $variable,
         string $data,
         array $options
-    ) : ?Node {
+    ): ?Node {
         return new WrapperNode($document, '<div class="role">', '</div>');
     }
 }

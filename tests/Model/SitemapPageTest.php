@@ -19,17 +19,17 @@ class SitemapPageTest extends TestCase
     /** @var SitemapPage */
     private $sitemapPage;
 
-    public function testGetUrl() : void
+    public function testGetUrl(): void
     {
         self::assertSame($this->url, $this->sitemapPage->getUrl());
     }
 
-    public function testGetDate() : void
+    public function testGetDate(): void
     {
         self::assertSame($this->date, $this->sitemapPage->getDate());
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->url  = '/test.html';
         $this->date = new DateTimeImmutable();

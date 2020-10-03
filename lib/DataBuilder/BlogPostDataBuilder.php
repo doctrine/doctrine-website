@@ -18,12 +18,12 @@ class BlogPostDataBuilder implements DataBuilder
         $this->sourceFileFilesystemReader = $sourceFileFilesystemReader;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return self::DATA_FILE;
     }
 
-    public function build() : WebsiteData
+    public function build(): WebsiteData
     {
         $sourceFiles = $this->sourceFileFilesystemReader
             ->getSourceFiles()->in('/blog/');

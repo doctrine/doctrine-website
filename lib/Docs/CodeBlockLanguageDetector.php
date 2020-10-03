@@ -21,7 +21,7 @@ class CodeBlockLanguageDetector
     /**
      * @param string[] $lines
      */
-    public function detectLanguage(string $language, array $lines) : string
+    public function detectLanguage(string $language, array $lines): string
     {
         $language = trim($language);
 

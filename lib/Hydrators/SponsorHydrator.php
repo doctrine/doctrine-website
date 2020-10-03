@@ -6,6 +6,7 @@ namespace Doctrine\Website\Hydrators;
 
 use Doctrine\Website\Model\Sponsor;
 use Doctrine\Website\Model\UtmParameters;
+
 use function array_merge;
 
 /**
@@ -16,7 +17,7 @@ use function array_merge;
  */
 final class SponsorHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return Sponsor::class;
     }
@@ -24,7 +25,7 @@ final class SponsorHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->name = (string) ($data['name'] ?? '');
         $this->url  = (string) ($data['url'] ?? '');

@@ -31,7 +31,7 @@ use Doctrine\Website\Model\ProjectVersion;
  */
 final class ProjectHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return Project::class;
     }
@@ -39,7 +39,7 @@ final class ProjectHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->active              = (bool) ($data['active'] ?? true);
         $this->archived            = (bool) ($data['archived'] ?? false);

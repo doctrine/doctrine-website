@@ -55,47 +55,47 @@ final class ProjectStats
         $this->dailyDownloads   = $dailyDownloads;
     }
 
-    public function getGithubStars() : int
+    public function getGithubStars(): int
     {
         return $this->githubStars;
     }
 
-    public function getGithubWatchers() : int
+    public function getGithubWatchers(): int
     {
         return $this->githubWatchers;
     }
 
-    public function getGithubForks() : int
+    public function getGithubForks(): int
     {
         return $this->githubForks;
     }
 
-    public function getGithubOpenIssues() : int
+    public function getGithubOpenIssues(): int
     {
         return $this->githubOpenIssues;
     }
 
-    public function getDependents() : int
+    public function getDependents(): int
     {
         return $this->dependents;
     }
 
-    public function getSuggesters() : int
+    public function getSuggesters(): int
     {
         return $this->suggesters;
     }
 
-    public function getTotalDownloads() : int
+    public function getTotalDownloads(): int
     {
         return $this->totalDownloads;
     }
 
-    public function getMonthlyDownloads() : int
+    public function getMonthlyDownloads(): int
     {
         return $this->monthlyDownloads;
     }
 
-    public function getDailyDownloads() : int
+    public function getDailyDownloads(): int
     {
         return $this->dailyDownloads;
     }

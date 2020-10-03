@@ -9,6 +9,8 @@ use Doctrine\Website\Model\Project;
 use Github\Api\Repo;
 use Github\Client;
 use RuntimeException;
+
+use function assert;
 use function sleep;
 use function sprintf;
 
@@ -31,7 +33,7 @@ class ProdGithubProjectContributors implements GithubProjectContributors
     /**
      * @param Project[] $projects
      */
-    public function warmProjectsContributors(array $projects) : void
+    public function warmProjectsContributors(array $projects): void
     {
         foreach ($projects as $project) {
             $this->warmProjectContributors($project);
@@ -42,14 +44,14 @@ class ProdGithubProjectContributors implements GithubProjectContributors
         }
     }
 
-    public function warmProjectContributors(Project $project) : void
+    public function warmProjectContributors(Project $project): void
     {
         // Trigger api call to github to build statistics. The GitHub API may return
         // results right away, in that case we will go ahead and store the results in the cache.
         $this->doGetProjectContributors($project, false);
     }
 
-    public function waitForProjectContributorsData(Project $project) : void
+    public function waitForProjectContributorsData(Project $project): void
     {
         $count     = 1;
         $maxChecks = 15;
@@ -83,7 +85,7 @@ class ProdGithubProjectContributors implements GithubProjectContributors
     /**
      * @return mixed[]
      */
-    public function getProjectContributors(Project $project) : array
+    public function getProjectContributors(Project $project): array
     {
         return $this->doGetProjectContributors($project, true);
     }
@@ -91,7 +93,7 @@ class ProdGithubProjectContributors implements GithubProjectContributors
     /**
      * @return mixed[]
      */
-    private function doGetProjectContributors(Project $project, bool $throwOnEmpty) : array
+    private function doGetProjectContributors(Project $project, bool $throwOnEmpty): array
     {
         $id = sprintf('doctrine-%s-contributors-data', $project->getSlug());
 
@@ -99,8 +101,8 @@ class ProdGithubProjectContributors implements GithubProjectContributors
             return $this->filesystemCache->fetch($id);
         }
 
-        /** @var Repo $repo */
         $repo = $this->githubClient->api('repo');
+        assert($repo instanceof Repo);
 
         $repositoryName = $project->getRepositoryName();
 

@@ -37,7 +37,7 @@ final class Site extends BaseSite
         $this->assetsUrl = $assetsUrl;
     }
 
-    public function getAssetsUrl() : string
+    public function getAssetsUrl(): string
     {
         return $this->assetsUrl;
     }

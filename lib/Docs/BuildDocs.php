@@ -11,6 +11,7 @@ use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function array_filter;
 use function count;
 use function sprintf;
@@ -46,7 +47,7 @@ class BuildDocs
         string $projectToBuild,
         string $versionToBuild,
         bool $buildSearchIndexes
-    ) : void {
+    ): void {
         if ($buildSearchIndexes) {
             $this->searchIndexer->initSearchIndex();
         }
@@ -116,19 +117,15 @@ class BuildDocs
      *
      * @return Project[]
      */
-    private function getProjectsToBuild(array $projects, string $projectToBuild) : array
+    private function getProjectsToBuild(array $projects, string $projectToBuild): array
     {
-        return array_filter($projects, static function (Project $project) use ($projectToBuild) : bool {
+        return array_filter($projects, static function (Project $project) use ($projectToBuild): bool {
             if ($projectToBuild !== '') {
                 if ($project->getSlug() === $projectToBuild) {
                     return true;
                 }
 
-                if ($project->getRepositoryName() === $projectToBuild) {
-                    return true;
-                }
-
-                return false;
+                return $project->getRepositoryName() === $projectToBuild;
             }
 
             return true;
@@ -138,14 +135,10 @@ class BuildDocs
     /**
      * @return ProjectVersion[]
      */
-    private function getProjectVersionsToBuild(Project $project, string $versionToBuild) : array
+    private function getProjectVersionsToBuild(Project $project, string $versionToBuild): array
     {
-        return array_filter($project->getVersions(), static function (ProjectVersion $version) use ($versionToBuild) : bool {
-            if ($versionToBuild !== '' && $version->getSlug() !== $versionToBuild) {
-                return false;
-            }
-
-            return true;
+        return array_filter($project->getVersions(), static function (ProjectVersion $version) use ($versionToBuild): bool {
+            return $versionToBuild === '' || $version->getSlug() === $versionToBuild;
         });
     }
 }

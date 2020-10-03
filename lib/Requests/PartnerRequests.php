@@ -19,7 +19,7 @@ class PartnerRequests
         $this->partnerRepository = $partnerRepository;
     }
 
-    public function getPartners() : RequestCollection
+    public function getPartners(): RequestCollection
     {
         /** @var Partner[] $partners */
         $partners = $this->partnerRepository->findAll();

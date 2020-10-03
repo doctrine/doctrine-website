@@ -11,7 +11,7 @@ use Doctrine\RST\Parser;
 
 class TocHeaderDirective extends SubDirective
 {
-    public function getName() : string
+    public function getName(): string
     {
         return 'tocheader';
     }
@@ -25,7 +25,7 @@ class TocHeaderDirective extends SubDirective
         string $variable,
         string $data,
         array $options
-    ) : ?Node {
+    ): ?Node {
         return new RawNode('<h2 class="toc-header">' . $data . '</h2>');
     }
 }

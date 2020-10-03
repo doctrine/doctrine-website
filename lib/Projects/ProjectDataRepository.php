@@ -20,7 +20,7 @@ class ProjectDataRepository
     /**
      * @return string[]
      */
-    public function getProjectRepositoryNames() : array
+    public function getProjectRepositoryNames(): array
     {
         $projectRepositoryNames = [];
 

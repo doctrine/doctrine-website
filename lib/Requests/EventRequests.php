@@ -19,7 +19,7 @@ class EventRequests
         $this->eventRepository = $eventRepository;
     }
 
-    public function getEvents() : RequestCollection
+    public function getEvents(): RequestCollection
     {
         /** @var Event[] $events */
         $events = $this->eventRepository->findAll();

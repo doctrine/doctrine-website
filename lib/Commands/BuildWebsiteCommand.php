@@ -13,6 +13,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
+
 use function array_map;
 use function assert;
 use function date;
@@ -60,7 +61,7 @@ class BuildWebsiteCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Build the Doctrine website.')
@@ -84,7 +85,7 @@ class BuildWebsiteCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         ini_set('memory_limit', '2048M');
 
@@ -120,7 +121,7 @@ class BuildWebsiteCommand extends Command
         return 0;
     }
 
-    private function watch(OutputInterface $output) : void
+    private function watch(OutputInterface $output): void
     {
         $lastWebsiteBuild = time();
 
@@ -139,7 +140,7 @@ class BuildWebsiteCommand extends Command
         }
     }
 
-    private function createWatchFinder(int $lastWebsiteBuild) : Finder
+    private function createWatchFinder(int $lastWebsiteBuild): Finder
     {
         return (new Finder())
             ->in($this->getWatchDirs())
@@ -149,18 +150,18 @@ class BuildWebsiteCommand extends Command
     /**
      * @return string[]
      */
-    private function getWatchDirs() : array
+    private function getWatchDirs(): array
     {
-        return array_map(function (string $dir) : string {
+        return array_map(function (string $dir): string {
             return $this->rootDir . '/' . $dir;
         }, self::WATCH_DIRS);
     }
 
-    private function buildWebsiteSubProcess(OutputInterface $output) : void
+    private function buildWebsiteSubProcess(OutputInterface $output): void
     {
         (new Process(['bin/console', 'build-website'], $this->rootDir))
             ->setTty(true)
-            ->mustRun(static function ($type, $buffer) use ($output) : void {
+            ->mustRun(static function ($type, $buffer) use ($output): void {
                 $output->write($buffer);
             });
     }

@@ -27,33 +27,33 @@ final class DateTimeRange
         $this->now   = $now ?? new DateTimeImmutable();
     }
 
-    public function getStart() : DateTimeImmutable
+    public function getStart(): DateTimeImmutable
     {
         return $this->start;
     }
 
-    public function getEnd() : DateTimeImmutable
+    public function getEnd(): DateTimeImmutable
     {
         return $this->end;
     }
 
-    public function isNow() : bool
+    public function isNow(): bool
     {
         return $this->start <= $this->now
             && $this->end > $this->now;
     }
 
-    public function isOver() : bool
+    public function isOver(): bool
     {
         return $this->end < $this->now;
     }
 
-    public function isUpcoming() : bool
+    public function isUpcoming(): bool
     {
         return $this->start > $this->now;
     }
 
-    public function getNumDays() : int
+    public function getNumDays(): int
     {
         $days = (int) $this->end
             ->diff($this->start)
@@ -66,7 +66,7 @@ final class DateTimeRange
         return 0;
     }
 
-    public function getNumHours() : int
+    public function getNumHours(): int
     {
         $diff = $this->end->diff($this->start);
 
@@ -79,7 +79,7 @@ final class DateTimeRange
         return $diff->h + ($this->getNumDays() * 24);
     }
 
-    public function getNumMinutes() : int
+    public function getNumMinutes(): int
     {
         $diff = $this->end->diff($this->start);
 
@@ -90,7 +90,7 @@ final class DateTimeRange
         return $minutes;
     }
 
-    public function getDuration() : string
+    public function getDuration(): string
     {
         $numDays = $this->getNumDays();
 

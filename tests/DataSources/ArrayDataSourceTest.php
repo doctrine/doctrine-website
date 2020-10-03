@@ -9,7 +9,7 @@ use Doctrine\Website\Tests\TestCase;
 
 class ArrayDataSourceTest extends TestCase
 {
-    public function testGetSourceRows() : void
+    public function testGetSourceRows(): void
     {
         $rows = [
             [

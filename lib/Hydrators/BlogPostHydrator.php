@@ -18,7 +18,7 @@ use Doctrine\Website\Model\BlogPost;
  */
 final class BlogPostHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return BlogPost::class;
     }
@@ -26,7 +26,7 @@ final class BlogPostHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->url         = (string) $data['url'] ?? '';
         $this->slug        = (string) $data['slug'] ?? '';

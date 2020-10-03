@@ -7,6 +7,7 @@ namespace Doctrine\Website\Docs\RST;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Filesystem\Filesystem;
+
 use function preg_match;
 use function preg_replace;
 use function sprintf;
@@ -43,7 +44,7 @@ TEMPLATE;
         $this->sourceDir         = $sourceDir;
     }
 
-    public function postRstBuild(Project $project, ProjectVersion $version, RSTLanguage $language) : void
+    public function postRstBuild(Project $project, ProjectVersion $version, RSTLanguage $language): void
     {
         $projectVersionDocsOutputPath = $project->getProjectVersionDocsOutputPath(
             $this->sourceDir,
@@ -65,7 +66,7 @@ TEMPLATE;
         ProjectVersion $version,
         RSTLanguage $language,
         string $file
-    ) : void {
+    ): void {
         $contents = $this->getFileContents($file);
 
         $processedContents = $this->processFileContents(
@@ -85,7 +86,7 @@ TEMPLATE;
         RSTLanguage $language,
         string $file,
         string $contents
-    ) : string {
+    ): string {
         if (strpos($file, '.html') !== false) {
             return $this->processHtmlFile($project, $version, $language, $file, $contents);
         }
@@ -99,7 +100,7 @@ TEMPLATE;
         RSTLanguage $language,
         string $file,
         string $contents
-    ) : string {
+    ): string {
         // parse out the source file that generated this file
         preg_match('/<p>{{ DOCS_SOURCE_PATH : (.*) }}<\/p>/', $contents, $match);
 
@@ -127,7 +128,7 @@ TEMPLATE;
         );
     }
 
-    private function getFileContents(string $file) : string
+    private function getFileContents(string $file): string
     {
         $contents = $this->rstFileRepository->getFileContents($file);
 
@@ -137,7 +138,7 @@ TEMPLATE;
         return $matches[1] ?? $contents;
     }
 
-    private function fixHeaderAnchors(string $contents) : string
+    private function fixHeaderAnchors(string $contents): string
     {
         return preg_replace(
             '/<div class="section" id="(.*)">\n<h(\d)>(.*)<\/h(\d)>/',
@@ -146,7 +147,7 @@ TEMPLATE;
         );
     }
 
-    private function extractTitle(string $contents) : string
+    private function extractTitle(string $contents): string
     {
         preg_match('/<h1>(.*)<\/h1>/', $contents, $matches);
 

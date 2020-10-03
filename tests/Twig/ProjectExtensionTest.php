@@ -18,7 +18,7 @@ class ProjectExtensionTest extends TestCase
     /** @var ProjectExtension|MockObject */
     private $projectExtension;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->projectRepository = $this->createMock(ProjectRepository::class);
 
@@ -31,7 +31,7 @@ class ProjectExtensionTest extends TestCase
             ->getMock();
     }
 
-    public function testGetUrlVersion() : void
+    public function testGetUrlVersion(): void
     {
         $version = new ProjectVersion(['slug' => '2.0']);
 
@@ -46,7 +46,7 @@ class ProjectExtensionTest extends TestCase
         );
     }
 
-    public function testGetUrlVersionCurrent() : void
+    public function testGetUrlVersionCurrent(): void
     {
         $version = new ProjectVersion(['slug' => '2.0']);
 
@@ -61,7 +61,7 @@ class ProjectExtensionTest extends TestCase
         );
     }
 
-    public function testGetUrlVersionNotFound() : void
+    public function testGetUrlVersionNotFound(): void
     {
         $version = new ProjectVersion(['slug' => '2.0']);
 

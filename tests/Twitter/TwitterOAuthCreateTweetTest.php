@@ -11,7 +11,7 @@ use RuntimeException;
 
 final class TwitterOAuthCreateTweetTest extends TestCase
 {
-    public function testInvokeSuccess() : void
+    public function testInvokeSuccess(): void
     {
         $message = 'Tweet this!';
 
@@ -25,7 +25,7 @@ final class TwitterOAuthCreateTweetTest extends TestCase
         self::assertTrue((new TwitterOAuthCreateTweet($twitterOAuth))->__invoke($message));
     }
 
-    public function testInvokeFailure() : void
+    public function testInvokeFailure(): void
     {
         $message = 'Tweet this!';
 

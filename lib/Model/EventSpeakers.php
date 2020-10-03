@@ -8,10 +8,11 @@ use Doctrine\Common\Collections\AbstractLazyCollection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use Doctrine\Website\Repositories\TeamMemberRepository;
+
 use function assert;
 
 /**
- * @template-extends AbstractLazyCollection<string, \Doctrine\Website\Model\EventSpeaker>
+ * @template-extends AbstractLazyCollection<string, EventSpeaker>
  */
 final class EventSpeakers extends AbstractLazyCollection
 {
@@ -30,7 +31,7 @@ final class EventSpeakers extends AbstractLazyCollection
         $this->objectManager = $objectManager;
     }
 
-    protected function doInitialize() : void
+    protected function doInitialize(): void
     {
         $teamMemberRepository = $this->objectManager->getRepository(TeamMember::class);
         assert($teamMemberRepository instanceof TeamMemberRepository);

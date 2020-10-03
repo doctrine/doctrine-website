@@ -6,6 +6,7 @@ namespace Doctrine\Website\Docs\RST;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+
 use function array_filter;
 use function array_map;
 use function array_values;
@@ -23,7 +24,7 @@ class RSTLanguagesDetector
     /**
      * @return RSTLanguage[]
      */
-    public function detectLanguages(string $docsDir) : array
+    public function detectLanguages(string $docsDir): array
     {
         if (! is_dir($docsDir)) {
             return [];
@@ -31,7 +32,7 @@ class RSTLanguagesDetector
 
         $languages = $this->detectLanguagesInDirectory($docsDir);
 
-        return array_filter($languages, function (RSTLanguage $language) : bool {
+        return array_filter($languages, function (RSTLanguage $language): bool {
             return $this->hasRSTIndex($language);
         });
     }
@@ -39,7 +40,7 @@ class RSTLanguagesDetector
     /**
      * @return RSTLanguage[]
      */
-    private function detectLanguagesInDirectory(string $docsDir) : array
+    private function detectLanguagesInDirectory(string $docsDir): array
     {
         $finder = (new Finder())
             ->directories()
@@ -79,7 +80,7 @@ class RSTLanguagesDetector
         ];
     }
 
-    private function hasRSTIndex(RSTLanguage $language) : bool
+    private function hasRSTIndex(RSTLanguage $language): bool
     {
         $finder = (new Finder())
             ->files()

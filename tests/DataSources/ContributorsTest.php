@@ -29,7 +29,7 @@ class ContributorsTest extends TestCase
     /** @var Contributors */
     private $contributors;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->dataReader           = $this->createMock(WebsiteDataReader::class);
         $this->teamMemberRepository = $this->createMock(TeamMemberRepository::class);
@@ -42,7 +42,7 @@ class ContributorsTest extends TestCase
         );
     }
 
-    public function testGetSourceRows() : void
+    public function testGetSourceRows(): void
     {
         $projectContributors = [
             [

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Git;
 
 use Doctrine\Website\ProcessFactory;
+
 use function array_map;
 use function explode;
 use function ltrim;
@@ -23,7 +24,7 @@ class TagBranchGuesser
         $this->processFactory = $processFactory;
     }
 
-    public function guessTagBranchName(string $repositoryPath, Tag $tag) : ?string
+    public function guessTagBranchName(string $repositoryPath, Tag $tag): ?string
     {
         $command = sprintf(self::COMMAND, $repositoryPath);
 
@@ -51,7 +52,7 @@ class TagBranchGuesser
         return null;
     }
 
-    public function generateTagBranchSlug(Tag $tag) : ?string
+    public function generateTagBranchSlug(Tag $tag): ?string
     {
         $versionSlug = ltrim($tag->getName(), 'v');
 

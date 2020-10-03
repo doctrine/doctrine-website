@@ -16,12 +16,12 @@ class DeployerTest extends TestCase
     /** @var ProcessFactory|MockObject */
     private $processFactory;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
     }
 
-    public function testDeployDev() : void
+    public function testDeployDev(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -32,11 +32,10 @@ class DeployerTest extends TestCase
         $deployer->deploy($output);
     }
 
-    public function testDeployStagingNothingChanged() : void
+    public function testDeployStagingNothingChanged(): void
     {
         $output = $this->createMock(OutputInterface::class);
 
-        /** @var Deployer|MockObject $deployer */
         $deployer = $this->getMockDeployer('staging');
 
         $deployer->expects(self::once())
@@ -54,11 +53,10 @@ class DeployerTest extends TestCase
         $deployer->deploy($output);
     }
 
-    public function testDeployStaging() : void
+    public function testDeployStaging(): void
     {
         $output = $this->createMock(OutputInterface::class);
 
-        /** @var Deployer|MockObject $deployer */
         $deployer = $this->getMockDeployer('staging');
 
         $deployer->expects(self::once())
@@ -93,7 +91,10 @@ class DeployerTest extends TestCase
         $deployer->deploy($output);
     }
 
-    private function getMockDeployer(string $env) : Deployer
+    /**
+     * @return Deployer&MockObject
+     */
+    private function getMockDeployer(string $env): Deployer
     {
         return $this->getMockBuilder(Deployer::class)
             ->setConstructorArgs([

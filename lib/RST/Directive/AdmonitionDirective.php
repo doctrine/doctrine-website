@@ -8,6 +8,7 @@ use Doctrine\RST\Directives\SubDirective;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Nodes\WrapperNode;
 use Doctrine\RST\Parser;
+
 use function sprintf;
 
 class AdmonitionDirective extends SubDirective
@@ -32,7 +33,7 @@ class AdmonitionDirective extends SubDirective
         $this->icon            = $icon;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -46,7 +47,7 @@ class AdmonitionDirective extends SubDirective
         string $variable,
         string $data,
         array $options
-    ) : ?Node {
+    ): ?Node {
         return new WrapperNode($document, sprintf('<div class="alert %s-admonition %s %s border"><table width="100%%"><tr><td width="10" class="align-top"><i class="%s mr-2"></i></td><td>', $this->name, $this->backgroundColor, $this->textColor, $this->icon), '</td></tr></table></div>');
     }
 }

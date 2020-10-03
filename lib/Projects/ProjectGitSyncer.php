@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Projects;
 
 use Doctrine\Website\ProcessFactory;
+
 use function is_dir;
 use function sprintf;
 
@@ -22,12 +23,12 @@ class ProjectGitSyncer
         $this->projectsDir    = $projectsDir;
     }
 
-    public function isRepositoryInitialized(string $repositoryName) : bool
+    public function isRepositoryInitialized(string $repositoryName): bool
     {
         return is_dir($this->projectsDir . '/' . $repositoryName . '/.git');
     }
 
-    public function initRepository(string $repositoryName) : void
+    public function initRepository(string $repositoryName): void
     {
         $repositoryPath = $this->projectsDir . '/' . $repositoryName;
 
@@ -44,12 +45,12 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
-    public function checkoutMaster(string $repositoryName) : void
+    public function checkoutMaster(string $repositoryName): void
     {
         $this->checkoutBranch($repositoryName, 'master');
     }
 
-    public function checkoutBranch(string $repositoryName, string $branchName) : void
+    public function checkoutBranch(string $repositoryName, string $branchName): void
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git checkout origin/%s',
@@ -60,7 +61,7 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
-    public function syncRepository(string $repositoryName) : void
+    public function syncRepository(string $repositoryName): void
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git fetch origin',
@@ -70,7 +71,7 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
-    private function getRepositoryPath(string $repositoryName) : string
+    private function getRepositoryPath(string $repositoryName): string
     {
         return $this->projectsDir . '/' . $repositoryName;
     }

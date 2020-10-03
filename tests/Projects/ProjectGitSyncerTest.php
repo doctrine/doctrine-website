@@ -8,6 +8,7 @@ use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+
 use function sprintf;
 
 class ProjectGitSyncerTest extends TestCase
@@ -21,7 +22,7 @@ class ProjectGitSyncerTest extends TestCase
     /** @var ProjectGitSyncer */
     private $projectGitSyncer;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
         $this->projectsDir    = __DIR__;
@@ -32,7 +33,7 @@ class ProjectGitSyncerTest extends TestCase
         );
     }
 
-    public function testInitRepository() : void
+    public function testInitRepository(): void
     {
         $repositoryName = 'example-project';
 
@@ -48,7 +49,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->projectGitSyncer->initRepository($repositoryName);
     }
 
-    public function testSyncRepository() : void
+    public function testSyncRepository(): void
     {
         $repositoryName = 'example-project';
 
@@ -62,7 +63,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->projectGitSyncer->syncRepository($repositoryName);
     }
 
-    public function testCheckoutMaster() : void
+    public function testCheckoutMaster(): void
     {
         $repositoryName = 'example-project';
 
@@ -76,7 +77,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->projectGitSyncer->checkoutMaster($repositoryName);
     }
 
-    public function testCheckoutBranch() : void
+    public function testCheckoutBranch(): void
     {
         $repositoryName = 'example-project';
         $branchName     = '1.0';

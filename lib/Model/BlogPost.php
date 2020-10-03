@@ -49,42 +49,42 @@ class BlogPost implements LoadMetadataInterface
         $this->date        = $date;
     }
 
-    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['slug']);
     }
 
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function getSlug() : string
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getAuthorName() : string
+    public function getAuthorName(): string
     {
         return $this->authorName;
     }
 
-    public function getAuthorEmail() : string
+    public function getAuthorEmail(): string
     {
         return $this->authorEmail;
     }
 
-    public function getContents() : string
+    public function getContents(): string
     {
         return $this->contents;
     }
 
-    public function getDate() : DateTimeImmutable
+    public function getDate(): DateTimeImmutable
     {
         return $this->date;
     }

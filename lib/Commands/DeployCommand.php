@@ -24,13 +24,13 @@ class DeployCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Deploy the Doctrine website.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->deployer->deploy($output);
 

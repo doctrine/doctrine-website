@@ -8,10 +8,11 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\AbstractLazyCollection;
 use Doctrine\Common\Collections\ArrayCollection;
 use InvalidArgumentException;
+
 use function sprintf;
 
 /**
- * @template-extends AbstractLazyCollection<int, \Doctrine\Website\Model\EventScheduleSlot>
+ * @template-extends AbstractLazyCollection<int, EventScheduleSlot>
  */
 final class EventSchedule extends AbstractLazyCollection
 {
@@ -30,7 +31,7 @@ final class EventSchedule extends AbstractLazyCollection
         $this->speakers = $speakers;
     }
 
-    protected function doInitialize() : void
+    protected function doInitialize(): void
     {
         $slots = [];
 

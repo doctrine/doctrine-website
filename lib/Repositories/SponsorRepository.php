@@ -12,7 +12,7 @@ class SponsorRepository extends BasicObjectRepository
     /**
      * @return Sponsor[]
      */
-    public function findAllOrderedByHighlighted() : array
+    public function findAllOrderedByHighlighted(): array
     {
         /** @var Sponsor[] $sponsors */
         $sponsors = $this->findBy([], ['highlighted' => 'desc']);

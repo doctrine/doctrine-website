@@ -19,7 +19,7 @@ use Doctrine\Website\Model\ProjectContributor;
  */
 final class ProjectContributorHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return ProjectContributor::class;
     }
@@ -27,7 +27,7 @@ final class ProjectContributorHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->teamMember   = $data['teamMember'] ?? null;
         $this->projectSlug  = (string) ($data['projectSlug'] ?? '');

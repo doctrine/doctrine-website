@@ -16,7 +16,7 @@ final class GetTotalDownloads
         $this->projectRepository = $projectRepository;
     }
 
-    public function __invoke() : int
+    public function __invoke(): int
     {
         $totalDownloads = 0;
 

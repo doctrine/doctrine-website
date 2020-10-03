@@ -30,37 +30,37 @@ class Contributor implements LoadMetadataInterface, CommitterStats
     /** @var Project[] */
     private $projects;
 
-    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['github']);
     }
 
-    public function getTeamMember() : ?TeamMember
+    public function getTeamMember(): ?TeamMember
     {
         return $this->teamMember;
     }
 
-    public function getGithub() : string
+    public function getGithub(): string
     {
         return $this->github;
     }
 
-    public function getAvatarUrl() : string
+    public function getAvatarUrl(): string
     {
         return $this->avatarUrl;
     }
 
-    public function getNumCommits() : int
+    public function getNumCommits(): int
     {
         return $this->numCommits;
     }
 
-    public function getNumAdditions() : int
+    public function getNumAdditions(): int
     {
         return $this->numAdditions;
     }
 
-    public function getNumDeletions() : int
+    public function getNumDeletions(): int
     {
         return $this->numDeletions;
     }
@@ -68,7 +68,7 @@ class Contributor implements LoadMetadataInterface, CommitterStats
     /**
      * @return Project[]
      */
-    public function getProjects() : array
+    public function getProjects(): array
     {
         return $this->projects;
     }

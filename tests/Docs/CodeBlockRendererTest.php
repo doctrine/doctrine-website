@@ -21,7 +21,7 @@ class CodeBlockRendererTest extends TestCase
     /** @var CodeBlockRenderer */
     private $codeBlockRenderer;
 
-    public function testRenderCodeBlockWithLineNumbers() : void
+    public function testRenderCodeBlockWithLineNumbers(): void
     {
         $lines = [
             '<?php',
@@ -42,7 +42,7 @@ class CodeBlockRendererTest extends TestCase
     /**
      * @dataProvider getConsoleLanguages
      */
-    public function testRenderConsole(string $consoleLanguage) : void
+    public function testRenderConsole(string $consoleLanguage): void
     {
         $lines = [
             '<?php',
@@ -61,7 +61,7 @@ class CodeBlockRendererTest extends TestCase
     /**
      * @return string[][]
      */
-    public function getConsoleLanguages() : array
+    public function getConsoleLanguages(): array
     {
         return [
             ['console'],
@@ -70,7 +70,7 @@ class CodeBlockRendererTest extends TestCase
         ];
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->codeBlockConsoleRenderer         = $this->createMock(CodeBlockConsoleRenderer::class);
         $this->codeBlockWithLineNumbersRenderer = $this->createMock(CodeBlockWithLineNumbersRenderer::class);

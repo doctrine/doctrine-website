@@ -8,13 +8,14 @@ use Doctrine\RST\Directives\Directive;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Nodes\RawNode;
 use Doctrine\RST\Parser;
+
 use function count;
 use function preg_match;
 use function sprintf;
 
 class SectionAuthorDirective extends Directive
 {
-    public function getName() : string
+    public function getName(): string
     {
         return 'sectionauthor';
     }
@@ -28,7 +29,7 @@ class SectionAuthorDirective extends Directive
         string $variable,
         string $data,
         array $options
-    ) : void {
+    ): void {
         preg_match('/(.*) <(.*)>/', $data, $match);
 
         if (count($match) === 3) {

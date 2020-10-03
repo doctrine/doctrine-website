@@ -7,6 +7,7 @@ namespace Doctrine\Website\Repositories;
 use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Project;
 use InvalidArgumentException;
+
 use function sprintf;
 
 class ProjectRepository extends BasicObjectRepository
@@ -14,7 +15,7 @@ class ProjectRepository extends BasicObjectRepository
     /**
      * @return Project[]
      */
-    public function findAll() : array
+    public function findAll(): array
     {
         /** @var Project[] $projects */
         $projects = parent::findAll();
@@ -22,7 +23,7 @@ class ProjectRepository extends BasicObjectRepository
         return $projects;
     }
 
-    public function findOneBySlug(string $slug) : Project
+    public function findOneBySlug(string $slug): Project
     {
         $project = $this->findOneBy(['slug' => $slug]);
 
@@ -33,7 +34,7 @@ class ProjectRepository extends BasicObjectRepository
         return $project;
     }
 
-    public function findOneByDocsSlug(string $docsSlug) : Project
+    public function findOneByDocsSlug(string $docsSlug): Project
     {
         $project = $this->findOneBy(['docsSlug' => $docsSlug]);
 
@@ -47,7 +48,7 @@ class ProjectRepository extends BasicObjectRepository
     /**
      * @return Project[]
      */
-    public function findPrimaryProjects() : array
+    public function findPrimaryProjects(): array
     {
         return $this->findBy([
             'active' => true,
@@ -58,7 +59,7 @@ class ProjectRepository extends BasicObjectRepository
     /**
      * @return Project[]
      */
-    public function findInactiveProjects() : array
+    public function findInactiveProjects(): array
     {
         return $this->findBy([
             'active' => false,
@@ -69,7 +70,7 @@ class ProjectRepository extends BasicObjectRepository
     /**
      * @return Project[]
      */
-    public function findArchivedProjects() : array
+    public function findArchivedProjects(): array
     {
         return $this->findBy([
             'active' => false,
@@ -80,7 +81,7 @@ class ProjectRepository extends BasicObjectRepository
     /**
      * @return Project[]
      */
-    public function findIntegrationProjects() : array
+    public function findIntegrationProjects(): array
     {
         return $this->findBy([
             'active' => true,
@@ -91,7 +92,7 @@ class ProjectRepository extends BasicObjectRepository
     /**
      * @return Project[]
      */
-    public function findProjectIntegrations(Project $project) : array
+    public function findProjectIntegrations(Project $project): array
     {
         return $this->findBy([
             'integration' => true,

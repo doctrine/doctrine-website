@@ -16,7 +16,7 @@ class CodeBlockWithLineNumbersRendererTest extends TestCase
     /** @var CodeBlockWithLineNumbersRenderer */
     private $codeBlockWithLineNumbersRenderer;
 
-    public function testRender() : void
+    public function testRender(): void
     {
         $rendered = $this->codeBlockWithLineNumbersRenderer->render([
             '<?php',
@@ -40,7 +40,7 @@ EXPECTED;
         self::assertSame($expected, $rendered);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->highlighter = new Highlighter();
 

@@ -23,7 +23,7 @@ final class UtmParameters
     /**
      * @param string[] $parameters
      */
-    public function buildUrl(string $url, array $parameters = []) : string
+    public function buildUrl(string $url, array $parameters = []): string
     {
         return $url . '?' . http_build_query(array_merge($this->parameters, $parameters));
     }

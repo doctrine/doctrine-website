@@ -9,7 +9,7 @@ use Doctrine\Website\Model\TeamMember;
 
 class TeamMemberRepository extends BasicObjectRepository
 {
-    public function findOneByGithub(string $github) : ?TeamMember
+    public function findOneByGithub(string $github): ?TeamMember
     {
         return $this->findOneBy(['github' => $github]);
     }
@@ -17,7 +17,7 @@ class TeamMemberRepository extends BasicObjectRepository
     /**
      * @return TeamMember[]
      */
-    public function findConsultants() : array
+    public function findConsultants(): array
     {
         return $this->findBy(['consultant' => true], ['github' => 'asc']);
     }

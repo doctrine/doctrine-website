@@ -13,7 +13,7 @@ class BlogPostRepository extends BasicObjectRepository
     /**
      * @return BlogPost[]
      */
-    public function findAll() : array
+    public function findAll(): array
     {
         return $this->findBy([], ['date' => 'desc']);
     }
@@ -21,7 +21,7 @@ class BlogPostRepository extends BasicObjectRepository
     /**
      * @return BlogPost[]
      */
-    public function findPaginated(int $page = 1, int $perPage = 10) : array
+    public function findPaginated(int $page = 1, int $perPage = 10): array
     {
         if ($page < 1 || $perPage < 1) {
             throw new InvalidArgumentException('Pagination parameters must be positive.');

@@ -16,6 +16,7 @@ use Doctrine\Website\Repositories\ProjectContributorRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 use function rand;
 
 abstract class TestCase extends BaseTestCase
@@ -23,7 +24,7 @@ abstract class TestCase extends BaseTestCase
     /** @var ContainerBuilder */
     private static $container;
 
-    protected function getContainer() : ContainerBuilder
+    protected function getContainer(): ContainerBuilder
     {
         if (self::$container === null) {
             self::$container = Application::getContainer('test');
@@ -35,10 +36,10 @@ abstract class TestCase extends BaseTestCase
     /**
      * @param mixed[] $data
      */
-    protected function createModel(string $repositoryClassName, array $data) : object
+    protected function createModel(string $repositoryClassName, array $data): object
     {
-        /** @var ObjectRepositoryInterface $repository */
         $repository = $this->getContainer()->get($repositoryClassName);
+        self::assertInstanceOf(ObjectRepositoryInterface::class, $repository);
 
         $object = $repository->create($repository->getClassName());
 
@@ -47,28 +48,26 @@ abstract class TestCase extends BaseTestCase
         return $object;
     }
 
-
     /**
      * @param mixed[] $data
      */
-    protected function createEvent(array $data) : Event
+    protected function createEvent(array $data): Event
     {
         $data['id'] = rand();
 
-        /** @var Event $event */
         $event = $this->createModel(EventRepository::class, $data);
+        self::assertInstanceOf(Event::class, $event);
 
         return $event;
     }
 
-
     /**
      * @param mixed[] $data
      */
-    protected function createProject(array $data) : Project
+    protected function createProject(array $data): Project
     {
-        /** @var Project $project */
         $project = $this->createModel(ProjectRepository::class, $data);
+        self::assertInstanceOf(Project::class, $project);
 
         return $project;
     }
@@ -76,10 +75,10 @@ abstract class TestCase extends BaseTestCase
     /**
      * @param mixed[] $data
      */
-    protected function createContributor(array $data) : Contributor
+    protected function createContributor(array $data): Contributor
     {
-        /** @var Contributor $contributor */
         $contributor = $this->createModel(ContributorRepository::class, $data);
+        self::assertInstanceOf(Contributor::class, $contributor);
 
         return $contributor;
     }
@@ -87,10 +86,10 @@ abstract class TestCase extends BaseTestCase
     /**
      * @param mixed[] $data
      */
-    protected function createProjectContributor(array $data) : ProjectContributor
+    protected function createProjectContributor(array $data): ProjectContributor
     {
-        /** @var ProjectContributor $projectContributor */
         $projectContributor = $this->createModel(ProjectContributorRepository::class, $data);
+        self::assertInstanceOf(ProjectContributor::class, $projectContributor);
 
         return $projectContributor;
     }

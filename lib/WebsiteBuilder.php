@@ -12,6 +12,7 @@ use Doctrine\Website\Repositories\ProjectRepository;
 use RuntimeException;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+
 use function chdir;
 use function file_exists;
 use function file_put_contents;
@@ -84,7 +85,7 @@ class WebsiteBuilder
         string $buildDir,
         string $env,
         bool $publish
-    ) : void {
+    ): void {
         $output->writeln(sprintf(
             'Building Doctrine website for <info>%s</info> environment at <info>%s</info>.',
             $env,
@@ -120,7 +121,7 @@ class WebsiteBuilder
         $output->writeln(' - done');
     }
 
-    protected function filePutContents(string $path, string $contents) : void
+    protected function filePutContents(string $path, string $contents): void
     {
         file_put_contents($path, $contents);
     }
@@ -128,7 +129,7 @@ class WebsiteBuilder
     /**
      * @throws RuntimeException
      */
-    private function buildWebsite(OutputInterface $output, string $buildDir, bool $isPublishableEnv) : void
+    private function buildWebsite(OutputInterface $output, string $buildDir, bool $isPublishableEnv): void
     {
         $output->writeln(sprintf(' - clearing build directory <info>%s</info>', $buildDir));
 
@@ -147,7 +148,7 @@ class WebsiteBuilder
         $this->sourceFilesBuilder->buildSourceFiles($sourceFiles);
     }
 
-    private function buildWebpackAssets(OutputInterface $output, string $buildDir, bool $isPublishableEnv) : void
+    private function buildWebpackAssets(OutputInterface $output, string $buildDir, bool $isPublishableEnv): void
     {
         $output->writeln(sprintf(' - running <info>npm run %s</info> ', $isPublishableEnv ? 'build' : 'dev'));
 
@@ -166,6 +167,7 @@ class WebsiteBuilder
         // Copy built assets if this is a publishable build
         if ($isPublishableEnv) {
             $this->filesystem->mirror($this->webpackBuildDir, $buildDir . '/frontend');
+
             return;
         }
 
@@ -174,7 +176,7 @@ class WebsiteBuilder
         $this->filesystem->symlink($this->webpackBuildDir, $buildDir . '/frontend', true);
     }
 
-    private function createProjectVersionAliases(string $buildDir) : void
+    private function createProjectVersionAliases(string $buildDir): void
     {
         /** @var Project[] $projects */
         $projects = $this->projectRepository->findAll();
@@ -193,7 +195,7 @@ class WebsiteBuilder
         }
     }
 
-    private function copyWebsiteBuildData(OutputInterface $output, string $buildDir) : void
+    private function copyWebsiteBuildData(OutputInterface $output, string $buildDir): void
     {
         $from = $this->cacheDir . '/data';
         $to   = $buildDir . '/website-data';
@@ -212,7 +214,7 @@ class WebsiteBuilder
         Project $project,
         ProjectVersion $version,
         string $alias
-    ) : void {
+    ): void {
         $dir = sprintf(
             '%s/projects/%s/en',
             $buildDir,
@@ -222,7 +224,7 @@ class WebsiteBuilder
         $this->createVersionAlias($dir, $version, $alias);
     }
 
-    private function createVersionAlias(string $dir, ProjectVersion $version, string $alias) : void
+    private function createVersionAlias(string $dir, ProjectVersion $version, string $alias): void
     {
         if (! is_dir($dir)) {
             return;

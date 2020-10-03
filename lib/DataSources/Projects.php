@@ -21,7 +21,7 @@ class Projects implements DataSource
     /**
      * @return mixed[][]
      */
-    public function getSourceRows() : array
+    public function getSourceRows(): array
     {
         return $this->dataReader
             ->read(ProjectDataBuilder::DATA_FILE)

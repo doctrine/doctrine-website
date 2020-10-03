@@ -22,17 +22,17 @@ final class RenderedEmail
         $this->bodyHtml = $bodyHtml;
     }
 
-    public function getSubject() : string
+    public function getSubject(): string
     {
         return $this->subject;
     }
 
-    public function getBodyText() : string
+    public function getBodyText(): string
     {
         return $this->bodyText;
     }
 
-    public function getBodyHtml() : string
+    public function getBodyHtml(): string
     {
         return $this->bodyHtml;
     }

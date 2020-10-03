@@ -42,42 +42,42 @@ final class EventSpeaker
         $this->youTubeVideoId = $youTubeVideoId;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getAvatarUrl() : string
+    public function getAvatarUrl(): string
     {
         return $this->avatarUrl;
     }
 
-    public function getTopic() : string
+    public function getTopic(): string
     {
         return $this->topic;
     }
 
-    public function getTopicSlug() : string
+    public function getTopicSlug(): string
     {
         return $this->topicSlug;
     }
 
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function hasYouTubeVideo() : bool
+    public function hasYouTubeVideo(): bool
     {
         return $this->youTubeVideoId !== '';
     }
 
-    public function getYouTubeVideoId() : string
+    public function getYouTubeVideoId(): string
     {
         return $this->youTubeVideoId;
     }
 
-    public function getYouTubeUrl() : string
+    public function getYouTubeUrl(): string
     {
         return sprintf('https://www.youtube.com/watch?v=%s', $this->youTubeVideoId);
     }

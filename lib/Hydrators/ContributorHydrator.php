@@ -17,7 +17,7 @@ use Doctrine\Website\Model\Contributor;
  */
 final class ContributorHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return Contributor::class;
     }
@@ -25,7 +25,7 @@ final class ContributorHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->teamMember   = $data['teamMember'] ?? null;
         $this->github       = (string) ($data['github'] ?? '');

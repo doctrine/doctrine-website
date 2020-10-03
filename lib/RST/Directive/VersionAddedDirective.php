@@ -8,11 +8,12 @@ use Doctrine\RST\Directives\Directive;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Nodes\QuoteNode;
 use Doctrine\RST\Parser;
+
 use function sprintf;
 
 class VersionAddedDirective extends Directive
 {
-    public function getName() : string
+    public function getName(): string
     {
         return 'versionadded';
     }
@@ -26,7 +27,7 @@ class VersionAddedDirective extends Directive
         string $variable,
         string $data,
         array $options
-    ) : void {
+    ): void {
         $document = $parser->getDocument();
 
         $renderedNode = '';

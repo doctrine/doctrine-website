@@ -16,6 +16,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+
 use function array_filter;
 use function array_map;
 use function assert;
@@ -60,7 +61,7 @@ class EventParticipantsCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Command to check for event participants using the Stripe API.')
@@ -78,7 +79,7 @@ class EventParticipantsCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -124,7 +125,6 @@ class EventParticipantsCommand extends Command
         return 0;
     }
 
-
     /**
      * @param EventParticipant[] $eventParticipants
      * @param EventParticipant[] $newEventParticipants
@@ -134,9 +134,9 @@ class EventParticipantsCommand extends Command
     private function createEventParticipantsTableRows(
         array $eventParticipants,
         array $newEventParticipants
-    ) : array {
+    ): array {
         return array_map(
-            static function (EventParticipant $participant) use ($newEventParticipants) : array {
+            static function (EventParticipant $participant) use ($newEventParticipants): array {
                 $isNew = in_array($participant, $newEventParticipants, true) ? 'Yes' : 'No';
 
                 return [$participant->getEmail(), $participant->getQuantity(), $isNew];
@@ -150,9 +150,9 @@ class EventParticipantsCommand extends Command
      *
      * @return EventParticipant[]
      */
-    private function getNewEventParticipants(array $eventParticipants) : array
+    private function getNewEventParticipants(array $eventParticipants): array
     {
-        return array_filter($eventParticipants, function (EventParticipant $eventParticipant) : bool {
+        return array_filter($eventParticipants, function (EventParticipant $eventParticipant): bool {
             return $this->eventParticipantRepository
                 ->findOneByEmail($eventParticipant->getEmail()) === null;
         });
@@ -161,7 +161,7 @@ class EventParticipantsCommand extends Command
     /**
      * @param EventParticipant[] $eventParticipants
      */
-    private function saveEventParticipants(array $eventParticipants) : void
+    private function saveEventParticipants(array $eventParticipants): void
     {
         foreach ($eventParticipants as $eventParticipant) {
             $this->entityManager->persist($eventParticipant);
@@ -177,7 +177,7 @@ class EventParticipantsCommand extends Command
         SymfonyStyle $io,
         Event $event,
         array $eventParticipants
-    ) : void {
+    ): void {
         $this->emailParticipants->__invoke($event, $eventParticipants);
 
         $io->text(sprintf('E-mailed <info>%d</info> participants.', count($eventParticipants)));

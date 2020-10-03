@@ -32,6 +32,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
 use function date_default_timezone_set;
 use function file_exists;
 use function getenv;
@@ -113,7 +114,7 @@ class Application
         ]);
     }
 
-    public function run(InputInterface $input) : int
+    public function run(InputInterface $input): int
     {
         $inputOption = new InputOption(
             'env',
@@ -127,12 +128,12 @@ class Application
         return $this->application->run($input);
     }
 
-    public function getConsoleApplication() : BaseApplication
+    public function getConsoleApplication(): BaseApplication
     {
         return $this->application;
     }
 
-    public static function getContainer(string $env) : ContainerBuilder
+    public static function getContainer(string $env): ContainerBuilder
     {
         $container = new ContainerBuilder();
         $container->setParameter('doctrine.website.env', $env);

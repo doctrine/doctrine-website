@@ -21,7 +21,7 @@ class WebsiteData
         $this->data = $data;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -29,7 +29,7 @@ class WebsiteData
     /**
      * @return mixed[]
      */
-    public function getData() : array
+    public function getData(): array
     {
         return $this->data;
     }

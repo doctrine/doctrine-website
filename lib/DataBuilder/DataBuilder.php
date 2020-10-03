@@ -6,7 +6,7 @@ namespace Doctrine\Website\DataBuilder;
 
 interface DataBuilder
 {
-    public function getName() : string;
+    public function getName(): string;
 
-    public function build() : WebsiteData;
+    public function build(): WebsiteData;
 }

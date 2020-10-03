@@ -19,7 +19,7 @@ class ConsultingController
         $this->teamMemberRepository = $teamMemberRepository;
     }
 
-    public function index() : Response
+    public function index(): Response
     {
         $consultants = $this->teamMemberRepository->findConsultants();
 
@@ -36,7 +36,7 @@ class ConsultingController
     /**
      * @param TeamMember[] $teamMembers
      */
-    private function createCommittersStats(array $teamMembers) : CommittersStats
+    private function createCommittersStats(array $teamMembers): CommittersStats
     {
         return new CommittersStats($teamMembers);
     }

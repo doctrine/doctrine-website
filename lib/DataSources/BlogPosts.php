@@ -22,7 +22,7 @@ class BlogPosts implements DataSource
     /**
      * @return mixed[][]
      */
-    public function getSourceRows() : array
+    public function getSourceRows(): array
     {
         $blogPosts = $this->dataReader
             ->read(BlogPostDataBuilder::DATA_FILE)

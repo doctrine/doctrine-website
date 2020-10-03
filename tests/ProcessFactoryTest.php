@@ -11,12 +11,12 @@ class ProcessFactoryTest extends TestCase
     /** @var ProcessFactory */
     private $processFactory;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->processFactory = new ProcessFactory();
     }
 
-    public function testCreate() : void
+    public function testCreate(): void
     {
         $command = 'ls -la';
 
@@ -25,7 +25,7 @@ class ProcessFactoryTest extends TestCase
         self::assertSame($command, $process->getCommandLine());
     }
 
-    public function testRun() : void
+    public function testRun(): void
     {
         $process = $this->processFactory->run('echo "test"');
 

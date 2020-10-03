@@ -17,21 +17,21 @@ class TeamController
         $this->contributorRepository = $contributorRepository;
     }
 
-    public function maintainers() : Response
+    public function maintainers(): Response
     {
         return new Response([
             'contributors' => $this->contributorRepository->findMaintainers(),
         ]);
     }
 
-    public function contributors() : Response
+    public function contributors(): Response
     {
         return new Response([
             'contributors' => $this->contributorRepository->findContributors(),
         ]);
     }
 
-    public function contributor(string $github) : Response
+    public function contributor(string $github): Response
     {
         $contributor = $this->contributorRepository->findOneByGithub($github);
 

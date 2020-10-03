@@ -10,7 +10,7 @@ use Doctrine\Website\Model\Entity\EventParticipant;
 use Doctrine\Website\Model\Entity\EventParticipantRepository;
 
 /**
- * @template-extends AbstractLazyCollection<int, \Doctrine\Website\Model\Entity\EventParticipant>
+ * @template-extends AbstractLazyCollection<int, EventParticipant>
  */
 final class EventParticipants extends AbstractLazyCollection
 {
@@ -26,7 +26,7 @@ final class EventParticipants extends AbstractLazyCollection
         $this->eventParticipantRepository = $eventParticipantRepository;
     }
 
-    protected function doInitialize() : void
+    protected function doInitialize(): void
     {
         /** @var EventParticipant[] $eventParticipants */
         $eventParticipants = $this->eventParticipantRepository

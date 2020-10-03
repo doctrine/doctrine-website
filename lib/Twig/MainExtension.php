@@ -11,6 +11,7 @@ use Parsedown;
 use Twig_Extension;
 use Twig_SimpleFilter;
 use Twig_SimpleFunction;
+
 use function assert;
 use function file_get_contents;
 use function is_int;
@@ -56,7 +57,7 @@ class MainExtension extends Twig_Extension
     /**
      * @return Twig_SimpleFunction[]
      */
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new Twig_SimpleFunction('get_search_box_placeholder', [$this, 'getSearchBoxPlaceholder']),
@@ -71,7 +72,7 @@ class MainExtension extends Twig_Extension
     /**
      * @return Twig_SimpleFilter[]
      */
-    public function getFilters() : array
+    public function getFilters(): array
     {
         return [
             new Twig_SimpleFilter('markdown', [$this->parsedown, 'text'], ['is_safe' => ['html']]),
@@ -79,7 +80,7 @@ class MainExtension extends Twig_Extension
         ];
     }
 
-    public function getSearchBoxPlaceholder(?Project $project = null, ?ProjectVersion $projectVersion = null) : string
+    public function getSearchBoxPlaceholder(?Project $project = null, ?ProjectVersion $projectVersion = null): string
     {
         if ($project !== null && $projectVersion !== null) {
             return 'Search ' . $project->getShortName() . ' ' . $projectVersion->getName();
@@ -92,17 +93,17 @@ class MainExtension extends Twig_Extension
         return 'Search';
     }
 
-    public function getAssetUrl(string $path, string $siteUrl, ?string $rootPath = null) : string
+    public function getAssetUrl(string $path, string $siteUrl, ?string $rootPath = null): string
     {
         return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path, $rootPath ?? $this->sourceDir);
     }
 
-    public function getWebpackAssetUrl(string $path, string $siteUrl) : string
+    public function getWebpackAssetUrl(string $path, string $siteUrl): string
     {
         return $this->getAssetUrl($path, $siteUrl . '/frontend', $this->webpackBuildDir);
     }
 
-    public function truncate(string $string, int $limit, string $separator = '...') : string
+    public function truncate(string $string, int $limit, string $separator = '...'): string
     {
         if (strlen($string) > $limit) {
             $newlimit = $limit - strlen($separator);
@@ -118,12 +119,12 @@ class MainExtension extends Twig_Extension
         return $string;
     }
 
-    public function getStripePublishableKey() : string
+    public function getStripePublishableKey(): string
     {
         return $this->stripePublishableKey;
     }
 
-    private function getAssetCacheBuster(string $path, string $rootPath) : string
+    private function getAssetCacheBuster(string $path, string $rootPath): string
     {
         $assetPath = realpath($rootPath . '/' . $path);
         assert(is_string($assetPath), sprintf('Failed to determine the path for the asset "%s"', $rootPath . '/' . $path));

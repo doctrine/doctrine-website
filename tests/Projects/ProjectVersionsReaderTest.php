@@ -23,7 +23,7 @@ class ProjectVersionsReaderTest extends TestCase
     /** @var ProjectVersionsReader */
     private $projectVersionsReader;
 
-    public function testReadProjectVersions() : void
+    public function testReadProjectVersions(): void
     {
         $repositoryPath = '/repository/path';
 
@@ -118,7 +118,7 @@ class ProjectVersionsReaderTest extends TestCase
         self::assertSame('master', $versions[3]['branchName']);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->tagReader        = $this->createMock(TagReader::class);
         $this->tagBranchGuesser = $this->createMock(TagBranchGuesser::class);

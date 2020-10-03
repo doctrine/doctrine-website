@@ -22,17 +22,17 @@ class SitemapPage implements LoadMetadataInterface
         $this->date = $date;
     }
 
-    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['url']);
     }
 
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function getDate() : DateTimeImmutable
+    public function getDate(): DateTimeImmutable
     {
         return $this->date;
     }

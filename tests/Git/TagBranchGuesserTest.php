@@ -20,7 +20,7 @@ class TagBranchGuesserTest extends TestCase
     /** @var TagBranchGuesser */
     private $tagBranchGuesser;
 
-    public function testGuessTagBranchNameGuess1() : void
+    public function testGuessTagBranchNameGuess1(): void
     {
         $tag = new Tag('v2.0.0-alpha1', new DateTimeImmutable());
 
@@ -45,7 +45,7 @@ class TagBranchGuesserTest extends TestCase
         self::assertSame('2.0', $branchName);
     }
 
-    public function testGuessTagBranchNameGuess2() : void
+    public function testGuessTagBranchNameGuess2(): void
     {
         $tag = new Tag('v2.0.0-alpha1', new DateTimeImmutable());
 
@@ -70,7 +70,7 @@ class TagBranchGuesserTest extends TestCase
         self::assertSame('2.0.x', $branchName);
     }
 
-    public function testGuessTagBranchNameReturnsNull() : void
+    public function testGuessTagBranchNameReturnsNull(): void
     {
         $tag = new Tag('v2.0.0-alpha1', new DateTimeImmutable());
 
@@ -95,14 +95,14 @@ class TagBranchGuesserTest extends TestCase
         self::assertNull($branchName);
     }
 
-    public function testGenerateTagBranchSlug() : void
+    public function testGenerateTagBranchSlug(): void
     {
         $tag = new Tag('v2.0.0-alpha1', new DateTimeImmutable());
 
         self::assertSame('2.0', $this->tagBranchGuesser->generateTagBranchSlug($tag));
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Docs;
 
 use Highlight\Highlighter;
+
 use function count;
 use function implode;
 use function in_array;
@@ -56,7 +57,7 @@ TEMPLATE;
     /**
      * @param string[] $lines
      */
-    public function render(array $lines, string $language) : string
+    public function render(array $lines, string $language): string
     {
         $renderedCode = $this->renderCode($lines, $language);
 
@@ -83,7 +84,7 @@ TEMPLATE;
     /**
      * @param string[] $lines
      */
-    private function renderCode(array $lines, string $language) : string
+    private function renderCode(array $lines, string $language): string
     {
         $codeToRender = implode("\n", $lines);
 
@@ -94,7 +95,7 @@ TEMPLATE;
         return $this->highlighter->highlight($language, $codeToRender)->value;
     }
 
-    private function shouldHighlight(string $language) : bool
+    private function shouldHighlight(string $language): bool
     {
         return $language !== '' && ! in_array($language, self::LANGUAGES_NOT_TO_HIGHLIGHT, true);
     }
@@ -102,7 +103,7 @@ TEMPLATE;
     /**
      * @param string[] $lines
      */
-    private function generateLineNumbersTableTemplate(array $lines, string $codeElementId) : string
+    private function generateLineNumbersTableTemplate(array $lines, string $codeElementId): string
     {
         $lineTableRows = [];
 

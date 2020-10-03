@@ -9,6 +9,7 @@ use Doctrine\Website\Git\Tag;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 use function sprintf;
 
 class TweetRelease
@@ -29,7 +30,7 @@ class TweetRelease
         Project $project,
         ProjectVersion $projectVersion,
         Tag $tag
-    ) : bool {
+    ): bool {
         $message = sprintf(
             'Released Doctrine %s %s %s',
             $project->getShortName(),

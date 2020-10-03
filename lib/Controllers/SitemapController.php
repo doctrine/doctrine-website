@@ -17,7 +17,7 @@ class SitemapController
         $this->sitemapPageRepository = $sitemapPageRepository;
     }
 
-    public function index() : Response
+    public function index(): Response
     {
         return new Response(['pages' => $this->sitemapPageRepository->findAll()]);
     }

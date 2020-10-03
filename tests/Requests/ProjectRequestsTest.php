@@ -18,7 +18,7 @@ class ProjectRequestsTest extends TestCase
     /** @var ProjectRequests */
     private $projectRequests;
 
-    public function testGetProjects() : void
+    public function testGetProjects(): void
     {
         $project1 = $this->createProject(['slug' => 'project1']);
         $project2 = $this->createProject(['slug' => 'project2']);
@@ -37,7 +37,7 @@ class ProjectRequestsTest extends TestCase
         ]), $projectRequests);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->projectRepository = $this->createMock(ProjectRepository::class);
 

@@ -16,6 +16,7 @@ use Doctrine\Website\Event\NodeValue;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+
 use function sys_get_temp_dir;
 
 class SearchIndexerTest extends TestCase
@@ -26,7 +27,7 @@ class SearchIndexerTest extends TestCase
     /** @var SearchIndexer */
     private $searchIndexer;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->client = $this->createMock(Client::class);
 
@@ -35,7 +36,7 @@ class SearchIndexerTest extends TestCase
         );
     }
 
-    public function testInitSearchIndex() : void
+    public function testInitSearchIndex(): void
     {
         $index = $this->createMock(Index::class);
 
@@ -65,7 +66,7 @@ class SearchIndexerTest extends TestCase
         $this->searchIndexer->initSearchIndex();
     }
 
-    public function testBuildSearchIndexes() : void
+    public function testBuildSearchIndexes(): void
     {
         $project = $this->createProject([
             'shortName' => 'ORM',
@@ -217,7 +218,7 @@ class SearchIndexerTest extends TestCase
         $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
     }
 
-    public function testBuildSearchIndexesContainingQuotes() : void
+    public function testBuildSearchIndexesContainingQuotes(): void
     {
         $project = $this->createProject([
             'shortName' => 'ORM',

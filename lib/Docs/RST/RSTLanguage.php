@@ -18,12 +18,12 @@ class RSTLanguage
         $this->path = $path;
     }
 
-    public function getCode() : string
+    public function getCode(): string
     {
         return $this->code;
     }
 
-    public function getPath() : string
+    public function getPath(): string
     {
         return $this->path;
     }

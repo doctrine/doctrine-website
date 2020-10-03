@@ -12,42 +12,42 @@ class CodeBlockLanguageDetectorTest extends TestCase
     /** @var CodeBlockLanguageDetector */
     private $codeBlockLanguageDetector;
 
-    public function testDetectLanguage() : void
+    public function testDetectLanguage(): void
     {
         $language = $this->codeBlockLanguageDetector->detectLanguage('xml', []);
 
         self::assertSame('xml', $language);
     }
 
-    public function testDetectLanguageDefault() : void
+    public function testDetectLanguageDefault(): void
     {
         $language = $this->codeBlockLanguageDetector->detectLanguage('', []);
 
         self::assertSame('console', $language);
     }
 
-    public function testDetectLanguageAliases() : void
+    public function testDetectLanguageAliases(): void
     {
         $language = $this->codeBlockLanguageDetector->detectLanguage('html+php', []);
 
         self::assertSame('php', $language);
     }
 
-    public function testDetectLanguagePhp() : void
+    public function testDetectLanguagePhp(): void
     {
         $language = $this->codeBlockLanguageDetector->detectLanguage('', ['<?php ']);
 
         self::assertSame('php', $language);
     }
 
-    public function testDetectLanguageConsole() : void
+    public function testDetectLanguageConsole(): void
     {
         $language = $this->codeBlockLanguageDetector->detectLanguage('', ['$ ./bin/console command']);
 
         self::assertSame('console', $language);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->codeBlockLanguageDetector = new CodeBlockLanguageDetector();
     }

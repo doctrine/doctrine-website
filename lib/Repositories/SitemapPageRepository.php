@@ -12,7 +12,7 @@ class SitemapPageRepository extends BasicObjectRepository
     /**
      * @return SitemapPage[]
      */
-    public function findAll() : array
+    public function findAll(): array
     {
         /** @var SitemapPage[] $sitemapPages */
         $sitemapPages = $this->findBy([], ['url' => 'asc']);

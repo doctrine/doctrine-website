@@ -10,6 +10,7 @@ use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Parser;
 use Doctrine\Website\Docs\CodeBlockLanguageDetector;
 use Doctrine\Website\Docs\CodeBlockRenderer;
+
 use function array_reverse;
 use function assert;
 use function is_array;
@@ -41,7 +42,7 @@ class CodeBlockDirective extends Directive
         $this->codeBlockLanguageDetector = $codeBlockLanguageDetector;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return 'code-block';
     }
@@ -55,7 +56,7 @@ class CodeBlockDirective extends Directive
         string $variable,
         string $data,
         array $options
-    ) : void {
+    ): void {
         if (! $node instanceof CodeNode) {
             return;
         }
@@ -85,7 +86,7 @@ class CodeBlockDirective extends Directive
     /**
      * @return string[]
      */
-    private function getLines(string $code) : array
+    private function getLines(string $code): array
     {
         $lines = preg_split('/\r\n|\r|\n/', $code);
         assert(is_array($lines));
@@ -104,7 +105,7 @@ class CodeBlockDirective extends Directive
         return array_reverse($reversedLines);
     }
 
-    public function wantCode() : bool
+    public function wantCode(): bool
     {
         return true;
     }

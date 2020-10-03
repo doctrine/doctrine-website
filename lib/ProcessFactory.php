@@ -13,7 +13,7 @@ class ProcessFactory
     /**
      * @return Process<string, string>
      */
-    public function create(string $command) : Process
+    public function create(string $command): Process
     {
         $process = Process::fromShellCommandline($command);
         $process->setTimeout(null);
@@ -24,7 +24,7 @@ class ProcessFactory
     /**
      * @return Process<string, string>
      */
-    public function run(string $command, ?Closure $callback = null) : Process
+    public function run(string $command, ?Closure $callback = null): Process
     {
         $process = $this->create($command);
         $process->run($callback);

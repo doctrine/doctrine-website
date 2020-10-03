@@ -12,7 +12,7 @@ use Doctrine\Website\Model\DoctrineUser;
  */
 final class DoctrineUserHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return DoctrineUser::class;
     }
@@ -20,7 +20,7 @@ final class DoctrineUserHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->name = (string) $data['name'];
         $this->url  = (string) $data['url'];

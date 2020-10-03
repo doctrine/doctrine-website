@@ -6,6 +6,7 @@ namespace Doctrine\Website;
 
 use InvalidArgumentException;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function assert;
 use function file_exists;
 use function file_get_contents;
@@ -37,7 +38,7 @@ class Deployer
         $this->env            = $env;
     }
 
-    public function deploy(OutputInterface $output) : void
+    public function deploy(OutputInterface $output): void
     {
         if (! in_array($this->env, self::ENVS, true)) {
             throw new InvalidArgumentException(
@@ -68,7 +69,7 @@ class Deployer
             $deployRef
         );
 
-        $this->processFactory->run($updateCommand, static function ($type, $buffer) use ($output) : void {
+        $this->processFactory->run($updateCommand, static function ($type, $buffer) use ($output): void {
             $output->write($buffer);
         });
 
@@ -81,12 +82,12 @@ class Deployer
             $this->env
         );
 
-        $this->processFactory->run($deployCommand, static function ($type, $buffer) use ($output) : void {
+        $this->processFactory->run($deployCommand, static function ($type, $buffer) use ($output): void {
             $output->write($buffer);
         });
     }
 
-    protected function startDeploy(OutputInterface $output) : void
+    protected function startDeploy(OutputInterface $output): void
     {
         $command = sprintf(
             'cp /data/doctrine-website-%s/deploy-%s /data/doctrine-website-%s/last-deploy-%s',
@@ -96,12 +97,12 @@ class Deployer
             $this->env
         );
 
-        $this->processFactory->run($command, static function ($type, $buffer) use ($output) : void {
+        $this->processFactory->run($command, static function ($type, $buffer) use ($output): void {
             $output->write($buffer);
         });
     }
 
-    protected function getDeploy() : string
+    protected function getDeploy(): string
     {
         return $this->getFileContents(sprintf(
             '/data/doctrine-website-%s/deploy-%s',
@@ -110,7 +111,7 @@ class Deployer
         ));
     }
 
-    protected function getLastDeploy() : string
+    protected function getLastDeploy(): string
     {
         return $this->getFileContents(sprintf(
             '/data/doctrine-website-%s/last-deploy-%s',
@@ -119,7 +120,7 @@ class Deployer
         ));
     }
 
-    private function getFileContents(string $file) : string
+    private function getFileContents(string $file): string
     {
         if (! file_exists($file)) {
             return '';

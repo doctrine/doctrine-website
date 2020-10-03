@@ -10,14 +10,16 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Event;
 use InvalidArgumentException;
+
+use function assert;
 use function sprintf;
 
 class EventRepository extends BasicObjectRepository
 {
-    public function findOneById(int $id) : Event
+    public function findOneById(int $id): Event
     {
-        /** @var Event|null $event */
         $event = $this->findOneBy(['id' => $id]);
+        assert($event instanceof Event || $event === null);
 
         if ($event === null) {
             throw new InvalidArgumentException(sprintf('Could not find Event with id "%s"', $id));
@@ -29,7 +31,7 @@ class EventRepository extends BasicObjectRepository
     /**
      * @return Event[]
      */
-    public function findUpcomingEvents() : array
+    public function findUpcomingEvents(): array
     {
         /** @var Event[] $events */
         $events = $this->findBy([], ['startDate' => 'asc']);
@@ -43,7 +45,7 @@ class EventRepository extends BasicObjectRepository
     /**
      * @return Event[]
      */
-    public function findPastEvents() : array
+    public function findPastEvents(): array
     {
         /** @var Event[] $events */
         $events = $this->findBy([], ['endDate' => 'desc']);
