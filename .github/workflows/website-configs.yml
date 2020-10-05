@@ -3,6 +3,12 @@ name: "website-configs"
 on:
   schedule:
     - cron:  "0 23 * * *"
+  push:
+    paths:
+    - '.github/workflows/website-configs.yml'
+  pull_request:
+    paths:
+    - '.github/workflows/website-configs.yml'
 
 env:
   doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
