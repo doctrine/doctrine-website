@@ -31,7 +31,7 @@ final class SendEmail
     /**
      * @param mixed[] $parameters
      */
-    public function __invoke(string $to, string $template, array $parameters = []) : void
+    public function __invoke(string $to, string $template, array $parameters = []): void
     {
         $parameters['site'] = $this->site;
 

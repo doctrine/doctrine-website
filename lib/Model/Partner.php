@@ -33,22 +33,22 @@ final class Partner implements LoadMetadataInterface
     /** @var bool */
     private $featured;
 
-    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['slug']);
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getSlug() : string
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -56,27 +56,27 @@ final class Partner implements LoadMetadataInterface
     /**
      * @param string[] $parameters
      */
-    public function getUrlWithUtmParameters(array $parameters = []) : string
+    public function getUrlWithUtmParameters(array $parameters = []): string
     {
         return $this->utmParameters->buildUrl($this->url, $parameters);
     }
 
-    public function getLogo() : string
+    public function getLogo(): string
     {
         return $this->logo;
     }
 
-    public function getBio() : string
+    public function getBio(): string
     {
         return $this->bio;
     }
 
-    public function getDetails() : PartnerDetails
+    public function getDetails(): PartnerDetails
     {
         return $this->details;
     }
 
-    public function isFeatured() : bool
+    public function isFeatured(): bool
     {
         return $this->featured;
     }

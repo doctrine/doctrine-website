@@ -7,6 +7,7 @@ namespace Doctrine\Website\Model;
 use Closure;
 use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
+
 use function in_array;
 
 class TeamMember implements LoadMetadataInterface, CommitterStats
@@ -44,62 +45,62 @@ class TeamMember implements LoadMetadataInterface, CommitterStats
     /** @var Closure|Contributor */
     private $contributor;
 
-    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['github']);
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getGithub() : string
+    public function getGithub(): string
     {
         return $this->github;
     }
 
-    public function getTwitter() : string
+    public function getTwitter(): string
     {
         return $this->twitter;
     }
 
-    public function getAvatarUrl() : string
+    public function getAvatarUrl(): string
     {
         return $this->avatarUrl;
     }
 
-    public function getWebsite() : string
+    public function getWebsite(): string
     {
         return $this->website;
     }
 
-    public function getLocation() : string
+    public function getLocation(): string
     {
         return $this->location;
     }
 
-    public function isProjectMaintainer(Project $project) : bool
+    public function isProjectMaintainer(Project $project): bool
     {
         return in_array($project->getSlug(), $this->maintains, true);
     }
 
-    public function isConsultant() : bool
+    public function isConsultant(): bool
     {
         return $this->consultant;
     }
 
-    public function getHeadshot() : string
+    public function getHeadshot(): string
     {
         return $this->headshot;
     }
 
-    public function getBio() : string
+    public function getBio(): string
     {
         return $this->bio;
     }
 
-    public function getContributor() : Contributor
+    public function getContributor(): Contributor
     {
         if ($this->contributor instanceof Closure) {
             $this->contributor = ($this->contributor)($this->github);
@@ -108,17 +109,17 @@ class TeamMember implements LoadMetadataInterface, CommitterStats
         return $this->contributor;
     }
 
-    public function getNumCommits() : int
+    public function getNumCommits(): int
     {
         return $this->getContributor()->getNumCommits();
     }
 
-    public function getNumAdditions() : int
+    public function getNumAdditions(): int
     {
         return $this->getContributor()->getNumAdditions();
     }
 
-    public function getNumDeletions() : int
+    public function getNumDeletions(): int
     {
         return $this->getContributor()->getNumDeletions();
     }

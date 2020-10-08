@@ -18,12 +18,12 @@ final class EventLocation
         $this->address = $address;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getAddress() : Address
+    public function getAddress(): Address
     {
         return $this->address;
     }

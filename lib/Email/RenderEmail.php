@@ -9,6 +9,7 @@ use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\Loader\LoaderInterface;
+
 use function strip_tags;
 use function trim;
 
@@ -39,7 +40,7 @@ final class RenderEmail
     /**
      * @param mixed[] $parameters
      */
-    public function __invoke(string $template, array $parameters) : RenderedEmail
+    public function __invoke(string $template, array $parameters): RenderedEmail
     {
         $twig = $this->createTwigEnvironment($this->createFilesystemLoader());
 
@@ -62,7 +63,7 @@ final class RenderEmail
         return new RenderedEmail($subject, $bodyText, $mergedHtml);
     }
 
-    private function createTwigEnvironment(LoaderInterface $loader) : Environment
+    private function createTwigEnvironment(LoaderInterface $loader): Environment
     {
         $twig = new Environment($loader, ['strict_variables' => true]);
 
@@ -73,7 +74,7 @@ final class RenderEmail
         return $twig;
     }
 
-    private function createFilesystemLoader() : FilesystemLoader
+    private function createFilesystemLoader(): FilesystemLoader
     {
         return new FilesystemLoader($this->templatesDir);
     }

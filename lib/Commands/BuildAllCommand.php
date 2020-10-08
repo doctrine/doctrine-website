@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function array_merge;
 use function array_unshift;
 use function assert;
@@ -40,7 +41,7 @@ class BuildAllCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Build all website components.')
@@ -64,7 +65,7 @@ class BuildAllCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $commands = [
             'sync-repositories' => [],
@@ -91,6 +92,7 @@ class BuildAllCommand extends Command
 
             if ($this->runCommand($command, $arguments) === 1) {
                 $output->writeln(sprintf('Failed running command "%s".', $command));
+
                 return 1;
             }
         }
@@ -101,7 +103,7 @@ class BuildAllCommand extends Command
     /**
      * @param mixed[] $arguments
      */
-    private function runCommand(string $command, array $arguments) : int
+    private function runCommand(string $command, array $arguments): int
     {
         $input = new ArrayInput(array_merge(['command' => $command], $arguments));
 

@@ -15,6 +15,7 @@ use Doctrine\Website\Twitter\TweetRelease;
 use PHPUnit\Framework\MockObject\MockObject;
 use RuntimeException;
 use Symfony\Component\Console\Tester\CommandTester;
+
 use function trim;
 
 final class AnnounceReleaseCommandTest extends TestCase
@@ -43,7 +44,7 @@ final class AnnounceReleaseCommandTest extends TestCase
     /** @var CommandTester */
     private $commandTester;
 
-    public function testExecuteSuccess() : void
+    public function testExecuteSuccess(): void
     {
         $this->projectRepository->expects(self::once())
             ->method('findOneBySlug')
@@ -71,7 +72,7 @@ final class AnnounceReleaseCommandTest extends TestCase
         self::assertEquals('Successfully announced release!', trim($this->commandTester->getDisplay()));
     }
 
-    public function testExecuteFailure() : void
+    public function testExecuteFailure(): void
     {
         $this->projectRepository->expects(self::once())
             ->method('findOneBySlug')
@@ -102,7 +103,7 @@ final class AnnounceReleaseCommandTest extends TestCase
         );
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->project = $this->createProject([
             'slug' => 'orm',

@@ -12,6 +12,7 @@ use Doctrine\RST\Nodes\ParagraphNode;
 use Doctrine\RST\Nodes\TitleNode;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
+
 use function get_class;
 use function in_array;
 use function is_string;
@@ -35,7 +36,7 @@ class SearchIndexer
         $this->client = $client;
     }
 
-    public function initSearchIndex() : void
+    public function initSearchIndex(): void
     {
         $index = $this->getSearchIndex();
 
@@ -62,7 +63,7 @@ class SearchIndexer
         Project $project,
         ProjectVersion $version,
         array $documents
-    ) : void {
+    ): void {
         $records = [];
 
         foreach ($documents as $document) {
@@ -80,7 +81,7 @@ class SearchIndexer
         array &$records,
         Project $project,
         ProjectVersion $version
-    ) : void {
+    ): void {
         $environment = $document->getEnvironment();
 
         $slug        = $environment->getUrl();
@@ -96,7 +97,7 @@ class SearchIndexer
 
         $nodeTypes = [TitleNode::class, ParagraphNode::class];
 
-        $nodes = $document->getNodes(static function (Node $node) use ($nodeTypes) : bool {
+        $nodes = $document->getNodes(static function (Node $node) use ($nodeTypes): bool {
             return in_array(get_class($node), $nodeTypes, true);
         });
 
@@ -136,13 +137,13 @@ class SearchIndexer
         string &$currentLink,
         Project $project,
         ProjectVersion $version
-    ) : array {
+    ): array {
         $level = $node instanceof TitleNode ? $node->getLevel() : false;
 
         if ($level !== false) {
             $current['h' . $level] = $this->renderNodeValue($node);
 
-            for ($i = ($level + 1); $i <= 5; $i++) {
+            for ($i = $level + 1; $i <= 5; $i++) {
                 $current['h' . $i] = null;
             }
 
@@ -169,7 +170,7 @@ class SearchIndexer
         ];
     }
 
-    private function getRank(Node $node) : int
+    private function getRank(Node $node): int
     {
         $ranks = [
             'h1' => 0,
@@ -191,7 +192,7 @@ class SearchIndexer
         return $ranks[$elementName];
     }
 
-    private function renderNodeValue(Node $node) : string
+    private function renderNodeValue(Node $node): string
     {
         $nodeValue = $node->getValue();
 
@@ -206,7 +207,7 @@ class SearchIndexer
         return (string) $nodeValue;
     }
 
-    private function getSearchIndex() : Index
+    private function getSearchIndex(): Index
     {
         return $this->client->initIndex(self::INDEX_NAME);
     }

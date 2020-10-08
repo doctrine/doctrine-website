@@ -43,7 +43,7 @@ class RSTBuilderTest extends TestCase
     /** @var RSTBuilder */
     private $rstBuilder;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->rstFileRepository     = $this->createMock(RSTFileRepository::class);
         $this->rstCopier             = $this->createMock(RSTCopier::class);
@@ -64,7 +64,7 @@ class RSTBuilderTest extends TestCase
         );
     }
 
-    public function testBuildRSTDocs() : void
+    public function testBuildRSTDocs(): void
     {
         $project = $this->createProject([
             'slug' => 'project-slug',

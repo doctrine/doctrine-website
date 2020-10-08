@@ -19,7 +19,7 @@ class ContributorDataBuilderTest extends TestCase
     /** @var ContributorDataBuilder */
     private $contributorDataBuilder;
 
-    public function testBuild() : void
+    public function testBuild(): void
     {
         $project1 = $this->createProject(['slug' => 'dbal']);
         $project2 = $this->createProject(['slug' => 'orm']);
@@ -89,7 +89,7 @@ class ContributorDataBuilderTest extends TestCase
         ], $rows);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->projectContributorRepository = $this->createMock(ProjectContributorRepository::class);
 

@@ -6,9 +6,9 @@ namespace Doctrine\Website\Model;
 
 interface CommitterStats
 {
-    public function getNumCommits() : int;
+    public function getNumCommits(): int;
 
-    public function getNumAdditions() : int;
+    public function getNumAdditions(): int;
 
-    public function getNumDeletions() : int;
+    public function getNumDeletions(): int;
 }

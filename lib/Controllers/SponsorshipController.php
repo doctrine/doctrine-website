@@ -17,7 +17,7 @@ class SponsorshipController
         $this->sponsorRepository = $sponsorRepository;
     }
 
-    public function index() : Response
+    public function index(): Response
     {
         $sponsors = $this->sponsorRepository->findAllOrderedByHighlighted();
 

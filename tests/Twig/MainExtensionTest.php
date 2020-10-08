@@ -27,7 +27,7 @@ class MainExtensionTest extends TestCase
     /** @var MainExtension */
     private $mainExtension;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->parsedown               = $this->createMock(Parsedown::class);
         $this->assetIntegrityGenerator = $this->createMock(AssetIntegrityGenerator::class);
@@ -43,7 +43,7 @@ class MainExtensionTest extends TestCase
         );
     }
 
-    public function testGetSearchBoxPlaceholder() : void
+    public function testGetSearchBoxPlaceholder(): void
     {
         $placeholder = $this->mainExtension->getSearchBoxPlaceholder();
 
@@ -72,7 +72,7 @@ class MainExtensionTest extends TestCase
         self::assertSame('Search ORM 1.0', $placeholder);
     }
 
-    public function testGetAssetUrl() : void
+    public function testGetAssetUrl(): void
     {
         $url = $this->mainExtension->getAssetUrl(
             '/js/main.js',

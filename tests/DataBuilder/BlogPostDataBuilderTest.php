@@ -12,6 +12,7 @@ use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\DataBuilder\BlogPostDataBuilder;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+
 use function usort;
 
 class BlogPostDataBuilderTest extends TestCase
@@ -22,7 +23,7 @@ class BlogPostDataBuilderTest extends TestCase
     /** @var BlogPostDataBuilder */
     private $blogPostDataBuilder;
 
-    public function testBuild() : void
+    public function testBuild(): void
     {
         $sourceFile1 = new SourceFile(
             '/tmp/blog/test1.html',
@@ -82,7 +83,7 @@ class BlogPostDataBuilderTest extends TestCase
         self::assertEquals($expected, $blogPostRows);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->sourceFileFilesystemReader = $this->createMock(SourceFileFilesystemReader::class);
 

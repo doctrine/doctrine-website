@@ -19,27 +19,27 @@ class TagTest extends TestCase
     /** @var Tag */
     private $tag;
 
-    public function testGetName() : void
+    public function testGetName(): void
     {
         self::assertSame('v1.0.0', $this->tag->getName());
     }
 
-    public function testGetDate() : void
+    public function testGetDate(): void
     {
         self::assertSame($this->date, $this->tag->getDate());
     }
 
-    public function testGetComposerRequireVersionString() : void
+    public function testGetComposerRequireVersionString(): void
     {
         self::assertSame('1.0.0', $this->tag->getComposerRequireVersionString());
     }
 
-    public function testIsPreComposer() : void
+    public function testIsPreComposer(): void
     {
         self::assertTrue($this->tag->isPreComposer());
     }
 
-    public function testStableStability() : void
+    public function testStableStability(): void
     {
         $tag = new Tag(
             'v1.0.0',
@@ -49,7 +49,7 @@ class TagTest extends TestCase
         self::assertSame('stable', $tag->getStability());
     }
 
-    public function testAlphaStability() : void
+    public function testAlphaStability(): void
     {
         $tag = new Tag(
             'v1.0.0-alpha1',
@@ -59,7 +59,7 @@ class TagTest extends TestCase
         self::assertSame('alpha', $tag->getStability());
     }
 
-    public function testBetaStability() : void
+    public function testBetaStability(): void
     {
         $tag = new Tag(
             'v1.0.0-beta1',
@@ -69,7 +69,7 @@ class TagTest extends TestCase
         self::assertSame('beta', $tag->getStability());
     }
 
-    public function testRcStability() : void
+    public function testRcStability(): void
     {
         $tag = new Tag(
             'v1.0.0-rc1',
@@ -79,7 +79,7 @@ class TagTest extends TestCase
         self::assertSame('rc', $tag->getStability());
     }
 
-    public function testDevStability() : void
+    public function testDevStability(): void
     {
         $tag = new Tag(
             'v0.0.1',
@@ -89,7 +89,7 @@ class TagTest extends TestCase
         self::assertSame('dev', $tag->getStability());
     }
 
-    public function testIsMajorReleaseZeroTrue() : void
+    public function testIsMajorReleaseZeroTrue(): void
     {
         $tag = new Tag(
             'v0.0.1',
@@ -99,7 +99,7 @@ class TagTest extends TestCase
         self::assertTrue($tag->isMajorReleaseZero());
     }
 
-    public function testIsMajorReleaseZeroFalse() : void
+    public function testIsMajorReleaseZeroFalse(): void
     {
         $tag = new Tag(
             'v1.0.1',
@@ -109,7 +109,7 @@ class TagTest extends TestCase
         self::assertFalse($tag->isMajorReleaseZero());
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->date = new DateTimeImmutable('1985-09-01');
         $this->name = 'v1.0.0';

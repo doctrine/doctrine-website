@@ -42,7 +42,7 @@ class HomepageController
         $this->getTotalDownloads      = $getTotalDownloads;
     }
 
-    public function index() : Response
+    public function index(): Response
     {
         $blogPosts       = $this->blogPostRepository->findPaginated(1, 10);
         $primaryProjects = $this->projectRepository->findPrimaryProjects();

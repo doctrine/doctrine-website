@@ -43,7 +43,7 @@ class ProjectDataBuilderTest extends TestCase
     /** @var ProjectDataBuilder */
     private $projectDataBuilder;
 
-    public function testBuild() : void
+    public function testBuild(): void
     {
         $this->projectDataRepository->expects(self::once())
             ->method('getProjectRepositoryNames')
@@ -172,7 +172,7 @@ class ProjectDataBuilderTest extends TestCase
         self::assertSame($expected, $data);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->projectDataRepository   = $this->createMock(ProjectDataRepository::class);
         $this->projectGitSyncer        = $this->createMock(ProjectGitSyncer::class);

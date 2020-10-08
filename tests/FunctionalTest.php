@@ -10,6 +10,7 @@ use Doctrine\Website\Repositories\ProjectRepository;
 use SimpleXMLElement;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\DomCrawler\Link;
+
 use function array_map;
 use function end;
 use function explode;
@@ -27,7 +28,7 @@ class FunctionalTest extends TestCase
     /** @var string|null */
     private $buildDir;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->rootDir  = __DIR__ . '/..';
         $this->buildDir = $this->getBuildDir();
@@ -39,19 +40,19 @@ class FunctionalTest extends TestCase
         self::markTestSkipped('This test requires ./bin/console build-website to have been ran.');
     }
 
-    public function testProjectVersionsAndTags() : void
+    public function testProjectVersionsAndTags(): void
     {
         $container = $this->getContainer();
 
-        /** @var ProjectRepository $projectRepository */
         $projectRepository = $container->get(ProjectRepository::class);
+        self::assertInstanceOf(ProjectRepository::class, $projectRepository);
 
         $project = $projectRepository->findOneBySlug('orm');
 
         $versions = $project->getVersions();
 
-        /** @var ProjectVersion $firstVersion */
         $firstVersion = end($versions);
+        self::assertInstanceOf(ProjectVersion::class, $firstVersion);
 
         self::assertSame('2.0', $firstVersion->getName());
 
@@ -63,7 +64,7 @@ class FunctionalTest extends TestCase
         self::assertSame('2.0.0-BETA1', $firstVersion->getFirstTag()->getName());
     }
 
-    public function testHomepageEditLink() : void
+    public function testHomepageEditLink(): void
     {
         $crawler = self::assertValid('/index.html');
 
@@ -77,7 +78,7 @@ class FunctionalTest extends TestCase
         );
     }
 
-    public function testProjectEditLink() : void
+    public function testProjectEditLink(): void
     {
         $crawler = self::assertValid('/projects/annotations.html');
 
@@ -91,7 +92,7 @@ class FunctionalTest extends TestCase
         );
     }
 
-    public function testDocumentationEditLink() : void
+    public function testDocumentationEditLink(): void
     {
         $crawler = self::assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
 
@@ -105,7 +106,7 @@ class FunctionalTest extends TestCase
         );
     }
 
-    public function testDocumentationPageBreadcrumbs() : void
+    public function testDocumentationPageBreadcrumbs(): void
     {
         $crawler = self::assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
 
@@ -114,13 +115,13 @@ class FunctionalTest extends TestCase
         self::assertSame('Custom Annotation Classes', $lastLi->text());
     }
 
-    public function testHomepageWhoUsesDoctrine() : void
+    public function testHomepageWhoUsesDoctrine(): void
     {
         $crawler = self::assertValid('/index.html');
 
         $table = $crawler->filter('#who-uses-doctrine-table a');
 
-        $parsedDoctrineUsers = array_map(static function (Link $link) : array {
+        $parsedDoctrineUsers = array_map(static function (Link $link): array {
             return ['name' => $link->getNode()->textContent, 'url' => $link->getUri()];
         }, $table->links());
 
@@ -129,7 +130,7 @@ class FunctionalTest extends TestCase
         self::assertSame($expectedDoctrineUsers, $parsedDoctrineUsers);
     }
 
-    public function testFunctional() : void
+    public function testFunctional(): void
     {
         self::assertValid('/contribute/index.html');
         self::assertValid('/contribute/maintainer/index.html');
@@ -143,8 +144,8 @@ class FunctionalTest extends TestCase
 
         $container = $this->getContainer();
 
-        /** @var ProjectRepository $projectRepository */
         $projectRepository = $container->get(ProjectRepository::class);
+        self::assertInstanceOf(ProjectRepository::class, $projectRepository);
 
         /** @var Project[] $projects */
         $projects = $projectRepository->findAll();
@@ -195,7 +196,7 @@ class FunctionalTest extends TestCase
         }
     }
 
-    public function testLinks() : void
+    public function testLinks(): void
     {
         $crawler = self::assertValid('/projects/doctrine-orm/en/2.6/reference/events.html');
         self::assertContains('<a href="events.html#reference-events-lifecycle-events">lifecycle events</a>', $crawler->html());
@@ -216,7 +217,7 @@ class FunctionalTest extends TestCase
         self::assertContains('<a href="../tutorials/extra-lazy-associations.html">tutorial</a>', $crawler->html());
     }
 
-    public function testSitemap() : void
+    public function testSitemap(): void
     {
         $sitemapPath = $this->getFullPath('/sitemap.xml');
 
@@ -234,7 +235,7 @@ class FunctionalTest extends TestCase
         self::assertInstanceOf(SimpleXMLElement::class, $xml);
     }
 
-    public function testAtom() : void
+    public function testAtom(): void
     {
         $atomPath = $this->getFullPath('/atom.xml');
 
@@ -252,7 +253,7 @@ class FunctionalTest extends TestCase
         self::assertInstanceOf(SimpleXMLElement::class, $xml);
     }
 
-    public function testSearchBoxPlaceholder() : void
+    public function testSearchBoxPlaceholder(): void
     {
         $crawler = $this->assertValid('/index.html');
 
@@ -267,7 +268,7 @@ class FunctionalTest extends TestCase
         self::assertContains("placeholder: 'Search Migrations 1.7'", $crawler->html());
     }
 
-    public function testContribute() : void
+    public function testContribute(): void
     {
         $crawler = $this->assertValid('/contribute/index.html');
 
@@ -275,7 +276,7 @@ class FunctionalTest extends TestCase
         self::assertContains('<h1>Contribute</h1>', $crawler->html());
     }
 
-    public function testContributeMaintainer() : void
+    public function testContributeMaintainer(): void
     {
         $crawler = $this->assertValid('/contribute/maintainer/index.html');
 
@@ -283,7 +284,7 @@ class FunctionalTest extends TestCase
         self::assertContains('<h1>Maintainer Workflow</h1>', $crawler->html());
     }
 
-    public function testContributeWebsite() : void
+    public function testContributeWebsite(): void
     {
         $crawler = $this->assertValid('/contribute/website/index.html');
 
@@ -291,7 +292,7 @@ class FunctionalTest extends TestCase
         self::assertContains('<h1>Contribute to Website</h1>', $crawler->html());
     }
 
-    private function getFullPath(string $path) : string
+    private function getFullPath(string $path): string
     {
         $fullPath = $this->buildDir . $path;
 
@@ -302,7 +303,7 @@ class FunctionalTest extends TestCase
         return $this->buildDir . $path;
     }
 
-    private function getFileContents(string $path) : string
+    private function getFileContents(string $path): string
     {
         $html = file_get_contents($path);
 
@@ -313,7 +314,7 @@ class FunctionalTest extends TestCase
         return $html;
     }
 
-    private function assertValid(string $path) : Crawler
+    private function assertValid(string $path): Crawler
     {
         $fullPath = $this->getFullPath($path);
 
@@ -326,7 +327,7 @@ class FunctionalTest extends TestCase
         return $crawler;
     }
 
-    private function getBuildDir() : ?string
+    private function getBuildDir(): ?string
     {
         $foldersToCheck = [
             'build-test',

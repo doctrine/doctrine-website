@@ -32,9 +32,9 @@ abstract class ModelHydrator extends ObjectHydrator
     /**
      * @param mixed[] $data
      */
-    abstract protected function doHydrate(array $data) : void;
+    abstract protected function doHydrate(array $data): void;
 
-    abstract protected function getClassName() : string;
+    abstract protected function getClassName(): string;
 
     /**
      * @param object  $object
@@ -42,7 +42,7 @@ abstract class ModelHydrator extends ObjectHydrator
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
      */
-    public function hydrate($object, array $data) : void
+    public function hydrate($object, array $data): void
     {
         $this->object = $object;
 
@@ -60,12 +60,12 @@ abstract class ModelHydrator extends ObjectHydrator
     /**
      * @param mixed $value
      */
-    public function __set(string $field, $value) : void
+    public function __set(string $field, $value): void
     {
         $this->getReflectionProperty($field)->setValue($this->object, $value);
     }
 
-    private function getReflectionProperty(string $field) : ReflectionProperty
+    private function getReflectionProperty(string $field): ReflectionProperty
     {
         $key = $this->getClassName() . '::' . $field;
 

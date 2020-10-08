@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\DataBuilder;
 
 use RuntimeException;
+
 use function file_exists;
 use function file_get_contents;
 use function json_decode;
@@ -20,7 +21,7 @@ class WebsiteDataReader
         $this->cacheDir = $cacheDir;
     }
 
-    public function read(string $file) : WebsiteData
+    public function read(string $file): WebsiteData
     {
         $jsonPath = $this->cacheDir . '/data/' . $file . '.json';
 

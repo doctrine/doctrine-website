@@ -43,22 +43,22 @@ final class EventParticipant
         $this->quantity = $quantity;
     }
 
-    public function getId() : ?int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function getQuantity() : int
+    public function getQuantity(): int
     {
         return $this->quantity;
     }
 
-    public function getEventId() : int
+    public function getEventId(): int
     {
         return $this->eventId;
     }

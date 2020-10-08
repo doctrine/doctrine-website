@@ -6,7 +6,7 @@ namespace Doctrine\Website\Projects;
 
 use Doctrine\Common\Inflector\Inflector;
 use InvalidArgumentException;
-use const JSON_ERROR_NONE;
+
 use function array_replace;
 use function assert;
 use function file_exists;
@@ -17,6 +17,8 @@ use function json_decode;
 use function json_last_error;
 use function sprintf;
 use function str_replace;
+
+use const JSON_ERROR_NONE;
 
 class ProjectDataReader
 {
@@ -50,7 +52,7 @@ class ProjectDataReader
     /**
      * @return mixed[]
      */
-    public function read(string $repositoryName) : array
+    public function read(string $repositoryName): array
     {
         $projectData = array_replace(
             $this->createDefaultProjectData($repositoryName),
@@ -88,7 +90,7 @@ class ProjectDataReader
     /**
      * @return mixed[]
      */
-    private function createDefaultProjectData(string $repositoryName) : array
+    private function createDefaultProjectData(string $repositoryName): array
     {
         $slug = str_replace('_', '-', Inflector::tableize($repositoryName));
 
@@ -115,7 +117,7 @@ class ProjectDataReader
     /**
      * @return mixed[]
      */
-    private function getProjectData(string $repositoryName) : array
+    private function getProjectData(string $repositoryName): array
     {
         foreach ($this->projectsData as $projectData) {
             if ($projectData['repositoryName'] === $repositoryName) {
@@ -126,12 +128,12 @@ class ProjectDataReader
         return [];
     }
 
-    private function detectDocsPath(string $repositoryName) : ?string
+    private function detectDocsPath(string $repositoryName): ?string
     {
         return $this->detectPath($repositoryName, ['/docs', '/doc', '/Resources/doc', '/source'], null);
     }
 
-    private function detectCodePath(string $repositoryName) : ?string
+    private function detectCodePath(string $repositoryName): ?string
     {
         return $this->detectPath($repositoryName, ['/src', '/lib'], '/');
     }
@@ -139,7 +141,7 @@ class ProjectDataReader
     /**
      * @param string[] $pathsToCheck
      */
-    private function detectPath(string $repositoryName, array $pathsToCheck, ?string $default) : ?string
+    private function detectPath(string $repositoryName, array $pathsToCheck, ?string $default): ?string
     {
         foreach ($pathsToCheck as $path) {
             $check = $this->projectsDir . '/' . $repositoryName . $path;
@@ -155,7 +157,7 @@ class ProjectDataReader
     /**
      * @return mixed[]
      */
-    private function readComposerData(string $repositoryName) : array
+    private function readComposerData(string $repositoryName): array
     {
         $data = $this->readJsonFile($repositoryName, self::COMPOSER_JSON_FILE_NAME);
 
@@ -179,7 +181,7 @@ class ProjectDataReader
     /**
      * @return mixed[]
      */
-    private function readJsonFile(string $repositoryName, string $fileName) : array
+    private function readJsonFile(string $repositoryName, string $fileName): array
     {
         $filePath = $this->projectsDir . '/' . $repositoryName . '/' . $fileName;
 

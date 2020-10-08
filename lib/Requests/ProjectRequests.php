@@ -19,7 +19,7 @@ class ProjectRequests
         $this->projectRepository = $projectRepository;
     }
 
-    public function getProjects() : RequestCollection
+    public function getProjects(): RequestCollection
     {
         /** @var Project[] $projects */
         $projects = $this->projectRepository->findAll();

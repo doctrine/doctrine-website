@@ -9,6 +9,7 @@ use Doctrine\Website\Projects\ProjectGitSyncer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function sprintf;
 
 class SyncRepositoriesCommand extends Command
@@ -32,13 +33,13 @@ class SyncRepositoriesCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Initialize or update all project repositories.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $repositoryNames = $this->projectDataRepository->getProjectRepositoryNames();
 

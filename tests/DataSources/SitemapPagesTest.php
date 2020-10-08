@@ -11,6 +11,7 @@ use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\DataSources\SitemapPages;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+
 use function date;
 
 class SitemapPagesTest extends TestCase
@@ -21,7 +22,7 @@ class SitemapPagesTest extends TestCase
     /** @var SitemapPages */
     private $sitemapPages;
 
-    public function testGetSourceRows() : void
+    public function testGetSourceRows(): void
     {
         $this->sourceFileRepository->expects(self::once())
             ->method('getSourceFiles')
@@ -38,7 +39,7 @@ class SitemapPagesTest extends TestCase
         self::assertSame('/', $sitemapPageRows[0]['url']);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
 

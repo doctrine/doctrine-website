@@ -7,11 +7,12 @@ namespace Doctrine\Website\Repositories;
 use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Contributor;
 use UnexpectedValueException;
+
 use function sprintf;
 
 class ContributorRepository extends BasicObjectRepository
 {
-    public function findOneByGithub(string $github) : Contributor
+    public function findOneByGithub(string $github): Contributor
     {
         $contributor = $this->findOneBy(['github' => $github]);
 
@@ -25,7 +26,7 @@ class ContributorRepository extends BasicObjectRepository
     /**
      * @return Contributor[]
      */
-    public function findMaintainers() : array
+    public function findMaintainers(): array
     {
         return $this->findBy(['isTeamMember' => true], ['github' => 'asc']);
     }
@@ -33,7 +34,7 @@ class ContributorRepository extends BasicObjectRepository
     /**
      * @return Contributor[]
      */
-    public function findContributors() : array
+    public function findContributors(): array
     {
         return $this->findBy(['isTeamMember' => false], ['github' => 'asc']);
     }

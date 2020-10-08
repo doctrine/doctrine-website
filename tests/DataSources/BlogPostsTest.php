@@ -12,6 +12,7 @@ use Doctrine\Website\DataBuilder\WebsiteDataReader;
 use Doctrine\Website\DataSources\BlogPosts;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+
 use function usort;
 
 class BlogPostsTest extends TestCase
@@ -22,7 +23,7 @@ class BlogPostsTest extends TestCase
     /** @var BlogPosts */
     private $blogPosts;
 
-    public function testGetSourceRows() : void
+    public function testGetSourceRows(): void
     {
         $data = [
             ['date' => '2018-09-01'],
@@ -51,7 +52,7 @@ class BlogPostsTest extends TestCase
         self::assertEquals($expected, $blogPostRows);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->dataReader = $this->createMock(WebsiteDataReader::class);
 

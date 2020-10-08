@@ -15,7 +15,7 @@ class CodeBlockConsoleRenderer
     /**
      * @param string[] $lines
      */
-    public function render(array $lines) : string
+    public function render(array $lines): string
     {
         $code = '<div class="console">';
 
@@ -43,7 +43,7 @@ class CodeBlockConsoleRenderer
         return $code;
     }
 
-    private function renderConsoleLine(string $line, bool $hasDollarSign) : string
+    private function renderConsoleLine(string $line, bool $hasDollarSign): string
     {
         if ($hasDollarSign) {
             $line = substr($line, 1);

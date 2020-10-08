@@ -6,10 +6,11 @@ namespace Doctrine\Website\Model;
 
 use Doctrine\Common\Collections\AbstractLazyCollection;
 use Doctrine\Common\Collections\ArrayCollection;
+
 use function array_merge;
 
 /**
- * @template-extends AbstractLazyCollection<int, \Doctrine\Website\Model\EventSponsor>
+ * @template-extends AbstractLazyCollection<int, EventSponsor>
  */
 final class EventSponsors extends AbstractLazyCollection
 {
@@ -24,7 +25,7 @@ final class EventSponsors extends AbstractLazyCollection
         $this->event = $event;
     }
 
-    protected function doInitialize() : void
+    protected function doInitialize(): void
     {
         $sponsors = [];
 

@@ -28,7 +28,7 @@ class GithubClientProvider
         $this->githubHttpToken = $githubHttpToken;
     }
 
-    public function getGithubClient() : Client
+    public function getGithubClient(): Client
     {
         if ($this->authenticated === false) {
             $this->githubClient->authenticate($this->githubHttpToken, '', 'http_token');

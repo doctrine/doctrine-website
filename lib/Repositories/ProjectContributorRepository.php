@@ -13,7 +13,7 @@ class ProjectContributorRepository extends BasicObjectRepository
     /**
      * @return ProjectContributor[]
      */
-    public function findAll() : array
+    public function findAll(): array
     {
         /** @var ProjectContributor[] $projectContributors */
         $projectContributors = $this->findBy([], ['github' => 'asc']);
@@ -24,7 +24,7 @@ class ProjectContributorRepository extends BasicObjectRepository
     /**
      * @return ProjectContributor[]
      */
-    public function findMaintainersByProject(Project $project) : array
+    public function findMaintainersByProject(Project $project): array
     {
         return $this->findBy([
             'isMaintainer' => true,
@@ -35,7 +35,7 @@ class ProjectContributorRepository extends BasicObjectRepository
     /**
      * @return ProjectContributor[]
      */
-    public function findContributorsByProject(Project $project) : array
+    public function findContributorsByProject(Project $project): array
     {
         return $this->findBy([
             'isMaintainer' => false,

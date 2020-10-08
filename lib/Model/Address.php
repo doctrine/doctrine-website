@@ -42,37 +42,37 @@ final class Address
         $this->countryCode = $countryCode;
     }
 
-    public function getLine1() : string
+    public function getLine1(): string
     {
         return $this->line1;
     }
 
-    public function getLine2() : string
+    public function getLine2(): string
     {
         return $this->line2;
     }
 
-    public function getCity() : string
+    public function getCity(): string
     {
         return $this->city;
     }
 
-    public function getState() : string
+    public function getState(): string
     {
         return $this->state;
     }
 
-    public function getZipCode() : string
+    public function getZipCode(): string
     {
         return $this->zipCode;
     }
 
-    public function getCountryCode() : string
+    public function getCountryCode(): string
     {
         return $this->countryCode;
     }
 
-    public function getString() : string
+    public function getString(): string
     {
         return sprintf(
             '%s %s %s, %s %s %s',

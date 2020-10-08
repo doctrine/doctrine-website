@@ -20,7 +20,7 @@ class GithubClientProviderTest extends TestCase
     /** @var GithubClientProvider */
     private $githubClientProvider;
 
-    public function testGetGithubClient() : void
+    public function testGetGithubClient(): void
     {
         $this->githubClient->expects(self::exactly(1))
             ->method('authenticate')
@@ -35,7 +35,7 @@ class GithubClientProviderTest extends TestCase
         self::assertSame($this->githubClient, $githubClient);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->githubClient    = $this->createMock(Client::class);
         $this->githubHttpToken = '1234';

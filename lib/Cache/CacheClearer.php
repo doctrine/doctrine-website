@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Cache;
 
 use Symfony\Component\Filesystem\Filesystem;
+
 use function array_filter;
 use function glob;
 use function sprintf;
@@ -28,7 +29,7 @@ class CacheClearer
     /**
      * @return string[]
      */
-    public function clear(string $buildDir) : array
+    public function clear(string $buildDir): array
     {
         // clear build directory
         $remove = [$buildDir];
@@ -66,7 +67,7 @@ class CacheClearer
     /**
      * @return string[]
      */
-    protected function glob(string $pattern) : array
+    protected function glob(string $pattern): array
     {
         return array_filter((array) glob($pattern));
     }

@@ -6,17 +6,17 @@ namespace Doctrine\Website\Tests\Model;
 
 use DateTimeImmutable;
 use Doctrine\Website\Model\Event;
-use Doctrine\Website\Model\EventLocation;
 use Doctrine\Website\Model\EventScheduleSlot;
 use Doctrine\Website\Model\EventSpeaker;
 use Doctrine\Website\Model\EventSponsor;
 use Doctrine\Website\Model\EventType;
 use Doctrine\Website\Tests\TestCase;
+
 use function array_merge;
 
 final class EventTest extends TestCase
 {
-    public function testIsWebinar() : void
+    public function testIsWebinar(): void
     {
         self::assertTrue($this->createTestEvent()->isWebinar());
         self::assertFalse($this->createTestEvent([
@@ -25,7 +25,7 @@ final class EventTest extends TestCase
         ])->isWebinar());
     }
 
-    public function testIsConference() : void
+    public function testIsConference(): void
     {
         self::assertFalse($this->createTestEvent()->isConference());
         self::assertTrue($this->createTestEvent([
@@ -34,27 +34,27 @@ final class EventTest extends TestCase
         ])->isConference());
     }
 
-    public function testGetSku() : void
+    public function testGetSku(): void
     {
         self::assertSame('test_123', $this->createTestEvent()->getSku());
     }
 
-    public function testGetName() : void
+    public function testGetName(): void
     {
         self::assertSame('Doctrine for Beginners', $this->createTestEvent()->getName());
     }
 
-    public function testGetSlug() : void
+    public function testGetSlug(): void
     {
         self::assertSame('doctrine-for-beginners', $this->createTestEvent()->getSlug());
     }
 
-    public function testGetJoinUrl() : void
+    public function testGetJoinUrl(): void
     {
         self::assertSame('https://www.joinurl.com', $this->createTestEvent()->getJoinUrl());
     }
 
-    public function testGetDates() : void
+    public function testGetDates(): void
     {
         self::assertEquals(
             new DateTimeImmutable('2019-05-28 11:00:00'),
@@ -100,7 +100,7 @@ final class EventTest extends TestCase
         ])->getDates()->getNumHours());
     }
 
-    public function testGetRegistrationDates() : void
+    public function testGetRegistrationDates(): void
     {
         self::assertEquals(
             new DateTimeImmutable('2019-05-01'),
@@ -113,7 +113,7 @@ final class EventTest extends TestCase
         );
     }
 
-    public function testGetCfp() : void
+    public function testGetCfp(): void
     {
         self::assertTrue($this->createTestEvent()->getCfp()->exists());
 
@@ -138,7 +138,7 @@ final class EventTest extends TestCase
         );
     }
 
-    public function testGetLocation() : void
+    public function testGetLocation(): void
     {
         self::assertNull($this->createTestEvent()->getLocation());
 
@@ -157,9 +157,9 @@ final class EventTest extends TestCase
             ],
         ]);
 
-        /** @var EventLocation $location */
         $location = $event->getLocation();
 
+        self::assertNotNull($location);
         self::assertSame('Awesome Hotel', $location->getName());
         self::assertSame('Line 1', $location->getAddress()->getLine1());
         self::assertSame('Line 2', $location->getAddress()->getLine2());
@@ -169,11 +169,11 @@ final class EventTest extends TestCase
         self::assertSame('Country Code', $location->getAddress()->getCountryCode());
     }
 
-    public function testGetSponsors() : void
+    public function testGetSponsors(): void
     {
-        /** @var EventSponsor $sponsor */
         $sponsor = $this->createTestEvent()->getSponsors()->first();
 
+        self::assertInstanceOf(EventSponsor::class, $sponsor);
         self::assertSame('Blackfire.io', $sponsor->getName());
         self::assertSame('https://blackfire.io/', $sponsor->getUrl());
         self::assertSame(
@@ -183,40 +183,40 @@ final class EventTest extends TestCase
         self::assertSame('/images/blackfire.svg', $sponsor->getLogo());
     }
 
-    public function testGetSpeakers() : void
+    public function testGetSpeakers(): void
     {
-        /** @var EventSpeaker $speaker */
         $speaker = $this->createTestEvent()->getSpeakers()->first();
 
+        self::assertInstanceOf(EventSpeaker::class, $speaker);
         self::assertSame('Jonathan H. Wage', $speaker->getName());
         self::assertSame('Doctrine for Beginners', $speaker->getTopic());
         self::assertSame('doctrine-for-beginners', $speaker->getTopicSlug());
         self::assertSame('Come to this talk prepared to learn about the Doctrine PHP open source project. The Doctrine project has been around for over a decade and has evolved from database abstraction software that dates back to the PEAR days. The packages provided by the Doctrine project have been downloaded almost a billion times from packagist. In this talk we will take you through how to get started with Doctrine and how to take advantage of some of the more advanced features.', $speaker->getDescription());
     }
 
-    public function testGetSchedule() : void
+    public function testGetSchedule(): void
     {
         $event = $this->createTestEvent();
 
         $speaker = $event->getSpeakers()->first();
-        /** @var EventScheduleSlot $slot */
-        $slot = $event->getSchedule()->first();
+        $slot    = $event->getSchedule()->first();
 
+        self::assertInstanceOf(EventScheduleSlot::class, $slot);
         self::assertSame($speaker, $slot->getSpeaker());
     }
 
-    public function testGetDescription() : void
+    public function testGetDescription(): void
     {
         self::assertSame('Test Description', $this->createTestEvent()->getDescription());
     }
 
-    public function testGetPrice() : void
+    public function testGetPrice(): void
     {
         self::assertSame(0.00, $this->createTestEvent()->getPrice());
         self::assertSame(5.00, $this->createTestEvent(['price' => 5.00])->getPrice());
     }
 
-    public function testIsFree() : void
+    public function testIsFree(): void
     {
         self::assertTrue($this->createTestEvent()->isFree());
         self::assertFalse($this->createTestEvent(['price' => 5.00])->isFree());
@@ -225,7 +225,7 @@ final class EventTest extends TestCase
     /**
      * @param mixed[] $data
      */
-    private function createTestEvent(array $data = []) : Event
+    private function createTestEvent(array $data = []): Event
     {
         return $this->createEvent(array_merge([
             'env' => 'dev',

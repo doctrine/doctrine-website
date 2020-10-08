@@ -6,6 +6,7 @@ namespace Doctrine\Website\Git;
 
 use DateTimeImmutable;
 use Doctrine\Website\ProcessFactory;
+
 use function explode;
 use function preg_match_all;
 use function sprintf;
@@ -27,13 +28,13 @@ class TagReader
     /**
      * @return Tag[]
      */
-    public function getRepositoryTags(string $repositoryPath) : array
+    public function getRepositoryTags(string $repositoryPath): array
     {
         $lines = $this->getTagLines($repositoryPath);
 
         $tags = $this->createTagsFromLines($lines);
 
-        usort($tags, static function (Tag $a, Tag $b) : int {
+        usort($tags, static function (Tag $a, Tag $b): int {
             return $a->getDate()->getTimestamp() - $b->getDate()->getTimestamp();
         });
 
@@ -43,7 +44,7 @@ class TagReader
     /**
      * @return string[]
      */
-    private function getTagLines(string $repositoryPath) : array
+    private function getTagLines(string $repositoryPath): array
     {
         $command = sprintf(self::COMMAND, $repositoryPath);
 
@@ -57,7 +58,7 @@ class TagReader
      *
      * @return Tag[]
      */
-    private function createTagsFromLines(array $lines) : array
+    private function createTagsFromLines(array $lines): array
     {
         $tags = [];
 
@@ -74,7 +75,7 @@ class TagReader
         return $tags;
     }
 
-    private function extractTagFromLine(string $line) : ?Tag
+    private function extractTagFromLine(string $line): ?Tag
     {
         preg_match_all('/refname: (.*) creatordate: (.*)/', $line, $matches);
 

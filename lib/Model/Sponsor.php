@@ -21,17 +21,17 @@ final class Sponsor implements LoadMetadataInterface
     /** @var bool */
     private $highlighted;
 
-    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['name']);
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -39,12 +39,12 @@ final class Sponsor implements LoadMetadataInterface
     /**
      * @param string[] $parameters
      */
-    public function getUrlWithUtmParameters(array $parameters = []) : string
+    public function getUrlWithUtmParameters(array $parameters = []): string
     {
         return $this->utmParameters->buildUrl($this->url, $parameters);
     }
 
-    public function isHighlighted() : bool
+    public function isHighlighted(): bool
     {
         return $this->highlighted;
     }

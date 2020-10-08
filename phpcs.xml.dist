@@ -12,5 +12,20 @@
     <file>lib</file>
     <file>tests</file>
 
-    <rule ref="Doctrine"/>
+    <rule ref="Doctrine">
+        <!-- This rule requires PHP 7.4 -->
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/>
+    </rule>
+
+    <!-- This rule requires PHP 7.4 -->
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
+        <properties>
+            <property name="enableNativeTypeHint" value="false"/>
+        </properties>
+    </rule>
+
+    <!-- The interface of the class below is defined in a dependency and has to remain unchanged -->
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+        <exclude-pattern>*/lib/Hydrators/ModelHydrator.php</exclude-pattern>
+    </rule>
 </ruleset>

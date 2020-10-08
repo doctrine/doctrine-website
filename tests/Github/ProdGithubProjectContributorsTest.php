@@ -24,7 +24,7 @@ class ProdGithubProjectContributorsTest extends TestCase
     /** @var ProdGithubProjectContributors */
     private $githubProjectContributors;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->filesystemCache = $this->createMock(FilesystemCache::class);
         $this->githubClient    = $this->createMock(Client::class);
@@ -35,7 +35,7 @@ class ProdGithubProjectContributorsTest extends TestCase
         );
     }
 
-    public function testGetProjectContributors() : void
+    public function testGetProjectContributors(): void
     {
         $id = 'doctrine-orm-contributors-data';
 
@@ -77,7 +77,7 @@ class ProdGithubProjectContributorsTest extends TestCase
         self::assertEquals($expected, $projectContributors);
     }
 
-    public function testGetProjectContributorsCache() : void
+    public function testGetProjectContributorsCache(): void
     {
         $id = 'doctrine-orm-contributors-data';
 
@@ -104,7 +104,7 @@ class ProdGithubProjectContributorsTest extends TestCase
         self::assertEquals($expected, $projectContributors);
     }
 
-    public function testGetProjectContributorsThrowsRuntimeExceptionWhenGitHubReturnsEmptyArray() : void
+    public function testGetProjectContributorsThrowsRuntimeExceptionWhenGitHubReturnsEmptyArray(): void
     {
         $id = 'doctrine-orm-contributors-data';
 

@@ -6,6 +6,7 @@ namespace Doctrine\Website\Twitter;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use RuntimeException;
+
 use function json_encode;
 use function sprintf;
 
@@ -19,7 +20,7 @@ class TwitterOAuthCreateTweet implements CreateTweet
         $this->twitter = $twitter;
     }
 
-    public function __invoke(string $message) : bool
+    public function __invoke(string $message): bool
     {
         $result = (array) $this->twitter->post('statuses/update', ['status' => $message]);
 

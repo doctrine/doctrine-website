@@ -7,6 +7,7 @@ namespace Doctrine\Website\Event;
 use Doctrine\Website\Model\Entity\EventParticipant;
 use Doctrine\Website\Model\Event;
 use Stripe;
+
 use function array_map;
 use function array_merge;
 use function array_values;
@@ -19,7 +20,7 @@ final class GetStripeEventParticipants
     /**
      * @return EventParticipant[]
      */
-    public function __invoke(Event $event) : array
+    public function __invoke(Event $event): array
     {
         $stripeCheckouts = $this->getAllEventStripeCheckouts($event);
 
@@ -53,7 +54,7 @@ final class GetStripeEventParticipants
             }
         }
 
-        return array_map(static function (array $participant) use ($event) : EventParticipant {
+        return array_map(static function (array $participant) use ($event): EventParticipant {
             return new EventParticipant(
                 $event,
                 $participant['email'],
@@ -65,7 +66,7 @@ final class GetStripeEventParticipants
     /**
      * @return mixed[][]
      */
-    private function getAllEventStripeCheckouts(Event $event) : array
+    private function getAllEventStripeCheckouts(Event $event): array
     {
         $allEventStripeCheckouts = [];
         $startingAfter           = null;
@@ -96,7 +97,7 @@ final class GetStripeEventParticipants
     private function getEventStripeCheckouts(
         Event $event,
         ?string $startingAfter = null
-    ) : Stripe\Collection {
+    ): Stripe\Collection {
         $parameters = [
             'created' => ['gt' => strtotime('1 year ago')],
             'limit' => 100,

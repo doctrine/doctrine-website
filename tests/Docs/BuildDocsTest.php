@@ -33,7 +33,7 @@ class BuildDocsTest extends TestCase
     /** @var BuildDocs */
     private $buildDocs;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->projectRepository = $this->createMock(ProjectRepository::class);
         $this->projectGitSyncer  = $this->createMock(ProjectGitSyncer::class);
@@ -48,7 +48,7 @@ class BuildDocsTest extends TestCase
         );
     }
 
-    public function testBuild() : void
+    public function testBuild(): void
     {
         $output = $this->createMock(OutputInterface::class);
 

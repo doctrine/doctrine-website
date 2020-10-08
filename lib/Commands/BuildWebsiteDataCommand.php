@@ -12,6 +12,7 @@ use Doctrine\Website\DataBuilder\WebsiteDataWriter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function sprintf;
 
 class BuildWebsiteDataCommand extends Command
@@ -50,13 +51,13 @@ class BuildWebsiteDataCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Build the Doctrine website data.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Building website data.');
 

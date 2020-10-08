@@ -21,7 +21,7 @@ final class PartnerDetails
         $this->items = $items;
     }
 
-    public function getLabel() : string
+    public function getLabel(): string
     {
         return $this->label;
     }
@@ -29,7 +29,7 @@ final class PartnerDetails
     /**
      * @return string[]
      */
-    public function getItems() : array
+    public function getItems(): array
     {
         return $this->items;
     }

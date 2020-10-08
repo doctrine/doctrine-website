@@ -25,17 +25,17 @@ class ProjectIntegrationType
         $this->icon = (string) ($projectIntegrationType['icon'] ?? '');
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function getIcon() : string
+    public function getIcon(): string
     {
         return $this->icon;
     }

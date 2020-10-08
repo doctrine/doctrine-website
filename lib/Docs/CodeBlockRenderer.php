@@ -27,7 +27,7 @@ class CodeBlockRenderer
     /**
      * @param string[] $lines
      */
-    public function render(array $lines, string $language) : string
+    public function render(array $lines, string $language): string
     {
         if (in_array($language, self::CONSOLE_LANGUAGES, true)) {
             return $this->codeBlockConsoleRenderer->render(

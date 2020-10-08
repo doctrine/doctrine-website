@@ -24,7 +24,7 @@ class ProjectController
         $this->projectContributorRepository = $projectContributorRepository;
     }
 
-    public function index() : Response
+    public function index(): Response
     {
         return new Response([
             'primaryProjects' => $this->projectRepository->findPrimaryProjects(),
@@ -34,7 +34,7 @@ class ProjectController
         ]);
     }
 
-    public function view(string $slug) : Response
+    public function view(string $slug): Response
     {
         $project = $this->projectRepository->findOneBySlug($slug);
 
@@ -46,7 +46,7 @@ class ProjectController
         ], '/project.html.twig');
     }
 
-    public function version(string $slug, string $versionSlug) : Response
+    public function version(string $slug, string $versionSlug): Response
     {
         $project = $this->projectRepository->findOneBySlug($slug);
 

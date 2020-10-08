@@ -12,7 +12,7 @@ class CodeBlockConsoleRendererTest extends TestCase
     /** @var CodeBlockConsoleRenderer */
     private $codeBlockConsoleRenderer;
 
-    public function testRenderWithDollarSign() : void
+    public function testRenderWithDollarSign(): void
     {
         $rendered = $this->codeBlockConsoleRenderer->render([
             '$      ./bin/console command',
@@ -29,7 +29,7 @@ EXPECTED;
         self::assertSame($expected, $rendered);
     }
 
-    public function testRenderWithoutDollarSign() : void
+    public function testRenderWithoutDollarSign(): void
     {
         $rendered = $this->codeBlockConsoleRenderer->render(['      ./bin/console command']);
 
@@ -41,7 +41,7 @@ EXPECTED;
         self::assertSame($expected, $rendered);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->codeBlockConsoleRenderer = new CodeBlockConsoleRenderer();
     }

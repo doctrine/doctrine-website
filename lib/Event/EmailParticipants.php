@@ -21,7 +21,7 @@ final class EmailParticipants
     /**
      * @param EventParticipant[] $participants
      */
-    public function __invoke(Event $event, array $participants) : void
+    public function __invoke(Event $event, array $participants): void
     {
         foreach ($participants as $participant) {
             $this->sendEmail->__invoke(

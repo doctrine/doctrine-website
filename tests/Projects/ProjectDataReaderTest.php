@@ -16,7 +16,7 @@ class ProjectDataReaderTest extends TestCase
     /** @var ProjectDataReader */
     private $projectDataReader;
 
-    public function testRead() : void
+    public function testRead(): void
     {
         self::assertSame([
             'name' => 'test-project',
@@ -43,7 +43,7 @@ class ProjectDataReaderTest extends TestCase
         ], $this->projectDataReader->read('test-project'));
     }
 
-    public function testReadFileDoesNotExist() : void
+    public function testReadFileDoesNotExist(): void
     {
         self::assertEquals([
             'repositoryName' => 'no-project-json',
@@ -66,21 +66,21 @@ class ProjectDataReaderTest extends TestCase
         ], $this->projectDataReader->read('no-project-json'));
     }
 
-    public function testReadFileHasInvalidJson() : void
+    public function testReadFileHasInvalidJson(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         $this->projectDataReader->read('invalid-project-json');
     }
 
-    public function testProjectIntegrationType() : void
+    public function testProjectIntegrationType(): void
     {
         $projectData = $this->projectDataReader->read('test-integration-project');
 
         self::assertSame($this->projectIntegrationTypes['symfony'], $projectData['integrationType']);
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->projectIntegrationTypes = [
             'symfony' => [

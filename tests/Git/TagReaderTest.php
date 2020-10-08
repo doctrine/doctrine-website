@@ -18,7 +18,7 @@ class TagReaderTest extends TestCase
     /** @var TagReader */
     private $tagReader;
 
-    public function testGetRepositoryTags() : void
+    public function testGetRepositoryTags(): void
     {
         $repositoryPath = '/test';
 
@@ -61,7 +61,7 @@ OUTPUT;
         self::assertSame('2019-01-03', $tags[2]->getDate()->format('Y-m-d'));
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
         $this->tagReader      = new TagReader(

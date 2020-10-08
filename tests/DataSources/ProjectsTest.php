@@ -19,7 +19,7 @@ class ProjectsTest extends TestCase
     /** @var Projects */
     private $projects;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->dataReader = $this->createMock(WebsiteDataReader::class);
 
@@ -28,7 +28,7 @@ class ProjectsTest extends TestCase
         );
     }
 
-    public function testGetSourceRows() : void
+    public function testGetSourceRows(): void
     {
         $expected = [
             [

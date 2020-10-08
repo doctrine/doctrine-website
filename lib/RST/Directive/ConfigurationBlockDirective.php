@@ -10,11 +10,12 @@ use Doctrine\RST\Nodes\DocumentNode;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Nodes\RawNode;
 use Doctrine\RST\Parser;
+
 use function strtoupper;
 
 class ConfigurationBlockDirective extends SubDirective
 {
-    public function getName() : string
+    public function getName(): string
     {
         return 'configuration-block';
     }
@@ -28,7 +29,7 @@ class ConfigurationBlockDirective extends SubDirective
         string $variable,
         string $data,
         array $options
-    ) : ?Node {
+    ): ?Node {
         if (! $document instanceof DocumentNode) {
             return null;
         }

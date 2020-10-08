@@ -17,7 +17,7 @@ class AtomController
         $this->blogPostRepository = $blogPostRepository;
     }
 
-    public function index() : Response
+    public function index(): Response
     {
         return new Response([
             'blogPosts' => $this->blogPostRepository->findPaginated(),

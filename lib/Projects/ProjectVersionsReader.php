@@ -7,6 +7,7 @@ namespace Doctrine\Website\Projects;
 use Doctrine\Website\Git\Tag;
 use Doctrine\Website\Git\TagBranchGuesser;
 use Doctrine\Website\Git\TagReader;
+
 use function array_filter;
 use function array_values;
 
@@ -27,7 +28,7 @@ class ProjectVersionsReader
     /**
      * @return mixed[]
      */
-    public function readProjectVersions(string $repositoryPath) : array
+    public function readProjectVersions(string $repositoryPath): array
     {
         $tags = $this->getProjectTags($repositoryPath);
 
@@ -69,16 +70,12 @@ class ProjectVersionsReader
     /**
      * @return mixed[]
      */
-    private function getProjectTags(string $repositoryPath) : array
+    private function getProjectTags(string $repositoryPath): array
     {
         $tags = $this->tagReader->getRepositoryTags($repositoryPath);
 
-        return array_filter($tags, static function (Tag $tag) : bool {
-            if ($tag->isDev()) {
-                return false;
-            }
-
-            return true;
+        return array_filter($tags, static function (Tag $tag): bool {
+            return ! $tag->isDev();
         });
     }
 }

@@ -27,17 +27,17 @@ final class CommittersStats implements CommitterStats
         }
     }
 
-    public function getNumCommits() : int
+    public function getNumCommits(): int
     {
         return $this->numCommits;
     }
 
-    public function getNumAdditions() : int
+    public function getNumAdditions(): int
     {
         return $this->numAdditions;
     }
 
-    public function getNumDeletions() : int
+    public function getNumDeletions(): int
     {
         return $this->numDeletions;
     }

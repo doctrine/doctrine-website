@@ -8,6 +8,7 @@ use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Twig_Extension;
 use Twig_SimpleFunction;
+
 use function file_exists;
 use function str_replace;
 use function strpos;
@@ -29,7 +30,7 @@ class ProjectExtension extends Twig_Extension
     /**
      * @return Twig_SimpleFunction[]
      */
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new Twig_SimpleFunction('get_menu_projects', [$this->projectRepository, 'findPrimaryProjects']),
@@ -37,7 +38,7 @@ class ProjectExtension extends Twig_Extension
         ];
     }
 
-    public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion) : ?string
+    public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion): ?string
     {
         if (strpos($url, 'current') !== false) {
             $otherVersionUrl = str_replace('current', $projectVersion->getSlug(), $url);
@@ -54,7 +55,7 @@ class ProjectExtension extends Twig_Extension
         return $otherVersionUrl;
     }
 
-    protected function fileExists(string $file) : bool
+    protected function fileExists(string $file): bool
     {
         return file_exists($file);
     }

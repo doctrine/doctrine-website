@@ -17,21 +17,21 @@ class BlogController
         $this->blogPostRepository = $blogPostRepository;
     }
 
-    public function index() : Response
+    public function index(): Response
     {
         return new Response([
             'blogPosts' => $this->blogPostRepository->findPaginated(),
         ]);
     }
 
-    public function archive() : Response
+    public function archive(): Response
     {
         return new Response([
             'blogPosts' => $this->blogPostRepository->findAll(),
         ]);
     }
 
-    public function view(string $slug) : Response
+    public function view(string $slug): Response
     {
         return new Response([
             'blogPost' => $this->blogPostRepository->find($slug),

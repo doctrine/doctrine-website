@@ -27,17 +27,17 @@ final class EventScheduleSlot
         $this->endDate   = $endDate;
     }
 
-    public function getSpeaker() : EventSpeaker
+    public function getSpeaker(): EventSpeaker
     {
         return $this->speaker;
     }
 
-    public function getStartDate() : DateTimeImmutable
+    public function getStartDate(): DateTimeImmutable
     {
         return $this->startDate;
     }
 
-    public function getEndDate() : DateTimeImmutable
+    public function getEndDate(): DateTimeImmutable
     {
         return $this->endDate;
     }

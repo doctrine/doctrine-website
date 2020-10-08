@@ -8,6 +8,7 @@ use Closure;
 use Doctrine\Website\Model\Contributor;
 use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ContributorRepository;
+
 use function assert;
 
 /**
@@ -25,7 +26,7 @@ use function assert;
  */
 final class TeamMemberHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return TeamMember::class;
     }
@@ -33,7 +34,7 @@ final class TeamMemberHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->name        = (string) ($data['name'] ?? '');
         $this->github      = (string) ($data['github'] ?? '');
@@ -45,7 +46,7 @@ final class TeamMemberHydrator extends ModelHydrator
         $this->consultant  = (bool) ($data['consultant'] ?? false);
         $this->headshot    = (string) ($data['headshot'] ?? '');
         $this->bio         = (string) ($data['bio'] ?? '');
-        $this->contributor = function (string $github) : Contributor {
+        $this->contributor = function (string $github): Contributor {
             $contributorRepository = $this->objectManager
                 ->getRepository(Contributor::class);
 

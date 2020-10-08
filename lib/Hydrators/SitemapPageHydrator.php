@@ -13,7 +13,7 @@ use Doctrine\Website\Model\SitemapPage;
  */
 final class SitemapPageHydrator extends ModelHydrator
 {
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return SitemapPage::class;
     }
@@ -21,7 +21,7 @@ final class SitemapPageHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->url  = (string) ($data['url'] ?? '');
         $this->date = $data['date'] ?? new DateTimeImmutable();

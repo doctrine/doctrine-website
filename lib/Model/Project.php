@@ -8,6 +8,7 @@ use Closure;
 use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 use InvalidArgumentException;
+
 use function array_filter;
 use function array_values;
 use function sprintf;
@@ -68,87 +69,87 @@ class Project implements LoadMetadataInterface
     /** @var ProjectVersion[] */
     private $versions = [];
 
-    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['slug']);
     }
 
-    public function getProjectIntegrationType() : ?ProjectIntegrationType
+    public function getProjectIntegrationType(): ?ProjectIntegrationType
     {
         return $this->projectIntegrationType;
     }
 
-    public function getProjectStats() : ProjectStats
+    public function getProjectStats(): ProjectStats
     {
         return $this->projectStats;
     }
 
-    public function isActive() : bool
+    public function isActive(): bool
     {
         return $this->active;
     }
 
-    public function isArchived() : bool
+    public function isArchived(): bool
     {
         return $this->archived;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getShortName() : string
+    public function getShortName(): string
     {
         return $this->shortName;
     }
 
-    public function getSlug() : string
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function getDocsSlug() : string
+    public function getDocsSlug(): string
     {
         return $this->docsSlug;
     }
 
-    public function getComposerPackageName() : string
+    public function getComposerPackageName(): string
     {
         return $this->composerPackageName;
     }
 
-    public function getRepositoryName() : string
+    public function getRepositoryName(): string
     {
         return $this->repositoryName;
     }
 
-    public function isIntegration() : bool
+    public function isIntegration(): bool
     {
         return $this->isIntegration;
     }
 
-    public function getIntegrationFor() : string
+    public function getIntegrationFor(): string
     {
         return $this->integrationFor;
     }
 
-    public function getDocsRepositoryName() : string
+    public function getDocsRepositoryName(): string
     {
         return $this->docsRepositoryName;
     }
 
-    public function getDocsPath() : string
+    public function getDocsPath(): string
     {
         return $this->docsPath;
     }
 
-    public function getCodePath() : string
+    public function getCodePath(): string
     {
         return $this->codePath;
     }
 
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -156,7 +157,7 @@ class Project implements LoadMetadataInterface
     /**
      * @return string[]
      */
-    public function getKeywords() : array
+    public function getKeywords(): array
     {
         return $this->keywords;
     }
@@ -164,7 +165,7 @@ class Project implements LoadMetadataInterface
     /**
      * @return ProjectVersion[]
      */
-    public function getVersions(?Closure $filter = null) : array
+    public function getVersions(?Closure $filter = null): array
     {
         if ($filter !== null) {
             return array_values(array_filter($this->versions, $filter));
@@ -176,9 +177,9 @@ class Project implements LoadMetadataInterface
     /**
      * @return ProjectVersion[]
      */
-    public function getMaintainedVersions() : array
+    public function getMaintainedVersions(): array
     {
-        return $this->getVersions(static function (ProjectVersion $version) : bool {
+        return $this->getVersions(static function (ProjectVersion $version): bool {
             return $version->isMaintained();
         });
     }
@@ -186,9 +187,9 @@ class Project implements LoadMetadataInterface
     /**
      * @return ProjectVersion[]
      */
-    public function getUnmaintainedVersions() : array
+    public function getUnmaintainedVersions(): array
     {
-        return $this->getVersions(static function (ProjectVersion $version) : bool {
+        return $this->getVersions(static function (ProjectVersion $version): bool {
             return ! $version->isMaintained();
         });
     }
@@ -196,9 +197,9 @@ class Project implements LoadMetadataInterface
     /**
      * @throws InvalidArgumentException
      */
-    public function getVersion(string $slug) : ProjectVersion
+    public function getVersion(string $slug): ProjectVersion
     {
-        $projectVersion = $this->getVersions(static function (ProjectVersion $version) use ($slug) : bool {
+        $projectVersion = $this->getVersions(static function (ProjectVersion $version) use ($slug): bool {
             return $version->getSlug() === $slug;
         })[0] ?? null;
 
@@ -209,29 +210,29 @@ class Project implements LoadMetadataInterface
         return $projectVersion;
     }
 
-    public function getCurrentVersion() : ?ProjectVersion
+    public function getCurrentVersion(): ?ProjectVersion
     {
-        return $this->getVersions(static function (ProjectVersion $version) : bool {
+        return $this->getVersions(static function (ProjectVersion $version): bool {
             return $version->isCurrent();
         })[0] ?? ($this->versions[0] ?? null);
     }
 
-    public function getProjectDocsRepositoryPath(string $projectsDir) : string
+    public function getProjectDocsRepositoryPath(string $projectsDir): string
     {
         return $projectsDir . '/' . $this->getDocsRepositoryName();
     }
 
-    public function getProjectRepositoryPath(string $projectsDir) : string
+    public function getProjectRepositoryPath(string $projectsDir): string
     {
         return $projectsDir . '/' . $this->getRepositoryName();
     }
 
-    public function getAbsoluteDocsPath(string $projectsDir) : string
+    public function getAbsoluteDocsPath(string $projectsDir): string
     {
         return $this->getProjectDocsRepositoryPath($projectsDir) . $this->getDocsPath();
     }
 
-    public function getProjectVersionDocsPath(string $docsPath, ProjectVersion $version, string $language) : string
+    public function getProjectVersionDocsPath(string $docsPath, ProjectVersion $version, string $language): string
     {
         return $docsPath . '/' . $this->getDocsSlug() . '/' . $language . '/' . $version->getSlug();
     }
@@ -240,7 +241,7 @@ class Project implements LoadMetadataInterface
         string $outputPath,
         ProjectVersion $version,
         string $language
-    ) : string {
+    ): string {
         return $outputPath . '/projects/' . $this->getDocsSlug() . '/' . $language . '/' . $version->getSlug();
     }
 }

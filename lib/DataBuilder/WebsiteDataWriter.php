@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataBuilder;
 
-use const JSON_PRETTY_PRINT;
-use const JSON_UNESCAPED_SLASHES;
 use function dirname;
 use function file_put_contents;
 use function is_dir;
 use function json_encode;
 use function mkdir;
+
+use const JSON_PRETTY_PRINT;
+use const JSON_UNESCAPED_SLASHES;
 
 class WebsiteDataWriter
 {
@@ -22,7 +23,7 @@ class WebsiteDataWriter
         $this->cacheDir = $cacheDir;
     }
 
-    public function write(WebsiteData $websiteData) : void
+    public function write(WebsiteData $websiteData): void
     {
         $path = $this->cacheDir . '/data/' . $websiteData->getName() . '.json';
         $dir  = dirname($path);

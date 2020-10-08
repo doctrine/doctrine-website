@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function assert;
 use function is_bool;
 use function is_string;
@@ -28,7 +29,7 @@ class BuildDocsCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Build the RST docs.')
@@ -54,7 +55,7 @@ class BuildDocsCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $projectToBuild = $input->getOption('project');
         assert(is_string($projectToBuild));

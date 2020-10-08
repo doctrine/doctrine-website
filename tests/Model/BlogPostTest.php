@@ -34,42 +34,42 @@ class BlogPostTest extends TestCase
     /** @var BlogPost */
     private $blogPost;
 
-    public function testGetUrl() : void
+    public function testGetUrl(): void
     {
         self::assertSame($this->url, $this->blogPost->getUrl());
     }
 
-    public function testGetSlug() : void
+    public function testGetSlug(): void
     {
         self::assertSame($this->slug, $this->blogPost->getSlug());
     }
 
-    public function testGetTitle() : void
+    public function testGetTitle(): void
     {
         self::assertSame($this->title, $this->blogPost->getTitle());
     }
 
-    public function testGetAuthorName() : void
+    public function testGetAuthorName(): void
     {
         self::assertSame($this->authorName, $this->blogPost->getAuthorName());
     }
 
-    public function testGetAuthorEmail() : void
+    public function testGetAuthorEmail(): void
     {
         self::assertSame($this->authorEmail, $this->blogPost->getAuthorEmail());
     }
 
-    public function testGetContents() : void
+    public function testGetContents(): void
     {
         self::assertSame($this->contents, $this->blogPost->getContents());
     }
 
-    public function testGetDate() : void
+    public function testGetDate(): void
     {
         self::assertSame($this->date, $this->blogPost->getDate());
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->url         = 'http://lcl.doctrine-project.org';
         $this->slug        = 'test-blog-post';

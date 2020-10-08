@@ -58,107 +58,107 @@ final class Event implements LoadMetadataInterface
     /** @var float */
     private $price;
 
-    public static function loadMetadata(ClassMetadataInterface $metadata) : void
+    public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['id']);
     }
 
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function isWebinar() : bool
+    public function isWebinar(): bool
     {
         return $this->type === EventType::WEBINAR;
     }
 
-    public function isConference() : bool
+    public function isConference(): bool
     {
         return $this->type === EventType::CONFERENCE;
     }
 
-    public function getSku() : string
+    public function getSku(): string
     {
         return $this->sku;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getSlug() : string
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function getJoinUrl() : string
+    public function getJoinUrl(): string
     {
         return $this->joinUrl;
     }
 
-    public function getDates() : DateTimeRange
+    public function getDates(): DateTimeRange
     {
         return $this->dateTimeRange;
     }
 
-    public function getRegistrationDates() : DateTimeRange
+    public function getRegistrationDates(): DateTimeRange
     {
         return $this->registrationDateTimeRange;
     }
 
-    public function getStartDate() : DateTimeImmutable
+    public function getStartDate(): DateTimeImmutable
     {
         return $this->dateTimeRange->getStart();
     }
 
-    public function getEndDate() : DateTimeImmutable
+    public function getEndDate(): DateTimeImmutable
     {
         return $this->dateTimeRange->getEnd();
     }
 
-    public function getCfp() : EventCfp
+    public function getCfp(): EventCfp
     {
         return $this->cfp;
     }
 
-    public function getLocation() : ?EventLocation
+    public function getLocation(): ?EventLocation
     {
         return $this->location;
     }
 
-    public function getSponsors() : EventSponsors
+    public function getSponsors(): EventSponsors
     {
         return $this->sponsors;
     }
 
-    public function getSpeakers() : EventSpeakers
+    public function getSpeakers(): EventSpeakers
     {
         return $this->speakers;
     }
 
-    public function getSchedule() : EventSchedule
+    public function getSchedule(): EventSchedule
     {
         return $this->schedule;
     }
 
-    public function getParticipants() : EventParticipants
+    public function getParticipants(): EventParticipants
     {
         return $this->participants;
     }
 
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function getPrice() : float
+    public function getPrice(): float
     {
         return $this->price;
     }
 
-    public function isFree() : bool
+    public function isFree(): bool
     {
         return $this->price === 0.00;
     }

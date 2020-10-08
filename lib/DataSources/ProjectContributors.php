@@ -34,7 +34,7 @@ class ProjectContributors implements DataSource
     /**
      * @return mixed[][]
      */
-    public function getSourceRows() : array
+    public function getSourceRows(): array
     {
         $projectContributors = $this->dataReader
             ->read(ProjectContributorDataBuilder::DATA_FILE)

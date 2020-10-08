@@ -19,7 +19,7 @@ class ContributorRequests
         $this->contributorRepository = $contributorRepository;
     }
 
-    public function getContributors() : RequestCollection
+    public function getContributors(): RequestCollection
     {
         /** @var Contributor[] $contributors */
         $contributors = $this->contributorRepository->findAll();

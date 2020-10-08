@@ -54,7 +54,7 @@ class RSTBuilder
     /**
      * @return DocumentNode[]
      */
-    public function buildRSTDocs(Project $project, ProjectVersion $version, RSTLanguage $language) : array
+    public function buildRSTDocs(Project $project, ProjectVersion $version, RSTLanguage $language): array
     {
         // copy the docs from the project to a central location in $docsDir
         $this->rstCopier->copyRst($project, $version);
@@ -68,7 +68,7 @@ class RSTBuilder
         return $this->builder->getDocuments()->getAll();
     }
 
-    private function buildRst(Project $project, ProjectVersion $version, RSTLanguage $language) : void
+    private function buildRst(Project $project, ProjectVersion $version, RSTLanguage $language): void
     {
         $outputPath = $project->getProjectVersionDocsOutputPath($this->sourceDir, $version, $language->getCode());
 

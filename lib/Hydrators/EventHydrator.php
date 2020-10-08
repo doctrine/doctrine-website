@@ -18,6 +18,7 @@ use Doctrine\Website\Model\EventSpeakers;
 use Doctrine\Website\Model\EventSponsors;
 use Doctrine\Website\Model\EventType;
 use InvalidArgumentException;
+
 use function current;
 use function end;
 use function sprintf;
@@ -66,7 +67,7 @@ final class EventHydrator extends ModelHydrator
         $this->env                        = $env;
     }
 
-    protected function getClassName() : string
+    protected function getClassName(): string
     {
         return Event::class;
     }
@@ -74,7 +75,7 @@ final class EventHydrator extends ModelHydrator
     /**
      * @param mixed[] $data
      */
-    protected function doHydrate(array $data) : void
+    protected function doHydrate(array $data): void
     {
         $this->id   = (int) ($data['id'] ?? 0);
         $this->type = (string) ($data['type'] ?? EventType::WEBINAR);

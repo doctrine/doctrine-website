@@ -31,12 +31,12 @@ class ProjectContributorDataBuilder implements DataBuilder
         $this->githubProjectContributors = $githubProjectContributors;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return self::DATA_FILE;
     }
 
-    public function build() : WebsiteData
+    public function build(): WebsiteData
     {
         $projects = $this->projectRepository->findAll();
 

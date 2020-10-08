@@ -17,7 +17,7 @@ class DocumentationController
         $this->projectRepository = $projectRepository;
     }
 
-    public function view(string $docsSlug, string $docsVersion) : Response
+    public function view(string $docsSlug, string $docsVersion): Response
     {
         $project = $this->projectRepository->findOneByDocsSlug($docsSlug);
 

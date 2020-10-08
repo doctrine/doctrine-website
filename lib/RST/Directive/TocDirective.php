@@ -11,7 +11,7 @@ use Doctrine\RST\Parser;
 
 class TocDirective extends SubDirective
 {
-    public function getName() : string
+    public function getName(): string
     {
         return 'toc';
     }
@@ -25,7 +25,7 @@ class TocDirective extends SubDirective
         string $variable,
         string $data,
         array $options
-    ) : ?Node {
+    ): ?Node {
         return new WrapperNode($document, '<div class="toc-section">', '</div>');
     }
 }

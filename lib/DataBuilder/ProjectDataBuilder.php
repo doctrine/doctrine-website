@@ -12,6 +12,7 @@ use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectVersionsReader;
+
 use function array_filter;
 use function array_map;
 use function array_replace;
@@ -68,16 +69,16 @@ class ProjectDataBuilder implements DataBuilder
         $this->projectsDir             = $projectsDir;
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return self::DATA_FILE;
     }
 
-    public function build() : WebsiteData
+    public function build(): WebsiteData
     {
         $repositoryNames = $this->projectDataRepository->getProjectRepositoryNames();
 
-        $projects = array_map(function (string $repositoryName) : array {
+        $projects = array_map(function (string $repositoryName): array {
             return $this->buildProjectData($repositoryName);
         }, $repositoryNames);
 
@@ -87,7 +88,7 @@ class ProjectDataBuilder implements DataBuilder
     /**
      * @return mixed[]
      */
-    private function buildProjectData(string $repositoryName) : array
+    private function buildProjectData(string $repositoryName): array
     {
         // checkout master branch
         $this->projectGitSyncer->checkoutMaster($repositoryName);
@@ -114,7 +115,7 @@ class ProjectDataBuilder implements DataBuilder
      *
      * @return mixed[]
      */
-    private function buildProjectVersions(string $repositoryName, array $projectData) : array
+    private function buildProjectVersions(string $repositoryName, array $projectData): array
     {
         $projectVersions = $this->readProjectVersionsFromGit($repositoryName);
 
@@ -134,14 +135,14 @@ class ProjectDataBuilder implements DataBuilder
     /**
      * @return mixed[]
      */
-    private function readProjectVersionsFromGit(string $repositoryName) : array
+    private function readProjectVersionsFromGit(string $repositoryName): array
     {
         $repositoryPath = $this->projectsDir . '/' . $repositoryName;
 
         $projectVersions = $this->projectVersionsReader->readProjectVersions($repositoryPath);
 
         // fix this, we shouldn't have null branch names at this point. Fix it further upstream
-        return array_filter($projectVersions, static function (array $projectVersion) : bool {
+        return array_filter($projectVersions, static function (array $projectVersion): bool {
             return $projectVersion['branchName'] !== null;
         });
     }
@@ -155,7 +156,7 @@ class ProjectDataBuilder implements DataBuilder
     private function applyConfiguredProjectVersions(
         array &$projectVersions,
         array $projectData
-    ) : array {
+    ): array {
         foreach ($projectVersions as $key => $projectVersion) {
             $configured = false;
 
@@ -191,17 +192,13 @@ class ProjectDataBuilder implements DataBuilder
      * @param mixed[] $a
      * @param mixed[] $b
      */
-    private function isProjectVersionEquals(array $a, array $b) : bool
+    private function isProjectVersionEquals(array $a, array $b): bool
     {
         if ($a['name'] === $b['name']) {
             return true;
         }
 
-        if ($a['branchName'] === $b['branchName']) {
-            return true;
-        }
-
-        return false;
+        return $a['branchName'] === $b['branchName'];
     }
 
     /**
@@ -214,7 +211,7 @@ class ProjectDataBuilder implements DataBuilder
         string $repositoryName,
         array &$projectVersions,
         array $projectData
-    ) : array {
+    ): array {
         $docsRepositoryName = $projectData['docsRepositoryName'] ?? $projectData['repositoryName'];
 
         $docsDir = $this->projectsDir . '/' . $docsRepositoryName . $projectData['docsPath'];
@@ -225,7 +222,7 @@ class ProjectDataBuilder implements DataBuilder
                 $projectVersion['branchName']
             );
 
-            $docsLanguages = array_map(static function (RSTLanguage $language) : array {
+            $docsLanguages = array_map(static function (RSTLanguage $language): array {
                 return [
                     'code' => $language->getCode(),
                     'path' => $language->getPath(),
@@ -239,7 +236,7 @@ class ProjectDataBuilder implements DataBuilder
                 continue;
             }
 
-            $projectVersions[$key]['tags'] = array_map(static function (Tag $tag) : array {
+            $projectVersions[$key]['tags'] = array_map(static function (Tag $tag): array {
                 return [
                     'name' => $tag->getName(),
                     'date' => $tag->getDate()->format('Y-m-d H:i:s'),
@@ -256,10 +253,10 @@ class ProjectDataBuilder implements DataBuilder
     /**
      * @param mixed[] $projectVersions
      */
-    private function sortProjectVersions(array &$projectVersions) : void
+    private function sortProjectVersions(array &$projectVersions): void
     {
         // sort by name so newest versions are first
-        usort($projectVersions, static function (array $a, array $b) : int {
+        usort($projectVersions, static function (array $a, array $b): int {
             return strnatcmp($b['name'], $a['name']);
         });
     }

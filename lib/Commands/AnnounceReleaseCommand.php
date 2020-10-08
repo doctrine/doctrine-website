@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
+
 use function assert;
 use function is_string;
 use function sprintf;
@@ -29,7 +30,7 @@ final class AnnounceReleaseCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription('Announce a release on Twitter, Slack, etc.')
@@ -45,7 +46,7 @@ final class AnnounceReleaseCommand extends Command
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $projectSlug = $input->getArgument('project');
         assert(is_string($projectSlug));

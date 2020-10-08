@@ -7,6 +7,7 @@ namespace Doctrine\Website\Docs\RST;
 use InvalidArgumentException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+
 use function array_map;
 use function array_values;
 use function file_get_contents;
@@ -20,7 +21,7 @@ class RSTFileRepository
     /**
      * @throws InvalidArgumentException
      */
-    public function getFileContents(string $path) : string
+    public function getFileContents(string $path): string
     {
         $contents = file_get_contents($path);
 
@@ -34,7 +35,7 @@ class RSTFileRepository
     /**
      * @return string[]
      */
-    public function findMetaFiles(string $path) : array
+    public function findMetaFiles(string $path): array
     {
         $finder = $this->getFilesFinder($path)->name('meta.php');
 
@@ -44,7 +45,7 @@ class RSTFileRepository
     /**
      * @return string[]
      */
-    public function findFiles(string $path) : array
+    public function findFiles(string $path): array
     {
         if (! is_dir($path)) {
             return [];
@@ -56,7 +57,7 @@ class RSTFileRepository
     /**
      * @return string[]
      */
-    public function getSourceFiles(string $path) : array
+    public function getSourceFiles(string $path): array
     {
         if (! is_dir($path)) {
             return [];
@@ -70,7 +71,7 @@ class RSTFileRepository
         return $this->finderToArray($finder);
     }
 
-    private function getFilesFinder(string $path) : Finder
+    private function getFilesFinder(string $path): Finder
     {
         $finder = new Finder();
         $finder->in($path)->files();
@@ -81,7 +82,7 @@ class RSTFileRepository
     /**
      * @return string[]
      */
-    private function finderToArray(Finder $finder) : array
+    private function finderToArray(Finder $finder): array
     {
         return array_values(array_map(static function (SplFileInfo $file) {
             return $file->getRealPath();

@@ -17,14 +17,14 @@ final class PartnersController
         $this->partnerRepository = $partnerRepository;
     }
 
-    public function index() : Response
+    public function index(): Response
     {
         $partners = $this->partnerRepository->findAll();
 
         return new Response(['partners' => $partners]);
     }
 
-    public function view(string $slug) : Response
+    public function view(string $slug): Response
     {
         $partner = $this->partnerRepository->findOneBySlug($slug);
 

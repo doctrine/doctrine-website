@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Git\Tag;
 use InvalidArgumentException;
+
 use function array_map;
 use function array_merge;
 use function end;
@@ -62,11 +63,11 @@ class ProjectVersion
         $this->upcoming   = (bool) ($version['upcoming'] ?? false);
         $this->hasDocs    = (bool) ($version['hasDocs'] ?? true);
 
-        $this->docsLanguages = array_map(static function (array $language) : RSTLanguage {
+        $this->docsLanguages = array_map(static function (array $language): RSTLanguage {
             return new RSTLanguage($language['code'], $language['path']);
         }, $version['docsLanguages'] ?? []);
 
-        $this->tags = array_map(static function (array $tag) : Tag {
+        $this->tags = array_map(static function (array $tag): Tag {
             return new Tag($tag['name'], new DateTimeImmutable($tag['date']));
         }, $version['tags'] ?? []);
 
@@ -79,12 +80,12 @@ class ProjectVersion
         $this->aliases = array_merge($this->aliases, ['current', 'stable']);
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getDisplayName() : string
+    public function getDisplayName(): string
     {
         $latestTag = $this->getLatestTag();
 
@@ -95,32 +96,32 @@ class ProjectVersion
         return $this->name;
     }
 
-    public function getBranchName() : string
+    public function getBranchName(): string
     {
         return $this->branchName;
     }
 
-    public function getSlug() : string
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function isCurrent() : bool
+    public function isCurrent(): bool
     {
         return $this->current;
     }
 
-    public function isMaintained() : bool
+    public function isMaintained(): bool
     {
         return $this->maintained;
     }
 
-    public function isUpcoming() : bool
+    public function isUpcoming(): bool
     {
         return $this->upcoming;
     }
 
-    public function hasDocs() : bool
+    public function hasDocs(): bool
     {
         return $this->hasDocs;
     }
@@ -128,7 +129,7 @@ class ProjectVersion
     /**
      * @return RSTLanguage[]
      */
-    public function getDocsLanguages() : array
+    public function getDocsLanguages(): array
     {
         return $this->docsLanguages;
     }
@@ -136,7 +137,7 @@ class ProjectVersion
     /**
      * @return string[]
      */
-    public function getAliases() : array
+    public function getAliases(): array
     {
         return $this->aliases;
     }
@@ -144,12 +145,12 @@ class ProjectVersion
     /**
      * @return Tag[]
      */
-    public function getTags() : array
+    public function getTags(): array
     {
         return $this->tags;
     }
 
-    public function getTag(string $slug) : Tag
+    public function getTag(string $slug): Tag
     {
         foreach ($this->tags as $tag) {
             if ($tag->getSlug() === $slug) {
@@ -160,12 +161,12 @@ class ProjectVersion
         throw new InvalidArgumentException(sprintf('Could not find tag "%s".', $slug));
     }
 
-    public function getFirstTag() : ?Tag
+    public function getFirstTag(): ?Tag
     {
         return $this->tags[0] ?? null;
     }
 
-    public function getLatestTag() : ?Tag
+    public function getLatestTag(): ?Tag
     {
         $latestTag = end($this->tags);
 
@@ -176,7 +177,7 @@ class ProjectVersion
         return $latestTag;
     }
 
-    public function getStability() : string
+    public function getStability(): string
     {
         if ($this->maintained === false) {
             return self::UNMAINTAINED;
@@ -195,7 +196,7 @@ class ProjectVersion
         return self::UPCOMING;
     }
 
-    public function getStabilityColor(?string $stability = null) : string
+    public function getStabilityColor(?string $stability = null): string
     {
         $map = [
             'upcoming' => 'warning',

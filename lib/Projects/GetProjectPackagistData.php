@@ -15,7 +15,7 @@ class GetProjectPackagistData
     /**
      * @return mixed[]
      */
-    public function __invoke(string $composerPackageName) : array
+    public function __invoke(string $composerPackageName): array
     {
         $packagistUrl = sprintf(self::PACKAGIST_URL_FORMAT, $composerPackageName);
 

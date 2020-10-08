@@ -6,5 +6,5 @@ namespace Doctrine\Website\Twitter;
 
 interface CreateTweet
 {
-    public function __invoke(string $message) : bool;
+    public function __invoke(string $message): bool;
 }
