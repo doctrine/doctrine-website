@@ -41,51 +41,49 @@ contributing back to a Doctrine project.
 Initial Setup
 -------------
 
--  Setup a `github <https://github.com>`_ account.
--  Fork the `repository <https://github.com/doctrine/orm>`_ of the
-   project you want to contribute to.
+-  Setup a `GitHub <https://github.com>`_ account.
+-  Fork the repository of the project you want to contribute to. In this example
+   it will be `DBAL <https://github.com/doctrine/dbal>`_
 -  Clone your fork locally
 
 .. code-block:: console
 
-    $ git clone git@github.com:username/orm.git
+    $ git clone git@github.com:username/dbal.git
 
--  Enter the orm directory and add the **doctrine** remote
-
-.. code-block:: console
-
-    $ cd orm
-    $ git remote add doctrine git://github.com/doctrine/orm.git
-
--  Adjust your branch to track the doctrine master remote branch, by
-   default it'll track your origin remote's master:
+-  Enter the dbal directory and add the **doctrine** remote
 
 .. code-block:: console
 
-    $ git config branch.master.remote doctrine
+    $ cd dbal
+    $ git remote add doctrine git://github.com/doctrine/dbal.git
 
-Keeping your master up-to-date!
--------------------------------
+Branching from the default branch
+---------------------------------
 
-Once all this is done, you'll be able to keep your local master up to
-date with the simple command:
+New pull requests are created with the repository's default branch as base branch.
+The default branch is the branch you see when you enter the repository page on GitHub.
 
-.. code-block:: console
+.. image:: ../images/default-branch.png
+   :alt: The default branch
+   :style: margin-bottom: 20px
 
-    $ git checkout master
-    $ git pull --rebase
+In this DBAL example, it's the branch with the name **2.11.x**. The branch name reflects the
+current lowest supported version of a repository.
 
-Alternatively, you can synchronize your master from any branch with the
-full fetch/rebase syntax:
+Newly introduced changes to 2.11.x will be up-merged at a later point in time
+to newer version branches (e.g. 2.12.x, 3.0.x). This way you don't have to
+re-introduce a new fix or feature of 2.11.x with another pull request to
+the other version branches.
+
+Keeping the default branch up-to-date!
+--------------------------------------
+
+Once all this is done, you'll be able to keep your local branches up to
+date with the following command:
 
 .. code-block:: console
 
     $ git fetch doctrine
-    $ git rebase doctrine/master master
-
-Using rebase pull will do a rebase instead of a merge, which will keep a
-linear history with no unnecessary merge commits. It'll also rewind,
-apply and then reapply your commits at the HEAD.
 
 Branching Model
 ---------------
@@ -93,8 +91,8 @@ Branching Model
 The following names will be used to differentiate between the different
 repositories:
 
--  **doctrine** - The "official" Doctrine repository
--  **origin** - Your fork of the official repository on github
+-  **doctrine** - The "official" Doctrine DBAL repository
+-  **origin** - Your fork of the official repository on GitHub
 -  **local** - This will be your local clone of **origin**
 
 As a **contributor** you will push your completed **local** topic branch
@@ -107,43 +105,40 @@ Primary Branches
 
 The **doctrine** repository holds the following primary branches:
 
--  **doctrine/master** Development towards the next release.
+-  **doctrine/2.11.x** Development towards the next release.
 -  **doctrine/\*** Maintenance branches of existing releases.
 
 These branches exist in parallel and are defined as follows:
 
-**doctrine/master** is the branch where the source code of **HEAD**
+**doctrine/2.11.x** is the branch where the source code of **HEAD**
 always reflects the latest version. Each released stable version will be
 a tagged commit in a **doctrine/\*** branch. Each released unstable
-version will be a tagged commit in the **doctrine/master** branch.
+version will be a tagged commit in the **doctrine/2.11.x** branch.
 
-    **NOTE** You should never commit to your forked **origin/master**.
-    Changes to **origin/master** will never be merged into
-    **doctrine/master**. All work must be done in a **topic branch**,
+    **NOTE** You should never commit to your forked default branch (**origin/2.11.x**).
+    Changes to **origin/2.11.x** will never be merged into
+    **doctrine/2.11.x**. All work must be done in a **topic branch**,
     which are explained below.
 
 Topic Branches
 --------------
 
 Topic branches are for contributors to develop bug fixes, new features,
-etc. so that they can be easily merged to **master**. They must follow a
-few simple rules as listed below:
+etc. so that they can be easily merged to **2.11.x**. They must follow a
+few rules as listed below:
 
--  May branch off from: **master** whenever possible, or a release
+-  May branch off from: **2.11.x** whenever possible, or a newer version
    branch otherwise. Keep in mind that your changes will be
-   cherry-picked to lower branches by maintainers after the merge if
+   up-merged to higher version branches by maintainers after the merge if
    they are applicable.
--  Must merge back into: **master** and any affected release branches
-   that should get the same changes, but remember that release branches
-   usually only get bug fixes, with rare exceptions.
--  Branch naming convention: anything except **master** or release
-   branch names.
+-  Branch naming convention: anything except master, the default branch name,
+   or version branch names.
 
 Topic branches are used to develop new features and fix reported issues.
 When starting development of a feature, the target release in which this
 feature will be incorporated may well be unknown. The essence of a topic
 branch is that it exists as long as the feature is in development, but
-will eventually be merged back into **master** or a release branch (to
+will eventually be merged into **2.11.x** or a release branch (to
 add the new feature or bugfix to a next release) or discarded (in case
 of a disappointing experiment).
 
@@ -154,11 +149,11 @@ Working on topic branches
 -------------------------
 
 First create an appropriately named branch. When starting work on a new
-topic, branch off from **doctrine/master** or a **doctrine/\*** branch:
+topic, branch off from **doctrine/2.11.x** or a **doctrine/\*** branch:
 
 .. code-block:: console
 
-    $ git checkout -b fix-weird-bug doctrine/master
+    $ git checkout -b fix-weird-bug doctrine/2.11.x
     Switched to a new branch "fix-weird-bug"
 
 Now do some work, make some changes then commit them:
@@ -197,7 +192,7 @@ this in case you want to read more about this:
 - `Commit message style for git <https://commit.style/>`_
 - `A note about git commit messages <https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_
 
-Next, merge or rebase your commit against **doctrine/master**. With your
+Next, merge or rebase your commit against **doctrine/2.11.x**. With your
 work done in a **local** topic branch, you'll want to assist upstream
 merge by rebasing your commits. You can either do this manually with
 ``fetch`` then ``rebase``, or use the ``pull --rebase`` shortcut. You
@@ -210,13 +205,7 @@ everywhere.
 .. code-block:: console
 
     $ git fetch doctrine
-    $ git rebase doctrine/master fix-weird-bug
-
-or (uses tracking branch shortcuts):
-
-.. code-block:: console
-
-    $ git pull --rebase
+    $ git rebase doctrine/2.11.x fix-weird-bug
 
 Push your branch to **origin**:
 
@@ -226,7 +215,7 @@ Finished topic branches should be pushed to **origin** for a
 .. code-block:: console
 
     $ git push origin fix-weird-bug
-    To git@github.com:hobodave/orm.git
+    To git@github.com:hobodave/dbal.git
         * [new branch]      fix-weird-bug -> fix-weird-bug
 
 Now you are ready to send a pull request from this branch and ask for a
@@ -239,14 +228,14 @@ Once your work has been merged by the branch maintainer, it will no
 longer be necessary to keep the local branch or remote branch, so you
 can remove them!
 
-Sync your local master:
+Sync your local 2.11.x branch:
 
 .. code-block:: console
 
-    $ git checkout master
+    $ git checkout 2.11.x
     $ git pull --rebase
 
-Remove your local branch using -d to ensure that it has been merged by
+Remove your local topic branch using -d to ensure that it has been merged by
 upstream. Branch -d will not delete a branch that is not an ancestor of
 your current head.
 
@@ -259,7 +248,7 @@ From the git-branch man page:
     -D
         Delete a branch irrespective of its merged status.
 
-Remove your local branch:
+Remove your local topic branch:
 
 .. code-block:: console
 
@@ -269,7 +258,7 @@ Remove your remote branch at **origin**:
 
 .. code-block:: console
 
-    $ git push origin fix-weird-bug
+    $ git push origin :fix-weird-bug
 
 Project Dependencies
 --------------------
