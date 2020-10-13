@@ -10,7 +10,7 @@ use Symfony\Component\ErrorHandler\Debug;
 $input = new ArgvInput();
 $env = $input->getParameterOption(['--env', '-e'], 'dev');
 
-if (class_exists(Debug::class)) {
+if (class_exists(Debug::class) && $env === 'dev') {
     Debug::enable();
 }
 
