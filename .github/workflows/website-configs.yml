@@ -11,6 +11,7 @@ on:
     - '.github/workflows/website-configs.yml'
 
 env:
+  doctrine_website_github_http_token: "${{ secrets.doctrine_website_github_http_token }}"
   doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
 
 jobs:
