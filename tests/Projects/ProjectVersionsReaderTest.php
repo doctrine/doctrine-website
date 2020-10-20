@@ -89,6 +89,48 @@ class ProjectVersionsReaderTest extends TestCase
         self::assertSame($expected, $versions);
     }
 
+    public function testReadProjectVersionsSkipMissingBranchSlug(): void
+    {
+        $repositoryPath = '/repository/path';
+
+        $tag1 = new Tag('tag', new DateTimeImmutable());
+        $tag2 = new Tag('v2.0.0', new DateTimeImmutable());
+
+        $tags = [$tag1, $tag2];
+
+        $this->tagReader->expects(self::once())
+            ->method('getRepositoryTags')
+            ->with($repositoryPath)
+            ->willReturn($tags);
+
+        $this->tagBranchGuesser->expects(self::exactly(2))
+            ->method('generateTagBranchSlug')
+            ->willReturnMap([
+                [$tag1, null],
+                [$tag2, '2.0'],
+            ]);
+
+        $this->tagBranchGuesser->expects(self::once())
+            ->method('guessTagBranchName')
+            ->with($repositoryPath, $tag2)
+            ->willReturn('2.0');
+
+        $versions = $this->projectVersionsReader->readProjectVersions(
+            $repositoryPath
+        );
+
+        $expected = [
+            [
+                'name' => '2.0',
+                'slug' => '2.0',
+                'branchName' => '2.0',
+                'tags' => [$tag2],
+            ],
+        ];
+
+        self::assertSame($expected, $versions);
+    }
+
     protected function setUp(): void
     {
         $this->tagReader        = $this->createMock(TagReader::class);
