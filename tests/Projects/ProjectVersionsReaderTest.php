@@ -100,7 +100,7 @@ class ProjectVersionsReaderTest extends TestCase
             $repositoryPath
         );
 
-        self::assertCount(4, $versions);
+        self::assertCount(3, $versions);
 
         self::assertCount(2, $versions[0]['tags']);
         self::assertSame('v2.0.0', $versions[0]['tags'][0]->getName());
@@ -112,10 +112,6 @@ class ProjectVersionsReaderTest extends TestCase
         self::assertCount(1, $versions[2]['tags']);
         self::assertSame('0.1.0', $versions[2]['tags'][0]->getName());
         self::assertSame('0.1', $versions[2]['branchName']);
-
-        self::assertCount(1, $versions[3]['tags']);
-        self::assertSame('0.0.1', $versions[3]['tags'][0]->getName());
-        self::assertSame('master', $versions[3]['branchName']);
     }
 
     protected function setUp(): void
