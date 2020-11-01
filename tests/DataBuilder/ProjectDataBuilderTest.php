@@ -74,7 +74,7 @@ class ProjectDataBuilderTest extends TestCase
             ->willReturn([
                 [
                     'name' => '1.0',
-                    'branchName' => '1.0',
+                    'branchName' => null,
                     'tags' => [
                         new Tag('1.0.0', new DateTimeImmutable('2019-09-01')),
                         new Tag('1.0.1', new DateTimeImmutable('2019-09-02')),
@@ -102,8 +102,8 @@ class ProjectDataBuilderTest extends TestCase
             ]);
 
         $this->projectGitSyncer->expects(self::at(2))
-            ->method('checkoutBranch')
-            ->with('orm', '1.0');
+            ->method('checkoutTag')
+            ->with('orm', '1.0.1');
 
         $this->rstLanguagesDetector->expects(self::at(1))
             ->method('detectLanguages')
@@ -149,7 +149,8 @@ class ProjectDataBuilderTest extends TestCase
                     ],
                     [
                         'name' => '1.0',
-                        'branchName' => '1.0',
+//                        'branchName' => '1.0',
+                        'branchName' => null,
                         'tags' => [
                             [
                                 'name' => '1.0.0',

@@ -11,6 +11,7 @@ use InvalidArgumentException;
 
 use function array_map;
 use function array_merge;
+use function count;
 use function end;
 use function sprintf;
 
@@ -56,7 +57,7 @@ class ProjectVersion
     public function __construct(array $version)
     {
         $this->name       = (string) ($version['name'] ?? '');
-        $this->branchName = (string) ($version['branchName'] ?? $this->name);
+        $this->branchName = $version['branchName'] ?? null;
         $this->slug       = (string) ($version['slug'] ?? $this->name);
         $this->current    = (bool) ($version['current'] ?? false);
         $this->maintained = (bool) ($version['maintained'] ?? true);
@@ -96,9 +97,14 @@ class ProjectVersion
         return $this->name;
     }
 
-    public function getBranchName(): string
+    public function getBranchName(): ?string
     {
         return $this->branchName;
+    }
+
+    public function hasBranchName(): bool
+    {
+        return $this->branchName !== null;
     }
 
     public function getSlug(): string
@@ -175,6 +181,11 @@ class ProjectVersion
         }
 
         return $latestTag;
+    }
+
+    public function hasTags(): bool
+    {
+        return count($this->tags) > 0;
     }
 
     public function getStability(): string

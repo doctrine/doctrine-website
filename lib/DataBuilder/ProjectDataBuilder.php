@@ -17,6 +17,7 @@ use function array_filter;
 use function array_map;
 use function array_replace;
 use function count;
+use function end;
 use function strnatcmp;
 use function usort;
 
@@ -143,7 +144,7 @@ class ProjectDataBuilder implements DataBuilder
 
         // fix this, we shouldn't have null branch names at this point. Fix it further upstream
         return array_filter($projectVersions, static function (array $projectVersion): bool {
-            return $projectVersion['branchName'] !== null;
+            return count($projectVersion['tags']) > 0;
         });
     }
 
@@ -217,10 +218,17 @@ class ProjectDataBuilder implements DataBuilder
         $docsDir = $this->projectsDir . '/' . $docsRepositoryName . $projectData['docsPath'];
 
         foreach ($projectVersions as $key => $projectVersion) {
-            $this->projectGitSyncer->checkoutBranch(
-                $docsRepositoryName,
-                $projectVersion['branchName']
-            );
+            if ($projectVersion['branchName'] === null) {
+                $this->projectGitSyncer->checkoutTag(
+                    $docsRepositoryName,
+                    end($projectVersion['tags'])->getName()
+                );
+            } else {
+                $this->projectGitSyncer->checkoutBranch(
+                    $docsRepositoryName,
+                    $projectVersion['branchName']
+                );
+            }
 
             $docsLanguages = array_map(static function (RSTLanguage $language): array {
                 return [
