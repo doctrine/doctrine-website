@@ -70,6 +70,17 @@ class ProjectGitSyncer
         $this->processFactory->run($command);
     }
 
+    public function checkoutTag(string $repositoryName, string $tagName): void
+    {
+        $command = sprintf(
+            'cd %s && git clean -xdf && git checkout tags/%s',
+            $this->getRepositoryPath($repositoryName),
+            $tagName
+        );
+
+        $this->processFactory->run($command);
+    }
+
     public function syncRepository(string $repositoryName): void
     {
         $command = sprintf(

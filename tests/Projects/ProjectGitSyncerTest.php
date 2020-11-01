@@ -115,4 +115,19 @@ class ProjectGitSyncerTest extends TestCase
 
         $this->projectGitSyncer->checkoutBranch($repositoryName, $branchName);
     }
+
+    public function testCheckoutTag(): void
+    {
+        $repositoryName = 'example-project';
+        $tagName        = '1.0.0';
+
+        $this->processFactory->expects(self::once())
+            ->method('run')
+            ->with(sprintf(
+                'cd %s/example-project && git clean -xdf && git checkout tags/1.0.0',
+                $this->projectsDir
+            ));
+
+        $this->projectGitSyncer->checkoutTag($repositoryName, $tagName);
+    }
 }
