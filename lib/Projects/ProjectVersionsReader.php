@@ -51,9 +51,9 @@ class ProjectVersionsReader
                 continue;
             }
 
-            // if 0.x release doesn't have an associated branch, assume master
+            // if 0.x release doesn't have an associated branch, skip entry
             if ($tag->isMajorReleaseZero() && $branchName === null) {
-                $branchName = 'master';
+                continue;
             }
 
             $versions[$branchSlug] = [
