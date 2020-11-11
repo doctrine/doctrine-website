@@ -33,9 +33,6 @@ parameters:
             repositoryName: common
 
         -
-            repositoryName: mongodb
-
-        -
             repositoryName: orientdb-odm
 
         -
