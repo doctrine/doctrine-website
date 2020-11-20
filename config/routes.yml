@@ -210,3 +210,5 @@ parameters:
             defaults:
                 menuSlug: blog
                 layout: blog-post
+            requirements:
+                slug: .+
