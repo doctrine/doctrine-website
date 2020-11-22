@@ -165,6 +165,8 @@ class ProjectDataBuilder implements DataBuilder
                 if ($this->isProjectVersionEquals($projectVersion, $version)) {
                     $version['tags'] = $projectVersion['tags'];
 
+                    $version['branchName'] = $projectVersion['branchName'];
+
                     $projectVersions[$key] = $version;
 
                     unset($projectData['versions'][$k]);

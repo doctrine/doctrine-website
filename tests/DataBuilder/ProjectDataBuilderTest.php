@@ -149,7 +149,6 @@ class ProjectDataBuilderTest extends TestCase
                     ],
                     [
                         'name' => '1.0',
-//                        'branchName' => '1.0',
                         'branchName' => null,
                         'tags' => [
                             [
