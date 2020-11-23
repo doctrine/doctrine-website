@@ -8,6 +8,7 @@ use Doctrine\Website\Github\GithubClientProvider;
 use Doctrine\Website\ProcessFactory;
 use Github\Api\Repo;
 
+use function escapeshellarg;
 use function is_dir;
 use function sprintf;
 
@@ -45,8 +46,8 @@ class ProjectGitSyncer
 
         $command = sprintf(
             'git clone https://github.com/doctrine/%s.git %s',
-            $repositoryName,
-            $repositoryPath
+            escapeshellarg($repositoryName),
+            escapeshellarg($repositoryPath)
         );
 
         $this->processFactory->run($command);
@@ -63,8 +64,8 @@ class ProjectGitSyncer
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git checkout origin/%s',
-            $this->getRepositoryPath($repositoryName),
-            $branchName
+            escapeshellarg($this->getRepositoryPath($repositoryName)),
+            escapeshellarg($branchName)
         );
 
         $this->processFactory->run($command);
@@ -74,8 +75,8 @@ class ProjectGitSyncer
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git checkout tags/%s',
-            $this->getRepositoryPath($repositoryName),
-            $tagName
+            escapeshellarg($this->getRepositoryPath($repositoryName)),
+            escapeshellarg($tagName)
         );
 
         $this->processFactory->run($command);
@@ -85,7 +86,7 @@ class ProjectGitSyncer
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git fetch origin',
-            $this->getRepositoryPath($repositoryName)
+            escapeshellarg($this->getRepositoryPath($repositoryName))
         );
 
         $this->processFactory->run($command);
