@@ -6,7 +6,6 @@ namespace Doctrine\Website\Tests\Docs;
 
 use Doctrine\Website\Docs\BuildDocs;
 use Doctrine\Website\Docs\RST\RSTBuilder;
-use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\SearchIndexer;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
@@ -15,6 +14,7 @@ use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Console\Output\OutputInterface;
+use UnexpectedValueException;
 
 class BuildDocsTest extends TestCase
 {
@@ -48,19 +48,26 @@ class BuildDocsTest extends TestCase
         );
     }
 
-    public function testBuild(): void
+    public function testBuildWithBranchCheckout(): void
     {
         $output = $this->createMock(OutputInterface::class);
+
+        $version = new ProjectVersion([
+            'branchName'    => '1.0',
+            'docsLanguages' => [
+                [
+                    'code'  => 'en',
+                    'path'  => '/en',
+                ],
+            ],
+        ]);
 
         $repositoryName = 'test-project';
 
         $project = $this->createMock(Project::class);
 
-        $project->expects(self::any())
-            ->method('getRepositoryName')
+        $project->method('getRepositoryName')
             ->willReturn($repositoryName);
-
-        $version = $this->createMock(ProjectVersion::class);
 
         $projects = [$project];
         $versions = [$version];
@@ -73,11 +80,11 @@ class BuildDocsTest extends TestCase
             ->method('findAll')
             ->willReturn($projects);
 
-        $english = new RSTLanguage('en', '/en');
+        $this->projectGitSyncer->expects(self::once())
+            ->method('checkoutBranch')
+            ->with($repositoryName, '1.0');
 
-        $version->expects(self::once())
-            ->method('getDocsLanguages')
-            ->willReturn([$english]);
+        $english = $version->getDocsLanguages()[0];
 
         $this->rstBuilder->expects(self::once())
             ->method('buildRSTDocs')
@@ -87,6 +94,100 @@ class BuildDocsTest extends TestCase
             ->method('buildSearchIndexes')
             ->with($project, $version);
 
+        $this->buildDocs->build($output, '', '', true);
+    }
+
+    public function testBuildWithTagCheckout(): void
+    {
+        $output = $this->createMock(OutputInterface::class);
+
+        $version = new ProjectVersion([
+            'tags'          => [
+                [
+                    'name' => '1.0.1',
+                    'date' => '2000-01-01',
+                ],
+            ],
+            'docsLanguages' => [
+                [
+                    'code' => 'en',
+                    'path' => '/en',
+                ],
+            ],
+        ]);
+
+        $repositoryName = 'test-project';
+
+        $project = $this->createMock(Project::class);
+
+        $project->expects(self::any())
+            ->method('getRepositoryName')
+            ->willReturn($repositoryName);
+
+        $projects = [$project];
+        $versions = [$version];
+
+        $project->expects(self::once())
+            ->method('getVersions')
+            ->willReturn($versions);
+
+        $this->projectRepository->expects(self::once())
+            ->method('findAll')
+            ->willReturn($projects);
+
+        $this->projectGitSyncer->expects(self::once())
+            ->method('checkoutTag')
+            ->with($repositoryName, '1.0.1');
+
+        $english = $version->getDocsLanguages()[0];
+
+        $this->rstBuilder->expects(self::once())
+            ->method('buildRSTDocs')
+            ->with($project, $version, $english);
+
+        $this->searchIndexer->expects(self::once())
+            ->method('buildSearchIndexes')
+            ->with($project, $version);
+
+        $this->buildDocs->build($output, '', '', true);
+    }
+
+    public function testBuildWithInvalidProjectVersion(): void
+    {
+        $output = $this->createMock(OutputInterface::class);
+
+        $version = new ProjectVersion([
+            'docsLanguages' => [
+                [
+                    'code' => 'en',
+                    'path' => '/en',
+                ],
+            ],
+        ]);
+
+        $repositoryName = 'test-project';
+
+        $project = $this->createMock(Project::class);
+
+        $project->expects(self::any())
+            ->method('getRepositoryName')
+            ->willReturn($repositoryName);
+
+        $projects = [$project];
+        $versions = [$version];
+
+        $project->expects(self::once())
+            ->method('getVersions')
+            ->willReturn($versions);
+
+        $this->projectRepository->expects(self::once())
+            ->method('findAll')
+            ->willReturn($projects);
+
+        $this->searchIndexer->expects(self::never())
+            ->method('buildSearchIndexes');
+
+        $this->expectException(UnexpectedValueException::class);
         $this->buildDocs->build($output, '', '', true);
     }
 }

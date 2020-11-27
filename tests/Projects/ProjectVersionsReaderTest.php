@@ -30,7 +30,7 @@ class ProjectVersionsReaderTest extends TestCase
         $tag1 = new Tag('v2.0.0', new DateTimeImmutable());
         $tag2 = new Tag('v2.0.1', new DateTimeImmutable());
         $tag3 = new Tag('v3.0.0', new DateTimeImmutable());
-        $tag4 = new Tag('dev-test', new DateTimeImmutable());
+        $tag4 = new Tag('dev-test', new DateTimeImmutable()); // will be removed
         $tag5 = new Tag('0.1.0', new DateTimeImmutable());
         $tag6 = new Tag('0.0.1', new DateTimeImmutable());
 
@@ -41,77 +41,94 @@ class ProjectVersionsReaderTest extends TestCase
             ->with($repositoryPath)
             ->willReturn($tags);
 
-        // tag1
-        $this->tagBranchGuesser->expects(self::at(0))
+        $this->tagBranchGuesser->expects(self::exactly(5))
             ->method('generateTagBranchSlug')
-            ->with($tag1)
-            ->willReturn('2.0');
+            ->willReturnMap([
+                [$tag1, '2.0'],
+                [$tag2, '2.0'],
+                [$tag3, '3.0'],
+                [$tag5, '0.1'],
+                [$tag6, '0.0'],
+            ]);
 
-        $this->tagBranchGuesser->expects(self::at(1))
+        $this->tagBranchGuesser->expects(self::exactly(5))
             ->method('guessTagBranchName')
-            ->with($repositoryPath, $tag1)
-            ->willReturn('2.0');
-
-        // tag2
-        $this->tagBranchGuesser->expects(self::at(2))
-            ->method('generateTagBranchSlug')
-            ->with($tag2)
-            ->willReturn('2.0');
-
-        $this->tagBranchGuesser->expects(self::at(3))
-            ->method('guessTagBranchName')
-            ->with($repositoryPath, $tag2)
-            ->willReturn('2.0');
-
-        // tag3
-        $this->tagBranchGuesser->expects(self::at(4))
-            ->method('generateTagBranchSlug')
-            ->with($tag3)
-            ->willReturn('3.0');
-
-        $this->tagBranchGuesser->expects(self::at(5))
-            ->method('guessTagBranchName')
-            ->with($repositoryPath, $tag3)
-            ->willReturn('3.0');
-
-        // tag5
-        $this->tagBranchGuesser->expects(self::at(6))
-            ->method('generateTagBranchSlug')
-            ->with($tag5)
-            ->willReturn('0.1');
-
-        $this->tagBranchGuesser->expects(self::at(7))
-            ->method('guessTagBranchName')
-            ->with($repositoryPath, $tag5)
-            ->willReturn('0.1');
-
-        // tag6
-        $this->tagBranchGuesser->expects(self::at(8))
-            ->method('generateTagBranchSlug')
-            ->with($tag6)
-            ->willReturn('0.0');
-
-        $this->tagBranchGuesser->expects(self::at(9))
-            ->method('guessTagBranchName')
-            ->with($repositoryPath, $tag6)
-            ->willReturn(null);
+            ->willReturnMap([
+                [$repositoryPath, $tag1, '2.0'],
+                [$repositoryPath, $tag2, '2.0'],
+                [$repositoryPath, $tag3, '3.0'],
+                [$repositoryPath, $tag5, '0.1'],
+                [$repositoryPath, $tag6, null],
+            ]);
 
         $versions = $this->projectVersionsReader->readProjectVersions(
             $repositoryPath
         );
 
-        self::assertCount(3, $versions);
+        $expected = [
+            [
+                'name' => '2.0',
+                'slug' => '2.0',
+                'branchName' => '2.0',
+                'tags' => [$tag1, $tag2],
+            ],
+            [
+                'name' => '3.0',
+                'slug' => '3.0',
+                'branchName' => '3.0',
+                'tags' => [$tag3],
+            ],
+            [
+                'name' => '0.1',
+                'slug' => '0.1',
+                'branchName' => '0.1',
+                'tags' => [$tag5],
+            ],
+        ];
 
-        self::assertCount(2, $versions[0]['tags']);
-        self::assertSame('v2.0.0', $versions[0]['tags'][0]->getName());
-        self::assertSame('v2.0.1', $versions[0]['tags'][1]->getName());
+        self::assertSame($expected, $versions);
+    }
 
-        self::assertCount(1, $versions[1]['tags']);
-        self::assertSame('v3.0.0', $versions[1]['tags'][0]->getName());
+    public function testReadProjectVersionsSkipMissingBranchSlug(): void
+    {
+        $repositoryPath = '/repository/path';
 
-        self::assertCount(1, $versions[2]['tags']);
-        self::assertSame('0.1.0', $versions[2]['tags'][0]->getName());
-        self::assertSame('0.1', $versions[2]['branchName']);
+        $tag1 = new Tag('tag', new DateTimeImmutable());
+        $tag2 = new Tag('v2.0.0', new DateTimeImmutable());
+
+        $tags = [$tag1, $tag2];
+
+        $this->tagReader->expects(self::once())
+            ->method('getRepositoryTags')
+            ->with($repositoryPath)
+            ->willReturn($tags);
+
+        $this->tagBranchGuesser->expects(self::exactly(2))
+            ->method('generateTagBranchSlug')
+            ->willReturnMap([
+                [$tag1, null],
+                [$tag2, '2.0'],
+            ]);
+
+        $this->tagBranchGuesser->expects(self::once())
+            ->method('guessTagBranchName')
+            ->with($repositoryPath, $tag2)
+            ->willReturn('2.0');
+
+        $versions = $this->projectVersionsReader->readProjectVersions(
+            $repositoryPath
+        );
+
+        $expected = [
+            [
+                'name' => '2.0',
+                'slug' => '2.0',
+                'branchName' => '2.0',
+                'tags' => [$tag2],
+            ],
+        ];
+
+        self::assertSame($expected, $versions);
     }
 
     protected function setUp(): void

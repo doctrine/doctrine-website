@@ -11,6 +11,7 @@ use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Symfony\Component\Console\Output\OutputInterface;
+use UnexpectedValueException;
 
 use function array_filter;
 use function count;
@@ -80,10 +81,23 @@ class BuildDocs
 
                 $output->writeln(sprintf(' - checking out %s', $version->getName()));
 
-                $this->projectGitSyncer->checkoutBranch(
-                    $project->getRepositoryName(),
-                    $version->getBranchName()
-                );
+                if ($version->hasBranchName()) {
+                    $this->projectGitSyncer->checkoutBranch(
+                        $project->getRepositoryName(),
+                        $version->getBranchName()
+                    );
+                } else {
+                    if (! $version->hasTags()) {
+                        throw new UnexpectedValueException(
+                            sprintf('Version %s has neither branchname nor tag', $version->getSlug())
+                        );
+                    }
+
+                    $this->projectGitSyncer->checkoutTag(
+                        $project->getRepositoryName(),
+                        $version->getLatestTag()->getName()
+                    );
+                }
 
                 $searchDocuments = [];
 

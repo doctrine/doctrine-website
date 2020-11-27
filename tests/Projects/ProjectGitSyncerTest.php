@@ -59,7 +59,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->processFactory->expects(self::at(0))
             ->method('run')
             ->with(sprintf(
-                'git clone https://github.com/doctrine/%s.git %s/%s',
+                'git clone https://github.com/doctrine/\'%s\'.git \'%s/%s\'',
                 $repositoryName,
                 $this->projectsDir,
                 $repositoryName
@@ -75,7 +75,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->processFactory->expects(self::at(0))
             ->method('run')
             ->with(sprintf(
-                'cd %s/example-project && git clean -xdf && git fetch origin',
+                'cd \'%s/example-project\' && git clean -xdf && git fetch origin',
                 $this->projectsDir
             ));
 
@@ -94,7 +94,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->processFactory->expects(self::at(0))
             ->method('run')
             ->with(sprintf(
-                'cd %s/example-project && git clean -xdf && git checkout origin/1.0',
+                'cd \'%s/example-project\' && git clean -xdf && git checkout origin/\'1.0\'',
                 $this->projectsDir
             ));
 
@@ -109,7 +109,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->processFactory->expects(self::at(0))
             ->method('run')
             ->with(sprintf(
-                'cd %s/example-project && git clean -xdf && git checkout origin/1.0',
+                'cd \'%s/example-project\' && git clean -xdf && git checkout origin/\'1.0\'',
                 $this->projectsDir
             ));
 

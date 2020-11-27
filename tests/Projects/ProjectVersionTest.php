@@ -59,7 +59,7 @@ class ProjectVersionTest extends TestCase
         $projectVersion = new ProjectVersion(['name' => '1.0']);
 
         self::assertSame('1.0', $projectVersion->getName());
-        self::assertSame('1.0', $projectVersion->getBranchName());
+        self::assertNull($projectVersion->getBranchName());
         self::assertSame('1.0', $projectVersion->getSlug());
         self::assertFalse($projectVersion->isCurrent());
         self::assertFalse($projectVersion->isUpcoming());
@@ -67,5 +67,34 @@ class ProjectVersionTest extends TestCase
         self::assertEmpty($projectVersion->getTags());
         self::assertEmpty($projectVersion->getDocsLanguages());
         self::assertEmpty($projectVersion->getAliases());
+    }
+
+    public function testHasBranchName(): void
+    {
+        $projectVersion = new ProjectVersion([]);
+
+        self::assertFalse($projectVersion->hasBranchName());
+
+        $projectVersion = new ProjectVersion(['branchName' => '1.0']);
+
+        self::assertTrue($projectVersion->hasBranchName());
+    }
+
+    public function testHasTags(): void
+    {
+        $projectVersion = new ProjectVersion([]);
+
+        self::assertFalse($projectVersion->hasTags());
+
+        $projectVersion = new ProjectVersion([
+            'tags' => [
+                [
+                    'name' => '1.0',
+                    'date' => '2000-01-01',
+                ],
+            ],
+        ]);
+
+        self::assertTrue($projectVersion->hasTags());
     }
 }
