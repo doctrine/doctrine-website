@@ -56,3 +56,11 @@ parameters:
             name: 'Levvvel'
             url: 'https://levvvel.com/'
             highlighted: false
+        -
+            name: 'joingames'
+            url: 'https://joingames.net/'
+            highlighted: false
+        -
+            name: 'OvrClock'
+            url: 'https://ovrclock.com/'
+            highlighted: false
