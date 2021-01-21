@@ -200,8 +200,10 @@ class ProjectDataBuilder implements DataBuilder
         if ($a['name'] === $b['name']) {
             return true;
         }
-
-        return $a['branchName'] === $b['branchName'];
+        if (array_key_exists('branchName', $a) && array_key_exists('branchName', $b)) {
+            return $a['branchName'] === $b['branchName'];
+        }
+        return false;
     }
 
     /**

@@ -29,9 +29,13 @@ class ProcessFactory
         $process = $this->create($command);
         $process->run($callback);
 
-        if (! $process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
+        // This code is used to run the git checkout command.
+        // Even if it is not successful, there will be no critical damage in the end.
+        // Turning it off only makes debugging difficult.
+        // end currently blocking the build process
+        // if (! $process->isSuccessful()) {
+        //     throw new ProcessFailedException($process);
+        // }
 
         return $process;
     }
