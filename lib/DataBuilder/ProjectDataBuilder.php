@@ -162,7 +162,7 @@ class ProjectDataBuilder implements DataBuilder
             $configured = false;
 
             foreach ($projectData['versions'] as $k => $version) {
-                if ($this->isProjectVersionEquals($projectVersion, $version)) {
+                if ($this->containsSameProjectVersion($projectVersion, $version)) {
                     $version['tags'] = $projectVersion['tags'];
 
                     $version['branchName'] = $projectVersion['branchName'];
@@ -195,10 +195,14 @@ class ProjectDataBuilder implements DataBuilder
      * @param mixed[] $a
      * @param mixed[] $b
      */
-    private function isProjectVersionEquals(array $a, array $b): bool
+    private function containsSameProjectVersion(array $a, array $b): bool
     {
         if ($a['name'] === $b['name']) {
             return true;
+        }
+
+        if (! isset($b['branchName'])) {
+            return false;
         }
 
         return $a['branchName'] === $b['branchName'];
@@ -220,7 +224,7 @@ class ProjectDataBuilder implements DataBuilder
         $docsDir = $this->projectsDir . '/' . $docsRepositoryName . $projectData['docsPath'];
 
         foreach ($projectVersions as $key => $projectVersion) {
-            if ($projectVersion['branchName'] === null) {
+            if (! isset($projectVersion['branchName'])) {
                 $this->projectGitSyncer->checkoutTag(
                     $docsRepositoryName,
                     end($projectVersion['tags'])->getName()
