@@ -304,4 +304,4 @@ Website
 The `doctrine-project.org <https://www.doctrine-project.org/>`_ website
 is completely open source! If you want to learn how to contribute to the
 Doctrine website and documentation you can read more about it
-`here </contribute/website/>`_.
+`here </website/>`_.
