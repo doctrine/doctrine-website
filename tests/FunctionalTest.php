@@ -66,7 +66,7 @@ class FunctionalTest extends TestCase
 
     public function testHomepageEditLink(): void
     {
-        $crawler = self::assertValid('/index.html');
+        $crawler = $this->assertValid('/index.html');
 
         $editLink = $crawler->filter('.layout-edit-button a')->last();
 
@@ -80,7 +80,7 @@ class FunctionalTest extends TestCase
 
     public function testProjectEditLink(): void
     {
-        $crawler = self::assertValid('/projects/annotations.html');
+        $crawler = $this->assertValid('/projects/annotations.html');
 
         $editLink = $crawler->filter('.layout-edit-button a')->last();
 
@@ -94,7 +94,7 @@ class FunctionalTest extends TestCase
 
     public function testDocumentationEditLink(): void
     {
-        $crawler = self::assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
+        $crawler = $this->assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
 
         $editLink = $crawler->filter('.layout-edit-button a')->last();
 
@@ -108,7 +108,7 @@ class FunctionalTest extends TestCase
 
     public function testDocumentationPageBreadcrumbs(): void
     {
-        $crawler = self::assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
+        $crawler = $this->assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
 
         $lastLi = $crawler->filter('.breadcrumbs ol li')->last();
 
@@ -117,7 +117,7 @@ class FunctionalTest extends TestCase
 
     public function testHomepageWhoUsesDoctrine(): void
     {
-        $crawler = self::assertValid('/index.html');
+        $crawler = $this->assertValid('/index.html');
 
         $table = $crawler->filter('#who-uses-doctrine-table a');
 
@@ -132,15 +132,15 @@ class FunctionalTest extends TestCase
 
     public function testFunctional(): void
     {
-        self::assertValid('/contribute/index.html');
-        self::assertValid('/contribute/maintainer/index.html');
-        self::assertValid('/contribute/website/index.html');
-        self::assertValid('/community/index.html');
-        self::assertValid('/blog/index.html');
-        self::assertValid('/team/maintainers.html');
-        self::assertValid('/team/contributors.html');
-        self::assertValid('/2018/04/06/new-website.html');
-        self::assertValid('/projects.html');
+        $this->assertValid('/contribute/index.html');
+        $this->assertValid('/contribute/maintainer/index.html');
+        $this->assertValid('/contribute/website/index.html');
+        $this->assertValid('/community/index.html');
+        $this->assertValid('/blog/index.html');
+        $this->assertValid('/team/maintainers.html');
+        $this->assertValid('/team/contributors.html');
+        $this->assertValid('/2018/04/06/new-website.html');
+        $this->assertValid('/projects.html');
 
         $container = $this->getContainer();
 
@@ -152,7 +152,7 @@ class FunctionalTest extends TestCase
 
         foreach ($projects as $project) {
             // project homepage
-            $crawler = self::assertValid(sprintf(
+            $crawler = $this->assertValid(sprintf(
                 '/projects/%s.html',
                 $project->getSlug()
             ));
@@ -166,7 +166,7 @@ class FunctionalTest extends TestCase
                 }
 
                 // rst docs
-                $crawler = self::assertValid(sprintf(
+                $crawler = $this->assertValid(sprintf(
                     '/projects/%s/en/%s/index.html',
                     $project->getDocsSlug(),
                     $version->getSlug()
@@ -181,13 +181,15 @@ class FunctionalTest extends TestCase
             )));
 
             // rst docs current symlink
-            $crawler = self::assertValid(sprintf(
+            $crawler = $this->assertValid(sprintf(
                 '/projects/%s/en/current/index.html',
                 $project->getDocsSlug()
             ));
 
+            self::assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));
+
             // rst docs stable symlink
-            $crawler = self::assertValid(sprintf(
+            $crawler = $this->assertValid(sprintf(
                 '/projects/%s/en/stable/index.html',
                 $project->getDocsSlug()
             ));
@@ -198,23 +200,23 @@ class FunctionalTest extends TestCase
 
     public function testLinks(): void
     {
-        $crawler = self::assertValid('/projects/doctrine-orm/en/2.6/reference/events.html');
-        self::assertContains('<a href="events.html#reference-events-lifecycle-events">lifecycle events</a>', $crawler->html());
+        $crawler = $this->assertValid('/projects/doctrine-orm/en/2.6/reference/events.html');
+        self::assertStringContainsString('<a href="events.html#reference-events-lifecycle-events">lifecycle events</a>', $crawler->html());
 
-        $crawler = self::assertValid('/projects/doctrine-dbal/en/2.8/reference/data-retrieval-and-manipulation.html');
-        self::assertContains('<a href="types.html#mappingMatrix">Types</a>', $crawler->html());
+        $crawler = $this->assertValid('/projects/doctrine-dbal/en/2.8/reference/data-retrieval-and-manipulation.html');
+        self::assertStringContainsString('<a href="types.html#mappingMatrix">Types</a>', $crawler->html());
 
-        $crawler = self::assertValid('/projects/doctrine-orm/en/2.6/reference/architecture.html');
-        self::assertContains('<a href="../cookbook/implementing-wakeup-or-clone.html">do so safely</a>', $crawler->html());
+        $crawler = $this->assertValid('/projects/doctrine-orm/en/2.6/reference/architecture.html');
+        self::assertStringContainsString('<a href="../cookbook/implementing-wakeup-or-clone.html">do so safely</a>', $crawler->html());
 
-        $crawler = self::assertValid('/projects/doctrine-orm/en/2.6/reference/annotations-reference.html');
-        self::assertContains('<a href="annotations-reference.html#annref_column_result">@ColumnResult</a>', $crawler->html());
+        $crawler = $this->assertValid('/projects/doctrine-orm/en/2.6/reference/annotations-reference.html');
+        self::assertStringContainsString('<a href="annotations-reference.html#annref_column_result">@ColumnResult</a>', $crawler->html());
 
-        $crawler = self::assertValid('/projects/doctrine-dbal/en/2.8/reference/events.html');
-        self::assertContains('<a href="platforms.html">Platforms</a>', $crawler->html());
+        $crawler = $this->assertValid('/projects/doctrine-dbal/en/2.8/reference/events.html');
+        self::assertStringContainsString('<a href="platforms.html">Platforms</a>', $crawler->html());
 
-        $crawler = self::assertValid('/projects/doctrine-orm/en/2.6/reference/improving-performance.html');
-        self::assertContains('<a href="../tutorials/extra-lazy-associations.html">tutorial</a>', $crawler->html());
+        $crawler = $this->assertValid('/projects/doctrine-orm/en/2.6/reference/improving-performance.html');
+        self::assertStringContainsString('<a href="../tutorials/extra-lazy-associations.html">tutorial</a>', $crawler->html());
     }
 
     public function testSitemap(): void
@@ -257,39 +259,39 @@ class FunctionalTest extends TestCase
     {
         $crawler = $this->assertValid('/index.html');
 
-        self::assertContains("placeholder: 'Search'", $crawler->html());
+        self::assertStringContainsString("placeholder: 'Search'", $crawler->html());
 
         $crawler = $this->assertValid('/projects/migrations.html');
 
-        self::assertContains("placeholder: 'Search Migrations'", $crawler->html());
+        self::assertStringContainsString("placeholder: 'Search Migrations'", $crawler->html());
 
         $crawler = $this->assertValid('/projects/doctrine-migrations/en/1.7/index.html');
 
-        self::assertContains("placeholder: 'Search Migrations 1.7'", $crawler->html());
+        self::assertStringContainsString("placeholder: 'Search Migrations 1.7'", $crawler->html());
     }
 
     public function testContribute(): void
     {
         $crawler = $this->assertValid('/contribute/index.html');
 
-        self::assertContains('<div class="section" id="contribute">', $crawler->html());
-        self::assertContains('<h1>Contribute</h1>', $crawler->html());
+        self::assertStringContainsString('<div class="section" id="contribute">', $crawler->html());
+        self::assertStringContainsString('<h1>Contribute</h1>', $crawler->html());
     }
 
     public function testContributeMaintainer(): void
     {
         $crawler = $this->assertValid('/contribute/maintainer/index.html');
 
-        self::assertContains('<div class="section" id="maintainer-workflow">', $crawler->html());
-        self::assertContains('<h1>Maintainer Workflow</h1>', $crawler->html());
+        self::assertStringContainsString('<div class="section" id="maintainer-workflow">', $crawler->html());
+        self::assertStringContainsString('<h1>Maintainer Workflow</h1>', $crawler->html());
     }
 
     public function testContributeWebsite(): void
     {
         $crawler = $this->assertValid('/contribute/website/index.html');
 
-        self::assertContains('<div class="section" id="contribute-to-website">', $crawler->html());
-        self::assertContains('<h1>Contribute to Website</h1>', $crawler->html());
+        self::assertStringContainsString('<div class="section" id="contribute-to-website">', $crawler->html());
+        self::assertStringContainsString('<h1>Contribute to Website</h1>', $crawler->html());
     }
 
     private function getFullPath(string $path): string
