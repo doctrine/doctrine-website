@@ -62,9 +62,14 @@ class ProjectDataBuilderTest extends TestCase
                 'docsPath' => '/docs',
                 'versions' => [
                     [
+                        'name' => '1.0',
+                        'branchName' => null,
+                    ],
+                    [
                         'name' => '1.1',
                         'branchName' => '1.1',
                     ],
+                    ['name' => '1.2'],
                 ],
             ]);
 
@@ -88,27 +93,36 @@ class ProjectDataBuilderTest extends TestCase
                         new Tag('1.1.1', new DateTimeImmutable('2019-09-04')),
                     ],
                 ],
+                [
+                    'name' => '1.2',
+                    'branchName' => null,
+                    'tags' => [
+                        new Tag('1.2.0', new DateTimeImmutable('2019-09-05')),
+                    ],
+                ],
             ]);
 
-        $this->projectGitSyncer->expects(self::at(1))
+        $this->projectGitSyncer->expects(self::once())
             ->method('checkoutBranch')
             ->with('orm', '1.1');
 
-        $this->rstLanguagesDetector->expects(self::at(0))
+        $this->rstLanguagesDetector->expects(self::exactly(3))
             ->method('detectLanguages')
             ->with('/path/to/projects/orm/docs')
-            ->willReturn([
-                new RSTLanguage('en', '/path/to/en'),
-            ]);
+            ->willReturnOnConsecutiveCalls(
+                [
+                    new RSTLanguage('en', '/path/to/en'),
+                ],
+                [],
+                []
+            );
 
-        $this->projectGitSyncer->expects(self::at(2))
+        $this->projectGitSyncer->expects(self::exactly(2))
             ->method('checkoutTag')
-            ->with('orm', '1.0.1');
-
-        $this->rstLanguagesDetector->expects(self::at(1))
-            ->method('detectLanguages')
-            ->with('/path/to/projects/orm/docs')
-            ->willReturn([]);
+            ->willReturnMap([
+                ['orm', '1.0.1', null],
+                ['orm', '1.2.0', null],
+            ]);
 
         $this->getProjectPackagistData->expects(self::once())
             ->method('__invoke')
@@ -127,6 +141,23 @@ class ProjectDataBuilderTest extends TestCase
                 'docsPath' => '/docs',
                 'versions' => [
                     [
+                        'name' => '1.2',
+                        'tags' => [
+                            [
+                                'name' => '1.2.0',
+                                'date' => '2019-09-05 00:00:00',
+                            ],
+                        ],
+                        'branchName' => null,
+                        'hasDocs' => true,
+                        'docsLanguages' => [
+                            [
+                                'code' =>  'en',
+                                'path' => '/path/to/en',
+                            ],
+                        ],
+                    ],
+                    [
                         'name' => '1.1',
                         'branchName' => '1.1',
                         'tags' => [
@@ -139,13 +170,8 @@ class ProjectDataBuilderTest extends TestCase
                                 'date' => '2019-09-04 00:00:00',
                             ],
                         ],
-                        'hasDocs' => true,
-                        'docsLanguages' => [
-                            [
-                                'code' =>  'en',
-                                'path' => '/path/to/en',
-                            ],
-                        ],
+                        'hasDocs' => false,
+                        'docsLanguages' => [],
                     ],
                     [
                         'name' => '1.0',
@@ -160,7 +186,6 @@ class ProjectDataBuilderTest extends TestCase
                                 'date' => '2019-09-02 00:00:00',
                             ],
                         ],
-                        'maintained' => false,
                         'hasDocs' => false,
                         'docsLanguages' => [],
                     ],
