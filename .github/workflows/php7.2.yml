@@ -3,7 +3,7 @@ name: "Website build"
 on: ["push", "pull_request"]
 
 env:
-  doctrine_website_github_http_token: "${{ secrets.doctrine_website_github_http_token }}"
+  doctrine_website_github_http_token: "${{ github.token }}"
   PHP_VERSION: "7.2"
   doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
 
