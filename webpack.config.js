@@ -4,6 +4,7 @@ const path = require('path'),
     isWatching = process.env.WEBPACK_WATCH === '1',
     webpack = require('webpack'),
     MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+    MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally'),
     PurgecssPlugin = require('purgecss-webpack-plugin');
 
 const plugins = () => {
@@ -17,6 +18,26 @@ const plugins = () => {
             'window.$': 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
+        }),
+        new MergeIntoSingleFilePlugin({
+            files: {
+                "js/prismjs.js": [
+                    'node_modules/prismjs/components/prism-core.min.js',
+                    'node_modules/prismjs/components/prism-markup.min.js',
+                    'node_modules/prismjs/components/prism-markup-templating.min.js',
+                    'node_modules/prismjs/components/prism-php.min.js',
+                    'node_modules/prismjs/components/prism-php-extras.min.js',
+                    'node_modules/prismjs/components/prism-phpdoc.min.js',
+                    'node_modules/prismjs/components/prism-sql.min.js',
+                    'node_modules/prismjs/components/prism-bash.min.js',
+                    'node_modules/prismjs/components/prism-clike.min.js',
+                    'node_modules/prismjs/components/prism-git.min.js',
+                    'node_modules/prismjs/components/prism-json.min.js',
+                ],
+                "css/prismjs.css": [
+                    'node_modules/prismjs/themes/prism-twilight.css',
+                ]
+            }
         })
     ];
 
