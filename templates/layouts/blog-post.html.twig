@@ -34,6 +34,15 @@
         "description": "{{ contentValue|raw|striptags|trim[:100] }}"
     }
     </script>
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ get_webpack_asset_url('/css/prismjs.css', site.url) }}"
+            {% if site.env == 'prod' %}
+                integrity="{{ get_webpack_asset_integrity('/css/prismjs.css') }}"
+            {% endif %}
+            crossorigin="anonymous"
+    />
 {% endblock %}
 
 {% block content_wrapper %}
@@ -66,4 +75,14 @@
             {{ contentValue }}
         </div>
     </article>
+{% endblock %}
+
+{% block scripts_after %}
+    <script
+            src="{{ get_webpack_asset_url('/js/prismjs.js', site.url) }}"
+            {% if site.env == 'prod' %}
+                integrity="{{ get_webpack_asset_integrity('/js/prismjs.js') }}"
+            {% endif %}
+            crossorigin="anonymous">
+    </script>
 {% endblock %}

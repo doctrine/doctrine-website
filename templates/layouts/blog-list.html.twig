@@ -1,0 +1,31 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block head_meta %}
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ get_webpack_asset_url('/css/prismjs.css', site.url) }}"
+            {% if site.env == 'prod' %}
+                integrity="{{ get_webpack_asset_integrity('/css/prismjs.css') }}"
+            {% endif %}
+            crossorigin="anonymous"
+    />
+{% endblock %}
+
+{% block container %}
+    <main role="main" class="container-wrapper container">
+        {% block content_wrapper %}
+            {% block content '' %}
+        {% endblock %}
+    </main>
+{% endblock %}
+
+{% block scripts_after %}
+    <script
+            src="{{ get_webpack_asset_url('/js/prismjs.js', site.url) }}"
+            {% if site.env == 'prod' %}
+                integrity="{{ get_webpack_asset_integrity('/js/prismjs.js') }}"
+            {% endif %}
+            crossorigin="anonymous">
+    </script>
+{% endblock %}
