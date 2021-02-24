@@ -195,6 +195,73 @@ this in case you want to read more about this:
 - `Commit message style for git <https://commit.style/>`_
 - `A note about git commit messages <https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_
 
+To squash or not to squash
+--------------------------
+
+The best way to avoid having to squash anything in the first place is to
+amend your last commit if that's indeed where your extra change is meant
+to go. That being said, sometimes you end up with many commits and it's
+too late for that. Some other times, code review has already started and
+it can be better not to touch already reviewed commits. You can signal
+that they should ultimately be squashed by using ``git commit
+--fixup=HEAD``, which will also spare you the creation of a commit
+message since it will reuse the previous one.
+
+Now let's say that code review is finished, or that it hasn't started,
+and that you want to squash some commits.
+
+If you are in the fairly simple case where you want squash all your
+commits into one, you can take `the following steps described in the
+manual
+<https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#_squashing>`_
+to achieve that.
+
+If you are in a more complex case where you would very much like to keep
+your commits separate, there are other solutions.
+To take a specific example, let us say that you made 3 commits A, B, C,
+and you have CS issues in A and in C.
+To make sure that is no longer the case, fixing each of these commits
+can be done like this:
+``git rebase --exec "vendor/bin/phpcbf && vendor/bin/phpcs" A^``
+That command will run phpcbf and then phpcs for each of your commits and
+will halt for A and C, but not for B because in the case of B they would
+exit with a zero status code. That will let you amend A, after which you
+can resume the rebase until you do the same for C. Here is how it would
+look like on A:
+
+    $ vendor/bin/phpcs      # check for issues phpcbf could not fix
+    $ git add -p            # commit whatever issues were fixed
+    $ git commit --amend    # change A
+    $ git rebase --continue # resume the rebase
+
+You should be able to apply the example above with any tool we use in
+our CI pipelines, such as PHPUnit, PHPStan or Psalm.
+
+``git rebase --interactive`` is a really powerful tool and we barely
+scratched the tip of the iceberg here. If you want to learn more about
+it, we recommend you watch `this talk from Pauline Vos <https://youtu.be/uI1V7771plw?t=814>`_
+
+Of course, if you want to craft good commits with good messages, you
+will have a hard time if the changeset you are describing does too many
+things. That might very well happen if you notice small things along the
+way that are unrelated to your PR, but too small to warrant a separate
+one. ``git add --patch`` or ``git add -p`` will be of invaluable help to
+commit things separately.
+On the contrary, there are commits that typically do not need to exist,
+such as commits that fix coding style or address minor review comments.
+Bear in mind that the git log is not only aimed at reviewers, but also
+at anyone who wants to understand some change you made. Do not distract
+them with cs fixes. Instead, try to produce a commit that contains your
+changes *and* the necessary fixes to pass coding standard checks.
+Also, it's best if all of your commits pass the build, because that
+makes them ``git bisect`` friendly, but it also means they are likely to
+be revertable independently from other commits in your PR. While being
+revertable is not particularly crucial to us, it can help you decide
+whether to squash or whether to split. For instance, it would not make
+sense to revert a commit documenting a feature without also reverting
+the code for that feature. That means there should be only once commit
+with both the code and the docs here.
+
 Rebasing on upstream changes
 ----------------------------
 
