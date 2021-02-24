@@ -145,8 +145,8 @@ of a disappointing experiment).
 Topic branches should exist in your **local** and **origin**
 repositories only, there is no need for them to exist in **doctrine**.
 
-Working on topic branches
--------------------------
+Creating a topic branch
+-----------------------
 
 First create an appropriately named branch. When starting work on a new
 topic, branch off from **doctrine/2.11.x** or a **doctrine/\*** branch:
@@ -163,6 +163,9 @@ Now do some work, make some changes then commit them:
     $ git status
     $ git add -p
     $ git commit -v
+
+Crafting meaningful commit messages
+-----------------------------------
 
 Commit messages should look like emails, meaning they should have a
 subject, but also a body. The subject should be on the first line, and
@@ -191,6 +194,9 @@ this in case you want to read more about this:
 - `Deliberate git <https://www.rakeroutes.com/deliberate-git>`_
 - `Commit message style for git <https://commit.style/>`_
 - `A note about git commit messages <https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_
+
+Rebasing on upstream changes
+----------------------------
 
 Next, merge or rebase your commit against **doctrine/2.11.x**. With your
 work done in a **local** topic branch, you'll want to assist upstream
