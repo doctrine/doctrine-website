@@ -32,9 +32,9 @@ Installation
 
 You can install the ORM component using Composer:
 
-~~~~ {.sourceCode .shell}
+```bash
 composer require doctrine/data-fixtures:^1.2.0
-~~~~
+```
 
 Please report any issues you may have with the update on the [issue
 tracker](https://github.com/doctrine/data-fixtures/issues).

@@ -87,10 +87,10 @@ The Following issues were solved in this release:
 
 To install this version, simply update your `composer.json`:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/doctrine-orm-module": "0.9.0"
     }
 }
-~~~~
+```

@@ -38,13 +38,13 @@ Installation
 You can install the latest version using the following `composer.json`
 definitions:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/mongodb-odm": "^1.1.2"
     }
 }
-~~~~
+```
 
 Support for Doctrine ODM 1.0.x
 ==============================
