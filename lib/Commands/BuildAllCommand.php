@@ -67,10 +67,11 @@ class BuildAllCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $commands = [
+        $buildDocsArgs = $this->env === 'prod' ? ['--search' => null] : [];
+        $commands      = [
             'sync-repositories' => [],
             'build-website-data' => [],
-            'build-docs' => [],
+            'build-docs' => $buildDocsArgs,
             'build-website' => [
                 'build-dir' => $input->getArgument('build-dir'),
                 '--publish' => $input->getOption('publish'),

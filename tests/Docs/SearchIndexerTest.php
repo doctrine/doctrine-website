@@ -48,7 +48,7 @@ class SearchIndexerTest extends TestCase
         $index->expects(self::once())
             ->method('setSettings')
             ->with([
-                'attributesToIndex' => ['projectName', 'h1', 'h2', 'h3', 'h4', 'h5', 'content'],
+                'attributesToIndex' => ['projectName', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'content'],
                 'customRanking' => ['asc(rank)'],
                 'ranking' => ['words', 'typo', 'attribute', 'proximity', 'custom'],
                 'minWordSizefor1Typo' => 3,
@@ -120,7 +120,7 @@ class SearchIndexerTest extends TestCase
             ],
             [
                 'objectID' => '1.0-index.html-dc4fb8880607a7c6b97dde83611834bc',
-                'rank' => 5,
+                'rank' => 6,
                 'h1' => 'Home',
                 'h2' => 'Home Section 1',
                 'h3' => null,
@@ -146,7 +146,7 @@ class SearchIndexerTest extends TestCase
             ],
             [
                 'objectID' => '1.0-index.html-fdc52e368cad3bcea0424d1e90a52ec7',
-                'rank' => 5,
+                'rank' => 6,
                 'h1' => 'Home',
                 'h2' => 'Home Section 1',
                 'h3' => 'Home Section 2',
@@ -172,7 +172,7 @@ class SearchIndexerTest extends TestCase
             ],
             [
                 'objectID' => '1.0-index.html-0474a95e4451409dbba46e596d225dae',
-                'rank' => 5,
+                'rank' => 6,
                 'h1' => 'Home',
                 'h2' => 'Home Section 1',
                 'h3' => 'Home Section 2',
@@ -198,7 +198,7 @@ class SearchIndexerTest extends TestCase
             ],
             [
                 'objectID' => '1.0-index.html-29903ed67d76dc043116657bb5b0fc5d',
-                'rank' => 5,
+                'rank' => 6,
                 'h1' => 'Home',
                 'h2' => 'Home Section 1',
                 'h3' => 'Home Section 2',
@@ -275,7 +275,7 @@ class SearchIndexerTest extends TestCase
             ],
             [
                 'objectID' => '1.0-index.html-dc4fb8880607a7c6b97dde83611834bc',
-                'rank' => 5,
+                'rank' => 6,
                 'h1' => 'Home',
                 'h2' => 'Home Section 1',
                 'h3' => null,
