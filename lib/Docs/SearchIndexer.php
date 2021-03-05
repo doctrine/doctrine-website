@@ -41,7 +41,7 @@ class SearchIndexer
         $index = $this->getSearchIndex();
 
         $index->setSettings([
-            'attributesToIndex' => ['projectName', 'h1', 'h2', 'h3', 'h4', 'h5', 'content'],
+            'attributesToIndex' => ['projectName', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'content'],
             'customRanking' => ['asc(rank)'],
             'ranking' => ['words', 'typo', 'attribute', 'proximity', 'custom'],
             'minWordSizefor1Typo' => 3,
@@ -178,7 +178,8 @@ class SearchIndexer
             'h3' => 2,
             'h4' => 3,
             'h5' => 4,
-            'p'  => 5,
+            'h6' => 5,
+            'p'  => 6,
         ];
 
         $elementName = 'p';
