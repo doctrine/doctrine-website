@@ -57,10 +57,10 @@ Following issues were solved in this release:
 
 To install this version, simply update your \`composer.json\`:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/doctrine-module": "0.8.1"
     }
 }
-~~~~
+```

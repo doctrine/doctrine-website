@@ -13,13 +13,13 @@ Installation
 You can install this version of the DoctrineModule by using Composer and
 the:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/doctrine-module": "~0.10.0"
     }
 }
-~~~~
+```
 
 Changes since 0.9.0
 ===================

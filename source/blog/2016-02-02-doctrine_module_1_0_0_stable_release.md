@@ -18,13 +18,13 @@ Thanks at all for yours contributions!
 Update your composer configuration to use the stable version of this
 project.
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/doctrine-module": "~1.0"
     }
 }
-~~~~
+```
 
 Changes since 0.10.0
 ====================

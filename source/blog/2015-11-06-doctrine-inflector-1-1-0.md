@@ -33,10 +33,10 @@ Installation
 You can install the Inflector component via the following`composer.json`
 definition:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/inflector": "~1.1.0"
     }
 }
-~~~~
+```

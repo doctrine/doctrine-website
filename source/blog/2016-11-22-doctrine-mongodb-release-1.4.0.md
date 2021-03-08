@@ -17,14 +17,14 @@ class, which will then be passed on to the MongoDB driver. For example,
 to pass a stream context with SSL context options, you could use the
 following code snippet:
 
-~~~~ {.sourceCode .php}
+```php
 $context = stream_context_create([
     'ssl' => [
         'allow_self_signed' => false,
     ]
 ]);
 $connection = new \Doctrine\MongoDB\Connection(null, [], null, null, ['context' => $context]);
-~~~~
+```
 
 Passing multiple expressions to logical operators
 =================================================
@@ -33,7 +33,7 @@ The `addAnd`, `addNor` and `addOr` methods in the query and aggregation
 builders now take multiple expression objects. Instead of having to call
 the method repeatedly, you may call it once with multiple arguments:
 
-~~~~ {.sourceCode .php}
+```php
 // Before
 $builder
     ->addAnd($someExpression)
@@ -41,7 +41,7 @@ $builder
 
 // After
 $builder->addAnd($someExpression, $otherExpression);
-~~~~
+```
 
 Deprecations
 ============
@@ -86,10 +86,10 @@ Installation
 You can install the latest version using the following `composer.json`
 definitions:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/mongodb": "^1.4.0"
     }
 }
-~~~~
+```

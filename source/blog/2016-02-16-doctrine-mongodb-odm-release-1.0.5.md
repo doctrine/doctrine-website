@@ -24,13 +24,13 @@ Installation
 You can install the latest version using the following `composer.json`
 definitions:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/mongodb-odm": "^1.0.5"
     }
 }
-~~~~
+```
 
 Doctrine MongoDB ODM and PHP 7
 ==============================

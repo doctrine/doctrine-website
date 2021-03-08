@@ -20,13 +20,13 @@ You can find all the changes on JIRA:
 You can install the DBAL using Composer and the following
 `composer.json` contents:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/dbal": "2.5.2"
     }
 }
-~~~~
+```
 
 Please report any issues you may have with the update on the mailing
 list or on [Jira](https://www.doctrine-project.org/jira).

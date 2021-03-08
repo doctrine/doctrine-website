@@ -25,10 +25,10 @@ Following issues were solved in this release:
 
 To install this version, simply update your \`composer.json\`:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/doctrine-mongo-odm-module": "0.8.2"
     }
 }
-~~~~
+```

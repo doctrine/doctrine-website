@@ -32,11 +32,11 @@ How does Indoctrinator work?
 Indoctrinator is currently only working with `doctrine/orm` version
 `2.5.x-dev`, but the general working concept is as following:
 
-~~~~ {.sourceCode .json}
+```php
 $indoctrinator = new Doctrine\Indoctrinator();
 
 $indoctrinator->registerWithManager(new Doctrine\Indoctrinator\ManagerWrapper($entityManager));
-~~~~
+```
 
 Without going into much details, Indoctrinator hooks into common APIs
 used in ORM internals, and by using AOP (Aspect Oriented Programming),

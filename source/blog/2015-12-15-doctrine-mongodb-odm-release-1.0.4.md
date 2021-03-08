@@ -24,13 +24,13 @@ Installation
 You can install the latest version using the following `composer.json`
 definitions:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/mongodb-odm": "^1.0.4"
     }
 }
-~~~~
+```
 
 Doctrine MongoDB ODM 1.1 requires PHP 5.5+
 ==========================================
@@ -39,13 +39,13 @@ The current `master` branch saw its PHP requirement bumped to 5.5
 recently. If you are still using the master version in your project you
 should switch to a stable release as soon as possible:
 
-~~~~ {.sourceCode .json}
+```json
 {
     "require": {
         "doctrine/mongodb-odm": "^1.0"
     }
 }
-~~~~
+```
 
 This will ensure you are using stable versions and will use 1.1 as soon
 as it's released.
