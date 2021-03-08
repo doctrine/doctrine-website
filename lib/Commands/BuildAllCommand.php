@@ -62,12 +62,21 @@ class BuildAllCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Clear the build cache before building everything.'
+            )
+            ->addOption(
+                'search',
+                null,
+                InputOption::VALUE_NONE,
+                'Build the search indexes.'
             );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $buildDocsArgs = $this->env === 'prod' ? ['--search' => null] : [];
+        $buildSearchIndexes = $input->getOption('search');
+        assert(is_bool($buildSearchIndexes));
+
+        $buildDocsArgs = $buildSearchIndexes ? ['--search' => null] : [];
         $commands      = [
             'sync-repositories' => [],
             'build-website-data' => [],
