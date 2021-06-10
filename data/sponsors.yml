@@ -68,3 +68,7 @@ parameters:
             name: 'SellYourPhoenixHouseFast.com'
             url: 'https://www.sellyourphoenixhousefast.com'
             highlighted: false
+        -
+            name: 'Scan My Kitchen'
+            url: 'https://scanmykitchen.com'
+            highlighted: false
