@@ -22,7 +22,7 @@
         "instantsearch.js": "^2.10.4",
         "jquery": "^3.5.0",
         "popper.js": "^1.15.0",
-        "prismjs": "^1.23.0",
+        "prismjs": "^1.24.0",
         "purgecss-webpack-plugin": "^1.5.0",
         "webpack-merge-and-include-globally": "^2.3.0"
     },
