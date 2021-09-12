@@ -100,6 +100,7 @@ class DeployerTest extends TestCase
             ->setConstructorArgs([
                 $this->processFactory,
                 $env,
+                '/data/doctrine-website-staging'
             ])
             ->setMethods(['getDeploy', 'getLastDeploy'])
             ->getMock();
