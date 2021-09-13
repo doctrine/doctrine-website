@@ -40,7 +40,7 @@ class Deployer
     ) {
         $this->processFactory = $processFactory;
         $this->env            = $env;
-        $this->rootDir = $rootDir;
+        $this->rootDir        = $rootDir;
     }
 
     public function deploy(OutputInterface $output): void

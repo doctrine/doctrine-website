@@ -74,9 +74,6 @@ class DeployerTest extends TestCase
         $deployer->deploy($output);
     }
 
-    /**
-     * @return Deployer&MockObject
-     */
     private function getDeployer(string $env, string $lastDeployContent, string $deployContent): Deployer
     {
         $baseDir   = vfsStream::setup('data');
