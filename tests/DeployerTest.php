@@ -7,6 +7,7 @@ namespace Doctrine\Website\Tests;
 use Doctrine\Website\Deployer;
 use Doctrine\Website\ProcessFactory;
 use InvalidArgumentException;
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
@@ -27,7 +28,7 @@ class DeployerTest extends TestCase
 
         $output = $this->createMock(OutputInterface::class);
 
-        $deployer = $this->getMockDeployer('dev');
+        $deployer = $this->getDeployer('dev', '1234', '1234');
 
         $deployer->deploy($output);
     }
@@ -35,20 +36,11 @@ class DeployerTest extends TestCase
     public function testDeployStagingNothingChanged(): void
     {
         $output = $this->createMock(OutputInterface::class);
-
-        $deployer = $this->getMockDeployer('staging');
-
-        $deployer->expects(self::once())
-            ->method('getDeploy')
-            ->willReturn('1234');
-
-        $deployer->expects(self::once())
-            ->method('getLastDeploy')
-            ->willReturn('1234');
-
         $output->expects(self::once())
             ->method('writeln')
             ->with('Nothing has changed. No need to deploy!');
+
+        $deployer = $this->getDeployer('staging', '1234', '1234');
 
         $deployer->deploy($output);
     }
@@ -56,36 +48,27 @@ class DeployerTest extends TestCase
     public function testDeployStaging(): void
     {
         $output = $this->createMock(OutputInterface::class);
-
-        $deployer = $this->getMockDeployer('staging');
-
-        $deployer->expects(self::once())
-            ->method('getDeploy')
-            ->willReturn('1234');
-
-        $deployer->expects(self::once())
-            ->method('getLastDeploy')
-            ->willReturn('1235');
-
         $output->expects(self::once())
             ->method('writeln')
             ->with('Deploying website for <info>staging</info> environment.');
+
+        $deployer = $this->getDeployer('staging', '1235', '1234');
 
         $process = $this->createMock(Process::class);
 
         $this->processFactory->expects(self::at(0))
             ->method('run')
-            ->with('cp /data/doctrine-website-staging/deploy-staging /data/doctrine-website-staging/last-deploy-staging')
+            ->with('cp vfs://data/deploy-staging vfs://data/last-deploy-staging')
             ->willReturn($process);
 
         $this->processFactory->expects(self::at(1))
             ->method('run')
-            ->with('cd /data/doctrine-website-staging && git fetch && git checkout 1234 && git pull origin 1234 && php composer.phar install --no-dev && yarn install')
+            ->with('cd vfs://data && git fetch && git checkout 1234 && git pull origin 1234 && php composer.phar install --no-dev && yarn install')
             ->willReturn($process);
 
         $this->processFactory->expects(self::at(2))
             ->method('run')
-            ->with('cd /data/doctrine-website-staging && ./bin/console migrations:migrate --no-interaction --env=staging && ./bin/console build-all /data/doctrine-website-build-staging --env=staging --publish')
+            ->with('cd vfs://data && ./bin/console migrations:migrate --no-interaction --env=staging && ./bin/console build-all vfs://data --env=staging --publish')
             ->willReturn($process);
 
         $deployer->deploy($output);
@@ -94,15 +77,16 @@ class DeployerTest extends TestCase
     /**
      * @return Deployer&MockObject
      */
-    private function getMockDeployer(string $env): Deployer
+    private function getDeployer(string $env, string $lastDeployContent, string $deployContent): Deployer
     {
-        return $this->getMockBuilder(Deployer::class)
-            ->setConstructorArgs([
-                $this->processFactory,
-                $env,
-                '/data/doctrine-website-staging'
-            ])
-            ->setMethods(['getDeploy', 'getLastDeploy'])
-            ->getMock();
+        $baseDir   = vfsStream::setup('data');
+        $structure = [
+            'last-deploy-staging' => $lastDeployContent,
+            'deploy-staging' => $deployContent,
+        ];
+        vfsStream::create($structure, $baseDir);
+        $path = vfsStream::url('data');
+
+        return new Deployer($this->processFactory, $env, $path);
     }
 }
