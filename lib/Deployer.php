@@ -30,12 +30,17 @@ class Deployer
     /** @var string */
     private $env;
 
+    /** @var string */
+    private $rootDir;
+
     public function __construct(
         ProcessFactory $processFactory,
-        string $env
+        string $env,
+        string $rootDir
     ) {
         $this->processFactory = $processFactory;
         $this->env            = $env;
+        $this->rootDir        = $rootDir;
     }
 
     public function deploy(OutputInterface $output): void
@@ -63,8 +68,8 @@ class Deployer
 
         // update the code from git and run composer install first
         $updateCommand = sprintf(
-            'cd /data/doctrine-website-%s && git fetch && git checkout %s && git pull origin %s && php composer.phar install --no-dev && yarn install',
-            $this->env,
+            'cd %s && git fetch && git checkout %s && git pull origin %s && php composer.phar install --no-dev && yarn install',
+            $this->rootDir,
             $deployRef,
             $deployRef
         );
@@ -75,10 +80,10 @@ class Deployer
 
         // execute migrations, build the website and publish it.
         $deployCommand = sprintf(
-            'cd /data/doctrine-website-%s && ./bin/console migrations:migrate --no-interaction --env=%s && ./bin/console build-all /data/doctrine-website-build-%s --env=%s --publish',
+            'cd %s && ./bin/console migrations:migrate --no-interaction --env=%s && ./bin/console build-all %s --env=%s --publish',
+            $this->rootDir,
             $this->env,
-            $this->env,
-            $this->env,
+            $this->rootDir,
             $this->env
         );
 
@@ -87,13 +92,13 @@ class Deployer
         });
     }
 
-    protected function startDeploy(OutputInterface $output): void
+    private function startDeploy(OutputInterface $output): void
     {
         $command = sprintf(
-            'cp /data/doctrine-website-%s/deploy-%s /data/doctrine-website-%s/last-deploy-%s',
+            'cp %s/deploy-%s %s/last-deploy-%s',
+            $this->rootDir,
             $this->env,
-            $this->env,
-            $this->env,
+            $this->rootDir,
             $this->env
         );
 
@@ -102,20 +107,20 @@ class Deployer
         });
     }
 
-    protected function getDeploy(): string
+    private function getDeploy(): string
     {
         return $this->getFileContents(sprintf(
-            '/data/doctrine-website-%s/deploy-%s',
-            $this->env,
+            '%s/deploy-%s',
+            $this->rootDir,
             $this->env
         ));
     }
 
-    protected function getLastDeploy(): string
+    private function getLastDeploy(): string
     {
         return $this->getFileContents(sprintf(
-            '/data/doctrine-website-%s/last-deploy-%s',
-            $this->env,
+            '%s/last-deploy-%s',
+            $this->rootDir,
             $this->env
         ));
     }
