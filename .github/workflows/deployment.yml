@@ -1,0 +1,65 @@
+name: "deployment"
+
+on:
+  push:
+    branches:
+      - "staging"
+
+env:
+  doctrine_website_github_http_token: "${{ github.token }}"
+  doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
+
+jobs:
+  build:
+
+    runs-on: "ubuntu-18.04"
+
+    services:
+      mysql:
+        image: "mysql:5.7"
+        env:
+          MYSQL_DATABASE: "doctrine_website_test"
+          MYSQL_ROOT_PASSWORD: "${{ secrets.doctrine_website_mysql_password }}"
+        ports:
+          - "3306:3306"
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+
+    steps:
+    - uses: "actions/checkout@v2"
+
+    - name: "Cache Composer packages"
+      id: "composer-cache"
+      uses: "actions/cache@v2"
+      with:
+        path: "vendor"
+        key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
+        restore-keys: |
+          ${{ runner.os }}-php-
+    - name: "Setup PHP Action"
+      uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: "7.2"
+
+    - name: "Install dependencies"
+      if: "steps.composer-cache.outputs.cache-hit != 'true'"
+      run: "composer install --no-progress --no-suggest --no-dev"
+
+    - name: "apt-get install yarn"
+      run: "sudo apt-get update && sudo apt-get install -y yarn"
+
+    - name: "yarn install"
+      run: "yarn install"
+
+    - name: "Prepare Website files"
+      run: "bin/console --env=staging build-all"
+
+    - name: "Deploy to staging"
+      uses: "cpina/github-action-push-to-another-repository@v1.3"
+      env:
+        API_TOKEN_GITHUB: "${{ secrets.doctrine_website_deployment_token }}"
+      with:
+        source-directory: "build-staging"
+        destination-github-username: "doctrine"
+        destination-repository-name: "doctrine-website-build-staging"
+        target-branch: "master"
+        commit-message: "New version of Doctrine website"
