@@ -137,7 +137,7 @@ class Application
     {
         $container = new ContainerBuilder();
         $container->setParameter('doctrine.website.env', $env);
-        $container->setParameter('doctrine.website.debug', $env !== 'prod');
+        $container->setParameter('doctrine.website.debug', $env !== Deployer::ENV_PROD);
         $container->setParameter('doctrine.website.root_dir', realpath(__DIR__ . '/..'));
         $container->setParameter('doctrine.website.config_dir', realpath(__DIR__ . '/../config'));
         $container->setParameter('doctrine.website.cache_dir', realpath(__DIR__ . '/../cache'));
