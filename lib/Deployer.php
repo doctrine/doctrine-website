@@ -62,7 +62,7 @@ class Deployer
 
         $this->startDeploy($output);
 
-        $deployRef = $this->env === 'prod' ? 'master' : $deploy;
+        $deployRef = $this->env === self::ENV_PROD ? 'master' : $deploy;
 
         $output->writeln(sprintf('Deploying website for <info>%s</info> environment.', $this->env));
 

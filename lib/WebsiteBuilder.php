@@ -26,14 +26,14 @@ use function unlink;
 
 class WebsiteBuilder
 {
-    public const PUBLISHABLE_ENVS = ['prod', 'staging'];
+    public const PUBLISHABLE_ENVS = [Deployer::ENV_PROD, Deployer::ENV_STAGING];
 
     private const URL_PRODUCTION = 'www.doctrine-project.org';
     private const URL_STAGING    = 'staging.doctrine-project.org';
 
     private const PUBLISHABLE_ENV_URLS = [
-        'prod' => self::URL_PRODUCTION,
-        'staging' => self::URL_STAGING,
+        Deployer::ENV_PROD    => self::URL_PRODUCTION,
+        Deployer::ENV_STAGING => self::URL_STAGING,
     ];
 
     /** @var ProcessFactory */
