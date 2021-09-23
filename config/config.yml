@@ -1,9 +1,6 @@
 parameters:
     doctrine.website.algolia.app_id: 'YVYTFT9XMW'
-    doctrine.website.algolia.admin_api_key: '1234'
     doctrine.website.stripe.publishable_key: 'pk_test_V7rmF8ac3GbakeSJYvp4u0a8003RPO66vC'
-    doctrine.website.stripe.secret_key: ''
-    doctrine.website.send_grid.api_key: ''
 
     doctrine.website.twitter.consumer_key: ''
     doctrine.website.twitter.consumer_secret: ''
