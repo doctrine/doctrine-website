@@ -1,9 +1,11 @@
-name: "Deployment staging"
+name: "Deployment prod"
 
 on:
   push:
     branches:
-      - "staging"
+      - "master"
+  schedule:
+    - cron:  '0 0 * * *'
 
 env:
   doctrine_website_github_http_token: "${{ github.token }}"
@@ -54,18 +56,18 @@ jobs:
       run: "yarn install"
 
     - name: "Prepare Website files"
-      run: "bin/console --env=staging build-all"
+      run: "bin/console --env=prod build-all"
 
     - name: "Event Participants"
-      run: "bin/console --env=staging event-participants --save"
+      run: "bin/console --env=prod event-participants --save"
 
     - name: "Deploy to staging"
       uses: "cpina/github-action-push-to-another-repository@v1.3"
       env:
         API_TOKEN_GITHUB: "${{ secrets.doctrine_website_deployment_token }}"
       with:
-        source-directory: "build-staging"
+        source-directory: "build-prod"
         destination-github-username: "doctrine"
-        destination-repository-name: "doctrine-website-build-staging"
+        destination-repository-name: "doctrine-website-build-prod"
         target-branch: "master"
         commit-message: "New version of Doctrine website"
