@@ -25,20 +25,16 @@ jobs:
     steps:
     - uses: "actions/checkout@v2"
 
-    - name: "Cache Composer packages"
-      id: "composer-cache"
-      uses: "actions/cache@v2"
-      with:
-        path: "vendor"
-        key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
-        restore-keys: |
-          ${{ runner.os }}-php-
-
     - name: "Setup PHP Action"
       uses: "shivammathur/setup-php@v2"
       with:
         php-version: "${{ env.PHP_VERSION }}"
         coverage: "none"
+
+    - name: "Install dependencies with Composer"
+      uses: "ramsey/composer-install@v1"
+      with:
+        composer-options: "--prefer-dist --no-progress --no-suggest"
 
     - name: "Install PHP dependencies"
       if: "steps.composer-cache.outputs.cache-hit != 'true'"
