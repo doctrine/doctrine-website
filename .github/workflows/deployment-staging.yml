@@ -1,18 +1,16 @@
-name: "Deployment prod"
+name: "Deployment staging"
 
 on:
   push:
     branches:
-      - "master"
-  schedule:
-    - cron:  '0 0 * * *'
+      - "staging"
 
 jobs:
-  deployment_prod:
-    name: "Deployment prod"
+  deployment_staging:
+    name: "Deployment staging"
     uses: "doctrine/doctrine-website/.github/workflows/deployment.yml@staging"
     with:
-      environment: "prod"
+      environment: "staging"
     secrets:
       doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
       doctrine_website_algolia_admin_api_key: "${{ secrets.doctrine_website_algolia_admin_api_key }}"

@@ -1,19 +1,25 @@
-name: "Deployment staging"
+name: "Deployment workflow"
 
 on:
-  push:
-    branches:
-      - "staging"
-
-env:
-  doctrine_website_github_http_token: "${{ github.token }}"
-  doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
-  doctrine_website_algolia_admin_api_key: "${{ secrets.doctrine_website_algolia_admin_api_key }}"
-  doctrine_website_stripe_secret_key: "${{ secrets.doctrine_website_stripe_secret_key }}"
-  doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      doctrine_website_mysql_password:
+        required: true
+      doctrine_website_algolia_admin_api_key:
+        required: true
+      doctrine_website_stripe_secret_key:
+        required: true
+      doctrine_website_send_grid_api_key:
+        required: true
+      doctrine_website_deployment_token:
+        required: true
 
 jobs:
-  build:
+  deploy:
 
     runs-on: "ubuntu-18.04"
 
@@ -21,11 +27,18 @@ jobs:
       mysql:
         image: "mysql:5.7"
         env:
-          MYSQL_DATABASE: "doctrine_website_test"
+          MYSQL_DATABASE: "doctrine_website"
           MYSQL_ROOT_PASSWORD: "${{ secrets.doctrine_website_mysql_password }}"
         ports:
           - "3306:3306"
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+
+    env:
+      doctrine_website_github_http_token: "${{ github.token }}"
+      doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
+      doctrine_website_algolia_admin_api_key: "${{ secrets.doctrine_website_algolia_admin_api_key }}"
+      doctrine_website_stripe_secret_key: "${{ secrets.doctrine_website_stripe_secret_key }}"
+      doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"
 
     steps:
     - uses: "actions/checkout@v2"
@@ -47,18 +60,18 @@ jobs:
       run: "yarn install"
 
     - name: "Prepare Website files"
-      run: "bin/console --env=staging build-all"
+      run: "bin/console --env=${{ inputs.environment }} build-all"
 
     - name: "Event Participants"
-      run: "bin/console --env=staging event-participants --save"
+      run: "bin/console --env=${{ inputs.environment }} event-participants --save"
 
-    - name: "Deploy to staging"
+    - name: "Deploy to ${{ inputs.environment }}"
       uses: "cpina/github-action-push-to-another-repository@v1.3"
       env:
         API_TOKEN_GITHUB: "${{ secrets.doctrine_website_deployment_token }}"
       with:
-        source-directory: "build-staging"
+        source-directory: "build-${{ inputs.environment }}"
         destination-github-username: "doctrine"
-        destination-repository-name: "doctrine-website-build-staging"
+        destination-repository-name: "doctrine-website-build-${{ inputs.environment }}"
         target-branch: "master"
         commit-message: "New version of Doctrine website"
