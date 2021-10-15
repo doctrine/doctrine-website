@@ -143,6 +143,9 @@ class Application
         $container->setParameter('doctrine.website.cache_dir', realpath(__DIR__ . '/../cache'));
         $container->setParameter('doctrine.website.github.http_token', getenv('doctrine_website_github_http_token'));
         $container->setParameter('doctrine.website.mysql.password', getenv('doctrine_website_mysql_password'));
+        $container->setParameter('doctrine.website.algolia.admin_api_key', getenv('doctrine_website_algolia_admin_api_key') ?? '1234');
+        $container->setParameter('doctrine.website.stripe.secret_key', getenv('doctrine_website_stripe_secret_key') ?? '');
+        $container->setParameter('doctrine.website.send_grid.api_key', getenv('doctrine_website_send_grid_api_key') ?? '');
 
         $xmlConfigLoader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
         $xmlConfigLoader->load('services.xml');

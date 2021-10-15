@@ -6,6 +6,7 @@ env:
   doctrine_website_github_http_token: "${{ github.token }}"
   PHP_VERSION: "7.2"
   doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
+  doctrine_website_algolia_admin_api_key: "no-key-needed"
 
 jobs:
   tests:
@@ -24,24 +25,16 @@ jobs:
     steps:
     - uses: "actions/checkout@v2"
 
-    - name: "Cache Composer packages"
-      id: "composer-cache"
-      uses: "actions/cache@v2"
-      with:
-        path: "vendor"
-        key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
-        restore-keys: |
-          ${{ runner.os }}-php-
-
     - name: "Setup PHP Action"
       uses: "shivammathur/setup-php@v2"
       with:
         php-version: "${{ env.PHP_VERSION }}"
         coverage: "none"
 
-    - name: "Install PHP dependencies"
-      if: "steps.composer-cache.outputs.cache-hit != 'true'"
-      run: "composer install --prefer-dist --no-progress --no-suggest"
+    - name: "Install dependencies with Composer"
+      uses: "ramsey/composer-install@v1"
+      with:
+        composer-options: "--prefer-dist --no-progress --no-suggest"
 
     - name: "apt-get install yarn"
       run: "sudo apt-get update && sudo apt-get install -y yarn"
@@ -59,38 +52,10 @@ jobs:
         coverage: "pcov"
 
     - name: "Build website"
-      run: "./bin/console --env=test -v build-all"
+      run: "./bin/console --env=test build-all"
 
     - name: "Run tests with coverage"
       run: "./vendor/bin/phpunit --coverage-clover clover.xml"
 
     - name: "Deliver code coverage"
       run: "bash <(curl -s https://codecov.io/bash)"
-
-  code-analysis:
-
-    runs-on: "ubuntu-18.04"
-
-    steps:
-    - uses: "actions/checkout@v2"
-
-    - name: "Cache Composer packages"
-      id: "composer-cache"
-      uses: "actions/cache@v2"
-      with:
-        path: "vendor"
-        key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: "Setup PHP Action"
-      uses: "shivammathur/setup-php@v2"
-      with:
-        php-version: "${{ env.PHP_VERSION }}"
-
-    - name: "Install dependencies"
-      if: "steps.composer-cache.outputs.cache-hit != 'true'"
-      run: "composer install --prefer-dist --no-progress --no-suggest"
-
-    - name: "Run PHPStan"
-      run: "./vendor/bin/phpstan analyse"

@@ -1,0 +1,19 @@
+name: "Deployment staging"
+
+on:
+  push:
+    branches:
+      - "staging"
+
+jobs:
+  deployment_staging:
+    name: "Deployment staging"
+    uses: "doctrine/doctrine-website/.github/workflows/deployment.yml@staging"
+    with:
+      environment: "staging"
+    secrets:
+      doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
+      doctrine_website_algolia_admin_api_key: "${{ secrets.doctrine_website_algolia_admin_api_key }}"
+      doctrine_website_stripe_secret_key: "${{ secrets.doctrine_website_stripe_secret_key }}"
+      doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"
+      doctrine_website_deployment_token: "${{ secrets.doctrine_website_deployment_token }}"
