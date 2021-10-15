@@ -10,7 +10,7 @@ on:
 jobs:
   deployment_prod:
     name: "Deployment prod"
-    uses: "doctrine/doctrine-website/.github/workflows/deployment.yml@staging"
+    uses: "doctrine/doctrine-website/.github/workflows/deployment.yml@master"
     with:
       environment: "prod"
     secrets:
