@@ -8,7 +8,7 @@ on:
 jobs:
   deployment_staging:
     name: "Deployment staging"
-    uses: "doctrine/doctrine-website/.github/workflows/deployment.yml@staging"
+    uses: "doctrine/doctrine-website/.github/workflows/deployment.yml@master"
     with:
       environment: "staging"
     secrets:
