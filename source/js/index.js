@@ -4,7 +4,7 @@ import(/* webpackChunkName: "sentry" */ '@sentry/browser').then(module => {
     });
 });
 
-import 'bootstrap/js/src/index';
+import 'bootstrap/js/dist/index';
 
 import(/* webpackChunkName: "main" */ './main').then(module => {
     module.default();

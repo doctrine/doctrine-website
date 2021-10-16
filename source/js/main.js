@@ -57,8 +57,8 @@ export default function() {
       $('li:first', $(this)).addClass('selected');
     });
 
-    $('[data-toggle="$: \'jquery\',\n' +
-        '  jQuery: \'jquery\'"]').tooltip();
+    // $('[data-toggle="$: \'jquery\',\n' +
+    //     '  jQuery: \'jquery\'"]').tooltip();
 
     $('button.copy-to-clipboard').on('click', function() {
       var copyElementId = $(this).data('copy-element-id');
