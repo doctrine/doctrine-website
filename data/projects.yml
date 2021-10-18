@@ -5,10 +5,10 @@ parameters:
             url: https://symfony.com
             icon: /images/symfony-logo.png
 
-        zend-framework:
-            name: Zend Framework
-            url: https://framework.zend.com/
-            icon: /images/zend-framework-logo.png
+        laminas:
+            name: Laminas
+            url: https://getlaminas.org/
+            icon: /images/laminas-foundation-logo.png
 
     doctrine.website.projects_data:
         -
@@ -107,4 +107,4 @@ parameters:
             slug: doctrine-orm-module
             integration: true
             integrationFor: orm
-            integrationType: zend-framework
+            integrationType: laminas
