@@ -2,11 +2,6 @@ parameters:
     doctrine.website.algolia.app_id: 'YVYTFT9XMW'
     doctrine.website.stripe.publishable_key: 'pk_test_V7rmF8ac3GbakeSJYvp4u0a8003RPO66vC'
 
-    doctrine.website.twitter.consumer_key: ''
-    doctrine.website.twitter.consumer_secret: ''
-    doctrine.website.twitter.oauth_token: ''
-    doctrine.website.twitter.oauth_token_secret: ''
-
     doctrine.website.webpack_build_dir: '%doctrine.website.root_dir%/.webpack-build'
     doctrine.website.projects_dir: '%doctrine.website.root_dir%/projects'
     doctrine.website.docs_dir: '%doctrine.website.cache_dir%/docs'
