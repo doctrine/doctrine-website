@@ -26,14 +26,14 @@ use function unlink;
 
 class WebsiteBuilder
 {
-    public const PUBLISHABLE_ENVS = [Deployer::ENV_PROD, Deployer::ENV_STAGING];
+    public const PUBLISHABLE_ENVS = [Application::ENV_PROD, Application::ENV_STAGING];
 
     private const URL_PRODUCTION = 'www.doctrine-project.org';
     private const URL_STAGING    = 'staging.doctrine-project.org';
 
     private const PUBLISHABLE_ENV_URLS = [
-        Deployer::ENV_PROD    => self::URL_PRODUCTION,
-        Deployer::ENV_STAGING => self::URL_STAGING,
+        Application::ENV_PROD    => self::URL_PRODUCTION,
+        Application::ENV_STAGING => self::URL_STAGING,
     ];
 
     /** @var ProcessFactory */
@@ -83,8 +83,7 @@ class WebsiteBuilder
     public function build(
         OutputInterface $output,
         string $buildDir,
-        string $env,
-        bool $publish
+        string $env
     ): void {
         $output->writeln(sprintf(
             'Building Doctrine website for <info>%s</info> environment at <info>%s</info>.',
@@ -93,11 +92,6 @@ class WebsiteBuilder
         ));
 
         $isPublishableEnv = in_array($env, self::PUBLISHABLE_ENVS, true);
-        if ($publish) {
-            $output->writeln(' - updating from git');
-
-            $this->processFactory->run(sprintf('cd %s && git pull origin master', $buildDir));
-        }
 
         $output->writeln(' - building website');
 
@@ -111,12 +105,6 @@ class WebsiteBuilder
         $this->createProjectVersionAliases($buildDir);
 
         $this->copyWebsiteBuildData($output, $buildDir);
-
-        if ($publish) {
-            $output->writeln(' - publishing build');
-
-            $this->processFactory->run(sprintf('cd %s && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master', $buildDir));
-        }
 
         $output->writeln(' - done');
     }

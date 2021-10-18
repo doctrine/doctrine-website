@@ -52,12 +52,6 @@ class BuildAllCommand extends Command
                 sprintf('%s/build-%s', $this->rootDir, $this->env)
             )
             ->addOption(
-                'publish',
-                null,
-                InputOption::VALUE_NONE,
-                'Publish the build to GitHub Pages.'
-            )
-            ->addOption(
                 'clear-build-cache',
                 null,
                 InputOption::VALUE_NONE,
@@ -83,7 +77,6 @@ class BuildAllCommand extends Command
             'build-docs' => $buildDocsArgs,
             'build-website' => [
                 'build-dir' => $input->getArgument('build-dir'),
-                '--publish' => $input->getOption('publish'),
             ],
         ];
 
