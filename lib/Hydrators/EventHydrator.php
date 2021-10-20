@@ -6,7 +6,7 @@ namespace Doctrine\Website\Hydrators;
 
 use DateTimeImmutable;
 use Doctrine\SkeletonMapper\ObjectManagerInterface;
-use Doctrine\Website\Deployer;
+use Doctrine\Website\Application;
 use Doctrine\Website\Model\Address;
 use Doctrine\Website\Model\DateTimeRange;
 use Doctrine\Website\Model\Entity\EventParticipantRepository;
@@ -45,10 +45,10 @@ use function sprintf;
 final class EventHydrator extends ModelHydrator
 {
     private const ENV_SKU_MAP = [
-        'dev'                 => 'test',
-        Deployer::ENV_PROD    => Deployer::ENV_PROD,
-        Deployer::ENV_STAGING => 'test',
-        'test'                => 'test',
+        'dev'                    => 'test',
+        Application::ENV_PROD    => Application::ENV_PROD,
+        Application::ENV_STAGING => 'test',
+        'test'                   => 'test',
     ];
 
     /** @var EventParticipantRepository */

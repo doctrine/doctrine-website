@@ -73,11 +73,6 @@ class WebsiteBuilderTest extends TestCase
         $output   = $this->createMock(OutputInterface::class);
         $buildDir = '/data/doctrine-website-build-staging';
         $env      = 'staging';
-        $publish  = true;
-
-        $this->processFactory->expects(self::at(0))
-            ->method('run')
-            ->with('cd /data/doctrine-website-build-staging && git pull origin master');
 
         $this->filesystem->expects(self::at(0))
             ->method('remove')
@@ -94,7 +89,7 @@ class WebsiteBuilderTest extends TestCase
                 'staging.doctrine-project.org'
             );
 
-        $this->processFactory->expects(self::at(1))
+        $this->processFactory->expects(self::once())
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && npm run build');
 
@@ -106,10 +101,6 @@ class WebsiteBuilderTest extends TestCase
             ->method('mirror')
             ->with($this->cacheDir . '/data', $buildDir . '/website-data');
 
-        $this->processFactory->expects(self::at(2))
-            ->method('run')
-            ->with('cd /data/doctrine-website-build-staging && git pull origin master && git add . --all && git commit -m"New version of Doctrine website" && git push origin master');
-
-        $this->websiteBuilder->build($output, $buildDir, $env, $publish);
+        $this->websiteBuilder->build($output, $buildDir, $env);
     }
 }

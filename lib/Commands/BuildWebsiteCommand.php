@@ -18,7 +18,6 @@ use Symfony\Component\Process\Process;
 use function array_map;
 use function assert;
 use function date;
-use function in_array;
 use function ini_set;
 use function is_bool;
 use function is_dir;
@@ -73,12 +72,6 @@ class BuildWebsiteCommand extends Command
                 sprintf('%s/build-%s', $this->rootDir, $this->env)
             )
             ->addOption(
-                'publish',
-                null,
-                InputOption::VALUE_NONE,
-                'Publish the build to GitHub Pages.'
-            )
-            ->addOption(
                 'watch',
                 null,
                 InputOption::VALUE_NONE,
@@ -90,13 +83,6 @@ class BuildWebsiteCommand extends Command
     {
         ini_set('memory_limit', '2048M');
         $this->registerHighlighter();
-
-        $publish = $input->getOption('publish');
-        assert(is_bool($publish));
-
-        if ($publish && ! in_array($this->env, WebsiteBuilder::PUBLISHABLE_ENVS, true)) {
-            throw new InvalidArgumentException(sprintf('You cannot publish the "%s" environment.', $this->env));
-        }
 
         $buildDir = $input->getArgument('build-dir');
         assert(is_string($buildDir));
@@ -117,7 +103,7 @@ class BuildWebsiteCommand extends Command
         if ($watch) {
             $this->watch($output);
         } else {
-            $this->websiteBuilder->build($output, $buildDir, $this->env, $publish);
+            $this->websiteBuilder->build($output, $buildDir, $this->env);
         }
 
         return 0;

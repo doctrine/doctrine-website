@@ -13,13 +13,11 @@ use Doctrine\Migrations\Tools\Console\Helper\ConfigurationHelper;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\Command as ORMCommand;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
-use Doctrine\Website\Commands\AnnounceReleaseCommand;
 use Doctrine\Website\Commands\BuildAllCommand;
 use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
 use Doctrine\Website\Commands\BuildWebsiteDataCommand;
 use Doctrine\Website\Commands\ClearBuildCacheCommand;
-use Doctrine\Website\Commands\DeployCommand;
 use Doctrine\Website\Commands\EventParticipantsCommand;
 use Doctrine\Website\Commands\SyncRepositoriesCommand;
 use Stripe;
@@ -41,6 +39,9 @@ use function sprintf;
 
 class Application
 {
+    public const ENV_PROD    = 'prod';
+    public const ENV_STAGING = 'staging';
+
     /** @var BaseApplication */
     private $application;
 
@@ -54,10 +55,8 @@ class Application
         BuildWebsiteCommand $buildWebsiteCommand,
         BuildWebsiteDataCommand $buildWebsiteDataCommand,
         ClearBuildCacheCommand $clearBuildCacheCommand,
-        DeployCommand $deployCommand,
         SyncRepositoriesCommand $syncRepositoriesCommand,
-        EventParticipantsCommand $eventParticipantsCommand,
-        AnnounceReleaseCommand $announceReleaseCommand
+        EventParticipantsCommand $eventParticipantsCommand
     ) {
         $this->application = $application;
 
@@ -66,10 +65,8 @@ class Application
         $this->application->add($buildWebsiteCommand);
         $this->application->add($buildWebsiteDataCommand);
         $this->application->add($clearBuildCacheCommand);
-        $this->application->add($deployCommand);
         $this->application->add($syncRepositoriesCommand);
         $this->application->add($eventParticipantsCommand);
-        $this->application->add($announceReleaseCommand);
 
         $this->application->setHelperSet(new HelperSet([
             'question'      => new QuestionHelper(),
@@ -137,7 +134,7 @@ class Application
     {
         $container = new ContainerBuilder();
         $container->setParameter('doctrine.website.env', $env);
-        $container->setParameter('doctrine.website.debug', $env !== Deployer::ENV_PROD);
+        $container->setParameter('doctrine.website.debug', $env !== self::ENV_PROD);
         $container->setParameter('doctrine.website.root_dir', realpath(__DIR__ . '/..'));
         $container->setParameter('doctrine.website.config_dir', realpath(__DIR__ . '/../config'));
         $container->setParameter('doctrine.website.cache_dir', realpath(__DIR__ . '/../cache'));
