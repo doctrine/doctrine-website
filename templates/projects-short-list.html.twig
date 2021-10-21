@@ -3,7 +3,7 @@
         <li class="list-group-item">
             <h5 class="card-title">
                 {% if project.isIntegration %}
-                    <a href="{{ project.projectIntegrationType.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ get_asset_url(project.projectIntegrationType.icon, site.url) }}" title="{{ project.projectIntegrationType.name }}" width="30" class="mr-2" /></a>
+                    <a href="{{ project.projectIntegrationType.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ get_asset_url(project.projectIntegrationType.icon, site.url) }}" title="{{ project.projectIntegrationType.name }}" width="70" class="mr-2" /></a>
                 {% endif %}
 
                 <a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a>
