@@ -35,7 +35,7 @@ parameters:
             avatarUrl: 'https://avatars.githubusercontent.com/u/1586788?v=4'
             website: ~
             location: 'Germany'
-            maintains: ["DoctrineModule", "DoctrineORMModule", "DoctrineMongoODMModule", "doctrine-laminas-hydrator"]
+            maintains: ["doctrine-module", "doctrine-orm-module", "doctrine-mongo-odm-module", "doctrine-laminas-hydrator"]
         greg0ire:
             name: 'Grégoire Paris'
             twitter: greg0ire
@@ -133,7 +133,7 @@ parameters:
             avatarUrl: 'https://avatars1.githubusercontent.com/u/493920?v=4'
             website: 'https://tomhanderson.com/'
             location: 'Salt Lake City, Utah'
-            maintains: ["DoctrineModule", "DoctrineORMModule", "DoctrineMongoODMModule", "doctrine-laminas-hydrator"]
+            maintains: ["doctrine-module", "doctrine-orm-module", "doctrine-mongo-odm-module", "doctrine-laminas-hydrator"]
             bio: > 
                 Tom is an intellectual architect software engineer. Proud to contribute to open source and to work
                 along side such a talented group of programmers.

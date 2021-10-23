@@ -103,8 +103,27 @@ parameters:
             integrationType: symfony
 
         -
+            repositoryName: DoctrineModule
+            slug: doctrine-module
+            integration: true
+            integrationType: laminas
+
+        -
             repositoryName: DoctrineORMModule
             slug: doctrine-orm-module
             integration: true
             integrationFor: orm
+            integrationType: laminas
+
+        -
+            repositoryName: DoctrineMongoODMModule
+            slug: doctrine-mongo-odm-module
+            integration: true
+            integrationFor: mongodb-odm
+            integrationType: laminas
+
+        -
+            repositoryName: doctrine-laminas-hydrator
+            slug: doctrine-laminas-hydrator
+            integration: true
             integrationType: laminas
