@@ -57,3 +57,29 @@ the ``use-next-minor-as-default-branch`` switch for the
     $ git switch --create 2.0.x 2.0.0
     Switched to a new branch "2.0.x"
     $ git push doctrine 2.0.x
+
+Publishing a release
+--------------------
+
+We use ``laminas/automatic-releases`` to make releasing as easy as
+closing a milestone. Before closing a milestone, one should check that
+it is complete and contains only merged pull requests, as opposed to
+issues or closed pull requests.
+
+There might also be open pull requests that are ready to be merged and
+could be included in the release.
+
+It is also a good idea to check which pull requests were merged since
+the last release on the relevant branch, and to make sure each one is
+properly labelled, assigned to the milestone, and has a title that is a
+correct description of the change. A good way to do the first two checks
+is to filter the list of pull requests using the following filter:
+`state:merged (no:label OR no:milestone)` in the GitHub UI.
+
+Once the milestone is closed, the Github Action should run. It might
+fail in case there is nothing to merge up, but it should create a new
+release.
+
+You might then want to rework the release notes, using a more sensible
+ordering showing the most user-facing changes first, and making e.g.
+"Bugfix" plural.
