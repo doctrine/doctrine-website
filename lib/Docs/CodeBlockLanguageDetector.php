@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs;
 
+use Highlight\Highlighter;
+
+use function sprintf;
 use function trim;
 
 class CodeBlockLanguageDetector
@@ -18,11 +21,20 @@ class CodeBlockLanguageDetector
         'php-annotations' => 'php',
     ];
 
+    /** @var string */
+    private $rootDir;
+
+    public function __construct(string $rootDir)
+    {
+        $this->rootDir = $rootDir;
+    }
+
     /**
      * @param string[] $lines
      */
     public function detectLanguage(string $language, array $lines): string
     {
+        $this->registerHighlighter();
         $language = trim($language);
 
         if ($language !== '' && isset(self::ALIASES[$language])) {
@@ -45,5 +57,12 @@ class CodeBlockLanguageDetector
         }
 
         return $language;
+    }
+
+    private function registerHighlighter(): void
+    {
+        $phpHighlightPath = sprintf('%s/vendor/scrivo/highlight.php/Highlight/languages/php.json', $this->rootDir);
+        Highlighter::registerLanguage('annotation', $phpHighlightPath);
+        Highlighter::registerLanguage('attribute', $phpHighlightPath);
     }
 }

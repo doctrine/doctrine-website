@@ -49,6 +49,6 @@ class CodeBlockLanguageDetectorTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->codeBlockLanguageDetector = new CodeBlockLanguageDetector();
+        $this->codeBlockLanguageDetector = new CodeBlockLanguageDetector(__DIR__ . '/../..');
     }
 }

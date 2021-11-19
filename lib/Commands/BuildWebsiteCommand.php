@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Doctrine\Website\Commands;
 
 use Doctrine\Website\WebsiteBuilder;
-use Highlight\Highlighter;
 use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -82,7 +81,6 @@ class BuildWebsiteCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         ini_set('memory_limit', '2048M');
-        $this->registerHighlighter();
 
         $buildDir = $input->getArgument('build-dir');
         assert(is_string($buildDir));
@@ -152,12 +150,5 @@ class BuildWebsiteCommand extends Command
             ->mustRun(static function ($type, $buffer) use ($output): void {
                 $output->write($buffer);
             });
-    }
-
-    private function registerHighlighter(): void
-    {
-        $phpHighlightPath = sprintf('%s/vendor/scrivo/highlight.php/Highlight/languages/php.json', $this->rootDir);
-        Highlighter::registerLanguage('annotation', $phpHighlightPath);
-        Highlighter::registerLanguage('attribute', $phpHighlightPath);
     }
 }
