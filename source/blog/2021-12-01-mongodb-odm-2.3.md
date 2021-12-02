@@ -1,5 +1,5 @@
 ---
-title: "New Release: Doctrine MongoDB ODM 2.3 with Attributes, JSON Schema Validation and more"
+title: "New Release: Doctrine MongoDB ODM 2.3 with Attributes, JSON Schema Validation, and more"
 authorName: Ion Bazan
 authorEmail: ion.bazan@gmail.com
 permalink: /2021/12/01/mongodb-odm-2.3.html
@@ -45,7 +45,7 @@ to convert all your annotation mappings to attributes in seconds!
 ## JSON Schema Validation
 
 MongoDB ≥ 3.6 offers the capability to validate documents during
-insertions and updates through a JSON schema associated to the collection. 
+insertions and updates through a JSON schema associated with the collection. 
 [See MongoDB documentation](https://docs.mongodb.com/manual/core/schema-validation/).
 
 Doctrine MongoDB ODM now provides a way to take advantage of this functionality
@@ -90,10 +90,10 @@ the ``odm:schema:create`` or ``odm:schema:update`` command.
 
 ## Psalmified APIs
 
-Improved the documentation to make sure static analysis tools and IDEs know
+In-code documentation has been immensely improved to make sure static analysis tools and IDEs know
 about the right document classes returned from `DocumentManager`,
-`DocumentManager`, `ClassMetadata` and other public ODM APIs. This includes generics support
-when you extend `DocumentRepository`.
+`ClassMetadata`, and other public APIs. This includes generics support
+for your own repositories extending `DocumentRepository`.
 
 ```php
 use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
