@@ -168,7 +168,7 @@ SIDEBAR;
             $sidebar = $this->rstFileRepository->getFileContents($sidebarPath);
 
             // sidebar.rst paths were wrong. Remove this once sidebar.rst is updated everywhere
-            $sidebar = preg_replace('/(reference|tutorials|reference|cookbook)/', '/$1', $sidebar);
+            $sidebar = preg_replace('/^([ \t]*)(reference|tutorials|cookbook)/m', '$1/$2', $sidebar);
 
             return $sidebar;
         }
