@@ -2,7 +2,7 @@
 title: "New Release: Doctrine MongoDB ODM 2.3 with Attributes, JSON Schema Validation, and more"
 authorName: Ion Bazan
 authorEmail: ion.bazan@gmail.com
-permalink: /2021/12/01/mongodb-odm-2.3.html
+permalink: /2021/12/04/mongodb-odm-2.3.html
 ---
 
 We have released a new minor version 2.3 of Doctrine MongoDB ODM, the first version
@@ -48,8 +48,8 @@ MongoDB ≥ 3.6 offers the capability to validate documents during
 insertions and updates through a JSON schema associated with the collection. 
 [See MongoDB documentation](https://docs.mongodb.com/manual/core/schema-validation/).
 
-Doctrine MongoDB ODM now provides a way to take advantage of this functionality
-thanks to the new `#[Validation]` mapping.
+Doctrine MongoDB ODM now provides a way to take advantage of this functionality thanks to the new 
+[`#[Validation]`](https://www.doctrine-project.org/projects/doctrine-mongodb-odm/en/latest/reference/annotations-reference.html#validation) mapping.
 
 ```php
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
@@ -118,6 +118,8 @@ Doctrine MongoDB ODM 2.3 introduces several minor deprecations:
 - Annotation arguments switched to `@NamedArgumentConstructor` for Attribute compatibility
 - `@Inheritance` annotation has been removed as it was never used
 - Document Namespace Aliases (`'MyBundle:User`) - use fully qualified class names instead (`User::class`)
+
+Read more in our [upgrading](https://github.com/doctrine/mongodb-odm/blob/2.3.x/UPGRADE-2.3.md) document. 
 
 ## Coding Standard Support
 
