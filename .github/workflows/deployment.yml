@@ -53,11 +53,15 @@ jobs:
       with:
         composer-options: "--no-progress --no-suggest --no-dev"
 
-    - name: "apt-get install yarn"
-      run: "sudo apt-get update && sudo apt-get install -y yarn"
+    - name: "Installation of node"
+      uses: "actions/setup-node@v2"
+      with:
+        node-version: '10.22.0'
 
     - name: "yarn install"
-      run: "yarn install"
+      uses: "borales/actions-yarn@v2.0.0"
+      with:
+        cmd: "install"
 
     - name: "Prepare Website files"
       run: "bin/console --env=${{ inputs.environment }} build-all"
