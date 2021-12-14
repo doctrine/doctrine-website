@@ -27,7 +27,7 @@ use function sprintf;
 
 class EventParticipantsCommand extends Command
 {
-    /** @var string */
+    /** @var string|null */
     protected static $defaultName = 'event-participants';
 
     /** @var EventRepository */

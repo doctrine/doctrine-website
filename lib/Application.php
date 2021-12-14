@@ -31,9 +31,11 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
+use function assert;
 use function date_default_timezone_set;
 use function file_exists;
 use function getenv;
+use function is_string;
 use function realpath;
 use function sprintf;
 
@@ -140,9 +142,9 @@ class Application
         $container->setParameter('doctrine.website.cache_dir', realpath(__DIR__ . '/../cache'));
         $container->setParameter('doctrine.website.github.http_token', getenv('doctrine_website_github_http_token'));
         $container->setParameter('doctrine.website.mysql.password', getenv('doctrine_website_mysql_password'));
-        $container->setParameter('doctrine.website.algolia.admin_api_key', getenv('doctrine_website_algolia_admin_api_key') ?? '1234');
-        $container->setParameter('doctrine.website.stripe.secret_key', getenv('doctrine_website_stripe_secret_key') ?? '');
-        $container->setParameter('doctrine.website.send_grid.api_key', getenv('doctrine_website_send_grid_api_key') ?? '');
+        $container->setParameter('doctrine.website.algolia.admin_api_key', getenv('doctrine_website_algolia_admin_api_key') ?: '1234');
+        $container->setParameter('doctrine.website.stripe.secret_key', getenv('doctrine_website_stripe_secret_key') ?: '');
+        $container->setParameter('doctrine.website.send_grid.api_key', getenv('doctrine_website_send_grid_api_key') ?: '');
 
         $xmlConfigLoader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
         $xmlConfigLoader->load('services.xml');
@@ -152,7 +154,9 @@ class Application
 
         $yamlConfigLoader->load(sprintf('config_%s.yml', $env));
 
-        if (file_exists($container->getParameter('doctrine.website.config_dir') . '/local.yml')) {
+        $configDir = $container->getParameter('doctrine.website.config_dir');
+        assert(is_string($configDir));
+        if (file_exists($configDir . '/local.yml')) {
             $yamlConfigLoader->load('local.yml');
         }
 
@@ -165,7 +169,9 @@ class Application
 
         $container->compile();
 
-        Stripe\Stripe::setApiKey($container->getParameter('doctrine.website.stripe.secret_key'));
+        $apiKey = $container->getParameter('doctrine.website.stripe.secret_key');
+        assert(is_string($apiKey));
+        Stripe\Stripe::setApiKey($apiKey);
 
         date_default_timezone_set('America/New_York');
 

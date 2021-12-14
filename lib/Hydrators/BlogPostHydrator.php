@@ -28,12 +28,12 @@ final class BlogPostHydrator extends ModelHydrator
      */
     protected function doHydrate(array $data): void
     {
-        $this->url         = (string) $data['url'] ?? '';
-        $this->slug        = (string) $data['slug'] ?? '';
-        $this->title       = (string) $data['title'] ?? '';
-        $this->authorName  = (string) $data['authorName'] ?? '';
-        $this->authorEmail = (string) $data['authorEmail'] ?? '';
-        $this->contents    = (string) $data['contents'] ?? '';
+        $this->url         = (string) ($data['url'] ?? '');
+        $this->slug        = (string) ($data['slug'] ?? '');
+        $this->title       = (string) ($data['title'] ?? '');
+        $this->authorName  = (string) ($data['authorName'] ?? '');
+        $this->authorEmail = (string) ($data['authorEmail'] ?? '');
+        $this->contents    = (string) ($data['contents'] ?? '');
         $this->date        = $data['date'] ?? new DateTimeImmutable();
     }
 }

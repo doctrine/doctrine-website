@@ -84,8 +84,8 @@ class RSTFileRepository
      */
     private function finderToArray(Finder $finder): array
     {
-        return array_values(array_map(static function (SplFileInfo $file) {
-            return $file->getRealPath();
+        return array_values(array_map(static function (SplFileInfo $file): string {
+            return (string) $file->getRealPath();
         }, iterator_to_array($finder)));
     }
 }
