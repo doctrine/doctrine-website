@@ -37,7 +37,7 @@
         "twig/twig": "^2.5"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^8.1",
+        "doctrine/coding-standard": "^9.0",
         "mikey179/vfsstream": "^1.6",
         "phpstan/phpstan": "^1.1.0",
         "phpstan/phpstan-deprecation-rules": "^1.0.0",
