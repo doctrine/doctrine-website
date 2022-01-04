@@ -28,7 +28,7 @@ use function time;
 
 class BuildWebsiteCommand extends Command
 {
-    /** @var string */
+    /** @var string|null */
     protected static $defaultName = 'build-website';
 
     private const WATCH_DIRS = [

@@ -17,7 +17,7 @@ use function sprintf;
 
 class BuildWebsiteDataCommand extends Command
 {
-    /** @var string */
+    /** @var string|null */
     protected static $defaultName = 'build-website-data';
 
     /** @var ProjectDataBuilder */

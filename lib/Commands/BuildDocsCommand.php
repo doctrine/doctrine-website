@@ -16,7 +16,7 @@ use function is_string;
 
 class BuildDocsCommand extends Command
 {
-    /** @var string */
+    /** @var string|null */
     protected static $defaultName = 'build-docs';
 
     /** @var BuildDocs */

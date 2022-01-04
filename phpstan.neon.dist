@@ -11,3 +11,11 @@ parameters:
       # TODO Use newer Doctrine packages which are using T and TKey
       - "#should return array<[\\a-zA-Z]+> but returns array<object>#"
       - "#should return [\\a-zA-Z]+(.null)* but returns object(.null)*#"
+      - "#Short ternary operator is not allowed#"
+      - # Refactor class and remove this error
+        message: "#While loop condition is always true#"
+        path: "lib/Commands/BuildWebsiteCommand.php"
+        count: 1
+      - # Refactor class and remove this error
+        message: "#is never written, only read#"
+        path: "lib/Model/*.php"

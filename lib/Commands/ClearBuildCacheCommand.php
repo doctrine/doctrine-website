@@ -16,7 +16,7 @@ use function sprintf;
 
 class ClearBuildCacheCommand extends Command
 {
-    /** @var string */
+    /** @var string|null */
     protected static $defaultName = 'clear-build-cache';
 
     /** @var CacheClearer */

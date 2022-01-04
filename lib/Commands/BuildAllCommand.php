@@ -22,7 +22,7 @@ use function sprintf;
 
 class BuildAllCommand extends Command
 {
-    /** @var string */
+    /** @var string|null */
     protected static $defaultName = 'build-all';
 
     /** @var string */

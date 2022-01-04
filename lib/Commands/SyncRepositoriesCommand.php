@@ -14,7 +14,7 @@ use function sprintf;
 
 class SyncRepositoriesCommand extends Command
 {
-    /** @var string */
+    /** @var string|null */
     protected static $defaultName = 'sync-repositories';
 
     /** @var ProjectDataRepository */
