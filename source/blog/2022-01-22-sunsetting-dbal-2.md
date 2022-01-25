@@ -27,3 +27,8 @@ and other critical issues for at most a year.
 
 All Doctrine DBAL users are encourarged to upgrade to the latest stable version
 which is [3.3.0](https://github.com/doctrine/dbal/releases/tag/3.3.0) as of the time of this writing.
+
+For migrating from DBAL 2 to 3, see our two blog posts on DBAL 2.13 Forward Compatibility Layer:
+
+- [New Release: Doctrine DBAL 2.13 with Deprecations and Forward Compatibility](https://www.doctrine-project.org/2021/03/29/dbal-2.13.html)
+- [New Release: Doctrine DBAL 2.13.1 and 3.1.0 with important Forward Compatibility fix](https://www.doctrine-project.org/2021/04/19/dbal-2.13.1-3.1.0.html)
