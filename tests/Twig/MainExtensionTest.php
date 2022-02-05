@@ -79,6 +79,6 @@ class MainExtensionTest extends TestCase
             'http://lcl.doctrine-project.org'
         );
 
-        self::assertSame('http://lcl.doctrine-project.org/js/main.js?bbe643', $url);
+        self::assertSame('http://lcl.doctrine-project.org/js/main.js?d1b0e4', $url);
     }
 }
