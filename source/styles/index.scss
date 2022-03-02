@@ -580,5 +580,16 @@ div.jsactive pre {
   }
 }
 
+nav.stop-war-navbar {
+  text-align: center;
+  background: #fa6a3c !important;
+  a {
+    color: white;
+    font-size: 2em;
+    width: 100%;
+  }
+}
+
 @import 'railscasts';
 @import 'carbonads';
+
