@@ -128,6 +128,10 @@ parameters:
             defaults:
                 title: Policies
                 menuSlug: development
+        stop-war:
+            path: /stop-war.html
+            defaults:
+                title: Stop war in Ukraine
 
         policies_deprecation:
             path: /policies/deprecation.html
