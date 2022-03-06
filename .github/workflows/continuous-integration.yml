@@ -42,9 +42,7 @@ jobs:
         node-version: '10.22.0'
 
     - name: "yarn install"
-      uses: "borales/actions-yarn@v2.0.0"
-      with:
-        cmd: "install"
+      run: "yarn install"
 
     - name: "Run tests"
       run: "./vendor/bin/phpunit"
@@ -58,8 +56,11 @@ jobs:
     - name: "Build website"
       run: "./bin/console --env=test build-all"
 
-    - name: "Run tests with coverage"
+    - name: "Run PHP tests with coverage"
       run: "./vendor/bin/phpunit --coverage-clover clover.xml"
+
+    - name: "Run JS tests"
+      run: "yarn jest"
 
     - name: "Deliver code coverage"
       run: "bash <(curl -s https://codecov.io/bash)"
