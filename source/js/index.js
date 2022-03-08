@@ -26,6 +26,10 @@ if (typeof window.event === 'object') {
     });
 }
 
+import(/* webpackChunkName: "tab" */ './tab').then(module => {
+    module.default();
+});
+
 window.googleTranslateElementInit = () => {
     $('#google_translate_element').html('');
 
