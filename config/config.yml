@@ -72,3 +72,12 @@ parameters:
         -
             name: Sylius
             url: https://sylius.com
+        -
+            name: Shopware
+            url: https://www.shopware.com
+        -
+            name: Oxid eShop
+            url: https://www.oxid-esales.com
+        -
+            name: Contao
+            url: https://contao.org
