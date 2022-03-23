@@ -18,6 +18,7 @@ parameters:
         - repositoryName: common
         - repositoryName: couchdb-client
         - repositoryName: couchdb-odm
+        - repositoryName: data-fixtures
         - repositoryName: dbal
         - repositoryName: doctrine1
         - repositoryName: event-manager
