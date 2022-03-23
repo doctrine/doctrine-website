@@ -11,72 +11,28 @@ parameters:
             icon: /images/laminas-foundation-logo.png
 
     doctrine.website.projects_data:
-        -
-            repositoryName: orm
-
-        -
-            repositoryName: dbal
-
-        -
-            repositoryName: mongodb-odm
-
-        -
-            repositoryName: phpcr-odm
-
-        -
-            repositoryName: couchdb-odm
-
-        -
-            repositoryName: migrations
-
-        -
-            repositoryName: common
-
-        -
-            repositoryName: orientdb-odm
-
-        -
-            repositoryName: annotations
-
-        -
-            repositoryName: collections
-
-        -
-            repositoryName: inflector
-
-        -
-            repositoryName: cache
-
-        -
-            repositoryName: lexer
-
-        -
-            repositoryName: event-manager
-
-        -
-            repositoryName: persistence
-
-        -
-            repositoryName: reflection
-
-        -
-            repositoryName: coding-standard
-
-        -
-            repositoryName: doctrine1
-
-        -
-            repositoryName: instantiator
-
-        -
-            repositoryName: rst-parser
-
-        -
-            repositoryName: couchdb-client
-
-        -
-            repositoryName: skeleton-mapper
-
+        - repositoryName: annotations
+        - repositoryName: cache
+        - repositoryName: coding-standard
+        - repositoryName: collections
+        - repositoryName: common
+        - repositoryName: couchdb-client
+        - repositoryName: couchdb-odm
+        - repositoryName: dbal
+        - repositoryName: doctrine1
+        - repositoryName: event-manager
+        - repositoryName: inflector
+        - repositoryName: instantiator
+        - repositoryName: lexer
+        - repositoryName: migrations
+        - repositoryName: mongodb-odm
+        - repositoryName: orientdb-odm
+        - repositoryName: orm
+        - repositoryName: persistence
+        - repositoryName: phpcr-odm
+        - repositoryName: reflection
+        - repositoryName: rst-parser
+        - repositoryName: skeleton-mapper
         -
             repositoryName: DoctrineBundle
             integration: true
