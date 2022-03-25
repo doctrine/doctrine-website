@@ -9,7 +9,7 @@ To simplify our own administrative burden, we have decided to move over the
 funds to [OpenCollective](https://opencollective.com/doctrine), primarily
 motivated by the success and positive experience of the new PHP Foundation.
 
-We have started raising money for the Doctrine in 2019 through Patreon and
+We have started raising money for the Doctrine Project in 2019 through Patreon and
 Github Sponsors to support the project. It was planned to organize core team
 gettogethers/hackathons, but due to the pandemic we haven't been able to do this.
 In addition the legal and tax implications of raising money also caused us
