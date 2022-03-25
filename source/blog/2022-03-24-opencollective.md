@@ -7,7 +7,7 @@ permalink: /2022/03/24/opencollective.html
 
 To simplify our own administrative burden, we have decided to move over the
 funds to [OpenCollective](https://opencollective.com/doctrine), primarily
-motiviated by the success and positive experience of the new PHP Foundation.
+motivated by the success and positive experience of the new PHP Foundation.
 
 We have started raising money for the Doctrine in 2019 through Patreon and
 Github Sponsors to support the project. It was planned to organize core team
