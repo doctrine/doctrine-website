@@ -24,8 +24,8 @@ We want to assure our sponsors that we still plan to make use of the funds
 to further the Doctrine project and we are actively looking to increase our funding
 for these goals:
 
-- Regulalry organize hackathons for Doctrine Core team contributors, including
-  3-4 days of accomodation, food and travel for roughly 10-15 people.
+- Regularly organize hackathons for Doctrine Core team contributors, including
+  3-4 days of accommodation, food and travel for roughly 10-15 people.
 
 - Infrastructure, servers and hosting.
 
