@@ -29,7 +29,7 @@ for these goals:
 
 - Infrastructure, servers and hosting.
 
-- Marketing material such as stickers, t-shirts, other small things.
+- Marketing material such as stickers, t-shirts and other small things.
 
 - If the budget increases significantly we might be able to pay someone part-
   or full-time to do maintenance work such as responding to and processing
