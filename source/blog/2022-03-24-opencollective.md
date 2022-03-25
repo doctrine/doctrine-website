@@ -11,7 +11,7 @@ motivated by the success and positive experience of the new PHP Foundation.
 
 We have started raising money for the Doctrine Project in 2019 through Patreon and
 Github Sponsors to support the project. It was planned to organize core team
-gettogethers/hackathons, but due to the pandemic we haven't been able to do this.
+get-togethers/hackathons, but due to the pandemic we haven't been able to do this.
 In addition the legal and tax implications of raising money also caused us
 some headaches. 
 
