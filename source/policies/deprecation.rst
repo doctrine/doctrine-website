@@ -55,44 +55,12 @@ Then, if your code directly depends on ``doctrine/orm`` which provides the
         }
     }
 
-Using ``trigger_error()`` and ``phpunit-bridge``
-------------------------------------------------
+Using ``doctrine/deprecations``
+-------------------------------
 
-In some cases, you may need to conditionally deprecate functionality. In these cases, it is required
-to use the ``trigger_error()`` function and a tool like `PHPUnit Bridge`_ which implements a custom
-error handler for you to use to collect and report these warnings. **This method is not recommended
-and Doctrine will try to avoid using it if possible.**
+In some cases, you may need to conditionally deprecate functionality. In
+these cases, it is required to use the `Doctrine deprecations`_ library.
 
-If you do not wish to use `PHPUnit Bridge`_ you can implement your own custom error handler using
-the `set_error_handler`_ function.
-
-.. note::
-
-    In order for this strategy to work, you have to configure your `error_reporting`_ properly
-    in both your development and production environments. You don't want errors of type ``E_USER_DEPRECATED``
-    being reported from PHP.
-
-Here is an example of how this would be used in Doctrine:
-
-.. code-block:: php
-
-    namespace Doctrine\ORM;
-
-    class EntityManager
-    {
-        // ...
-
-        public function getAnotherThing() : int
-        {
-            if ($this->featureFlag) {
-                trigger_error('This feature has been disabled.', E_USER_DEPRECATED);
-            }
-
-            // ...
-        }
-    }
-
-Now in order to get those warnings reported to you in your automation, you need to use a tool like `PHPUnit Bridge`_.
 
 Tools
 -----
@@ -141,18 +109,7 @@ It's able to find a large number of issues, but it can also be configured to onl
 
     $ composer require vimeo/psalm
 
-PHPUnit Bridge
-~~~~~~~~~~~~~~
-
-The `PHPUnit Bridge`_ provides utilities to report legacy tests and usage of deprecated code.
-
-.. code-block:: console
-
-    $ composer require --dev "symfony/phpunit-bridge:*"
-
+.. _Doctrine deprecations: https://github.com/doctrine/deprecations
 .. _Psalm: https://github.com/vimeo/psalm
 .. _PHPStan: https://github.com/phpstan/phpstan
 .. _PHP Parser: https://github.com/nikic/php-parser
-.. _PHPUnit Bridge: https://github.com/symfony/phpunit-bridge
-.. _error_reporting: https://secure.php.net/manual/en/function.error-reporting.php
-.. _set_error_handler: https://secure.php.net/manual/en/function.set-error-handler.php
