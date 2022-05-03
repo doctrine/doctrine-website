@@ -19,6 +19,7 @@ class CodeBlockLanguageDetector
         'html+php' => 'php',
         'html+jinja' => 'html',
         'php-annotations' => 'php',
+        'php-attributes' => 'php',
     ];
 
     /** @var string */
@@ -63,6 +64,8 @@ class CodeBlockLanguageDetector
     {
         $phpHighlightPath = sprintf('%s/vendor/scrivo/highlight.php/Highlight/languages/php.json', $this->rootDir);
         Highlighter::registerLanguage('annotation', $phpHighlightPath);
+        Highlighter::registerLanguage('php-annotations', $phpHighlightPath);
         Highlighter::registerLanguage('attribute', $phpHighlightPath);
+        Highlighter::registerLanguage('php-attributes', $phpHighlightPath);
     }
 }
