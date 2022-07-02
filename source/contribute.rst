@@ -188,6 +188,9 @@ message::
     $nonObviousYetVeryGoodReason
     Fixes #42
 
+Wrap the lines in the commit body at 72 chars to make commits easier
+to read in different tools.
+
 There are already a few articles (or even single purpose websites) about
 this in case you want to read more about this:
 
