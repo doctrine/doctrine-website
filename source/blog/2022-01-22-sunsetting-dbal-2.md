@@ -25,7 +25,7 @@ With all that said, the DBAL team announces the plan for sunsetting DBAL 2 in 6 
 which is April 3, 2022. After that date, we plan to release DBAL 2 only to address security related
 and other critical issues for at most a year.
 
-All Doctrine DBAL users are encourarged to upgrade to the latest stable version
+All Doctrine DBAL users are encouraged to upgrade to the latest stable version
 which is [3.3.0](https://github.com/doctrine/dbal/releases/tag/3.3.0) as of the time of this writing.
 
 For migrating from DBAL 2 to 3, see our two blog posts on DBAL 2.13 Forward Compatibility Layer:
