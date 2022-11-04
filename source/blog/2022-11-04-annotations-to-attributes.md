@@ -2,7 +2,7 @@
 title: "From annotations to attributes"
 authorName: Grégoire Paris
 authorEmail: postmaster@greg0ire.fr
-permalink: /2022/11/04/annotations-to-attributes.md
+permalink: /2022/11/04/annotations-to-attributes.html
 ---
 
 Last month, we migrated the tests of the ORM from annotations to attributes.
