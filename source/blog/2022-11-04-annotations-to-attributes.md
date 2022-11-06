@@ -10,16 +10,20 @@ Let us look back on what lead to this moment.
 
 ## Annotations
 
-Let's go 20 years back in time. In 2002, Alex Buckley, a Specification lead for
-the Java language publishes [JSR-175][jsr-175], thus proposing to add
-user-defined annotations to the language, allowing to tag language elements
-with extra information. 2 years later, it gets approved and Java 1.5, also
-known as Java 5 is released, [with support for annotations][annotation-guide].
+Let's go 22 years back in time. In October 2000, Ulf Wendel introduces phpdoc
+comments to at the PHP-Kongress. Such comments follow a structure that allows
+to produce API documentation from them, and are inspired by javadoc.
+
+In 2002, Alex Buckley, a Specification lead for the Java language publishes
+[JSR-175][jsr-175], thus proposing to add user-defined annotations to the
+language, allowing to tag language elements with extra information. 2 years
+later, it gets approved and Java 1.5, also known as Java 5 is released, [with
+support for annotations][annotation-guide].
 
 2 more years elapse and in 2004, Jano Suchal publishes [Addendum][addendum], a
-PHP library that adds support for "Docblock/JavaDoc" annotations, meaning that
-contrary to what is done in Java, Addendum annotations are contained inside
-phpdoc comments, like this:
+PHP library that adds support for using "Docblock/JavaDoc" as annotations,
+meaning that contrary to what is done in Java, Addendum annotations are
+contained inside phpdoc comments, like this:
 
 ```php
 /** @test */
