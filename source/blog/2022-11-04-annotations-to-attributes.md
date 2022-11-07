@@ -11,8 +11,8 @@ Let us look back on what lead to this moment.
 ## Annotations
 
 Let's go 22 years back in time. In October 2000, Ulf Wendel introduces phpdoc
-comments to at the PHP-Kongress. Such comments follow a structure that allows
-to produce API documentation from them, and are inspired by javadoc.
+comments at the PHP-Kongress. These comments follow a structure that allows
+to produce API documentation from them. They are inspired by javadoc.
 
 In 2002, Alex Buckley, a Specification lead for the Java language publishes
 [JSR-175][jsr-175], thus proposing to add user-defined annotations to the
