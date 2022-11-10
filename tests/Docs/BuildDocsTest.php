@@ -44,7 +44,7 @@ class BuildDocsTest extends TestCase
             $this->projectRepository,
             $this->projectGitSyncer,
             $this->rstBuilder,
-            $this->searchIndexer
+            $this->searchIndexer,
         );
     }
 

@@ -11,9 +11,7 @@ use InvalidArgumentException;
 
 use function sprintf;
 
-/**
- * @template-extends AbstractLazyCollection<int, EventScheduleSlot>
- */
+/** @template-extends AbstractLazyCollection<int, EventScheduleSlot> */
 final class EventSchedule extends AbstractLazyCollection
 {
     /** @var mixed[] */
@@ -22,9 +20,7 @@ final class EventSchedule extends AbstractLazyCollection
     /** @var EventSpeakers */
     private $speakers;
 
-    /**
-     * @param mixed[] $event
-     */
+    /** @param mixed[] $event */
     public function __construct(array $event, EventSpeakers $speakers)
     {
         $this->event    = $event;
@@ -39,7 +35,7 @@ final class EventSchedule extends AbstractLazyCollection
             if (! isset($this->speakers[$slot['topicSlug']])) {
                 throw new InvalidArgumentException(sprintf(
                     'Could not find speaker with topicSlug "%s".',
-                    $slot['topicSlug']
+                    $slot['topicSlug'],
                 ));
             }
 
@@ -48,7 +44,7 @@ final class EventSchedule extends AbstractLazyCollection
             $slots[] = new EventScheduleSlot(
                 $eventSpeaker,
                 new DateTimeImmutable($slot['startDate'] ?? ''),
-                new DateTimeImmutable($slot['endDate'] ?? '')
+                new DateTimeImmutable($slot['endDate'] ?? ''),
             );
         }
 

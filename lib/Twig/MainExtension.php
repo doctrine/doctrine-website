@@ -54,9 +54,7 @@ class MainExtension extends Twig_Extension
         $this->stripePublishableKey    = $stripePublishableKey;
     }
 
-    /**
-     * @return Twig_SimpleFunction[]
-     */
+    /** @return Twig_SimpleFunction[] */
     public function getFunctions(): array
     {
         return [
@@ -69,9 +67,7 @@ class MainExtension extends Twig_Extension
         ];
     }
 
-    /**
-     * @return Twig_SimpleFilter[]
-     */
+    /** @return Twig_SimpleFilter[] */
     public function getFilters(): array
     {
         return [

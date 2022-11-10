@@ -61,7 +61,7 @@ class ProjectContributorDataBuilder implements DataBuilder
                 }
 
                 $teamMember = $this->teamMemberRepository->findOneByGithub(
-                    $contributor['author']['login']
+                    $contributor['author']['login'],
                 );
 
                 $isMaintainer = $teamMember !== null

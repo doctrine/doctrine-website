@@ -21,9 +21,7 @@ class RSTLanguagesDetector
 {
     public const ENGLISH_LANGUAGE_CODE = 'en';
 
-    /**
-     * @return RSTLanguage[]
-     */
+    /** @return RSTLanguage[] */
     public function detectLanguages(string $docsDir): array
     {
         if (! is_dir($docsDir)) {
@@ -37,9 +35,7 @@ class RSTLanguagesDetector
         });
     }
 
-    /**
-     * @return RSTLanguage[]
-     */
+    /** @return RSTLanguage[] */
     private function detectLanguagesInDirectory(string $docsDir): array
     {
         $finder = (new Finder())
@@ -68,7 +64,7 @@ class RSTLanguagesDetector
 
                 $languages[] = new RSTLanguage(
                     $languageCode,
-                    $languagePath
+                    $languagePath,
                 );
             }
 

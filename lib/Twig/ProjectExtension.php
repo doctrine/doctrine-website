@@ -27,9 +27,7 @@ class ProjectExtension extends Twig_Extension
         $this->sourceDir         = $sourceDir;
     }
 
-    /**
-     * @return Twig_SimpleFunction[]
-     */
+    /** @return Twig_SimpleFunction[] */
     public function getFunctions(): array
     {
         return [

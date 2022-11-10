@@ -31,9 +31,7 @@ final class TeamMemberHydrator extends ModelHydrator
         return TeamMember::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->name        = (string) ($data['name'] ?? '');

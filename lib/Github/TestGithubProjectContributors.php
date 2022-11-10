@@ -18,9 +18,7 @@ class TestGithubProjectContributors implements GithubProjectContributors
         $this->teamMemberRepository = $teamMemberRepository;
     }
 
-    /**
-     * @param Project[] $projects
-     */
+    /** @param Project[] $projects */
     public function warmProjectsContributors(array $projects): void
     {
     }
@@ -33,9 +31,7 @@ class TestGithubProjectContributors implements GithubProjectContributors
     {
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getProjectContributors(Project $project): array
     {
         $projectContributors = [];

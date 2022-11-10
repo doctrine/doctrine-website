@@ -27,9 +27,7 @@ final class PartnerHydrator extends ModelHydrator
         return Partner::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->name     = (string) ($data['name'] ?? '');
@@ -41,7 +39,7 @@ final class PartnerHydrator extends ModelHydrator
 
         $this->details = new PartnerDetails(
             (string) ($data['details']['label'] ?? ''),
-            $data['details']['items'] ?? []
+            $data['details']['items'] ?? [],
         );
 
         $this->utmParameters = new UtmParameters(
@@ -51,8 +49,8 @@ final class PartnerHydrator extends ModelHydrator
                     'utm_medium'   => 'website',
                     'utm_campaign' => 'partners',
                 ],
-                $data['utmParameters'] ?? []
-            )
+                $data['utmParameters'] ?? [],
+            ),
         );
     }
 }

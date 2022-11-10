@@ -15,9 +15,7 @@ final class CommittersStats implements CommitterStats
     /** @var int */
     private $numDeletions = 0;
 
-    /**
-     * @param CommitterStats[] $committersStats
-     */
+    /** @param CommitterStats[] $committersStats */
     public function __construct(array $committersStats)
     {
         foreach ($committersStats as $committerStats) {

@@ -12,9 +12,7 @@ class WebsiteData
     /** @var mixed[] */
     private $data;
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     public function __construct(string $name, array $data)
     {
         $this->name = $name;
@@ -26,9 +24,7 @@ class WebsiteData
         return $this->name;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getData(): array
     {
         return $this->data;

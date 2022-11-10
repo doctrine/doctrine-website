@@ -34,7 +34,7 @@ class BlogPostDataBuilderTest extends TestCase
                 'authorName' => 'Jonathan H. Wage',
                 'authorEmail' => 'jonwage@gmail.com',
                 'slug' => 'test1',
-            ])
+            ]),
         );
 
         $sourceFile2 = new SourceFile(
@@ -46,7 +46,7 @@ class BlogPostDataBuilderTest extends TestCase
                 'authorName' => 'Jonathan H. Wage',
                 'authorEmail' => 'jonwage@gmail.com',
                 'slug' => 'test2',
-            ])
+            ]),
         );
 
         $sourceFiles = [$sourceFile1, $sourceFile2];
@@ -88,7 +88,7 @@ class BlogPostDataBuilderTest extends TestCase
         $this->sourceFileFilesystemReader = $this->createMock(SourceFileFilesystemReader::class);
 
         $this->blogPostDataBuilder = new BlogPostDataBuilder(
-            $this->sourceFileFilesystemReader
+            $this->sourceFileFilesystemReader,
         );
     }
 }

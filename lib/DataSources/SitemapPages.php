@@ -18,9 +18,7 @@ class SitemapPages implements DataSource
         $this->sourceFileRepository = $sourceFileRepository;
     }
 
-    /**
-     * @return mixed[][]
-     */
+    /** @return mixed[][] */
     public function getSourceRows(): array
     {
         $sitemapPages = [];

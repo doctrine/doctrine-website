@@ -51,9 +51,7 @@ class ProjectVersion
     /** @var Tag[] */
     private $tags;
 
-    /**
-     * @param mixed[] $version
-     */
+    /** @param mixed[] $version */
     public function __construct(array $version)
     {
         $this->name       = (string) ($version['name'] ?? '');
@@ -132,25 +130,19 @@ class ProjectVersion
         return $this->hasDocs;
     }
 
-    /**
-     * @return RSTLanguage[]
-     */
+    /** @return RSTLanguage[] */
     public function getDocsLanguages(): array
     {
         return $this->docsLanguages;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function getAliases(): array
     {
         return $this->aliases;
     }
 
-    /**
-     * @return Tag[]
-     */
+    /** @return Tag[] */
     public function getTags(): array
     {
         return $this->tags;

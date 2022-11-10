@@ -12,9 +12,7 @@ use function substr;
 
 class CodeBlockConsoleRenderer
 {
-    /**
-     * @param string[] $lines
-     */
+    /** @param string[] $lines */
     public function render(array $lines): string
     {
         $code = '<div class="console">';

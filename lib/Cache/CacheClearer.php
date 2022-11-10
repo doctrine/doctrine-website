@@ -26,9 +26,7 @@ class CacheClearer
         $this->rootDir    = $rootDir;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function clear(string $buildDir): array
     {
         // clear build directory
@@ -37,12 +35,12 @@ class CacheClearer
         // built rst docs
         $remove[] = sprintf(
             '%s/source/projects/*',
-            $this->rootDir
+            $this->rootDir,
         );
 
         $remove[] = sprintf(
             '%s/cache/*',
-            $this->rootDir
+            $this->rootDir,
         );
 
         $matches = [];
@@ -64,9 +62,7 @@ class CacheClearer
         return $dirs;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     protected function glob(string $pattern): array
     {
         return array_filter((array) glob($pattern));

@@ -69,13 +69,13 @@ class EventParticipantsCommand extends Command
                 'save',
                 null,
                 InputOption::VALUE_NONE,
-                'Save new participants that are found.'
+                'Save new participants that are found.',
             )
             ->addOption(
                 'email',
                 null,
                 InputOption::VALUE_NONE,
-                'E-Mail new participants that are found.'
+                'E-Mail new participants that are found.',
             );
     }
 
@@ -116,7 +116,7 @@ class EventParticipantsCommand extends Command
 
             $rows = $this->createEventParticipantsTableRows(
                 $eventParticipants,
-                $newEventParticipants
+                $newEventParticipants,
             );
 
             $io->table($header, $rows);
@@ -141,7 +141,7 @@ class EventParticipantsCommand extends Command
 
                 return [$participant->getEmail(), $participant->getQuantity(), $isNew];
             },
-            $eventParticipants
+            $eventParticipants,
         );
     }
 
@@ -158,9 +158,7 @@ class EventParticipantsCommand extends Command
         });
     }
 
-    /**
-     * @param EventParticipant[] $eventParticipants
-     */
+    /** @param EventParticipant[] $eventParticipants */
     private function saveEventParticipants(array $eventParticipants): void
     {
         foreach ($eventParticipants as $eventParticipant) {
@@ -170,9 +168,7 @@ class EventParticipantsCommand extends Command
         $this->entityManager->flush();
     }
 
-    /**
-     * @param EventParticipant[] $eventParticipants
-     */
+    /** @param EventParticipant[] $eventParticipants */
     private function emailEventParticipants(
         SymfonyStyle $io,
         Event $event,

@@ -28,9 +28,7 @@ class EventRepository extends BasicObjectRepository
         return $event;
     }
 
-    /**
-     * @return Event[]
-     */
+    /** @return Event[] */
     public function findUpcomingEvents(): array
     {
         /** @var Event[] $events */
@@ -42,9 +40,7 @@ class EventRepository extends BasicObjectRepository
         return (new ArrayCollection($events))->matching($criteria)->toArray();
     }
 
-    /**
-     * @return Event[]
-     */
+    /** @return Event[] */
     public function findPastEvents(): array
     {
         /** @var Event[] $events */

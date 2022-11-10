@@ -18,9 +18,7 @@ class VersionAddedDirective extends Directive
         return 'versionadded';
     }
 
-    /**
-     * @param string[] $options
-     */
+    /** @param string[] $options */
     public function process(
         Parser $parser,
         ?Node $node,

@@ -11,9 +11,7 @@ use Doctrine\Website\Repositories\TeamMemberRepository;
 
 use function assert;
 
-/**
- * @template-extends AbstractLazyCollection<string, EventSpeaker>
- */
+/** @template-extends AbstractLazyCollection<string, EventSpeaker> */
 final class EventSpeakers extends AbstractLazyCollection
 {
     /** @var mixed[] */
@@ -22,9 +20,7 @@ final class EventSpeakers extends AbstractLazyCollection
     /** @var ObjectManagerInterface */
     private $objectManager;
 
-    /**
-     * @param mixed[] $event
-     */
+    /** @param mixed[] $event */
     public function __construct(array $event, ObjectManagerInterface $objectManager)
     {
         $this->event         = $event;
@@ -53,7 +49,7 @@ final class EventSpeakers extends AbstractLazyCollection
                 (string) ($speaker['topic'] ?? ''),
                 $topicSlug,
                 (string) ($speaker['description'] ?? ''),
-                (string) ($speaker['youTubeVideoId'] ?? '')
+                (string) ($speaker['youTubeVideoId'] ?? ''),
             );
         }
 

@@ -9,9 +9,7 @@ use Doctrine\Website\Model\SitemapPage;
 
 class SitemapPageRepository extends BasicObjectRepository
 {
-    /**
-     * @return SitemapPage[]
-     */
+    /** @return SitemapPage[] */
     public function findAll(): array
     {
         /** @var SitemapPage[] $sitemapPages */

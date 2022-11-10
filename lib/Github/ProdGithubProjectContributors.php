@@ -30,9 +30,7 @@ class ProdGithubProjectContributors implements GithubProjectContributors
         $this->githubClient    = $githubClient;
     }
 
-    /**
-     * @param Project[] $projects
-     */
+    /** @param Project[] $projects */
     public function warmProjectsContributors(array $projects): void
     {
         foreach ($projects as $project) {
@@ -77,22 +75,18 @@ class ProdGithubProjectContributors implements GithubProjectContributors
             sprintf(
                 'Waited for %d seconds with %d checks but could not get contributor data.',
                 $waited,
-                $count
-            )
+                $count,
+            ),
         );
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getProjectContributors(Project $project): array
     {
         return $this->doGetProjectContributors($project, true);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     private function doGetProjectContributors(Project $project, bool $throwOnEmpty): array
     {
         $id = sprintf('doctrine-%s-contributors-data', $project->getSlug());
@@ -115,7 +109,7 @@ class ProdGithubProjectContributors implements GithubProjectContributors
         if ($contributors === [] && $throwOnEmpty) {
             throw new RuntimeException(sprintf(
                 'The GitHub API should not return an empty array here for repository %s.',
-                $repositoryName
+                $repositoryName,
             ));
         }
 

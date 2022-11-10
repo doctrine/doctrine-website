@@ -73,9 +73,7 @@ final class EventHydrator extends ModelHydrator
         return Event::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->id   = (int) ($data['id'] ?? 0);
@@ -84,7 +82,7 @@ final class EventHydrator extends ModelHydrator
         if ($this->type === EventType::CONFERENCE) {
             if (! isset($data['location'])) {
                 throw new InvalidArgumentException(
-                    sprintf('Event type of "%s" must provide a "location" field.', $this->type)
+                    sprintf('Event type of "%s" must provide a "location" field.', $this->type),
                 );
             }
 
@@ -96,8 +94,8 @@ final class EventHydrator extends ModelHydrator
                     (string) ($data['location']['address']['city'] ?? ''),
                     (string) ($data['location']['address']['state'] ?? ''),
                     (string) ($data['location']['address']['zipCode'] ?? ''),
-                    (string) ($data['location']['address']['countryCode'] ?? '')
-                )
+                    (string) ($data['location']['address']['countryCode'] ?? ''),
+                ),
             );
         }
 
@@ -110,7 +108,7 @@ final class EventHydrator extends ModelHydrator
 
             if (! isset($data['sku'][$skuKey])) {
                 throw new InvalidArgumentException(
-                    sprintf('Sku key with "%s" does not exist.', $skuKey)
+                    sprintf('Sku key with "%s" does not exist.', $skuKey),
                 );
             }
 
@@ -127,8 +125,8 @@ final class EventHydrator extends ModelHydrator
             (string) ($data['cfp']['googleFormId'] ?? ''),
             new DateTimeRange(
                 new DateTimeImmutable($data['cfp']['startDate'] ?? ''),
-                new DateTimeImmutable($data['cfp']['endDate'] ?? '')
-            )
+                new DateTimeImmutable($data['cfp']['endDate'] ?? ''),
+            ),
         );
 
         $this->sponsors = new EventSponsors($data);
@@ -141,12 +139,12 @@ final class EventHydrator extends ModelHydrator
 
             $this->dateTimeRange = new DateTimeRange(
                 new DateTimeImmutable($firstSlot['startDate'] ?? ''),
-                new DateTimeImmutable($lastSlot['endDate'] ?? '')
+                new DateTimeImmutable($lastSlot['endDate'] ?? ''),
             );
         } else {
             $this->dateTimeRange = new DateTimeRange(
                 new DateTimeImmutable($data['startDate'] ?? ''),
-                new DateTimeImmutable($data['endDate'] ?? '')
+                new DateTimeImmutable($data['endDate'] ?? ''),
             );
         }
 
@@ -156,7 +154,7 @@ final class EventHydrator extends ModelHydrator
                 : $this->dateTimeRange->getStart(),
             isset($data['registrationEndDate'])
                 ? new DateTimeImmutable($data['registrationEndDate'])
-                : $this->dateTimeRange->getEnd()
+                : $this->dateTimeRange->getEnd(),
         );
 
         $this->description = (string) ($data['description'] ?? '');
@@ -165,7 +163,7 @@ final class EventHydrator extends ModelHydrator
 
         $this->participants = new EventParticipants(
             $data['id'],
-            $this->eventParticipantRepository
+            $this->eventParticipantRepository,
         );
     }
 }

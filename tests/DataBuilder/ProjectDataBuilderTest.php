@@ -114,7 +114,7 @@ class ProjectDataBuilderTest extends TestCase
                     new RSTLanguage('en', '/path/to/en'),
                 ],
                 [],
-                []
+                [],
             );
 
         $this->projectGitSyncer->expects(self::exactly(2))
@@ -214,7 +214,7 @@ class ProjectDataBuilderTest extends TestCase
             $this->projectVersionsReader,
             $this->rstLanguagesDetector,
             $this->getProjectPackagistData,
-            $this->projectsDir
+            $this->projectsDir,
         );
     }
 }

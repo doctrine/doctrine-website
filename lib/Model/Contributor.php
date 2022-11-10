@@ -65,9 +65,7 @@ class Contributor implements LoadMetadataInterface, CommitterStats
         return $this->numDeletions;
     }
 
-    /**
-     * @return Project[]
-     */
+    /** @return Project[] */
     public function getProjects(): array
     {
         return $this->projects;

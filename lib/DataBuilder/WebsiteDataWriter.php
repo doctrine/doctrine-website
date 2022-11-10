@@ -34,7 +34,7 @@ class WebsiteDataWriter
 
         file_put_contents(
             $path,
-            json_encode($websiteData->getData(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+            json_encode($websiteData->getData(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
         );
     }
 }

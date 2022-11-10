@@ -30,9 +30,7 @@ class CodeBlockLanguageDetector
         $this->rootDir = $rootDir;
     }
 
-    /**
-     * @param string[] $lines
-     */
+    /** @param string[] $lines */
     public function detectLanguage(string $language, array $lines): string
     {
         $this->registerHighlighter();

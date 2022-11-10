@@ -11,17 +11,13 @@ final class ArrayDataSource implements DataSource
     /** @var mixed[] */
     private $sourceRows;
 
-    /**
-     * @param mixed[] $sourceRows
-     */
+    /** @param mixed[] $sourceRows */
     public function __construct(array $sourceRows)
     {
         $this->sourceRows = $sourceRows;
     }
 
-    /**
-     * @return mixed[][]
-     */
+    /** @return mixed[][] */
     public function getSourceRows(): array
     {
         return $this->sourceRows;

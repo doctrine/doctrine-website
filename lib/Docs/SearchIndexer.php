@@ -56,9 +56,7 @@ class SearchIndexer
         $index->clearIndex();
     }
 
-    /**
-     * @param DocumentNode[] $documents
-     */
+    /** @param DocumentNode[] $documents */
     public function buildSearchIndexes(
         Project $project,
         ProjectVersion $version,
@@ -73,9 +71,7 @@ class SearchIndexer
         $this->getSearchIndex()->addObjects($records);
     }
 
-    /**
-     * @param mixed[][] $records
-     */
+    /** @param mixed[][] $records */
     private function buildDocumentSearchRecords(
         DocumentNode $document,
         array &$records,
@@ -121,7 +117,7 @@ class SearchIndexer
                 $current,
                 $currentLink,
                 $project,
-                $version
+                $version,
             );
         }
     }

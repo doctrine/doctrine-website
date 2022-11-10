@@ -154,17 +154,13 @@ class Project implements LoadMetadataInterface
         return $this->description;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function getKeywords(): array
     {
         return $this->keywords;
     }
 
-    /**
-     * @return ProjectVersion[]
-     */
+    /** @return ProjectVersion[] */
     public function getVersions(?Closure $filter = null): array
     {
         if ($filter !== null) {
@@ -174,9 +170,7 @@ class Project implements LoadMetadataInterface
         return $this->versions;
     }
 
-    /**
-     * @return ProjectVersion[]
-     */
+    /** @return ProjectVersion[] */
     public function getMaintainedVersions(): array
     {
         return $this->getVersions(static function (ProjectVersion $version): bool {
@@ -184,9 +178,7 @@ class Project implements LoadMetadataInterface
         });
     }
 
-    /**
-     * @return ProjectVersion[]
-     */
+    /** @return ProjectVersion[] */
     public function getUnmaintainedVersions(): array
     {
         return $this->getVersions(static function (ProjectVersion $version): bool {
@@ -194,9 +186,7 @@ class Project implements LoadMetadataInterface
         });
     }
 
-    /**
-     * @throws InvalidArgumentException
-     */
+    /** @throws InvalidArgumentException */
     public function getVersion(string $slug): ProjectVersion
     {
         $projectVersion = $this->getVersions(static function (ProjectVersion $version) use ($slug): bool {

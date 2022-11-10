@@ -9,9 +9,7 @@ use Doctrine\Website\Model\DoctrineUser;
 
 class DoctrineUserRepository extends BasicObjectRepository
 {
-    /**
-     * @return DoctrineUser[]
-     */
+    /** @return DoctrineUser[] */
     public function findAll(): array
     {
         /** @var DoctrineUser[] $doctrineUsers */

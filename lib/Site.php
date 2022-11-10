@@ -11,9 +11,7 @@ final class Site extends BaseSite
     /** @var string */
     private $assetsUrl;
 
-    /**
-     * @param string[] $keywords
-     */
+    /** @param string[] $keywords */
     public function __construct(
         string $title,
         string $subtitle,
@@ -31,7 +29,7 @@ final class Site extends BaseSite
             $keywords,
             $description,
             $env,
-            $googleAnalyticsTrackingId
+            $googleAnalyticsTrackingId,
         );
 
         $this->assetsUrl = $assetsUrl;

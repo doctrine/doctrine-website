@@ -24,9 +24,7 @@ final class RenderEmail
     /** @var AbstractExtension[] */
     private $extensions;
 
-    /**
-     * @param AbstractExtension[] $extensions
-     */
+    /** @param AbstractExtension[] $extensions */
     public function __construct(
         Emogrifier $emogrifier,
         string $templatesDir,
@@ -37,9 +35,7 @@ final class RenderEmail
         $this->extensions   = $extensions;
     }
 
-    /**
-     * @param mixed[] $parameters
-     */
+    /** @param mixed[] $parameters */
     public function __invoke(string $template, array $parameters): RenderedEmail
     {
         $twig = $this->createTwigEnvironment($this->createFilesystemLoader());

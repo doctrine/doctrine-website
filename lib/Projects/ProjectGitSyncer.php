@@ -47,7 +47,7 @@ class ProjectGitSyncer
         $command = sprintf(
             'git clone https://github.com/doctrine/%s.git %s',
             escapeshellarg($repositoryName),
-            escapeshellarg($repositoryPath)
+            escapeshellarg($repositoryPath),
         );
 
         $this->processFactory->run($command);
@@ -65,7 +65,7 @@ class ProjectGitSyncer
         $command = sprintf(
             'cd %s && git clean -xdf && git checkout origin/%s',
             escapeshellarg($this->getRepositoryPath($repositoryName)),
-            escapeshellarg($branchName)
+            escapeshellarg($branchName),
         );
 
         $this->processFactory->run($command);
@@ -76,7 +76,7 @@ class ProjectGitSyncer
         $command = sprintf(
             'cd %s && git clean -xdf && git checkout tags/%s',
             escapeshellarg($this->getRepositoryPath($repositoryName)),
-            escapeshellarg($tagName)
+            escapeshellarg($tagName),
         );
 
         $this->processFactory->run($command);
@@ -86,7 +86,7 @@ class ProjectGitSyncer
     {
         $command = sprintf(
             'cd %s && git clean -xdf && git fetch origin',
-            escapeshellarg($this->getRepositoryPath($repositoryName))
+            escapeshellarg($this->getRepositoryPath($repositoryName)),
         );
 
         $this->processFactory->run($command);

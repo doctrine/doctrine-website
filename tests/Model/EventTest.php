@@ -58,22 +58,22 @@ final class EventTest extends TestCase
     {
         self::assertEquals(
             new DateTimeImmutable('2019-05-28 11:00:00'),
-            $this->createTestEvent()->getDates()->getStart()
+            $this->createTestEvent()->getDates()->getStart(),
         );
 
         self::assertEquals(
             new DateTimeImmutable('2019-05-28 11:00:00'),
-            $this->createTestEvent()->getStartDate()
+            $this->createTestEvent()->getStartDate(),
         );
 
         self::assertEquals(
             new DateTimeImmutable('2019-05-28 11:45:00'),
-            $this->createTestEvent()->getDates()->getEnd()
+            $this->createTestEvent()->getDates()->getEnd(),
         );
 
         self::assertEquals(
             new DateTimeImmutable('2019-05-28 11:45:00'),
-            $this->createTestEvent()->getEndDate()
+            $this->createTestEvent()->getEndDate(),
         );
 
         self::assertSame(0, $this->createTestEvent()->getDates()->getNumDays());
@@ -104,12 +104,12 @@ final class EventTest extends TestCase
     {
         self::assertEquals(
             new DateTimeImmutable('2019-05-01'),
-            $this->createTestEvent()->getRegistrationDates()->getStart()
+            $this->createTestEvent()->getRegistrationDates()->getStart(),
         );
 
         self::assertEquals(
             new DateTimeImmutable('2019-05-27'),
-            $this->createTestEvent()->getRegistrationDates()->getEnd()
+            $this->createTestEvent()->getRegistrationDates()->getEnd(),
         );
     }
 
@@ -119,22 +119,22 @@ final class EventTest extends TestCase
 
         self::assertSame(
             'https://docs.google.com/forms/d/e/123/viewform',
-            $this->createTestEvent()->getCfp()->getGoogleFormUrl()
+            $this->createTestEvent()->getCfp()->getGoogleFormUrl(),
         );
 
         self::assertSame(
             'https://docs.google.com/forms/d/e/123/viewform?embedded=true',
-            $this->createTestEvent()->getCfp()->getEmbeddedGoogleFormUrl()
+            $this->createTestEvent()->getCfp()->getEmbeddedGoogleFormUrl(),
         );
 
         self::assertEquals(
             new DateTimeImmutable('2019-05-01'),
-            $this->createTestEvent()->getCfp()->getDates()->getStart()
+            $this->createTestEvent()->getCfp()->getDates()->getStart(),
         );
 
         self::assertEquals(
             new DateTimeImmutable('2019-05-02'),
-            $this->createTestEvent()->getCfp()->getDates()->getEnd()
+            $this->createTestEvent()->getCfp()->getDates()->getEnd(),
         );
     }
 
@@ -178,7 +178,7 @@ final class EventTest extends TestCase
         self::assertSame('https://blackfire.io/', $sponsor->getUrl());
         self::assertSame(
             'https://blackfire.io/?utm_source=doctrine&utm_medium=website&utm_campaign=doctrine-for-beginners',
-            $sponsor->getUrlWithUtmParameters()
+            $sponsor->getUrlWithUtmParameters(),
         );
         self::assertSame('/images/blackfire.svg', $sponsor->getLogo());
     }
@@ -222,9 +222,7 @@ final class EventTest extends TestCase
         self::assertFalse($this->createTestEvent(['price' => 5.00])->isFree());
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     private function createTestEvent(array $data = []): Event
     {
         return $this->createEvent(array_merge([

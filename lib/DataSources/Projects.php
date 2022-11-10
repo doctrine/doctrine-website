@@ -18,9 +18,7 @@ class Projects implements DataSource
         $this->dataReader = $dataReader;
     }
 
-    /**
-     * @return mixed[][]
-     */
+    /** @return mixed[][] */
     public function getSourceRows(): array
     {
         return $this->dataReader

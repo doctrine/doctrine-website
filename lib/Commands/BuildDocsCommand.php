@@ -38,20 +38,20 @@ class BuildDocsCommand extends Command
                 null,
                 InputOption::VALUE_REQUIRED,
                 'The project to build the docs for.',
-                ''
+                '',
             )
             ->addOption(
                 'v',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'The project version to build the docs for.',
-                ''
+                '',
             )
             ->addOption(
                 'search',
                 null,
                 InputOption::VALUE_NONE,
-                'Build the search indexes.'
+                'Build the search indexes.',
             );
     }
 
@@ -70,7 +70,7 @@ class BuildDocsCommand extends Command
             $output,
             $projectToBuild,
             $versionToBuild,
-            $buildSearchIndexes
+            $buildSearchIndexes,
         );
 
         return 0;

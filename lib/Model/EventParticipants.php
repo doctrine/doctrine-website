@@ -9,9 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Website\Model\Entity\EventParticipant;
 use Doctrine\Website\Model\Entity\EventParticipantRepository;
 
-/**
- * @template-extends AbstractLazyCollection<int, EventParticipant>
- */
+/** @template-extends AbstractLazyCollection<int, EventParticipant> */
 final class EventParticipants extends AbstractLazyCollection
 {
     /** @var int */

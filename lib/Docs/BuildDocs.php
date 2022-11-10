@@ -67,7 +67,7 @@ class BuildDocs
                     $output->writeln(sprintf(
                         'Nothing to build for <info>%s</info> (<comment>%s</comment>)',
                         $project->getSlug(),
-                        $version->getSlug()
+                        $version->getSlug(),
                     ));
 
                     continue;
@@ -76,7 +76,7 @@ class BuildDocs
                 $output->writeln(sprintf(
                     '<info>%s</info> (<comment>%s</comment>)',
                     $project->getSlug(),
-                    $version->getSlug()
+                    $version->getSlug(),
                 ));
 
                 $output->writeln(sprintf(' - checking out %s', $version->getName()));
@@ -84,18 +84,18 @@ class BuildDocs
                 if ($version->hasBranchName()) {
                     $this->projectGitSyncer->checkoutBranch(
                         $project->getRepositoryName(),
-                        $version->getBranchName()
+                        $version->getBranchName(),
                     );
                 } else {
                     if (! $version->hasTags()) {
                         throw new UnexpectedValueException(
-                            sprintf('Version %s has neither branchname nor tag', $version->getSlug())
+                            sprintf('Version %s has neither branchname nor tag', $version->getSlug()),
                         );
                     }
 
                     $this->projectGitSyncer->checkoutTag(
                         $project->getRepositoryName(),
-                        $version->getLatestTag()->getName()
+                        $version->getLatestTag()->getName(),
                     );
                 }
 
@@ -146,9 +146,7 @@ class BuildDocs
         });
     }
 
-    /**
-     * @return ProjectVersion[]
-     */
+    /** @return ProjectVersion[] */
     private function getProjectVersionsToBuild(Project $project, string $versionToBuild): array
     {
         return array_filter($project->getVersions(), static function (ProjectVersion $version) use ($versionToBuild): bool {

@@ -39,7 +39,7 @@ class TagBranchGuesserTest extends TestCase
 
         $branchName = $this->tagBranchGuesser->guessTagBranchName(
             $repositoryPath,
-            $tag
+            $tag,
         );
 
         self::assertSame('2.0', $branchName);
@@ -64,7 +64,7 @@ class TagBranchGuesserTest extends TestCase
 
         $branchName = $this->tagBranchGuesser->guessTagBranchName(
             $repositoryPath,
-            $tag
+            $tag,
         );
 
         self::assertSame('2.0.x', $branchName);
@@ -89,7 +89,7 @@ class TagBranchGuesserTest extends TestCase
 
         $branchName = $this->tagBranchGuesser->guessTagBranchName(
             $repositoryPath,
-            $tag
+            $tag,
         );
 
         self::assertNull($branchName);
@@ -107,7 +107,7 @@ class TagBranchGuesserTest extends TestCase
         $this->processFactory = $this->createMock(ProcessFactory::class);
 
         $this->tagBranchGuesser = new TagBranchGuesser(
-            $this->processFactory
+            $this->processFactory,
         );
     }
 }

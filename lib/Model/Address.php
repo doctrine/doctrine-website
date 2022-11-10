@@ -81,7 +81,7 @@ final class Address
             $this->city,
             $this->state,
             $this->zipCode,
-            $this->countryCode
+            $this->countryCode,
         );
     }
 }

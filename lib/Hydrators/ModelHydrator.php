@@ -29,9 +29,7 @@ abstract class ModelHydrator extends ObjectHydrator
         $this->classMetadata = $this->objectManager->getClassMetadata($this->getClassName());
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     abstract protected function doHydrate(array $data): void;
 
     abstract protected function getClassName(): string;
@@ -49,17 +47,13 @@ abstract class ModelHydrator extends ObjectHydrator
         $this->doHydrate($data);
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return mixed */
     public function __get(string $field)
     {
         return $this->getReflectionProperty($field)->getValue($this->object);
     }
 
-    /**
-     * @param mixed $value
-     */
+    /** @param mixed $value */
     public function __set(string $field, $value): void
     {
         $this->getReflectionProperty($field)->setValue($this->object, $value);

@@ -12,9 +12,7 @@ class GetProjectPackagistData
 {
     private const PACKAGIST_URL_FORMAT = 'https://packagist.org/packages/%s.json';
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function __invoke(string $composerPackageName): array
     {
         $packagistUrl = sprintf(self::PACKAGIST_URL_FORMAT, $composerPackageName);

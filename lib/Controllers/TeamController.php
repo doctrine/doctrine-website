@@ -37,7 +37,7 @@ class TeamController
 
         return new Response(
             ['contributor' => $contributor],
-            '/team/member.html.twig'
+            '/team/member.html.twig',
         );
     }
 }

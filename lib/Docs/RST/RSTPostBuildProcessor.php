@@ -16,7 +16,7 @@ use function strpos;
 
 class RSTPostBuildProcessor
 {
-    public const PARAMETERS_TEMPLATE = <<<TEMPLATE
+    public const PARAMETERS_TEMPLATE = <<<'TEMPLATE'
 ---
 title: "%s"
 docsIndex: %s
@@ -49,7 +49,7 @@ TEMPLATE;
         $projectVersionDocsOutputPath = $project->getProjectVersionDocsOutputPath(
             $this->sourceDir,
             $version,
-            $language->getCode()
+            $language->getCode(),
         );
 
         $this->filesystem->remove($this->rstFileRepository->findMetaFiles($projectVersionDocsOutputPath));
@@ -74,7 +74,7 @@ TEMPLATE;
             $version,
             $language,
             $file,
-            $contents
+            $contents,
         );
 
         $this->filesystem->dumpFile($file, $processedContents);
@@ -124,7 +124,7 @@ TEMPLATE;
             $title,
             strpos($file, 'index.html') !== false ? 'true' : 'false',
             $docsSourcePath,
-            $contents
+            $contents,
         );
     }
 
@@ -143,7 +143,7 @@ TEMPLATE;
         return preg_replace(
             '/<div class="section" id="(.*)">\n<h(\d)>(.*)<\/h(\d)>/',
             '<div class="section"><a class="section-anchor" id="$1" name="$1"></a><h$2 class="section-header"><a href="#$1">$3<i class="fas fa-link"></i></a></h$2>',
-            $contents
+            $contents,
         );
     }
 

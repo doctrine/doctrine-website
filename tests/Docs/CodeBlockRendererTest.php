@@ -39,9 +39,7 @@ class CodeBlockRendererTest extends TestCase
         self::assertSame('expected', $this->codeBlockRenderer->render($lines, $language));
     }
 
-    /**
-     * @dataProvider getConsoleLanguages
-     */
+    /** @dataProvider getConsoleLanguages */
     public function testRenderConsole(string $consoleLanguage): void
     {
         $lines = [
@@ -58,9 +56,7 @@ class CodeBlockRendererTest extends TestCase
         self::assertSame('expected', $this->codeBlockRenderer->render($lines, $consoleLanguage));
     }
 
-    /**
-     * @return string[][]
-     */
+    /** @return string[][] */
     public function getConsoleLanguages(): array
     {
         return [
@@ -77,7 +73,7 @@ class CodeBlockRendererTest extends TestCase
 
         $this->codeBlockRenderer = new CodeBlockRenderer(
             $this->codeBlockConsoleRenderer,
-            $this->codeBlockWithLineNumbersRenderer
+            $this->codeBlockWithLineNumbersRenderer,
         );
     }
 }

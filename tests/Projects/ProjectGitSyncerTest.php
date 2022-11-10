@@ -48,7 +48,7 @@ class ProjectGitSyncerTest extends TestCase
         $this->projectGitSyncer = new ProjectGitSyncer(
             $this->processFactory,
             $githubClientProvider,
-            $this->projectsDir
+            $this->projectsDir,
         );
     }
 
@@ -62,7 +62,7 @@ class ProjectGitSyncerTest extends TestCase
                 'git clone https://github.com/doctrine/\'%s\'.git \'%s/%s\'',
                 $repositoryName,
                 $this->projectsDir,
-                $repositoryName
+                $repositoryName,
             ));
 
         $this->projectGitSyncer->initRepository($repositoryName);
@@ -76,7 +76,7 @@ class ProjectGitSyncerTest extends TestCase
             ->method('run')
             ->with(sprintf(
                 'cd \'%s/example-project\' && git clean -xdf && git fetch origin',
-                $this->projectsDir
+                $this->projectsDir,
             ));
 
         $this->projectGitSyncer->syncRepository($repositoryName);
@@ -95,7 +95,7 @@ class ProjectGitSyncerTest extends TestCase
             ->method('run')
             ->with(sprintf(
                 'cd \'%s/example-project\' && git clean -xdf && git checkout origin/\'1.0\'',
-                $this->projectsDir
+                $this->projectsDir,
             ));
 
         $this->projectGitSyncer->checkoutDefaultBranch($repositoryName);
@@ -110,7 +110,7 @@ class ProjectGitSyncerTest extends TestCase
             ->method('run')
             ->with(sprintf(
                 'cd \'%s/example-project\' && git clean -xdf && git checkout origin/\'1.0\'',
-                $this->projectsDir
+                $this->projectsDir,
             ));
 
         $this->projectGitSyncer->checkoutBranch($repositoryName, $branchName);

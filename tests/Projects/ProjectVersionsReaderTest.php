@@ -62,7 +62,7 @@ class ProjectVersionsReaderTest extends TestCase
             ]);
 
         $versions = $this->projectVersionsReader->readProjectVersions(
-            $repositoryPath
+            $repositoryPath,
         );
 
         $expected = [
@@ -116,7 +116,7 @@ class ProjectVersionsReaderTest extends TestCase
             ->willReturn('2.0');
 
         $versions = $this->projectVersionsReader->readProjectVersions(
-            $repositoryPath
+            $repositoryPath,
         );
 
         $expected = [
@@ -138,7 +138,7 @@ class ProjectVersionsReaderTest extends TestCase
 
         $this->projectVersionsReader = new ProjectVersionsReader(
             $this->tagReader,
-            $this->tagBranchGuesser
+            $this->tagBranchGuesser,
         );
     }
 }

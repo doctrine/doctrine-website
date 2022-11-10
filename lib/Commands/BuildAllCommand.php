@@ -49,19 +49,19 @@ class BuildAllCommand extends Command
                 'build-dir',
                 InputArgument::OPTIONAL,
                 'The directory where the build repository is cloned.',
-                sprintf('%s/build-%s', $this->rootDir, $this->env)
+                sprintf('%s/build-%s', $this->rootDir, $this->env),
             )
             ->addOption(
                 'clear-build-cache',
                 null,
                 InputOption::VALUE_NONE,
-                'Clear the build cache before building everything.'
+                'Clear the build cache before building everything.',
             )
             ->addOption(
                 'search',
                 null,
                 InputOption::VALUE_NONE,
-                'Build the search indexes.'
+                'Build the search indexes.',
             );
     }
 
@@ -103,9 +103,7 @@ class BuildAllCommand extends Command
         return 0;
     }
 
-    /**
-     * @param mixed[] $arguments
-     */
+    /** @param mixed[] $arguments */
     private function runCommand(string $command, array $arguments): int
     {
         $input = new ArrayInput(array_merge(['command' => $command], $arguments));

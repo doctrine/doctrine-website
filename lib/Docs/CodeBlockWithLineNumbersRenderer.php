@@ -30,7 +30,7 @@ class CodeBlockWithLineNumbersRenderer
 
     private const CODE_LINE_TABLE_COLUMN_TEMPLATE = '<td class="code-line" rowspan="%d">{{ RENDERED_CODE }}</td>';
 
-    private const CODE_BLOCK_TABLE_TEMPLATE = <<<TEMPLATE
+    private const CODE_BLOCK_TABLE_TEMPLATE = <<<'TEMPLATE'
 <pre class="code-block-table">
     <code class="%s">
         <button
@@ -54,9 +54,7 @@ TEMPLATE;
         $this->highlighter = $highlighter;
     }
 
-    /**
-     * @param string[] $lines
-     */
+    /** @param string[] $lines */
     public function render(array $lines, string $language): string
     {
         $renderedCode = $this->renderCode($lines, $language);
@@ -66,7 +64,7 @@ TEMPLATE;
         $lineNumbersTable = str_replace(
             '{{ RENDERED_CODE }}',
             $renderedCode,
-            $this->generateLineNumbersTableTemplate($lines, $codeElementId)
+            $this->generateLineNumbersTableTemplate($lines, $codeElementId),
         );
 
         // trim new lines and white space from html
@@ -77,13 +75,11 @@ TEMPLATE;
             $language,
             $codeElementId,
             $codeElementId,
-            $lineNumbersTable
+            $lineNumbersTable,
         );
     }
 
-    /**
-     * @param string[] $lines
-     */
+    /** @param string[] $lines */
     private function renderCode(array $lines, string $language): string
     {
         $codeToRender = implode("\n", $lines);
@@ -100,9 +96,7 @@ TEMPLATE;
         return $language !== '' && ! in_array($language, self::LANGUAGES_NOT_TO_HIGHLIGHT, true);
     }
 
-    /**
-     * @param string[] $lines
-     */
+    /** @param string[] $lines */
     private function generateLineNumbersTableTemplate(array $lines, string $codeElementId): string
     {
         $lineTableRows = [];
@@ -118,7 +112,7 @@ TEMPLATE;
                 self::LINE_NUMBER_TABLE_COLUMN_TEMPLATE,
                 $anchor,
                 $link,
-                $lineNumber
+                $lineNumber,
             );
 
             if ($lineNumber === 1) {

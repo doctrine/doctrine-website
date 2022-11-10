@@ -42,7 +42,7 @@ class ProjectRequestsTest extends TestCase
         $this->projectRepository = $this->createMock(ProjectRepository::class);
 
         $this->projectRequests = new ProjectRequests(
-            $this->projectRepository
+            $this->projectRepository,
         );
     }
 }

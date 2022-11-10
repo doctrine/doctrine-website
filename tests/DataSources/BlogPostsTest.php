@@ -57,7 +57,7 @@ class BlogPostsTest extends TestCase
         $this->dataReader = $this->createMock(WebsiteDataReader::class);
 
         $this->blogPosts = new BlogPosts(
-            $this->dataReader
+            $this->dataReader,
         );
     }
 }

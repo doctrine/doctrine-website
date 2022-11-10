@@ -22,9 +22,7 @@ final class SponsorHydrator extends ModelHydrator
         return Sponsor::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->name = (string) ($data['name'] ?? '');
@@ -37,8 +35,8 @@ final class SponsorHydrator extends ModelHydrator
                     'utm_medium'   => 'website',
                     'utm_campaign' => 'sponsors',
                 ],
-                $data['utmParameters'] ?? []
-            )
+                $data['utmParameters'] ?? [],
+            ),
         );
 
         $this->highlighted = (bool) ($data['highlighted'] ?? '');

@@ -47,9 +47,7 @@ class CodeBlockDirective extends Directive
         return 'code-block';
     }
 
-    /**
-     * @param string[] $options
-     */
+    /** @param string[] $options */
     public function process(
         Parser $parser,
         ?Node $node,
@@ -83,9 +81,7 @@ class CodeBlockDirective extends Directive
         }
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     private function getLines(string $code): array
     {
         $lines = preg_split('/\r\n|\r|\n/', $code);

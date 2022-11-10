@@ -24,20 +24,18 @@ class CodeBlockRenderer
         $this->codeBlockWithLineNumbersRenderer = $codeBlockWithLineNumbersRenderer;
     }
 
-    /**
-     * @param string[] $lines
-     */
+    /** @param string[] $lines */
     public function render(array $lines, string $language): string
     {
         if (in_array($language, self::CONSOLE_LANGUAGES, true)) {
             return $this->codeBlockConsoleRenderer->render(
-                $lines
+                $lines,
             );
         }
 
         return $this->codeBlockWithLineNumbersRenderer->render(
             $lines,
-            $language
+            $language,
         );
     }
 }

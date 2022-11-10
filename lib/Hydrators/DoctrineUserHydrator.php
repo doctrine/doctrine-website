@@ -17,9 +17,7 @@ final class DoctrineUserHydrator extends ModelHydrator
         return DoctrineUser::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->name = (string) $data['name'];

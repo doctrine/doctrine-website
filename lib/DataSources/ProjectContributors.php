@@ -31,9 +31,7 @@ class ProjectContributors implements DataSource
         $this->projectRepository    = $projectRepository;
     }
 
-    /**
-     * @return mixed[][]
-     */
+    /** @return mixed[][] */
     public function getSourceRows(): array
     {
         $projectContributors = $this->dataReader

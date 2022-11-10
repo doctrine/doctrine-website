@@ -33,9 +33,7 @@ abstract class TestCase extends BaseTestCase
         return self::$container;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function createModel(string $repositoryClassName, array $data): object
     {
         $repository = $this->getContainer()->get($repositoryClassName);
@@ -48,9 +46,7 @@ abstract class TestCase extends BaseTestCase
         return $object;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function createEvent(array $data): Event
     {
         $data['id'] = rand();
@@ -61,9 +57,7 @@ abstract class TestCase extends BaseTestCase
         return $event;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function createProject(array $data): Project
     {
         $project = $this->createModel(ProjectRepository::class, $data);
@@ -72,9 +66,7 @@ abstract class TestCase extends BaseTestCase
         return $project;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function createContributor(array $data): Contributor
     {
         $contributor = $this->createModel(ContributorRepository::class, $data);
@@ -83,9 +75,7 @@ abstract class TestCase extends BaseTestCase
         return $contributor;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function createProjectContributor(array $data): ProjectContributor
     {
         $projectContributor = $this->createModel(ProjectContributorRepository::class, $data);
