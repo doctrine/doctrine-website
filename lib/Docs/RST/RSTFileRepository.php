@@ -18,9 +18,7 @@ use function trim;
 
 class RSTFileRepository
 {
-    /**
-     * @throws InvalidArgumentException
-     */
+    /** @throws InvalidArgumentException */
     public function getFileContents(string $path): string
     {
         $contents = file_get_contents($path);
@@ -32,9 +30,7 @@ class RSTFileRepository
         return trim($contents);
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function findMetaFiles(string $path): array
     {
         $finder = $this->getFilesFinder($path)->name('meta.php');
@@ -42,9 +38,7 @@ class RSTFileRepository
         return $this->finderToArray($finder);
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function findFiles(string $path): array
     {
         if (! is_dir($path)) {
@@ -54,9 +48,7 @@ class RSTFileRepository
         return $this->finderToArray($this->getFilesFinder($path));
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function getSourceFiles(string $path): array
     {
         if (! is_dir($path)) {
@@ -79,9 +71,7 @@ class RSTFileRepository
         return $finder;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     private function finderToArray(Finder $finder): array
     {
         return array_values(array_map(static function (SplFileInfo $file): string {

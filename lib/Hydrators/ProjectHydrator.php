@@ -36,9 +36,7 @@ final class ProjectHydrator extends ModelHydrator
         return Project::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->active              = (bool) ($data['active'] ?? true);
@@ -84,7 +82,7 @@ final class ProjectHydrator extends ModelHydrator
             (int) ($data['packagistData']['package']['suggesters'] ?? 0),
             (int) ($data['packagistData']['package']['downloads']['total'] ?? 0),
             (int) ($data['packagistData']['package']['downloads']['monthly'] ?? 0),
-            (int) ($data['packagistData']['package']['downloads']['daily'] ?? 0)
+            (int) ($data['packagistData']['package']['downloads']['daily'] ?? 0),
         );
     }
 }

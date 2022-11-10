@@ -120,7 +120,7 @@ class Application
             'e',
             InputOption::VALUE_REQUIRED,
             'The environment.',
-            'dev'
+            'dev',
         );
         $this->application->getDefinition()->addOption($inputOption);
 

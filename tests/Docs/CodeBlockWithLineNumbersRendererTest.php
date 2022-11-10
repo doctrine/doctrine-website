@@ -24,7 +24,7 @@ class CodeBlockWithLineNumbersRendererTest extends TestCase
             'echo "Hello World";',
         ], 'php');
 
-        $expected = <<<EXPECTED
+        $expected = <<<'EXPECTED'
 <pre class="code-block-table"><code class="php"><button
             type="button"
             class="copy-to-clipboard"
@@ -45,7 +45,7 @@ EXPECTED;
         $this->highlighter = new Highlighter();
 
         $this->codeBlockWithLineNumbersRenderer = new CodeBlockWithLineNumbersRenderer(
-            $this->highlighter
+            $this->highlighter,
         );
     }
 }

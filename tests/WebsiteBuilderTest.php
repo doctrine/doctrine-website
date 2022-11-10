@@ -86,7 +86,7 @@ class WebsiteBuilderTest extends TestCase
             ->method('filePutContents')
             ->with(
                 '/data/doctrine-website-build-staging/CNAME',
-                'staging.doctrine-project.org'
+                'staging.doctrine-project.org',
             );
 
         $this->processFactory->expects(self::once())

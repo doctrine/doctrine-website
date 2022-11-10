@@ -23,9 +23,7 @@ final class BlogPostHydrator extends ModelHydrator
         return BlogPost::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->url         = (string) ($data['url'] ?? '');

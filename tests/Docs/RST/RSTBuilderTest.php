@@ -60,7 +60,7 @@ class RSTBuilderTest extends TestCase
             $this->rstPostBuildProcessor,
             $this->filesystem,
             $this->sourceDir,
-            $this->docsDir
+            $this->docsDir,
         );
     }
 
@@ -93,7 +93,7 @@ class RSTBuilderTest extends TestCase
             ->method('build')
             ->with(
                 '/docs/docs-slug/en/version-slug',
-                '/source/projects/docs-slug/en/version-slug'
+                '/source/projects/docs-slug/en/version-slug',
             );
 
         $this->rstPostBuildProcessor->expects(self::once())
@@ -118,7 +118,7 @@ class RSTBuilderTest extends TestCase
 
         self::assertSame(
             $documentsArray,
-            $this->rstBuilder->buildRSTDocs($project, $version, $english)
+            $this->rstBuilder->buildRSTDocs($project, $version, $english),
         );
     }
 }

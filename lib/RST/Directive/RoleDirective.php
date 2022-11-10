@@ -16,9 +16,7 @@ class RoleDirective extends SubDirective
         return 'role';
     }
 
-    /**
-     * @param string[] $options
-     */
+    /** @param string[] $options */
     public function processSub(
         Parser $parser,
         ?Node $document,

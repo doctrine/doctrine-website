@@ -12,9 +12,7 @@ final class PartnerDetails
     /** @var string[] */
     private $items;
 
-    /**
-     * @param string[] $items
-     */
+    /** @param string[] $items */
     public function __construct(string $label, array $items)
     {
         $this->label = $label;
@@ -26,9 +24,7 @@ final class PartnerDetails
         return $this->label;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function getItems(): array
     {
         return $this->items;

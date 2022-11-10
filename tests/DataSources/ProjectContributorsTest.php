@@ -38,7 +38,7 @@ class ProjectContributorsTest extends TestCase
         $this->projectContributors = new ProjectContributors(
             $this->dataReader,
             $this->teamMemberRepository,
-            $this->projectRepository
+            $this->projectRepository,
         );
     }
 

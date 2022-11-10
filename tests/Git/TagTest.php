@@ -43,7 +43,7 @@ class TagTest extends TestCase
     {
         $tag = new Tag(
             'v1.0.0',
-            new DateTimeImmutable('1985-09-01')
+            new DateTimeImmutable('1985-09-01'),
         );
 
         self::assertSame('stable', $tag->getStability());
@@ -53,7 +53,7 @@ class TagTest extends TestCase
     {
         $tag = new Tag(
             'v1.0.0-alpha1',
-            new DateTimeImmutable('1985-09-01')
+            new DateTimeImmutable('1985-09-01'),
         );
 
         self::assertSame('alpha', $tag->getStability());
@@ -63,7 +63,7 @@ class TagTest extends TestCase
     {
         $tag = new Tag(
             'v1.0.0-beta1',
-            new DateTimeImmutable('1985-09-01')
+            new DateTimeImmutable('1985-09-01'),
         );
 
         self::assertSame('beta', $tag->getStability());
@@ -73,7 +73,7 @@ class TagTest extends TestCase
     {
         $tag = new Tag(
             'v1.0.0-rc1',
-            new DateTimeImmutable('1985-09-01')
+            new DateTimeImmutable('1985-09-01'),
         );
 
         self::assertSame('rc', $tag->getStability());
@@ -83,7 +83,7 @@ class TagTest extends TestCase
     {
         $tag = new Tag(
             'v0.0.1',
-            new DateTimeImmutable('1985-09-01')
+            new DateTimeImmutable('1985-09-01'),
         );
 
         self::assertSame('dev', $tag->getStability());
@@ -93,7 +93,7 @@ class TagTest extends TestCase
     {
         $tag = new Tag(
             'v0.0.1',
-            new DateTimeImmutable('1985-09-01')
+            new DateTimeImmutable('1985-09-01'),
         );
 
         self::assertTrue($tag->isMajorReleaseZero());
@@ -103,7 +103,7 @@ class TagTest extends TestCase
     {
         $tag = new Tag(
             'v1.0.1',
-            new DateTimeImmutable('1985-09-01')
+            new DateTimeImmutable('1985-09-01'),
         );
 
         self::assertFalse($tag->isMajorReleaseZero());
@@ -116,7 +116,7 @@ class TagTest extends TestCase
 
         $this->tag = new Tag(
             $this->name,
-            $this->date
+            $this->date,
         );
     }
 }

@@ -9,9 +9,7 @@ use Doctrine\Website\Model\Sponsor;
 
 class SponsorRepository extends BasicObjectRepository
 {
-    /**
-     * @return Sponsor[]
-     */
+    /** @return Sponsor[] */
     public function findAllOrderedByHighlighted(): array
     {
         /** @var Sponsor[] $sponsors */

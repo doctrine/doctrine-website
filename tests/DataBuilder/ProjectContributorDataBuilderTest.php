@@ -234,7 +234,7 @@ class ProjectContributorDataBuilderTest extends TestCase
         $this->projectContributorDataBuilder = new ProjectContributorDataBuilder(
             $this->projectRepository,
             $this->teamMemberRepository,
-            $this->githubProjectContributors
+            $this->githubProjectContributors,
         );
     }
 }

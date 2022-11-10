@@ -88,7 +88,7 @@ class WebsiteBuilder
         $output->writeln(sprintf(
             'Building Doctrine website for <info>%s</info> environment at <info>%s</info>.',
             $env,
-            $buildDir
+            $buildDir,
         ));
 
         $isPublishableEnv = in_array($env, self::PUBLISHABLE_ENVS, true);
@@ -114,9 +114,7 @@ class WebsiteBuilder
         file_put_contents($path, $contents);
     }
 
-    /**
-     * @throws RuntimeException
-     */
+    /** @throws RuntimeException */
     private function buildWebsite(OutputInterface $output, string $buildDir, bool $isPublishableEnv): void
     {
         $output->writeln(sprintf(' - clearing build directory <info>%s</info>', $buildDir));
@@ -145,7 +143,7 @@ class WebsiteBuilder
         $process = $this->processFactory->run(sprintf(
             'cd %s && npm run %s',
             $this->rootDir,
-            $isPublishableEnv ? 'build' : 'dev'
+            $isPublishableEnv ? 'build' : 'dev',
         ));
 
         if ($output->isVerbose()) {
@@ -176,7 +174,7 @@ class WebsiteBuilder
                         $buildDir,
                         $project,
                         $version,
-                        $alias
+                        $alias,
                     );
                 }
             }
@@ -191,7 +189,7 @@ class WebsiteBuilder
         $output->writeln(sprintf(
             ' - copying website build data from <info>%s</info> to <info>%s</info>.',
             $from,
-            $to
+            $to,
         ));
 
         $this->filesystem->mirror($from, $to);
@@ -206,7 +204,7 @@ class WebsiteBuilder
         $dir = sprintf(
             '%s/projects/%s/en',
             $buildDir,
-            $project->getDocsSlug()
+            $project->getDocsSlug(),
         );
 
         $this->createVersionAlias($dir, $version, $alias);

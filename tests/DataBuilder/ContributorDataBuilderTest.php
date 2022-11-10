@@ -94,7 +94,7 @@ class ContributorDataBuilderTest extends TestCase
         $this->projectContributorRepository = $this->createMock(ProjectContributorRepository::class);
 
         $this->contributorDataBuilder = new ContributorDataBuilder(
-            $this->projectContributorRepository
+            $this->projectContributorRepository,
         );
     }
 }

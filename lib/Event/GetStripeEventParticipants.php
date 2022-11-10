@@ -17,9 +17,7 @@ use function strtotime;
 
 final class GetStripeEventParticipants
 {
-    /**
-     * @return EventParticipant[]
-     */
+    /** @return EventParticipant[] */
     public function __invoke(Event $event): array
     {
         $stripeCheckouts = $this->getAllEventStripeCheckouts($event);
@@ -58,14 +56,12 @@ final class GetStripeEventParticipants
             return new EventParticipant(
                 $event,
                 $participant['email'],
-                $participant['quantity']
+                $participant['quantity'],
             );
         }, array_values($participants));
     }
 
-    /**
-     * @return mixed[][]
-     */
+    /** @return mixed[][] */
     private function getAllEventStripeCheckouts(Event $event): array
     {
         $allEventStripeCheckouts = [];
@@ -78,7 +74,7 @@ final class GetStripeEventParticipants
 
             $allEventStripeCheckouts = array_merge(
                 $allEventStripeCheckouts,
-                $eventStripeCheckoutsArray
+                $eventStripeCheckoutsArray,
             );
 
             if ($eventStripeCheckouts['has_more'] === false) {
@@ -91,9 +87,7 @@ final class GetStripeEventParticipants
         return $allEventStripeCheckouts;
     }
 
-    /**
-     * @return Stripe\Collection<string, mixed>
-     */
+    /** @return Stripe\Collection<string, mixed> */
     private function getEventStripeCheckouts(
         Event $event,
         ?string $startingAfter = null

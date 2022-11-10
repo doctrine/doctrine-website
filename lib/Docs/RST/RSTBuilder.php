@@ -51,9 +51,7 @@ class RSTBuilder
         $this->docsDir               = $docsDir;
     }
 
-    /**
-     * @return DocumentNode[]
-     */
+    /** @return DocumentNode[] */
     public function buildRSTDocs(Project $project, ProjectVersion $version, RSTLanguage $language): array
     {
         // copy the docs from the project to a central location in $docsDir
@@ -82,7 +80,7 @@ class RSTBuilder
         // which is contained inside the $sourceDir
         $this->builder->build(
             $project->getProjectVersionDocsPath($this->docsDir, $version, $language->getCode()),
-            $outputPath
+            $outputPath,
         );
     }
 }

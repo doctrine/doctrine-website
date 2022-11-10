@@ -36,9 +36,7 @@ final class Sponsor implements LoadMetadataInterface
         return $this->url;
     }
 
-    /**
-     * @param string[] $parameters
-     */
+    /** @param string[] $parameters */
     public function getUrlWithUtmParameters(array $parameters = []): string
     {
         return $this->utmParameters->buildUrl($this->url, $parameters);

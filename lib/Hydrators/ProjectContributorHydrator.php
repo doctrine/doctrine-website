@@ -24,9 +24,7 @@ final class ProjectContributorHydrator extends ModelHydrator
         return ProjectContributor::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->teamMember   = $data['teamMember'] ?? null;

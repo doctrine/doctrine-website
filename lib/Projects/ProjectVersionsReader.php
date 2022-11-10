@@ -25,9 +25,7 @@ class ProjectVersionsReader
         $this->tagBranchGuesser = $tagBranchGuesser;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function readProjectVersions(string $repositoryPath): array
     {
         $tags = $this->getProjectTags($repositoryPath);
@@ -67,9 +65,7 @@ class ProjectVersionsReader
         return array_values($versions);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     private function getProjectTags(string $repositoryPath): array
     {
         $tags = $this->tagReader->getRepositoryTags($repositoryPath);

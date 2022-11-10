@@ -9,17 +9,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 use function array_merge;
 
-/**
- * @template-extends AbstractLazyCollection<int, EventSponsor>
- */
+/** @template-extends AbstractLazyCollection<int, EventSponsor> */
 final class EventSponsors extends AbstractLazyCollection
 {
     /** @var mixed[] */
     private $event;
 
-    /**
-     * @param mixed[] $event
-     */
+    /** @param mixed[] $event */
     public function __construct(array $event)
     {
         $this->event = $event;
@@ -41,9 +37,9 @@ final class EventSponsors extends AbstractLazyCollection
                             'utm_medium'   => 'website',
                             'utm_campaign' => $this->event['slug'],
                         ],
-                        $sponsor['utmParameters'] ?? []
-                    )
-                )
+                        $sponsor['utmParameters'] ?? [],
+                    ),
+                ),
             );
         }
 

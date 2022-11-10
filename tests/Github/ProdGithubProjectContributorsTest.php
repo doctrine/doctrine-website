@@ -31,7 +31,7 @@ class ProdGithubProjectContributorsTest extends TestCase
 
         $this->githubProjectContributors = new ProdGithubProjectContributors(
             $this->filesystemCache,
-            $this->githubClient
+            $this->githubClient,
         );
     }
 

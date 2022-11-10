@@ -12,9 +12,7 @@ use function sprintf;
 
 class ProjectRepository extends BasicObjectRepository
 {
-    /**
-     * @return Project[]
-     */
+    /** @return Project[] */
     public function findAll(): array
     {
         /** @var Project[] $projects */
@@ -45,9 +43,7 @@ class ProjectRepository extends BasicObjectRepository
         return $project;
     }
 
-    /**
-     * @return Project[]
-     */
+    /** @return Project[] */
     public function findPrimaryProjects(): array
     {
         return $this->findBy([
@@ -56,9 +52,7 @@ class ProjectRepository extends BasicObjectRepository
         ], ['name' => 'asc']);
     }
 
-    /**
-     * @return Project[]
-     */
+    /** @return Project[] */
     public function findInactiveProjects(): array
     {
         return $this->findBy([
@@ -67,9 +61,7 @@ class ProjectRepository extends BasicObjectRepository
         ], ['name' => 'asc']);
     }
 
-    /**
-     * @return Project[]
-     */
+    /** @return Project[] */
     public function findArchivedProjects(): array
     {
         return $this->findBy([
@@ -78,9 +70,7 @@ class ProjectRepository extends BasicObjectRepository
         ], ['name' => 'asc']);
     }
 
-    /**
-     * @return Project[]
-     */
+    /** @return Project[] */
     public function findIntegrationProjects(): array
     {
         return $this->findBy([
@@ -89,9 +79,7 @@ class ProjectRepository extends BasicObjectRepository
         ], ['name' => 'asc']);
     }
 
-    /**
-     * @return Project[]
-     */
+    /** @return Project[] */
     public function findProjectIntegrations(Project $project): array
     {
         return $this->findBy([

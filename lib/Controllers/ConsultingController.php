@@ -29,13 +29,11 @@ class ConsultingController
             [
                 'consultants' => $consultants,
                 'consultantsStats' => $consultantsStats,
-            ]
+            ],
         );
     }
 
-    /**
-     * @param TeamMember[] $teamMembers
-     */
+    /** @param TeamMember[] $teamMembers */
     private function createCommittersStats(array $teamMembers): CommittersStats
     {
         return new CommittersStats($teamMembers);

@@ -29,8 +29,8 @@ class WebsiteDataReader
             throw new RuntimeException(
                 sprintf(
                     'File %s does not exist. Run ./doctrine build-website-data to generate.',
-                    $jsonPath
-                )
+                    $jsonPath,
+                ),
             );
         }
 
@@ -38,7 +38,7 @@ class WebsiteDataReader
 
         if ($json === false) {
             throw new RuntimeException(
-                sprintf('Could not load file %s', $jsonPath)
+                sprintf('Could not load file %s', $jsonPath),
             );
         }
 
@@ -46,7 +46,7 @@ class WebsiteDataReader
 
         if ($data === false) {
             throw new RuntimeException(
-                sprintf('Could not load JSON from file %s', $jsonPath)
+                sprintf('Could not load JSON from file %s', $jsonPath),
             );
         }
 

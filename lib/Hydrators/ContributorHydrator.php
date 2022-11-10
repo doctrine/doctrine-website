@@ -22,9 +22,7 @@ final class ContributorHydrator extends ModelHydrator
         return Contributor::class;
     }
 
-    /**
-     * @param mixed[] $data
-     */
+    /** @param mixed[] $data */
     protected function doHydrate(array $data): void
     {
         $this->teamMember   = $data['teamMember'] ?? null;

@@ -18,9 +18,7 @@ final class EventParticipantRepository extends EntityRepository
         return $eventParticipant;
     }
 
-    /**
-     * @return EventParticipant[]
-     */
+    /** @return EventParticipant[] */
     public function findByEventId(int $eventId): array
     {
         /** @var EventParticipant[] $eventParticipants */

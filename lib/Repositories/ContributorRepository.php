@@ -23,17 +23,13 @@ class ContributorRepository extends BasicObjectRepository
         return $contributor;
     }
 
-    /**
-     * @return Contributor[]
-     */
+    /** @return Contributor[] */
     public function findMaintainers(): array
     {
         return $this->findBy(['isTeamMember' => true], ['github' => 'asc']);
     }
 
-    /**
-     * @return Contributor[]
-     */
+    /** @return Contributor[] */
     public function findContributors(): array
     {
         return $this->findBy(['isTeamMember' => false], ['github' => 'asc']);

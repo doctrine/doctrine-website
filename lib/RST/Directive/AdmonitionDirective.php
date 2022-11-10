@@ -38,9 +38,7 @@ class AdmonitionDirective extends SubDirective
         return $this->name;
     }
 
-    /**
-     * @param string[] $options
-     */
+    /** @param string[] $options */
     public function processSub(
         Parser $parser,
         ?Node $document,

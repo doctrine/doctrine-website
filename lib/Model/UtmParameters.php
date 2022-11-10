@@ -12,17 +12,13 @@ final class UtmParameters
     /** @var string[] */
     private $parameters;
 
-    /**
-     * @param string[] $parameters
-     */
+    /** @param string[] $parameters */
     public function __construct(array $parameters)
     {
         $this->parameters = $parameters;
     }
 
-    /**
-     * @param string[] $parameters
-     */
+    /** @param string[] $parameters */
     public function buildUrl(string $url, array $parameters = []): string
     {
         return $url . '?' . http_build_query(array_merge($this->parameters, $parameters));

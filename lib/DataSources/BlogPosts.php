@@ -19,9 +19,7 @@ class BlogPosts implements DataSource
         $this->dataReader = $dataReader;
     }
 
-    /**
-     * @return mixed[][]
-     */
+    /** @return mixed[][] */
     public function getSourceRows(): array
     {
         $blogPosts = $this->dataReader

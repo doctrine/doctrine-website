@@ -43,7 +43,7 @@ class ContributorRequestsTest extends TestCase
         $this->contributorRepository = $this->createMock(ContributorRepository::class);
 
         $this->contributorRequests = new ContributorRequests(
-            $this->contributorRepository
+            $this->contributorRepository,
         );
     }
 }

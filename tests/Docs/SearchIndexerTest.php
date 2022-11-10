@@ -32,7 +32,7 @@ class SearchIndexerTest extends TestCase
         $this->client = $this->createMock(Client::class);
 
         $this->searchIndexer = new SearchIndexer(
-            $this->client
+            $this->client,
         );
     }
 

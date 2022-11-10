@@ -29,7 +29,7 @@ class TagReaderTest extends TestCase
             ->with("cd /test && git tag -l --format='refname: %(refname) creatordate: %(creatordate)'")
             ->willReturn($process);
 
-        $output = <<<OUTPUT
+        $output = <<<'OUTPUT'
 
 this should be ignored
 
@@ -46,7 +46,7 @@ OUTPUT;
             ->willReturn($output);
 
         $tags = $this->tagReader->getRepositoryTags(
-            $repositoryPath
+            $repositoryPath,
         );
 
         self::assertCount(3, $tags);
@@ -65,7 +65,7 @@ OUTPUT;
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
         $this->tagReader      = new TagReader(
-            $this->processFactory
+            $this->processFactory,
         );
     }
 }

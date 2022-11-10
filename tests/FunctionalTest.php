@@ -74,7 +74,7 @@ class FunctionalTest extends TestCase
 
         self::assertSame(
             'https://github.com/doctrine/doctrine-website/edit/master/source/index.html',
-            $editLink->attr('href')
+            $editLink->attr('href'),
         );
     }
 
@@ -88,7 +88,7 @@ class FunctionalTest extends TestCase
 
         self::assertSame(
             'https://github.com/doctrine/doctrine-website/edit/master/source/projects/annotations.html',
-            $editLink->attr('href')
+            $editLink->attr('href'),
         );
     }
 
@@ -102,7 +102,7 @@ class FunctionalTest extends TestCase
 
         self::assertSame(
             'https://github.com/doctrine/annotations/edit/1.6/docs/en/custom.rst',
-            $editLink->attr('href')
+            $editLink->attr('href'),
         );
     }
 
@@ -154,7 +154,7 @@ class FunctionalTest extends TestCase
             // project homepage
             $crawler = $this->assertValid(sprintf(
                 '/projects/%s.html',
-                $project->getSlug()
+                $project->getSlug(),
             ));
 
             self::assertSame($project->getName(), $crawler->filter('h2')->text());
@@ -169,7 +169,7 @@ class FunctionalTest extends TestCase
                 $crawler = $this->assertValid(sprintf(
                     '/projects/%s/en/%s/index.html',
                     $project->getDocsSlug(),
-                    $version->getSlug()
+                    $version->getSlug(),
                 ));
 
                 self::assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));
@@ -177,13 +177,13 @@ class FunctionalTest extends TestCase
 
             self::assertFileNotExists($this->getFullPath(sprintf(
                 '/projects/%s/en/current/meta.php',
-                $project->getDocsSlug()
+                $project->getDocsSlug(),
             )));
 
             // rst docs current symlink
             $crawler = $this->assertValid(sprintf(
                 '/projects/%s/en/current/index.html',
-                $project->getDocsSlug()
+                $project->getDocsSlug(),
             ));
 
             self::assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));
@@ -191,7 +191,7 @@ class FunctionalTest extends TestCase
             // rst docs stable symlink
             $crawler = $this->assertValid(sprintf(
                 '/projects/%s/en/stable/index.html',
-                $project->getDocsSlug()
+                $project->getDocsSlug(),
             ));
 
             self::assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));

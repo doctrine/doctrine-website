@@ -86,9 +86,7 @@ class ProjectDataBuilder implements DataBuilder
         return new WebsiteData(self::DATA_FILE, $projects);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     private function buildProjectData(string $repositoryName): array
     {
         // checkout master branch
@@ -96,16 +94,16 @@ class ProjectDataBuilder implements DataBuilder
 
         $projectData = array_replace(
             self::DEFAULTS,
-            $this->projectDataReader->read($repositoryName)
+            $this->projectDataReader->read($repositoryName),
         );
 
         $projectData['versions'] = $this->buildProjectVersions(
             $repositoryName,
-            $projectData
+            $projectData,
         );
 
         $projectData['packagistData'] = $this->getProjectPackagistData->__invoke(
-            $projectData['composerPackageName']
+            $projectData['composerPackageName'],
         );
 
         return $projectData;
@@ -127,15 +125,13 @@ class ProjectDataBuilder implements DataBuilder
         $this->prepareProjectVersions(
             $repositoryName,
             $projectVersions,
-            $projectData
+            $projectData,
         );
 
         return $projectVersions;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     private function readProjectVersionsFromGit(string $repositoryName): array
     {
         $repositoryPath = $this->projectsDir . '/' . $repositoryName;
@@ -227,12 +223,12 @@ class ProjectDataBuilder implements DataBuilder
             if (! isset($projectVersion['branchName'])) {
                 $this->projectGitSyncer->checkoutTag(
                     $docsRepositoryName,
-                    end($projectVersion['tags'])->getName()
+                    end($projectVersion['tags'])->getName(),
                 );
             } else {
                 $this->projectGitSyncer->checkoutBranch(
                     $docsRepositoryName,
-                    $projectVersion['branchName']
+                    $projectVersion['branchName'],
                 );
             }
 
@@ -264,9 +260,7 @@ class ProjectDataBuilder implements DataBuilder
         return $projectVersions;
     }
 
-    /**
-     * @param mixed[] $projectVersions
-     */
+    /** @param mixed[] $projectVersions */
     private function sortProjectVersions(array &$projectVersions): void
     {
         // sort by name so newest versions are first

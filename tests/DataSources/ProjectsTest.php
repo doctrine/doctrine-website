@@ -24,7 +24,7 @@ class ProjectsTest extends TestCase
         $this->dataReader = $this->createMock(WebsiteDataReader::class);
 
         $this->projects = new Projects(
-            $this->dataReader
+            $this->dataReader,
         );
     }
 

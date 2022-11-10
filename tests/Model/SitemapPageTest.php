@@ -36,7 +36,7 @@ class SitemapPageTest extends TestCase
 
         $this->sitemapPage = new SitemapPage(
             $this->url,
-            $this->date
+            $this->date,
         );
     }
 }

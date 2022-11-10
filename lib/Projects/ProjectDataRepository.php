@@ -9,17 +9,13 @@ class ProjectDataRepository
     /** @var mixed[][] */
     private $projectsData = [];
 
-    /**
-     * @param mixed[][] $projectsData
-     */
+    /** @param mixed[][] $projectsData */
     public function __construct(array $projectsData)
     {
         $this->projectsData = $projectsData;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function getProjectRepositoryNames(): array
     {
         $projectRepositoryNames = [];

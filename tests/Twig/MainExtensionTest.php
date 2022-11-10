@@ -39,7 +39,7 @@ class MainExtensionTest extends TestCase
             $this->assetIntegrityGenerator,
             $this->sourceDir,
             $this->webpackBuildDir,
-            'stripe-publishable-key'
+            'stripe-publishable-key',
         );
     }
 
@@ -76,7 +76,7 @@ class MainExtensionTest extends TestCase
     {
         $url = $this->mainExtension->getAssetUrl(
             '/js/main.js',
-            'http://lcl.doctrine-project.org'
+            'http://lcl.doctrine-project.org',
         );
 
         self::assertSame('http://lcl.doctrine-project.org/js/main.js?d1b0e4', $url);

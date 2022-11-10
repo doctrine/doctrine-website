@@ -6,6 +6,6 @@ on: ["pull_request", "push"]
 jobs:
   coding-standards:
     name: "Coding Standards"
-    uses: "doctrine/.github/.github/workflows/coding-standards.yml@1.1.1"
+    uses: "doctrine/.github/.github/workflows/coding-standards.yml@2.1.0"
     with:
       php-version: "7.4"

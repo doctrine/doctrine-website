@@ -86,7 +86,7 @@ class BlogPostTest extends TestCase
             $this->authorName,
             $this->authorEmail,
             $this->contents,
-            $this->date
+            $this->date,
         );
     }
 }

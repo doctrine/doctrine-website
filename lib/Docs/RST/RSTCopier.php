@@ -15,7 +15,7 @@ use function str_replace;
 
 class RSTCopier
 {
-    public const RST_TEMPLATE = <<<TEMPLATE
+    public const RST_TEMPLATE = <<<'TEMPLATE'
 SIDEBAR BEGIN
 
 {{ sidebar }}
@@ -25,7 +25,7 @@ CONTENT BEGIN
 {{ content }}
 TEMPLATE;
 
-    public const DEFAULT_SIDEBAR = <<<SIDEBAR
+    public const DEFAULT_SIDEBAR = <<<'SIDEBAR'
 .. toctree::
     :depth: 3
     :glob:
@@ -71,7 +71,7 @@ SIDEBAR;
                     $language,
                     $file,
                     $outputPath,
-                    $sidebar
+                    $sidebar,
                 );
             }
         }

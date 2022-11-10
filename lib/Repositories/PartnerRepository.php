@@ -13,9 +13,7 @@ use function sprintf;
 
 class PartnerRepository extends BasicObjectRepository
 {
-    /**
-     * @return Partner[]
-     */
+    /** @return Partner[] */
     public function findAll(): array
     {
         /** @var Partner[] $partners */

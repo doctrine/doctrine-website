@@ -15,9 +15,7 @@ class ProjectIntegrationType
     /** @var string */
     private $icon;
 
-    /**
-     * @param mixed[] $projectIntegrationType
-     */
+    /** @param mixed[] $projectIntegrationType */
     public function __construct(array $projectIntegrationType)
     {
         $this->name = (string) ($projectIntegrationType['name'] ?? '');

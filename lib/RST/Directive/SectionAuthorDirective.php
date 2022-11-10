@@ -20,9 +20,7 @@ class SectionAuthorDirective extends Directive
         return 'sectionauthor';
     }
 
-    /**
-     * @param string[] $options
-     */
+    /** @param string[] $options */
     public function process(
         Parser $parser,
         ?Node $node,

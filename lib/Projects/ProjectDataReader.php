@@ -49,23 +49,21 @@ class ProjectDataReader
         $this->projectIntegrationTypes = $projectIntegrationTypes;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function read(string $repositoryName): array
     {
         $projectData = array_replace(
             $this->createDefaultProjectData($repositoryName),
             $this->getProjectData($repositoryName),
             $this->readComposerData($repositoryName),
-            $this->readJsonFile($repositoryName, self::DOCTRINE_PROJECT_JSON_FILE_NAME)
+            $this->readJsonFile($repositoryName, self::DOCTRINE_PROJECT_JSON_FILE_NAME),
         );
 
         if (isset($projectData['integration']) && $projectData['integration'] === true) {
             if (! isset($projectData['integrationType'])) {
                 throw new InvalidArgumentException(sprintf(
                     'Project integration %s requires a type.',
-                    $projectData['name']
+                    $projectData['name'],
                 ));
             }
 
@@ -73,7 +71,7 @@ class ProjectDataReader
                 throw new InvalidArgumentException(sprintf(
                     'Project integration %s has a type of %s which does not exist.',
                     $projectData['name'],
-                    $projectData['integrationType']
+                    $projectData['integrationType'],
                 ));
             }
 
@@ -87,9 +85,7 @@ class ProjectDataReader
         return $projectData;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     private function createDefaultProjectData(string $repositoryName): array
     {
         $slug = str_replace('_', '-', Inflector::tableize($repositoryName));
@@ -114,9 +110,7 @@ class ProjectDataReader
         ];
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     private function getProjectData(string $repositoryName): array
     {
         foreach ($this->projectsData as $projectData) {
@@ -138,9 +132,7 @@ class ProjectDataReader
         return $this->detectPath($repositoryName, ['/src', '/lib'], '/');
     }
 
-    /**
-     * @param string[] $pathsToCheck
-     */
+    /** @param string[] $pathsToCheck */
     private function detectPath(string $repositoryName, array $pathsToCheck, ?string $default): ?string
     {
         foreach ($pathsToCheck as $path) {
@@ -154,9 +146,7 @@ class ProjectDataReader
         return $default;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     private function readComposerData(string $repositoryName): array
     {
         $data = $this->readJsonFile($repositoryName, self::COMPOSER_JSON_FILE_NAME);
@@ -178,9 +168,7 @@ class ProjectDataReader
         return $composerData;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     private function readJsonFile(string $repositoryName, string $fileName): array
     {
         $filePath = $this->projectsDir . '/' . $repositoryName . '/' . $fileName;
@@ -198,7 +186,7 @@ class ProjectDataReader
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new InvalidArgumentException(sprintf(
                 'Failed to parse JSON file in %s',
-                $filePath
+                $filePath,
             ));
         }
 
@@ -206,7 +194,7 @@ class ProjectDataReader
             throw new InvalidArgumentException(sprintf(
                 '%s file exists in repository %s but does not contain any valid data.',
                 $fileName,
-                $repositoryName
+                $repositoryName,
             ));
         }
 

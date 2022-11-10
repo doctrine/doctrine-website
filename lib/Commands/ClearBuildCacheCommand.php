@@ -45,7 +45,7 @@ class ClearBuildCacheCommand extends Command
                 'build-dir',
                 InputArgument::OPTIONAL,
                 'The directory where the build repository is cloned.',
-                sprintf('%s/build-%s', $this->rootDir, $this->env)
+                sprintf('%s/build-%s', $this->rootDir, $this->env),
             );
     }
 

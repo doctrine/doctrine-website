@@ -10,9 +10,7 @@ use Doctrine\Website\Model\ProjectContributor;
 
 class ProjectContributorRepository extends BasicObjectRepository
 {
-    /**
-     * @return ProjectContributor[]
-     */
+    /** @return ProjectContributor[] */
     public function findAll(): array
     {
         /** @var ProjectContributor[] $projectContributors */
@@ -21,9 +19,7 @@ class ProjectContributorRepository extends BasicObjectRepository
         return $projectContributors;
     }
 
-    /**
-     * @return ProjectContributor[]
-     */
+    /** @return ProjectContributor[] */
     public function findMaintainersByProject(Project $project): array
     {
         return $this->findBy([
@@ -32,9 +28,7 @@ class ProjectContributorRepository extends BasicObjectRepository
         ], ['github' => 'asc']);
     }
 
-    /**
-     * @return ProjectContributor[]
-     */
+    /** @return ProjectContributor[] */
     public function findContributorsByProject(Project $project): array
     {
         return $this->findBy([

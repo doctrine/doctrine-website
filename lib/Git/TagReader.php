@@ -25,9 +25,7 @@ class TagReader
         $this->processFactory = $processFactory;
     }
 
-    /**
-     * @return Tag[]
-     */
+    /** @return Tag[] */
     public function getRepositoryTags(string $repositoryPath): array
     {
         $lines = $this->getTagLines($repositoryPath);
@@ -41,9 +39,7 @@ class TagReader
         return $tags;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     private function getTagLines(string $repositoryPath): array
     {
         $command = sprintf(self::COMMAND, $repositoryPath);

@@ -178,7 +178,7 @@ class ProjectTest extends TestCase
         self::assertNotFalse($testProjectsPath);
         self::assertSame(
             $testProjectsPath . '/test-project/docs',
-            $this->project->getAbsoluteDocsPath($testProjectsPath)
+            $this->project->getAbsoluteDocsPath($testProjectsPath),
         );
     }
 }

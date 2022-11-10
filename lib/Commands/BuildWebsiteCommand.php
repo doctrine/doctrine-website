@@ -68,13 +68,13 @@ class BuildWebsiteCommand extends Command
                 'build-dir',
                 InputArgument::OPTIONAL,
                 'The directory where the build repository is cloned.',
-                sprintf('%s/build-%s', $this->rootDir, $this->env)
+                sprintf('%s/build-%s', $this->rootDir, $this->env),
             )
             ->addOption(
                 'watch',
                 null,
                 InputOption::VALUE_NONE,
-                'Watch for changes and build the website when changes are detected.'
+                'Watch for changes and build the website when changes are detected.',
             );
     }
 
@@ -133,9 +133,7 @@ class BuildWebsiteCommand extends Command
             ->date(sprintf('>= %s', date('Y-m-d H:i:s', $lastWebsiteBuild)));
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     private function getWatchDirs(): array
     {
         return array_map(function (string $dir): string {

@@ -99,7 +99,7 @@ class ProjectDataReaderTest extends TestCase
                     'integrationType' => 'symfony',
                 ],
             ],
-            $this->projectIntegrationTypes
+            $this->projectIntegrationTypes,
         );
     }
 }
