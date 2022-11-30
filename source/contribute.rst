@@ -232,6 +232,8 @@ exit with a zero status code. That will let you amend A, after which you
 can resume the rebase until you do the same for C. Here is how it would
 look like on A:
 
+.. code-block:: console
+
     $ vendor/bin/phpcs      # check for issues phpcbf could not fix
     $ git add -p            # commit whatever issues were fixed
     $ git commit --amend    # change A
