@@ -41,21 +41,29 @@ contributing back to a Doctrine project.
 Initial Setup
 -------------
 
+-  Clone the project
 -  Setup a `GitHub <https://github.com>`_ account.
 -  Fork the repository of the project you want to contribute to. In this example
    it will be `DBAL <https://github.com/doctrine/dbal>`_
--  Clone your fork locally
+-  Make the local repository aware of your fork.
 
 .. code-block:: console
 
-    $ git clone git@github.com:username/dbal.git
+    $ git clone --origin doctrine git@github.com:doctrine/dbal.git
 
--  Enter the dbal directory and add the **doctrine** remote
+At that point, you have a repository, and you should be able to start
+doing changes. Later on, if you end up with something you are satisfied
+with, you will need to be able to push your changes to your fork.
+
+Here is how you can make your local repository aware of your fork:
 
 .. code-block:: console
 
     $ cd dbal
-    $ git remote add doctrine git://github.com/doctrine/dbal.git
+    $ git remote add fork git@github.com:username/dbal.git
+
+You should now have two remotes: one called ``doctrine``, another called
+``fork``.
 
 Branching from the default branch
 ---------------------------------
