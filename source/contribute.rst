@@ -92,11 +92,11 @@ The following names will be used to differentiate between the different
 repositories:
 
 -  **doctrine** - The "official" Doctrine DBAL repository
--  **origin** - Your fork of the official repository on GitHub
--  **local** - This will be your local clone of **origin**
+-  **fork** - Your fork of the official repository on GitHub
+-  **local** - This will be your local clone of **fork**
 
 As a **contributor** you will push your completed **local** topic branch
-to **origin**. As a **contributor** you will pull updates from
+to **fork**. As a **contributor** you will pull updates from
 **doctrine**. As a **maintainer** (write-access) you will merge branches
 from contributors into **doctrine**.
 
@@ -115,8 +115,8 @@ always reflects the latest version. Each released stable version will be
 a tagged commit in a **doctrine/\*** branch. Each released unstable
 version will be a tagged commit in the **doctrine/2.11.x** branch.
 
-    **NOTE** You should never commit to your forked default branch (**origin/2.11.x**).
-    Changes to **origin/2.11.x** will never be merged into
+    **NOTE** You should never commit to your forked default branch (**fork/2.11.x**).
+    Changes to **fork/2.11.x** will never be merged into
     **doctrine/2.11.x**. All work must be done in a **topic branch**,
     which are explained below.
 
@@ -142,7 +142,7 @@ will eventually be merged into **2.11.x** or a release branch (to
 add the new feature or bugfix to a next release) or discarded (in case
 of a disappointing experiment).
 
-Topic branches should exist in your **local** and **origin**
+Topic branches should exist in your **local** and **fork**
 repositories only, there is no need for them to exist in **doctrine**.
 
 Creating a topic branch
@@ -285,14 +285,14 @@ everywhere.
     $ git fetch doctrine
     $ git rebase doctrine/2.11.x fix-weird-bug
 
-Push your branch to **origin**:
+Push your branch to **fork**:
 
-Finished topic branches should be pushed to **origin** for a
+Finished topic branches should be pushed to **fork** for a
 **maintainer** to review and pull into **doctrine** as appropriate:
 
 .. code-block:: console
 
-    $ git push origin fix-weird-bug
+    $ git push fork fix-weird-bug
     To git@github.com:hobodave/dbal.git
         * [new branch]      fix-weird-bug -> fix-weird-bug
 
@@ -332,11 +332,11 @@ Remove your local topic branch:
 
     $ git branch -d fix-weird-bug
 
-Remove your remote branch at **origin**:
+Remove your remote branch at **fork**:
 
 .. code-block:: console
 
-    $ git push origin :fix-weird-bug
+    $ git push fork :fix-weird-bug
 
 Project Dependencies
 --------------------
