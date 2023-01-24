@@ -41,136 +41,175 @@ contributing back to a Doctrine project.
 Initial Setup
 -------------
 
--  Clone the project
--  Setup a `GitHub <https://github.com>`_ account.
--  Fork the repository of the project you want to contribute to. In this example
-   it will be `DBAL <https://github.com/doctrine/dbal>`_
--  Make the local repository aware of your fork.
+We are assuming you have cloned the project, have a Github account, and
+have forked the project. If any of this sounds unfamiliar, please `learn
+about that
+<https://docs.github.com/en/get-started/quickstart/contributing-to-projects>`_
+first.
+
+When cloning, you will end up with a remote called ``origin``. This can
+be confusing because sometimes, people use ``origin`` to refer to their
+fork, some other times they use it to refer to the original project.
+
+To avoid confusion, we recommend you remove ``origin`` altogether:
 
 .. code-block:: console
 
-    $ git clone --origin doctrine git@github.com:doctrine/dbal.git
+    $ git remote remove origin
 
-At that point, you have a repository, and you should be able to start
-doing changes. Later on, if you end up with something you are satisfied
-with, you will need to be able to push your changes to your fork.
-
-Here is how you can make your local repository aware of your fork:
+To make the example commands given in the rest of this page less
+ambiguous, we will add two explicit names for remote Git repositories:
+``doctrine`` for the original Doctrine project you're contributing to, and
+``fork`` for your fork of it.
 
 .. code-block:: console
+    $ [`cd` into the directory created by `git clone ...`]
+    $ git remote add doctrine git@github.com:doctrine/<name-of-project>.git
+    $ git remote add fork git@github.com:<your-github-name>/<name-of-project>.git
 
-    $ cd dbal
-    $ git remote add fork git@github.com:username/dbal.git
+Choosing the right branch
+-------------------------
 
-You should now have two remotes: one called ``doctrine``, another called
-``fork``.
+Before you start working on a feature or a bug fix, you need to choose
+which branch you are going to contribute to. We try hard to follow
+semver, which means there are three choices.
 
-Branching from the default branch
----------------------------------
+Let's say the latest version of the project is 2.3.1. The following
+branches should exist and are the possible choices:
 
-New pull requests are created with the repository's default branch as base branch.
-The default branch is the branch you see when you enter the repository page on GitHub.
+- ``2.3.x`` from which the next patch release will be tagged (2.3.2, 2.3.3, etc.);
+- ``2.4.x`` from which the next minor release will be tagged (2.4.0);
+- ``3.0.x`` from which the next major release will be tagged (3.0.0).
 
-.. image:: ../images/default-branch.png
-   :alt: The default branch
-   :style: margin-bottom: 20px
+To find out what's the latest version, you can check the "Releases"
+block on the project's Github page. Alternatively, you can check
+Packagist.
 
-In this DBAL example, it's the branch with the name **2.11.x**. The branch name reflects the
-current lowest supported version of a repository.
+Anything you contribute to a branch will be merged up to higher branches
+at some point. For example, if you contribute to ``2.3.x``, your changes
+will eventually land on ``2.4.x`` and ``3.0.x``.
 
-Newly introduced changes to 2.11.x will be up-merged at a later point in time
-to newer version branches (e.g. 2.12.x, 3.0.x). This way you don't have to
-re-introduce a new fix or feature of 2.11.x with another pull request to
-the other version branches.
 
-Keeping the default branch up-to-date!
---------------------------------------
+The general rules are as follows:
 
-Once all this is done, you'll be able to keep your local branches up to
-date with the following command:
+- Patch releases should be as stable as possible. They fix bugs, but
+  avoid making changes as much as possible.
+- Improvements and additions are being made on the upcoming minor
+  release branch.
+- An upgrade to a new minor version must not require any changes on the
+  user's side.
+- There must be a clear upgrade path from one major version to the next.
+  That means necessary changes on the user's side will be advertised
+  through deprecation notices, if anyway possible.
+- Deprecations may be added for new minor versions only.
+- Before a feature is removed (or an API changed) in a major version
+  release, a corresponding deprecation notice must be included in a
+  minor version release preceding it.
+- If a replacement feature and/or alternative API will be provided, it
+  must be available in the minor release that adds the deprecation for
+  the old feature.
+
+With that in mind, things that can go on the patch release branch
+include:
+
+- bugfixes;
+- adding tests, especially for bugs that were fixed;
+- updates, corrections or improvements to non-code assets like
+  documentation, build scripts or tooling configuration;
+- fixes to incorrect phpdoc comments (docblock type declarations, etc.);
+- updates, corrections or improvements to code comments that are not
+  phpdoc comments;
+
+.. note::
+
+   When phpdoc comments are imprecise but not wrong technically, target
+   the next minor release branch instead.
+
+The next minor version branch may include:
+
+- refactorings, unless they are necessary for a bugfix. This is to avoid
+  unnecessary risks.
+- new deprecations - remember to update the ``UPGRADE.md`` file as well!
+- adding new features and/or public APIs;
+
+On the next major version branch, usually only deprecations notices,
+deprecated features and necessary compatibility layers are being
+removed.
+
+Avoid suprising changes in public APIs on the next major version branch
+if anyhow possible. In order to provide a smooth upgrade path to users,
+the preferred solution is to add deprecations and possibly alternative
+APIs in a preceding minor version, and only remove the deprecations and
+compatibility layers in the next major release.
+
+Have you made your choice? Good. You now need to create a topic branch.
+
+Creating a topic branch
+-----------------------
+
+You should avoid making changes directly on the patch, minor or major
+release branches, also in your fork of the repository. That makes it
+difficult for you to have more than one pull request at a time, and also
+complicates matters should you need to rebase your work to another base
+branch some time later on. Instead, for every change that you would like
+to propose, create a dedicated topic branch.
+
+.. note::
+
+    If that does not sound all too familiar, you might want to read
+    about `GitHub Flow
+    <https://docs.github.com/en/get-started/quickstart/github-flow.>`_
+    for additional background information
+
+
+Time might have elapsed since the last time you contributed or since you
+cloned the repository. You might want to fetch the latest changes from
+the ``doctrine`` remote:
 
 .. code-block:: console
 
     $ git fetch doctrine
 
-Branching Model
----------------
+.. note::
 
-The following names will be used to differentiate between the different
-repositories:
+    Remember, we assume that ``doctrine`` points to the original
+    Doctrine project repository and not to your fork, as described in
+    the initial section of this page. If unsure, you can check with
+    ``git remote -v``.
 
--  **doctrine** - The "official" Doctrine DBAL repository
--  **fork** - Your fork of the official repository on GitHub
--  **local** - This will be your local clone of **fork**
+I know it sounds awful, but the next step is to deal with one of the 2
+hard problems in computer science and come up with a name for your
+branch. Pick something meaningful.
 
-As a **contributor** you will push your completed **local** topic branch
-to **fork**. As a **contributor** you will pull updates from
-**doctrine**. As a **maintainer** (write-access) you will merge branches
-from contributors into **doctrine**.
-
-Primary Branches
-----------------
-
-The **doctrine** repository holds the following primary branches:
-
--  **doctrine/2.11.x** Development towards the next release.
--  **doctrine/\*** Maintenance branches of existing releases.
-
-These branches exist in parallel and are defined as follows:
-
-**doctrine/2.11.x** is the branch where the source code of **HEAD**
-always reflects the latest version. Each released stable version will be
-a tagged commit in a **doctrine/\*** branch. Each released unstable
-version will be a tagged commit in the **doctrine/2.11.x** branch.
-
-    **NOTE** You should never commit to your forked default branch (**fork/2.11.x**).
-    Changes to **fork/2.11.x** will never be merged into
-    **doctrine/2.11.x**. All work must be done in a **topic branch**,
-    which are explained below.
-
-Topic Branches
---------------
-
-Topic branches are for contributors to develop bug fixes, new features,
-etc. so that they can be easily merged to **2.11.x**. They must follow a
-few rules as listed below:
-
--  May branch off from: **2.11.x** whenever possible, or a newer version
-   branch otherwise. Keep in mind that your changes will be
-   up-merged to higher version branches by maintainers after the merge if
-   they are applicable.
--  Branch naming convention: anything except master, the default branch name,
-   or version branch names.
-
-Topic branches are used to develop new features and fix reported issues.
-When starting development of a feature, the target release in which this
-feature will be incorporated may well be unknown. The essence of a topic
-branch is that it exists as long as the feature is in development, but
-will eventually be merged into **2.11.x** or a release branch (to
-add the new feature or bugfix to a next release) or discarded (in case
-of a disappointing experiment).
-
-Topic branches should exist in your **local** and **fork**
-repositories only, there is no need for them to exist in **doctrine**.
-
-Creating a topic branch
------------------------
-
-First create an appropriately named branch. When starting work on a new
-topic, branch off from **doctrine/2.11.x** or a **doctrine/\*** branch:
+If you have a feature to contribute that adds support for a new database
+called YourSQL, you could create a branch called ``your-sql-support``
+from the next minor branch:
 
 .. code-block:: console
 
-    $ git checkout -b fix-weird-bug doctrine/2.11.x
-    Switched to a new branch "fix-weird-bug"
+    $ git switch --create your-sql-support doctrine/2.4.x # use -c for short
 
-Now do some work, make some changes then commit them:
+
+Here, using ``doctrine/2.4.x`` instead of just ``2.4.x`` means you do
+not have to switch to 2.4.x and update it first.
+
+Now do your changes, and when you are done, you need to commit them.
+To pick the right changes, we recommend you use ``git add --patch``. It
+will force you to review what you are about to commit.
 
 .. code-block:: console
 
-    $ git status
-    $ git add -p
-    $ git commit -v
+    $ git add --patch      # use -p for short
+
+Likewise, when you commit, we recommend you use ``--verbose``. It will
+show the diff again in your editor.
+
+.. code-block:: console
+
+    $ git commit --verbose # use -v for short
+
+It is important that you pause here and make the effort of writing a
+meaningful commit message.
 
 Crafting meaningful commit messages
 -----------------------------------
@@ -205,6 +244,37 @@ this in case you want to read more about this:
 - `Deliberate git <https://www.rakeroutes.com/deliberate-git>`_
 - `Commit message style for git <https://commit.style/>`_
 - `A note about git commit messages <https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_
+
+Once you are done, you can push your branch to your fork:
+
+.. code-block:: console
+
+    $ git push --set-upstream fork your-sql-support # use -u for short
+
+Creating the pull request
+-------------------------
+
+New pull requests are created with the repository's default branch as
+base branch, and that might not be what you want.
+
+The base branch should be what you chose according to the guidelines
+mentioned in the beginning of this chapter. It is also the branch name
+that you provided when you created your topic branch.
+
+Make sure to pick the correct branch when creating the pull request. If
+you do not, it can still be changed afterwards (see :ref:`the dedicated
+section below<rebasing-on-another-branch>`).
+
+The default branch is the branch you see when you enter the repository
+page on GitHub.
+
+.. image:: ../images/default-branch.png
+   :alt: The default branch
+   :style: margin-bottom: 20px
+
+In this DBAL example, it's the branch with the name **2.11.x**. The
+branch name reflects the current lowest supported version of a
+repository.
 
 To squash or not to squash
 --------------------------
@@ -275,76 +345,55 @@ sense to revert a commit documenting a feature without also reverting
 the code for that feature. That means there should be only once commit
 with both the code and the docs here.
 
-Rebasing on upstream changes
-----------------------------
+Rebasing
+--------
 
-Next, merge or rebase your commit against **doctrine/2.11.x**. With your
-work done in a **local** topic branch, you'll want to assist upstream
-merge by rebasing your commits. You can either do this manually with
-``fetch`` then ``rebase``, or use the ``pull --rebase`` shortcut. You
-may encounter merge conflicts, which you should fix and then mark as
-fixed with ``add``, and then continue rebasing with
-``rebase --continue``. At any stage, you can abort the rebase with
-``rebase --abort`` unlike nasty merges which will leave files strewn
-everywhere.
+On upstream changes
+~~~~~~~~~~~~~~~~~~~
+
+Sometimes, you will need to rebase your branch on the latest changes,
+typically because the build had an issue unrelated to your changes, and
+that issue has been fixed after you created your branch.
+
+Basically, a rebase takes all changes on your topic branch and moves
+them to another starting point. This starting point was the Doctrine
+branch that you chose when you created your topic branch, at that point
+in time. The rebase will move your changes to be based on the current
+state of this branch.
+
+Here is how to proceed if you need to rebase on ``2.3.x``:
+
+1. Switch to the branch you would like to rebase.
+2. Fetch all new commits: ``git fetch doctrine``.
+3. Rebase on what you fetched:
+   ``git rebase doctrine/2.3.x``
+4. If you run into a conflict, fix it and add the resolved conflicts
+   (you can do that with ``git mergetool`` for instance), then
+   continue on your merry way with ``git rebase --continue``.
+5. Force push to overwrite the previous version : ``git push --force``.
+
+.. _rebasing-on-another-branch:
+
+On another branch
+~~~~~~~~~~~~~~~~~
+
+Another case where you need a rebase is when you want to change the
+target branch of your PR. For instance, you might have created your PR
+against ``2.3.x`` but you are told to change it to ``2.4.x``. In that
+case, the following command will pick all changes that you made against
+the ``2.3.x`` branch, and re-apply them on the current ``2.4.x`` branch.
 
 .. code-block:: console
 
     $ git fetch doctrine
-    $ git rebase doctrine/2.11.x fix-weird-bug
+    $ git rebase --onto doctrine/2.4.x doctrine/2.3.x your-topic-branch
+    $ git push --force
 
-Push your branch to **fork**:
-
-Finished topic branches should be pushed to **fork** for a
-**maintainer** to review and pull into **doctrine** as appropriate:
-
-.. code-block:: console
-
-    $ git push fork fix-weird-bug
-    To git@github.com:hobodave/dbal.git
-        * [new branch]      fix-weird-bug -> fix-weird-bug
-
-Now you are ready to send a pull request from this branch and ask for a
-review from a maintainer.
-
-Topic Branch Cleanup
---------------------
-
-Once your work has been merged by the branch maintainer, it will no
-longer be necessary to keep the local branch or remote branch, so you
-can remove them!
-
-Sync your local 2.11.x branch:
-
-.. code-block:: console
-
-    $ git checkout 2.11.x
-    $ git pull --rebase
-
-Remove your local topic branch using -d to ensure that it has been merged by
-upstream. Branch -d will not delete a branch that is not an ancestor of
-your current head.
-
-From the git-branch man page:
-
-.. code-block:: console
-
-    -d
-        Delete a branch. The branch must be fully merged in HEAD.
-    -D
-        Delete a branch irrespective of its merged status.
-
-Remove your local topic branch:
-
-.. code-block:: console
-
-    $ git branch -d fix-weird-bug
-
-Remove your remote branch at **fork**:
-
-.. code-block:: console
-
-    $ git push fork :fix-weird-bug
+After that, you also need to update the GitHub pull request to point to
+the new target branch. You can do so by clicking on the "Edit" button
+next to the pull request title. After you changed the target branch, the
+pull request should only show your commits and changes, but this time
+they are based on the new target branch.
 
 Project Dependencies
 --------------------
