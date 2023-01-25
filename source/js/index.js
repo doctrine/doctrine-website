@@ -29,19 +29,3 @@ if (typeof window.event === 'object') {
 import(/* webpackChunkName: "tab" */ './tab').then(module => {
     module.default();
 });
-
-window.googleTranslateElementInit = () => {
-    $('#google_translate_element').html('');
-
-    new google.translate.TranslateElement(
-        {pageLanguage: 'en'}, 'google_translate_element'
-    );
-
-    $('#google_translate_element select').on('change', function() {
-        var language = $('#google_translate_element select option:selected').text();
-
-        googleAnalyticsEvent('Translate', 'click', language);
-    });
-};
-
-$.getScript('https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
