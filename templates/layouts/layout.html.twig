@@ -140,7 +140,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarProjectsDropdown">
                                 {% for project in get_menu_projects() %}
-                                    <a class="dropdown-item notranslate" href="{{ path('project', {slug:project.slug}) }}">{{ project.shortName }}</a>
+                                    <a class="dropdown-item" href="{{ path('project', {slug:project.slug}) }}">{{ project.shortName }}</a>
                                 {% endfor %}
                                 <a class="dropdown-item bg-secondary text-white font-weight-bold" href="{{ path('projects') }}">View All</a>
                             </div>
@@ -182,16 +182,6 @@
                         {% else %}
                             <a href="https://github.com/doctrine/doctrine-website/edit/master/source{{ page.sourcePath }}" class="btn btn-light" target="_blank" rel="noopener noreferrer">Edit</a>
                         {% endif %}
-                    </div>
-
-                    <div class="google-translate-dropdown dropdown show d-inline-block mr-2">
-                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="translateDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Translate
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="translateDropdown">
-                            <div class="dropdown-item" id="google_translate_element">Loading...</div>
-                        </div>
                     </div>
 
                     <div id="search-box">

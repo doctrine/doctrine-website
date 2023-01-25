@@ -1,7 +1,7 @@
 {% block content %}
     <div class="row">
         <div class="col-12 col-md-{{ featuredPartner ? 6 : 12 }} mb-4">
-            <h1 class="display-4 notranslate">{{ site.title }}</h1>
+            <h1 class="display-4">{{ site.title }}</h1>
 
             <p class="lead">The Doctrine Project is the home to several PHP libraries primarily
             focused on database storage and object mapping. The core projects are the
@@ -90,7 +90,7 @@
                 <h5 class="card-header">Projects</h5>
                 <ul class="list-group list-group-flush">
                     {% for project in primaryProjects %}
-                        <li class="list-group-item notranslate">
+                        <li class="list-group-item">
                             <a href="{{ site.url }}/projects/{{ project.slug }}.html">{{ project.name }}</a>
                         </li>
                     {% endfor %}
