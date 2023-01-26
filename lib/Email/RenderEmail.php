@@ -15,24 +15,12 @@ use function trim;
 
 final class RenderEmail
 {
-    /** @var Emogrifier */
-    private $emogrifier;
-
-    /** @var string */
-    private $templatesDir;
-
-    /** @var AbstractExtension[] */
-    private $extensions;
-
     /** @param AbstractExtension[] $extensions */
     public function __construct(
-        Emogrifier $emogrifier,
-        string $templatesDir,
-        array $extensions
+        private Emogrifier $emogrifier,
+        private string $templatesDir,
+        private array $extensions,
     ) {
-        $this->emogrifier   = $emogrifier;
-        $this->templatesDir = $templatesDir;
-        $this->extensions   = $extensions;
     }
 
     /** @param mixed[] $parameters */

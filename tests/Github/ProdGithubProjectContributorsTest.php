@@ -18,10 +18,7 @@ use function sprintf;
 class ProdGithubProjectContributorsTest extends TestCase
 {
     private ArrayAdapter $cache;
-
-    /** @var Client&MockObject */
-    private Client $githubClient;
-
+    private Client&MockObject $githubClient;
     private ProdGithubProjectContributors $githubProjectContributors;
 
     protected function setUp(): void

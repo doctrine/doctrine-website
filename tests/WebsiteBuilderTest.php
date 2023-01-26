@@ -15,32 +15,23 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class WebsiteBuilderTest extends TestCase
 {
-    /** @var ProcessFactory|MockObject */
-    private $processFactory;
+    private ProcessFactory&MockObject $processFactory;
 
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var Filesystem|MockObject */
-    private $filesystem;
+    private Filesystem&MockObject $filesystem;
 
-    /** @var SourceFileRepository|MockObject */
-    private $sourceFileRepository;
+    private SourceFileRepository&MockObject $sourceFileRepository;
 
-    /** @var SourceFilesBuilder|MockObject */
-    private $sourceFilesBuilder;
+    private SourceFilesBuilder&MockObject $sourceFilesBuilder;
 
-    /** @var string */
-    private $rootDir;
+    private string $rootDir;
 
-    /** @var string */
-    private $cacheDir;
+    private string $cacheDir;
 
-    /** @var string */
-    private $webpackBuildDir;
+    private string $webpackBuildDir;
 
-    /** @var WebsiteBuilder|MockObject */
-    private $websiteBuilder;
+    private WebsiteBuilder&MockObject $websiteBuilder;
 
     protected function setUp(): void
     {

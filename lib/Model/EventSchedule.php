@@ -14,17 +14,9 @@ use function sprintf;
 /** @template-extends AbstractLazyCollection<int, EventScheduleSlot> */
 final class EventSchedule extends AbstractLazyCollection
 {
-    /** @var mixed[] */
-    private $event;
-
-    /** @var EventSpeakers */
-    private $speakers;
-
     /** @param mixed[] $event */
-    public function __construct(array $event, EventSpeakers $speakers)
+    public function __construct(private array $event, private EventSpeakers $speakers)
     {
-        $this->event    = $event;
-        $this->speakers = $speakers;
     }
 
     protected function doInitialize(): void

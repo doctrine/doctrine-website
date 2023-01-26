@@ -26,27 +26,15 @@ class ProjectDataReader
 
     private const COMPOSER_JSON_FILE_NAME = 'composer.json';
 
-    /** @var string */
-    private $projectsDir;
-
-    /** @var mixed[] */
-    private $projectsData;
-
-    /** @var mixed[] */
-    private $projectIntegrationTypes;
-
     /**
      * @param mixed[] $projectsData
      * @param mixed[] $projectIntegrationTypes
      */
     public function __construct(
-        string $projectsDir,
-        array $projectsData,
-        array $projectIntegrationTypes
+        private string $projectsDir,
+        private array $projectsData,
+        private array $projectIntegrationTypes,
     ) {
-        $this->projectsDir             = $projectsDir;
-        $this->projectsData            = $projectsData;
-        $this->projectIntegrationTypes = $projectIntegrationTypes;
     }
 
     /** @return mixed[] */
@@ -122,18 +110,18 @@ class ProjectDataReader
         return [];
     }
 
-    private function detectDocsPath(string $repositoryName): ?string
+    private function detectDocsPath(string $repositoryName): string|null
     {
         return $this->detectPath($repositoryName, ['/docs', '/doc', '/Resources/doc', '/source'], null);
     }
 
-    private function detectCodePath(string $repositoryName): ?string
+    private function detectCodePath(string $repositoryName): string|null
     {
         return $this->detectPath($repositoryName, ['/src', '/lib'], '/');
     }
 
     /** @param string[] $pathsToCheck */
-    private function detectPath(string $repositoryName, array $pathsToCheck, ?string $default): ?string
+    private function detectPath(string $repositoryName, array $pathsToCheck, string|null $default): string|null
     {
         foreach ($pathsToCheck as $path) {
             $check = $this->projectsDir . '/' . $repositoryName . $path;

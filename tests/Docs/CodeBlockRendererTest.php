@@ -12,14 +12,11 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class CodeBlockRendererTest extends TestCase
 {
-    /** @var CodeBlockConsoleRenderer|MockObject */
-    private $codeBlockConsoleRenderer;
+    private CodeBlockConsoleRenderer&MockObject $codeBlockConsoleRenderer;
 
-    /** @var CodeBlockWithLineNumbersRenderer|MockObject */
-    private $codeBlockWithLineNumbersRenderer;
+    private CodeBlockWithLineNumbersRenderer&MockObject $codeBlockWithLineNumbersRenderer;
 
-    /** @var CodeBlockRenderer */
-    private $codeBlockRenderer;
+    private CodeBlockRenderer $codeBlockRenderer;
 
     public function testRenderCodeBlockWithLineNumbers(): void
     {

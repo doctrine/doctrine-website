@@ -11,21 +11,15 @@ use ReflectionProperty;
 
 abstract class ModelHydrator extends ObjectHydrator
 {
-    /** @var ObjectManagerInterface */
-    protected $objectManager;
+    private object $object;
 
-    /** @var object */
-    private $object;
-
-    /** @var ClassMetadataInterface */
-    private $classMetadata;
+    private ClassMetadataInterface $classMetadata;
 
     /** @var ReflectionProperty[] */
-    private $reflectionProperties;
+    private array $reflectionProperties;
 
-    public function __construct(ObjectManagerInterface $objectManager)
+    public function __construct(protected ObjectManagerInterface $objectManager)
     {
-        $this->objectManager = $objectManager;
         $this->classMetadata = $this->objectManager->getClassMetadata($this->getClassName());
     }
 
@@ -35,26 +29,23 @@ abstract class ModelHydrator extends ObjectHydrator
     abstract protected function getClassName(): string;
 
     /**
-     * @param object  $object
      * @param mixed[] $data
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
      */
-    public function hydrate($object, array $data): void
+    public function hydrate(object $object, array $data): void
     {
         $this->object = $object;
 
         $this->doHydrate($data);
     }
 
-    /** @return mixed */
-    public function __get(string $field)
+    public function __get(string $field): mixed
     {
         return $this->getReflectionProperty($field)->getValue($this->object);
     }
 
-    /** @param mixed $value */
-    public function __set(string $field, $value): void
+    public function __set(string $field, mixed $value): void
     {
         $this->getReflectionProperty($field)->setValue($this->object, $value);
     }

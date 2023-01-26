@@ -51,21 +51,12 @@ final class EventHydrator extends ModelHydrator
         'test'                   => 'test',
     ];
 
-    /** @var EventParticipantRepository */
-    private $eventParticipantRepository;
-
-    /** @var string */
-    private $env;
-
     public function __construct(
         ObjectManagerInterface $objectManager,
-        EventParticipantRepository $eventParticipantRepository,
-        string $env
+        private EventParticipantRepository $eventParticipantRepository,
+        private string $env,
     ) {
         parent::__construct($objectManager);
-
-        $this->eventParticipantRepository = $eventParticipantRepository;
-        $this->env                        = $env;
     }
 
     protected function getClassName(): string

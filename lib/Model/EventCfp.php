@@ -10,16 +10,8 @@ use function sprintf;
 
 final class EventCfp
 {
-    /** @var string */
-    private $googleFormId;
-
-    /** @var DateTimeRange */
-    private $dateTimeRange;
-
-    public function __construct(string $googleFormId, DateTimeRange $dateTimeRange)
+    public function __construct(private string $googleFormId, private DateTimeRange $dateTimeRange)
     {
-        $this->googleFormId  = $googleFormId;
-        $this->dateTimeRange = $dateTimeRange;
     }
 
     public function exists(): bool

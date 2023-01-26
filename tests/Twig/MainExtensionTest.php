@@ -12,20 +12,15 @@ use Parsedown;
 
 class MainExtensionTest extends TestCase
 {
-    /** @var Parsedown */
-    private $parsedown;
+    private Parsedown $parsedown;
 
-    /** @var AssetIntegrityGenerator */
-    private $assetIntegrityGenerator;
+    private AssetIntegrityGenerator $assetIntegrityGenerator;
 
-    /** @var string */
-    private $sourceDir;
+    private string $sourceDir;
 
-    /** @var string */
-    private $webpackBuildDir;
+    private string $webpackBuildDir;
 
-    /** @var MainExtension */
-    private $mainExtension;
+    private MainExtension $mainExtension;
 
     protected function setUp(): void
     {

@@ -10,53 +10,37 @@ use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 
 final class Event implements LoadMetadataInterface
 {
-    /** @var int */
-    private $id;
+    private int $id;
 
-    /** @var string */
-    private $type;
+    private string $type;
 
-    /** @var string */
-    private $sku;
+    private string $sku;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $slug;
+    private string $slug;
 
-    /** @var string */
-    private $joinUrl;
+    private string $joinUrl;
 
-    /** @var DateTimeRange */
-    private $dateTimeRange;
+    private DateTimeRange $dateTimeRange;
 
-    /** @var DateTimeRange */
-    private $registrationDateTimeRange;
+    private DateTimeRange $registrationDateTimeRange;
 
-    /** @var EventCfp */
-    private $cfp;
+    private EventCfp $cfp;
 
-    /** @var EventLocation|null */
-    private $location;
+    private EventLocation|null $location = null;
 
-    /** @var EventSponsors */
-    private $sponsors;
+    private EventSponsors $sponsors;
 
-    /** @var EventSpeakers */
-    private $speakers;
+    private EventSpeakers $speakers;
 
-    /** @var EventSchedule */
-    private $schedule;
+    private EventSchedule $schedule;
 
-    /** @var EventParticipants */
-    private $participants;
+    private EventParticipants $participants;
 
-    /** @var string */
-    private $description;
+    private string $description;
 
-    /** @var float */
-    private $price;
+    private float $price;
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
@@ -123,7 +107,7 @@ final class Event implements LoadMetadataInterface
         return $this->cfp;
     }
 
-    public function getLocation(): ?EventLocation
+    public function getLocation(): EventLocation|null
     {
         return $this->location;
     }

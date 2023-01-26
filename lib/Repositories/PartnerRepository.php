@@ -34,7 +34,7 @@ class PartnerRepository extends BasicObjectRepository
         return $partner;
     }
 
-    public function findFeaturedPartner(): ?Partner
+    public function findFeaturedPartner(): Partner|null
     {
         return $this->findOneBy(['featured' => true]);
     }

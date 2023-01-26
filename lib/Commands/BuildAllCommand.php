@@ -22,22 +22,12 @@ use function sprintf;
 
 class BuildAllCommand extends Command
 {
-    /** @var string|null */
-    protected static $defaultName = 'build-all';
-
-    /** @var string */
-    private $rootDir;
-
-    /** @var string */
-    private $env;
+    protected static string|null $defaultName = 'build-all';
 
     public function __construct(
-        string $rootDir,
-        string $env
+        private string $rootDir,
+        private string $env,
     ) {
-        $this->rootDir = $rootDir;
-        $this->env     = $env;
-
         parent::__construct();
     }
 

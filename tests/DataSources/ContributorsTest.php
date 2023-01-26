@@ -17,17 +17,13 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ContributorsTest extends TestCase
 {
-    /** @var WebsiteDataReader|MockObject */
-    private $dataReader;
+    private WebsiteDataReader&MockObject $dataReader;
 
-    /** @var TeamMemberRepository|MockObject */
-    private $teamMemberRepository;
+    private TeamMemberRepository&MockObject $teamMemberRepository;
 
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var Contributors */
-    private $contributors;
+    private Contributors $contributors;
 
     protected function setUp(): void
     {

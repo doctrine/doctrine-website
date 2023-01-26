@@ -9,12 +9,8 @@ use Doctrine\Website\Repositories\EventRepository;
 
 final class EventsController
 {
-    /** @var EventRepository */
-    private $eventRepository;
-
-    public function __construct(EventRepository $eventRepository)
+    public function __construct(private EventRepository $eventRepository)
     {
-        $this->eventRepository = $eventRepository;
     }
 
     public function index(): Response

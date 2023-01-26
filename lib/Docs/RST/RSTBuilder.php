@@ -12,43 +12,15 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class RSTBuilder
 {
-    /** @var RSTFileRepository */
-    private $rstFileRepository;
-
-    /** @var RSTCopier */
-    private $rstCopier;
-
-    /** @var Builder */
-    private $builder;
-
-    /** @var RSTPostBuildProcessor */
-    private $rstPostBuildProcessor;
-
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var string */
-    private $sourceDir;
-
-    /** @var string */
-    private $docsDir;
-
     public function __construct(
-        RSTFileRepository $rstFileRepository,
-        RSTCopier $rstCopier,
-        Builder $builder,
-        RSTPostBuildProcessor $rstPostBuildProcessor,
-        Filesystem $filesystem,
-        string $sourceDir,
-        string $docsDir
+        private RSTFileRepository $rstFileRepository,
+        private RSTCopier $rstCopier,
+        private Builder $builder,
+        private RSTPostBuildProcessor $rstPostBuildProcessor,
+        private Filesystem $filesystem,
+        private string $sourceDir,
+        private string $docsDir,
     ) {
-        $this->rstFileRepository     = $rstFileRepository;
-        $this->rstCopier             = $rstCopier;
-        $this->builder               = $builder;
-        $this->rstPostBuildProcessor = $rstPostBuildProcessor;
-        $this->filesystem            = $filesystem;
-        $this->sourceDir             = $sourceDir;
-        $this->docsDir               = $docsDir;
     }
 
     /** @return DocumentNode[] */

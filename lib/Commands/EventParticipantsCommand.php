@@ -27,37 +27,15 @@ use function sprintf;
 
 class EventParticipantsCommand extends Command
 {
-    /** @var string|null */
-    protected static $defaultName = 'event-participants';
-
-    /** @var EventRepository */
-    private $eventRepository;
-
-    /** @var EventParticipantRepository */
-    private $eventParticipantRepository;
-
-    /** @var GetStripeEventParticipants */
-    private $getStripeEventParticipants;
-
-    /** @var EmailParticipants */
-    private $emailParticipants;
-
-    /** @var EntityManager */
-    private $entityManager;
+    protected static string|null $defaultName = 'event-participants';
 
     public function __construct(
-        EventRepository $eventRepository,
-        EventParticipantRepository $eventParticipantRepository,
-        GetStripeEventParticipants $getStripeEventParticipants,
-        EmailParticipants $emailParticipants,
-        EntityManager $entityManager
+        private EventRepository $eventRepository,
+        private EventParticipantRepository $eventParticipantRepository,
+        private GetStripeEventParticipants $getStripeEventParticipants,
+        private EmailParticipants $emailParticipants,
+        private EntityManager $entityManager,
     ) {
-        $this->eventRepository            = $eventRepository;
-        $this->eventParticipantRepository = $eventParticipantRepository;
-        $this->getStripeEventParticipants = $getStripeEventParticipants;
-        $this->emailParticipants          = $emailParticipants;
-        $this->entityManager              = $entityManager;
-
         parent::__construct();
     }
 
@@ -133,7 +111,7 @@ class EventParticipantsCommand extends Command
      */
     private function createEventParticipantsTableRows(
         array $eventParticipants,
-        array $newEventParticipants
+        array $newEventParticipants,
     ): array {
         return array_map(
             static function (EventParticipant $participant) use ($newEventParticipants): array {
@@ -172,7 +150,7 @@ class EventParticipantsCommand extends Command
     private function emailEventParticipants(
         SymfonyStyle $io,
         Event $event,
-        array $eventParticipants
+        array $eventParticipants,
     ): void {
         $this->emailParticipants->__invoke($event, $eventParticipants);
 

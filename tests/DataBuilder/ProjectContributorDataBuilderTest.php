@@ -14,17 +14,13 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectContributorDataBuilderTest extends TestCase
 {
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var TeamMemberRepository|MockObject */
-    private $teamMemberRepository;
+    private TeamMemberRepository&MockObject $teamMemberRepository;
 
-    /** @var GithubProjectContributors|MockObject */
-    private $githubProjectContributors;
+    private GithubProjectContributors&MockObject $githubProjectContributors;
 
-    /** @var ProjectContributorDataBuilder */
-    private $projectContributorDataBuilder;
+    private ProjectContributorDataBuilder $projectContributorDataBuilder;
 
     public function testBuild(): void
     {

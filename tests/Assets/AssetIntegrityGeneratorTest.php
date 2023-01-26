@@ -9,14 +9,11 @@ use Doctrine\Website\Tests\TestCase;
 
 class AssetIntegrityGeneratorTest extends TestCase
 {
-    /** @var string */
-    private $sourceDir;
+    private string $sourceDir;
 
-    /** @var string */
-    private $webpackBuildDir;
+    private string $webpackBuildDir;
 
-    /** @var AssetIntegrityGenerator */
-    private $assetIntegrityGenerator;
+    private AssetIntegrityGenerator $assetIntegrityGenerator;
 
     public function testGetAssetIntegrity(): void
     {

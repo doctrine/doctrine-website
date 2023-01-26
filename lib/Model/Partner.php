@@ -9,29 +9,21 @@ use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 
 final class Partner implements LoadMetadataInterface
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $slug;
+    private string $slug;
 
-    /** @var string */
-    private $url;
+    private string $url;
 
-    /** @var UtmParameters */
-    private $utmParameters;
+    private UtmParameters $utmParameters;
 
-    /** @var string */
-    private $logo;
+    private string $logo;
 
-    /** @var string */
-    private $bio;
+    private string $bio;
 
-    /** @var PartnerDetails */
-    private $details;
+    private PartnerDetails $details;
 
-    /** @var bool */
-    private $featured;
+    private bool $featured;
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void
     {

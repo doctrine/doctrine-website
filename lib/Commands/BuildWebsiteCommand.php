@@ -28,8 +28,7 @@ use function time;
 
 class BuildWebsiteCommand extends Command
 {
-    /** @var string|null */
-    protected static $defaultName = 'build-website';
+    protected static string|null $defaultName = 'build-website';
 
     private const WATCH_DIRS = [
         'config',
@@ -39,24 +38,11 @@ class BuildWebsiteCommand extends Command
         'templates',
     ];
 
-    /** @var WebsiteBuilder */
-    private $websiteBuilder;
-
-    /** @var string */
-    private $rootDir;
-
-    /** @var string */
-    private $env;
-
     public function __construct(
-        WebsiteBuilder $websiteBuilder,
-        string $rootDir,
-        string $env
+        private WebsiteBuilder $websiteBuilder,
+        private string $rootDir,
+        private string $env,
     ) {
-        $this->websiteBuilder = $websiteBuilder;
-        $this->rootDir        = $rootDir;
-        $this->env            = $env;
-
         parent::__construct();
     }
 

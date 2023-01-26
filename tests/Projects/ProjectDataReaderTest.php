@@ -11,10 +11,9 @@ use InvalidArgumentException;
 class ProjectDataReaderTest extends TestCase
 {
     /** @var string[][] */
-    private $projectIntegrationTypes;
+    private array $projectIntegrationTypes;
 
-    /** @var ProjectDataReader */
-    private $projectDataReader;
+    private ProjectDataReader $projectDataReader;
 
     public function testRead(): void
     {

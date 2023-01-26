@@ -11,14 +11,11 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class GithubClientProviderTest extends TestCase
 {
-    /** @var Client|MockObject */
-    private $githubClient;
+    private Client&MockObject $githubClient;
 
-    /** @var string */
-    private $githubHttpToken;
+    private string $githubHttpToken;
 
-    /** @var GithubClientProvider */
-    private $githubClientProvider;
+    private GithubClientProvider $githubClientProvider;
 
     public function testGetGithubClient(): void
     {

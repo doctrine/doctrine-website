@@ -13,8 +13,7 @@ use function realpath;
 
 class ProjectTest extends TestCase
 {
-    /** @var Project */
-    private $project;
+    private Project $project;
 
     protected function setUp(): void
     {

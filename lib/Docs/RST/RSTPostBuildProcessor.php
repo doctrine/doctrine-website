@@ -25,23 +25,11 @@ docsSourcePath: "%s"
 %s
 TEMPLATE;
 
-    /** @var RSTFileRepository */
-    private $rstFileRepository;
-
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var string */
-    private $sourceDir;
-
     public function __construct(
-        RSTFileRepository $rstFileRepository,
-        Filesystem $filesystem,
-        string $sourceDir
+        private RSTFileRepository $rstFileRepository,
+        private Filesystem $filesystem,
+        private string $sourceDir,
     ) {
-        $this->rstFileRepository = $rstFileRepository;
-        $this->filesystem        = $filesystem;
-        $this->sourceDir         = $sourceDir;
     }
 
     public function postRstBuild(Project $project, ProjectVersion $version, RSTLanguage $language): void
@@ -65,7 +53,7 @@ TEMPLATE;
         Project $project,
         ProjectVersion $version,
         RSTLanguage $language,
-        string $file
+        string $file,
     ): void {
         $contents = $this->getFileContents($file);
 
@@ -85,7 +73,7 @@ TEMPLATE;
         ProjectVersion $version,
         RSTLanguage $language,
         string $file,
-        string $contents
+        string $contents,
     ): string {
         if (strpos($file, '.html') !== false) {
             return $this->processHtmlFile($project, $version, $language, $file, $contents);
@@ -99,7 +87,7 @@ TEMPLATE;
         ProjectVersion $version,
         RSTLanguage $language,
         string $file,
-        string $contents
+        string $contents,
     ): string {
         // parse out the source file that generated this file
         preg_match('/<p>{{ DOCS_SOURCE_PATH : (.*) }}<\/p>/', $contents, $match);

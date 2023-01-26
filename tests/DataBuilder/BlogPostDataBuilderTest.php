@@ -17,11 +17,9 @@ use function usort;
 
 class BlogPostDataBuilderTest extends TestCase
 {
-    /** @var SourceFileFilesystemReader|MockObject */
-    private $sourceFileFilesystemReader;
+    private SourceFileFilesystemReader&MockObject $sourceFileFilesystemReader;
 
-    /** @var BlogPostDataBuilder */
-    private $blogPostDataBuilder;
+    private BlogPostDataBuilder $blogPostDataBuilder;
 
     public function testBuild(): void
     {

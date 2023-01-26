@@ -13,30 +13,20 @@ use Doctrine\Website\Model\Event;
 final class EventParticipant
 {
     /**
-     * @var int|null
      * @Id
      * @Column(type="integer")
      * @GeneratedValue
-     **/
-    private $id;
+     */
+    private int|null $id = null;
 
-    /**
-     * @var string
-     * @Column(type="string")
-     **/
-    private $email;
+    /** @Column(type="string") **/
+    private string $email;
 
-    /**
-     * @var int
-     * @Column(type="integer")
-     **/
-    private $quantity;
+    /** @Column(type="integer") **/
+    private int $quantity;
 
-    /**
-     * @var int
-     * @Column(type="integer")
-     **/
-    private $eventId;
+    /** @Column(type="integer") **/
+    private int $eventId;
 
     public function __construct(Event $event, string $email, int $quantity)
     {
@@ -45,7 +35,7 @@ final class EventParticipant
         $this->quantity = $quantity;
     }
 
-    public function getId(): ?int
+    public function getId(): int|null
     {
         return $this->id;
     }

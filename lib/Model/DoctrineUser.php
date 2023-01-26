@@ -9,11 +9,9 @@ use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 
 class DoctrineUser implements LoadMetadataInterface
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $url;
+    private string $url;
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void
     {

@@ -20,7 +20,7 @@ class ProcessFactory
     }
 
     /** @return Process<string, string> */
-    public function run(string $command, ?Closure $callback = null): Process
+    public function run(string $command, Closure|null $callback = null): Process
     {
         $process = $this->create($command);
         $process->run($callback);

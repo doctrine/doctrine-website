@@ -12,11 +12,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ContributorRequestsTest extends TestCase
 {
-    /** @var ContributorRepository|MockObject */
-    private $contributorRepository;
+    private ContributorRepository&MockObject $contributorRepository;
 
-    /** @var ContributorRequests */
-    private $contributorRequests;
+    private ContributorRequests $contributorRequests;
 
     public function testGetContributors(): void
     {

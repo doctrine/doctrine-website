@@ -11,12 +11,8 @@ use Doctrine\Website\Repositories\ProjectRepository;
 
 class ProjectRequests
 {
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    public function __construct(ProjectRepository $projectRepository)
+    public function __construct(private ProjectRepository $projectRepository)
     {
-        $this->projectRepository = $projectRepository;
     }
 
     public function getProjects(): RequestCollection

@@ -13,33 +13,13 @@ use Doctrine\Website\Repositories\ProjectRepository;
 
 class HomepageController
 {
-    /** @var BlogPostRepository */
-    private $blogPostRepository;
-
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var DoctrineUserRepository */
-    private $doctrineUserRepository;
-
-    /** @var PartnerRepository */
-    private $partnerRepository;
-
-    /** @var GetTotalDownloads */
-    private $getTotalDownloads;
-
     public function __construct(
-        BlogPostRepository $blogPostRepository,
-        ProjectRepository $projectRepository,
-        DoctrineUserRepository $doctrineUserRepository,
-        PartnerRepository $partnerRepository,
-        GetTotalDownloads $getTotalDownloads
+        private BlogPostRepository $blogPostRepository,
+        private ProjectRepository $projectRepository,
+        private DoctrineUserRepository $doctrineUserRepository,
+        private PartnerRepository $partnerRepository,
+        private GetTotalDownloads $getTotalDownloads,
     ) {
-        $this->blogPostRepository     = $blogPostRepository;
-        $this->projectRepository      = $projectRepository;
-        $this->doctrineUserRepository = $doctrineUserRepository;
-        $this->partnerRepository      = $partnerRepository;
-        $this->getTotalDownloads      = $getTotalDownloads;
     }
 
     public function index(): Response

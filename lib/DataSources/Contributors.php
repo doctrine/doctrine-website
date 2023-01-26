@@ -12,23 +12,11 @@ use Doctrine\Website\Repositories\TeamMemberRepository;
 
 class Contributors implements DataSource
 {
-    /** @var WebsiteDataReader */
-    private $dataReader;
-
-    /** @var TeamMemberRepository */
-    private $teamMemberRepository;
-
-    /** @var ProjectRepository */
-    private $projectRepository;
-
     public function __construct(
-        WebsiteDataReader $dataReader,
-        TeamMemberRepository $teamMemberRepository,
-        ProjectRepository $projectRepository
+        private WebsiteDataReader $dataReader,
+        private TeamMemberRepository $teamMemberRepository,
+        private ProjectRepository $projectRepository,
     ) {
-        $this->dataReader           = $dataReader;
-        $this->teamMemberRepository = $teamMemberRepository;
-        $this->projectRepository    = $projectRepository;
     }
 
     /** @return mixed[][] */

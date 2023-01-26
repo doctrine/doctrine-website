@@ -6,24 +6,8 @@ namespace Doctrine\Website\Model;
 
 final class EventSponsor
 {
-    /** @var string */
-    private $name;
-
-    /** @var string */
-    private $url;
-
-    /** @var string */
-    private $logo;
-
-    /** @var UtmParameters */
-    private $utmParameters;
-
-    public function __construct(string $name, string $url, string $logo, UtmParameters $utmParameters)
+    public function __construct(private string $name, private string $url, private string $logo, private UtmParameters $utmParameters)
     {
-        $this->name          = $name;
-        $this->url           = $url;
-        $this->logo          = $logo;
-        $this->utmParameters = $utmParameters;
     }
 
     public function getName(): string

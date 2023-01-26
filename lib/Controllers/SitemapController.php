@@ -9,12 +9,8 @@ use Doctrine\Website\Repositories\SitemapPageRepository;
 
 class SitemapController
 {
-    /** @var SitemapPageRepository */
-    private $sitemapPageRepository;
-
-    public function __construct(SitemapPageRepository $sitemapPageRepository)
+    public function __construct(private SitemapPageRepository $sitemapPageRepository)
     {
-        $this->sitemapPageRepository = $sitemapPageRepository;
     }
 
     public function index(): Response

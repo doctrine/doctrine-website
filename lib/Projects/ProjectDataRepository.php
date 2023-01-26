@@ -6,13 +6,9 @@ namespace Doctrine\Website\Projects;
 
 class ProjectDataRepository
 {
-    /** @var mixed[][] */
-    private $projectsData = [];
-
     /** @param mixed[][] $projectsData */
-    public function __construct(array $projectsData)
+    public function __construct(private array $projectsData = [])
     {
-        $this->projectsData = $projectsData;
     }
 
     /** @return string[] */

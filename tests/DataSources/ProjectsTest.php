@@ -13,11 +13,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectsTest extends TestCase
 {
-    /** @var WebsiteDataReader|MockObject */
-    private $dataReader;
+    private WebsiteDataReader&MockObject $dataReader;
 
-    /** @var Projects */
-    private $projects;
+    private Projects $projects;
 
     protected function setUp(): void
     {

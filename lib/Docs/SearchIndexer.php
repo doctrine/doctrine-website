@@ -13,7 +13,6 @@ use Doctrine\RST\Nodes\TitleNode;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 
-use function get_class;
 use function in_array;
 use function is_string;
 use function md5;
@@ -28,12 +27,8 @@ class SearchIndexer
 {
     public const INDEX_NAME = 'pages';
 
-    /** @var Client */
-    private $client;
-
-    public function __construct(Client $client)
+    public function __construct(private Client $client)
     {
-        $this->client = $client;
     }
 
     public function initSearchIndex(): void
@@ -60,7 +55,7 @@ class SearchIndexer
     public function buildSearchIndexes(
         Project $project,
         ProjectVersion $version,
-        array $documents
+        array $documents,
     ): void {
         $records = [];
 
@@ -76,7 +71,7 @@ class SearchIndexer
         DocumentNode $document,
         array &$records,
         Project $project,
-        ProjectVersion $version
+        ProjectVersion $version,
     ): void {
         $environment = $document->getEnvironment();
 
@@ -94,7 +89,7 @@ class SearchIndexer
         $nodeTypes = [TitleNode::class, ParagraphNode::class];
 
         $nodes = $document->getNodes(static function (Node $node) use ($nodeTypes): bool {
-            return in_array(get_class($node), $nodeTypes, true);
+            return in_array($node::class, $nodeTypes, true);
         });
 
         foreach ($nodes as $node) {
@@ -132,7 +127,7 @@ class SearchIndexer
         array &$current,
         string &$currentLink,
         Project $project,
-        ProjectVersion $version
+        ProjectVersion $version,
     ): array {
         $level = $node instanceof TitleNode ? $node->getLevel() : false;
 

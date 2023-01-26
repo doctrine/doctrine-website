@@ -9,12 +9,8 @@ use Doctrine\Website\Repositories\SponsorRepository;
 
 class SponsorshipController
 {
-    /** @var SponsorRepository */
-    private $sponsorRepository;
-
-    public function __construct(SponsorRepository $sponsorRepository)
+    public function __construct(private SponsorRepository $sponsorRepository)
     {
-        $this->sponsorRepository = $sponsorRepository;
     }
 
     public function index(): Response

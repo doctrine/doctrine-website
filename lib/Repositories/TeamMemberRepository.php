@@ -9,7 +9,7 @@ use Doctrine\Website\Model\TeamMember;
 
 class TeamMemberRepository extends BasicObjectRepository
 {
-    public function findOneByGithub(string $github): ?TeamMember
+    public function findOneByGithub(string $github): TeamMember|null
     {
         return $this->findOneBy(['github' => $github]);
     }

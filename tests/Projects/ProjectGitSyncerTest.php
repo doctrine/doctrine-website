@@ -16,17 +16,13 @@ use function sprintf;
 
 class ProjectGitSyncerTest extends TestCase
 {
-    /** @var ProcessFactory&MockObject */
-    private $processFactory;
+    private ProcessFactory&MockObject $processFactory;
 
-    /** @var string */
-    private $projectsDir;
+    private string $projectsDir;
 
-    /** @var ProjectGitSyncer */
-    private $projectGitSyncer;
+    private ProjectGitSyncer $projectGitSyncer;
 
-    /** @var Repo&MockObject */
-    private $githubRepo;
+    private Repo&MockObject $githubRepo;
 
     protected function setUp(): void
     {

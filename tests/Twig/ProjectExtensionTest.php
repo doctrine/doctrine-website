@@ -12,11 +12,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectExtensionTest extends TestCase
 {
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var ProjectExtension|MockObject */
-    private $projectExtension;
+    private ProjectExtension&MockObject $projectExtension;
 
     protected function setUp(): void
     {

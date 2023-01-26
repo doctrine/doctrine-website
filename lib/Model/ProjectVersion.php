@@ -21,35 +21,28 @@ class ProjectVersion
     private const STABLE       = 'stable';
     private const UNMAINTAINED = 'unmaintained';
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $branchName;
+    private string $branchName;
 
-    /** @var string */
-    private $slug;
+    private string $slug;
 
-    /** @var bool */
-    private $current = false;
+    private bool $current = false;
 
-    /** @var bool */
-    private $maintained = true;
+    private bool $maintained = true;
 
-    /** @var bool */
-    private $upcoming = false;
+    private bool $upcoming = false;
 
-    /** @var bool */
-    private $hasDocs = true;
+    private bool $hasDocs = true;
 
     /** @var RSTLanguage[] */
-    private $docsLanguages = [];
+    private array $docsLanguages = [];
 
     /** @var string[] */
-    private $aliases;
+    private array $aliases;
 
     /** @var Tag[] */
-    private $tags;
+    private array $tags;
 
     /** @param mixed[] $version */
     public function __construct(array $version)
@@ -95,7 +88,7 @@ class ProjectVersion
         return $this->name;
     }
 
-    public function getBranchName(): ?string
+    public function getBranchName(): string|null
     {
         return $this->branchName;
     }
@@ -159,12 +152,12 @@ class ProjectVersion
         throw new InvalidArgumentException(sprintf('Could not find tag "%s".', $slug));
     }
 
-    public function getFirstTag(): ?Tag
+    public function getFirstTag(): Tag|null
     {
         return $this->tags[0] ?? null;
     }
 
-    public function getLatestTag(): ?Tag
+    public function getLatestTag(): Tag|null
     {
         $latestTag = end($this->tags);
 
@@ -199,7 +192,7 @@ class ProjectVersion
         return self::UPCOMING;
     }
 
-    public function getStabilityColor(?string $stability = null): string
+    public function getStabilityColor(string|null $stability = null): string
     {
         $map = [
             'upcoming' => 'warning',
@@ -211,7 +204,7 @@ class ProjectVersion
             'dev' => 'primary',
         ];
 
-        $stability = $stability ?? $this->getStability();
+        $stability ??= $this->getStability();
 
         return $map[$stability] ?? 'secondary';
     }

@@ -12,23 +12,11 @@ class ProjectContributorDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'project_contributors';
 
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var TeamMemberRepository */
-    private $teamMemberRepository;
-
-    /** @var GithubProjectContributors */
-    private $githubProjectContributors;
-
     public function __construct(
-        ProjectRepository $projectRepository,
-        TeamMemberRepository $teamMemberRepository,
-        GithubProjectContributors $githubProjectContributors
+        private ProjectRepository $projectRepository,
+        private TeamMemberRepository $teamMemberRepository,
+        private GithubProjectContributors $githubProjectContributors,
     ) {
-        $this->projectRepository         = $projectRepository;
-        $this->teamMemberRepository      = $teamMemberRepository;
-        $this->githubProjectContributors = $githubProjectContributors;
     }
 
     public function getName(): string
@@ -64,9 +52,7 @@ class ProjectContributorDataBuilder implements DataBuilder
                     $contributor['author']['login'],
                 );
 
-                $isMaintainer = $teamMember !== null
-                    ? $teamMember->isProjectMaintainer($project)
-                    : false;
+                $isMaintainer = $teamMember?->isProjectMaintainer($project) ?? false;
 
                 $isTeamMember = $teamMember !== null;
 

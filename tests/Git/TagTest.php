@@ -10,14 +10,11 @@ use Doctrine\Website\Tests\TestCase;
 
 class TagTest extends TestCase
 {
-    /** @var DateTimeImmutable */
-    private $date;
+    private DateTimeImmutable $date;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var Tag */
-    private $tag;
+    private Tag $tag;
 
     public function testGetName(): void
     {

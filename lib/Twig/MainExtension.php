@@ -25,33 +25,13 @@ use function substr;
 
 class MainExtension extends AbstractExtension
 {
-    /** @var Parsedown */
-    private $parsedown;
-
-    /** @var AssetIntegrityGenerator */
-    private $assetIntegrityGenerator;
-
-    /** @var string */
-    private $sourceDir;
-
-    /** @var string */
-    private $webpackBuildDir;
-
-    /** @var string */
-    private $stripePublishableKey;
-
     public function __construct(
-        Parsedown $parsedown,
-        AssetIntegrityGenerator $assetIntegrityGenerator,
-        string $sourceDir,
-        string $webpackBuildDir,
-        string $stripePublishableKey
+        private Parsedown $parsedown,
+        private AssetIntegrityGenerator $assetIntegrityGenerator,
+        private string $sourceDir,
+        private string $webpackBuildDir,
+        private string $stripePublishableKey,
     ) {
-        $this->parsedown               = $parsedown;
-        $this->assetIntegrityGenerator = $assetIntegrityGenerator;
-        $this->sourceDir               = $sourceDir;
-        $this->webpackBuildDir         = $webpackBuildDir;
-        $this->stripePublishableKey    = $stripePublishableKey;
     }
 
     /** {@inheritDoc} */
@@ -76,7 +56,7 @@ class MainExtension extends AbstractExtension
         ];
     }
 
-    public function getSearchBoxPlaceholder(?Project $project = null, ?ProjectVersion $projectVersion = null): string
+    public function getSearchBoxPlaceholder(Project|null $project = null, ProjectVersion|null $projectVersion = null): string
     {
         if ($project !== null && $projectVersion !== null) {
             return 'Search ' . $project->getShortName() . ' ' . $projectVersion->getName();
@@ -89,7 +69,7 @@ class MainExtension extends AbstractExtension
         return 'Search';
     }
 
-    public function getAssetUrl(string $path, string $siteUrl, ?string $rootPath = null): string
+    public function getAssetUrl(string $path, string $siteUrl, string|null $rootPath = null): string
     {
         return $siteUrl . $path . '?' . $this->getAssetCacheBuster($path, $rootPath ?? $this->sourceDir);
     }

@@ -23,10 +23,10 @@ class SectionAuthorDirective extends Directive
     /** @param string[] $options */
     public function process(
         Parser $parser,
-        ?Node $node,
+        Node|null $node,
         string $variable,
         string $data,
-        array $options
+        array $options,
     ): void {
         preg_match('/(.*) <(.*)>/', $data, $match);
 

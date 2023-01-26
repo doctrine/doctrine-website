@@ -23,11 +23,11 @@ class ConfigurationBlockDirective extends SubDirective
     /** @param string[] $options */
     public function processSub(
         Parser $parser,
-        ?Node $document,
+        Node|null $document,
         string $variable,
         string $data,
-        array $options
-    ): ?Node {
+        array $options,
+    ): Node|null {
         if (! $document instanceof DocumentNode) {
             return null;
         }

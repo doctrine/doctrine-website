@@ -21,8 +21,7 @@ use function rand;
 
 abstract class TestCase extends BaseTestCase
 {
-    /** @var ContainerBuilder */
-    private static $container;
+    private static ContainerBuilder $container;
 
     protected function getContainer(): ContainerBuilder
     {

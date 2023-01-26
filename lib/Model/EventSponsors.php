@@ -12,13 +12,9 @@ use function array_merge;
 /** @template-extends AbstractLazyCollection<int, EventSponsor> */
 final class EventSponsors extends AbstractLazyCollection
 {
-    /** @var mixed[] */
-    private $event;
-
     /** @param mixed[] $event */
-    public function __construct(array $event)
+    public function __construct(private array $event)
     {
-        $this->event = $event;
     }
 
     protected function doInitialize(): void

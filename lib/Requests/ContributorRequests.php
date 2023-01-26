@@ -11,12 +11,8 @@ use Doctrine\Website\Repositories\ContributorRepository;
 
 class ContributorRequests
 {
-    /** @var ContributorRepository */
-    private $contributorRepository;
-
-    public function __construct(ContributorRepository $contributorRepository)
+    public function __construct(private ContributorRepository $contributorRepository)
     {
-        $this->contributorRepository = $contributorRepository;
     }
 
     public function getContributors(): RequestCollection

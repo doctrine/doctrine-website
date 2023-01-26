@@ -6,17 +6,9 @@ namespace Doctrine\Website\DataBuilder;
 
 class WebsiteData
 {
-    /** @var string */
-    private $name;
-
-    /** @var mixed[] */
-    private $data;
-
     /** @param mixed[] $data */
-    public function __construct(string $name, array $data)
+    public function __construct(private string $name, private array $data)
     {
-        $this->name = $name;
-        $this->data = $data;
     }
 
     public function getName(): string

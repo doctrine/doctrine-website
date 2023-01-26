@@ -8,8 +8,7 @@ use Doctrine\Website\ProcessFactory;
 
 class ProcessFactoryTest extends TestCase
 {
-    /** @var ProcessFactory */
-    private $processFactory;
+    private ProcessFactory $processFactory;
 
     protected function setUp(): void
     {

@@ -14,19 +14,10 @@ use function sprintf;
 
 class ProjectGitSyncer
 {
-    /** @var ProcessFactory */
-    private $processFactory;
+    private Repo $githubRepo;
 
-    /** @var string */
-    private $projectsDir;
-
-    /** @var Repo */
-    private $githubRepo;
-
-    public function __construct(ProcessFactory $processFactory, GithubClientProvider $githubClientProvider, string $projectsDir)
+    public function __construct(private ProcessFactory $processFactory, GithubClientProvider $githubClientProvider, private string $projectsDir)
     {
-        $this->processFactory = $processFactory;
-        $this->projectsDir    = $projectsDir;
         // TODO Inject Repo instead of GithubClientProvider
         $this->githubRepo = $githubClientProvider->getGithubClient()->repo();
     }

@@ -13,16 +13,8 @@ use function array_values;
 
 class ProjectVersionsReader
 {
-    /** @var TagReader */
-    private $tagReader;
-
-    /** @var TagBranchGuesser */
-    private $tagBranchGuesser;
-
-    public function __construct(TagReader $tagReader, TagBranchGuesser $tagBranchGuesser)
+    public function __construct(private TagReader $tagReader, private TagBranchGuesser $tagBranchGuesser)
     {
-        $this->tagReader        = $tagReader;
-        $this->tagBranchGuesser = $tagBranchGuesser;
     }
 
     /** @return mixed[] */

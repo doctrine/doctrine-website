@@ -90,7 +90,7 @@ final class GetStripeEventParticipants
     /** @return Stripe\Collection<string, mixed> */
     private function getEventStripeCheckouts(
         Event $event,
-        ?string $startingAfter = null
+        string|null $startingAfter = null,
     ): Stripe\Collection {
         $parameters = [
             'created' => ['gt' => strtotime('1 year ago')],

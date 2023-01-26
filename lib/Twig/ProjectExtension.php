@@ -15,16 +15,8 @@ use function strpos;
 
 class ProjectExtension extends AbstractExtension
 {
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var string */
-    private $sourceDir;
-
-    public function __construct(ProjectRepository $projectRepository, string $sourceDir)
+    public function __construct(private ProjectRepository $projectRepository, private string $sourceDir)
     {
-        $this->projectRepository = $projectRepository;
-        $this->sourceDir         = $sourceDir;
     }
 
     /** {@inheritDoc} */
@@ -36,7 +28,7 @@ class ProjectExtension extends AbstractExtension
         ];
     }
 
-    public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion): ?string
+    public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion): string|null
     {
         if (strpos($url, 'current') !== false) {
             $otherVersionUrl = str_replace('current', $projectVersion->getSlug(), $url);

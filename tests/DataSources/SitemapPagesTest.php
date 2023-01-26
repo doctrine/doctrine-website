@@ -16,11 +16,9 @@ use function date;
 
 class SitemapPagesTest extends TestCase
 {
-    /** @var SourceFileRepository|MockObject */
-    private $sourceFileRepository;
+    private SourceFileRepository&MockObject $sourceFileRepository;
 
-    /** @var SitemapPages */
-    private $sitemapPages;
+    private SitemapPages $sitemapPages;
 
     public function testGetSourceRows(): void
     {

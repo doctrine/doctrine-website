@@ -11,12 +11,8 @@ use Doctrine\Website\Repositories\TeamMemberRepository;
 
 class ConsultingController
 {
-    /** @var TeamMemberRepository */
-    private $teamMemberRepository;
-
-    public function __construct(TeamMemberRepository $teamMemberRepository)
+    public function __construct(private TeamMemberRepository $teamMemberRepository)
     {
-        $this->teamMemberRepository = $teamMemberRepository;
     }
 
     public function index(): Response

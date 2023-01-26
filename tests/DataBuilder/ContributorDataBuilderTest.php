@@ -13,11 +13,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ContributorDataBuilderTest extends TestCase
 {
-    /** @var ProjectContributorRepository|MockObject */
-    private $projectContributorRepository;
+    private ProjectContributorRepository&MockObject $projectContributorRepository;
 
-    /** @var ContributorDataBuilder */
-    private $contributorDataBuilder;
+    private ContributorDataBuilder $contributorDataBuilder;
 
     public function testBuild(): void
     {

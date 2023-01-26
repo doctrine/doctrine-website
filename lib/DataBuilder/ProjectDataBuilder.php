@@ -31,43 +31,15 @@ class ProjectDataBuilder implements DataBuilder
         'integration'   => false,
     ];
 
-    /** @var ProjectDataRepository */
-    private $projectDataRepository;
-
-    /** @var ProjectGitSyncer */
-    private $projectGitSyncer;
-
-    /** @var ProjectDataReader */
-    private $projectDataReader;
-
-    /** @var ProjectVersionsReader */
-    private $projectVersionsReader;
-
-    /** @var RSTLanguagesDetector */
-    private $rstLanguagesDetector;
-
-    /** @var GetProjectPackagistData */
-    private $getProjectPackagistData;
-
-    /** @var string */
-    private $projectsDir;
-
     public function __construct(
-        ProjectDataRepository $projectDataRepository,
-        ProjectGitSyncer $projectGitSyncer,
-        ProjectDataReader $projectDataReader,
-        ProjectVersionsReader $projectVersionsReader,
-        RSTLanguagesDetector $rstLanguagesDetector,
-        GetProjectPackagistData $getProjectPackagistData,
-        string $projectsDir
+        private ProjectDataRepository $projectDataRepository,
+        private ProjectGitSyncer $projectGitSyncer,
+        private ProjectDataReader $projectDataReader,
+        private ProjectVersionsReader $projectVersionsReader,
+        private RSTLanguagesDetector $rstLanguagesDetector,
+        private GetProjectPackagistData $getProjectPackagistData,
+        private string $projectsDir,
     ) {
-        $this->projectDataRepository   = $projectDataRepository;
-        $this->projectGitSyncer        = $projectGitSyncer;
-        $this->projectDataReader       = $projectDataReader;
-        $this->projectVersionsReader   = $projectVersionsReader;
-        $this->getProjectPackagistData = $getProjectPackagistData;
-        $this->rstLanguagesDetector    = $rstLanguagesDetector;
-        $this->projectsDir             = $projectsDir;
     }
 
     public function getName(): string
@@ -152,7 +124,7 @@ class ProjectDataBuilder implements DataBuilder
      */
     private function applyConfiguredProjectVersions(
         array &$projectVersions,
-        array $projectData
+        array $projectData,
     ): array {
         foreach ($projectVersions as $key => $projectVersion) {
             $configured = false;
@@ -213,7 +185,7 @@ class ProjectDataBuilder implements DataBuilder
     private function prepareProjectVersions(
         string $repositoryName,
         array &$projectVersions,
-        array $projectData
+        array $projectData,
     ): array {
         $docsRepositoryName = $projectData['docsRepositoryName'] ?? $projectData['repositoryName'];
 

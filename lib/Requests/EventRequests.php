@@ -11,12 +11,8 @@ use Doctrine\Website\Repositories\EventRepository;
 
 class EventRequests
 {
-    /** @var EventRepository */
-    private $eventRepository;
-
-    public function __construct(EventRepository $eventRepository)
+    public function __construct(private EventRepository $eventRepository)
     {
-        $this->eventRepository = $eventRepository;
     }
 
     public function getEvents(): RequestCollection

@@ -36,54 +36,22 @@ class WebsiteBuilder
         Application::ENV_STAGING => self::URL_STAGING,
     ];
 
-    /** @var ProcessFactory */
-    private $processFactory;
-
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var SourceFileRepository */
-    private $sourceFileRepository;
-
-    /** @var SourceFilesBuilder */
-    private $sourceFilesBuilder;
-
-    /** @var string */
-    private $rootDir;
-
-    /** @var string */
-    private $cacheDir;
-
-    /** @var string */
-    private $webpackBuildDir;
-
     public function __construct(
-        ProcessFactory $processFactory,
-        ProjectRepository $projectRepository,
-        Filesystem $filesystem,
-        SourceFileRepository $sourceFileRepository,
-        SourceFilesBuilder $sourceFilesBuilder,
-        string $rootDir,
-        string $cacheDir,
-        string $webpackBuildDir
+        private ProcessFactory $processFactory,
+        private ProjectRepository $projectRepository,
+        private Filesystem $filesystem,
+        private SourceFileRepository $sourceFileRepository,
+        private SourceFilesBuilder $sourceFilesBuilder,
+        private string $rootDir,
+        private string $cacheDir,
+        private string $webpackBuildDir,
     ) {
-        $this->processFactory       = $processFactory;
-        $this->projectRepository    = $projectRepository;
-        $this->filesystem           = $filesystem;
-        $this->sourceFileRepository = $sourceFileRepository;
-        $this->sourceFilesBuilder   = $sourceFilesBuilder;
-        $this->rootDir              = $rootDir;
-        $this->cacheDir             = $cacheDir;
-        $this->webpackBuildDir      = $webpackBuildDir;
     }
 
     public function build(
         OutputInterface $output,
         string $buildDir,
-        string $env
+        string $env,
     ): void {
         $output->writeln(sprintf(
             'Building Doctrine website for <info>%s</info> environment at <info>%s</info>.',
@@ -199,7 +167,7 @@ class WebsiteBuilder
         string $buildDir,
         Project $project,
         ProjectVersion $version,
-        string $alias
+        string $alias,
     ): void {
         $dir = sprintf(
             '%s/projects/%s/en',

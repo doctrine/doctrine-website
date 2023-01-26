@@ -12,11 +12,9 @@ use Symfony\Component\Process\Process;
 
 class TagReaderTest extends TestCase
 {
-    /** @var ProcessFactory|MockObject */
-    private $processFactory;
+    private ProcessFactory&MockObject $processFactory;
 
-    /** @var TagReader */
-    private $tagReader;
+    private TagReader $tagReader;
 
     public function testGetRepositoryTags(): void
     {

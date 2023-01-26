@@ -11,17 +11,13 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class CacheClearerTest extends TestCase
 {
-    /** @var Filesystem|MockObject */
-    private $filesystem;
+    private Filesystem&MockObject $filesystem;
 
-    /** @var string */
-    private $rootDir;
+    private string $rootDir;
 
-    /** @var string */
-    private $env;
+    private string $env;
 
-    /** @var CacheClearer|MockObject */
-    private $cacheClearer;
+    private CacheClearer&MockObject $cacheClearer;
 
     public function testClear(): void
     {

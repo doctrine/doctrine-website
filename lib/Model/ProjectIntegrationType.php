@@ -6,14 +6,11 @@ namespace Doctrine\Website\Model;
 
 class ProjectIntegrationType
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $url;
+    private string $url;
 
-    /** @var string */
-    private $icon;
+    private string $icon;
 
     /** @param mixed[] $projectIntegrationType */
     public function __construct(array $projectIntegrationType)

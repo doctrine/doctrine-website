@@ -10,18 +10,10 @@ use Doctrine\Website\Repositories\ProjectRepository;
 
 class ProjectController
 {
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var ProjectContributorRepository */
-    private $projectContributorRepository;
-
     public function __construct(
-        ProjectRepository $projectRepository,
-        ProjectContributorRepository $projectContributorRepository
+        private ProjectRepository $projectRepository,
+        private ProjectContributorRepository $projectContributorRepository,
     ) {
-        $this->projectRepository            = $projectRepository;
-        $this->projectContributorRepository = $projectContributorRepository;
     }
 
     public function index(): Response

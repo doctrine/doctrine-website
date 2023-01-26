@@ -21,10 +21,10 @@ class VersionAddedDirective extends Directive
     /** @param string[] $options */
     public function process(
         Parser $parser,
-        ?Node $node,
+        Node|null $node,
         string $variable,
         string $data,
-        array $options
+        array $options,
     ): void {
         $document = $parser->getDocument();
 

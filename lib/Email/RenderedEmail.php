@@ -6,20 +6,8 @@ namespace Doctrine\Website\Email;
 
 final class RenderedEmail
 {
-    /** @var string */
-    private $subject;
-
-    /** @var string */
-    private $bodyText;
-
-    /** @var string */
-    private $bodyHtml;
-
-    public function __construct(string $subject, string $bodyText, string $bodyHtml)
+    public function __construct(private string $subject, private string $bodyText, private string $bodyHtml)
     {
-        $this->subject  = $subject;
-        $this->bodyText = $bodyText;
-        $this->bodyHtml = $bodyHtml;
     }
 
     public function getSubject(): string

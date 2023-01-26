@@ -9,12 +9,8 @@ use Doctrine\Website\Repositories\BlogPostRepository;
 
 class AtomController
 {
-    /** @var BlogPostRepository */
-    private $blogPostRepository;
-
-    public function __construct(BlogPostRepository $blogPostRepository)
+    public function __construct(private BlogPostRepository $blogPostRepository)
     {
-        $this->blogPostRepository = $blogPostRepository;
     }
 
     public function index(): Response

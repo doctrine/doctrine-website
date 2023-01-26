@@ -12,11 +12,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectRequestsTest extends TestCase
 {
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var ProjectRequests */
-    private $projectRequests;
+    private ProjectRequests $projectRequests;
 
     public function testGetProjects(): void
     {

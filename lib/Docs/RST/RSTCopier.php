@@ -33,23 +33,11 @@ TEMPLATE;
     /*
 SIDEBAR;
 
-    /** @var RSTFileRepository */
-    private $rstFileRepository;
-
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var string */
-    private $docsDir;
-
     public function __construct(
-        RSTFileRepository $rstFileRepository,
-        Filesystem $filesystem,
-        string $docsDir
+        private RSTFileRepository $rstFileRepository,
+        private Filesystem $filesystem,
+        private string $docsDir,
     ) {
-        $this->rstFileRepository = $rstFileRepository;
-        $this->filesystem        = $filesystem;
-        $this->docsDir           = $docsDir;
     }
 
     public function copyRst(Project $project, ProjectVersion $version): void
@@ -83,7 +71,7 @@ SIDEBAR;
         RSTLanguage $language,
         string $file,
         string $outputPath,
-        string $sidebar
+        string $sidebar,
     ): void {
         $filePath = str_replace($language->getPath(), '', $file);
 

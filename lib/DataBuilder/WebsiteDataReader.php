@@ -13,12 +13,8 @@ use function sprintf;
 
 class WebsiteDataReader
 {
-    /** @var string */
-    private $cacheDir;
-
-    public function __construct(string $cacheDir)
+    public function __construct(private string $cacheDir)
     {
-        $this->cacheDir = $cacheDir;
     }
 
     public function read(string $file): WebsiteData

@@ -6,17 +6,9 @@ namespace Doctrine\Website\Model;
 
 final class PartnerDetails
 {
-    /** @var string */
-    private $label;
-
-    /** @var string[] */
-    private $items;
-
     /** @param string[] $items */
-    public function __construct(string $label, array $items)
+    public function __construct(private string $label, private array $items)
     {
-        $this->label = $label;
-        $this->items = $items;
     }
 
     public function getLabel(): string

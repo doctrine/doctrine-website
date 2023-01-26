@@ -9,8 +9,7 @@ use Doctrine\Website\Tests\TestCase;
 
 class ProjectVersionTest extends TestCase
 {
-    /** @var ProjectVersion */
-    private $projectVersion;
+    private ProjectVersion $projectVersion;
 
     protected function setUp(): void
     {

@@ -8,38 +8,14 @@ use function sprintf;
 
 final class EventSpeaker
 {
-    /** @var string */
-    private $name;
-
-    /** @var string */
-    private $avatarUrl;
-
-    /** @var string */
-    private $topic;
-
-    /** @var string */
-    private $topicSlug;
-
-    /** @var string */
-    private $description;
-
-    /** @var string */
-    private $youTubeVideoId;
-
     public function __construct(
-        string $name,
-        string $avatarUrl,
-        string $topic,
-        string $topicSlug,
-        string $description,
-        string $youTubeVideoId
+        private string $name,
+        private string $avatarUrl,
+        private string $topic,
+        private string $topicSlug,
+        private string $description,
+        private string $youTubeVideoId,
     ) {
-        $this->name           = $name;
-        $this->avatarUrl      = $avatarUrl;
-        $this->topic          = $topic;
-        $this->topicSlug      = $topicSlug;
-        $this->description    = $description;
-        $this->youTubeVideoId = $youTubeVideoId;
     }
 
     public function getName(): string

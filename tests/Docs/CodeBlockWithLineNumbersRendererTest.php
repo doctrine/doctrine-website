@@ -10,11 +10,9 @@ use Highlight\Highlighter;
 
 class CodeBlockWithLineNumbersRendererTest extends TestCase
 {
-    /** @var Highlighter */
-    private $highlighter;
+    private Highlighter $highlighter;
 
-    /** @var CodeBlockWithLineNumbersRenderer */
-    private $codeBlockWithLineNumbersRenderer;
+    private CodeBlockWithLineNumbersRenderer $codeBlockWithLineNumbersRenderer;
 
     public function testRender(): void
     {

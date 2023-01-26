@@ -10,43 +10,15 @@ use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 
 class BlogPost implements LoadMetadataInterface
 {
-    /** @var string */
-    private $url;
-
-    /** @var string */
-    private $slug;
-
-    /** @var string */
-    private $title;
-
-    /** @var string */
-    private $authorName;
-
-    /** @var string */
-    private $authorEmail;
-
-    /** @var string */
-    private $contents;
-
-    /** @var DateTimeImmutable */
-    private $date;
-
     public function __construct(
-        string $url,
-        string $slug,
-        string $title,
-        string $authorName,
-        string $authorEmail,
-        string $contents,
-        DateTimeImmutable $date
+        private string $url,
+        private string $slug,
+        private string $title,
+        private string $authorName,
+        private string $authorEmail,
+        private string $contents,
+        private DateTimeImmutable $date,
     ) {
-        $this->url         = $url;
-        $this->slug        = $slug;
-        $this->title       = $title;
-        $this->authorName  = $authorName;
-        $this->authorEmail = $authorEmail;
-        $this->contents    = $contents;
-        $this->date        = $date;
     }
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void

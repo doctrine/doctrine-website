@@ -21,11 +21,9 @@ use function sys_get_temp_dir;
 
 class SearchIndexerTest extends TestCase
 {
-    /** @var Client|MockObject */
-    private $client;
+    private Client&MockObject $client;
 
-    /** @var SearchIndexer */
-    private $searchIndexer;
+    private SearchIndexer $searchIndexer;
 
     protected function setUp(): void
     {

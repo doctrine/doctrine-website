@@ -14,11 +14,9 @@ use Symfony\Component\Process\Process;
 
 class TagBranchGuesserTest extends TestCase
 {
-    /** @var ProcessFactory|MockObject */
-    private $processFactory;
+    private ProcessFactory&MockObject $processFactory;
 
-    /** @var TagBranchGuesser */
-    private $tagBranchGuesser;
+    private TagBranchGuesser $tagBranchGuesser;
 
     public function testGuessTagBranchNameGuess1(): void
     {

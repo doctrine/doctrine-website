@@ -9,17 +9,13 @@ use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 
 final class Sponsor implements LoadMetadataInterface
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $url;
+    private string $url;
 
-    /** @var UtmParameters */
-    private $utmParameters;
+    private UtmParameters $utmParameters;
 
-    /** @var bool */
-    private $highlighted;
+    private bool $highlighted;
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void
     {

@@ -16,24 +16,10 @@ use function sprintf;
 
 class ClearBuildCacheCommand extends Command
 {
-    /** @var string|null */
-    protected static $defaultName = 'clear-build-cache';
+    protected static string|null $defaultName = 'clear-build-cache';
 
-    /** @var CacheClearer */
-    private $cacheClearer;
-
-    /** @var string */
-    private $rootDir;
-
-    /** @var string */
-    private $env;
-
-    public function __construct(CacheClearer $cacheClearer, string $rootDir, string $env)
+    public function __construct(private CacheClearer $cacheClearer, private string $rootDir, private string $env)
     {
-        $this->cacheClearer = $cacheClearer;
-        $this->rootDir      = $rootDir;
-        $this->env          = $env;
-
         parent::__construct();
     }
 

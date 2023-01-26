@@ -19,29 +19,21 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectDataBuilderTest extends TestCase
 {
-    /** @var ProjectDataRepository|MockObject */
-    private $projectDataRepository;
+    private ProjectDataRepository&MockObject $projectDataRepository;
 
-    /** @var ProjectGitSyncer|MockObject */
-    private $projectGitSyncer;
+    private ProjectGitSyncer&MockObject $projectGitSyncer;
 
-    /** @var ProjectDataReader|MockObject */
-    private $projectDataReader;
+    private ProjectDataReader&MockObject $projectDataReader;
 
-    /** @var ProjectVersionsReader|MockObject */
-    private $projectVersionsReader;
+    private ProjectVersionsReader&MockObject $projectVersionsReader;
 
-    /** @var RSTLanguagesDetector|MockObject */
-    private $rstLanguagesDetector;
+    private RSTLanguagesDetector&MockObject $rstLanguagesDetector;
 
-    /** @var GetProjectPackagistData|MockObject */
-    private $getProjectPackagistData;
+    private GetProjectPackagistData&MockObject $getProjectPackagistData;
 
-    /** @var string */
-    private $projectsDir;
+    private string $projectsDir;
 
-    /** @var ProjectDataBuilder */
-    private $projectDataBuilder;
+    private ProjectDataBuilder $projectDataBuilder;
 
     public function testBuild(): void
     {

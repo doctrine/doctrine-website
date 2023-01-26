@@ -17,11 +17,9 @@ use function usort;
 
 class BlogPostsTest extends TestCase
 {
-    /** @var WebsiteDataReader|MockObject */
-    private $dataReader;
+    private WebsiteDataReader&MockObject $dataReader;
 
-    /** @var BlogPosts */
-    private $blogPosts;
+    private BlogPosts $blogPosts;
 
     public function testGetSourceRows(): void
     {
