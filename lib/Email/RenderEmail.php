@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Email;
 
-use Pelago\Emogrifier;
+use Pelago\Emogrifier\CssInliner;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\Loader\FilesystemLoader;
@@ -17,7 +17,6 @@ final class RenderEmail
 {
     /** @param AbstractExtension[] $extensions */
     public function __construct(
-        private Emogrifier $emogrifier,
         private string $templatesDir,
         private array $extensions,
     ) {
@@ -28,7 +27,7 @@ final class RenderEmail
     {
         $twig = $this->createTwigEnvironment($this->createFilesystemLoader());
 
-        $template = $twig->loadTemplate($template);
+        $template = $twig->createTemplate($template);
 
         $subject   = $template->renderBlock('subject', $parameters);
         $inlineCss = $template->renderBlock('inline_css', $parameters);
@@ -39,10 +38,8 @@ final class RenderEmail
             $bodyText = strip_tags($template->renderBlock('body_html', $parameters));
         }
 
-        $this->emogrifier->setHtml($bodyHtml);
-        $this->emogrifier->setCss($inlineCss);
-
-        $mergedHtml = $this->emogrifier->emogrify();
+        $emogrifier = CssInliner::fromHtml($bodyHtml)->inlineCss($inlineCss);
+        $mergedHtml = $emogrifier->render();
 
         return new RenderedEmail($subject, $bodyText, $mergedHtml);
     }

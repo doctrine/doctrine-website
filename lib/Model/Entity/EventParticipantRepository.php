@@ -8,6 +8,10 @@ use Doctrine\ORM\EntityRepository;
 
 use function assert;
 
+/**
+ * @template T of EventParticipant
+ * @template-extends EntityRepository<T>
+ */
 final class EventParticipantRepository extends EntityRepository
 {
     public function findOneByEmail(string $email): EventParticipant|null

@@ -12,6 +12,7 @@ use Doctrine\Website\Model\Entity\EventParticipantRepository;
 /** @template-extends AbstractLazyCollection<int, EventParticipant> */
 final class EventParticipants extends AbstractLazyCollection
 {
+    /** @param EventParticipantRepository<EventParticipant> $eventParticipantRepository */
     public function __construct(private int $eventId, private EventParticipantRepository $eventParticipantRepository)
     {
     }

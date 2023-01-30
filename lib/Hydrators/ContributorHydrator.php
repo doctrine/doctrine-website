@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\Website\Hydrators;
 
 use Doctrine\Website\Model\Contributor;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\TeamMember;
 
 /**
  * @property TeamMember|null $teamMember
@@ -14,9 +16,11 @@ use Doctrine\Website\Model\Contributor;
  * @property int $numAdditions
  * @property int $numDeletions
  * @property Project[] $projects
+ * @template-extends ModelHydrator<Contributor>
  */
 final class ContributorHydrator extends ModelHydrator
 {
+    /** @return class-string<Contributor> */
     protected function getClassName(): string
     {
         return Contributor::class;

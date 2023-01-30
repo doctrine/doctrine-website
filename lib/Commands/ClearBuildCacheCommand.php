@@ -16,8 +16,6 @@ use function sprintf;
 
 class ClearBuildCacheCommand extends Command
 {
-    protected static string|null $defaultName = 'clear-build-cache';
-
     public function __construct(private CacheClearer $cacheClearer, private string $rootDir, private string $env)
     {
         parent::__construct();
@@ -26,6 +24,7 @@ class ClearBuildCacheCommand extends Command
     protected function configure(): void
     {
         $this
+            ->setName('clear-build-cache')
             ->setDescription('Clear the build cache.')
             ->addArgument(
                 'build-dir',

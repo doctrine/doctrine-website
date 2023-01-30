@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests\DataBuilder;
 
 use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use Doctrine\Website\DataBuilder\ContributorDataBuilder;
+use Doctrine\Website\Model\ProjectContributor;
 use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectContributorRepository;
 use Doctrine\Website\Tests\TestCase;
@@ -13,6 +14,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ContributorDataBuilderTest extends TestCase
 {
+    /** @var ProjectContributorRepository<ProjectContributor>&MockObject */
     private ProjectContributorRepository&MockObject $projectContributorRepository;
 
     private ContributorDataBuilder $contributorDataBuilder;

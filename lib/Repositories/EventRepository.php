@@ -11,15 +11,17 @@ use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Event;
 use InvalidArgumentException;
 
-use function assert;
 use function sprintf;
 
+/**
+ * @template T of Event
+ * @template-extends BasicObjectRepository<T>
+ */
 class EventRepository extends BasicObjectRepository
 {
     public function findOneById(int $id): Event
     {
         $event = $this->findOneBy(['id' => $id]);
-        assert($event instanceof Event || $event === null);
 
         if ($event === null) {
             throw new InvalidArgumentException(sprintf('Could not find Event with id "%s"', $id));

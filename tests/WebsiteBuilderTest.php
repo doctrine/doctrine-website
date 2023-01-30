@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests;
 
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
@@ -17,6 +18,7 @@ class WebsiteBuilderTest extends TestCase
 {
     private ProcessFactory&MockObject $processFactory;
 
+    /** @var ProjectRepository<Project>&MockObject  */
     private ProjectRepository&MockObject $projectRepository;
 
     private Filesystem&MockObject $filesystem;

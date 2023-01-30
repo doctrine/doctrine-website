@@ -7,6 +7,10 @@ namespace Doctrine\Website\Repositories;
 use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Sponsor;
 
+/**
+ * @template T of Sponsor
+ * @template-extends BasicObjectRepository<T>
+ */
 class SponsorRepository extends BasicObjectRepository
 {
     /** @return Sponsor[] */

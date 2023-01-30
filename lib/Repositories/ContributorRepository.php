@@ -10,6 +10,10 @@ use UnexpectedValueException;
 
 use function sprintf;
 
+/**
+ * @template T of Contributor
+ * @template-extends BasicObjectRepository<T>
+ */
 class ContributorRepository extends BasicObjectRepository
 {
     public function findOneByGithub(string $github): Contributor

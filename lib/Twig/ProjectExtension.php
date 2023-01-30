@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Twig;
 
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Twig\Extension\AbstractExtension;
@@ -15,6 +16,7 @@ use function strpos;
 
 class ProjectExtension extends AbstractExtension
 {
+    /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(private ProjectRepository $projectRepository, private string $sourceDir)
     {
     }

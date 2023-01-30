@@ -8,9 +8,6 @@ parameters:
       - lib
       - tests
     ignoreErrors:
-      # TODO Use newer Doctrine packages which are using T and TKey
-      - "#should return array<[\\a-zA-Z]+> but returns array<object>#"
-      - "#should return [\\a-zA-Z]+(.null)* but returns object(.null)*#"
       - "#Short ternary operator is not allowed#"
       - # Refactor class and remove this error
         message: "#While loop condition is always true#"
@@ -25,3 +22,6 @@ parameters:
       - # Temporary final classes in tests are covered by nunomaduro/mock-final-classes until the refactorings start
         message: "#contains unresolvable type#"
         path: "tests/"
+      -
+        message: "#does not specify its types: TStripeObject#"
+        path: "lib/Event/GetStripeEventParticipants.php"

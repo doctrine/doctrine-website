@@ -9,10 +9,12 @@ use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
 use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use ReflectionProperty;
 
+/** @template T of object */
 abstract class ModelHydrator extends ObjectHydrator
 {
     private object $object;
 
+    /** @var ClassMetadataInterface<T> */
     private ClassMetadataInterface $classMetadata;
 
     /** @var ReflectionProperty[] */
@@ -26,6 +28,7 @@ abstract class ModelHydrator extends ObjectHydrator
     /** @param mixed[] $data */
     abstract protected function doHydrate(array $data): void;
 
+    /** @return class-string<T> */
     abstract protected function getClassName(): string;
 
     /**

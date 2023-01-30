@@ -19,8 +19,10 @@ class ContributorsTest extends TestCase
 {
     private WebsiteDataReader&MockObject $dataReader;
 
+    /** @var TeamMemberRepository<TeamMember>&MockObject */
     private TeamMemberRepository&MockObject $teamMemberRepository;
 
+    /** @var ProjectRepository<Project>&MockObject */
     private ProjectRepository&MockObject $projectRepository;
 
     private Contributors $contributors;

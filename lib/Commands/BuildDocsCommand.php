@@ -16,8 +16,6 @@ use function is_string;
 
 class BuildDocsCommand extends Command
 {
-    protected static string|null $defaultName = 'build-docs';
-
     public function __construct(private BuildDocs $buildDocs)
     {
         parent::__construct();
@@ -26,6 +24,7 @@ class BuildDocsCommand extends Command
     protected function configure(): void
     {
         $this
+            ->setName('build-docs')
             ->setDescription('Build the RST docs.')
             ->addOption(
                 'project',

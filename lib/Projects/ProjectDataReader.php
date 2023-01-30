@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Inflector\Inflector;
+use Doctrine\Inflector\InflectorFactory;
 use InvalidArgumentException;
 
 use function array_replace;
@@ -26,6 +27,8 @@ class ProjectDataReader
 
     private const COMPOSER_JSON_FILE_NAME = 'composer.json';
 
+    private Inflector $inflector;
+
     /**
      * @param mixed[] $projectsData
      * @param mixed[] $projectIntegrationTypes
@@ -35,6 +38,7 @@ class ProjectDataReader
         private array $projectsData,
         private array $projectIntegrationTypes,
     ) {
+        $this->inflector = InflectorFactory::create()->build();
     }
 
     /** @return mixed[] */
@@ -76,7 +80,7 @@ class ProjectDataReader
     /** @return mixed[] */
     private function createDefaultProjectData(string $repositoryName): array
     {
-        $slug = str_replace('_', '-', Inflector::tableize($repositoryName));
+        $slug = str_replace('_', '-', $this->inflector->tableize($repositoryName));
 
         return [
             'name' => $repositoryName,

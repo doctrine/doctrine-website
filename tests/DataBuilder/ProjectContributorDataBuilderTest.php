@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests\DataBuilder;
 
 use Doctrine\Website\DataBuilder\ProjectContributorDataBuilder;
 use Doctrine\Website\Github\GithubProjectContributors;
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
@@ -14,8 +15,10 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectContributorDataBuilderTest extends TestCase
 {
+    /** @var ProjectRepository<Project>&MockObject */
     private ProjectRepository&MockObject $projectRepository;
 
+    /** @var TeamMemberRepository<TeamMember>&MockObject */
     private TeamMemberRepository&MockObject $teamMemberRepository;
 
     private GithubProjectContributors&MockObject $githubProjectContributors;

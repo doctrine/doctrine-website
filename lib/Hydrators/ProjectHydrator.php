@@ -28,9 +28,11 @@ use Doctrine\Website\Model\ProjectVersion;
  * @property ProjectVersion[] $versions
  * @property ProjectIntegrationType $projectIntegrationType
  * @property ProjectStats $projectStats
+ * @template-extends ModelHydrator<Project>
  */
 final class ProjectHydrator extends ModelHydrator
 {
+    /** @return class-string<Project> */
     protected function getClassName(): string
     {
         return Project::class;

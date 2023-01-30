@@ -58,12 +58,7 @@
             </argument>
         </service>
 
-        <service id="Pelago\Emogrifier">
-            <call method="disableStyleBlocksParsing" />
-        </service>
-
         <service id="Doctrine\Website\Email\RenderEmail" autowire="false">
-            <argument type="service" id="Pelago\Emogrifier" />
             <argument>%doctrine.website.templates_dir%</argument>
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Twig\MainExtension" />

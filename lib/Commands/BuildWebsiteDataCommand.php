@@ -17,8 +17,6 @@ use function sprintf;
 
 class BuildWebsiteDataCommand extends Command
 {
-    protected static string|null $defaultName = 'build-website-data';
-
     public function __construct(
         private ProjectDataBuilder $projectDataBuilder,
         private ProjectContributorDataBuilder $projectContributorDataBuilder,
@@ -32,6 +30,7 @@ class BuildWebsiteDataCommand extends Command
     protected function configure(): void
     {
         $this
+            ->setName('build-website-data')
             ->setDescription('Build the Doctrine website data.');
     }
 

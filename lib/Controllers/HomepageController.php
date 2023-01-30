@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\BlogPost;
+use Doctrine\Website\Model\DoctrineUser;
+use Doctrine\Website\Model\Partner;
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Projects\GetTotalDownloads;
 use Doctrine\Website\Repositories\BlogPostRepository;
 use Doctrine\Website\Repositories\DoctrineUserRepository;
@@ -13,6 +17,12 @@ use Doctrine\Website\Repositories\ProjectRepository;
 
 class HomepageController
 {
+    /**
+     * @param BlogPostRepository<BlogPost>         $blogPostRepository
+     * @param ProjectRepository<Project>           $projectRepository
+     * @param DoctrineUserRepository<DoctrineUser> $doctrineUserRepository
+     * @param PartnerRepository<Partner>           $partnerRepository
+     */
     public function __construct(
         private BlogPostRepository $blogPostRepository,
         private ProjectRepository $projectRepository,

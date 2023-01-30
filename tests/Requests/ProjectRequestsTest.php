@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Requests;
 
 use Doctrine\StaticWebsiteGenerator\Request\ArrayRequestCollection;
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Requests\ProjectRequests;
 use Doctrine\Website\Tests\TestCase;
@@ -12,6 +13,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectRequestsTest extends TestCase
 {
+    /** @var ProjectRepository<Project>&MockObject */
     private ProjectRepository&MockObject $projectRepository;
 
     private ProjectRequests $projectRequests;

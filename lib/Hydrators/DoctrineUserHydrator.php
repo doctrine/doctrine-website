@@ -9,9 +9,11 @@ use Doctrine\Website\Model\DoctrineUser;
 /**
  * @property string $name
  * @property string $url
+ * @template-extends ModelHydrator<DoctrineUser>
  */
 final class DoctrineUserHydrator extends ModelHydrator
 {
+    /** @return class-string<DoctrineUser> */
     protected function getClassName(): string
     {
         return DoctrineUser::class;

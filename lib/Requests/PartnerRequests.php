@@ -11,6 +11,7 @@ use Doctrine\Website\Repositories\PartnerRepository;
 
 class PartnerRequests
 {
+    /** @param PartnerRepository<Partner> $partnerRepository */
     public function __construct(private PartnerRepository $partnerRepository)
     {
     }

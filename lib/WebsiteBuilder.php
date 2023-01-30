@@ -36,6 +36,7 @@ class WebsiteBuilder
         Application::ENV_STAGING => self::URL_STAGING,
     ];
 
+    /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(
         private ProcessFactory $processFactory,
         private ProjectRepository $projectRepository,

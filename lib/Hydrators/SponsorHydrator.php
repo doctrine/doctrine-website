@@ -14,9 +14,11 @@ use function array_merge;
  * @property string $url
  * @property UtmParameters $utmParameters
  * @property bool $highlighted
+ * @template-extends ModelHydrator<Sponsor>
  */
 final class SponsorHydrator extends ModelHydrator
 {
+    /** @return class-string<Sponsor> */
     protected function getClassName(): string
     {
         return Sponsor::class;

@@ -10,6 +10,10 @@ use InvalidArgumentException;
 
 use function sprintf;
 
+/**
+ * @template T of Project
+ * @template-extends BasicObjectRepository<T>
+ */
 class ProjectRepository extends BasicObjectRepository
 {
     /** @return Project[] */

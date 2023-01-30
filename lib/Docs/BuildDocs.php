@@ -19,6 +19,7 @@ use function sprintf;
 
 class BuildDocs
 {
+    /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(
         private ProjectRepository $projectRepository,
         private ProjectGitSyncer $projectGitSyncer,

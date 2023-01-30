@@ -18,6 +18,7 @@ use UnexpectedValueException;
 
 class BuildDocsTest extends TestCase
 {
+    /** @var ProjectRepository<Project>&MockObject  */
     private ProjectRepository&MockObject $projectRepository;
 
     private ProjectGitSyncer&MockObject $projectGitSyncer;

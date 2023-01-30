@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
 
 final class GetTotalDownloads
 {
+    /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(private ProjectRepository $projectRepository)
     {
     }

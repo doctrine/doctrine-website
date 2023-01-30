@@ -10,9 +10,11 @@ use Doctrine\Website\Model\SitemapPage;
 /**
  * @property string $url
  * @property DateTimeImmutable $date
+ * @template-extends ModelHydrator<SitemapPage>
  */
 final class SitemapPageHydrator extends ModelHydrator
 {
+    /** @return class-string<SitemapPage> */
     protected function getClassName(): string
     {
         return SitemapPage::class;

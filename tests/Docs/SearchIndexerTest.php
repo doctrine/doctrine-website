@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Docs;
 
-use AlgoliaSearch\Client;
-use AlgoliaSearch\Index;
+use Algolia\AlgoliaSearch\SearchClient;
+use Algolia\AlgoliaSearch\SearchIndex;
 use Doctrine\Common\EventManager;
 use Doctrine\RST\Builder;
 use Doctrine\RST\Configuration;
@@ -21,13 +21,13 @@ use function sys_get_temp_dir;
 
 class SearchIndexerTest extends TestCase
 {
-    private Client&MockObject $client;
+    private SearchClient&MockObject $client;
 
     private SearchIndexer $searchIndexer;
 
     protected function setUp(): void
     {
-        $this->client = $this->createMock(Client::class);
+        $this->client = $this->createMock(SearchClient::class);
 
         $this->searchIndexer = new SearchIndexer(
             $this->client,
@@ -36,7 +36,7 @@ class SearchIndexerTest extends TestCase
 
     public function testInitSearchIndex(): void
     {
-        $index = $this->createMock(Index::class);
+        $index = $this->createMock(SearchIndex::class);
 
         $this->client->expects(self::once())
             ->method('initIndex')
@@ -73,7 +73,7 @@ class SearchIndexerTest extends TestCase
         ]);
         $version = new ProjectVersion(['slug' => '1.0']);
 
-        $index = $this->createMock(Index::class);
+        $index = $this->createMock(SearchIndex::class);
 
         $this->client->expects(self::once())
             ->method('initIndex')
@@ -225,7 +225,7 @@ class SearchIndexerTest extends TestCase
         ]);
         $version = new ProjectVersion(['slug' => '1.0']);
 
-        $index = $this->createMock(Index::class);
+        $index = $this->createMock(SearchIndex::class);
 
         $this->client->expects(self::once())
             ->method('initIndex')

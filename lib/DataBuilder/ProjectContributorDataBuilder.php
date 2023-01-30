@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Doctrine\Website\DataBuilder;
 
 use Doctrine\Website\Github\GithubProjectContributors;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
 
@@ -12,6 +14,10 @@ class ProjectContributorDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'project_contributors';
 
+    /**
+     * @param ProjectRepository<Project>       $projectRepository
+     * @param TeamMemberRepository<TeamMember> $teamMemberRepository
+     */
     public function __construct(
         private ProjectRepository $projectRepository,
         private TeamMemberRepository $teamMemberRepository,

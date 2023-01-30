@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\Event;
 use Doctrine\Website\Repositories\EventRepository;
 
 final class EventsController
 {
+    /** @param EventRepository<Event> $eventRepository */
     public function __construct(private EventRepository $eventRepository)
     {
     }

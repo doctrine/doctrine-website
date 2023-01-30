@@ -87,7 +87,6 @@ final class GetStripeEventParticipants
         return $allEventStripeCheckouts;
     }
 
-    /** @return Stripe\Collection<string, mixed> */
     private function getEventStripeCheckouts(
         Event $event,
         string|null $startingAfter = null,

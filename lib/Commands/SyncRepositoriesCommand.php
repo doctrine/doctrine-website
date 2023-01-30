@@ -14,8 +14,6 @@ use function sprintf;
 
 class SyncRepositoriesCommand extends Command
 {
-    protected static string|null $defaultName = 'sync-repositories';
-
     public function __construct(
         private ProjectDataRepository $projectDataRepository,
         private ProjectGitSyncer $projectGitSyncer,
@@ -26,6 +24,7 @@ class SyncRepositoriesCommand extends Command
     protected function configure(): void
     {
         $this
+            ->setName('sync-repositories')
             ->setDescription('Initialize or update all project repositories.');
     }
 

@@ -7,7 +7,6 @@ namespace Doctrine\Website;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Tools\Console\Command as DBALCommand;
 use Doctrine\DBAL\Tools\Console\ConnectionProvider\SingleConnectionProvider;
-use Doctrine\Migrations\Configuration\Configuration as MigrationsConfiguration;
 use Doctrine\Migrations\Tools\Console\Command as MigrationsCommand;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\Command as ORMCommand;
@@ -47,7 +46,6 @@ class Application
         private BaseApplication $application,
         EntityManager $em,
         Connection $connection,
-        MigrationsConfiguration $migrationsConfiguration,
         BuildAllCommand $buildAllCommand,
         BuildDocsCommand $buildDocsCommand,
         BuildWebsiteCommand $buildWebsiteCommand,

@@ -8,6 +8,10 @@ use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\BlogPost;
 use InvalidArgumentException;
 
+/**
+ * @template T of BlogPost
+ * @template-extends BasicObjectRepository<T>
+ */
 class BlogPostRepository extends BasicObjectRepository
 {
     /** @return BlogPost[] */

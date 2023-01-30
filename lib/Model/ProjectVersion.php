@@ -23,7 +23,7 @@ class ProjectVersion
 
     private string $name;
 
-    private string $branchName;
+    private string|null $branchName;
 
     private string $slug;
 

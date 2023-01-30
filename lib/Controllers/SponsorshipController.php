@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\Sponsor;
 use Doctrine\Website\Repositories\SponsorRepository;
 
 class SponsorshipController
 {
+    /** @param SponsorRepository<Sponsor> $sponsorRepository */
     public function __construct(private SponsorRepository $sponsorRepository)
     {
     }

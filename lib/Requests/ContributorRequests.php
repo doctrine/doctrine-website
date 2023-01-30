@@ -11,6 +11,7 @@ use Doctrine\Website\Repositories\ContributorRepository;
 
 class ContributorRequests
 {
+    /** @param ContributorRepository<Contributor> $contributorRepository */
     public function __construct(private ContributorRepository $contributorRepository)
     {
     }

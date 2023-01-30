@@ -23,9 +23,11 @@ use function assert;
  * @property string $headshot
  * @property string $bio
  * @property Closure|Contributor $contributor
+ * @template-extends ModelHydrator<TeamMember>
  */
 final class TeamMemberHydrator extends ModelHydrator
 {
+    /** @return class-string<TeamMember> */
     protected function getClassName(): string
     {
         return TeamMember::class;

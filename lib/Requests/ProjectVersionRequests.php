@@ -11,6 +11,7 @@ use Doctrine\Website\Repositories\ProjectRepository;
 
 class ProjectVersionRequests
 {
+    /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(private ProjectRepository $projectRepository)
     {
     }

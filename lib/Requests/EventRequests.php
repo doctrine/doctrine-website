@@ -11,6 +11,7 @@ use Doctrine\Website\Repositories\EventRepository;
 
 class EventRequests
 {
+    /** @param EventRepository<Event> $eventRepository */
     public function __construct(private EventRepository $eventRepository)
     {
     }

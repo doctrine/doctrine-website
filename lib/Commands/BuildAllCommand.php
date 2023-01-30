@@ -22,8 +22,6 @@ use function sprintf;
 
 class BuildAllCommand extends Command
 {
-    protected static string|null $defaultName = 'build-all';
-
     public function __construct(
         private string $rootDir,
         private string $env,
@@ -34,6 +32,7 @@ class BuildAllCommand extends Command
     protected function configure(): void
     {
         $this
+            ->setName('build-all')
             ->setDescription('Build all website components.')
             ->addArgument(
                 'build-dir',

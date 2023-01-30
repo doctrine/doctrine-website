@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\Contributor;
 use Doctrine\Website\Repositories\ContributorRepository;
 
 class TeamController
 {
+    /** @param ContributorRepository<Contributor> $contributorRepository */
     public function __construct(private ContributorRepository $contributorRepository)
     {
     }

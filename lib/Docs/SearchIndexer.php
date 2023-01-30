@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs;
 
-use AlgoliaSearch\Client;
-use AlgoliaSearch\Index;
+use Algolia\AlgoliaSearch\SearchClient;
+use Algolia\AlgoliaSearch\SearchIndex;
 use Doctrine\RST\Nodes\DocumentNode;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Nodes\ParagraphNode;
@@ -27,7 +27,7 @@ class SearchIndexer
 {
     public const INDEX_NAME = 'pages';
 
-    public function __construct(private Client $client)
+    public function __construct(private SearchClient $client)
     {
     }
 
@@ -48,7 +48,7 @@ class SearchIndexer
             'removeWordsIfNoResults' => 'allOptional',
         ]);
 
-        $index->clearIndex();
+        $index->clearObjects();
     }
 
     /** @param DocumentNode[] $documents */
@@ -63,7 +63,7 @@ class SearchIndexer
             $this->buildDocumentSearchRecords($document, $records, $project, $version);
         }
 
-        $this->getSearchIndex()->addObjects($records);
+        $this->getSearchIndex()->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
     }
 
     /** @param mixed[][] $records */
@@ -188,18 +188,18 @@ class SearchIndexer
     {
         $nodeValue = $node->getValue();
 
-        if ($nodeValue instanceof Node) {
-            return $nodeValue->render();
+        if ($nodeValue === null) {
+            return '';
         }
 
         if (is_string($nodeValue)) {
             return $nodeValue;
         }
 
-        return (string) $nodeValue;
+        return $nodeValue->render();
     }
 
-    private function getSearchIndex(): Index
+    private function getSearchIndex(): SearchIndex
     {
         return $this->client->initIndex(self::INDEX_NAME);
     }

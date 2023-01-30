@@ -27,8 +27,10 @@ use function sprintf;
 
 class EventParticipantsCommand extends Command
 {
-    protected static string|null $defaultName = 'event-participants';
-
+    /**
+     * @param EventRepository<Event>                       $eventRepository
+     * @param EventParticipantRepository<EventParticipant> $eventParticipantRepository
+     */
     public function __construct(
         private EventRepository $eventRepository,
         private EventParticipantRepository $eventParticipantRepository,
@@ -42,6 +44,7 @@ class EventParticipantsCommand extends Command
     protected function configure(): void
     {
         $this
+            ->setName('event-participants')
             ->setDescription('Command to check for event participants using the Stripe API.')
             ->addOption(
                 'save',
