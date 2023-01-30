@@ -39,6 +39,7 @@
     "require-dev": {
         "doctrine/coding-standard": "^12.0",
         "mikey179/vfsstream": "^1.6",
+        "nunomaduro/mock-final-classes": "^1.1",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "phpstan/phpstan-phpunit": "^1.2",

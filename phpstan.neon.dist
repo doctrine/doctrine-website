@@ -19,3 +19,9 @@ parameters:
       - # Refactor class and remove this error
         message: "#is never written, only read#"
         path: "lib/Model/*.php"
+      - # Temporary final classes in tests are covered by nunomaduro/mock-final-classes until the refactorings start
+        message: "#has unresolvable native type#"
+        path: "tests/"
+      - # Temporary final classes in tests are covered by nunomaduro/mock-final-classes until the refactorings start
+        message: "#contains unresolvable type#"
+        path: "tests/"
