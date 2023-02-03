@@ -164,7 +164,8 @@
             </argument>
         </service>
 
-        <service id="AlgoliaSearch\Client">
+        <service id="Algolia\AlgoliaSearch\SearchClient" autowire="false">
+            <factory method="create"/>
             <argument>%doctrine.website.algolia.app_id%</argument>
             <argument>%doctrine.website.algolia.admin_api_key%</argument>
         </service>
@@ -499,7 +500,7 @@
         </service>
 
         <service id="Doctrine\ORM\Configuration">
-            <factory class="Doctrine\ORM\Tools\Setup" method="createAnnotationMetadataConfiguration" />
+            <factory class="Doctrine\ORM\ORMSetup" method="createAttributeMetadataConfiguration" />
             <argument type="collection">
                 <argument>%doctrine.website.root_dir%/lib/Model/Entity</argument>
             </argument>
@@ -530,16 +531,11 @@
         </service>
 
         <service id="Doctrine\Migrations\Configuration\Configuration">
-            <call method="setName">
-                <argument>Doctrine Website Migrations</argument>
-            </call>
-            <call method="setMigrationsNamespace">
-                <argument>Doctrine\Website\Migrations</argument>
-            </call>
             <call method="setAllOrNothing">
                 <argument>true</argument>
             </call>
-            <call method="setMigrationsDirectory">
+            <call method="addMigrationsDirectory">
+                <argument>Doctrine\Website\Migrations</argument>
                 <argument>%doctrine.website.root_dir%/lib/Migrations</argument>
             </call>
         </service>

@@ -17,11 +17,11 @@ use Doctrine\Website\Repositories\ProjectRepository;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-use function rand;
+use function mt_rand;
 
 abstract class TestCase extends BaseTestCase
 {
-    private static ContainerBuilder|null $container;
+    private static ContainerBuilder|null $container = null;
 
     protected function getContainer(): ContainerBuilder
     {
@@ -48,7 +48,7 @@ abstract class TestCase extends BaseTestCase
     /** @param mixed[] $data */
     protected function createEvent(array $data): Event
     {
-        $data['id'] = rand();
+        $data['id'] = mt_rand();
 
         $event = $this->createModel(EventRepository::class, $data);
         self::assertInstanceOf(Event::class, $event);
