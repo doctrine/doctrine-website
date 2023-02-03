@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\Website\Model\Event;
 
-#[Entity(repositoryClass: 'EventParticipantRepository')]
+#[Entity(repositoryClass: EventParticipantRepository::class)]
 #[Table(name: 'event_participants')]
 final class EventParticipant
 {
