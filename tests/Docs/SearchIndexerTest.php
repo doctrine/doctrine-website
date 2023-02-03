@@ -59,7 +59,7 @@ class SearchIndexerTest extends TestCase
             ]);
 
         $index->expects(self::once())
-            ->method('clearIndex');
+            ->method('clearObjects');
 
         $this->searchIndexer->initSearchIndex();
     }
@@ -210,8 +210,8 @@ class SearchIndexerTest extends TestCase
         ];
 
         $index->expects(self::once())
-            ->method('addObjects')
-            ->with($expectedRecords);
+            ->method('saveObjects')
+            ->with($expectedRecords, ['autoGenerateObjectIDIfNotExist' => true]);
 
         $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
     }
@@ -287,8 +287,8 @@ class SearchIndexerTest extends TestCase
         ];
 
         $index->expects(self::once())
-            ->method('addObjects')
-            ->with($expectedRecords);
+            ->method('saveObjects')
+            ->with($expectedRecords, ['autoGenerateObjectIDIfNotExist' => true]);
 
         $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
     }

@@ -67,11 +67,7 @@ class WebsiteBuilderTest extends TestCase
         $buildDir = '/data/doctrine-website-build-staging';
         $env      = 'staging';
 
-        $this->filesystem->expects(self::at(0))
-            ->method('remove')
-            ->with([]);
-
-        $this->filesystem->expects(self::at(1))
+        $this->filesystem->expects(self::exactly(2))
             ->method('remove')
             ->with([]);
 
@@ -86,13 +82,12 @@ class WebsiteBuilderTest extends TestCase
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && npm run build');
 
-        $this->filesystem->expects(self::at(2))
+        $this->filesystem->expects(self::exactly(2))
             ->method('mirror')
-            ->with($this->webpackBuildDir, $buildDir . '/frontend');
-
-        $this->filesystem->expects(self::at(3))
-            ->method('mirror')
-            ->with($this->cacheDir . '/data', $buildDir . '/website-data');
+            ->withConsecutive(
+                [$this->webpackBuildDir, $buildDir . '/frontend'],
+                [$this->cacheDir . '/data', $buildDir . '/website-data'],
+            );
 
         $this->websiteBuilder->build($output, $buildDir, $env);
     }

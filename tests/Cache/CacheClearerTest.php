@@ -23,20 +23,14 @@ class CacheClearerTest extends TestCase
     {
         $buildDir = __DIR__;
 
-        $this->cacheClearer->expects(self::at(0))
+        $this->cacheClearer->expects(self::exactly(3))
             ->method('glob')
-            ->with(__DIR__)
-            ->willReturn([__DIR__]);
-
-        $this->cacheClearer->expects(self::at(1))
-            ->method('glob')
-            ->with(__DIR__ . '/source/projects/*')
-            ->willReturn([__DIR__]);
-
-        $this->cacheClearer->expects(self::at(2))
-            ->method('glob')
-            ->with(__DIR__ . '/cache/*')
-            ->willReturn([__DIR__]);
+            ->willReturnMap([
+                [__DIR__, [__DIR__]],
+                [__DIR__, [__DIR__]],
+                [__DIR__ . '/source/projects/*', [__DIR__]],
+                [__DIR__ . '/cache/*', [__DIR__]],
+            ]);
 
         $dirs = $this->cacheClearer->clear($buildDir);
 

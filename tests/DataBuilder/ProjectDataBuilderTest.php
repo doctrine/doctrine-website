@@ -41,7 +41,7 @@ class ProjectDataBuilderTest extends TestCase
             ->method('getProjectRepositoryNames')
             ->willReturn(['orm']);
 
-        $this->projectGitSyncer->expects(self::at(0))
+        $this->projectGitSyncer->expects(self::any())
             ->method('checkoutDefaultBranch')
             ->with('orm');
 

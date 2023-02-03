@@ -52,7 +52,7 @@ class ProjectGitSyncerTest extends TestCase
     {
         $repositoryName = 'example-project';
 
-        $this->processFactory->expects(self::at(0))
+        $this->processFactory->expects(self::once())
             ->method('run')
             ->with(sprintf(
                 'git clone https://github.com/doctrine/\'%s\'.git \'%s/%s\'',
@@ -68,7 +68,7 @@ class ProjectGitSyncerTest extends TestCase
     {
         $repositoryName = 'example-project';
 
-        $this->processFactory->expects(self::at(0))
+        $this->processFactory->expects(self::once())
             ->method('run')
             ->with(sprintf(
                 'cd \'%s/example-project\' && git clean -xdf && git fetch origin',
@@ -87,7 +87,7 @@ class ProjectGitSyncerTest extends TestCase
             ->with('doctrine', $repositoryName)
             ->willReturn(['default_branch' => '1.0']);
 
-        $this->processFactory->expects(self::at(0))
+        $this->processFactory->expects(self::once())
             ->method('run')
             ->with(sprintf(
                 'cd \'%s/example-project\' && git clean -xdf && git checkout origin/\'1.0\'',
@@ -102,7 +102,7 @@ class ProjectGitSyncerTest extends TestCase
         $repositoryName = 'example-project';
         $branchName     = '1.0';
 
-        $this->processFactory->expects(self::at(0))
+        $this->processFactory->expects(self::once())
             ->method('run')
             ->with(sprintf(
                 'cd \'%s/example-project\' && git clean -xdf && git checkout origin/\'1.0\'',
