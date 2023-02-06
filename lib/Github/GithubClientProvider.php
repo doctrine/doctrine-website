@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Github;
 
+use Github\AuthMethod;
 use Github\Client;
 use InvalidArgumentException;
 
@@ -21,7 +22,7 @@ class GithubClientProvider
     public function getGithubClient(): Client
     {
         if ($this->authenticated === false) {
-            $this->githubClient->authenticate($this->githubHttpToken, '', 'http_token');
+            $this->githubClient->authenticate($this->githubHttpToken, '', AuthMethod::ACCESS_TOKEN);
 
             $this->authenticated = true;
         }
