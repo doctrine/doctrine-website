@@ -8,7 +8,7 @@ use function in_array;
 
 class CodeBlockRenderer
 {
-    private const CONSOLE_LANGUAGES = ['bash', 'sh', 'console'];
+    private const CONSOLE_LANGUAGES = ['terminal', 'bash', 'sh', 'console'];
 
     public function __construct(
         private CodeBlockConsoleRenderer $codeBlockConsoleRenderer,
