@@ -45,22 +45,15 @@ TEMPLATE;
         $files = $this->rstFileRepository->findFiles($projectVersionDocsOutputPath);
 
         foreach ($files as $file) {
-            $this->processFile($project, $version, $language, $file);
+            $this->processFile($file);
         }
     }
 
-    private function processFile(
-        Project $project,
-        ProjectVersion $version,
-        RSTLanguage $language,
-        string $file,
-    ): void {
+    private function processFile(string $file): void
+    {
         $contents = $this->getFileContents($file);
 
         $processedContents = $this->processFileContents(
-            $project,
-            $version,
-            $language,
             $file,
             $contents,
         );
@@ -68,24 +61,16 @@ TEMPLATE;
         $this->filesystem->dumpFile($file, $processedContents);
     }
 
-    private function processFileContents(
-        Project $project,
-        ProjectVersion $version,
-        RSTLanguage $language,
-        string $file,
-        string $contents,
-    ): string {
+    private function processFileContents(string $file, string $contents): string
+    {
         if (strpos($file, '.html') !== false) {
-            return $this->processHtmlFile($project, $version, $language, $file, $contents);
+            return $this->processHtmlFile($file, $contents);
         }
 
         return $contents;
     }
 
     private function processHtmlFile(
-        Project $project,
-        ProjectVersion $version,
-        RSTLanguage $language,
         string $file,
         string $contents,
     ): string {
