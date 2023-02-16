@@ -109,11 +109,16 @@ TEMPLATE;
 
         return sprintf(
             self::PARAMETERS_TEMPLATE,
-            $title,
+            $this->escapeYaml($title),
             strpos($file, 'index.html') !== false ? 'true' : 'false',
             $docsSourcePath,
             $contents,
         );
+    }
+
+    private function escapeYaml(string $text): string
+    {
+        return str_replace('\\', '\\\\', $text);
     }
 
     private function getFileContents(string $file): string
