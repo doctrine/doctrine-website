@@ -410,15 +410,106 @@ constraint in composer.json and run:
 
     $ composer update
 
-Running Tests
--------------
+Dealing with checks and tools
+-----------------------------
 
-You must have installed the library with composer and the dev
-dependencies (default). To run the tests:
+We get lots of PRs, and each of them goes though a series of checks that
+should catch obvious mistakes, so that we can focus on higher order
+issues. The checks are fairly standardized across all our projects, so
+here is a list of the most common ones and how to deal with them.
+Before you can run any of these locally, you will need to install
+dependencies with ``composer install``.
+
+Coding standard check
+~~~~~~~~~~~~~~~~~~~~~
+
+We use `PHP_CodeSniffer <https://github.com/squizlabs/PHP_CodeSniffer>`_
+along with the `Doctrine Coding Standard
+<https://github.com/doctrine/coding-standard>`_.
+
+To get a list of coding standard issues, run:
 
 .. code-block:: console
 
-    $ ./vendor/bin/phpunit
+    $ vendor/bin/phpcs
+
+To automatically fix some of the issues, run:
+
+.. code-block:: console
+
+    $ vendor/bin/phpcbf
+
+Some issues are impossible to fix automatically, so you will have to fix
+them manually.
+
+Static analysis
+~~~~~~~~~~~~~~~
+
+We use two different static analysis tools, that can be complementary:
+
+- `Psalm <https://psalm.dev/>`_
+- `PHPStan <https://phpstan.org/>`_
+
+Here is how to run both tools:
+
+.. code-block:: console
+
+    $ vendor/bin/psalm
+    $ vendor/bin/phpstan
+
+It might happen that these tools report false positives. In that case,
+we try to report the false positives upstream, and then we ignore them
+in ``psalm.xml`` or ``phpstan.neon``, along with a link to the bug
+report.
+
+When things get overwhelming, for instance when upgrading Psalm or
+PHPStan, we use baseline files, but as a last resort: it's better to
+have new code pass analysis with the latest version of the tools than to
+block the ugprade until every single issue is addressed.
+
+If you are looking for something to contribute, you can try to
+reduce the baseline files in repositories that have them.
+This might happen accidentally when working on code, and both tools are
+configured to let you know when you should remove lines from the
+baseline.
+
+We never rely on ``@psalm-suppress`` except in some Symfony bundles. We
+are aware of this inconsistency, and might resolve it someday. Until
+then, try to be consistent with the repository you are contributing to.
+
+Both tools understand most of each other annotations, and we use
+``@psalm-``-prefixed annotations and let PHPStan do the translation. We
+use prefixed annotations for advanced features that are not understood
+by all IDEs yet.
+
+Tests
+~~~~~
+
+We use `PHPUnit <https://phpunit.de/>`_ for our tests. You can run them
+with ``vendor/bin/phpunit``. We often have more than just one PHPUnit
+check, because we want to run them with different versions of PHP, or
+with different versions of infrastructure components (e.g. different
+RDBMS), etc. All these jobs produce coverage reports, which are gathered
+and sent to Codecov. If you see a coverage drop, it is likely that you
+are missing a test for some code you added.
+
+Running checks before pushing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Rather than starting many containers on a remote infrastructure to
+figure what is wrong with your code, running some of the checks locally
+before pushing is never a bad idea. You can do so by creating a
+``.git/hooks/pre-push`` file or even a ``.git/hooks/pre-commit`` file
+with the following content:
+
+.. code-block:: bash
+
+    #!/bin/bash
+    set -e
+    echo ''|vendor/bin/phpcs
+    vendor/bin/phpstan
+    vendor/bin/psalm
+    vendor/bin/phpunit
 
 Security Disclosures
 --------------------
