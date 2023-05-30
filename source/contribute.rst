@@ -129,7 +129,9 @@ The next minor version branch may include:
 
 - refactorings, unless they are necessary for a bugfix. This is to avoid
   unnecessary risks.
-- new deprecations - remember to update the ``UPGRADE.md`` file as well!
+- new deprecations - read our :ref:`Dedicated policy
+  <./policies/deprecation>` to figure out
+  how to contribute those.
 - adding new features and/or public APIs;
 
 On the next major version branch, usually only deprecations notices,
