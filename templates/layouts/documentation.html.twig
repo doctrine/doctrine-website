@@ -118,30 +118,34 @@
                                         {% if project.maintainedVersions %}
                                             <h6 class="dropdown-header">Maintained</h6>
 
-                                            {% for version in project.maintainedVersions if version.hasDocs %}
-                                                {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
+                                            {% for version in project.maintainedVersions %}
+                                                {% if version.hasDocs %}
+                                                    {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
 
-                                                <a class="project-version-switcher dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">
-                                                    {{ version.displayName }}
+                                                    <a class="project-version-switcher dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">
+                                                        {{ version.displayName }}
 
-                                                    {% if version.current %}
-                                                        (current)
-                                                    {% endif %}
+                                                        {% if version.current %}
+                                                            (current)
+                                                        {% endif %}
 
-                                                    {% if version.upcoming %}
-                                                        (upcoming)
-                                                    {% endif %}
-                                                </a>
+                                                        {% if version.upcoming %}
+                                                            (upcoming)
+                                                        {% endif %}
+                                                    </a>
+                                                {% endif %}
                                             {% endfor %}
                                         {% endif %}
 
                                         {% if project.unmaintainedVersions %}
                                             <h6 class="dropdown-header">Unmaintained</h6>
 
-                                            {% for version in project.unmaintainedVersions if version.hasDocs %}
-                                                {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
+                                            {% for version in project.unmaintainedVersions %}
+                                                {% if version.hasDocs %}
+                                                    {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
 
-                                                <a class="dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">{{ version.name }}</a>
+                                                    <a class="dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">{{ version.name }}</a>
+                                                {% endif %}
                                             {% endfor %}
                                         {% endif %}
                                     </div>
