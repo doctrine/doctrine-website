@@ -3,6 +3,15 @@ Deprecation Policy
 
 The Doctrine team will adhere to this deprecation policy whenever it is reasonably possible.
 
+When to deprecate something
+---------------------------
+
+Deprecations can only ever happen in a minor release. Users pulling a
+patch version of the library should not get a new deprecation.
+When deprecating something an API in favor of another API, the new API
+must be already present or added in the same minor version as the
+deprecation.
+
 Using ``@deprecated`` and ``PHPStan Deprecation Rules``
 -------------------------------------------------------
 
@@ -61,6 +70,26 @@ Using ``doctrine/deprecations``
 In some cases, you may need to conditionally deprecate functionality. In
 these cases, it is required to use the `Doctrine deprecations`_ library.
 
+Documenting the deprecation
+---------------------------
+
+Any pull request labeled with "Deprecation" must include a change in
+``UPGRADE.md`` documenting what is deprecated, and how to migrate to the
+new API if any. When using ``doctrine/deprecations``, a link is required
+as an argument to ``Deprecation::trigger*()``. That link can be a link
+to the pull request if it explains the deprecation clearly in its
+description, or a link to a separate issue. It should explain why there
+is a deprecation.
+
+Cleaning up deprecations
+------------------------
+
+Once a deprecation has been merged, and the next minor version has been
+merged up into the next major version, the deprecation can and should be
+removed from the next major branch.
+This is best done by the person who contributed the deprecation.
+It involves removing the deprecated paths, but also contributing another
+entry in ``UPGRADE.md`` stating what has been removed.
 
 Tools
 -----
