@@ -513,6 +513,30 @@ with the following content:
     vendor/bin/psalm
     vendor/bin/phpunit
 
+Getting your PR reviewed
+------------------------
+
+Doctrine is a huge project, and we get lots of PRs. It is natural for
+maintainers to focus on PRs that have green checks. If you want to get a
+review on your PR despite red checks, be explicit about that, otherwise
+we might assume that you are still working on it. We try never to merge
+PRs with red checks, even if the failure is unrelated to the PR. This
+avoids situations where some failures are unrelated to the PR, but some
+are not, and we end up merging a PR that breaks the build even more.
+
+If you know you are not done but still want to get a review, you can
+mark your PR as "Draft", and then ask for the review. This way, we know
+you acknowledge that the PR is not ready to be merged, and just want
+guidance or a basic approval before you put more effort into it. We are
+not mind readers though, so the best way to get exactly what you want is
+to explicitly ask for it.
+
+Note that because of the integration between Github and automated tools,
+PRs with a lot of coding standard or static analysis issues might be
+quite hard to review, with all the noise added by automated comments in
+the diff. Despite what is said previously, you might want to fix as many
+issues as easily doable before asking for a review.
+
 Security Disclosures
 --------------------
 
