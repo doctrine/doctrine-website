@@ -113,6 +113,7 @@ With that in mind, things that can go on the patch release branch
 include:
 
 - bugfixes;
+- addressing deprecations from dependencies;
 - adding tests, especially for bugs that were fixed;
 - updates, corrections or improvements to non-code assets like
   documentation, build scripts or tooling configuration;
@@ -124,6 +125,13 @@ include:
 
    When phpdoc comments are imprecise but not wrong technically, target
    the next minor release branch instead.
+
+.. note::
+
+   When addressing a deprecation notice from a dependency, make sure not
+   to bump any version constraint, so as to keep the patch release
+   obtainable without upgrading any other dependencies. You may use
+   feature detection (calls to ``class_exists()`` and such) to do so.
 
 The next minor version branch may include:
 
