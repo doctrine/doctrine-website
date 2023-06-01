@@ -120,6 +120,8 @@ include:
 - fixes to incorrect phpdoc comments (docblock type declarations, etc.);
 - updates, corrections or improvements to code comments that are not
   phpdoc comments;
+- _development_ dependency bumps (regular dependencies should not be
+  bumped).
 
 .. note::
 
@@ -137,6 +139,7 @@ The next minor version branch may include:
 
 - refactorings, unless they are necessary for a bugfix. This is to avoid
   unnecessary risks.
+- dependency bumps if they lead to code simplifications;
 - new deprecations - read our :ref:`Dedicated policy
   <./policies/deprecation>` to figure out
   how to contribute those.
