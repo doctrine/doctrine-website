@@ -14,7 +14,9 @@ final class EventParticipant
 {
     /**
      * @var int|null
-     * @Id @Column(type="integer") @GeneratedValue
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
      **/
     private $id;
 

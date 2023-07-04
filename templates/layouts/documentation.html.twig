@@ -1,16 +1,18 @@
 {% extends 'layouts/layout.html.twig' %}
 
-{% if project is defined and project %}
-    {%- block title -%}
+{%- block title -%}
+    {% if project is defined and project %}
         {{ page.title }} - {{ site.title }} {{ project.name }}{{ project.name != project.shortName ? ' (' ~ project.shortName ~ ')' : '' }}
-    {%- endblock -%}
+    {% endif %}
+{%- endblock -%}
+{% block meta_description %}{% if project is defined and project %}{{ site.title }} {{ project.name }} Documentation: {{ page.title }} {% endif %}{% endblock %}
 
-    {% block meta_description %}{{ site.title }} {{ project.name }} Documentation: {{ page.title }} {% endblock %}
-
-    {% set pageTitleKeywords = page.title|lower|split(' ') %}
-
-    {% block meta_keywords project.keywords|merge(['documentation'])|merge(pageTitleKeywords)|join(',') %}
-{% endif %}
+{% block meta_keywords %}
+    {% if project is defined and project %}
+        {% set pageTitleKeywords = page.title|lower|split(' ') %}
+        {{ project.keywords|merge(['documentation'])|merge(pageTitleKeywords)|join(',') }}
+    {% endif %}
+{% endblock %}
 
 {% block head_meta %}
     {% if project is defined and project %}
