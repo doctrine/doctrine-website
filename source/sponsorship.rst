@@ -68,7 +68,7 @@ It includes support for Doctrine ORM and many of the other open source packages 
 Carbon Ads
 ----------
 
-You may have noticed that we have advertisments placed on the Doctrine Website. These advertisments come
+You may have noticed that we have advertisements placed on the Doctrine Website. These advertisements come
 from `Carbon <https://www.carbonads.net/>`_ and look like the following.
 
 .. raw:: html

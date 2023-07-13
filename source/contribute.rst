@@ -138,7 +138,7 @@ On the next major version branch, usually only deprecations notices,
 deprecated features and necessary compatibility layers are being
 removed.
 
-Avoid suprising changes in public APIs on the next major version branch
+Avoid surprising changes in public APIs on the next major version branch
 if anyhow possible. In order to provide a smooth upgrade path to users,
 the preferred solution is to add deprecations and possibly alternative
 APIs in a preceding minor version, and only remove the deprecations and
