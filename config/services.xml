@@ -93,6 +93,28 @@
             </call>
         </service>
 
+        <service id="Doctrine\RST\Kernel">
+            <argument type="service" id="Doctrine\RST\Configuration" />
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\RST\Directive\CautionDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\CodeBlockDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\ConfigurationBlockDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\HintDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\IndexDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\NoteDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\NoticeDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\RoleDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\SectionAuthorDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\SeeAlsoDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\SidebarDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\TipDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\TocDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\TocHeaderDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\VersionAddedDirective" />
+                <argument type="service" id="Doctrine\Website\RST\Directive\WarningDirective" />
+            </argument>
+        </service>
+
         <service id="Doctrine\RST\Builder">
             <argument type="service" id="Doctrine\RST\Kernel" />
         </service>
@@ -182,29 +204,6 @@
         </service>
 
         <service id="Doctrine\StaticWebsiteGenerator\Site" alias="Doctrine\Website\Site" />
-
-        <service id="Doctrine\RST\Kernel">
-            <argument type="service" id="Doctrine\RST\Configuration" />
-
-            <argument type="collection">
-                <argument type="service" id="Doctrine\Website\RST\Directive\CautionDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\CodeBlockDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\ConfigurationBlockDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\HintDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\IndexDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\NoteDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\NoticeDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\RoleDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\SectionAuthorDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\SeeAlsoDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\SidebarDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\TipDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\TocDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\TocHeaderDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\VersionAddedDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\WarningDirective" />
-            </argument>
-        </service>
 
         <service id="Doctrine\Website\Event\NodeValue" autowire="false" />
 
