@@ -14,15 +14,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 use function chdir;
-use function file_exists;
 use function file_put_contents;
 use function getcwd;
 use function glob;
 use function in_array;
 use function is_dir;
 use function sprintf;
-use function symlink;
-use function unlink;
 
 class WebsiteBuilder
 {
@@ -189,12 +186,12 @@ class WebsiteBuilder
 
         chdir($dir);
 
-        if (file_exists($alias)) {
-            unlink($alias);
+        if ($this->filesystem->exists($alias)) {
+            $this->filesystem->remove($alias);
         }
 
-        if (file_exists($version->getSlug())) {
-            symlink($version->getSlug(), $alias);
+        if ($this->filesystem->exists($version->getSlug())) {
+            $this->filesystem->symlink($version->getSlug(), $alias);
         }
 
         if ($cwd === false) {
