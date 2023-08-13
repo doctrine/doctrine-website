@@ -8,9 +8,9 @@ use Doctrine\Website\Assets\AssetIntegrityGenerator;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Parsedown;
-use Twig_Extension;
-use Twig_SimpleFilter;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 use function assert;
 use function file_get_contents;
@@ -23,7 +23,7 @@ use function strlen;
 use function strrpos;
 use function substr;
 
-class MainExtension extends Twig_Extension
+class MainExtension extends AbstractExtension
 {
     /** @var Parsedown */
     private $parsedown;
@@ -54,25 +54,25 @@ class MainExtension extends Twig_Extension
         $this->stripePublishableKey    = $stripePublishableKey;
     }
 
-    /** @return Twig_SimpleFunction[] */
+    /** {@inheritDoc} */
     public function getFunctions(): array
     {
         return [
-            new Twig_SimpleFunction('get_search_box_placeholder', [$this, 'getSearchBoxPlaceholder']),
-            new Twig_SimpleFunction('get_asset_url', [$this, 'getAssetUrl']),
-            new Twig_SimpleFunction('get_webpack_asset_url', [$this, 'getWebpackAssetUrl']),
-            new Twig_SimpleFunction('get_asset_integrity', [$this->assetIntegrityGenerator, 'getAssetIntegrity']),
-            new Twig_SimpleFunction('get_webpack_asset_integrity', [$this->assetIntegrityGenerator, 'getWebpackAssetIntegrity']),
-            new Twig_SimpleFunction('get_stripe_publishable_key', [$this, 'getStripePublishableKey']),
+            new TwigFunction('get_search_box_placeholder', [$this, 'getSearchBoxPlaceholder']),
+            new TwigFunction('get_asset_url', [$this, 'getAssetUrl']),
+            new TwigFunction('get_webpack_asset_url', [$this, 'getWebpackAssetUrl']),
+            new TwigFunction('get_asset_integrity', [$this->assetIntegrityGenerator, 'getAssetIntegrity']),
+            new TwigFunction('get_webpack_asset_integrity', [$this->assetIntegrityGenerator, 'getWebpackAssetIntegrity']),
+            new TwigFunction('get_stripe_publishable_key', [$this, 'getStripePublishableKey']),
         ];
     }
 
-    /** @return Twig_SimpleFilter[] */
+    /** {@inheritDoc} */
     public function getFilters(): array
     {
         return [
-            new Twig_SimpleFilter('markdown', [$this->parsedown, 'text'], ['is_safe' => ['html']]),
-            new Twig_SimpleFilter('truncate', [$this, 'truncate']),
+            new TwigFilter('markdown', [$this->parsedown, 'text'], ['is_safe' => ['html']]),
+            new TwigFilter('truncate', [$this, 'truncate']),
         ];
     }
 
