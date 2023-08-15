@@ -6,14 +6,14 @@ namespace Doctrine\Website\Twig;
 
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 use function file_exists;
 use function str_replace;
 use function strpos;
 
-class ProjectExtension extends Twig_Extension
+class ProjectExtension extends AbstractExtension
 {
     /** @var ProjectRepository */
     private $projectRepository;
@@ -27,12 +27,12 @@ class ProjectExtension extends Twig_Extension
         $this->sourceDir         = $sourceDir;
     }
 
-    /** @return Twig_SimpleFunction[] */
+    /** {@inheritDoc} */
     public function getFunctions(): array
     {
         return [
-            new Twig_SimpleFunction('get_menu_projects', [$this->projectRepository, 'findPrimaryProjects']),
-            new Twig_SimpleFunction('get_url_version', [$this, 'getUrlVersion']),
+            new TwigFunction('get_menu_projects', [$this->projectRepository, 'findPrimaryProjects']),
+            new TwigFunction('get_url_version', [$this, 'getUrlVersion']),
         ];
     }
 
