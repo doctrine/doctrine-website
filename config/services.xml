@@ -135,6 +135,8 @@
         <service id="Symfony\Component\Filesystem\Filesystem" autowire="true" />
         <service id="Symfony\Component\HttpKernel\Controller\ArgumentResolver" autowire="true" />
         <service id="Psr\Cache\CacheItemPoolInterface" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" autowire="false">
+            <argument></argument>
+            <argument>0</argument>
             <argument>%doctrine.website.cache_dir%/fscache</argument>
         </service>
         <service id="SendGrid" class="SendGrid" autowire="true">
