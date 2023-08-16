@@ -13,7 +13,6 @@
     "require": {
         "php": "^7.4",
         "algolia/algoliasearch-client-php": "^1.27",
-        "cache/doctrine-adapter": "^1.0",
         "doctrine/inflector": "^1.4",
         "doctrine/migrations": "^2.2",
         "doctrine/orm": "^2.7",
@@ -28,6 +27,7 @@
         "sendgrid/sendgrid": "^7.3",
         "stripe/stripe-php": "^6.34",
         "symfony/config": "^4.4",
+        "symfony/cache": "^5.4",
         "symfony/console": "^4.4",
         "symfony/dependency-injection": "^4.4",
         "symfony/filesystem": "^4.4",
@@ -50,10 +50,13 @@
         "symfony/var-dumper": "^4.4"
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+        },
+        "platform": {
+            "php": "7.4.33"
+        },
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Github;
 
-use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Website\Model\Project;
 use Github\Api\Repo;
 use Github\Client;
+use Psr\Cache\CacheItemPoolInterface;
 use RuntimeException;
 
 use function assert;
@@ -16,18 +16,15 @@ use function sprintf;
 
 class ProdGithubProjectContributors implements GithubProjectContributors
 {
-    /** @var FilesystemCache */
-    private $filesystemCache;
-
-    /** @var Client */
-    private $githubClient;
+    private CacheItemPoolInterface $cache;
+    private Client $githubClient;
 
     public function __construct(
-        FilesystemCache $filesystemCache,
+        CacheItemPoolInterface $cache,
         Client $githubClient
     ) {
-        $this->filesystemCache = $filesystemCache;
-        $this->githubClient    = $githubClient;
+        $this->cache        = $cache;
+        $this->githubClient = $githubClient;
     }
 
     /** @param Project[] $projects */
@@ -91,8 +88,10 @@ class ProdGithubProjectContributors implements GithubProjectContributors
     {
         $id = sprintf('doctrine-%s-contributors-data', $project->getSlug());
 
-        if ($this->filesystemCache->contains($id)) {
-            return $this->filesystemCache->fetch($id);
+        $item = $this->cache->getItem($id);
+
+        if ($item->isHit()) {
+            return $item->get();
         }
 
         $repo = $this->githubClient->api('repo');
@@ -103,7 +102,7 @@ class ProdGithubProjectContributors implements GithubProjectContributors
         $contributors = $repo->statistics('doctrine', $repositoryName);
 
         if ($contributors !== []) {
-            $this->filesystemCache->save($id, $contributors, 86400);
+            $this->cache->save($item->set($contributors)->expiresAfter(86400));
         }
 
         if ($contributors === [] && $throwOnEmpty) {

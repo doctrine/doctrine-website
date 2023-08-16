@@ -125,11 +125,7 @@
                 method="getGithubClient"
             />
             <call method="addCache">
-                <argument type="service">
-                    <service class="Cache\Adapter\Doctrine\DoctrineCachePool" autowire="false">
-                        <argument type="service" id="Doctrine\Common\Cache\FilesystemCache" />
-                    </service>
-                </argument>
+                <argument type="service" id="Psr\Cache\CacheItemPoolInterface" />
             </call>
         </service>
 
@@ -138,7 +134,7 @@
         <service id="Symfony\Component\Console\Application" autowire="true" />
         <service id="Symfony\Component\Filesystem\Filesystem" autowire="true" />
         <service id="Symfony\Component\HttpKernel\Controller\ArgumentResolver" autowire="true" />
-        <service id="Doctrine\Common\Cache\FilesystemCache" autowire="false">
+        <service id="Psr\Cache\CacheItemPoolInterface" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" autowire="false">
             <argument>%doctrine.website.cache_dir%/fscache</argument>
         </service>
         <service id="SendGrid" class="SendGrid" autowire="true">
