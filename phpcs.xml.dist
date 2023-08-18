@@ -9,20 +9,10 @@
     <!-- Ignore warnings, show progress of the run and show sniff names -->
     <arg value="nps"/>
 
+    <config name="php_version" value="70433"/>
+
     <file>lib</file>
     <file>tests</file>
-
-    <rule ref="Doctrine">
-        <!-- This rule requires PHP 7.4 -->
-        <exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/>
-    </rule>
-
-    <!-- This rule requires PHP 7.4 -->
-    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
-        <properties>
-            <property name="enableNativeTypeHint" value="false"/>
-        </properties>
-    </rule>
 
     <!-- The interface of the class below is defined in a dependency and has to remain unchanged -->
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
