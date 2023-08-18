@@ -39,7 +39,7 @@ jobs:
     - name: "Installation of node"
       uses: "actions/setup-node@v3"
       with:
-        node-version: '14.21.3'
+        node-version: '20.5.1'
 
     - name: "yarn install"
       run: "yarn install"

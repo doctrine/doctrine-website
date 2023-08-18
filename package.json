@@ -3,14 +3,14 @@
         "@babel/core": "^7.17.5",
         "@babel/node": "^7.16.8",
         "@babel/preset-env": "^7.16.11",
-        "css-loader": "^3.6.0",
+        "css-loader": "^6.8.1",
         "jest": "^27.5.1",
-        "mini-css-extract-plugin": "^0.4.4",
+        "mini-css-extract-plugin": "^2.7.6",
         "prettier": "^3.0.2",
         "sass": "^1.44.0",
-        "sass-loader": "^7.1.0",
-        "webpack": "^4.23.0",
-        "webpack-cli": "^3.1.2"
+        "sass-loader": "^13.3.2",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4"
     },
     "name": "doctrine-website",
     "directories": {
@@ -27,11 +27,11 @@
         "jquery": "^3.6.0",
         "popper.js": "^1.16.1",
         "prismjs": "^1.27.0",
-        "purgecss-webpack-plugin": "^2.3.0",
+        "purgecss-webpack-plugin": "^5.0.0",
         "webpack-merge-and-include-globally": "^2.3.4"
     },
     "engines": {
-        "node": ">=6.11.5"
+        "node": ">=20"
     },
     "scripts": {
         "build": "NODE_ENV=production webpack",
