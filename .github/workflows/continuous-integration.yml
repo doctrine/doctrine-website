@@ -37,9 +37,9 @@ jobs:
         composer-options: "--prefer-dist --no-progress --no-suggest"
 
     - name: "Installation of node"
-      uses: "actions/setup-node@v2"
+      uses: "actions/setup-node@v3"
       with:
-        node-version: '10.22.0'
+        node-version: '14.21.3'
 
     - name: "yarn install"
       run: "yarn install"
