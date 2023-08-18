@@ -2,10 +2,10 @@ const path = require('path'),
     glob = require('glob'),
     isDevMode = process.env.NODE_ENV !== 'production',
     isWatching = process.env.WEBPACK_WATCH === '1',
-    webpack = require('webpack'),
+    { ProvidePlugin } = require('webpack'),
     MiniCssExtractPlugin = require('mini-css-extract-plugin'),
     MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally'),
-    PurgecssPlugin = require('purgecss-webpack-plugin');
+    { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 
 const plugins = () => {
     let plugins = [
@@ -13,7 +13,7 @@ const plugins = () => {
             filename: 'css/[name].css',
             chunkFilename: 'css/[id].css',
         }),
-        new webpack.ProvidePlugin({
+        new ProvidePlugin({
             $: 'jquery',
             'window.$': 'jquery',
             jQuery: 'jquery',
@@ -46,8 +46,8 @@ const plugins = () => {
     // when we run `npm run watch`
     if (!isWatching) {
         plugins.push(
-            new PurgecssPlugin({
-                whitelistPatterns: [/^ais/, /^carbon/, /^badge/, /^modal-backdrop/],
+            new PurgeCSSPlugin({
+                safelist: [/^ais/, /^carbon/, /^badge/, /^modal-backdrop/],
                 paths: []
                     .concat(glob.sync(__dirname + '/templates/**/*.twig'))
                     .concat(glob.sync(__dirname + '/source/**/*.html'))
