@@ -1,10 +1,10 @@
 import instantsearch from 'instantsearch.js';
-import {searchBox, hits} from 'instantsearch.js/es/widgets';
+import { searchBox, hits } from 'instantsearch.js/es/widgets';
 
-export default function(projectSlug, versionSlug, searchBoxSettings) {
+export default function (projectSlug, versionSlug, searchBoxSettings) {
   var searchParameters = {
     tagFilters: [],
-    hitsPerPage: 5
+    hitsPerPage: 5,
   };
 
   if (projectSlug) {
@@ -23,7 +23,7 @@ export default function(projectSlug, versionSlug, searchBoxSettings) {
     poweredBy: false,
     reset: false,
     searchParameters: searchParameters,
-    searchFunction: function(helper) {
+    searchFunction: function (helper) {
       if (helper.state.query === '') {
         $('.search-results').hide();
         $('.container-wrapper').css('opacity', '1');
@@ -35,7 +35,7 @@ export default function(projectSlug, versionSlug, searchBoxSettings) {
 
       $('.container-wrapper').css('opacity', '.25');
       $('.search-results').show();
-    }
+    },
   });
 
   search.addWidget(searchBox(searchBoxSettings));
@@ -45,9 +45,9 @@ export default function(projectSlug, versionSlug, searchBoxSettings) {
       container: '#hits',
       templates: {
         empty: 'No results',
-        item: $('#instantsearch-template').html()
-      }
-    })
+        item: $('#instantsearch-template').html(),
+      },
+    }),
   );
 
   search.start();
@@ -62,14 +62,14 @@ export default function(projectSlug, versionSlug, searchBoxSettings) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
 
-  $('#search-box input').on('blur', function() {
-    setTimeout(function() {
+  $('#search-box input').on('blur', function () {
+    setTimeout(function () {
       $('.container-wrapper').css('opacity', '1');
       $('.search-results').hide();
     }, 200);
   });
 
-  $(function() {
+  $(function () {
     var q = getParameterByName('q', window.location.href);
 
     if (q) {
@@ -77,4 +77,4 @@ export default function(projectSlug, versionSlug, searchBoxSettings) {
       search.helper.setQuery(q).search();
     }
   });
-};
+}

@@ -209,7 +209,10 @@ div.console {
 div.console:before {
   background-color: #777;
   border-radius: 50%;
-  box-shadow: 0 0 0 2px #777, 1.5em 0 0 2px #777, 3em 0 0 2px #777;
+  box-shadow:
+    0 0 0 2px #777,
+    1.5em 0 0 2px #777,
+    3em 0 0 2px #777;
   content: '';
   display: block;
   height: 0.5em;
@@ -595,4 +598,3 @@ nav.stop-war-navbar {
 
 @import 'railscasts';
 @import 'carbonads';
-
