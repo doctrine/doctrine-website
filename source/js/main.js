@@ -1,4 +1,4 @@
-export default function() {
+export default function () {
   function scrollFunction() {
     if (
       document.body.scrollTop > 20 ||
@@ -10,41 +10,39 @@ export default function() {
     }
   }
 
-  window.onscroll = function() {
+  window.onscroll = function () {
     scrollFunction();
   };
 
-  $('#back-to-top').on('click', function() {
+  $('#back-to-top').on('click', function () {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   });
 
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('div.configuration-block [class^=highlight-]').hide();
     $('div.configuration-block [class^=highlight-]').width(
-      $('div.configuration-block').width()
+      $('div.configuration-block').width(),
     );
 
     $('div.configuration-block').addClass('jsactive');
     $('div.configuration-block').addClass('clearfix');
 
-    $('div.configuration-block').each(function() {
+    $('div.configuration-block').each(function () {
       var el = $('[class^=highlight-]:first', $(this));
       el.show();
       el.parents('ul').height(el.height() + 40);
     });
 
     // Global
-    $('div.configuration-block li').each(function() {
+    $('div.configuration-block li').each(function () {
       var str = $(':first', $(this)).html();
       $(':first ', $(this)).html('');
       $(':first ', $(this)).append('<a href="#">' + str + '</a>');
-      $(':first', $(this)).bind('click', function() {
+      $(':first', $(this)).bind('click', function () {
         $('[class^=highlight-]', $(this).parents('ul')).hide();
         $('li', $(this).parents('ul')).removeClass('selected');
-        $(this)
-          .parent()
-          .addClass('selected');
+        $(this).parent().addClass('selected');
 
         var block = $('[class^=highlight-]', $(this).parent('li'));
         block.show();
@@ -53,11 +51,11 @@ export default function() {
       });
     });
 
-    $('div.configuration-block').each(function() {
+    $('div.configuration-block').each(function () {
       $('li:first', $(this)).addClass('selected');
     });
 
-    $('button.copy-to-clipboard').on('click', function() {
+    $('button.copy-to-clipboard').on('click', function () {
       var copyElementId = $(this).data('copy-element-id');
 
       var copyText = $('#' + copyElementId + ' .code-line').text();
@@ -70,8 +68,8 @@ export default function() {
       document.body.removeChild(element);
     });
 
-    if(window.ga && window.ga.create) {
-      $('a').on('click', function() {
+    if (window.ga && window.ga.create) {
+      $('a').on('click', function () {
         var eventCategory = $(this).data('ga-category');
         var eventAction = $(this).data('ga-action');
         var eventLabel = $(this).data('ga-label');
@@ -79,9 +77,17 @@ export default function() {
         var fieldsObject = $(this).data('ga-fields-object');
 
         if (eventCategory && eventAction) {
-          ga('send', 'event', eventCategory, eventAction, eventLabel, eventValue, fieldsObject);
+          ga(
+            'send',
+            'event',
+            eventCategory,
+            eventAction,
+            eventLabel,
+            eventValue,
+            fieldsObject,
+          );
         }
       });
     }
   });
-};
+}

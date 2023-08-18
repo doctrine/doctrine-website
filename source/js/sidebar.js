@@ -1,47 +1,41 @@
-window.String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
+window.String.prototype.replaceAll = function (search, replacement) {
+  var target = this;
 
-    return target.split(search).join(replacement);
+  return target.split(search).join(replacement);
 };
 
-var Sidebar = function() {
+var Sidebar = function () {
   this.loadCurrentDocsMenu();
   this.initVersionLinks();
 
-  $('[data-toggle="offcanvas"]').click(function() {
+  $('[data-toggle="offcanvas"]').click(function () {
     $('.row-offcanvas').toggleClass('active');
     $('.sidebar').toggle();
   });
 
-  $('.toc-item').on('click', function() {
+  $('.toc-item').on('click', function () {
     $('.toc-toggle').click();
   });
 
   var self = this;
 
-  window.onhashchange = function() {
+  window.onhashchange = function () {
     self.loadCurrentDocsMenu();
     self.initVersionLinks();
   };
 };
 
-Sidebar.prototype.initVersionLinks = function() {
-  $('.project-version-switcher').each(function() {
-    var linkUrl = $(this)
-      .attr('href')
-      .split('#')[0];
+Sidebar.prototype.initVersionLinks = function () {
+  $('.project-version-switcher').each(function () {
+    var linkUrl = $(this).attr('href').split('#')[0];
 
     $(this).attr('href', linkUrl + window.location.hash);
   });
 };
 
-Sidebar.prototype.getTopLevelParent = function(elem) {
+Sidebar.prototype.getTopLevelParent = function (elem) {
   // scroll menu to element
-  var topLevelParent = elem
-    .parent('ul')
-    .prev('li')
-    .parent('ul')
-    .prev('li');
+  var topLevelParent = elem.parent('ul').prev('li').parent('ul').prev('li');
 
   if (!topLevelParent.length) {
     topLevelParent = elem.parent('ul').prev('li');
@@ -54,7 +48,7 @@ Sidebar.prototype.getTopLevelParent = function(elem) {
   return topLevelParent;
 };
 
-Sidebar.prototype.scrollToElement = function(elem) {
+Sidebar.prototype.scrollToElement = function (elem) {
   var topLevelParent = this.getTopLevelParent(elem);
 
   var topElem = document.getElementById(topLevelParent.attr('id'));
@@ -66,7 +60,7 @@ Sidebar.prototype.scrollToElement = function(elem) {
   }
 };
 
-Sidebar.prototype.removeQueryStringParameter = function(key, url) {
+Sidebar.prototype.removeQueryStringParameter = function (key, url) {
   if (!url) url = window.location.href;
 
   var hashParts = url.split('#');
@@ -88,7 +82,7 @@ Sidebar.prototype.removeQueryStringParameter = function(key, url) {
   return url;
 };
 
-Sidebar.prototype.getCurrentDocsMenu = function() {
+Sidebar.prototype.getCurrentDocsMenu = function () {
   var currentUrl = this.removeQueryStringParameter('q', window.location.href);
   var lastPart = currentUrl.substr(currentUrl.lastIndexOf('/') + 1);
   var primaryHash = $('h1.section-header a').attr('href');
@@ -121,7 +115,7 @@ Sidebar.prototype.getCurrentDocsMenu = function() {
   return currentDocsMenu;
 };
 
-Sidebar.prototype.normalize = function(string) {
+Sidebar.prototype.normalize = function (string) {
   return string
     .replaceAll('../', '')
     .replaceAll('#', '-')
@@ -130,33 +124,23 @@ Sidebar.prototype.normalize = function(string) {
     .replaceAll('_', '-');
 };
 
-Sidebar.prototype.closeAll = function() {
+Sidebar.prototype.closeAll = function () {
   $('.opened').removeClass('opened');
   $('.opened-ul').removeClass('opened-ul');
 };
 
-Sidebar.prototype.openElement = function(elem) {
+Sidebar.prototype.openElement = function (elem) {
   elem.addClass('opened');
 
   // top level clicked, open children
-  elem
-    .find('ul')
-    .first()
-    .addClass('opened-ul')
-    .removeClass('closed-ul');
+  elem.find('ul').first().addClass('opened-ul').removeClass('closed-ul');
 
   // child clicked, open parents
-  elem
-    .parents('ul')
-    .addClass('opened-ul')
-    .removeClass('closed-ul');
-  elem
-    .parents('ul')
-    .parent('li')
-    .addClass('opened');
+  elem.parents('ul').addClass('opened-ul').removeClass('closed-ul');
+  elem.parents('ul').parent('li').addClass('opened');
 };
 
-Sidebar.prototype.loadCurrentDocsMenu = function() {
+Sidebar.prototype.loadCurrentDocsMenu = function () {
   var currentDocsMenu = this.getCurrentDocsMenu();
 
   if (!currentDocsMenu.length) {
