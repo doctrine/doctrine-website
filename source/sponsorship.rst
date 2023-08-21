@@ -11,7 +11,7 @@ if you can't contribute financially, consider `contributing with code </contribu
 Our Sponsors
 ------------
 
-Thanks to the following sponsors for funding Doctrine development. If you are interested in becoming a sponsor, please take a look at the Doctrine `Patreon page <https://www.patreon.com/bePatron?u=14252462>`_.
+Thanks to the following sponsors for funding Doctrine development. If you are interested in becoming a sponsor, please take a look at the Doctrine `OpenCollective page <https://opencollective.com/doctrine>`_.
 
 .. raw:: html
 
@@ -21,37 +21,17 @@ Thanks to the following sponsors for funding Doctrine development. If you are in
     {% endfor %}
     </ul>
 
-Patreon
+OpenCollective
 -------
 
 If you or your company uses Doctrine and would like to financially contribute to the project,
-you can do so through our `Patreon <https://www.patreon.com/bePatron?u=14252462>`_.
-
-Patreon is a membership platform that provides business tools for open source projects to run a
-subscription content service, with ways for open source project maintainers to build relationships
-and provide exclusive experiences to their subscribers, or "patrons".
+you can do so through our `OpenCollective <https://opencollective.com/doctrine>`_.
 
 Corporate Sponsorships
 ----------------------
 
 If your company uses Doctrine and would like to financially contribute to the project, please
 e-mail `sponsorship@doctrine-project.org <mailto:sponsorship@doctrine-project.org>`_ to discuss further.
-
-PayPal
-------
-
-If you or your company uses Doctrine and would like to financially contribute to the project,
-in addition to Patreon, you can use PayPal directly.
-
-.. raw:: html
-
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="RUKGBHELA2B7G">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
-    <br/>
 
 Tidelift
 --------
