@@ -92,15 +92,6 @@
             <argument>%doctrine.website.assets_url%</argument>
         </service>
 
-        <service id="Doctrine\Website\Event\NodeValue" autowire="false" />
-
-        <service id="Doctrine\Common\EventManager" autowire="false">
-            <call method="addEventListener">
-                <argument type="constant">Doctrine\RST\Event\PreNodeRenderEvent::PRE_NODE_RENDER</argument>
-                <argument type="service" id="Doctrine\Website\Event\NodeValue" />
-            </call>
-        </service>
-
         <service id="Doctrine\SkeletonMapper\Mapping\ClassMetadataInstantiator" autowire="false" />
         <service id="Doctrine\SkeletonMapper\Mapping\ClassMetadataFactory" autowire="false">
             <argument type="service" id="Doctrine\SkeletonMapper\Mapping\ClassMetadataInstantiator" />

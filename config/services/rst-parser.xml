@@ -51,5 +51,14 @@
         <service id="Doctrine\RST\Parser">
             <argument type="service" id="Doctrine\RST\Kernel" />
         </service>
+
+        <service id="Doctrine\Website\Event\NodeValue" autowire="false" />
+
+        <service id="Doctrine\Common\EventManager" autowire="false">
+            <call method="addEventListener">
+                <argument type="constant">Doctrine\RST\Event\PreNodeRenderEvent::PRE_NODE_RENDER</argument>
+                <argument type="service" id="Doctrine\Website\Event\NodeValue" />
+            </call>
+        </service>
     </services>
 </container>
