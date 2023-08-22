@@ -53,11 +53,16 @@
         </service>
 
         <service id="Doctrine\Website\Event\NodeValue" autowire="false" />
+        <service id="Doctrine\Website\Event\TableIncompatibility" autowire="false" />
 
         <service id="Doctrine\Common\EventManager" autowire="false">
             <call method="addEventListener">
                 <argument type="constant">Doctrine\RST\Event\PreNodeRenderEvent::PRE_NODE_RENDER</argument>
                 <argument type="service" id="Doctrine\Website\Event\NodeValue" />
+            </call>
+            <call method="addEventListener">
+                <argument type="constant">Doctrine\RST\Event\PreParseDocumentEvent::PRE_PARSE_DOCUMENT</argument>
+                <argument type="service" id="Doctrine\Website\Event\TableIncompatibility" />
             </call>
         </service>
     </services>
