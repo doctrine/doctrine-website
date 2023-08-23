@@ -22,7 +22,6 @@
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@sentry/browser": "^6.13.3",
         "bootstrap": "^4.6.1",
-        "file-loader": "^6.2.0",
         "instantsearch.js": "^2.10.5",
         "jquery": "^3.6.0",
         "popper.js": "^1.16.1",

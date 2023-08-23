@@ -81,11 +81,7 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf|.svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'assets/[name].[ext]',
-                    publicPath: '/frontend/'
-                }
+                type: 'asset/resource'
             }
         ]
     },
