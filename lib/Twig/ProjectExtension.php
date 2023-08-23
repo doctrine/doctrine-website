@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Twig;
 
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Twig\Extension\AbstractExtension;
@@ -15,16 +16,9 @@ use function strpos;
 
 class ProjectExtension extends AbstractExtension
 {
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var string */
-    private $sourceDir;
-
-    public function __construct(ProjectRepository $projectRepository, string $sourceDir)
+    /** @param ProjectRepository<Project> $projectRepository */
+    public function __construct(private ProjectRepository $projectRepository, private string $sourceDir)
     {
-        $this->projectRepository = $projectRepository;
-        $this->sourceDir         = $sourceDir;
     }
 
     /** {@inheritDoc} */
@@ -36,7 +30,7 @@ class ProjectExtension extends AbstractExtension
         ];
     }
 
-    public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion): ?string
+    public function getUrlVersion(ProjectVersion $projectVersion, string $url, string $currentVersion): string|null
     {
         if (strpos($url, 'current') !== false) {
             $otherVersionUrl = str_replace('current', $projectVersion->getSlug(), $url);

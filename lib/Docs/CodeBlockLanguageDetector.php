@@ -22,12 +22,8 @@ class CodeBlockLanguageDetector
         'php-attributes' => 'php',
     ];
 
-    /** @var string */
-    private $rootDir;
-
-    public function __construct(string $rootDir)
+    public function __construct(private string $rootDir)
     {
-        $this->rootDir = $rootDir;
     }
 
     /** @param string[] $lines */

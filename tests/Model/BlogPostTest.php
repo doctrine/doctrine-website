@@ -10,29 +10,21 @@ use Doctrine\Website\Tests\TestCase;
 
 class BlogPostTest extends TestCase
 {
-    /** @var string */
-    private $url;
+    private string $url;
 
-    /** @var string */
-    private $slug;
+    private string $slug;
 
-    /** @var string */
-    private $title;
+    private string $title;
 
-    /** @var string */
-    private $authorName;
+    private string $authorName;
 
-    /** @var string */
-    private $authorEmail;
+    private string $authorEmail;
 
-    /** @var string */
-    private $contents;
+    private string $contents;
 
-    /** @var DateTimeImmutable */
-    private $date;
+    private DateTimeImmutable $date;
 
-    /** @var BlogPost */
-    private $blogPost;
+    private BlogPost $blogPost;
 
     public function testGetUrl(): void
     {

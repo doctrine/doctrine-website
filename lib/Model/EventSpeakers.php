@@ -14,17 +14,9 @@ use function assert;
 /** @template-extends AbstractLazyCollection<string, EventSpeaker> */
 final class EventSpeakers extends AbstractLazyCollection
 {
-    /** @var mixed[] */
-    private $event;
-
-    /** @var ObjectManagerInterface */
-    private $objectManager;
-
     /** @param mixed[] $event */
-    public function __construct(array $event, ObjectManagerInterface $objectManager)
+    public function __construct(private array $event, private ObjectManagerInterface $objectManager)
     {
-        $this->event         = $event;
-        $this->objectManager = $objectManager;
     }
 
     protected function doInitialize(): void
@@ -44,8 +36,8 @@ final class EventSpeakers extends AbstractLazyCollection
             $topicSlug = (string) ($speaker['topicSlug'] ?? '');
 
             $speakers[$topicSlug] = new EventSpeaker(
-                $teamMember !== null ? $teamMember->getName() : $speakerName,
-                $teamMember !== null ? $teamMember->getAvatarUrl() : (string) ($speaker['avatarUrl'] ?? ''),
+                $teamMember?->getName() ?? $speakerName,
+                $teamMember?->getAvatarUrl() ?? (string) ($speaker['avatarUrl'] ?? ''),
                 (string) ($speaker['topic'] ?? ''),
                 $topicSlug,
                 (string) ($speaker['description'] ?? ''),

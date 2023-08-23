@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Twig;
 
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Tests\TestCase;
@@ -12,11 +13,10 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectExtensionTest extends TestCase
 {
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    /** @var ProjectRepository<Project>&MockObject  */
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var ProjectExtension|MockObject */
-    private $projectExtension;
+    private ProjectExtension&MockObject $projectExtension;
 
     protected function setUp(): void
     {

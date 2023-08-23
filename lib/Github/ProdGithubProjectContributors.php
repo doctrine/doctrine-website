@@ -16,15 +16,10 @@ use function sprintf;
 
 class ProdGithubProjectContributors implements GithubProjectContributors
 {
-    private CacheItemPoolInterface $cache;
-    private Client $githubClient;
-
     public function __construct(
-        CacheItemPoolInterface $cache,
-        Client $githubClient
+        private CacheItemPoolInterface $cache,
+        private Client $githubClient,
     ) {
-        $this->cache        = $cache;
-        $this->githubClient = $githubClient;
     }
 
     /** @param Project[] $projects */

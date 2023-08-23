@@ -10,12 +10,9 @@ use Doctrine\Website\Repositories\TeamMemberRepository;
 
 class TestGithubProjectContributors implements GithubProjectContributors
 {
-    /** @var TeamMemberRepository */
-    private $teamMemberRepository;
-
-    public function __construct(TeamMemberRepository $teamMemberRepository)
+    /** @param TeamMemberRepository<TeamMember> $teamMemberRepository */
+    public function __construct(private TeamMemberRepository $teamMemberRepository)
     {
-        $this->teamMemberRepository = $teamMemberRepository;
     }
 
     /** @param Project[] $projects */

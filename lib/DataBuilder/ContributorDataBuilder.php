@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataBuilder;
 
+use Doctrine\Website\Model\ProjectContributor;
 use Doctrine\Website\Repositories\ProjectContributorRepository;
 
 class ContributorDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'contributors';
 
-    /** @var ProjectContributorRepository */
-    private $projectContributorRepository;
-
-    public function __construct(ProjectContributorRepository $projectContributorRepository)
+    /** @param ProjectContributorRepository<ProjectContributor> $projectContributorRepository */
+    public function __construct(private ProjectContributorRepository $projectContributorRepository)
     {
-        $this->projectContributorRepository = $projectContributorRepository;
     }
 
     public function getName(): string

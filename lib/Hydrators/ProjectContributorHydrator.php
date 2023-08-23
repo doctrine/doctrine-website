@@ -6,6 +6,7 @@ namespace Doctrine\Website\Hydrators;
 
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectContributor;
+use Doctrine\Website\Model\TeamMember;
 
 /**
  * @property TeamMember|null $teamMember
@@ -16,9 +17,11 @@ use Doctrine\Website\Model\ProjectContributor;
  * @property int $numCommits
  * @property int $numAdditions
  * @property int $numDeletions
+ * @template-extends ModelHydrator<ProjectContributor>
  */
 final class ProjectContributorHydrator extends ModelHydrator
 {
+    /** @return class-string<ProjectContributor> */
     protected function getClassName(): string
     {
         return ProjectContributor::class;

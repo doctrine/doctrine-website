@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true" public="false">
+            <bind key="$sourceDir">%doctrine.website.source_dir%</bind>
+            <bind key="$templatesDir">%doctrine.website.templates_dir%</bind>
+            <bind key="$routes">%doctrine.website.routes%</bind>
+        </defaults>
+
+        <prototype namespace="Doctrine\StaticWebsiteGenerator\" resource="../vendor/doctrine/static-website-generator/lib/*" />
+
+        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\MarkdownConverter">
+            <argument type="service" id="Parsedown" />
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\ReStructuredTextConverter">
+            <argument type="service" id="Doctrine\RST\Parser" />
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileBuilder">
+            <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRenderer" />
+            <argument type="service" id="Symfony\Component\Filesystem\Filesystem" />
+            <argument type="collection">
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\MarkdownConverter" />
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\ReStructuredTextConverter" />
+            </argument>
+            <argument type="collection">
+                <argument>/\/api\//</argument>
+            </argument>
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" autowire="false">
+            <argument>%doctrine.website.templates_dir%</argument>
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Twig\MainExtension" />
+                <argument type="service" id="Doctrine\Website\Twig\ProjectExtension" />
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\Twig\RoutingExtension" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\Twig\TwigRenderer" alias="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" />
+
+        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader" />
+                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRouteReader" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\Controller\ControllerProvider">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Controllers\AtomController" />
+                <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
+                <argument type="service" id="Doctrine\Website\Controllers\ConsultingController" />
+                <argument type="service" id="Doctrine\Website\Controllers\DocumentationController" />
+                <argument type="service" id="Doctrine\Website\Controllers\EventsController" />
+                <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
+                <argument type="service" id="Doctrine\Website\Controllers\PartnersController" />
+                <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
+                <argument type="service" id="Doctrine\Website\Controllers\SponsorshipController" />
+                <argument type="service" id="Doctrine\Website\Controllers\SitemapController" />
+                <argument type="service" id="Doctrine\Website\Controllers\TeamController" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\Request\RequestCollectionProvider">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\EventRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\PartnerRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\ProjectVersionRequests" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\StaticWebsiteGenerator\Site" alias="Doctrine\Website\Site" />
+
+
+    </services>
+</container>

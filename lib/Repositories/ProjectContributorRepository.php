@@ -8,6 +8,10 @@ use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectContributor;
 
+/**
+ * @template T of ProjectContributor
+ * @template-extends BasicObjectRepository<T>
+ */
 class ProjectContributorRepository extends BasicObjectRepository
 {
     /** @return ProjectContributor[] */

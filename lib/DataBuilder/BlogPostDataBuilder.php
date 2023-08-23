@@ -10,12 +10,8 @@ class BlogPostDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'blog_posts';
 
-    /** @var SourceFileFilesystemReader */
-    private $sourceFileFilesystemReader;
-
-    public function __construct(SourceFileFilesystemReader $sourceFileFilesystemReader)
+    public function __construct(private SourceFileFilesystemReader $sourceFileFilesystemReader)
     {
-        $this->sourceFileFilesystemReader = $sourceFileFilesystemReader;
     }
 
     public function getName(): string

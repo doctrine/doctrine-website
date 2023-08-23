@@ -8,38 +8,14 @@ use function sprintf;
 
 final class Address
 {
-    /** @var string */
-    private $line1;
-
-    /** @var string */
-    private $line2;
-
-    /** @var string */
-    private $city;
-
-    /** @var string */
-    private $state;
-
-    /** @var string */
-    private $zipCode;
-
-    /** @var string */
-    private $countryCode;
-
     public function __construct(
-        string $line1,
-        string $line2,
-        string $city,
-        string $state,
-        string $zipCode,
-        string $countryCode
+        private string $line1,
+        private string $line2,
+        private string $city,
+        private string $state,
+        private string $zipCode,
+        private string $countryCode,
     ) {
-        $this->line1       = $line1;
-        $this->line2       = $line2;
-        $this->city        = $city;
-        $this->state       = $state;
-        $this->zipCode     = $zipCode;
-        $this->countryCode = $countryCode;
     }
 
     public function getLine1(): string

@@ -7,28 +7,22 @@ namespace Doctrine\Website\DataSources;
 use Doctrine\SkeletonMapper\DataSource\DataSource;
 use Doctrine\Website\DataBuilder\ContributorDataBuilder;
 use Doctrine\Website\DataBuilder\WebsiteDataReader;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
 
 class Contributors implements DataSource
 {
-    /** @var WebsiteDataReader */
-    private $dataReader;
-
-    /** @var TeamMemberRepository */
-    private $teamMemberRepository;
-
-    /** @var ProjectRepository */
-    private $projectRepository;
-
+    /**
+     * @param TeamMemberRepository<TeamMember> $teamMemberRepository
+     * @param ProjectRepository<Project>       $projectRepository
+     */
     public function __construct(
-        WebsiteDataReader $dataReader,
-        TeamMemberRepository $teamMemberRepository,
-        ProjectRepository $projectRepository
+        private WebsiteDataReader $dataReader,
+        private TeamMemberRepository $teamMemberRepository,
+        private ProjectRepository $projectRepository,
     ) {
-        $this->dataReader           = $dataReader;
-        $this->teamMemberRepository = $teamMemberRepository;
-        $this->projectRepository    = $projectRepository;
     }
 
     /** @return mixed[][] */

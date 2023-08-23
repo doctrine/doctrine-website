@@ -11,12 +11,9 @@ use Doctrine\Website\Repositories\PartnerRepository;
 
 class PartnerRequests
 {
-    /** @var PartnerRepository */
-    private $partnerRepository;
-
-    public function __construct(PartnerRepository $partnerRepository)
+    /** @param PartnerRepository<Partner> $partnerRepository */
+    public function __construct(private PartnerRepository $partnerRepository)
     {
-        $this->partnerRepository = $partnerRepository;
     }
 
     public function getPartners(): RequestCollection

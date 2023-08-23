@@ -17,17 +17,15 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ContributorsTest extends TestCase
 {
-    /** @var WebsiteDataReader|MockObject */
-    private $dataReader;
+    private WebsiteDataReader&MockObject $dataReader;
 
-    /** @var TeamMemberRepository|MockObject */
-    private $teamMemberRepository;
+    /** @var TeamMemberRepository<TeamMember>&MockObject */
+    private TeamMemberRepository&MockObject $teamMemberRepository;
 
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    /** @var ProjectRepository<Project>&MockObject */
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var Contributors */
-    private $contributors;
+    private Contributors $contributors;
 
     protected function setUp(): void
     {
@@ -66,25 +64,19 @@ class ContributorsTest extends TestCase
             ->with(ContributorDataBuilder::DATA_FILE)
             ->willReturn(new WebsiteData(ContributorDataBuilder::DATA_FILE, $projectContributors));
 
-        $this->teamMemberRepository->expects(self::at(0))
+        $this->teamMemberRepository->expects(self::exactly(2))
             ->method('findOneByGithub')
-            ->with('jwage')
-            ->willReturn($jwageTeamMember);
+            ->willReturnMap([
+                ['jwage', $jwageTeamMember],
+                ['Ocramius', $ocramiusTeamMember],
+            ]);
 
-        $this->projectRepository->expects(self::at(0))
+        $this->projectRepository->expects(self::exactly(2))
             ->method('findOneBySlug')
-            ->with('orm')
-            ->willReturn($ormProject);
-
-        $this->teamMemberRepository->expects(self::at(1))
-            ->method('findOneByGithub')
-            ->with('Ocramius')
-            ->willReturn($ocramiusTeamMember);
-
-        $this->projectRepository->expects(self::at(1))
-            ->method('findOneBySlug')
-            ->with('dbal')
-            ->willReturn($dbalProject);
+            ->willReturnMap([
+                ['orm', $ormProject],
+                ['dbal', $dbalProject],
+            ]);
 
         $rows = $this->contributors->getSourceRows();
 

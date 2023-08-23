@@ -15,66 +15,50 @@ use function sprintf;
 
 class Project implements LoadMetadataInterface
 {
-    /** @var ProjectIntegrationType|null */
-    private $projectIntegrationType;
+    private ProjectIntegrationType|null $projectIntegrationType = null;
 
-    /** @var ProjectStats */
-    private $projectStats;
+    private ProjectStats $projectStats;
 
-    /** @var bool */
-    private $active;
+    private bool $active;
 
-    /** @var bool */
-    private $archived;
+    private bool $archived;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $shortName;
+    private string $shortName;
 
-    /** @var string */
-    private $slug;
+    private string $slug;
 
-    /** @var string */
-    private $docsSlug;
+    private string $docsSlug;
 
-    /** @var string */
-    private $composerPackageName;
+    private string $composerPackageName;
 
-    /** @var string */
-    private $repositoryName;
+    private string $repositoryName;
 
-    /** @var bool */
-    private $isIntegration = false;
+    private bool $isIntegration = false;
 
-    /** @var string */
-    private $integrationFor;
+    private string $integrationFor;
 
-    /** @var string */
-    private $docsRepositoryName;
+    private string $docsRepositoryName;
 
-    /** @var string */
-    private $docsPath;
+    private string $docsPath;
 
-    /** @var string */
-    private $codePath;
+    private string $codePath;
 
-    /** @var string */
-    private $description;
+    private string $description;
 
     /** @var string[] */
-    private $keywords = [];
+    private array $keywords = [];
 
     /** @var ProjectVersion[] */
-    private $versions = [];
+    private array $versions = [];
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['slug']);
     }
 
-    public function getProjectIntegrationType(): ?ProjectIntegrationType
+    public function getProjectIntegrationType(): ProjectIntegrationType|null
     {
         return $this->projectIntegrationType;
     }
@@ -161,7 +145,7 @@ class Project implements LoadMetadataInterface
     }
 
     /** @return ProjectVersion[] */
-    public function getVersions(?Closure $filter = null): array
+    public function getVersions(Closure|null $filter = null): array
     {
         if ($filter !== null) {
             return array_values(array_filter($this->versions, $filter));
@@ -200,7 +184,7 @@ class Project implements LoadMetadataInterface
         return $projectVersion;
     }
 
-    public function getCurrentVersion(): ?ProjectVersion
+    public function getCurrentVersion(): ProjectVersion|null
     {
         return $this->getVersions(static function (ProjectVersion $version): bool {
             return $version->isCurrent();
@@ -230,7 +214,7 @@ class Project implements LoadMetadataInterface
     public function getProjectVersionDocsOutputPath(
         string $outputPath,
         ProjectVersion $version,
-        string $language
+        string $language,
     ): string {
         return $outputPath . '/projects/' . $this->getDocsSlug() . '/' . $language . '/' . $version->getSlug();
     }

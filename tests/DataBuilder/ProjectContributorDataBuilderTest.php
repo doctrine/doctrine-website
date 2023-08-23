@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests\DataBuilder;
 
 use Doctrine\Website\DataBuilder\ProjectContributorDataBuilder;
 use Doctrine\Website\Github\GithubProjectContributors;
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
@@ -14,17 +15,15 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectContributorDataBuilderTest extends TestCase
 {
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    /** @var ProjectRepository<Project>&MockObject */
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var TeamMemberRepository|MockObject */
-    private $teamMemberRepository;
+    /** @var TeamMemberRepository<TeamMember>&MockObject */
+    private TeamMemberRepository&MockObject $teamMemberRepository;
 
-    /** @var GithubProjectContributors|MockObject */
-    private $githubProjectContributors;
+    private GithubProjectContributors&MockObject $githubProjectContributors;
 
-    /** @var ProjectContributorDataBuilder */
-    private $projectContributorDataBuilder;
+    private ProjectContributorDataBuilder $projectContributorDataBuilder;
 
     public function testBuild(): void
     {
@@ -33,13 +32,11 @@ class ProjectContributorDataBuilderTest extends TestCase
 
         $jwageTeamMember = $this->createMock(TeamMember::class);
 
-        $jwageTeamMember->expects(self::at(0))
-            ->method('isProjectMaintainer')
-            ->willReturn(true);
-
-        $jwageTeamMember->expects(self::at(1))
-            ->method('isProjectMaintainer')
-            ->willReturn(false);
+        $jwageTeamMember->method('isProjectMaintainer')
+            ->willReturnMap([
+                [$project1, true],
+                [$project2, false],
+            ]);
 
         $ocramiusTeamMember = $this->createMock(TeamMember::class);
 
@@ -47,117 +44,95 @@ class ProjectContributorDataBuilderTest extends TestCase
             ->method('findAll')
             ->willReturn([$project1, $project2]);
 
-        $this->githubProjectContributors->expects(self::at(0))
+        $this->githubProjectContributors->expects(self::once())
             ->method('warmProjectsContributors')
             ->with([$project1, $project2]);
 
-        $this->githubProjectContributors->expects(self::at(1))
+        $returnValueOfProject1 = [
+            [
+                'weeks' => [
+                    ['a' => 1, 'd' => 1],
+                    ['a' => 2, 'd' => 3],
+                ],
+                'author' => [
+                    'login' => 'jwage',
+                    'avatar_url' => 'https://avatars1.githubusercontent.com/u/97422?s=60&v=4',
+                ],
+                'total' => 5,
+            ],
+            [
+                'weeks' => [
+                    ['a' => 2, 'd' => 2],
+                    ['a' => 2, 'd' => 3],
+                ],
+                'author' => [
+                    'login' => 'ocramius',
+                    'avatar_url' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
+                ],
+                'total' => 10,
+            ],
+            [
+                'weeks' => [
+                    ['a' => 2, 'd' => 2],
+                    ['a' => 2, 'd' => 3],
+                ],
+                'author' => [
+                    'login' => 'bob',
+                    'avatar_url' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
+                ],
+                'total' => 10,
+            ],
+        ];
+        $returnValueOfProject2 = [
+            [
+                'weeks' => [
+                    ['a' => 1, 'd' => 1],
+                    ['a' => 2, 'd' => 3],
+                ],
+                'author' => [
+                    'login' => 'jwage',
+                    'avatar_url' => 'https://avatars1.githubusercontent.com/u/97422?s=60&v=4',
+                ],
+                'total' => 5,
+            ],
+            [
+                'weeks' => [
+                    ['a' => 2, 'd' => 2],
+                    ['a' => 2, 'd' => 3],
+                ],
+                'author' => [
+                    'login' => 'ocramius',
+                    'avatar_url' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
+                ],
+                'total' => 10,
+            ],
+            [
+                'weeks' => [
+                    ['a' => 2, 'd' => 2],
+                    ['a' => 2, 'd' => 3],
+                ],
+                'author' => [
+                    'login' => 'jim',
+                    'avatar_url' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
+                ],
+                'total' => 10,
+            ],
+        ];
+        $this->githubProjectContributors->expects(self::exactly(2))
             ->method('getProjectContributors')
-            ->with($project1)
-            ->willReturn([
-                [
-                    'weeks' => [
-                        ['a' => 1, 'd' => 1],
-                        ['a' => 2, 'd' => 3],
-                    ],
-                    'author' => [
-                        'login' => 'jwage',
-                        'avatar_url' => 'https://avatars1.githubusercontent.com/u/97422?s=60&v=4',
-                    ],
-                    'total' => 5,
-                ],
-                [
-                    'weeks' => [
-                        ['a' => 2, 'd' => 2],
-                        ['a' => 2, 'd' => 3],
-                    ],
-                    'author' => [
-                        'login' => 'ocramius',
-                        'avatar_url' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
-                    ],
-                    'total' => 10,
-                ],
-                [
-                    'weeks' => [
-                        ['a' => 2, 'd' => 2],
-                        ['a' => 2, 'd' => 3],
-                    ],
-                    'author' => [
-                        'login' => 'bob',
-                        'avatar_url' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
-                    ],
-                    'total' => 10,
-                ],
+            ->willReturnMap([
+                [$project1, $returnValueOfProject1],
+                [$project2, $returnValueOfProject2],
             ]);
 
-        $this->githubProjectContributors->expects(self::at(2))
-            ->method('getProjectContributors')
-            ->with($project2)
-            ->willReturn([
-                [
-                    'weeks' => [
-                        ['a' => 1, 'd' => 1],
-                        ['a' => 2, 'd' => 3],
-                    ],
-                    'author' => [
-                        'login' => 'jwage',
-                        'avatar_url' => 'https://avatars1.githubusercontent.com/u/97422?s=60&v=4',
-                    ],
-                    'total' => 5,
-                ],
-                [
-                    'weeks' => [
-                        ['a' => 2, 'd' => 2],
-                        ['a' => 2, 'd' => 3],
-                    ],
-                    'author' => [
-                        'login' => 'ocramius',
-                        'avatar_url' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
-                    ],
-                    'total' => 10,
-                ],
-                [
-                    'weeks' => [
-                        ['a' => 2, 'd' => 2],
-                        ['a' => 2, 'd' => 3],
-                    ],
-                    'author' => [
-                        'login' => 'jim',
-                        'avatar_url' => 'https://avatars0.githubusercontent.com/u/154256?s=460&v=4',
-                    ],
-                    'total' => 10,
-                ],
+        $this->teamMemberRepository->expects(self::exactly(6))
+            ->method('findOneByGithub')
+            ->willReturnMap([
+                ['jwage', $jwageTeamMember],
+                ['ocramius', $ocramiusTeamMember],
+                ['bob', null],
+                ['jim', null],
             ]);
-
-        $this->teamMemberRepository->expects(self::at(0))
-            ->method('findOneByGithub')
-            ->with('jwage')
-            ->willReturn($jwageTeamMember);
-
-        $this->teamMemberRepository->expects(self::at(1))
-            ->method('findOneByGithub')
-            ->with('ocramius')
-            ->willReturn($ocramiusTeamMember);
-
-        $this->teamMemberRepository->expects(self::at(2))
-            ->method('findOneByGithub')
-            ->with('bob')
-            ->willReturn(null);
-
-        $this->teamMemberRepository->expects(self::at(3))
-            ->method('findOneByGithub')
-            ->with('jwage')
-            ->willReturn($jwageTeamMember);
-
-        $this->teamMemberRepository->expects(self::at(4))
-            ->method('findOneByGithub')
-            ->with('ocramius')
-            ->willReturn($ocramiusTeamMember);
-
-        $this->teamMemberRepository->expects(self::at(5))
-            ->method('findOneByGithub')
-            ->with('jim')
-            ->willReturn(null);
 
         $rows = $this->projectContributorDataBuilder->build()->getData();
 

@@ -8,9 +8,6 @@ use Doctrine\StaticWebsiteGenerator\Site as BaseSite;
 
 final class Site extends BaseSite
 {
-    /** @var string */
-    private $assetsUrl;
-
     /** @param string[] $keywords */
     public function __construct(
         string $title,
@@ -20,7 +17,7 @@ final class Site extends BaseSite
         string $description,
         string $env,
         string $googleAnalyticsTrackingId,
-        string $assetsUrl
+        private string $assetsUrl,
     ) {
         parent::__construct(
             $title,
@@ -31,8 +28,6 @@ final class Site extends BaseSite
             $env,
             $googleAnalyticsTrackingId,
         );
-
-        $this->assetsUrl = $assetsUrl;
     }
 
     public function getAssetsUrl(): string

@@ -27,16 +27,8 @@ class Tag
 
     private const COMPOSER_EPOCH = '2011-09-25';
 
-    /** @var string */
-    private $name;
-
-    /** @var DateTimeImmutable */
-    private $date;
-
-    public function __construct(string $name, DateTimeImmutable $date)
+    public function __construct(private string $name, private DateTimeImmutable $date)
     {
-        $this->name = $name;
-        $this->date = $date;
     }
 
     public function getName(): string

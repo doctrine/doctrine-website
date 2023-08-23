@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
 
 class DocumentationController
 {
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    public function __construct(ProjectRepository $projectRepository)
+    /** @param ProjectRepository<Project> $projectRepository */
+    public function __construct(private ProjectRepository $projectRepository)
     {
-        $this->projectRepository = $projectRepository;
     }
 
     public function view(string $docsSlug, string $docsVersion): Response

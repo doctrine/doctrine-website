@@ -16,22 +16,15 @@ use function is_string;
 
 class BuildDocsCommand extends Command
 {
-    /** @var string|null */
-    protected static $defaultName = 'build-docs';
-
-    /** @var BuildDocs */
-    private $buildDocs;
-
-    public function __construct(BuildDocs $buildDocs)
+    public function __construct(private BuildDocs $buildDocs)
     {
-        $this->buildDocs = $buildDocs;
-
         parent::__construct();
     }
 
     protected function configure(): void
     {
         $this
+            ->setName('build-docs')
             ->setDescription('Build the RST docs.')
             ->addOption(
                 'project',

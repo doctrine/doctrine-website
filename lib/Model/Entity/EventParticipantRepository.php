@@ -8,9 +8,13 @@ use Doctrine\ORM\EntityRepository;
 
 use function assert;
 
+/**
+ * @template T of EventParticipant
+ * @template-extends EntityRepository<T>
+ */
 final class EventParticipantRepository extends EntityRepository
 {
-    public function findOneByEmail(string $email): ?EventParticipant
+    public function findOneByEmail(string $email): EventParticipant|null
     {
         $eventParticipant = $this->findOneBy(['email' => $email]);
         assert($eventParticipant instanceof EventParticipant);

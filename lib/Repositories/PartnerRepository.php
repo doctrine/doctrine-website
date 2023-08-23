@@ -8,9 +8,12 @@ use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\Partner;
 use InvalidArgumentException;
 
-use function assert;
 use function sprintf;
 
+/**
+ * @template T of Partner
+ * @template-extends BasicObjectRepository<T>
+ */
 class PartnerRepository extends BasicObjectRepository
 {
     /** @return Partner[] */
@@ -25,7 +28,6 @@ class PartnerRepository extends BasicObjectRepository
     public function findOneBySlug(string $slug): Partner
     {
         $partner = $this->findOneBy(['slug' => $slug]);
-        assert($partner instanceof Partner || $partner === null);
 
         if ($partner === null) {
             throw new InvalidArgumentException(sprintf('Could not find Partner with slug "%s"', $slug));
@@ -34,7 +36,7 @@ class PartnerRepository extends BasicObjectRepository
         return $partner;
     }
 
-    public function findFeaturedPartner(): ?Partner
+    public function findFeaturedPartner(): Partner|null
     {
         return $this->findOneBy(['featured' => true]);
     }

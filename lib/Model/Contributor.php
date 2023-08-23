@@ -9,33 +9,27 @@ use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
 
 class Contributor implements LoadMetadataInterface, CommitterStats
 {
-    /** @var TeamMember|null */
-    private $teamMember;
+    private TeamMember|null $teamMember = null;
 
-    /** @var string */
-    private $github;
+    private string $github;
 
-    /** @var string */
-    private $avatarUrl;
+    private string $avatarUrl;
 
-    /** @var int */
-    private $numCommits;
+    private int $numCommits;
 
-    /** @var int */
-    private $numAdditions;
+    private int $numAdditions;
 
-    /** @var int */
-    private $numDeletions;
+    private int $numDeletions;
 
     /** @var Project[] */
-    private $projects;
+    private array $projects;
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
         $metadata->setIdentifier(['github']);
     }
 
-    public function getTeamMember(): ?TeamMember
+    public function getTeamMember(): TeamMember|null
     {
         return $this->teamMember;
     }

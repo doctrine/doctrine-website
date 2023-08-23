@@ -9,6 +9,7 @@ use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use Doctrine\Website\Application;
 use Doctrine\Website\Model\Address;
 use Doctrine\Website\Model\DateTimeRange;
+use Doctrine\Website\Model\Entity\EventParticipant;
 use Doctrine\Website\Model\Entity\EventParticipantRepository;
 use Doctrine\Website\Model\Event;
 use Doctrine\Website\Model\EventCfp;
@@ -41,6 +42,7 @@ use function sprintf;
  * @property DateTimeRange $registrationDateTimeRange
  * @property string $description
  * @property float $price
+ * @template-extends ModelHydrator<Event>
  */
 final class EventHydrator extends ModelHydrator
 {
@@ -51,23 +53,16 @@ final class EventHydrator extends ModelHydrator
         'test'                   => 'test',
     ];
 
-    /** @var EventParticipantRepository */
-    private $eventParticipantRepository;
-
-    /** @var string */
-    private $env;
-
+    /** @param EventParticipantRepository<EventParticipant> $eventParticipantRepository */
     public function __construct(
         ObjectManagerInterface $objectManager,
-        EventParticipantRepository $eventParticipantRepository,
-        string $env
+        private EventParticipantRepository $eventParticipantRepository,
+        private string $env,
     ) {
         parent::__construct($objectManager);
-
-        $this->eventParticipantRepository = $eventParticipantRepository;
-        $this->env                        = $env;
     }
 
+    /** @return class-string<Event> */
     protected function getClassName(): string
     {
         return Event::class;

@@ -8,23 +8,11 @@ use DateTimeImmutable;
 
 final class EventScheduleSlot
 {
-    /** @var EventSpeaker */
-    private $speaker;
-
-    /** @var DateTimeImmutable */
-    private $startDate;
-
-    /** @var DateTimeImmutable */
-    private $endDate;
-
     public function __construct(
-        EventSpeaker $speaker,
-        DateTimeImmutable $startDate,
-        DateTimeImmutable $endDate
+        private EventSpeaker $speaker,
+        private DateTimeImmutable $startDate,
+        private DateTimeImmutable $endDate,
     ) {
-        $this->speaker   = $speaker;
-        $this->startDate = $startDate;
-        $this->endDate   = $endDate;
     }
 
     public function getSpeaker(): EventSpeaker

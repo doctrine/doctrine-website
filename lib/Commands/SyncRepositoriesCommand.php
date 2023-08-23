@@ -14,28 +14,17 @@ use function sprintf;
 
 class SyncRepositoriesCommand extends Command
 {
-    /** @var string|null */
-    protected static $defaultName = 'sync-repositories';
-
-    /** @var ProjectDataRepository */
-    private $projectDataRepository;
-
-    /** @var ProjectGitSyncer */
-    private $projectGitSyncer;
-
     public function __construct(
-        ProjectDataRepository $projectDataRepository,
-        ProjectGitSyncer $projectGitSyncer
+        private ProjectDataRepository $projectDataRepository,
+        private ProjectGitSyncer $projectGitSyncer,
     ) {
-        $this->projectDataRepository = $projectDataRepository;
-        $this->projectGitSyncer      = $projectGitSyncer;
-
         parent::__construct();
     }
 
     protected function configure(): void
     {
         $this
+            ->setName('sync-repositories')
             ->setDescription('Initialize or update all project repositories.');
     }
 

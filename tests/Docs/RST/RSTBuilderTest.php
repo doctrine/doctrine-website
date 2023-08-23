@@ -19,29 +19,21 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class RSTBuilderTest extends TestCase
 {
-    /** @var RSTFileRepository|MockObject */
-    private $rstFileRepository;
+    private RSTFileRepository&MockObject $rstFileRepository;
 
-    /** @var RSTCopier|MockObject */
-    private $rstCopier;
+    private RSTCopier&MockObject $rstCopier;
 
-    /** @var Builder|MockObject */
-    private $builder;
+    private Builder&MockObject $builder;
 
-    /** @var RSTPostBuildProcessor|MockObject */
-    private $rstPostBuildProcessor;
+    private RSTPostBuildProcessor&MockObject $rstPostBuildProcessor;
 
-    /** @var Filesystem|MockObject */
-    private $filesystem;
+    private Filesystem&MockObject $filesystem;
 
-    /** @var string */
-    private $sourceDir;
+    private string $sourceDir;
 
-    /** @var string */
-    private $docsDir;
+    private string $docsDir;
 
-    /** @var RSTBuilder */
-    private $rstBuilder;
+    private RSTBuilder $rstBuilder;
 
     protected function setUp(): void
     {

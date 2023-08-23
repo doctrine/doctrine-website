@@ -16,15 +16,11 @@ class TagBranchGuesser
 {
     private const COMMAND = 'cd %s && git branch -a';
 
-    /** @var ProcessFactory */
-    private $processFactory;
-
-    public function __construct(ProcessFactory $processFactory)
+    public function __construct(private ProcessFactory $processFactory)
     {
-        $this->processFactory = $processFactory;
     }
 
-    public function guessTagBranchName(string $repositoryPath, Tag $tag): ?string
+    public function guessTagBranchName(string $repositoryPath, Tag $tag): string|null
     {
         $command = sprintf(self::COMMAND, $repositoryPath);
 
@@ -52,7 +48,7 @@ class TagBranchGuesser
         return null;
     }
 
-    public function generateTagBranchSlug(Tag $tag): ?string
+    public function generateTagBranchSlug(Tag $tag): string|null
     {
         $versionSlug = ltrim($tag->getName(), 'v');
 

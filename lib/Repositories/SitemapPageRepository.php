@@ -7,6 +7,10 @@ namespace Doctrine\Website\Repositories;
 use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\SitemapPage;
 
+/**
+ * @template T of SitemapPage
+ * @template-extends BasicObjectRepository<T>
+ */
 class SitemapPageRepository extends BasicObjectRepository
 {
     /** @return SitemapPage[] */

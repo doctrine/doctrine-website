@@ -22,11 +22,9 @@ use function sprintf;
 
 class FunctionalTest extends TestCase
 {
-    /** @var string */
-    private $rootDir;
+    private string $rootDir;
 
-    /** @var string|null */
-    private $buildDir;
+    private string|null $buildDir = null;
 
     protected function setUp(): void
     {
@@ -331,7 +329,7 @@ class FunctionalTest extends TestCase
         return $crawler;
     }
 
-    private function getBuildDir(): ?string
+    private function getBuildDir(): string|null
     {
         $foldersToCheck = [
             'build-test',

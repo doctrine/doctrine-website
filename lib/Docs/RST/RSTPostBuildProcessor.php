@@ -25,23 +25,11 @@ docsSourcePath: "%s"
 %s
 TEMPLATE;
 
-    /** @var RSTFileRepository */
-    private $rstFileRepository;
-
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var string */
-    private $sourceDir;
-
     public function __construct(
-        RSTFileRepository $rstFileRepository,
-        Filesystem $filesystem,
-        string $sourceDir
+        private RSTFileRepository $rstFileRepository,
+        private Filesystem $filesystem,
+        private string $sourceDir,
     ) {
-        $this->rstFileRepository = $rstFileRepository;
-        $this->filesystem        = $filesystem;
-        $this->sourceDir         = $sourceDir;
     }
 
     public function postRstBuild(Project $project, ProjectVersion $version, RSTLanguage $language): void
@@ -57,22 +45,15 @@ TEMPLATE;
         $files = $this->rstFileRepository->findFiles($projectVersionDocsOutputPath);
 
         foreach ($files as $file) {
-            $this->processFile($project, $version, $language, $file);
+            $this->processFile($file);
         }
     }
 
-    private function processFile(
-        Project $project,
-        ProjectVersion $version,
-        RSTLanguage $language,
-        string $file
-    ): void {
+    private function processFile(string $file): void
+    {
         $contents = $this->getFileContents($file);
 
         $processedContents = $this->processFileContents(
-            $project,
-            $version,
-            $language,
             $file,
             $contents,
         );
@@ -80,26 +61,18 @@ TEMPLATE;
         $this->filesystem->dumpFile($file, $processedContents);
     }
 
-    private function processFileContents(
-        Project $project,
-        ProjectVersion $version,
-        RSTLanguage $language,
-        string $file,
-        string $contents
-    ): string {
+    private function processFileContents(string $file, string $contents): string
+    {
         if (strpos($file, '.html') !== false) {
-            return $this->processHtmlFile($project, $version, $language, $file, $contents);
+            return $this->processHtmlFile($file, $contents);
         }
 
         return $contents;
     }
 
     private function processHtmlFile(
-        Project $project,
-        ProjectVersion $version,
-        RSTLanguage $language,
         string $file,
-        string $contents
+        string $contents,
     ): string {
         // parse out the source file that generated this file
         preg_match('/<p>{{ DOCS_SOURCE_PATH : (.*) }}<\/p>/', $contents, $match);
@@ -121,11 +94,16 @@ TEMPLATE;
 
         return sprintf(
             self::PARAMETERS_TEMPLATE,
-            $title,
+            $this->escapeYaml($title),
             strpos($file, 'index.html') !== false ? 'true' : 'false',
             $docsSourcePath,
             $contents,
         );
+    }
+
+    private function escapeYaml(string $text): string
+    {
+        return str_replace('\\', '\\\\', $text);
     }
 
     private function getFileContents(string $file): string

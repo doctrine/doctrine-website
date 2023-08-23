@@ -6,16 +6,8 @@ namespace Doctrine\Website\Docs\RST;
 
 class RSTLanguage
 {
-    /** @var string */
-    private $code;
-
-    /** @var string */
-    private $path;
-
-    public function __construct(string $code, string $path)
+    public function __construct(private string $code, private string $path)
     {
-        $this->code = $code;
-        $this->path = $path;
     }
 
     public function getCode(): string

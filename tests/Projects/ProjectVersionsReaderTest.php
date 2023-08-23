@@ -14,14 +14,11 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ProjectVersionsReaderTest extends TestCase
 {
-    /** @var TagReader|MockObject */
-    private $tagReader;
+    private TagReader&MockObject $tagReader;
 
-    /** @var TagBranchGuesser|MockObject */
-    private $tagBranchGuesser;
+    private TagBranchGuesser&MockObject $tagBranchGuesser;
 
-    /** @var ProjectVersionsReader */
-    private $projectVersionsReader;
+    private ProjectVersionsReader $projectVersionsReader;
 
     public function testReadProjectVersions(): void
     {

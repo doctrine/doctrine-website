@@ -15,12 +15,8 @@ use const JSON_UNESCAPED_SLASHES;
 
 class WebsiteDataWriter
 {
-    /** @var string */
-    private $cacheDir;
-
-    public function __construct(string $cacheDir)
+    public function __construct(private string $cacheDir)
     {
-        $this->cacheDir = $cacheDir;
     }
 
     public function write(WebsiteData $websiteData): void

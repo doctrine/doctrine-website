@@ -19,11 +19,11 @@ class RoleDirective extends SubDirective
     /** @param string[] $options */
     public function processSub(
         Parser $parser,
-        ?Node $document,
+        Node|null $document,
         string $variable,
         string $data,
-        array $options
-    ): ?Node {
+        array $options,
+    ): Node|null {
         return new WrapperNode($document, '<div class="role">', '</div>');
     }
 }

@@ -14,15 +14,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 use function chdir;
-use function file_exists;
 use function file_put_contents;
 use function getcwd;
 use function glob;
 use function in_array;
 use function is_dir;
 use function sprintf;
-use function symlink;
-use function unlink;
 
 class WebsiteBuilder
 {
@@ -36,54 +33,23 @@ class WebsiteBuilder
         Application::ENV_STAGING => self::URL_STAGING,
     ];
 
-    /** @var ProcessFactory */
-    private $processFactory;
-
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var SourceFileRepository */
-    private $sourceFileRepository;
-
-    /** @var SourceFilesBuilder */
-    private $sourceFilesBuilder;
-
-    /** @var string */
-    private $rootDir;
-
-    /** @var string */
-    private $cacheDir;
-
-    /** @var string */
-    private $webpackBuildDir;
-
+    /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(
-        ProcessFactory $processFactory,
-        ProjectRepository $projectRepository,
-        Filesystem $filesystem,
-        SourceFileRepository $sourceFileRepository,
-        SourceFilesBuilder $sourceFilesBuilder,
-        string $rootDir,
-        string $cacheDir,
-        string $webpackBuildDir
+        private ProcessFactory $processFactory,
+        private ProjectRepository $projectRepository,
+        private Filesystem $filesystem,
+        private SourceFileRepository $sourceFileRepository,
+        private SourceFilesBuilder $sourceFilesBuilder,
+        private string $rootDir,
+        private string $cacheDir,
+        private string $webpackBuildDir,
     ) {
-        $this->processFactory       = $processFactory;
-        $this->projectRepository    = $projectRepository;
-        $this->filesystem           = $filesystem;
-        $this->sourceFileRepository = $sourceFileRepository;
-        $this->sourceFilesBuilder   = $sourceFilesBuilder;
-        $this->rootDir              = $rootDir;
-        $this->cacheDir             = $cacheDir;
-        $this->webpackBuildDir      = $webpackBuildDir;
     }
 
     public function build(
         OutputInterface $output,
         string $buildDir,
-        string $env
+        string $env,
     ): void {
         $output->writeln(sprintf(
             'Building Doctrine website for <info>%s</info> environment at <info>%s</info>.',
@@ -199,7 +165,7 @@ class WebsiteBuilder
         string $buildDir,
         Project $project,
         ProjectVersion $version,
-        string $alias
+        string $alias,
     ): void {
         $dir = sprintf(
             '%s/projects/%s/en',
@@ -220,12 +186,12 @@ class WebsiteBuilder
 
         chdir($dir);
 
-        if (file_exists($alias)) {
-            unlink($alias);
+        if ($this->filesystem->exists($alias)) {
+            $this->filesystem->remove($alias);
         }
 
-        if (file_exists($version->getSlug())) {
-            symlink($version->getSlug(), $alias);
+        if ($this->filesystem->exists($version->getSlug())) {
+            $this->filesystem->symlink($version->getSlug(), $alias);
         }
 
         if ($cwd === false) {

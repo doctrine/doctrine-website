@@ -15,9 +15,11 @@ use Doctrine\Website\Model\BlogPost;
  * @property string $authorEmail
  * @property string $contents
  * @property DateTimeImmutable $date
+ * @template-extends ModelHydrator<BlogPost>
  */
 final class BlogPostHydrator extends ModelHydrator
 {
+    /** @return class-string<BlogPost> */
     protected function getClassName(): string
     {
         return BlogPost::class;

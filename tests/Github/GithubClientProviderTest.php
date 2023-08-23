@@ -6,25 +6,23 @@ namespace Doctrine\Website\Tests\Github;
 
 use Doctrine\Website\Github\GithubClientProvider;
 use Doctrine\Website\Tests\TestCase;
+use Github\AuthMethod;
 use Github\Client;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class GithubClientProviderTest extends TestCase
 {
-    /** @var Client|MockObject */
-    private $githubClient;
+    private Client&MockObject $githubClient;
 
-    /** @var string */
-    private $githubHttpToken;
+    private string $githubHttpToken;
 
-    /** @var GithubClientProvider */
-    private $githubClientProvider;
+    private GithubClientProvider $githubClientProvider;
 
     public function testGetGithubClient(): void
     {
         $this->githubClient->expects(self::exactly(1))
             ->method('authenticate')
-            ->with($this->githubHttpToken, '', 'http_token');
+            ->with($this->githubHttpToken, '', AuthMethod::ACCESS_TOKEN);
 
         $githubClient = $this->githubClientProvider->getGithubClient();
 

@@ -9,13 +9,10 @@
     <!-- Ignore warnings, show progress of the run and show sniff names -->
     <arg value="nps"/>
 
-    <config name="php_version" value="70433"/>
+    <config name="php_version" value="80208"/>
 
     <file>lib</file>
     <file>tests</file>
 
-    <!-- The interface of the class below is defined in a dependency and has to remain unchanged -->
-    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
-        <exclude-pattern>*/lib/Hydrators/ModelHydrator.php</exclude-pattern>
-    </rule>
+    <rule ref="Doctrine"/>
 </ruleset>

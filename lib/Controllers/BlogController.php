@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\BlogPost;
 use Doctrine\Website\Repositories\BlogPostRepository;
 
 class BlogController
 {
-    /** @var BlogPostRepository */
-    private $blogPostRepository;
-
-    public function __construct(BlogPostRepository $blogPostRepository)
+    /** @param BlogPostRepository<BlogPost> $blogPostRepository */
+    public function __construct(private BlogPostRepository $blogPostRepository)
     {
-        $this->blogPostRepository = $blogPostRepository;
     }
 
     public function index(): Response

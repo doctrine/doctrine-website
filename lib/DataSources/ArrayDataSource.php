@@ -8,13 +8,9 @@ use Doctrine\SkeletonMapper\DataSource\DataSource;
 
 final class ArrayDataSource implements DataSource
 {
-    /** @var mixed[] */
-    private $sourceRows;
-
     /** @param mixed[] $sourceRows */
-    public function __construct(array $sourceRows)
+    public function __construct(private array $sourceRows)
     {
-        $this->sourceRows = $sourceRows;
     }
 
     /** @return mixed[][] */

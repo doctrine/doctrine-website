@@ -17,12 +17,8 @@ class TagReader
 {
     private const COMMAND = "cd %s && git tag -l --format='refname: %%(refname) creatordate: %%(creatordate)'";
 
-    /** @var ProcessFactory */
-    private $processFactory;
-
-    public function __construct(ProcessFactory $processFactory)
+    public function __construct(private ProcessFactory $processFactory)
     {
-        $this->processFactory = $processFactory;
     }
 
     /** @return Tag[] */
@@ -71,7 +67,7 @@ class TagReader
         return $tags;
     }
 
-    private function extractTagFromLine(string $line): ?Tag
+    private function extractTagFromLine(string $line): Tag|null
     {
         preg_match_all('/refname: (.*) creatordate: (.*)/', $line, $matches);
 

@@ -19,9 +19,11 @@ use function array_merge;
  * @property bool $featured
  * @property PartnerDetails $details
  * @property UtmParameters $utmParameters
+ * @template-extends ModelHydrator<Partner>
  */
 final class PartnerHydrator extends ModelHydrator
 {
+    /** @return class-string<Partner> */
     protected function getClassName(): string
     {
         return Partner::class;

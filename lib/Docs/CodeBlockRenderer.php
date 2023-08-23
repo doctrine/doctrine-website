@@ -8,20 +8,12 @@ use function in_array;
 
 class CodeBlockRenderer
 {
-    private const CONSOLE_LANGUAGES = ['bash', 'sh', 'console'];
-
-    /** @var CodeBlockConsoleRenderer */
-    private $codeBlockConsoleRenderer;
-
-    /** @var CodeBlockWithLineNumbersRenderer */
-    private $codeBlockWithLineNumbersRenderer;
+    private const CONSOLE_LANGUAGES = ['terminal', 'bash', 'sh', 'console'];
 
     public function __construct(
-        CodeBlockConsoleRenderer $codeBlockConsoleRenderer,
-        CodeBlockWithLineNumbersRenderer $codeBlockWithLineNumbersRenderer
+        private CodeBlockConsoleRenderer $codeBlockConsoleRenderer,
+        private CodeBlockWithLineNumbersRenderer $codeBlockWithLineNumbersRenderer,
     ) {
-        $this->codeBlockConsoleRenderer         = $codeBlockConsoleRenderer;
-        $this->codeBlockWithLineNumbersRenderer = $codeBlockWithLineNumbersRenderer;
     }
 
     /** @param string[] $lines */

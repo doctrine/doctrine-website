@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Requests;
 
 use Doctrine\StaticWebsiteGenerator\Request\ArrayRequestCollection;
+use Doctrine\Website\Model\Contributor;
 use Doctrine\Website\Repositories\ContributorRepository;
 use Doctrine\Website\Requests\ContributorRequests;
 use Doctrine\Website\Tests\TestCase;
@@ -12,11 +13,10 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class ContributorRequestsTest extends TestCase
 {
-    /** @var ContributorRepository|MockObject */
-    private $contributorRepository;
+    /** @var ContributorRepository<Contributor>&MockObject */
+    private ContributorRepository&MockObject $contributorRepository;
 
-    /** @var ContributorRequests */
-    private $contributorRequests;
+    private ContributorRequests $contributorRequests;
 
     public function testGetContributors(): void
     {

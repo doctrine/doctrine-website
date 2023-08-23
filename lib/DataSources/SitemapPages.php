@@ -10,12 +10,8 @@ use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
 
 class SitemapPages implements DataSource
 {
-    /** @var SourceFileRepository */
-    private $sourceFileRepository;
-
-    public function __construct(SourceFileRepository $sourceFileRepository)
+    public function __construct(private SourceFileRepository $sourceFileRepository)
     {
-        $this->sourceFileRepository = $sourceFileRepository;
     }
 
     /** @return mixed[][] */

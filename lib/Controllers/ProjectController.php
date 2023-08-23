@@ -5,23 +5,21 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\Project;
+use Doctrine\Website\Model\ProjectContributor;
 use Doctrine\Website\Repositories\ProjectContributorRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
 
 class ProjectController
 {
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var ProjectContributorRepository */
-    private $projectContributorRepository;
-
+    /**
+     * @param ProjectRepository<Project>                       $projectRepository
+     * @param ProjectContributorRepository<ProjectContributor> $projectContributorRepository
+     */
     public function __construct(
-        ProjectRepository $projectRepository,
-        ProjectContributorRepository $projectContributorRepository
+        private ProjectRepository $projectRepository,
+        private ProjectContributorRepository $projectContributorRepository,
     ) {
-        $this->projectRepository            = $projectRepository;
-        $this->projectContributorRepository = $projectContributorRepository;
     }
 
     public function index(): Response

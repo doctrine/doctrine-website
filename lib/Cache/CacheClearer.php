@@ -12,18 +12,10 @@ use function sprintf;
 
 class CacheClearer
 {
-    /** @var Filesystem */
-    private $filesystem;
-
-    /** @var string */
-    private $rootDir;
-
     public function __construct(
-        Filesystem $filesystem,
-        string $rootDir
+        private Filesystem $filesystem,
+        private string $rootDir,
     ) {
-        $this->filesystem = $filesystem;
-        $this->rootDir    = $rootDir;
     }
 
     /** @return string[] */

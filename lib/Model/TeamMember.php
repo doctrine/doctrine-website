@@ -12,38 +12,28 @@ use function in_array;
 
 class TeamMember implements LoadMetadataInterface, CommitterStats
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $github;
+    private string $github;
 
-    /** @var string */
-    private $twitter;
+    private string $twitter;
 
-    /** @var string */
-    private $avatarUrl;
+    private string $avatarUrl;
 
-    /** @var string */
-    private $website;
+    private string $website;
 
-    /** @var string */
-    private $location;
+    private string $location;
 
     /** @var string[] */
-    private $maintains = [];
+    private array $maintains = [];
 
-    /** @var bool */
-    private $consultant = false;
+    private bool $consultant = false;
 
-    /** @var string */
-    private $headshot;
+    private string $headshot;
 
-    /** @var string */
-    private $bio;
+    private string $bio;
 
-    /** @var Closure|Contributor */
-    private $contributor;
+    private Closure|Contributor $contributor;
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void
     {

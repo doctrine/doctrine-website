@@ -18,20 +18,16 @@ use UnexpectedValueException;
 
 class BuildDocsTest extends TestCase
 {
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    /** @var ProjectRepository<Project>&MockObject  */
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var ProjectGitSyncer|MockObject */
-    private $projectGitSyncer;
+    private ProjectGitSyncer&MockObject $projectGitSyncer;
 
-    /** @var RSTBuilder|MockObject */
-    private $rstBuilder;
+    private RSTBuilder&MockObject $rstBuilder;
 
-    /** @var SearchIndexer|MockObject */
-    private $searchIndexer;
+    private SearchIndexer&MockObject $searchIndexer;
 
-    /** @var BuildDocs */
-    private $buildDocs;
+    private BuildDocs $buildDocs;
 
     protected function setUp(): void
     {

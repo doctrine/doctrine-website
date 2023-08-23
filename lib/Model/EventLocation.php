@@ -6,16 +6,8 @@ namespace Doctrine\Website\Model;
 
 final class EventLocation
 {
-    /** @var string */
-    private $name;
-
-    /** @var Address */
-    private $address;
-
-    public function __construct(string $name, Address $address)
+    public function __construct(private string $name, private Address $address)
     {
-        $this->name    = $name;
-        $this->address = $address;
     }
 
     public function getName(): string

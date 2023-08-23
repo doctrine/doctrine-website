@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\Partner;
 use Doctrine\Website\Repositories\PartnerRepository;
 
 final class PartnersController
 {
-    /** @var PartnerRepository */
-    private $partnerRepository;
-
-    public function __construct(PartnerRepository $partnerRepository)
+    /** @param PartnerRepository<Partner> $partnerRepository */
+    public function __construct(private PartnerRepository $partnerRepository)
     {
-        $this->partnerRepository = $partnerRepository;
     }
 
     public function index(): Response

@@ -6,10 +6,8 @@ namespace Doctrine\Website;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Tools\Console\Command as DBALCommand;
-use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
-use Doctrine\Migrations\Configuration\Configuration as MigrationsConfiguration;
+use Doctrine\DBAL\Tools\Console\ConnectionProvider\SingleConnectionProvider;
 use Doctrine\Migrations\Tools\Console\Command as MigrationsCommand;
-use Doctrine\Migrations\Tools\Console\Helper\ConfigurationHelper;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\Command as ORMCommand;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
@@ -44,24 +42,18 @@ class Application
     public const ENV_PROD    = 'prod';
     public const ENV_STAGING = 'staging';
 
-    /** @var BaseApplication */
-    private $application;
-
     public function __construct(
-        BaseApplication $application,
+        private BaseApplication $application,
         EntityManager $em,
         Connection $connection,
-        MigrationsConfiguration $migrationsConfiguration,
         BuildAllCommand $buildAllCommand,
         BuildDocsCommand $buildDocsCommand,
         BuildWebsiteCommand $buildWebsiteCommand,
         BuildWebsiteDataCommand $buildWebsiteDataCommand,
         ClearBuildCacheCommand $clearBuildCacheCommand,
         SyncRepositoriesCommand $syncRepositoriesCommand,
-        EventParticipantsCommand $eventParticipantsCommand
+        EventParticipantsCommand $eventParticipantsCommand,
     ) {
-        $this->application = $application;
-
         $this->application->add($buildAllCommand);
         $this->application->add($buildDocsCommand);
         $this->application->add($buildWebsiteCommand);
@@ -72,15 +64,17 @@ class Application
 
         $this->application->setHelperSet(new HelperSet([
             'question'      => new QuestionHelper(),
-            'db'            => new ConnectionHelper($connection),
+            //'db'            => new ConnectionHelper($connection),
             'em'            => new EntityManagerHelper($em),
-            'configuration' => new ConfigurationHelper($connection, $migrationsConfiguration),
+            //'configuration' => new ConfigurationHelper($connection, $migrationsConfiguration),
         ]));
+
+        $connectionProvider = new SingleConnectionProvider($connection);
 
         $this->application->addCommands([
             // DBAL Commands
-            new DBALCommand\ReservedWordsCommand(),
-            new DBALCommand\RunSqlCommand(),
+            new DBALCommand\ReservedWordsCommand($connectionProvider),
+            new DBALCommand\RunSqlCommand($connectionProvider),
 
             // ORM Commands
             new ORMCommand\ClearCache\CollectionRegionCommand(),

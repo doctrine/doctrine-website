@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs;
 
-use AlgoliaSearch\Client;
-use AlgoliaSearch\Index;
+use Algolia\AlgoliaSearch\SearchClient;
+use Algolia\AlgoliaSearch\SearchIndex;
 use Doctrine\RST\Nodes\DocumentNode;
 use Doctrine\RST\Nodes\Node;
 use Doctrine\RST\Nodes\ParagraphNode;
@@ -13,7 +13,6 @@ use Doctrine\RST\Nodes\TitleNode;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 
-use function get_class;
 use function in_array;
 use function is_string;
 use function md5;
@@ -28,12 +27,8 @@ class SearchIndexer
 {
     public const INDEX_NAME = 'pages';
 
-    /** @var Client */
-    private $client;
-
-    public function __construct(Client $client)
+    public function __construct(private SearchClient $client)
     {
-        $this->client = $client;
     }
 
     public function initSearchIndex(): void
@@ -53,14 +48,14 @@ class SearchIndexer
             'removeWordsIfNoResults' => 'allOptional',
         ]);
 
-        $index->clearIndex();
+        $index->clearObjects();
     }
 
     /** @param DocumentNode[] $documents */
     public function buildSearchIndexes(
         Project $project,
         ProjectVersion $version,
-        array $documents
+        array $documents,
     ): void {
         $records = [];
 
@@ -68,7 +63,7 @@ class SearchIndexer
             $this->buildDocumentSearchRecords($document, $records, $project, $version);
         }
 
-        $this->getSearchIndex()->addObjects($records);
+        $this->getSearchIndex()->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
     }
 
     /** @param mixed[][] $records */
@@ -76,7 +71,7 @@ class SearchIndexer
         DocumentNode $document,
         array &$records,
         Project $project,
-        ProjectVersion $version
+        ProjectVersion $version,
     ): void {
         $environment = $document->getEnvironment();
 
@@ -94,7 +89,7 @@ class SearchIndexer
         $nodeTypes = [TitleNode::class, ParagraphNode::class];
 
         $nodes = $document->getNodes(static function (Node $node) use ($nodeTypes): bool {
-            return in_array(get_class($node), $nodeTypes, true);
+            return in_array($node::class, $nodeTypes, true);
         });
 
         foreach ($nodes as $node) {
@@ -132,7 +127,7 @@ class SearchIndexer
         array &$current,
         string &$currentLink,
         Project $project,
-        ProjectVersion $version
+        ProjectVersion $version,
     ): array {
         $level = $node instanceof TitleNode ? $node->getLevel() : false;
 
@@ -193,18 +188,18 @@ class SearchIndexer
     {
         $nodeValue = $node->getValue();
 
-        if ($nodeValue instanceof Node) {
-            return $nodeValue->render();
+        if ($nodeValue === null) {
+            return '';
         }
 
         if (is_string($nodeValue)) {
             return $nodeValue;
         }
 
-        return (string) $nodeValue;
+        return $nodeValue->render();
     }
 
-    private function getSearchIndex(): Index
+    private function getSearchIndex(): SearchIndex
     {
         return $this->client->initIndex(self::INDEX_NAME);
     }

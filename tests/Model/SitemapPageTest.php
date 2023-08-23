@@ -10,14 +10,11 @@ use Doctrine\Website\Tests\TestCase;
 
 class SitemapPageTest extends TestCase
 {
-    /** @var string */
-    private $url;
+    private string $url;
 
-    /** @var DateTimeImmutable */
-    private $date;
+    private DateTimeImmutable $date;
 
-    /** @var SitemapPage */
-    private $sitemapPage;
+    private SitemapPage $sitemapPage;
 
     public function testGetUrl(): void
     {

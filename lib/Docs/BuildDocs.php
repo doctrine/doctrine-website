@@ -19,35 +19,20 @@ use function sprintf;
 
 class BuildDocs
 {
-    /** @var ProjectRepository */
-    private $projectRepository;
-
-    /** @var ProjectGitSyncer */
-    private $projectGitSyncer;
-
-    /** @var RSTBuilder */
-    private $rstBuilder;
-
-    /** @var SearchIndexer */
-    private $searchIndexer;
-
+    /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(
-        ProjectRepository $projectRepository,
-        ProjectGitSyncer $projectGitSyncer,
-        RSTBuilder $rstBuilder,
-        SearchIndexer $searchIndexer
+        private ProjectRepository $projectRepository,
+        private ProjectGitSyncer $projectGitSyncer,
+        private RSTBuilder $rstBuilder,
+        private SearchIndexer $searchIndexer,
     ) {
-        $this->projectRepository = $projectRepository;
-        $this->projectGitSyncer  = $projectGitSyncer;
-        $this->rstBuilder        = $rstBuilder;
-        $this->searchIndexer     = $searchIndexer;
     }
 
     public function build(
         OutputInterface $output,
         string $projectToBuild,
         string $versionToBuild,
-        bool $buildSearchIndexes
+        bool $buildSearchIndexes,
     ): void {
         if ($buildSearchIndexes) {
             $this->searchIndexer->initSearchIndex();

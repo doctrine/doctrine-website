@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests;
 
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
+use Doctrine\Website\Model\Project;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\WebsiteBuilder;
@@ -15,32 +16,24 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class WebsiteBuilderTest extends TestCase
 {
-    /** @var ProcessFactory|MockObject */
-    private $processFactory;
+    private ProcessFactory&MockObject $processFactory;
 
-    /** @var ProjectRepository|MockObject */
-    private $projectRepository;
+    /** @var ProjectRepository<Project>&MockObject  */
+    private ProjectRepository&MockObject $projectRepository;
 
-    /** @var Filesystem|MockObject */
-    private $filesystem;
+    private Filesystem&MockObject $filesystem;
 
-    /** @var SourceFileRepository|MockObject */
-    private $sourceFileRepository;
+    private SourceFileRepository&MockObject $sourceFileRepository;
 
-    /** @var SourceFilesBuilder|MockObject */
-    private $sourceFilesBuilder;
+    private SourceFilesBuilder&MockObject $sourceFilesBuilder;
 
-    /** @var string */
-    private $rootDir;
+    private string $rootDir;
 
-    /** @var string */
-    private $cacheDir;
+    private string $cacheDir;
 
-    /** @var string */
-    private $webpackBuildDir;
+    private string $webpackBuildDir;
 
-    /** @var WebsiteBuilder|MockObject */
-    private $websiteBuilder;
+    private WebsiteBuilder&MockObject $websiteBuilder;
 
     protected function setUp(): void
     {
@@ -74,11 +67,7 @@ class WebsiteBuilderTest extends TestCase
         $buildDir = '/data/doctrine-website-build-staging';
         $env      = 'staging';
 
-        $this->filesystem->expects(self::at(0))
-            ->method('remove')
-            ->with([]);
-
-        $this->filesystem->expects(self::at(1))
+        $this->filesystem->expects(self::exactly(2))
             ->method('remove')
             ->with([]);
 
@@ -93,13 +82,12 @@ class WebsiteBuilderTest extends TestCase
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && npm run build');
 
-        $this->filesystem->expects(self::at(2))
+        $this->filesystem->expects(self::exactly(2))
             ->method('mirror')
-            ->with($this->webpackBuildDir, $buildDir . '/frontend');
-
-        $this->filesystem->expects(self::at(3))
-            ->method('mirror')
-            ->with($this->cacheDir . '/data', $buildDir . '/website-data');
+            ->withConsecutive(
+                [$this->webpackBuildDir, $buildDir . '/frontend'],
+                [$this->cacheDir . '/data', $buildDir . '/website-data'],
+            );
 
         $this->websiteBuilder->build($output, $buildDir, $env);
     }

@@ -9,8 +9,7 @@ use Doctrine\Website\Tests\TestCase;
 
 class CodeBlockConsoleRendererTest extends TestCase
 {
-    /** @var CodeBlockConsoleRenderer */
-    private $codeBlockConsoleRenderer;
+    private CodeBlockConsoleRenderer $codeBlockConsoleRenderer;
 
     public function testRenderWithDollarSign(): void
     {

@@ -28,18 +28,10 @@ use function trim;
  */
 class CodeBlockDirective extends Directive
 {
-    /** @var CodeBlockRenderer */
-    private $codeBlockRenderer;
-
-    /** @var CodeBlockLanguageDetector */
-    private $codeBlockLanguageDetector;
-
     public function __construct(
-        CodeBlockRenderer $codeBlockRenderer,
-        CodeBlockLanguageDetector $codeBlockLanguageDetector
+        private CodeBlockRenderer $codeBlockRenderer,
+        private CodeBlockLanguageDetector $codeBlockLanguageDetector,
     ) {
-        $this->codeBlockRenderer         = $codeBlockRenderer;
-        $this->codeBlockLanguageDetector = $codeBlockLanguageDetector;
     }
 
     public function getName(): string
@@ -50,10 +42,10 @@ class CodeBlockDirective extends Directive
     /** @param string[] $options */
     public function process(
         Parser $parser,
-        ?Node $node,
+        Node|null $node,
         string $variable,
         string $data,
-        array $options
+        array $options,
     ): void {
         if (! $node instanceof CodeNode) {
             return;

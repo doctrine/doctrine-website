@@ -6,53 +6,17 @@ namespace Doctrine\Website\Model;
 
 final class ProjectStats
 {
-    /** @var int */
-    private $githubStars = 0;
-
-    /** @var int */
-    private $githubWatchers = 0;
-
-    /** @var int */
-    private $githubForks = 0;
-
-    /** @var int */
-    private $githubOpenIssues = 0;
-
-    /** @var int */
-    private $dependents = 0;
-
-    /** @var int */
-    private $suggesters = 0;
-
-    /** @var int */
-    private $totalDownloads = 0;
-
-    /** @var int */
-    private $monthlyDownloads = 0;
-
-    /** @var int */
-    private $dailyDownloads = 0;
-
     public function __construct(
-        int $githubStars,
-        int $githubWatchers,
-        int $githubForks,
-        int $githubOpenIssues,
-        int $dependents,
-        int $suggesters,
-        int $totalDownloads,
-        int $monthlyDownloads,
-        int $dailyDownloads
+        private int $githubStars = 0,
+        private int $githubWatchers = 0,
+        private int $githubForks = 0,
+        private int $githubOpenIssues = 0,
+        private int $dependents = 0,
+        private int $suggesters = 0,
+        private int $totalDownloads = 0,
+        private int $monthlyDownloads = 0,
+        private int $dailyDownloads = 0,
     ) {
-        $this->githubStars      = $githubStars;
-        $this->githubWatchers   = $githubWatchers;
-        $this->githubForks      = $githubForks;
-        $this->githubOpenIssues = $githubOpenIssues;
-        $this->dependents       = $dependents;
-        $this->suggesters       = $suggesters;
-        $this->totalDownloads   = $totalDownloads;
-        $this->monthlyDownloads = $monthlyDownloads;
-        $this->dailyDownloads   = $dailyDownloads;
     }
 
     public function getGithubStars(): int

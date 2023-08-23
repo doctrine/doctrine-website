@@ -3,6 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <imports>
+        <import resource="services/static-website-generator.xml"/>
+        <import resource="services/rst-parser.xml"/>
+    </imports>
+
     <parameters>
         <parameter key="doctrine.website.mysql.user">root</parameter>
         <parameter key="doctrine.website.mysql.host">localhost</parameter>
@@ -19,51 +24,13 @@
             <bind key="$sourceDir">%doctrine.website.source_dir%</bind>
             <bind key="$projectsData">%doctrine.website.projects_data%</bind>
             <bind key="$webpackBuildDir">%doctrine.website.webpack_build_dir%</bind>
-            <bind key="$templatesDir">%doctrine.website.templates_dir%</bind>
             <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
-            <bind key="$routes">%doctrine.website.routes%</bind>
             <bind key="$stripePublishableKey">%doctrine.website.stripe.publishable_key%</bind>
         </defaults>
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />
 
-        <prototype namespace="Doctrine\StaticWebsiteGenerator\" resource="../vendor/doctrine/static-website-generator/lib/*" />
-
-        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\MarkdownConverter">
-            <argument type="service" id="Parsedown" />
-        </service>
-
-        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\ReStructuredTextConverter">
-            <argument type="service" id="Doctrine\RST\Parser" />
-        </service>
-
-        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileBuilder">
-            <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRenderer" />
-            <argument type="service" id="Symfony\Component\Filesystem\Filesystem" />
-            <argument type="collection">
-                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\MarkdownConverter" />
-                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\ReStructuredTextConverter" />
-            </argument>
-            <argument type="collection">
-                <argument>/\/api\//</argument>
-            </argument>
-        </service>
-
-        <service id="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" autowire="false">
-            <argument>%doctrine.website.templates_dir%</argument>
-            <argument type="collection">
-                <argument type="service" id="Doctrine\Website\Twig\MainExtension" />
-                <argument type="service" id="Doctrine\Website\Twig\ProjectExtension" />
-                <argument type="service" id="Doctrine\StaticWebsiteGenerator\Twig\RoutingExtension" />
-            </argument>
-        </service>
-
-        <service id="Pelago\Emogrifier">
-            <call method="disableStyleBlocksParsing" />
-        </service>
-
         <service id="Doctrine\Website\Email\RenderEmail" autowire="false">
-            <argument type="service" id="Pelago\Emogrifier" />
             <argument>%doctrine.website.templates_dir%</argument>
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Twig\MainExtension" />
@@ -71,47 +38,12 @@
                 <argument type="service" id="Doctrine\StaticWebsiteGenerator\Twig\RoutingExtension" />
             </argument>
         </service>
-
-        <service id="Doctrine\StaticWebsiteGenerator\Twig\TwigRenderer" alias="Doctrine\StaticWebsiteGenerator\Twig\StringTwigRenderer" />
 
         <service id="Doctrine\Website\Github\GithubProjectContributors" alias="Doctrine\Website\Github\ProdGithubProjectContributors" />
 
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
 
         <service id="Doctrine\Website\Projects\ProjectDataRepository" autowire="true" />
-
-        <service id="Doctrine\RST\Configuration">
-            <call method="abortOnError">
-                <argument>false</argument>
-            </call>
-            <call method="setIgnoreInvalidReferences">
-                <argument>true</argument>
-            </call>
-            <call method="setUseCachedMetas">
-                <argument>false</argument>
-            </call>
-            <call method="setFileExtension">
-                <argument>html</argument>
-            </call>
-            <call method="setEventManager">
-                <argument type="service" id="Doctrine\Common\EventManager" />
-            </call>
-        </service>
-
-        <service id="Doctrine\RST\Builder">
-            <argument type="service" id="Doctrine\RST\Kernel" />
-        </service>
-
-        <service id="Doctrine\RST\Parser">
-            <argument type="service" id="Doctrine\RST\Kernel" />
-        </service>
-
-        <service id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository">
-            <argument type="collection">
-                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader" />
-                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRouteReader" />
-            </argument>
-        </service>
 
         <service id="Doctrine\Website\Github\GithubClientProvider">
             <argument type="service">
@@ -143,33 +75,8 @@
             <argument>%doctrine.website.send_grid.api_key%</argument>
         </service>
 
-        <service id="Doctrine\StaticWebsiteGenerator\Controller\ControllerProvider">
-            <argument type="collection">
-                <argument type="service" id="Doctrine\Website\Controllers\AtomController" />
-                <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
-                <argument type="service" id="Doctrine\Website\Controllers\ConsultingController" />
-                <argument type="service" id="Doctrine\Website\Controllers\DocumentationController" />
-                <argument type="service" id="Doctrine\Website\Controllers\EventsController" />
-                <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
-                <argument type="service" id="Doctrine\Website\Controllers\PartnersController" />
-                <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
-                <argument type="service" id="Doctrine\Website\Controllers\SponsorshipController" />
-                <argument type="service" id="Doctrine\Website\Controllers\SitemapController" />
-                <argument type="service" id="Doctrine\Website\Controllers\TeamController" />
-            </argument>
-        </service>
-
-        <service id="Doctrine\StaticWebsiteGenerator\Request\RequestCollectionProvider">
-            <argument type="collection">
-                <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
-                <argument type="service" id="Doctrine\Website\Requests\EventRequests" />
-                <argument type="service" id="Doctrine\Website\Requests\PartnerRequests" />
-                <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
-                <argument type="service" id="Doctrine\Website\Requests\ProjectVersionRequests" />
-            </argument>
-        </service>
-
-        <service id="AlgoliaSearch\Client">
+        <service id="Algolia\AlgoliaSearch\SearchClient" autowire="false">
+            <factory method="create"/>
             <argument>%doctrine.website.algolia.app_id%</argument>
             <argument>%doctrine.website.algolia.admin_api_key%</argument>
         </service>
@@ -185,40 +92,6 @@
             <argument>%doctrine.website.assets_url%</argument>
         </service>
 
-        <service id="Doctrine\StaticWebsiteGenerator\Site" alias="Doctrine\Website\Site" />
-
-        <service id="Doctrine\RST\Kernel">
-            <argument type="service" id="Doctrine\RST\Configuration" />
-
-            <argument type="collection">
-                <argument type="service" id="Doctrine\Website\RST\Directive\CautionDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\CodeBlockDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\ConfigurationBlockDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\HintDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\IndexDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\NoteDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\NoticeDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\RoleDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\SectionAuthorDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\SeeAlsoDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\SidebarDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\TipDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\TocDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\TocHeaderDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\VersionAddedDirective" />
-                <argument type="service" id="Doctrine\Website\RST\Directive\WarningDirective" />
-            </argument>
-        </service>
-
-        <service id="Doctrine\Website\Event\NodeValue" autowire="false" />
-
-        <service id="Doctrine\Common\EventManager" autowire="false">
-            <call method="addEventListener">
-                <argument type="constant">Doctrine\RST\Event\PreNodeRenderEvent::PRE_NODE_RENDER</argument>
-                <argument type="service" id="Doctrine\Website\Event\NodeValue" />
-            </call>
-        </service>
-
         <service id="Doctrine\SkeletonMapper\Mapping\ClassMetadataInstantiator" autowire="false" />
         <service id="Doctrine\SkeletonMapper\Mapping\ClassMetadataFactory" autowire="false">
             <argument type="service" id="Doctrine\SkeletonMapper\Mapping\ClassMetadataInstantiator" />
@@ -228,7 +101,6 @@
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" />
             <argument type="service" id="Doctrine\SkeletonMapper\Mapping\ClassMetadataFactory" />
         </service>
-        <service id="Doctrine\SkeletonMapper\ObjectManager" autowire="false" />
         <service id="Doctrine\SkeletonMapper\Persister\ObjectPersisterFactory" autowire="false" />
 
         <service id="Doctrine\Website\Repositories\BlogPostRepository" autowire="false">
@@ -504,7 +376,7 @@
         </service>
 
         <service id="Doctrine\ORM\Configuration">
-            <factory class="Doctrine\ORM\Tools\Setup" method="createAnnotationMetadataConfiguration" />
+            <factory class="Doctrine\ORM\ORMSetup" method="createAttributeMetadataConfiguration" />
             <argument type="collection">
                 <argument>%doctrine.website.root_dir%/lib/Model/Entity</argument>
             </argument>
@@ -535,16 +407,11 @@
         </service>
 
         <service id="Doctrine\Migrations\Configuration\Configuration">
-            <call method="setName">
-                <argument>Doctrine Website Migrations</argument>
-            </call>
-            <call method="setMigrationsNamespace">
-                <argument>Doctrine\Website\Migrations</argument>
-            </call>
             <call method="setAllOrNothing">
                 <argument>true</argument>
             </call>
-            <call method="setMigrationsDirectory">
+            <call method="addMigrationsDirectory">
+                <argument>Doctrine\Website\Migrations</argument>
                 <argument>%doctrine.website.root_dir%/lib/Migrations</argument>
             </call>
         </service>

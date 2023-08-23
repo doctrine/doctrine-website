@@ -8,23 +8,14 @@ use DateTimeImmutable;
 
 final class DateTimeRange
 {
-    /** @var DateTimeImmutable */
-    private $start;
-
-    /** @var DateTimeImmutable */
-    private $end;
-
-    /** @var DateTimeImmutable */
-    private $now;
+    private DateTimeImmutable $now;
 
     public function __construct(
-        DateTimeImmutable $start,
-        DateTimeImmutable $end,
-        ?DateTimeImmutable $now = null
+        private DateTimeImmutable $start,
+        private DateTimeImmutable $end,
+        DateTimeImmutable|null $now = null,
     ) {
-        $this->start = $start;
-        $this->end   = $end;
-        $this->now   = $now ?? new DateTimeImmutable();
+        $this->now = $now ?? new DateTimeImmutable();
     }
 
     public function getStart(): DateTimeImmutable

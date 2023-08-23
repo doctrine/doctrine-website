@@ -7,6 +7,10 @@ namespace Doctrine\Website\Repositories;
 use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
 use Doctrine\Website\Model\DoctrineUser;
 
+/**
+ * @template T of DoctrineUser
+ * @template-extends BasicObjectRepository<T>
+ */
 class DoctrineUserRepository extends BasicObjectRepository
 {
     /** @return DoctrineUser[] */

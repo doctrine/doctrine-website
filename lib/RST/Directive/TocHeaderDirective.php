@@ -19,11 +19,11 @@ class TocHeaderDirective extends SubDirective
     /** @param string[] $options */
     public function processSub(
         Parser $parser,
-        ?Node $document,
+        Node|null $document,
         string $variable,
         string $data,
-        array $options
-    ): ?Node {
+        array $options,
+    ): Node|null {
         return new RawNode('<h2 class="toc-header">' . $data . '</h2>');
     }
 }

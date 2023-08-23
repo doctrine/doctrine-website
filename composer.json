@@ -11,50 +11,52 @@
         }
     ],
     "require": {
-        "php": "^7.4",
-        "algolia/algoliasearch-client-php": "^1.27",
-        "doctrine/inflector": "^1.4",
-        "doctrine/migrations": "^2.2",
-        "doctrine/orm": "^2.7",
-        "doctrine/rst-parser": "^0.1",
-        "doctrine/skeleton-mapper": "^1.0",
-        "doctrine/static-website-generator": "^1.0",
+        "php": "^8.2",
+        "algolia/algoliasearch-client-php": "^3.3",
+        "doctrine/inflector": "^2.0",
+        "doctrine/migrations": "^3.5",
+        "doctrine/orm": "^2.14",
+        "doctrine/rst-parser": "^0.5",
+        "doctrine/skeleton-mapper": "^2.0",
+        "doctrine/static-website-generator": "^2.0",
         "erusev/parsedown": "^1.7",
-        "knplabs/github-api": "^2.14",
-        "pelago/emogrifier": "^3.1",
-        "php-http/guzzle6-adapter": "^1.1",
-        "scrivo/highlight.php": "^9.14",
-        "sendgrid/sendgrid": "^7.3",
-        "stripe/stripe-php": "^6.34",
-        "symfony/config": "^4.4",
-        "symfony/cache": "^5.4",
-        "symfony/console": "^4.4",
-        "symfony/dependency-injection": "^4.4",
-        "symfony/filesystem": "^4.4",
-        "symfony/finder": "^4.4",
-        "symfony/process": "^4.4",
-        "symfony/yaml": "^4.4",
-        "twig/twig": "^2.5"
+        "knplabs/github-api": "^3.9",
+        "pelago/emogrifier": "^7.0",
+        "php-http/guzzle7-adapter": "^1.0",
+        "scrivo/highlight.php": "^9.18",
+        "sendgrid/sendgrid": "^8.0",
+        "stripe/stripe-php": "^10.4",
+        "symfony/config": "^6.3",
+        "symfony/cache": "^6.3",
+        "symfony/console": "^6.3",
+        "symfony/dependency-injection": "^6.3",
+        "symfony/filesystem": "^6.3",
+        "symfony/finder": "^6.3",
+        "symfony/process": "^6.3",
+        "symfony/yaml": "^6.3",
+        "twig/twig": "^3.7"
     },
     "require-dev": {
         "doctrine/coding-standard": "^12.0",
         "mikey179/vfsstream": "^1.6",
+        "nunomaduro/mock-final-classes": "^1.1",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "phpstan/phpstan-phpunit": "^1.2",
         "phpstan/phpstan-strict-rules": "^1.4",
         "phpunit/phpunit": "^9.5",
-        "symfony/css-selector": "^4.4",
-        "symfony/dom-crawler": "^4.4",
-        "symfony/error-handler": "^4.4",
-        "symfony/var-dumper": "^4.4"
+        "symfony/css-selector": "^6.3",
+        "symfony/dom-crawler": "^6.3",
+        "symfony/error-handler": "^6.3",
+        "symfony/var-dumper": "^6.3"
     },
     "config": {
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true
         },
         "platform": {
-            "php": "7.4.33"
+            "php": "8.2.8"
         },
         "sort-packages": true
     },

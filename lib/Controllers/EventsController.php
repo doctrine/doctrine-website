@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
+use Doctrine\Website\Model\Event;
 use Doctrine\Website\Repositories\EventRepository;
 
 final class EventsController
 {
-    /** @var EventRepository */
-    private $eventRepository;
-
-    public function __construct(EventRepository $eventRepository)
+    /** @param EventRepository<Event> $eventRepository */
+    public function __construct(private EventRepository $eventRepository)
     {
-        $this->eventRepository = $eventRepository;
     }
 
     public function index(): Response

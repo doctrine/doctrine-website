@@ -46,12 +46,8 @@ class CodeBlockWithLineNumbersRenderer
 </pre>
 TEMPLATE;
 
-    /** @var Highlighter */
-    private $highlighter;
-
-    public function __construct(Highlighter $highlighter)
+    public function __construct(private Highlighter $highlighter)
     {
-        $this->highlighter = $highlighter;
     }
 
     /** @param string[] $lines */

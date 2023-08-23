@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Inflector\Inflector;
+use Doctrine\Inflector\InflectorFactory;
 use InvalidArgumentException;
 
 use function array_replace;
@@ -26,27 +27,18 @@ class ProjectDataReader
 
     private const COMPOSER_JSON_FILE_NAME = 'composer.json';
 
-    /** @var string */
-    private $projectsDir;
-
-    /** @var mixed[] */
-    private $projectsData;
-
-    /** @var mixed[] */
-    private $projectIntegrationTypes;
+    private Inflector $inflector;
 
     /**
      * @param mixed[] $projectsData
      * @param mixed[] $projectIntegrationTypes
      */
     public function __construct(
-        string $projectsDir,
-        array $projectsData,
-        array $projectIntegrationTypes
+        private string $projectsDir,
+        private array $projectsData,
+        private array $projectIntegrationTypes,
     ) {
-        $this->projectsDir             = $projectsDir;
-        $this->projectsData            = $projectsData;
-        $this->projectIntegrationTypes = $projectIntegrationTypes;
+        $this->inflector = InflectorFactory::create()->build();
     }
 
     /** @return mixed[] */
@@ -88,7 +80,7 @@ class ProjectDataReader
     /** @return mixed[] */
     private function createDefaultProjectData(string $repositoryName): array
     {
-        $slug = str_replace('_', '-', Inflector::tableize($repositoryName));
+        $slug = str_replace('_', '-', $this->inflector->tableize($repositoryName));
 
         return [
             'name' => $repositoryName,
@@ -122,18 +114,18 @@ class ProjectDataReader
         return [];
     }
 
-    private function detectDocsPath(string $repositoryName): ?string
+    private function detectDocsPath(string $repositoryName): string|null
     {
         return $this->detectPath($repositoryName, ['/docs', '/doc', '/Resources/doc', '/source'], null);
     }
 
-    private function detectCodePath(string $repositoryName): ?string
+    private function detectCodePath(string $repositoryName): string|null
     {
         return $this->detectPath($repositoryName, ['/src', '/lib'], '/');
     }
 
     /** @param string[] $pathsToCheck */
-    private function detectPath(string $repositoryName, array $pathsToCheck, ?string $default): ?string
+    private function detectPath(string $repositoryName, array $pathsToCheck, string|null $default): string|null
     {
         foreach ($pathsToCheck as $path) {
             $check = $this->projectsDir . '/' . $repositoryName . $path;

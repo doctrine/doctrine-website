@@ -11,12 +11,8 @@ use Doctrine\Website\DataBuilder\WebsiteDataReader;
 
 class BlogPosts implements DataSource
 {
-    /** @var WebsiteDataReader */
-    private $dataReader;
-
-    public function __construct(WebsiteDataReader $dataReader)
+    public function __construct(private WebsiteDataReader $dataReader)
     {
-        $this->dataReader = $dataReader;
     }
 
     /** @return mixed[][] */

@@ -9,8 +9,7 @@ use Doctrine\Website\Tests\TestCase;
 
 class CodeBlockLanguageDetectorTest extends TestCase
 {
-    /** @var CodeBlockLanguageDetector */
-    private $codeBlockLanguageDetector;
+    private CodeBlockLanguageDetector $codeBlockLanguageDetector;
 
     public function testDetectLanguage(): void
     {

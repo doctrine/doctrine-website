@@ -9,13 +9,9 @@ use function http_build_query;
 
 final class UtmParameters
 {
-    /** @var string[] */
-    private $parameters;
-
     /** @param string[] $parameters */
-    public function __construct(array $parameters)
+    public function __construct(private array $parameters)
     {
-        $this->parameters = $parameters;
     }
 
     /** @param string[] $parameters */

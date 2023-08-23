@@ -10,12 +10,8 @@ use Doctrine\Website\Model\Event;
 
 final class EmailParticipants
 {
-    /** @var SendEmail */
-    private $sendEmail;
-
-    public function __construct(SendEmail $sendEmail)
+    public function __construct(private SendEmail $sendEmail)
     {
-        $this->sendEmail = $sendEmail;
     }
 
     /** @param EventParticipant[] $participants */

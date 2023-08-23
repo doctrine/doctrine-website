@@ -17,43 +17,20 @@ use function sprintf;
 
 class BuildWebsiteDataCommand extends Command
 {
-    /** @var string|null */
-    protected static $defaultName = 'build-website-data';
-
-    /** @var ProjectDataBuilder */
-    private $projectDataBuilder;
-
-    /** @var ProjectContributorDataBuilder */
-    private $projectContributorDataBuilder;
-
-    /** @var ContributorDataBuilder */
-    private $contributorDataBuilder;
-
-    /** @var BlogPostDataBuilder */
-    private $blogPostDataBuilder;
-
-    /** @var WebsiteDataWriter */
-    private $dataWriter;
-
     public function __construct(
-        ProjectDataBuilder $projectDataBuilder,
-        ProjectContributorDataBuilder $projectContributorDataBuilder,
-        ContributorDataBuilder $contributorDataBuilder,
-        BlogPostDataBuilder $blogPostDataBuilder,
-        WebsiteDataWriter $dataWriter
+        private ProjectDataBuilder $projectDataBuilder,
+        private ProjectContributorDataBuilder $projectContributorDataBuilder,
+        private ContributorDataBuilder $contributorDataBuilder,
+        private BlogPostDataBuilder $blogPostDataBuilder,
+        private WebsiteDataWriter $dataWriter,
     ) {
-        $this->projectDataBuilder            = $projectDataBuilder;
-        $this->projectContributorDataBuilder = $projectContributorDataBuilder;
-        $this->contributorDataBuilder        = $contributorDataBuilder;
-        $this->blogPostDataBuilder           = $blogPostDataBuilder;
-        $this->dataWriter                    = $dataWriter;
-
         parent::__construct();
     }
 
     protected function configure(): void
     {
         $this
+            ->setName('build-website-data')
             ->setDescription('Build the Doctrine website data.');
     }
 
