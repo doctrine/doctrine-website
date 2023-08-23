@@ -12,6 +12,7 @@
             <link href="{{ site.url }}{{ blogPost.url }}"/>
             <updated>{{ blogPost.date|date('c') }}</updated>
             <id>{{ site.url }}{{ blogPost.url }}</id>
+            <author><name>{{ blogPost.authorName ?? 'Doctrine' }}</name></author>
             <content type="html"><![CDATA[{{ blogPost.contents|markdown|raw }}]]></content>
         </entry>
     {% endfor %}
