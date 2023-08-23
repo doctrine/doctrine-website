@@ -57,7 +57,7 @@ class WebsiteBuilderTest extends TestCase
                 $this->cacheDir,
                 $this->webpackBuildDir,
             ])
-            ->setMethods(['filePutContents'])
+            ->onlyMethods(['filePutContents'])
             ->getMock();
     }
 
@@ -82,13 +82,16 @@ class WebsiteBuilderTest extends TestCase
             ->method('run')
             ->with('cd /data/doctrine-website-build-staging && npm run build');
 
-        $this->filesystem->expects(self::exactly(2))
-            ->method('mirror')
-            ->withConsecutive(
-                [$this->webpackBuildDir, $buildDir . '/frontend'],
-                [$this->cacheDir . '/data', $buildDir . '/website-data'],
-            );
+        $mirrored = [];
+
+        $this->filesystem->method('mirror')
+            ->willReturnCallback(static function (string $originDir, string $targetDir) use (&$mirrored): void {
+                $mirrored[$originDir] = $targetDir;
+            });
 
         $this->websiteBuilder->build($output, $buildDir, $env);
+
+        self::assertSame($buildDir . '/frontend', $mirrored[$this->webpackBuildDir]);
+        self::assertSame($buildDir . '/website-data', $mirrored[$this->cacheDir . '/data']);
     }
 }

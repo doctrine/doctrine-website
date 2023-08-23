@@ -1,5 +1,5 @@
 /.phpcs-cache
-/.phpunit.result.cache
+/.phpunit.cache
 /.webpack-build
 /build-*
 /config/local.yml
