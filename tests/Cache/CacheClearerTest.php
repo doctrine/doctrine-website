@@ -53,7 +53,7 @@ class CacheClearerTest extends TestCase
                 $this->rootDir,
                 $this->env,
             ])
-            ->setMethods(['glob'])
+            ->onlyMethods(['glob'])
             ->getMock();
     }
 }

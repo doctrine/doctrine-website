@@ -44,7 +44,7 @@
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "phpstan/phpstan-phpunit": "^1.2",
         "phpstan/phpstan-strict-rules": "^1.4",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^10.3",
         "symfony/css-selector": "^6.3",
         "symfony/dom-crawler": "^6.3",
         "symfony/error-handler": "^6.3",

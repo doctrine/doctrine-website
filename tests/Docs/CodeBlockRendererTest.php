@@ -8,6 +8,7 @@ use Doctrine\Website\Docs\CodeBlockConsoleRenderer;
 use Doctrine\Website\Docs\CodeBlockRenderer;
 use Doctrine\Website\Docs\CodeBlockWithLineNumbersRenderer;
 use Doctrine\Website\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class CodeBlockRendererTest extends TestCase
@@ -36,7 +37,7 @@ class CodeBlockRendererTest extends TestCase
         self::assertSame('expected', $this->codeBlockRenderer->render($lines, $language));
     }
 
-    /** @dataProvider getConsoleLanguages */
+    #[DataProvider('getConsoleLanguages')]
     public function testRenderConsole(string $consoleLanguage): void
     {
         $lines = [
@@ -54,7 +55,7 @@ class CodeBlockRendererTest extends TestCase
     }
 
     /** @return string[][] */
-    public function getConsoleLanguages(): array
+    public static function getConsoleLanguages(): array
     {
         return [
             ['console'],

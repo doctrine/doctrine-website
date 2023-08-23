@@ -173,7 +173,7 @@ class FunctionalTest extends TestCase
                 self::assertCount(3, $crawler->filter('nav.breadcrumbs ol.breadcrumb li.breadcrumb-item'));
             }
 
-            self::assertFileNotExists($this->getFullPath(sprintf(
+            self::assertFileDoesNotExist($this->getFullPath(sprintf(
                 '/projects/%s/en/current/meta.php',
                 $project->getDocsSlug(),
             )));

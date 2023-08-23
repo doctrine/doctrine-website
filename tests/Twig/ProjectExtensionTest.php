@@ -27,7 +27,7 @@ class ProjectExtensionTest extends TestCase
                 $this->projectRepository,
                 '',
             ])
-            ->setMethods(['fileExists'])
+            ->onlyMethods(['fileExists'])
             ->getMock();
     }
 
