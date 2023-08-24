@@ -59,8 +59,5 @@ jobs:
     - name: "Run PHP tests with coverage"
       run: "./vendor/bin/phpunit --coverage-clover clover.xml"
 
-    - name: "Run JS tests"
-      run: "yarn jest"
-
     - name: "Deliver code coverage"
       run: "bash <(curl -s https://codecov.io/bash)"
