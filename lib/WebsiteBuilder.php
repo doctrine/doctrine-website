@@ -19,6 +19,7 @@ use function getcwd;
 use function glob;
 use function in_array;
 use function is_dir;
+use function is_link;
 use function sprintf;
 
 class WebsiteBuilder
@@ -186,11 +187,11 @@ class WebsiteBuilder
 
         chdir($dir);
 
-        if ($this->filesystem->exists($alias)) {
+        if (is_link($alias)) {
             $this->filesystem->remove($alias);
         }
 
-        if ($this->filesystem->exists($version->getSlug())) {
+        if ($alias !== $version->getSlug() && $this->filesystem->exists($version->getSlug())) {
             $this->filesystem->symlink($version->getSlug(), $alias);
         }
 
