@@ -7,7 +7,6 @@ namespace Doctrine\Website;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Tools\Console\Command as DBALCommand;
 use Doctrine\DBAL\Tools\Console\ConnectionProvider\SingleConnectionProvider;
-use Doctrine\Migrations\Tools\Console\Command as MigrationsCommand;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\Command as ORMCommand;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
@@ -92,18 +91,6 @@ class Application
             new ORMCommand\ValidateSchemaCommand(),
             new ORMCommand\InfoCommand(),
             new ORMCommand\MappingDescribeCommand(),
-
-            // Migrations Commands
-            new MigrationsCommand\DumpSchemaCommand(),
-            new MigrationsCommand\ExecuteCommand(),
-            new MigrationsCommand\GenerateCommand(),
-            new MigrationsCommand\LatestCommand(),
-            new MigrationsCommand\MigrateCommand(),
-            new MigrationsCommand\RollupCommand(),
-            new MigrationsCommand\StatusCommand(),
-            new MigrationsCommand\VersionCommand(),
-            new MigrationsCommand\UpToDateCommand(),
-            new MigrationsCommand\DiffCommand(),
         ]);
     }
 
