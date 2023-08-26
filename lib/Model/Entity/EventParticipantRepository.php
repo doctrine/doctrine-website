@@ -4,30 +4,17 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model\Entity;
 
-use Doctrine\ORM\EntityRepository;
-
-use function assert;
-
-/**
- * @template T of EventParticipant
- * @template-extends EntityRepository<T>
- */
-final class EventParticipantRepository extends EntityRepository
+/** @template T of EventParticipant */
+final class EventParticipantRepository
 {
     public function findOneByEmail(string $email): EventParticipant|null
     {
-        $eventParticipant = $this->findOneBy(['email' => $email]);
-        assert($eventParticipant instanceof EventParticipant);
-
-        return $eventParticipant;
+        return null;
     }
 
     /** @return EventParticipant[] */
     public function findByEventId(int $eventId): array
     {
-        /** @var EventParticipant[] $eventParticipants */
-        $eventParticipants = $this->findBy(['eventId' => $eventId]);
-
-        return $eventParticipants;
+        return [];
     }
 }

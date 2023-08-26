@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Tools\Console\Command as DBALCommand;
-use Doctrine\DBAL\Tools\Console\ConnectionProvider\SingleConnectionProvider;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Console\Command as ORMCommand;
-use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\Website\Commands\BuildAllCommand;
 use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
@@ -43,8 +37,6 @@ class Application
 
     public function __construct(
         private BaseApplication $application,
-        EntityManager $em,
-        Connection $connection,
         BuildAllCommand $buildAllCommand,
         BuildDocsCommand $buildDocsCommand,
         BuildWebsiteCommand $buildWebsiteCommand,
@@ -63,35 +55,7 @@ class Application
 
         $this->application->setHelperSet(new HelperSet([
             'question'      => new QuestionHelper(),
-            //'db'            => new ConnectionHelper($connection),
-            'em'            => new EntityManagerHelper($em),
-            //'configuration' => new ConfigurationHelper($connection, $migrationsConfiguration),
         ]));
-
-        $connectionProvider = new SingleConnectionProvider($connection);
-
-        $this->application->addCommands([
-            // DBAL Commands
-            new DBALCommand\ReservedWordsCommand($connectionProvider),
-            new DBALCommand\RunSqlCommand($connectionProvider),
-
-            // ORM Commands
-            new ORMCommand\ClearCache\CollectionRegionCommand(),
-            new ORMCommand\ClearCache\EntityRegionCommand(),
-            new ORMCommand\ClearCache\MetadataCommand(),
-            new ORMCommand\ClearCache\QueryCommand(),
-            new ORMCommand\ClearCache\QueryRegionCommand(),
-            new ORMCommand\ClearCache\ResultCommand(),
-            new ORMCommand\SchemaTool\CreateCommand(),
-            new ORMCommand\SchemaTool\UpdateCommand(),
-            new ORMCommand\SchemaTool\DropCommand(),
-            new ORMCommand\EnsureProductionSettingsCommand(),
-            new ORMCommand\GenerateProxiesCommand(),
-            new ORMCommand\RunDqlCommand(),
-            new ORMCommand\ValidateSchemaCommand(),
-            new ORMCommand\InfoCommand(),
-            new ORMCommand\MappingDescribeCommand(),
-        ]);
     }
 
     public function run(InputInterface $input): int
@@ -122,7 +86,6 @@ class Application
         $container->setParameter('doctrine.website.config_dir', realpath(__DIR__ . '/../config'));
         $container->setParameter('doctrine.website.cache_dir', realpath(__DIR__ . '/../cache'));
         $container->setParameter('doctrine.website.github.http_token', getenv('doctrine_website_github_http_token'));
-        $container->setParameter('doctrine.website.mysql.password', getenv('doctrine_website_mysql_password'));
         $container->setParameter('doctrine.website.algolia.admin_api_key', getenv('doctrine_website_algolia_admin_api_key') ?: '1234');
         $container->setParameter('doctrine.website.stripe.secret_key', getenv('doctrine_website_stripe_secret_key') ?: '');
         $container->setParameter('doctrine.website.send_grid.api_key', getenv('doctrine_website_send_grid_api_key') ?: '');

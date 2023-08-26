@@ -9,8 +9,6 @@ use Doctrine\SkeletonMapper\ObjectManagerInterface;
 use Doctrine\Website\Application;
 use Doctrine\Website\Model\Address;
 use Doctrine\Website\Model\DateTimeRange;
-use Doctrine\Website\Model\Entity\EventParticipant;
-use Doctrine\Website\Model\Entity\EventParticipantRepository;
 use Doctrine\Website\Model\Event;
 use Doctrine\Website\Model\EventCfp;
 use Doctrine\Website\Model\EventLocation;
@@ -53,10 +51,8 @@ final class EventHydrator extends ModelHydrator
         'test'                   => 'test',
     ];
 
-    /** @param EventParticipantRepository<EventParticipant> $eventParticipantRepository */
     public function __construct(
         ObjectManagerInterface $objectManager,
-        private EventParticipantRepository $eventParticipantRepository,
         private string $env,
     ) {
         parent::__construct($objectManager);
@@ -156,9 +152,6 @@ final class EventHydrator extends ModelHydrator
 
         $this->price = (float) ($data['price'] ?? 0.00);
 
-        $this->participants = new EventParticipants(
-            $data['id'],
-            $this->eventParticipantRepository,
-        );
+        $this->participants = new EventParticipants();
     }
 }
