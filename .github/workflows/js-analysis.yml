@@ -1,6 +1,20 @@
 name: "JS Analysis tools"
 
-on: ["push", "pull_request"]
+on:
+  push:
+    paths:
+      - '**.js'
+      - '**.scss'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/js-analysis.yml'
+  pull_request:
+    paths:
+      - '**.js'
+      - '**.scss'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/js-analysis.yml'
 
 jobs:
   code-analysis:

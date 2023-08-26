@@ -1,6 +1,20 @@
 name: "JS Tests"
 
-on: ["push", "pull_request"]
+on:
+  push:
+    paths:
+      - '**.js'
+      - '**.scss'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/js-tests.yml'
+  pull_request:
+    paths:
+      - '**.js'
+      - '**.scss'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/js-tests.yml'
 
 jobs:
   js-tests:
