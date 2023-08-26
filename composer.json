@@ -14,7 +14,6 @@
         "php": "^8.2",
         "algolia/algoliasearch-client-php": "^3.3",
         "doctrine/inflector": "^2.0",
-        "doctrine/migrations": "^3.5",
         "doctrine/orm": "^2.14",
         "doctrine/rst-parser": "^0.5",
         "doctrine/skeleton-mapper": "^2.0",
