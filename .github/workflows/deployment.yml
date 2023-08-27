@@ -28,7 +28,7 @@ jobs:
       doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"
 
     steps:
-    - uses: "actions/checkout@v2"
+    - uses: "actions/checkout@v3"
 
     - name: "Setup PHP Action"
       uses: "shivammathur/setup-php@v2"
