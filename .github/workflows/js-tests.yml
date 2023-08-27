@@ -1,0 +1,39 @@
+name: "JS Tests"
+
+on:
+  push:
+    paths:
+      - '**.js'
+      - '**.scss'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/js-tests.yml'
+  pull_request:
+    paths:
+      - '**.js'
+      - '**.scss'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/js-tests.yml'
+
+jobs:
+  js-tests:
+
+    runs-on: "ubuntu-latest"
+
+    steps:
+    - uses: "actions/checkout@v2"
+
+    - name: "Installation of node"
+      uses: "actions/setup-node@v3"
+      with:
+        node-version: '20.5.1'
+
+    - name: "yarn install"
+      run: "yarn install"
+
+    - name: "Run webpack"
+      run: "yarn dev"
+
+    - name: "Run JS tests"
+      run: "yarn jest"

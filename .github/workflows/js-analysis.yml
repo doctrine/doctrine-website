@@ -1,0 +1,39 @@
+name: "JS Analysis tools"
+
+on:
+  push:
+    paths:
+      - '**.js'
+      - '**.scss'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/js-analysis.yml'
+  pull_request:
+    paths:
+      - '**.js'
+      - '**.scss'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/js-analysis.yml'
+
+jobs:
+  code-analysis:
+
+    runs-on: "ubuntu-latest"
+
+    steps:
+    - uses: "actions/checkout@v2"
+
+    - name: "Installation of node"
+      uses: "actions/setup-node@v3"
+      with:
+        node-version: '20.5.1'
+
+    - name: "yarn install"
+      run: "yarn install"
+
+    - name: "Run webpack"
+      run: "yarn dev"
+
+    - name: "Prettier"
+      run: "yarn prettier-check"

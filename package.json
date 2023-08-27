@@ -36,6 +36,7 @@
         "build": "NODE_ENV=production webpack",
         "dev": "webpack --progress",
         "watch": "WEBPACK_WATCH=1 webpack --watch --progress",
-        "prettier": "prettier --write --single-quote source/**/*.{scss,js}"
+        "prettier": "prettier --write --single-quote source/**/*.{scss,js}",
+        "prettier-check": "prettier --write --single-quote --check source/**/*.{scss,js}"
     }
 }
