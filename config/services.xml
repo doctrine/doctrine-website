@@ -8,12 +8,6 @@
         <import resource="services/rst-parser.xml"/>
     </imports>
 
-    <parameters>
-        <parameter key="doctrine.website.mysql.user">root</parameter>
-        <parameter key="doctrine.website.mysql.host">localhost</parameter>
-        <parameter key="doctrine.website.mysql.version">5.7</parameter>
-    </parameters>
-
     <services>
         <defaults autowire="true" autoconfigure="true" public="false">
             <bind key="$rootDir">%doctrine.website.root_dir%</bind>
@@ -307,7 +301,6 @@
             <argument type="service">
                 <service class="Doctrine\Website\Hydrators\EventHydrator">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\Model\Entity\EventParticipantRepository" />
                     <argument>%doctrine.website.env%</argument>
                 </service>
             </argument>
@@ -373,37 +366,6 @@
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectIdentityMap" />
             <argument type="service" id="Doctrine\SkeletonMapper\Mapping\ClassMetadataFactory" />
             <argument type="service" id="Doctrine\Common\EventManager" />
-        </service>
-
-        <service id="Doctrine\ORM\Configuration">
-            <factory class="Doctrine\ORM\ORMSetup" method="createAttributeMetadataConfiguration" />
-            <argument type="collection">
-                <argument>%doctrine.website.root_dir%/lib/Model/Entity</argument>
-            </argument>
-            <argument>%doctrine.website.debug%</argument>
-        </service>
-
-        <service id="Doctrine\ORM\EntityManager">
-            <factory class="Doctrine\ORM\EntityManager" method="create" />
-            <argument type="service" id="Doctrine\DBAL\Connection" />
-            <argument type="service" id="Doctrine\ORM\Configuration" />
-        </service>
-
-        <service id="Doctrine\Website\Model\Entity\EventParticipantRepository">
-            <factory service="Doctrine\ORM\EntityManager" method="getRepository" />
-            <argument>Doctrine\Website\Model\Entity\EventParticipant</argument>
-        </service>
-
-        <service id="Doctrine\DBAL\Connection">
-            <factory class="Doctrine\DBAL\DriverManager" method="getConnection" />
-            <argument type="collection">
-                <argument key="dbname">doctrine_website_%doctrine.website.env%</argument>
-                <argument key="user">%doctrine.website.mysql.user%</argument>
-                <argument key="password">%doctrine.website.mysql.password%</argument>
-                <argument key="host">%doctrine.website.mysql.host%</argument>
-                <argument key="driver">pdo_mysql</argument>
-                <argument key="serverVersion">%doctrine.website.mysql.version%</argument>
-            </argument>
         </service>
     </services>
 </container>

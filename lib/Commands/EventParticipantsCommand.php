@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Commands;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\Website\Event\EmailParticipants;
 use Doctrine\Website\Event\GetStripeEventParticipants;
 use Doctrine\Website\Model\Entity\EventParticipant;
@@ -36,7 +35,6 @@ class EventParticipantsCommand extends Command
         private EventParticipantRepository $eventParticipantRepository,
         private GetStripeEventParticipants $getStripeEventParticipants,
         private EmailParticipants $emailParticipants,
-        private EntityManager $entityManager,
     ) {
         parent::__construct();
     }
@@ -142,11 +140,6 @@ class EventParticipantsCommand extends Command
     /** @param EventParticipant[] $eventParticipants */
     private function saveEventParticipants(array $eventParticipants): void
     {
-        foreach ($eventParticipants as $eventParticipant) {
-            $this->entityManager->persist($eventParticipant);
-        }
-
-        $this->entityManager->flush();
     }
 
     /** @param EventParticipant[] $eventParticipants */

@@ -7,8 +7,6 @@ on:
         required: true
         type: string
     secrets:
-      doctrine_website_mysql_password:
-        required: true
       doctrine_website_algolia_admin_api_key:
         required: true
       doctrine_website_stripe_secret_key:
@@ -23,19 +21,8 @@ jobs:
 
     runs-on: "ubuntu-latest"
 
-    services:
-      mysql:
-        image: "mysql:5.7"
-        env:
-          MYSQL_DATABASE: "doctrine_website"
-          MYSQL_ROOT_PASSWORD: "${{ secrets.doctrine_website_mysql_password }}"
-        ports:
-          - "3306:3306"
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
-
     env:
       doctrine_website_github_http_token: "${{ github.token }}"
-      doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
       doctrine_website_algolia_admin_api_key: "${{ secrets.doctrine_website_algolia_admin_api_key }}"
       doctrine_website_stripe_secret_key: "${{ secrets.doctrine_website_stripe_secret_key }}"
       doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"

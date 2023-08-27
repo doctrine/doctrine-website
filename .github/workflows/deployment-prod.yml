@@ -14,7 +14,6 @@ jobs:
     with:
       environment: "prod"
     secrets:
-      doctrine_website_mysql_password: "${{ secrets.doctrine_website_mysql_password }}"
       doctrine_website_algolia_admin_api_key: "${{ secrets.doctrine_website_algolia_admin_api_key }}"
       doctrine_website_stripe_secret_key: "${{ secrets.doctrine_website_stripe_secret_key }}"
       doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"
