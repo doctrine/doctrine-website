@@ -5,7 +5,7 @@ authorEmail: kontakt@beberlei.de
 permalink: /2023/08/21/doctrine-orm-team-meetup.html
 ---
 
-We are organizing a Doctrine ORM Core Team Meetup in Bonn, Germany from Monday,
+We are organizing a Doctrine ORM Core Team Meetup in Düsseldorf, Germany from Monday,
 9.10.2023 to Wednesday, 11.10.2023 at the offices of one of our primary
 sponsors Tideways GmbH.
 
