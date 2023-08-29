@@ -7,17 +7,13 @@ namespace Doctrine\Website\Tests;
 use Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryInterface;
 use Doctrine\Website\Application;
 use Doctrine\Website\Model\Contributor;
-use Doctrine\Website\Model\Event;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectContributor;
 use Doctrine\Website\Repositories\ContributorRepository;
-use Doctrine\Website\Repositories\EventRepository;
 use Doctrine\Website\Repositories\ProjectContributorRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-
-use function mt_rand;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -43,17 +39,6 @@ abstract class TestCase extends BaseTestCase
         $repository->hydrate($object, $data);
 
         return $object;
-    }
-
-    /** @param mixed[] $data */
-    protected function createEvent(array $data): Event
-    {
-        $data['id'] = mt_rand();
-
-        $event = $this->createModel(EventRepository::class, $data);
-        self::assertInstanceOf(Event::class, $event);
-
-        return $event;
     }
 
     /** @param mixed[] $data */

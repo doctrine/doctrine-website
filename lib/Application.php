@@ -102,7 +102,6 @@ class Application
         }
 
         $dataLoader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../data'));
-        $dataLoader->load('events.yml');
         $dataLoader->load('partners.yml');
         $dataLoader->load('projects.yml');
         $dataLoader->load('sponsors.yml');
