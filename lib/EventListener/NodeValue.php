@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Doctrine\Website\Event;
+namespace Doctrine\Website\EventListener;
 
 use Doctrine\RST\Event\PreNodeRenderEvent;
 use Doctrine\RST\Nodes\Node;

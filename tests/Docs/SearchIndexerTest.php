@@ -12,7 +12,7 @@ use Doctrine\RST\Configuration;
 use Doctrine\RST\Event\PreNodeRenderEvent;
 use Doctrine\RST\Kernel;
 use Doctrine\Website\Docs\SearchIndexer;
-use Doctrine\Website\Event\NodeValue;
+use Doctrine\Website\EventListener\NodeValue;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
