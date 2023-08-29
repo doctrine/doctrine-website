@@ -9,7 +9,6 @@ use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
 use Doctrine\Website\Commands\BuildWebsiteDataCommand;
 use Doctrine\Website\Commands\ClearBuildCacheCommand;
-use Doctrine\Website\Commands\EventParticipantsCommand;
 use Doctrine\Website\Commands\SyncRepositoriesCommand;
 use Stripe;
 use Symfony\Component\Config\FileLocator;
@@ -43,7 +42,6 @@ class Application
         BuildWebsiteDataCommand $buildWebsiteDataCommand,
         ClearBuildCacheCommand $clearBuildCacheCommand,
         SyncRepositoriesCommand $syncRepositoriesCommand,
-        EventParticipantsCommand $eventParticipantsCommand,
     ) {
         $this->application->add($buildAllCommand);
         $this->application->add($buildDocsCommand);
@@ -51,7 +49,6 @@ class Application
         $this->application->add($buildWebsiteDataCommand);
         $this->application->add($clearBuildCacheCommand);
         $this->application->add($syncRepositoriesCommand);
-        $this->application->add($eventParticipantsCommand);
 
         $this->application->setHelperSet(new HelperSet([
             'question'      => new QuestionHelper(),

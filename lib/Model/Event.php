@@ -36,8 +36,6 @@ final class Event implements LoadMetadataInterface
 
     private EventSchedule $schedule;
 
-    private EventParticipants $participants;
-
     private string $description;
 
     private float $price;
@@ -125,11 +123,6 @@ final class Event implements LoadMetadataInterface
     public function getSchedule(): EventSchedule
     {
         return $this->schedule;
-    }
-
-    public function getParticipants(): EventParticipants
-    {
-        return $this->participants;
     }
 
     public function getDescription(): string

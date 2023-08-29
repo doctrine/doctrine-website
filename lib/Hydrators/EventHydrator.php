@@ -12,7 +12,6 @@ use Doctrine\Website\Model\DateTimeRange;
 use Doctrine\Website\Model\Event;
 use Doctrine\Website\Model\EventCfp;
 use Doctrine\Website\Model\EventLocation;
-use Doctrine\Website\Model\EventParticipants;
 use Doctrine\Website\Model\EventSchedule;
 use Doctrine\Website\Model\EventSpeakers;
 use Doctrine\Website\Model\EventSponsors;
@@ -35,7 +34,6 @@ use function sprintf;
  * @property EventSponsors $sponsors
  * @property EventSpeakers $speakers
  * @property EventSchedule $schedule
- * @property EventParticipants $participants
  * @property DateTimeRange $dateTimeRange
  * @property DateTimeRange $registrationDateTimeRange
  * @property string $description
@@ -151,7 +149,5 @@ final class EventHydrator extends ModelHydrator
         $this->description = (string) ($data['description'] ?? '');
 
         $this->price = (float) ($data['price'] ?? 0.00);
-
-        $this->participants = new EventParticipants();
     }
 }
