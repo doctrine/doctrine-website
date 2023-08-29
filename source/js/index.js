@@ -20,12 +20,6 @@ if ($('#sidebar').length > 0) {
   });
 }
 
-if (typeof window.event === 'object') {
-  import(/* webpackChunkName: "event" */ './event').then((module) => {
-    module.default();
-  });
-}
-
 import(/* webpackChunkName: "tab" */ './tab').then((module) => {
   module.default();
 });
