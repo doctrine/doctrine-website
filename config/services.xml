@@ -24,15 +24,6 @@
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />
 
-        <service id="Doctrine\Website\Email\RenderEmail" autowire="false">
-            <argument>%doctrine.website.templates_dir%</argument>
-            <argument type="collection">
-                <argument type="service" id="Doctrine\Website\Twig\MainExtension" />
-                <argument type="service" id="Doctrine\Website\Twig\ProjectExtension" />
-                <argument type="service" id="Doctrine\StaticWebsiteGenerator\Twig\RoutingExtension" />
-            </argument>
-        </service>
-
         <service id="Doctrine\Website\Github\GithubProjectContributors" alias="Doctrine\Website\Github\ProdGithubProjectContributors" />
 
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
