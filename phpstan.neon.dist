@@ -22,6 +22,3 @@ parameters:
       - # Temporary final classes in tests are covered by nunomaduro/mock-final-classes until the refactorings start
         message: "#contains unresolvable type#"
         path: "tests/"
-      -
-        message: "#does not specify its types: TStripeObject#"
-        path: "lib/Event/GetStripeEventParticipants.php"
