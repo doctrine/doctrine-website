@@ -284,30 +284,6 @@
             <argument>Doctrine\Website\Model\TeamMember</argument>
         </service>
 
-        <service id="Doctrine\Website\Repositories\EventRepository" autowire="false" public="true">
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-            <argument type="service">
-                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service">
-                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
-                            <argument>%doctrine.website.events%</argument>
-                        </service>
-                    </argument>
-                    <argument>Doctrine\Website\Model\Event</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
-            <argument type="service">
-                <service class="Doctrine\Website\Hydrators\EventHydrator">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument>%doctrine.website.env%</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\Common\EventManager" />
-            <argument>Doctrine\Website\Model\Event</argument>
-        </service>
-
         <service id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" autowire="false">
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\BlogPost</argument>
@@ -347,11 +323,6 @@
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\TeamMember</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\TeamMemberRepository" />
-            </call>
-
-            <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\Event</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\EventRepository" />
             </call>
 
             <call method="addObjectRepository">

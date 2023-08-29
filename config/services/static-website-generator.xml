@@ -56,7 +56,6 @@
                 <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
                 <argument type="service" id="Doctrine\Website\Controllers\ConsultingController" />
                 <argument type="service" id="Doctrine\Website\Controllers\DocumentationController" />
-                <argument type="service" id="Doctrine\Website\Controllers\EventsController" />
                 <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
                 <argument type="service" id="Doctrine\Website\Controllers\PartnersController" />
                 <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
@@ -69,7 +68,6 @@
         <service id="Doctrine\StaticWebsiteGenerator\Request\RequestCollectionProvider">
             <argument type="collection">
                 <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
-                <argument type="service" id="Doctrine\Website\Requests\EventRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\PartnerRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectVersionRequests" />
