@@ -19,7 +19,6 @@
             <bind key="$projectsData">%doctrine.website.projects_data%</bind>
             <bind key="$webpackBuildDir">%doctrine.website.webpack_build_dir%</bind>
             <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
-            <bind key="$stripePublishableKey">%doctrine.website.stripe.publishable_key%</bind>
         </defaults>
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />

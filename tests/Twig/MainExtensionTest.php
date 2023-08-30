@@ -34,7 +34,6 @@ class MainExtensionTest extends TestCase
             $this->assetIntegrityGenerator,
             $this->sourceDir,
             $this->webpackBuildDir,
-            'stripe-publishable-key',
         );
     }
 

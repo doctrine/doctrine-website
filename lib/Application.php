@@ -10,7 +10,6 @@ use Doctrine\Website\Commands\BuildWebsiteCommand;
 use Doctrine\Website\Commands\BuildWebsiteDataCommand;
 use Doctrine\Website\Commands\ClearBuildCacheCommand;
 use Doctrine\Website\Commands\SyncRepositoriesCommand;
-use Stripe;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Helper\HelperSet;
@@ -108,10 +107,6 @@ class Application
         $dataLoader->load('team_members.yml');
 
         $container->compile();
-
-        $apiKey = $container->getParameter('doctrine.website.stripe.secret_key');
-        assert(is_string($apiKey));
-        Stripe\Stripe::setApiKey($apiKey);
 
         date_default_timezone_set('America/New_York');
 

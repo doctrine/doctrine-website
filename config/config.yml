@@ -1,6 +1,5 @@
 parameters:
     doctrine.website.algolia.app_id: 'YVYTFT9XMW'
-    doctrine.website.stripe.publishable_key: 'pk_test_V7rmF8ac3GbakeSJYvp4u0a8003RPO66vC'
 
     doctrine.website.webpack_build_dir: '%doctrine.website.root_dir%/.webpack-build'
     doctrine.website.projects_dir: '%doctrine.website.root_dir%/projects'
