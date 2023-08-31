@@ -30,7 +30,6 @@ class MainExtension extends AbstractExtension
         private AssetIntegrityGenerator $assetIntegrityGenerator,
         private string $sourceDir,
         private string $webpackBuildDir,
-        private string $stripePublishableKey,
     ) {
     }
 
@@ -43,7 +42,6 @@ class MainExtension extends AbstractExtension
             new TwigFunction('get_webpack_asset_url', [$this, 'getWebpackAssetUrl']),
             new TwigFunction('get_asset_integrity', [$this->assetIntegrityGenerator, 'getAssetIntegrity']),
             new TwigFunction('get_webpack_asset_integrity', [$this->assetIntegrityGenerator, 'getWebpackAssetIntegrity']),
-            new TwigFunction('get_stripe_publishable_key', [$this, 'getStripePublishableKey']),
         ];
     }
 
@@ -93,11 +91,6 @@ class MainExtension extends AbstractExtension
         }
 
         return $string;
-    }
-
-    public function getStripePublishableKey(): string
-    {
-        return $this->stripePublishableKey;
     }
 
     private function getAssetCacheBuster(string $path, string $rootPath): string
