@@ -1,0 +1,18 @@
+name: "Build Algolia Search Index"
+
+on:
+  schedule:
+    - cron:  '0 4 28 * *'
+
+jobs:
+  search_index:
+    name: "Search Index"
+    uses: "doctrine/doctrine-website/.github/workflows/deployment.yml@master"
+    with:
+      environment: "prod"
+      search-index-only: true
+    secrets:
+      doctrine_website_algolia_admin_api_key: "${{ secrets.doctrine_website_algolia_admin_api_key }}"
+      doctrine_website_stripe_secret_key: "${{ secrets.doctrine_website_stripe_secret_key }}"
+      doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"
+      doctrine_website_deployment_token: "${{ secrets.doctrine_website_deployment_token }}"

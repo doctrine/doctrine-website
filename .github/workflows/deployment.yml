@@ -6,6 +6,11 @@ on:
       environment:
         required: true
         type: string
+      search-index-only:
+        description: 'Only build the search index without deployment'
+        required: false
+        type: boolean
+        default: false
     secrets:
       doctrine_website_algolia_admin_api_key:
         required: true
@@ -49,9 +54,15 @@ jobs:
       run: "yarn install"
 
     - name: "Prepare Website files"
+      if: "! inputs.search-index-only"
       run: "bin/console --env=${{ inputs.environment }} build-all"
 
+    - name: "Build search index"
+      if: "inputs.search-index-only"
+      run: "bin/console --env=${{ inputs.environment }} build-all --search"
+
     - name: "Deploy to ${{ inputs.environment }}"
+      if: "! inputs.search-index-only"
       uses: "cpina/github-action-push-to-another-repository@v1.3"
       env:
         API_TOKEN_GITHUB: "${{ secrets.doctrine_website_deployment_token }}"
