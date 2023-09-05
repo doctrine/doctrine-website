@@ -100,6 +100,13 @@ class TagBranchGuesserTest extends TestCase
         self::assertSame('2.0', $this->tagBranchGuesser->generateTagBranchSlug($tag));
     }
 
+    public function testGenerateTagBranchSlugWithNonNumericTag(): void
+    {
+        $tag = new Tag('my.dev', new DateTimeImmutable());
+
+        self::assertSame(null, $this->tagBranchGuesser->generateTagBranchSlug($tag));
+    }
+
     protected function setUp(): void
     {
         $this->processFactory = $this->createMock(ProcessFactory::class);
