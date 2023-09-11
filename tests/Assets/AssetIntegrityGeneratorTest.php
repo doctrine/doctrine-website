@@ -9,10 +9,6 @@ use Doctrine\Website\Tests\TestCase;
 
 class AssetIntegrityGeneratorTest extends TestCase
 {
-    private string $sourceDir;
-
-    private string $webpackBuildDir;
-
     private AssetIntegrityGenerator $assetIntegrityGenerator;
 
     public function testGetAssetIntegrity(): void
@@ -22,11 +18,26 @@ class AssetIntegrityGeneratorTest extends TestCase
         self::assertSame('sha384-ypIyGShu7WBNc4JDDLBwHLtFojHsqgcjDrbRH9rt5hizlv05qzZgJKBSkJ0X6czC', $integrity);
     }
 
+    public function testGetAssetIntegrityWithRotPath(): void
+    {
+        $rootDir   = __DIR__ . '/../source';
+        $integrity = $this->assetIntegrityGenerator->getAssetIntegrity('/css/style.css', $rootDir);
+
+        self::assertSame('sha384-ypIyGShu7WBNc4JDDLBwHLtFojHsqgcjDrbRH9rt5hizlv05qzZgJKBSkJ0X6czC', $integrity);
+    }
+
+    public function testGetWebpackAssetIntegrity(): void
+    {
+        $integrity = $this->assetIntegrityGenerator->getWebpackAssetIntegrity('/css/style.css');
+
+        self::assertSame('sha384-fxLFv6ZD9hjATuwlBez7aJK5FDk+sXz6nCWy3UdEFbZlrCp1gvZ/lEx1JfRHOCrG', $integrity);
+    }
+
     protected function setUp(): void
     {
-        $this->sourceDir       = __DIR__ . '/../source';
-        $this->webpackBuildDir = __DIR__ . '/../.webpack-build';
+        $sourceDir       = __DIR__ . '/../source';
+        $webpackBuildDir = __DIR__ . '/../.webpack-build';
 
-        $this->assetIntegrityGenerator = new AssetIntegrityGenerator($this->sourceDir, $this->webpackBuildDir);
+        $this->assetIntegrityGenerator = new AssetIntegrityGenerator($sourceDir, $webpackBuildDir);
     }
 }
