@@ -40,7 +40,7 @@ class WebsiteDataReader
 
         $data = json_decode($json, true);
 
-        if ($data === false) {
+        if ($data === null) {
             throw new RuntimeException(
                 sprintf('Could not load JSON from file %s', $jsonPath),
             );
