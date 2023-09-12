@@ -6,22 +6,18 @@ namespace Doctrine\Website\Tests\Cache;
 
 use Doctrine\Website\Cache\CacheClearer;
 use Doctrine\Website\Tests\TestCase;
-use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Filesystem\Filesystem;
+
+use function sys_get_temp_dir;
 
 class CacheClearerTest extends TestCase
 {
-    private Filesystem&MockObject $filesystem;
-
-    private string $rootDir = __DIR__ . '/root';
+    private string $rootDir;
 
     private CacheClearer $cacheClearer;
 
     public function testClear(): void
     {
-        $this->filesystem->expects(self::exactly(3))
-            ->method('remove');
-
         $buildDir = $this->rootDir . '/build-dir';
 
         $dirs = $this->cacheClearer->clear($buildDir);
@@ -35,21 +31,20 @@ class CacheClearerTest extends TestCase
         self::assertSame($expected, $dirs);
     }
 
-    private function createFiles(): void
+    private function createFiles(string $rootDir): void
     {
         $fileystem = new Filesystem();
-        $fileystem->dumpFile($this->rootDir . '/source/projects/dbal/file1.txt', '');
-        $fileystem->dumpFile($this->rootDir . '/cache/data/projects.json', '{}');
-        $fileystem->dumpFile($this->rootDir . '/build-dir/foo/bar/baz.txt', 'qux');
+        $fileystem->dumpFile($rootDir . '/source/projects/dbal/file1.txt', '');
+        $fileystem->dumpFile($rootDir . '/cache/data/projects.json', '{}');
+        $fileystem->dumpFile($rootDir . '/build-dir/foo/bar/baz.txt', 'qux');
     }
 
     protected function setUp(): void
     {
-        $this->createFiles();
+        $this->rootDir = sys_get_temp_dir() . '/root';
+        $this->createFiles($this->rootDir);
 
-        $this->filesystem = $this->createMock(Filesystem::class);
-
-        $this->cacheClearer = new CacheClearer($this->filesystem, $this->rootDir);
+        $this->cacheClearer = new CacheClearer(new Filesystem(), $this->rootDir);
     }
 
     protected function tearDown(): void
