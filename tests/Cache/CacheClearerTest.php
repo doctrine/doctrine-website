@@ -13,47 +13,47 @@ class CacheClearerTest extends TestCase
 {
     private Filesystem&MockObject $filesystem;
 
-    private string $rootDir;
+    private string $rootDir = __DIR__ . '/root';
 
-    private string $env;
-
-    private CacheClearer&MockObject $cacheClearer;
+    private CacheClearer $cacheClearer;
 
     public function testClear(): void
     {
-        $buildDir = __DIR__;
+        $this->filesystem->expects(self::exactly(3))
+            ->method('remove');
 
-        $this->cacheClearer->expects(self::exactly(3))
-            ->method('glob')
-            ->willReturnMap([
-                [__DIR__, [__DIR__]],
-                [__DIR__, [__DIR__]],
-                [__DIR__ . '/source/projects/*', [__DIR__]],
-                [__DIR__ . '/cache/*', [__DIR__]],
-            ]);
+        $buildDir = $this->rootDir . '/build-dir';
 
         $dirs = $this->cacheClearer->clear($buildDir);
 
-        self::assertSame([
-            __DIR__,
-            __DIR__,
-            __DIR__,
-        ], $dirs);
+        $expected = [
+            $this->rootDir . '/build-dir',
+            $this->rootDir . '/source/projects/dbal',
+            $this->rootDir . '/cache/data',
+        ];
+
+        self::assertSame($expected, $dirs);
+    }
+
+    private function createFiles(): void
+    {
+        $fileystem = new Filesystem();
+        $fileystem->dumpFile($this->rootDir . '/source/projects/dbal/file1.txt', '');
+        $fileystem->dumpFile($this->rootDir . '/cache/data/projects.json', '{}');
+        $fileystem->dumpFile($this->rootDir . '/build-dir/foo/bar/baz.txt', 'qux');
     }
 
     protected function setUp(): void
     {
-        $this->filesystem = $this->createMock(Filesystem::class);
-        $this->rootDir    = __DIR__;
-        $this->env        = 'test';
+        $this->createFiles();
 
-        $this->cacheClearer = $this->getMockBuilder(CacheClearer::class)
-            ->setConstructorArgs([
-                $this->filesystem,
-                $this->rootDir,
-                $this->env,
-            ])
-            ->onlyMethods(['glob'])
-            ->getMock();
+        $this->filesystem = $this->createMock(Filesystem::class);
+
+        $this->cacheClearer = new CacheClearer($this->filesystem, $this->rootDir);
+    }
+
+    protected function tearDown(): void
+    {
+        (new Filesystem())->remove($this->rootDir);
     }
 }
