@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Doctrine\Website\Tests\Requests;
+
+use Doctrine\StaticWebsiteGenerator\Request\ArrayRequestCollection;
+use Doctrine\Website\Repositories\PartnerRepository;
+use Doctrine\Website\Requests\PartnerRequests;
+use Doctrine\Website\Tests\TestCase;
+
+class PartnerRequestsTest extends TestCase
+{
+    public function testGetPartners(): void
+    {
+        $partner           = $this->createModel(PartnerRepository::class, ['slug' => 'partner']);
+        $partnerRepository = $this->createMock(PartnerRepository::class);
+        $partnerRepository->expects(self::once())
+            ->method('findAll')
+            ->willReturn([$partner]);
+
+        $partnerRequest = new PartnerRequests($partnerRepository);
+        $partners       = $partnerRequest->getPartners();
+
+        $expects = new ArrayRequestCollection([
+            ['slug' => 'partner'],
+        ]);
+
+        self::assertEquals($expects, $partners);
+    }
+}
