@@ -19,6 +19,7 @@ class ProdGithubProjectContributors implements GithubProjectContributors
     public function __construct(
         private CacheItemPoolInterface $cache,
         private Client $githubClient,
+        private int $maxChecks = 15,
     ) {
     }
 
@@ -34,21 +35,20 @@ class ProdGithubProjectContributors implements GithubProjectContributors
         }
     }
 
-    public function warmProjectContributors(Project $project): void
+    private function warmProjectContributors(Project $project): void
     {
         // Trigger api call to github to build statistics. The GitHub API may return
         // results right away, in that case we will go ahead and store the results in the cache.
         $this->doGetProjectContributors($project, false);
     }
 
-    public function waitForProjectContributorsData(Project $project): void
+    private function waitForProjectContributorsData(Project $project): void
     {
-        $count     = 1;
-        $maxChecks = 15;
-        $sleep     = 1;
-        $waited    = 0;
+        $count  = 1;
+        $sleep  = 1;
+        $waited = 0;
 
-        while ($count <= $maxChecks) {
+        while ($count <= $this->maxChecks) {
             $contributors = $this->doGetProjectContributors($project, false);
 
             if ($contributors !== []) {

@@ -8,36 +8,37 @@ use Doctrine\Website\Github\GithubClientProvider;
 use Doctrine\Website\Tests\TestCase;
 use Github\AuthMethod;
 use Github\Client;
-use PHPUnit\Framework\MockObject\MockObject;
+use InvalidArgumentException;
 
 class GithubClientProviderTest extends TestCase
 {
-    private Client&MockObject $githubClient;
-
-    private string $githubHttpToken;
-
-    private GithubClientProvider $githubClientProvider;
-
     public function testGetGithubClient(): void
     {
-        $this->githubClient->expects(self::exactly(1))
+        $githubClient    = $this->createMock(Client::class);
+        $githubHttpToken = '1234';
+
+        $githubClientProvider = new GithubClientProvider($githubClient, $githubHttpToken);
+
+        $githubClient->expects(self::once())
             ->method('authenticate')
-            ->with($this->githubHttpToken, '', AuthMethod::ACCESS_TOKEN);
+            ->with($githubHttpToken, '', AuthMethod::ACCESS_TOKEN);
 
-        $githubClient = $this->githubClientProvider->getGithubClient();
+        $githubClientResult = $githubClientProvider->getGithubClient();
 
-        self::assertSame($this->githubClient, $githubClient);
+        self::assertSame($githubClient, $githubClientResult);
 
-        $githubClient = $this->githubClientProvider->getGithubClient();
+        $githubClientResult = $githubClientProvider->getGithubClient();
 
-        self::assertSame($this->githubClient, $githubClient);
+        self::assertSame($githubClient, $githubClientResult);
     }
 
-    protected function setUp(): void
+    public function testGetGithubClientWithMissingToken(): void
     {
-        $this->githubClient    = $this->createMock(Client::class);
-        $this->githubHttpToken = '1234';
+        $githubClient    = $this->createMock(Client::class);
+        $githubHttpToken = '';
 
-        $this->githubClientProvider = new GithubClientProvider($this->githubClient, $this->githubHttpToken);
+        $this->expectException(InvalidArgumentException::class);
+
+        new GithubClientProvider($githubClient, $githubHttpToken);
     }
 }
