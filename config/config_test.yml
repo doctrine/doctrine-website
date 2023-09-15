@@ -1,6 +1,2 @@
 imports:
     - { resource: config.yml }
-
-services:
-    Doctrine\Website\Github\GithubProjectContributors:
-        alias: Doctrine\Website\Github\TestGithubProjectContributors
