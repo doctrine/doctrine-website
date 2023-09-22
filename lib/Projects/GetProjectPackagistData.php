@@ -10,9 +10,7 @@ use function sprintf;
 
 class GetProjectPackagistData
 {
-    private const PACKAGIST_URL_FORMAT = 'https://packagist.org/packages/%s.json';
-
-    public function __construct(private string $packagistUrlFormat = self::PACKAGIST_URL_FORMAT)
+    public function __construct(private string $packagistUrlFormat)
     {
     }
 
