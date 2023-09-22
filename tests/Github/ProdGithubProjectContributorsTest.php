@@ -29,6 +29,7 @@ class ProdGithubProjectContributorsTest extends TestCase
         $this->githubProjectContributors = new ProdGithubProjectContributors(
             $this->cache,
             $this->githubClient,
+            1,
         );
     }
 
@@ -118,5 +119,47 @@ class ProdGithubProjectContributorsTest extends TestCase
         }
 
         self::assertSame(['doctrine-orm-contributors-data' => null], $this->cache->getValues());
+    }
+
+    public function testWarmProjectsContributorsWithCacheHit(): void
+    {
+        $project = self::createStub(Project::class);
+
+        $project->method('getSlug')
+            ->willReturn('orm');
+
+        $expected = [['author' => ['login' => 'senseexception']]];
+        $this->cache->get('doctrine-orm-contributors-data', static fn () => $expected);
+
+        $this->githubProjectContributors->warmProjectsContributors([$project]);
+
+        $item = $this->cache->getItem('doctrine-orm-contributors-data');
+
+        self::assertTrue($item->isHit());
+        self::assertSame($expected, $item->get());
+    }
+
+    public function testWarmProjectsContributorsCouldNotGetContributors(): void
+    {
+        $project = self::createStub(Project::class);
+
+        $project->method('getSlug')
+            ->willReturn('orm');
+        $project->method('getRepositoryName')
+            ->willReturn('orm-repo');
+
+        $repo = $this->createMock(Repo::class);
+        $repo->expects(self::exactly(2))
+            ->method('statistics')
+            ->with('doctrine', 'orm-repo')
+            ->willReturn([]);
+
+        $this->githubClient->expects(self::exactly(2))
+            ->method('api')
+            ->with('repo')
+            ->willReturn($repo);
+
+        $this->expectException(RuntimeException::class);
+        $this->githubProjectContributors->warmProjectsContributors([$project]);
     }
 }
