@@ -137,7 +137,7 @@ class ProjectGitSyncerTest extends TestCase
     {
         $this->processFactory->expects(self::once())
             ->method('run')
-            ->with('cd \'vfs://projects/example-project\' && git clean -xdf && git checkout tags/\'1.0.0\'');
+            ->with("cd 'vfs://projects/example-project' && git clean -xdf && git checkout tags/'1.0.0'");
 
         $this->projectGitSyncer->checkoutTag('example-project', '1.0.0');
     }
