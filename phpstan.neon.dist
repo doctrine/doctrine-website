@@ -22,3 +22,6 @@ parameters:
       - # Temporary final classes in tests are covered by nunomaduro/mock-final-classes until the refactorings start
         message: "#contains unresolvable type#"
         path: "tests/"
+      -
+        message: "#Parameter \\#4 \\$metadataFactory#"
+        path: "tests/Hydrators/Hydrators.php"

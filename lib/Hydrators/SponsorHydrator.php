@@ -41,6 +41,6 @@ final class SponsorHydrator extends ModelHydrator
             ),
         );
 
-        $this->highlighted = (bool) ($data['highlighted'] ?? '');
+        $this->highlighted = (bool) ($data['highlighted'] ?? false);
     }
 }
