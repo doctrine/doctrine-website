@@ -10,17 +10,19 @@ use function sprintf;
 
 class GetProjectPackagistData
 {
-    private const PACKAGIST_URL_FORMAT = 'https://packagist.org/packages/%s.json';
+    public function __construct(private string $packagistUrlFormat)
+    {
+    }
 
     /** @return mixed[] */
     public function __invoke(string $composerPackageName): array
     {
-        $packagistUrl = sprintf(self::PACKAGIST_URL_FORMAT, $composerPackageName);
+        $packagistUrl = sprintf($this->packagistUrlFormat, $composerPackageName);
 
         $response = file_get_contents($packagistUrl);
 
         $projectPackagistData = $response !== false ? json_decode($response, true) : [];
 
-        return $projectPackagistData !== false ? $projectPackagistData : [];
+        return $projectPackagistData ?? [];
     }
 }

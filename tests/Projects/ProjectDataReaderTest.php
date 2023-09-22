@@ -79,6 +79,50 @@ class ProjectDataReaderTest extends TestCase
         self::assertSame($this->projectIntegrationTypes['symfony'], $projectData['integrationType']);
     }
 
+    public function testReadNoIntegrationType(): void
+    {
+        $projectDataReader = new ProjectDataReader(
+            __DIR__ . '/../test-projects',
+            [
+                [
+                    'repositoryName' => 'test-integration-project',
+                    'integration' => true,
+                ],
+            ],
+            [],
+        );
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Project integration test-integration-project requires a type.');
+        $projectDataReader->read('test-integration-project');
+    }
+
+    public function testReadIntegrationTypeDoesNotExist(): void
+    {
+        $projectDataReader = new ProjectDataReader(
+            __DIR__ . '/../test-projects',
+            [
+                [
+                    'repositoryName' => 'test-integration-project',
+                    'integration' => true,
+                    'integrationType' => 'symfony',
+                ],
+            ],
+            [],
+        );
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Project integration test-integration-project has a type of symfony which does not exist.');
+        $projectDataReader->read('test-integration-project');
+    }
+
+    public function testReadEmptyJson(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('composer.json file exists in repository empty-json but does not contain any valid data.');
+        $this->projectDataReader->read('empty-json');
+    }
+
     protected function setUp(): void
     {
         $this->projectIntegrationTypes = [

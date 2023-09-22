@@ -10,6 +10,7 @@ use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Tests\TestCase;
 use Github\Api\Repo;
 use Github\Client;
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\MockObject\MockObject;
 
 use function sprintf;
@@ -26,8 +27,12 @@ class ProjectGitSyncerTest extends TestCase
 
     protected function setUp(): void
     {
+        vfsStream::setup('projects', null, [
+            'orm' => ['.git' => []],
+        ]);
+
         $this->processFactory = $this->createMock(ProcessFactory::class);
-        $this->projectsDir    = __DIR__;
+        $this->projectsDir    = vfsStream::url('projects');
         $this->githubRepo     = $this->createMock(Repo::class);
         $githubClientProvider = $this->createMock(GithubClientProvider::class);
         $githubClient         = $this->getMockBuilder(Client::class)
@@ -60,6 +65,16 @@ class ProjectGitSyncerTest extends TestCase
                 $this->projectsDir,
                 $repositoryName,
             ));
+
+        $this->projectGitSyncer->initRepository($repositoryName);
+    }
+
+    public function testInitRepositoryAlreadyInitialized(): void
+    {
+        $repositoryName = 'orm';
+
+        $this->processFactory->expects(self::never())
+            ->method('run');
 
         $this->projectGitSyncer->initRepository($repositoryName);
     }
@@ -110,5 +125,20 @@ class ProjectGitSyncerTest extends TestCase
             ));
 
         $this->projectGitSyncer->checkoutBranch($repositoryName, $branchName);
+    }
+
+    public function testIsRepositoryInitialized(): void
+    {
+        self::assertTrue($this->projectGitSyncer->isRepositoryInitialized('orm'));
+        self::assertFalse($this->projectGitSyncer->isRepositoryInitialized('foo'));
+    }
+
+    public function testCheckoutTag(): void
+    {
+        $this->processFactory->expects(self::once())
+            ->method('run')
+            ->with("cd 'vfs://projects/example-project' && git clean -xdf && git checkout tags/'1.0.0'");
+
+        $this->projectGitSyncer->checkoutTag('example-project', '1.0.0');
     }
 }
