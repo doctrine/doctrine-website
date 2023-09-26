@@ -14,11 +14,13 @@ use function file_exists;
 use function str_replace;
 use function strpos;
 
-class ProjectExtension extends AbstractExtension
+final class ProjectExtension extends AbstractExtension
 {
     /** @param ProjectRepository<Project> $projectRepository */
-    public function __construct(private ProjectRepository $projectRepository, private string $sourceDir)
-    {
+    public function __construct(
+        private readonly ProjectRepository $projectRepository,
+        private readonly string $sourceDir,
+    ) {
     }
 
     /** {@inheritDoc} */

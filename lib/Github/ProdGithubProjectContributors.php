@@ -14,7 +14,7 @@ use function assert;
 use function sleep;
 use function sprintf;
 
-class ProdGithubProjectContributors implements GithubProjectContributors
+final readonly class ProdGithubProjectContributors implements GithubProjectContributors
 {
     public function __construct(
         private CacheItemPoolInterface $cache,

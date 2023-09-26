@@ -11,10 +11,13 @@ use Doctrine\Website\Git\TagReader;
 use function array_filter;
 use function array_values;
 
+/** @final */
 class ProjectVersionsReader
 {
-    public function __construct(private TagReader $tagReader, private TagBranchGuesser $tagBranchGuesser)
-    {
+    public function __construct(
+        private readonly TagReader $tagReader,
+        private readonly TagBranchGuesser $tagBranchGuesser,
+    ) {
     }
 
     /** @return mixed[] */

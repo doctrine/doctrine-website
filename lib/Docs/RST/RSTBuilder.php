@@ -10,16 +10,17 @@ use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Filesystem\Filesystem;
 
+/** @final */
 class RSTBuilder
 {
     public function __construct(
-        private RSTFileRepository $rstFileRepository,
-        private RSTCopier $rstCopier,
+        private readonly RSTFileRepository $rstFileRepository,
+        private readonly RSTCopier $rstCopier,
         private Builder $builder,
-        private RSTPostBuildProcessor $rstPostBuildProcessor,
-        private Filesystem $filesystem,
-        private string $sourceDir,
-        private string $docsDir,
+        private readonly RSTPostBuildProcessor $rstPostBuildProcessor,
+        private readonly Filesystem $filesystem,
+        private readonly string $sourceDir,
+        private readonly string $docsDir,
     ) {
     }
 

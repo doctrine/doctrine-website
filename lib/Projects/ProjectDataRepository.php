@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
+/** @final */
 class ProjectDataRepository
 {
     /** @param mixed[][] $projectsData */
-    public function __construct(private array $projectsData = [])
-    {
+    public function __construct(
+        private readonly array $projectsData = [],
+    ) {
     }
 
     /** @return string[] */

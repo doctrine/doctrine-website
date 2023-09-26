@@ -10,7 +10,7 @@ use Doctrine\Website\Model\ProjectContributor;
 use Doctrine\Website\Repositories\ProjectContributorRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
 
-class ProjectController
+final readonly class ProjectController
 {
     /**
      * @param ProjectRepository<Project>                       $projectRepository

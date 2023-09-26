@@ -8,10 +8,12 @@ use function file_get_contents;
 use function json_decode;
 use function sprintf;
 
+/** @final */
 class GetProjectPackagistData
 {
-    public function __construct(private string $packagistUrlFormat)
-    {
+    public function __construct(
+        private readonly string $packagistUrlFormat,
+    ) {
     }
 
     /** @return mixed[] */

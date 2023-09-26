@@ -9,11 +9,12 @@ use Doctrine\StaticWebsiteGenerator\Request\RequestCollection;
 use Doctrine\Website\Model\Partner;
 use Doctrine\Website\Repositories\PartnerRepository;
 
-class PartnerRequests
+final readonly class PartnerRequests
 {
     /** @param PartnerRepository<Partner> $partnerRepository */
-    public function __construct(private PartnerRepository $partnerRepository)
-    {
+    public function __construct(
+        private PartnerRepository $partnerRepository,
+    ) {
     }
 
     public function getPartners(): RequestCollection

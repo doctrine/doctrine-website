@@ -9,11 +9,12 @@ use Doctrine\StaticWebsiteGenerator\Request\RequestCollection;
 use Doctrine\Website\Model\Contributor;
 use Doctrine\Website\Repositories\ContributorRepository;
 
-class ContributorRequests
+final readonly class ContributorRequests
 {
     /** @param ContributorRepository<Contributor> $contributorRepository */
-    public function __construct(private ContributorRepository $contributorRepository)
-    {
+    public function __construct(
+        private ContributorRepository $contributorRepository,
+    ) {
     }
 
     public function getContributors(): RequestCollection

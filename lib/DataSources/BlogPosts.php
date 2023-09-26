@@ -9,10 +9,11 @@ use Doctrine\SkeletonMapper\DataSource\DataSource;
 use Doctrine\Website\DataBuilder\BlogPostDataBuilder;
 use Doctrine\Website\DataBuilder\WebsiteDataReader;
 
-class BlogPosts implements DataSource
+final readonly class BlogPosts implements DataSource
 {
-    public function __construct(private WebsiteDataReader $dataReader)
-    {
+    public function __construct(
+        private WebsiteDataReader $dataReader,
+    ) {
     }
 
     /** @return mixed[][] */

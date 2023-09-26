@@ -8,10 +8,11 @@ use Doctrine\SkeletonMapper\DataSource\DataSource;
 use Doctrine\Website\DataBuilder\ProjectDataBuilder;
 use Doctrine\Website\DataBuilder\WebsiteDataReader;
 
-class Projects implements DataSource
+final readonly class Projects implements DataSource
 {
-    public function __construct(private WebsiteDataReader $dataReader)
-    {
+    public function __construct(
+        private WebsiteDataReader $dataReader,
+    ) {
     }
 
     /** @return mixed[][] */

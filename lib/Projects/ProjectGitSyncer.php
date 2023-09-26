@@ -12,12 +12,16 @@ use function escapeshellarg;
 use function is_dir;
 use function sprintf;
 
+/** @final */
 class ProjectGitSyncer
 {
-    private Repo $githubRepo;
+    private readonly Repo $githubRepo;
 
-    public function __construct(private ProcessFactory $processFactory, GithubClientProvider $githubClientProvider, private string $projectsDir)
-    {
+    public function __construct(
+        private readonly ProcessFactory $processFactory,
+        GithubClientProvider $githubClientProvider,
+        private readonly string $projectsDir,
+    ) {
         // TODO Inject Repo instead of GithubClientProvider
         $this->githubRepo = $githubClientProvider->getGithubClient()->repo();
     }

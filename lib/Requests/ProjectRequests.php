@@ -9,11 +9,12 @@ use Doctrine\StaticWebsiteGenerator\Request\RequestCollection;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
 
-class ProjectRequests
+final readonly class ProjectRequests
 {
     /** @param ProjectRepository<Project> $projectRepository */
-    public function __construct(private ProjectRepository $projectRepository)
-    {
+    public function __construct(
+        private ProjectRepository $projectRepository,
+    ) {
     }
 
     public function getProjects(): RequestCollection

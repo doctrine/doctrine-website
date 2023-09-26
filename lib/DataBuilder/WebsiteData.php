@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataBuilder;
 
-class WebsiteData
+final readonly class WebsiteData
 {
     /** @param mixed[] $data */
-    public function __construct(private string $name, private array $data)
-    {
+    public function __construct(
+        private string $name,
+        private array $data,
+    ) {
     }
 
     public function getName(): string

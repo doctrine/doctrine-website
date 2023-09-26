@@ -13,12 +13,14 @@ use function sprintf;
 use function str_replace;
 use function usort;
 
+/** @final */
 class TagReader
 {
     private const COMMAND = "cd %s && git tag -l --format='refname: %%(refname) creatordate: %%(creatordate)'";
 
-    public function __construct(private ProcessFactory $processFactory)
-    {
+    public function __construct(
+        private readonly ProcessFactory $processFactory,
+    ) {
     }
 
     /** @return Tag[] */

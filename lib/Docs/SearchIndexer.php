@@ -22,13 +22,16 @@ use function strpos;
 
 /**
  * Influenced by Laravel.com website code search indexes that also use Algolia.
+ *
+ * @final
  */
 class SearchIndexer
 {
-    public const INDEX_NAME = 'pages';
+    final public const INDEX_NAME = 'pages';
 
-    public function __construct(private SearchClient $client)
-    {
+    public function __construct(
+        private readonly SearchClient $client,
+    ) {
     }
 
     public function initSearchIndex(): void

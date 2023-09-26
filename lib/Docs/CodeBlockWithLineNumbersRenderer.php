@@ -14,6 +14,7 @@ use function sha1;
 use function sprintf;
 use function str_replace;
 
+/** @final */
 class CodeBlockWithLineNumbersRenderer
 {
     /**
@@ -31,23 +32,24 @@ class CodeBlockWithLineNumbersRenderer
     private const CODE_LINE_TABLE_COLUMN_TEMPLATE = '<td class="code-line" rowspan="%d">{{ RENDERED_CODE }}</td>';
 
     private const CODE_BLOCK_TABLE_TEMPLATE = <<<'TEMPLATE'
-<pre class="code-block-table">
-    <code class="%s">
-        <button
-            type="button"
-            class="copy-to-clipboard"
-            data-copy-element-id="%s"
-            title="Copy to Clipboard"
-        >
-            <i class="fas fa-copy"></i>
-        </button>
-        <div id="%s">%s</div>
-    </code>
-</pre>
-TEMPLATE;
+        <pre class="code-block-table">
+            <code class="%s">
+                <button
+                    type="button"
+                    class="copy-to-clipboard"
+                    data-copy-element-id="%s"
+                    title="Copy to Clipboard"
+                >
+                    <i class="fas fa-copy"></i>
+                </button>
+                <div id="%s">%s</div>
+            </code>
+        </pre>
+        TEMPLATE;
 
-    public function __construct(private Highlighter $highlighter)
-    {
+    public function __construct(
+        private readonly Highlighter $highlighter,
+    ) {
     }
 
     /** @param string[] $lines */

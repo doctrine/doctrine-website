@@ -20,11 +20,11 @@ use function is_bool;
 use function is_string;
 use function sprintf;
 
-class BuildAllCommand extends Command
+final class BuildAllCommand extends Command
 {
     public function __construct(
-        private string $rootDir,
-        private string $env,
+        private readonly string $rootDir,
+        private readonly string $env,
     ) {
         parent::__construct();
     }

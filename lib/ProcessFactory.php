@@ -8,6 +8,7 @@ use Closure;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
+/** @final */
 class ProcessFactory
 {
     /** @return Process<string, string> */

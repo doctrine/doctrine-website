@@ -13,10 +13,11 @@ use function mkdir;
 use const JSON_PRETTY_PRINT;
 use const JSON_UNESCAPED_SLASHES;
 
-class WebsiteDataWriter
+final readonly class WebsiteDataWriter
 {
-    public function __construct(private string $cacheDir)
-    {
+    public function __construct(
+        private string $cacheDir,
+    ) {
     }
 
     public function write(WebsiteData $websiteData): void

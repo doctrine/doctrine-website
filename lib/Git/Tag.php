@@ -11,7 +11,7 @@ use function stripos;
 use function strpos;
 use function strtoupper;
 
-class Tag
+final readonly class Tag
 {
     private const ALPHA  = 'alpha';
     private const BETA   = 'beta';
@@ -27,8 +27,10 @@ class Tag
 
     private const COMPOSER_EPOCH = '2011-09-25';
 
-    public function __construct(private string $name, private DateTimeImmutable $date)
-    {
+    public function __construct(
+        private string $name,
+        private DateTimeImmutable $date,
+    ) {
     }
 
     public function getName(): string

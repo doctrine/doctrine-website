@@ -8,11 +8,12 @@ use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Model\SitemapPage;
 use Doctrine\Website\Repositories\SitemapPageRepository;
 
-class SitemapController
+final readonly class SitemapController
 {
     /** @param SitemapPageRepository<SitemapPage> $sitemapPageRepository */
-    public function __construct(private SitemapPageRepository $sitemapPageRepository)
-    {
+    public function __construct(
+        private SitemapPageRepository $sitemapPageRepository,
+    ) {
     }
 
     public function index(): Response

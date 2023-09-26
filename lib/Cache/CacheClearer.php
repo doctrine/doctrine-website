@@ -10,7 +10,7 @@ use function array_filter;
 use function glob;
 use function sprintf;
 
-class CacheClearer
+final readonly class CacheClearer
 {
     public function __construct(
         private Filesystem $filesystem,

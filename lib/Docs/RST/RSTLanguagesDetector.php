@@ -17,9 +17,10 @@ use function is_dir;
 use function iterator_to_array;
 use function strlen;
 
+/** @final */
 class RSTLanguagesDetector
 {
-    public const ENGLISH_LANGUAGE_CODE = 'en';
+    final public const ENGLISH_LANGUAGE_CODE = 'en';
 
     /** @return RSTLanguage[] */
     public function detectLanguages(string $docsDir): array

@@ -9,7 +9,7 @@ use Highlight\Highlighter;
 use function sprintf;
 use function trim;
 
-class CodeBlockLanguageDetector
+final readonly class CodeBlockLanguageDetector
 {
     /**
      * We use some language aliases not supported by our highlighter library
@@ -22,8 +22,9 @@ class CodeBlockLanguageDetector
         'php-attributes' => 'php',
     ];
 
-    public function __construct(private string $rootDir)
-    {
+    public function __construct(
+        private string $rootDir,
+    ) {
     }
 
     /** @param string[] $lines */

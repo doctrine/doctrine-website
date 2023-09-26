@@ -7,13 +7,14 @@ namespace Doctrine\Website\DataBuilder;
 use Doctrine\Website\Model\ProjectContributor;
 use Doctrine\Website\Repositories\ProjectContributorRepository;
 
-class ContributorDataBuilder implements DataBuilder
+final readonly class ContributorDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'contributors';
 
     /** @param ProjectContributorRepository<ProjectContributor> $projectContributorRepository */
-    public function __construct(private ProjectContributorRepository $projectContributorRepository)
-    {
+    public function __construct(
+        private ProjectContributorRepository $projectContributorRepository,
+    ) {
     }
 
     public function getName(): string

@@ -21,22 +21,23 @@ use function str_replace;
 
 use const JSON_ERROR_NONE;
 
+/** @final */
 class ProjectDataReader
 {
     private const DOCTRINE_PROJECT_JSON_FILE_NAME = '.doctrine-project.json';
 
     private const COMPOSER_JSON_FILE_NAME = 'composer.json';
 
-    private Inflector $inflector;
+    private readonly Inflector $inflector;
 
     /**
      * @param mixed[] $projectsData
      * @param mixed[] $projectIntegrationTypes
      */
     public function __construct(
-        private string $projectsDir,
-        private array $projectsData,
-        private array $projectIntegrationTypes,
+        private readonly string $projectsDir,
+        private readonly array $projectsData,
+        private readonly array $projectIntegrationTypes,
     ) {
         $this->inflector = InflectorFactory::create()->build();
     }

@@ -6,7 +6,7 @@ namespace Doctrine\Website\Docs;
 
 use function in_array;
 
-class CodeBlockRenderer
+final readonly class CodeBlockRenderer
 {
     private const CONSOLE_LANGUAGES = ['terminal', 'bash', 'sh', 'console'];
 

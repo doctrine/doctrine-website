@@ -23,13 +23,13 @@ use function strlen;
 use function strrpos;
 use function substr;
 
-class MainExtension extends AbstractExtension
+final class MainExtension extends AbstractExtension
 {
     public function __construct(
-        private Parsedown $parsedown,
-        private AssetIntegrityGenerator $assetIntegrityGenerator,
-        private string $sourceDir,
-        private string $webpackBuildDir,
+        private readonly Parsedown $parsedown,
+        private readonly AssetIntegrityGenerator $assetIntegrityGenerator,
+        private readonly string $sourceDir,
+        private readonly string $webpackBuildDir,
     ) {
     }
 

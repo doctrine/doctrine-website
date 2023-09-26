@@ -16,6 +16,7 @@ use function iterator_to_array;
 use function sprintf;
 use function trim;
 
+/** @final */
 class RSTFileRepository
 {
     /** @throws InvalidArgumentException */

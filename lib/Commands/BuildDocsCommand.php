@@ -14,10 +14,11 @@ use function assert;
 use function is_bool;
 use function is_string;
 
-class BuildDocsCommand extends Command
+final class BuildDocsCommand extends Command
 {
-    public function __construct(private BuildDocs $buildDocs)
-    {
+    public function __construct(
+        private readonly BuildDocs $buildDocs,
+    ) {
         parent::__construct();
     }
 

@@ -14,10 +14,13 @@ use function assert;
 use function is_string;
 use function sprintf;
 
-class ClearBuildCacheCommand extends Command
+final class ClearBuildCacheCommand extends Command
 {
-    public function __construct(private CacheClearer $cacheClearer, private string $rootDir, private string $env)
-    {
+    public function __construct(
+        private readonly CacheClearer $cacheClearer,
+        private readonly string $rootDir,
+        private readonly string $env,
+    ) {
         parent::__construct();
     }
 

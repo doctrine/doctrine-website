@@ -7,11 +7,12 @@ namespace Doctrine\Website\Projects;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
 
-final class GetTotalDownloads
+final readonly class GetTotalDownloads
 {
     /** @param ProjectRepository<Project> $projectRepository */
-    public function __construct(private ProjectRepository $projectRepository)
-    {
+    public function __construct(
+        private ProjectRepository $projectRepository,
+    ) {
     }
 
     public function __invoke(): int

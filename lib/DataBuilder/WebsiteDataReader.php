@@ -11,10 +11,12 @@ use function file_get_contents;
 use function json_decode;
 use function sprintf;
 
+/** @final */
 class WebsiteDataReader
 {
-    public function __construct(private string $cacheDir)
-    {
+    public function __construct(
+        private readonly string $cacheDir,
+    ) {
     }
 
     public function read(string $file): WebsiteData

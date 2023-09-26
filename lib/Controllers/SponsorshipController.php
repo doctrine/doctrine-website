@@ -8,11 +8,12 @@ use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Model\Sponsor;
 use Doctrine\Website\Repositories\SponsorRepository;
 
-class SponsorshipController
+final readonly class SponsorshipController
 {
     /** @param SponsorRepository<Sponsor> $sponsorRepository */
-    public function __construct(private SponsorRepository $sponsorRepository)
-    {
+    public function __construct(
+        private SponsorRepository $sponsorRepository,
+    ) {
     }
 
     public function index(): Response
