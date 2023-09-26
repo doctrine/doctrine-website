@@ -22,6 +22,7 @@ use function is_dir;
 use function is_link;
 use function sprintf;
 
+/** @final */
 class WebsiteBuilder
 {
     public const PUBLISHABLE_ENVS = [Application::ENV_PROD, Application::ENV_STAGING];
@@ -36,14 +37,14 @@ class WebsiteBuilder
 
     /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(
-        private ProcessFactory $processFactory,
-        private ProjectRepository $projectRepository,
-        private Filesystem $filesystem,
-        private SourceFileRepository $sourceFileRepository,
-        private SourceFilesBuilder $sourceFilesBuilder,
-        private string $rootDir,
-        private string $cacheDir,
-        private string $webpackBuildDir,
+        private readonly ProcessFactory $processFactory,
+        private readonly ProjectRepository $projectRepository,
+        private readonly Filesystem $filesystem,
+        private readonly SourceFileRepository $sourceFileRepository,
+        private readonly SourceFilesBuilder $sourceFilesBuilder,
+        private readonly string $rootDir,
+        private readonly string $cacheDir,
+        private readonly string $webpackBuildDir,
     ) {
     }
 

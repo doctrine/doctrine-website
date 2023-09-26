@@ -14,21 +14,22 @@ use function sprintf;
 use function str_replace;
 use function strpos;
 
+/** @final */
 class RSTPostBuildProcessor
 {
-    public const PARAMETERS_TEMPLATE = <<<'TEMPLATE'
----
-title: "%s"
-docsIndex: %s
-docsSourcePath: "%s"
----
-%s
-TEMPLATE;
+    final public const PARAMETERS_TEMPLATE = <<<'TEMPLATE'
+        ---
+        title: "%s"
+        docsIndex: %s
+        docsSourcePath: "%s"
+        ---
+        %s
+        TEMPLATE;
 
     public function __construct(
-        private RSTFileRepository $rstFileRepository,
-        private Filesystem $filesystem,
-        private string $sourceDir,
+        private readonly RSTFileRepository $rstFileRepository,
+        private readonly Filesystem $filesystem,
+        private readonly string $sourceDir,
     ) {
     }
 

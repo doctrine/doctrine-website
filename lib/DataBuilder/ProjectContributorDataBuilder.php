@@ -10,7 +10,7 @@ use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
 
-class ProjectContributorDataBuilder implements DataBuilder
+final readonly class ProjectContributorDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'project_contributors';
 

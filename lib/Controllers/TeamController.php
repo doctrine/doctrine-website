@@ -8,11 +8,12 @@ use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Model\Contributor;
 use Doctrine\Website\Repositories\ContributorRepository;
 
-class TeamController
+final readonly class TeamController
 {
     /** @param ContributorRepository<Contributor> $contributorRepository */
-    public function __construct(private ContributorRepository $contributorRepository)
-    {
+    public function __construct(
+        private ContributorRepository $contributorRepository,
+    ) {
     }
 
     public function maintainers(): Response

@@ -26,7 +26,7 @@ use function realpath;
 use function sprintf;
 use function time;
 
-class BuildWebsiteCommand extends Command
+final class BuildWebsiteCommand extends Command
 {
     private const WATCH_DIRS = [
         'config',
@@ -37,9 +37,9 @@ class BuildWebsiteCommand extends Command
     ];
 
     public function __construct(
-        private WebsiteBuilder $websiteBuilder,
-        private string $rootDir,
-        private string $env,
+        private readonly WebsiteBuilder $websiteBuilder,
+        private readonly string $rootDir,
+        private readonly string $env,
     ) {
         parent::__construct();
     }

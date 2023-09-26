@@ -13,30 +13,31 @@ use function preg_replace;
 use function sprintf;
 use function str_replace;
 
+/** @final */
 class RSTCopier
 {
-    public const RST_TEMPLATE = <<<'TEMPLATE'
-SIDEBAR BEGIN
+    final public const RST_TEMPLATE = <<<'TEMPLATE'
+        SIDEBAR BEGIN
+        
+        {{ sidebar }}
+        
+        CONTENT BEGIN
+        
+        {{ content }}
+        TEMPLATE;
 
-{{ sidebar }}
-
-CONTENT BEGIN
-
-{{ content }}
-TEMPLATE;
-
-    public const DEFAULT_SIDEBAR = <<<'SIDEBAR'
-.. toctree::
-    :depth: 3
-    :glob:
-
-    /*
-SIDEBAR;
+    final public const DEFAULT_SIDEBAR = <<<'SIDEBAR'
+        .. toctree::
+            :depth: 3
+            :glob:
+        
+            /*
+        SIDEBAR;
 
     public function __construct(
-        private RSTFileRepository $rstFileRepository,
-        private Filesystem $filesystem,
-        private string $docsDir,
+        private readonly RSTFileRepository $rstFileRepository,
+        private readonly Filesystem $filesystem,
+        private readonly string $docsDir,
     ) {
     }
 

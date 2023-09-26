@@ -12,11 +12,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use function sprintf;
 
-class SyncRepositoriesCommand extends Command
+final class SyncRepositoriesCommand extends Command
 {
     public function __construct(
-        private ProjectDataRepository $projectDataRepository,
-        private ProjectGitSyncer $projectGitSyncer,
+        private readonly ProjectDataRepository $projectDataRepository,
+        private readonly ProjectGitSyncer $projectGitSyncer,
     ) {
         parent::__construct();
     }

@@ -17,7 +17,7 @@ final class Site extends BaseSite
         string $description,
         string $env,
         string $googleAnalyticsTrackingId,
-        private string $assetsUrl,
+        private readonly string $assetsUrl,
     ) {
         parent::__construct(
             $title,

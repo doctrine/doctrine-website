@@ -9,7 +9,7 @@ use Doctrine\RST\Event\PreParseDocumentEvent;
 use function str_contains;
 use function str_replace;
 
-final class TableIncompatibility
+final readonly class TableIncompatibility
 {
     private const BEFORE = '| **SQL Server**           |         +----------------------------------------------------------+';
     private const AFTER  = '| **SQL Server**           |         |                                                          |';

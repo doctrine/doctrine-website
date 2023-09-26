@@ -8,11 +8,12 @@ use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Model\BlogPost;
 use Doctrine\Website\Repositories\BlogPostRepository;
 
-class BlogController
+final readonly class BlogController
 {
     /** @param BlogPostRepository<BlogPost> $blogPostRepository */
-    public function __construct(private BlogPostRepository $blogPostRepository)
-    {
+    public function __construct(
+        private BlogPostRepository $blogPostRepository,
+    ) {
     }
 
     public function index(): Response

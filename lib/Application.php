@@ -28,7 +28,7 @@ use function is_string;
 use function realpath;
 use function sprintf;
 
-class Application
+final readonly class Application
 {
     public const ENV_PROD    = 'prod';
     public const ENV_STAGING = 'staging';

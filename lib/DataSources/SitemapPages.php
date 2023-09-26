@@ -8,10 +8,11 @@ use DateTimeImmutable;
 use Doctrine\SkeletonMapper\DataSource\DataSource;
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
 
-class SitemapPages implements DataSource
+final readonly class SitemapPages implements DataSource
 {
-    public function __construct(private SourceFileRepository $sourceFileRepository)
-    {
+    public function __construct(
+        private SourceFileRepository $sourceFileRepository,
+    ) {
     }
 
     /** @return mixed[][] */

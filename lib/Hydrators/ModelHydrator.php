@@ -15,13 +15,14 @@ abstract class ModelHydrator extends ObjectHydrator
     private object $object;
 
     /** @var ClassMetadataInterface<T> */
-    private ClassMetadataInterface $classMetadata;
+    private readonly ClassMetadataInterface $classMetadata;
 
     /** @var ReflectionProperty[] */
     private array $reflectionProperties;
 
-    public function __construct(protected ObjectManagerInterface $objectManager)
-    {
+    public function __construct(
+        protected readonly ObjectManagerInterface $objectManager,
+    ) {
         $this->classMetadata = $this->objectManager->getClassMetadata($this->getClassName());
     }
 

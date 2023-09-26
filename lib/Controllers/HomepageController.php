@@ -15,7 +15,7 @@ use Doctrine\Website\Repositories\DoctrineUserRepository;
 use Doctrine\Website\Repositories\PartnerRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
 
-class HomepageController
+final readonly class HomepageController
 {
     /**
      * @param BlogPostRepository<BlogPost>         $blogPostRepository

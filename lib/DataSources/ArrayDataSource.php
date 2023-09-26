@@ -6,11 +6,12 @@ namespace Doctrine\Website\DataSources;
 
 use Doctrine\SkeletonMapper\DataSource\DataSource;
 
-final class ArrayDataSource implements DataSource
+final readonly class ArrayDataSource implements DataSource
 {
     /** @param mixed[] $sourceRows */
-    public function __construct(private array $sourceRows)
-    {
+    public function __construct(
+        private array $sourceRows,
+    ) {
     }
 
     /** @return mixed[][] */

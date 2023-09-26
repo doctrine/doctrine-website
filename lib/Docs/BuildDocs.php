@@ -17,7 +17,7 @@ use function array_filter;
 use function count;
 use function sprintf;
 
-class BuildDocs
+final readonly class BuildDocs
 {
     /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(

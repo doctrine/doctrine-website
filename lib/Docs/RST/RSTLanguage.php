@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs\RST;
 
-class RSTLanguage
+final readonly class RSTLanguage
 {
-    public function __construct(private string $code, private string $path)
-    {
+    public function __construct(
+        private string $code,
+        private string $path,
+    ) {
     }
 
     public function getCode(): string

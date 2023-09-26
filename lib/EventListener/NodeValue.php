@@ -9,7 +9,7 @@ use Doctrine\RST\Nodes\Node;
 
 use function str_replace;
 
-final class NodeValue
+final readonly class NodeValue
 {
     public function preNodeRender(PreNodeRenderEvent $event): void
     {

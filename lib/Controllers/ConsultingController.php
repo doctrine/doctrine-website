@@ -9,11 +9,12 @@ use Doctrine\Website\Model\CommittersStats;
 use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\TeamMemberRepository;
 
-class ConsultingController
+final readonly class ConsultingController
 {
     /** @param TeamMemberRepository<TeamMember> $teamMemberRepository */
-    public function __construct(private TeamMemberRepository $teamMemberRepository)
-    {
+    public function __construct(
+        private TeamMemberRepository $teamMemberRepository,
+    ) {
     }
 
     public function index(): Response

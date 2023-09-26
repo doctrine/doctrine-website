@@ -21,7 +21,7 @@ use function end;
 use function strnatcmp;
 use function usort;
 
-class ProjectDataBuilder implements DataBuilder
+final readonly class ProjectDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'projects';
 

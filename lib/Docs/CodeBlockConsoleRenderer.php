@@ -10,6 +10,7 @@ use function ltrim;
 use function sprintf;
 use function substr;
 
+/** @final */
 class CodeBlockConsoleRenderer
 {
     /** @param string[] $lines */

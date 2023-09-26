@@ -6,12 +6,13 @@ namespace Doctrine\Website\DataBuilder;
 
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
 
-class BlogPostDataBuilder implements DataBuilder
+final readonly class BlogPostDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'blog_posts';
 
-    public function __construct(private SourceFileFilesystemReader $sourceFileFilesystemReader)
-    {
+    public function __construct(
+        private SourceFileFilesystemReader $sourceFileFilesystemReader,
+    ) {
     }
 
     public function getName(): string

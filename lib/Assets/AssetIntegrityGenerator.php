@@ -10,13 +10,16 @@ use function file_get_contents;
 use function hash;
 use function realpath;
 
+/** @final */
 class AssetIntegrityGenerator
 {
     /** @var string[] */
     private array $cache = [];
 
-    public function __construct(private string $sourceDir, private string $webpackBuildDir)
-    {
+    public function __construct(
+        private readonly string $sourceDir,
+        private readonly string $webpackBuildDir,
+    ) {
     }
 
     public function getAssetIntegrity(string $path, string|null $rootPath = null): string

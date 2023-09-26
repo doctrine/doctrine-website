@@ -12,7 +12,7 @@ use Doctrine\Website\Model\TeamMember;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Repositories\TeamMemberRepository;
 
-class ProjectContributors implements DataSource
+final readonly class ProjectContributors implements DataSource
 {
     /**
      * @param TeamMemberRepository<TeamMember> $teamMemberRepository

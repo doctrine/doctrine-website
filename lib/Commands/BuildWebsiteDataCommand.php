@@ -15,14 +15,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use function sprintf;
 
-class BuildWebsiteDataCommand extends Command
+final class BuildWebsiteDataCommand extends Command
 {
     public function __construct(
-        private ProjectDataBuilder $projectDataBuilder,
-        private ProjectContributorDataBuilder $projectContributorDataBuilder,
-        private ContributorDataBuilder $contributorDataBuilder,
-        private BlogPostDataBuilder $blogPostDataBuilder,
-        private WebsiteDataWriter $dataWriter,
+        private readonly ProjectDataBuilder $projectDataBuilder,
+        private readonly ProjectContributorDataBuilder $projectContributorDataBuilder,
+        private readonly ContributorDataBuilder $contributorDataBuilder,
+        private readonly BlogPostDataBuilder $blogPostDataBuilder,
+        private readonly WebsiteDataWriter $dataWriter,
     ) {
         parent::__construct();
     }

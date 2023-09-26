@@ -12,12 +12,14 @@ use function ltrim;
 use function preg_match_all;
 use function sprintf;
 
+/** @final */
 class TagBranchGuesser
 {
     private const COMMAND = 'cd %s && git branch -a';
 
-    public function __construct(private ProcessFactory $processFactory)
-    {
+    public function __construct(
+        private ProcessFactory $processFactory,
+    ) {
     }
 
     public function guessTagBranchName(string $repositoryPath, Tag $tag): string|null
