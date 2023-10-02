@@ -1,0 +1,29 @@
+[
+    {
+        "url": "/1.html",
+        "slug": "one",
+        "title": "One",
+        "authorName": "me",
+        "authorEmail": "",
+        "contents": "Doctrine Blog 1",
+        "date": "2023-09-18 00:00:00"
+    },
+    {
+        "url": "/2.html",
+        "slug": "two",
+        "title": "Two",
+        "authorName": "you",
+        "authorEmail": "",
+        "contents": "Doctrine Blog 2",
+        "date": "2023-10-29 00:00:00"
+    },
+    {
+        "url": "/3.html",
+        "slug": "three",
+        "title": "Three",
+        "authorName": "we",
+        "authorEmail": "",
+        "contents": "Doctrine Blog 3",
+        "date": "2009-12-31 00:00:00"
+    }
+]

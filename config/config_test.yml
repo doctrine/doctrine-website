@@ -1,2 +1,5 @@
 imports:
     - { resource: config.yml }
+
+parameters:
+    doctrine.website.cache_dir: 'tests/test-cache'
