@@ -44,7 +44,7 @@ jobs:
         coverage: "pcov"
 
     - name: "Build website"
-      run: "./bin/console --env=test build-all"
+      run: "./bin/console --env=dev build-all"
 
     - name: "Run PHP tests with coverage"
       run: "./vendor/bin/phpunit --coverage-clover clover.xml"
