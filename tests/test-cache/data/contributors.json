@@ -1,0 +1,25 @@
+{
+    "username1": {
+        "isTeamMember": false,
+        "github": "username1",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/1?v=4",
+        "numCommits": 1,
+        "numAdditions": 2,
+        "numDeletions": 3,
+        "projects": [
+            "annotations"
+        ]
+    },
+    "username2": {
+        "isTeamMember": true,
+        "github": "username2",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/2?v=4",
+        "numCommits": 4,
+        "numAdditions": 5,
+        "numDeletions": 6,
+        "projects": [
+            "orm",
+            "dbal"
+        ]
+    }
+}
