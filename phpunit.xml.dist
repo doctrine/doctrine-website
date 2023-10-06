@@ -13,6 +13,10 @@
         </testsuite>
     </testsuites>
 
+    <php>
+        <ini name="date.timezone" value="America/New_York"/>
+    </php>
+
     <source>
         <include>
             <directory>./lib</directory>
