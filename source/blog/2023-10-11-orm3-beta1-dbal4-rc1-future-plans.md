@@ -5,8 +5,9 @@ authorEmail: kontakt@beberlei.de
 permalink: /2023/10/11/orm3-beta1-dbal4-rc1-future-plans.html
 ---
 
-We have released the first beta of the long awaited Doctrine ORM 3 and a
-release candidate of DBAL 4. 
+We have released the [first beta of the long awaited Doctrine ORM
+3](https://github.com/doctrine/orm/releases/tag/3.0.0-beta1) and a [release
+candidate of DBAL 4](https://github.com/doctrine/dbal/releases/tag/4.0.0-RC1). 
 
 The target audience for these releases are framework integration and extension
 library authors. ORM 3 is not yet production ready and the APIs may change.
@@ -15,10 +16,11 @@ Our goal is to release ORM 3.0 as soon as possible and to gather feedback from
 greenfield project authors first. 
 
 This beta release is the result of a lot of work by many contributors,
-especially Grégoire, Alexander, Claudio and Matthias on ORM and Sergei on DBAL.
-To iron out the final details, we met in Düsseldorf for a Doctrine Core Team
-meeting, generously funded by our sponsors through OpenCollective and GitHub.
-We also welcomed Matthias as the latest member of the Doctrine Core Team.
+especially Grégoire, Alexander, Claudio and Matthias on ORM, Sergei and
+Alexander on DBAL.  To iron out the final details, we met in Düsseldorf for a
+Doctrine Core Team meeting, generously funded by our sponsors through
+OpenCollective and GitHub. We also welcomed Matthias as the latest member of
+the Doctrine Core Team.
 
 ### Continued ORM 2 support and forward compatibility
 
