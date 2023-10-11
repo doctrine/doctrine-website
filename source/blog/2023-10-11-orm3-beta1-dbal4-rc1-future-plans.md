@@ -30,9 +30,10 @@ This means that we will be making ORM 2.x work with newer versions of PHP,
 fixing security bugs, and introducing layers and features that help with
 forward compatibility in the upgrade path to ORM 3. 
 
-Current users of ORM 2 are strongly encouraged to stay on version 2, as we are
-still working on replacement APIs and forward compatibility, and do not intend
-to ship them all with ORM 3.0, but with later versions.  
+Current users of ORM 2 should note that there is no urgency right now to update
+to ORM 3, as we are still working on replacement APIs and forward
+compatibility, and do not intend to ship them all with ORM 3.0, but with later
+versions.
 
 ### ORM 2 users can already prepare for 3 by addressing deprecations
 
