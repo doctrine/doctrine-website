@@ -1,5 +1,5 @@
 import instantsearch from 'instantsearch.js';
-import algoliasearch from 'algoliasearch-helper';
+import algoliasearch from 'algoliasearch';
 import { searchBox, hits, configure } from 'instantsearch.js/es/widgets';
 
 export default function (projectSlug, versionSlug, searchBoxSettings) {
