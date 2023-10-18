@@ -18,7 +18,6 @@ const plugins = () => {
             'window.$': 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
-            process: 'process/browser',
         }),
         new MergeIntoSingleFilePlugin({
             files: {
