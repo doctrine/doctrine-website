@@ -1,5 +1,6 @@
 import instantsearch from 'instantsearch.js';
-import { searchBox, hits } from 'instantsearch.js/es/widgets';
+import algoliasearch from 'algoliasearch-helper';
+import { searchBox, hits, configure } from 'instantsearch.js/es/widgets';
 
 export default function (projectSlug, versionSlug, searchBoxSettings) {
   var searchParameters = {
@@ -16,13 +17,14 @@ export default function (projectSlug, versionSlug, searchBoxSettings) {
   }
 
   var search = instantsearch({
-    appId: 'YVYTFT9XMW',
-    apiKey: 'a6dada5f33f148586b92cc3afefeaaf6',
     indexName: 'pages',
     autofocus: false,
     poweredBy: false,
     reset: false,
-    searchParameters: searchParameters,
+    searchClient: algoliasearch(
+        'YVYTFT9XMW',
+        'a6dada5f33f148586b92cc3afefeaaf6'
+    ),
     searchFunction: function (helper) {
       if (helper.state.query === '') {
         $('.search-results').hide();
@@ -37,6 +39,8 @@ export default function (projectSlug, versionSlug, searchBoxSettings) {
       $('.search-results').show();
     },
   });
+
+  search.addWidget(configure(searchParameters));
 
   search.addWidget(searchBox(searchBoxSettings));
 
