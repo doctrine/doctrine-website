@@ -123,10 +123,6 @@
         {% block navbar %}
             {% set menuSlug = page.menuSlug is defined and page.menuSlug ? page.menuSlug : '' %}
 
-            <nav class="doctrine-navbar stop-war-navbar navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap">
-                 <a href="{{ path('stop-war') }}">🇺🇦 UKRAINE NEEDS YOUR HELP NOW!</a>
-            </nav>
-
             <nav class="doctrine-navbar navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap">
                 <a class="navbar-brand text-hide" href="{{ path('homepage') }}"><img src="{{ get_asset_url('/logos/doctrine-logo.svg', site.url) }}" />{{ site.title }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
