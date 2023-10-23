@@ -5,6 +5,7 @@ import(/* webpackChunkName: "sentry" */ '@sentry/browser').then((module) => {
 });
 
 import 'bootstrap/js/dist/index';
+import 'bootstrap/dist/js/bootstrap';
 
 import(/* webpackChunkName: "main" */ './main').then((module) => {
   module.default();
