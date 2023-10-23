@@ -48,12 +48,6 @@ parameters:
             defaults:
                 menuSlug: partners
 
-        consulting:
-            path: /consulting.html
-            controller: Doctrine\Website\Controllers\ConsultingController::index
-            defaults:
-                menuSlug: consulting
-
         community:
             path: /community/index.html
             defaults:
