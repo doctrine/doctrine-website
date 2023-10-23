@@ -576,24 +576,5 @@ div.jsactive pre {
   }
 }
 
-nav.stop-war-navbar {
-  text-align: center;
-  background: #fa6a3c !important;
-  @media (max-width: 650px) {
-    a {
-      color: white;
-      font-size: 4.5vw;
-      width: 100%;
-    }
-  }
-  @media (min-width: 650px) {
-    a {
-      color: white;
-      font-size: 2em;
-      width: 100%;
-    }
-  }
-}
-
 @import 'railscasts';
 @import 'carbonads';
