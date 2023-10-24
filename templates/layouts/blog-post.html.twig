@@ -47,24 +47,26 @@
 
 {% block content_wrapper %}
     <article>
-        <header>
-            <h2>{{ blogPost.title }}</h2>
-        </header>
-
-        <p class="lead">
-            Posted on <date>{{ blogPost.date|date('F j, Y') }}</date>
-            {% if blogPost.authorName %}
-                by
-                {% if blogPost.authorEmail %}
-                    <a href="mailto:{{ blogPost.authorEmail }}">{{ blogPost.authorName }}</a>
-                {% else %}
-                    {{ blogPost.authorName }}
-                {% endif %}
-            {% endif %}
-        </p>
-
         <div class="row">
-            <div class="col">
+            <div class="col-lg-8 col-12">
+                <header>
+                    <h2>{{ blogPost.title }}</h2>
+                </header>
+
+                <p class="lead">
+                    Posted on <date>{{ blogPost.date|date('F j, Y') }}</date>
+                    {% if blogPost.authorName %}
+                        by
+                        {% if blogPost.authorEmail %}
+                            <a href="mailto:{{ blogPost.authorEmail }}">{{ blogPost.authorName }}</a>
+                        {% else %}
+                            {{ blogPost.authorName }}
+                        {% endif %}
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="col-lg-4 col-12">
                 {% include "carbonad-standard.html.twig" %}
             </div>
         </div>
