@@ -6,5 +6,6 @@ module.exports = {
     "transform": {
         "^.+\\.js$": "babel-jest",
     },
+    "setupFiles": ["./jest/setup/jest.js"],
     testEnvironment: 'jsdom'
 };
