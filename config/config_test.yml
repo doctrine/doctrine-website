@@ -3,3 +3,7 @@ imports:
 
 parameters:
     doctrine.website.cache_dir: 'tests/test-cache'
+    doctrine.website.projects_data:
+        - repositoryName: annotations
+        - repositoryName: inflector
+
