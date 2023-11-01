@@ -100,12 +100,6 @@ final readonly class Application
             $yamlConfigLoader->load('local.yml');
         }
 
-        $dataLoader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../data'));
-        $dataLoader->load('partners.yml');
-        $dataLoader->load('projects.yml');
-        $dataLoader->load('sponsors.yml');
-        $dataLoader->load('team_members.yml');
-
         $container->compile();
 
         date_default_timezone_set('America/New_York');
