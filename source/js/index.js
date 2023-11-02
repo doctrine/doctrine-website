@@ -20,7 +20,3 @@ if ($('#sidebar').length > 0) {
     new module.default();
   });
 }
-
-import(/* webpackChunkName: "tab" */ './tab').then((module) => {
-  module.default();
-});
