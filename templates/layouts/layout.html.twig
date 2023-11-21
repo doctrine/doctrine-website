@@ -125,9 +125,6 @@
 
             <nav class="doctrine-navbar navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap">
                 <a class="navbar-brand text-hide" href="{{ path('homepage') }}"><img src="{{ get_asset_url('/logos/doctrine-logo.svg', site.url) }}" />{{ site.title }}</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown{% if menuSlug == 'projects' %} active{% endif %}">
@@ -172,10 +169,14 @@
                             <a href="https://github.com/doctrine/doctrine-website/edit/master/source{{ page.sourcePath }}" class="btn btn-light" target="_blank" rel="noopener noreferrer">Edit</a>
                         {% endif %}
                     </div>
-
+                </div>
+                <div class="nav-outbound">
                     <div id="search-box">
                         <!-- SearchBox widget will appear here -->
                     </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
             </nav>
 
