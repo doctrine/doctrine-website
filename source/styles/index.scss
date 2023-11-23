@@ -528,6 +528,17 @@ div.jsactive pre {
   h4 {
     font-size: 10px;
   }
+
+  .doctrine-navbar .nav-outbound {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 101;
+  }
+
+  #search-box {
+    width: 160px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
