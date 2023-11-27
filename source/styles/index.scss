@@ -74,6 +74,7 @@ h6 {
   background: linear-gradient(-90deg, #2c374c, #1f2e4b);
   color: white;
   padding: 0 10px 0 10px;
+  align-items: normal;
 }
 
 .doctrine-navbar input {
@@ -89,6 +90,18 @@ h6 {
 
 .doctrine-navbar .navbar-brand img {
   width: 30px;
+}
+
+.doctrine-navbar .nav-outbound {
+  padding-top: 4px;
+}
+
+#search-box {
+  float: left;
+}
+
+.doctrine-navbar .navbar-collapse {
+  flex-basis: auto;
 }
 
 .dropdown:hover > .dropdown-menu {
@@ -514,6 +527,17 @@ div.jsactive pre {
 
   h4 {
     font-size: 10px;
+  }
+
+  .doctrine-navbar .nav-outbound {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 101;
+  }
+
+  #search-box {
+    width: 160px;
   }
 }
 
