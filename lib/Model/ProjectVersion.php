@@ -93,6 +93,7 @@ class ProjectVersion
         return $this->branchName;
     }
 
+    /** @phpstan-assert-if-true !null $this->getBranchName() */
     public function hasBranchName(): bool
     {
         return $this->branchName !== null;
@@ -168,6 +169,11 @@ class ProjectVersion
         return $latestTag;
     }
 
+    /**
+     * @phpstan-assert-if-true !null $this->getLatestTag()
+     * @phpstan-assert-if-true !null $this->getFirstTag()
+     * @phpstan-assert-if-true !null $this->getTags()
+     */
     public function hasTags(): bool
     {
         return count($this->tags) > 0;

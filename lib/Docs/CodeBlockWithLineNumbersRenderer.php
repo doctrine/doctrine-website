@@ -6,9 +6,11 @@ namespace Doctrine\Website\Docs;
 
 use Highlight\Highlighter;
 
+use function assert;
 use function count;
 use function implode;
 use function in_array;
+use function is_string;
 use function preg_replace;
 use function sha1;
 use function sprintf;
@@ -67,6 +69,8 @@ class CodeBlockWithLineNumbersRenderer
 
         // trim new lines and white space from html
         $template = preg_replace('~>\s+<~', '><', self::CODE_BLOCK_TABLE_TEMPLATE);
+
+        assert(is_string($template));
 
         return sprintf(
             $template,

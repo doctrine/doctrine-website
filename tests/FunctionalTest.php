@@ -58,8 +58,8 @@ class FunctionalTest extends TestCase
 
         self::assertCount(2, $tags);
 
-        self::assertSame('v1.0.1', $firstVersion->getLatestTag()->getName());
-        self::assertSame('v1.0', $firstVersion->getFirstTag()->getName());
+        self::assertSame('v1.0.1', $firstVersion->getLatestTag()?->getName());
+        self::assertSame('v1.0', $firstVersion->getFirstTag()?->getName());
     }
 
     public function testHomepageEditLink(): void
