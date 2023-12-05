@@ -21,14 +21,14 @@
         "knplabs/github-api": "^3.9",
         "php-http/guzzle7-adapter": "^1.0",
         "scrivo/highlight.php": "^9.18",
-        "symfony/config": "^6.3",
-        "symfony/cache": "^6.3",
-        "symfony/console": "^6.3",
-        "symfony/dependency-injection": "^6.3",
-        "symfony/filesystem": "^6.3",
-        "symfony/finder": "^6.3",
-        "symfony/process": "^6.3",
-        "symfony/yaml": "^6.3",
+        "symfony/config": "^6.4",
+        "symfony/cache": "^6.4",
+        "symfony/console": "^6.4",
+        "symfony/dependency-injection": "^6.4",
+        "symfony/filesystem": "^6.4",
+        "symfony/finder": "^6.4",
+        "symfony/process": "^6.4",
+        "symfony/yaml": "^6.4",
         "twig/twig": "^3.7"
     },
     "require-dev": {
@@ -40,10 +40,10 @@
         "phpstan/phpstan-phpunit": "^1.2",
         "phpstan/phpstan-strict-rules": "^1.4",
         "phpunit/phpunit": "^10.3",
-        "symfony/css-selector": "^6.3",
-        "symfony/dom-crawler": "^6.3",
-        "symfony/error-handler": "^6.3",
-        "symfony/var-dumper": "^6.3"
+        "symfony/css-selector": "^6.4",
+        "symfony/dom-crawler": "^6.4",
+        "symfony/error-handler": "^6.4",
+        "symfony/var-dumper": "^6.4"
     },
     "config": {
         "allow-plugins": {
