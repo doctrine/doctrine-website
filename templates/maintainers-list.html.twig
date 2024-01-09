@@ -5,7 +5,7 @@
 
             <strong>
                 <a href="{{ path('team_contributor', {github:contributor.github}) }}">
-                    {{ contributor.teamMember.name ?? contributor.github }}
+                    {{ contributor.teamMember.name ?: contributor.github }}
 
                     {% if contributor.teamMember.name %}
                         <small>({{ contributor.teamMember.github }})</small>

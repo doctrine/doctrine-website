@@ -8,7 +8,11 @@
                 <img src="{{ contributor.avatarUrl }}" class="rounded float-left mr-5" style="width: 100px;" />
 
                 <strong>
-                    {{ contributor.teamMember.name ?? contributor.github }}
+                    {% if contributor.teamMember and contributor.teamMember.name %}
+                        {{ contributor.teamMember.name }}
+                    {% else %}
+                        {{ contributor.github }}
+                    {% endif %}
                 </strong>
 
                 <ul class="list-inline">
