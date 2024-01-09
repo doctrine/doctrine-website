@@ -7,11 +7,11 @@ namespace Doctrine\Website\DataSources;
 use Doctrine\SkeletonMapper\DataSource\DataSource;
 use Github\Client;
 
-final readonly class TeamMember implements DataSource
+/** @final */
+readonly class TeamMember implements DataSource
 {
-    public function __construct(
-        private readonly Client $github,
-    ) {
+    public function __construct(private readonly Client $github)
+    {
     }
 
     /** @return mixed[][] */
@@ -23,7 +23,7 @@ final readonly class TeamMember implements DataSource
             $user = $this->github->user()->show($member['login']);
 
             $teamMembers[$user['login']] = [
-                'name' => $user['name'] ?? '',
+                'name' => $user['name'],
                 'twitter' => $user['twitter_username'],
                 'website' => $user['blog'],
                 'github' => $user['login'],
