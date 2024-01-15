@@ -11,7 +11,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use function assert;
 use function file_exists;
 use function is_string;
-use function Safe\preg_replace;
+use function preg_replace;
 use function sprintf;
 use function str_replace;
 
@@ -119,9 +119,17 @@ class RSTCopier
         // replace \n::\n with \n.. code-block::\n
         // this corrects code blocks that don't render properly.
         // we should update the docs code but this makes old docs code render properly.
-        $content = preg_replace("/\n::\n/", "\n.. code-block::\n", $content);
-        $content = preg_replace("/\n:: \n/", "\n.. code-block::\n", $content);
-        $content = preg_replace("/\n.. code-block :: (.*)\n/", "\n.. code-block:: $1\n", $content);
+        $content = preg_replace([
+            "/\n::\n/",
+            "/\n:: \n/",
+            "/\n.. code-block :: (.*)\n/",
+        ], [
+            "\n.. code-block::\n",
+            "\n.. code-block::\n",
+            "\n.. code-block:: $1\n",
+        ], $content);
+
+        assert(is_string($content));
 
         // replace .. code:: with .. code-block::
         $content = str_replace('.. code::', '.. code-block::', $content);
@@ -131,15 +139,28 @@ class RSTCopier
 
         // stuff from doctrine1 docs
         if ($project->getSlug() === 'doctrine1') {
-            $content = preg_replace("/:code:(.*)\n/", '$1', $content);
-            $content = preg_replace('/:php:(.*):`(.*)`/', '$2', $content);
-            $content = preg_replace('/:file:`(.*)`/', '$1', $content);
-            $content = preg_replace('/:code:`(.*)`/', '$1', $content);
-            $content = preg_replace('/:literal:`(.*)`/', '$1', $content);
-            $content = preg_replace('/:token:`(.*)`/', '$1', $content);
+            $content = preg_replace([
+                "/:code:(.*)\n/",
+                '/:php:(.*):`(.*)`/',
+                '/:file:`(.*)`/',
+                '/:code:`(.*)`/',
+                '/:literal:`(.*)`/',
+                '/:token:`(.*)`/',
+                '/.. rubric:: Notes/',
+                "/.. sidebar:: (.*)\n/",
+            ], [
+                '$1',
+                '$2',
+                '$1',
+                '$1',
+                '$1',
+                '$1',
+                '$1',
+            ], $content);
+
+            assert(is_string($content));
+
             $content = str_replace('.. productionlist::', '', $content);
-            $content = preg_replace('/.. rubric:: Notes/', '', $content);
-            $content = preg_replace("/.. sidebar:: (.*)\n/", '$1', $content);
             $content = str_replace('.. sidebar::', '', $content);
         }
 
