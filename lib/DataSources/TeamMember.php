@@ -19,7 +19,7 @@ readonly class TeamMember implements DataSource
     {
         $teamMembers = [];
 
-        foreach ($this->github->team()->members('maintainers', 'doctrine') as $member) {
+        foreach ($this->github->team()->members('doctrinecore', 'doctrine') as $member) {
             $user = $this->github->user()->show($member['login']);
 
             $teamMembers[$user['login']] = [

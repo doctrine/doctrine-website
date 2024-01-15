@@ -16,7 +16,7 @@ class TeamMemberTest extends TestCase
     {
         $teams = $this->createMock(Teams::class);
         $teams->method('members')
-            ->with('maintainers', 'doctrine')
+            ->with('doctrinecore', 'doctrine')
             ->willReturn([
                 ['login' => 'foo'],
                 ['login' => 'bar'],
