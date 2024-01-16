@@ -8,7 +8,9 @@ use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Filesystem\Filesystem;
 
+use function assert;
 use function file_exists;
+use function is_string;
 use function preg_replace;
 use function sprintf;
 use function str_replace;
@@ -117,9 +119,17 @@ class RSTCopier
         // replace \n::\n with \n.. code-block::\n
         // this corrects code blocks that don't render properly.
         // we should update the docs code but this makes old docs code render properly.
-        $content = preg_replace("/\n::\n/", "\n.. code-block::\n", $content);
-        $content = preg_replace("/\n:: \n/", "\n.. code-block::\n", $content);
-        $content = preg_replace("/\n.. code-block :: (.*)\n/", "\n.. code-block:: $1\n", $content);
+        $content = preg_replace([
+            "/\n::\n/",
+            "/\n:: \n/",
+            "/\n.. code-block :: (.*)\n/",
+        ], [
+            "\n.. code-block::\n",
+            "\n.. code-block::\n",
+            "\n.. code-block:: $1\n",
+        ], $content);
+
+        assert(is_string($content));
 
         // replace .. code:: with .. code-block::
         $content = str_replace('.. code::', '.. code-block::', $content);
@@ -129,20 +139,35 @@ class RSTCopier
 
         // stuff from doctrine1 docs
         if ($project->getSlug() === 'doctrine1') {
-            $content = preg_replace("/:code:(.*)\n/", '$1', $content);
-            $content = preg_replace('/:php:(.*):`(.*)`/', '$2', $content);
-            $content = preg_replace('/:file:`(.*)`/', '$1', $content);
-            $content = preg_replace('/:code:`(.*)`/', '$1', $content);
-            $content = preg_replace('/:literal:`(.*)`/', '$1', $content);
-            $content = preg_replace('/:token:`(.*)`/', '$1', $content);
+            $content = preg_replace([
+                "/:code:(.*)\n/",
+                '/:php:(.*):`(.*)`/',
+                '/:file:`(.*)`/',
+                '/:code:`(.*)`/',
+                '/:literal:`(.*)`/',
+                '/:token:`(.*)`/',
+                '/.. rubric:: Notes/',
+                "/.. sidebar:: (.*)\n/",
+            ], [
+                '$1',
+                '$2',
+                '$1',
+                '$1',
+                '$1',
+                '$1',
+                '$1',
+            ], $content);
+
+            assert(is_string($content));
+
             $content = str_replace('.. productionlist::', '', $content);
-            $content = preg_replace('/.. rubric:: Notes/', '', $content);
-            $content = preg_replace("/.. sidebar:: (.*)\n/", '$1', $content);
             $content = str_replace('.. sidebar::', '', $content);
         }
 
         // we don't support :term:`*` syntax
         $content = preg_replace('/:term:`(.*)`/', '$1', $content);
+
+        assert(is_string($content));
 
         return $content;
     }
@@ -158,6 +183,8 @@ class RSTCopier
 
             // sidebar.rst paths were wrong. Remove this once sidebar.rst is updated everywhere
             $sidebar = preg_replace('/^([ \t]*)(reference|tutorials|cookbook)/m', '$1/$2', $sidebar);
+
+            assert(is_string($sidebar));
 
             return $sidebar;
         }

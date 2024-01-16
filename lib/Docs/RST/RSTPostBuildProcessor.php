@@ -8,6 +8,8 @@ use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Symfony\Component\Filesystem\Filesystem;
 
+use function assert;
+use function is_string;
 use function preg_match;
 use function preg_replace;
 use function sprintf;
@@ -119,11 +121,15 @@ class RSTPostBuildProcessor
 
     private function fixHeaderAnchors(string $contents): string
     {
-        return preg_replace(
+        $contents = preg_replace(
             '/<div class="section" id="(.*)">\n<h(\d)>(.*)<\/h(\d)>/',
             '<div class="section"><a class="section-anchor" id="$1" name="$1"></a><h$2 class="section-header"><a href="#$1">$3<i class="fas fa-link"></i></a></h$2>',
             $contents,
         );
+
+        assert(is_string($contents));
+
+        return $contents;
     }
 
     private function extractTitle(string $contents): string
