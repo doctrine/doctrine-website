@@ -97,10 +97,10 @@ final class BuildAllCommand extends Command
     {
         $input = new ArrayInput(array_merge(['command' => $command], $arguments));
 
-        $command = $this->getApplication()?->find($command);
+        $application = $this->getApplication();
 
-        assert($command instanceof Command);
+        assert($application !== null);
 
-        return $command->run($input, new ConsoleOutput());
+        return $application->find($command)->run($input, new ConsoleOutput());
     }
 }
