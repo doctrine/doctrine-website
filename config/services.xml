@@ -257,11 +257,7 @@
             <argument type="service">
                 <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
                     <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service">
-                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
-                            <argument>%doctrine.website.team_members%</argument>
-                        </service>
-                    </argument>
+                    <argument type="service" id="Doctrine\Website\DataSources\TeamMember" />
                     <argument>Doctrine\Website\Model\TeamMember</argument>
                 </service>
             </argument>

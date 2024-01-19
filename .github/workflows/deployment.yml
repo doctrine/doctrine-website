@@ -27,7 +27,7 @@ jobs:
     runs-on: "ubuntu-latest"
 
     env:
-      doctrine_website_github_http_token: "${{ github.token }}"
+      doctrine_website_github_http_token: "${{ secrets.doctrine_website_deployment_token }}"
       doctrine_website_algolia_admin_api_key: "${{ secrets.doctrine_website_algolia_admin_api_key }}"
       doctrine_website_stripe_secret_key: "${{ secrets.doctrine_website_stripe_secret_key }}"
       doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"
