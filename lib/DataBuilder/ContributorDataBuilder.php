@@ -6,7 +6,9 @@ namespace Doctrine\Website\DataBuilder;
 
 use Doctrine\Website\Model\ProjectContributor;
 use Doctrine\Website\Repositories\ProjectContributorRepository;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
+#[AutoconfigureTag('doctrine.website.data_builder', ['priority' => 80])]
 final readonly class ContributorDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'contributors';

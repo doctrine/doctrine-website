@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Doctrine\Website\DataBuilder;
 
 use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
+#[AutoconfigureTag('doctrine.website.data_builder', ['priority' => 70])]
 final readonly class BlogPostDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'blog_posts';
