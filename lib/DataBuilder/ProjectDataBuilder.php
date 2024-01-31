@@ -12,6 +12,7 @@ use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectVersionsReader;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 use function array_filter;
 use function array_map;
@@ -21,6 +22,7 @@ use function end;
 use function strnatcmp;
 use function usort;
 
+#[AutoconfigureTag('doctrine.website.data_builder', ['priority' => 100])]
 final readonly class ProjectDataBuilder implements DataBuilder
 {
     public const DATA_FILE = 'projects';
