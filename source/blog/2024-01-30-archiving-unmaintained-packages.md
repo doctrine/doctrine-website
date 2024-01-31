@@ -2,7 +2,7 @@
 title: "Archiving Unmaintained Packages"
 authorName: Andreas Braun
 authorEmail: alcaeus@doctrine-project.org
-permalink: /2024/01/30/archiving-unmaintained-packages.md
+permalink: /2024/01/30/archiving-unmaintained-packages.html
 ---
 
 After long consideration, we have decided to archive a number of repositories that have not seen any activity in a
