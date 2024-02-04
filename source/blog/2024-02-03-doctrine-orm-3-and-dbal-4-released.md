@@ -48,7 +48,8 @@ to ORM 3.0 and DBAL 4.0.
 
 ## Doctrine ORM 2 Future
 
-We plan to maintain Doctrine ORM 2 for the next 2 years by providing bug and security fixes. We may also add or deprecate things in 2.x to improve the existing forward-compatbility layer to make the transition to ORM 3 smoother.
+We plan to maintain Doctrine ORM 2 for the next 2 years by providing bug and security fixes. We may also add or deprecate things in 2.x to improve the
+existing forward-compatbility layer to make the transition to ORM 3 smoother.
 
 ## Looking Forward
 
