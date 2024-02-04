@@ -39,12 +39,16 @@ DBAL 3.x version and address any deprecation warnings that are reported.
 Once you have addressed all of the deprecations, you should have a clear
 path to upgrade.
 
-In addition to that, we've prepared comprehensive upgrade guides to facilitate
-a smooth transition to ORM 3.0 and DBAL 4.0. These guides offer detailed
-information about all the deprecations and changes we've made.
+In addition to that, we've maintained comprehensive documentation about
+every change, deprecation and BC break to facilitate a smooth transition
+to ORM 3.0 and DBAL 4.0.
 
 - [Upgrade to Doctrine ORM 3.0](https://github.com/doctrine/orm/blob/3.0.x/UPGRADE.md)
 - [Upgrade to Doctrine DBAL 4.0](https://github.com/doctrine/dbal/blob/4.0.x/UPGRADE.md)
+
+## Doctrine ORM 2 Future
+
+We plan to maintain Doctrine ORM 2 for the next 2 years by providing bug and security fixes. We may also add or deprecate things in 2.x to improve the existing forward-compatbility layer to make the transition to ORM 3 smoother.
 
 ## Looking Forward
 
