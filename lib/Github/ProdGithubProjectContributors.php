@@ -45,7 +45,6 @@ final readonly class ProdGithubProjectContributors implements GithubProjectContr
     private function waitForProjectContributorsData(Project $project): void
     {
         $count  = 1;
-        $sleep  = 1;
         $waited = 0;
 
         while ($count <= $this->maxChecks) {
@@ -55,12 +54,11 @@ final readonly class ProdGithubProjectContributors implements GithubProjectContr
                 return;
             }
 
-            $sleep *= $count;
+            sleep($count);
+
+            $waited += $count;
+
             $count++;
-
-            sleep($sleep);
-
-            $waited += $sleep;
         }
 
         throw new RuntimeException(
