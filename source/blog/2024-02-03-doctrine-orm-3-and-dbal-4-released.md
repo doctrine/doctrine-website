@@ -14,17 +14,22 @@ dozens of contributors and the Doctrine maintainers.
 **A Slimmer, More Efficient ORM**: The new Doctrine ORM 3.0 comes in at
 326KB, down from 400KB in ORM 2.18.0. This reduction not only makes the
 ORM lighter but also signals our efforts to streamline and optimize every
-aspect of our library.
+aspect of our library and focus our maintenance efforts on the core functionality
+of an ORM and less on tooling and helpers that are only useful by a small number
+of our users.
 
 **Enhanced Code Quality and Coverage**: With ORM 3.0, we've pushed our
-code coverage from 84% to 89%. This improvement underscores our commitment
-to reliability and the stability of the Doctrine ecosystem, ensuring that
-your applications run smoothly.
+code coverage from 84% to 89%. For DBAL 4.0, we've pushed our code coverage
+from 86% to 94%. This improvement underscores our commitment to reliability
+and the stability of the Doctrine ecosystem, ensuring that your applications
+run smoothly.
 
 **Leaner Dependencies**: In Doctrine ORM 3.0, we have finally eliminated
 dependencies on `doctrine/cache` and `doctrine/common`. This change reduces
-complexity and improves maintainability of Doctrine as we now depend on other
-well maintained libraries for caching responsibilities.
+complexity and improves maintainability of Doctrine as we now depend on
+[PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/) for our
+caching responsibilities. Implementing a PSR means we are more interoperable
+with other frameworks and easier to use by a broader amount of users.
 
 **A Growing Community**: The Doctrine project now boasts 1029 contributors
 across all its projects. This vibrant community is the backbone of Doctrine,
@@ -35,7 +40,8 @@ project forward.
 
 We understand that upgrading to a new major version can be difficult. The
 best way to upgrade is to first upgrade to the latest Doctrine ORM 2.x and
-DBAL 3.x version and address any deprecation warnings that are reported.
+DBAL 3.x version and address any deprecation warnings that are reported. You
+can read more about how Doctrine handles deprecations [here](https://www.doctrine-project.org/policies/deprecation.html)].
 Once you have addressed all of the deprecations, you should have a clear
 path to upgrade.
 
@@ -48,8 +54,9 @@ to ORM 3.0 and DBAL 4.0.
 
 ## Doctrine ORM 2 Future
 
-We plan to maintain Doctrine ORM 2 for the next 2 years by providing bug and security fixes. We may also add or deprecate things in 2.x to improve the
-existing forward-compatbility layer to make the transition to ORM 3 smoother.
+We plan to maintain Doctrine ORM 2 for at least the next 2 years by providing
+bug and security fixes. We may also add or deprecate things in 2.x to improve
+the existing forward-compatbility layer to make the transition to ORM 3 smoother.
 
 ## Looking Forward
 
