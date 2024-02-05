@@ -10,9 +10,7 @@ use Doctrine\Website\Repositories\ProjectRepository;
 
 final readonly class ProjectController
 {
-    /**
-     * @param ProjectRepository<Project>                       $projectRepository
-     */
+    /** @param ProjectRepository<Project> $projectRepository */
     public function __construct(
         private ProjectRepository $projectRepository,
     ) {

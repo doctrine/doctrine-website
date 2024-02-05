@@ -27,7 +27,6 @@ abstract class Hydrators extends TestCase
     {
         $objectRepositoryFactory = new ObjectRepositoryFactory();
 
-
         $objectManager = new ObjectManager(
             $objectRepositoryFactory,
             new ObjectPersisterFactory(),
