@@ -41,7 +41,7 @@ project forward.
 We understand that upgrading to a new major version can be difficult. The
 best way to upgrade is to first upgrade to the latest Doctrine ORM 2.x and
 DBAL 3.x version and address any deprecation warnings that are reported. You
-can read more about how Doctrine handles deprecations [here](https://www.doctrine-project.org/policies/deprecation.html)].
+can read more about how Doctrine handles deprecations [here](https://www.doctrine-project.org/policies/deprecation.html).
 Once you have addressed all of the deprecations, you should have a clear
 path to upgrade.
 
