@@ -52,7 +52,7 @@ to ORM 3.0 and DBAL 4.0.
 - [Upgrade to Doctrine ORM 3.0](https://github.com/doctrine/orm/blob/3.0.x/UPGRADE.md)
 - [Upgrade to Doctrine DBAL 4.0](https://github.com/doctrine/dbal/blob/4.0.x/UPGRADE.md)
 
-## Doctrine ORM 2 Future
+## The Future of Doctrine ORM 2
 
 We plan to maintain Doctrine ORM 2 for at least the next 2 years by providing
 bug and security fixes. We may also add or deprecate things in 2.x to improve
