@@ -117,16 +117,4 @@
 
         {% include "projects-short-list.html.twig" with {projects:integrationProjects} %}
     {% endif %}
-
-    {% if maintainers|length > 0 %}
-        <h2 class="mt-4">Maintainers</h2>
-
-        {% include "maintainers-list.html.twig" with {contributors:maintainers} %}
-    {% endif %}
-
-    {% if contributors|length > 0 %}
-        <h2 class="mt-4">Contributors</h2>
-
-        {% include "contributors-list.html.twig" with {contributors:contributors} %}
-    {% endif %}
 {% endblock %}

@@ -25,8 +25,6 @@
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />
 
-        <service id="Doctrine\Website\Github\GithubProjectContributors" alias="Doctrine\Website\Github\ProdGithubProjectContributors" />
-
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
 
         <service id="Doctrine\Website\Projects\ProjectDataRepository" autowire="true" />
@@ -106,25 +104,6 @@
             </argument>
             <argument type="service" id="Doctrine\Common\EventManager" />
             <argument>Doctrine\Website\Model\BlogPost</argument>
-        </service>
-
-        <service id="Doctrine\Website\Repositories\ContributorRepository" autowire="false" public="true">
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-            <argument type="service">
-                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\DataSources\Contributors" />
-                    <argument>Doctrine\Website\Model\Contributor</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
-            <argument type="service">
-                <service class="Doctrine\Website\Hydrators\ContributorHydrator">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\Common\EventManager" />
-            <argument>Doctrine\Website\Model\Contributor</argument>
         </service>
 
         <service id="Doctrine\Website\Repositories\DoctrineUserRepository" autowire="false" public="true">
@@ -215,25 +194,6 @@
             <argument>Doctrine\Website\Model\Project</argument>
         </service>
 
-        <service id="Doctrine\Website\Repositories\ProjectContributorRepository" autowire="false" public="true">
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-            <argument type="service">
-                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\DataSources\ProjectContributors" />
-                    <argument>Doctrine\Website\Model\ProjectContributor</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
-            <argument type="service">
-                <service class="Doctrine\Website\Hydrators\ProjectContributorHydrator">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\Common\EventManager" />
-            <argument>Doctrine\Website\Model\ProjectContributor</argument>
-        </service>
-
         <service id="Doctrine\Website\Repositories\SitemapPageRepository" autowire="false">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
@@ -253,34 +213,10 @@
             <argument>Doctrine\Website\Model\SitemapPage</argument>
         </service>
 
-        <service id="Doctrine\Website\Repositories\TeamMemberRepository" autowire="false">
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-            <argument type="service">
-                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\DataSources\TeamMember" />
-                    <argument>Doctrine\Website\Model\TeamMember</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
-            <argument type="service">
-                <service class="Doctrine\Website\Hydrators\TeamMemberHydrator">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\Common\EventManager" />
-            <argument>Doctrine\Website\Model\TeamMember</argument>
-        </service>
-
         <service id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" autowire="false">
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\BlogPost</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\BlogPostRepository" />
-            </call>
-
-            <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\Contributor</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\ContributorRepository" />
             </call>
 
             <call method="addObjectRepository">
@@ -301,16 +237,6 @@
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\Project</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\ProjectRepository" />
-            </call>
-
-            <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\ProjectContributor</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\ProjectContributorRepository" />
-            </call>
-
-            <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\TeamMember</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\TeamMemberRepository" />
             </call>
 
             <call method="addObjectRepository">

@@ -6,11 +6,7 @@ namespace Doctrine\Website\Tests;
 
 use Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryInterface;
 use Doctrine\Website\Application;
-use Doctrine\Website\Model\Contributor;
 use Doctrine\Website\Model\Project;
-use Doctrine\Website\Model\ProjectContributor;
-use Doctrine\Website\Repositories\ContributorRepository;
-use Doctrine\Website\Repositories\ProjectContributorRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -48,23 +44,5 @@ abstract class TestCase extends BaseTestCase
         self::assertInstanceOf(Project::class, $project);
 
         return $project;
-    }
-
-    /** @param mixed[] $data */
-    protected function createContributor(array $data): Contributor
-    {
-        $contributor = $this->createModel(ContributorRepository::class, $data);
-        self::assertInstanceOf(Contributor::class, $contributor);
-
-        return $contributor;
-    }
-
-    /** @param mixed[] $data */
-    protected function createProjectContributor(array $data): ProjectContributor
-    {
-        $projectContributor = $this->createModel(ProjectContributorRepository::class, $data);
-        self::assertInstanceOf(ProjectContributor::class, $projectContributor);
-
-        return $projectContributor;
     }
 }

@@ -54,25 +54,6 @@ parameters:
                 title: Community
                 menuSlug: community
 
-        team_maintainers:
-            path: /team/maintainers.html
-            controller: Doctrine\Website\Controllers\TeamController::maintainers
-            defaults:
-                title: Maintainers
-                menuSlug: team
-
-        team_contributors:
-            path: /team/contributors.html
-            controller: Doctrine\Website\Controllers\TeamController::contributors
-            defaults:
-                title: Contributors
-                menuSlug: team
-
-        team_contributor:
-            path: /team/{github}.html
-            controller: Doctrine\Website\Controllers\TeamController::contributor
-            provider: Doctrine\Website\Requests\ContributorRequests::getContributors
-
         contribute:
             path: /contribute/index.html
             defaults:

@@ -135,8 +135,6 @@ class FunctionalTest extends TestCase
         $this->assertValid('/contribute/website/index.html');
         $this->assertValid('/community/index.html');
         $this->assertValid('/blog/index.html');
-        $this->assertValid('/team/maintainers.html');
-        $this->assertValid('/team/contributors.html');
         $this->assertValid('/2018/04/06/new-website.html');
         $this->assertValid('/projects.html');
 

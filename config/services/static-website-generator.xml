@@ -60,13 +60,11 @@
                 <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
                 <argument type="service" id="Doctrine\Website\Controllers\SponsorshipController" />
                 <argument type="service" id="Doctrine\Website\Controllers\SitemapController" />
-                <argument type="service" id="Doctrine\Website\Controllers\TeamController" />
             </argument>
         </service>
 
         <service id="Doctrine\StaticWebsiteGenerator\Request\RequestCollectionProvider">
             <argument type="collection">
-                <argument type="service" id="Doctrine\Website\Requests\ContributorRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\PartnerRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
                 <argument type="service" id="Doctrine\Website\Requests\ProjectVersionRequests" />
