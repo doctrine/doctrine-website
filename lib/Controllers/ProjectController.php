@@ -6,19 +6,15 @@ namespace Doctrine\Website\Controllers;
 
 use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Model\Project;
-use Doctrine\Website\Model\ProjectContributor;
-use Doctrine\Website\Repositories\ProjectContributorRepository;
 use Doctrine\Website\Repositories\ProjectRepository;
 
 final readonly class ProjectController
 {
     /**
      * @param ProjectRepository<Project>                       $projectRepository
-     * @param ProjectContributorRepository<ProjectContributor> $projectContributorRepository
      */
     public function __construct(
         private ProjectRepository $projectRepository,
-        private ProjectContributorRepository $projectContributorRepository,
     ) {
     }
 
@@ -39,8 +35,6 @@ final readonly class ProjectController
         return new Response([
             'project' => $project,
             'integrationProjects' => $this->projectRepository->findProjectIntegrations($project),
-            'maintainers' => $this->projectContributorRepository->findMaintainersByProject($project),
-            'contributors' => $this->projectContributorRepository->findContributorsByProject($project),
         ], '/project.html.twig');
     }
 
