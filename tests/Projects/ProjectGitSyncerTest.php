@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
-use Doctrine\Website\Github\GithubClientProvider;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Tests\TestCase;
 use Github\Api\Repo;
-use Github\Client;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -34,21 +32,10 @@ class ProjectGitSyncerTest extends TestCase
         $this->processFactory = $this->createMock(ProcessFactory::class);
         $this->projectsDir    = vfsStream::url('projects');
         $this->githubRepo     = $this->createMock(Repo::class);
-        $githubClientProvider = $this->createMock(GithubClientProvider::class);
-        $githubClient         = $this->getMockBuilder(Client::class)
-            ->disableOriginalConstructor()
-            ->addMethods(['repo'])
-            ->getMock();
-
-        $githubClient->method('repo')
-            ->willReturn($this->githubRepo);
-
-        $githubClientProvider->method('getGithubClient')
-            ->willReturn($githubClient);
 
         $this->projectGitSyncer = new ProjectGitSyncer(
             $this->processFactory,
-            $githubClientProvider,
+            $this->githubRepo,
             $this->projectsDir,
         );
     }

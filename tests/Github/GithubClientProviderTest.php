@@ -6,39 +6,47 @@ namespace Doctrine\Website\Tests\Github;
 
 use Doctrine\Website\Github\GithubClientProvider;
 use Doctrine\Website\Tests\TestCase;
+use Github\Api\Repo;
 use Github\AuthMethod;
 use Github\Client;
 use InvalidArgumentException;
+use Psr\Cache\CacheItemPoolInterface;
 
 class GithubClientProviderTest extends TestCase
 {
-    public function testGetGithubClient(): void
+    public function testRepositories(): void
     {
+        $githubRepo      = $this->createMock(Repo::class);
         $githubClient    = $this->createMock(Client::class);
+        $cache           = $this->createMock(CacheItemPoolInterface::class);
         $githubHttpToken = '1234';
-
-        $githubClientProvider = new GithubClientProvider($githubClient, $githubHttpToken);
 
         $githubClient->expects(self::once())
             ->method('authenticate')
             ->with($githubHttpToken, '', AuthMethod::ACCESS_TOKEN);
+        $githubClient->expects(self::once())
+            ->method('addCache')
+            ->with($cache);
+        $githubClient->expects(self::once())
+            ->method('api')
+            ->with('repo')
+            ->willReturn($githubRepo);
 
-        $githubClientResult = $githubClientProvider->getGithubClient();
+        $githubClientProvider = new GithubClientProvider($githubClient, $cache, $githubHttpToken);
 
-        self::assertSame($githubClient, $githubClientResult);
+        $githubClientResult = $githubClientProvider->repositories();
 
-        $githubClientResult = $githubClientProvider->getGithubClient();
-
-        self::assertSame($githubClient, $githubClientResult);
+        self::assertSame($githubRepo, $githubClientResult);
     }
 
     public function testGetGithubClientWithMissingToken(): void
     {
         $githubClient    = $this->createMock(Client::class);
+        $cache           = $this->createMock(CacheItemPoolInterface::class);
         $githubHttpToken = '';
 
         $this->expectException(InvalidArgumentException::class);
 
-        new GithubClientProvider($githubClient, $githubHttpToken);
+        new GithubClientProvider($githubClient, $cache, $githubHttpToken);
     }
 }
