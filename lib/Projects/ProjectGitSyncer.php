@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Projects;
 
-use Doctrine\Website\Github\GithubClientProvider;
 use Doctrine\Website\ProcessFactory;
 use Github\Api\Repo;
 
@@ -15,15 +14,11 @@ use function sprintf;
 /** @final */
 class ProjectGitSyncer
 {
-    private readonly Repo $githubRepo;
-
     public function __construct(
         private readonly ProcessFactory $processFactory,
-        GithubClientProvider $githubClientProvider,
+        private readonly Repo $githubRepo,
         private readonly string $projectsDir,
     ) {
-        // TODO Inject Repo instead of GithubClientProvider
-        $this->githubRepo = $githubClientProvider->getGithubClient()->repo();
     }
 
     public function isRepositoryInitialized(string $repositoryName): bool

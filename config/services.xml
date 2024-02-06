@@ -33,16 +33,14 @@
             <argument type="service">
                 <service class="Github\Client" />
             </argument>
+            <argument type="service" id="Psr\Cache\CacheItemPoolInterface" />
             <argument>%doctrine.website.github.http_token%</argument>
         </service>
 
-        <service id="Github\Client">
+        <service id="Github\Api\Repo">
             <factory service="Doctrine\Website\Github\GithubClientProvider"
-                method="getGithubClient"
+                method="repositories"
             />
-            <call method="addCache">
-                <argument type="service" id="Psr\Cache\CacheItemPoolInterface" />
-            </call>
         </service>
 
         <service id="Highlight\Highlighter" autowire="true" />
