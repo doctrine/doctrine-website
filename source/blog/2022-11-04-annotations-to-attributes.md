@@ -20,7 +20,7 @@ language, allowing to tag language elements with extra information. 2 years
 later, it gets approved and Java 1.5, also known as Java 5 is released, [with
 support for annotations][annotation-guide].
 
-2 more years elapse and in 2004, Jano Suchal publishes [Addendum][addendum], a
+4 more years elapse and in 2006, Jano Suchal publishes [Addendum][addendum], a
 PHP library that adds support for using "Docblock/JavaDoc" as annotations,
 meaning that contrary to what is done in Java, Addendum annotations are
 contained inside phpdoc comments, like this:
