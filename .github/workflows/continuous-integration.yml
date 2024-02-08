@@ -3,7 +3,7 @@ name: "Continuous Integration"
 on: ["push", "pull_request"]
 
 env:
-  doctrine_website_github_http_token: "${{ secrets.doctrine_website_deployment_token }}"
+  doctrine_website_github_http_token: "${{ github.token }}"
   PHP_VERSION: "8.3"
   doctrine_website_algolia_admin_api_key: "no-key-needed"
 
