@@ -79,13 +79,16 @@ h6 {
 
 .doctrine-navbar input {
   height: 40px;
-  margin-top: 2px;
   color: black;
   background-color: white;
 }
 
 .doctrine-navbar a:hover {
   text-decoration: underline;
+}
+
+.doctrine-navbar form {
+  background-color: transparent;
 }
 
 .doctrine-navbar .navbar-brand img {
