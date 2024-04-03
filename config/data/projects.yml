@@ -60,6 +60,13 @@ parameters:
             integrationType: symfony
 
         -
+            repositoryName: DoctrinePHPCRBundle
+            slug: doctrine-phpcr-bundle
+            integration: true
+            integrationFor: phpcr-odm
+            integrationType: symfony
+              
+        -
             repositoryName: DoctrineModule
             slug: doctrine-module
             integration: true
