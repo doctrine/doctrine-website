@@ -1,7 +1,7 @@
 {% if project.archived == true %}
     {% set alertMessage = 'This project is no longer maintained and has been archived.' %}
 {% elseif project.active == false %}
-    {% set alertMessage = 'This project is not being actively maintained. If you are interested in helping to maintain this project, take a look at the open issues on <a href="https://github.com/doctrine/{{ project.repositoryName }}/" target="_blank" rel="noopener noreferrer">GitHub</a> and submit pull requests.' %}
+    {% set alertMessage = 'This project is not being actively maintained. If you are interested in helping to maintain this project, take a look at the open issues on <a href="https://github.com/doctrine/' ~ project.repositoryName ~ '/" target="_blank" rel="noopener noreferrer">GitHub</a> and submit pull requests.' %}
 {% elseif version and version.maintained == false %}
     {% set alertMessage = 'You are browsing a version that is no longer maintained.' %}
 {% elseif version and version.upcoming == true %}
