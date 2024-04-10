@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataSources;
 
-use Doctrine\SkeletonMapper\DataSource\DataSource;
-
 final readonly class ArrayDataSource implements DataSource
 {
     /** @param mixed[] $sourceRows */

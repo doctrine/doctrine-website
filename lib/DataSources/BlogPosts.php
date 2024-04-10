@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Doctrine\Website\DataSources;
 
 use DateTimeImmutable;
-use Doctrine\SkeletonMapper\DataSource\DataSource;
 use Doctrine\Website\DataBuilder\BlogPostDataBuilder;
 use Doctrine\Website\DataBuilder\WebsiteDataReader;
 
