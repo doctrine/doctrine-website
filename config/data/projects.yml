@@ -19,7 +19,10 @@ parameters:
         - repositoryName: couchdb-client
         - repositoryName: couchdb-odm
         - repositoryName: data-fixtures
-        - repositoryName: dbal
+        -
+            repositoryName: dbal
+            versionFilter: "/^[3-9]\\.[0-9]+/"
+
         - repositoryName: doctrine1
         - repositoryName: event-manager
         - repositoryName: inflector

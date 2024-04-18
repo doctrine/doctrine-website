@@ -24,6 +24,7 @@ use Doctrine\Website\Model\ProjectVersion;
  * @property string $docsPath
  * @property string $codePath
  * @property string $description
+ * @property string|null $versionFilter
  * @property string[] $keywords
  * @property ProjectVersion[] $versions
  * @property ProjectIntegrationType $projectIntegrationType
@@ -56,6 +57,7 @@ final class ProjectHydrator extends ModelHydrator
         $this->codePath            = (string) ($data['codePath'] ?? '/lib');
         $this->description         = (string) ($data['description'] ?? '');
         $this->keywords            = $data['keywords'] ?? [];
+        $this->versionFilter       = $data['versionFilter'] ?? null;
 
         if (! isset($data['versions'])) {
             return;

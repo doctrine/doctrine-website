@@ -11,6 +11,7 @@ use InvalidArgumentException;
 
 use function array_filter;
 use function array_values;
+use function preg_match;
 use function sprintf;
 
 class Project implements LoadMetadataInterface
@@ -52,6 +53,8 @@ class Project implements LoadMetadataInterface
 
     /** @var ProjectVersion[] */
     private array $versions = [];
+
+    private string|null $versionFilter = null;
 
     public static function loadMetadata(ClassMetadataInterface $metadata): void
     {
@@ -144,7 +147,11 @@ class Project implements LoadMetadataInterface
         return $this->keywords;
     }
 
-    /** @return ProjectVersion[] */
+    /**
+     * @phpstan-param Closure(ProjectVersion $version): bool $filter
+     *
+     * @return ProjectVersion[]
+     */
     public function getVersions(Closure|null $filter = null): array
     {
         if ($filter !== null) {
@@ -152,6 +159,17 @@ class Project implements LoadMetadataInterface
         }
 
         return $this->versions;
+    }
+
+    /** @return ProjectVersion[] */
+    public function getFilteredVersions(): array
+    {
+        $filter = null;
+        if ($this->versionFilter !== null) {
+            $filter = fn (ProjectVersion $version) => preg_match($this->versionFilter, $version->getName()) === 1;
+        }
+
+        return $this->getVersions($filter);
     }
 
     /** @return ProjectVersion[] */
