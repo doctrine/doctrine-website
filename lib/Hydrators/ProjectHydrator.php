@@ -9,7 +9,7 @@ use Doctrine\Website\Model\ProjectIntegrationType;
 use Doctrine\Website\Model\ProjectStats;
 use Doctrine\Website\Model\ProjectVersion;
 
-use function preg_match;
+use function version_compare;
 
 /**
  * @property bool $active
@@ -70,7 +70,8 @@ final class ProjectHydrator extends ModelHydrator
                 ? $version
                 : new ProjectVersion($version);
 
-            if (isset($data['versionFilter']) && preg_match($data['versionFilter'], $projectVersion->getName()) !== 1) {
+            $tagVersion = $projectVersion->getLatestTag()?->getName();
+            if (isset($data['versionsGreaterThan']) && $tagVersion !== null && version_compare($data['versionsGreaterThan'], $tagVersion, '>')) {
                 continue;
             }
 

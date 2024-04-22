@@ -21,7 +21,7 @@ parameters:
         - repositoryName: data-fixtures
         -
             repositoryName: dbal
-            versionFilter: "/^[3-9]\\.[0-9]+/"
+            versionsGreaterThan: "2.99.0"
 
         - repositoryName: doctrine1
         - repositoryName: event-manager

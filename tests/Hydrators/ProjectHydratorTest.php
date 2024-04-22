@@ -165,21 +165,18 @@ class ProjectHydratorTest extends Hydrators
             'name' => 'name',
             'slug' => 'slug',
             'repositoryName' => 'repositoryName',
-            'versionFilter' => '/^2\.0/',
+            'versionsGreaterThan' => '1.99.0',
             'versions' => [
-                ['name' => '1.0.0'],
-                new ProjectVersion(['name' => '2.0.0']),
+                ['name' => '1.0.0', 'tags' => [['name' => '1.0.0', 'date' => '2024-10-10']]],
+                new ProjectVersion(['name' => '2.0.0', 'tags' => [['name' => '2.0.0', 'date' => '2024-10-10']]]),
             ],
-        ];
-
-        $expected = [
-            new ProjectVersion(['name' => '2.0.0']),
         ];
 
         $project = new Project();
 
         $hydrator->hydrate($project, $propertyValues);
 
-        self::assertEquals($expected, $project->getVersions());
+        self::assertCount(1, $project->getVersions());
+        self::assertEquals('2.0.0', $project->getVersions()[0]->getLatestTag()?->getName());
     }
 }
