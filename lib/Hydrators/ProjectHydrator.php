@@ -9,6 +9,8 @@ use Doctrine\Website\Model\ProjectIntegrationType;
 use Doctrine\Website\Model\ProjectStats;
 use Doctrine\Website\Model\ProjectVersion;
 
+use function preg_match;
+
 /**
  * @property bool $active
  * @property bool $archived
@@ -24,7 +26,6 @@ use Doctrine\Website\Model\ProjectVersion;
  * @property string $docsPath
  * @property string $codePath
  * @property string $description
- * @property string|null $versionFilter
  * @property string[] $keywords
  * @property ProjectVersion[] $versions
  * @property ProjectIntegrationType $projectIntegrationType
@@ -57,7 +58,6 @@ final class ProjectHydrator extends ModelHydrator
         $this->codePath            = (string) ($data['codePath'] ?? '/lib');
         $this->description         = (string) ($data['description'] ?? '');
         $this->keywords            = $data['keywords'] ?? [];
-        $this->versionFilter       = $data['versionFilter'] ?? null;
 
         if (! isset($data['versions'])) {
             return;
@@ -66,9 +66,15 @@ final class ProjectHydrator extends ModelHydrator
         $versions = [];
 
         foreach ($data['versions'] as $version) {
-            $versions[] = $version instanceof ProjectVersion
+            $projectVersion = $version instanceof ProjectVersion
                 ? $version
                 : new ProjectVersion($version);
+
+            if (isset($data['versionFilter']) && preg_match($data['versionFilter'], $projectVersion->getName()) !== 1) {
+                continue;
+            }
+
+            $versions[] = $projectVersion;
         }
 
         $this->versions = $versions;

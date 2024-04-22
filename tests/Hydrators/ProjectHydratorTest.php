@@ -157,4 +157,29 @@ class ProjectHydratorTest extends Hydrators
 
         self::assertEquals($expected, $project);
     }
+
+    public function testHydrateWithFilter(): void
+    {
+        $hydrator       = $this->createHydrator(ProjectHydrator::class);
+        $propertyValues = [
+            'name' => 'name',
+            'slug' => 'slug',
+            'repositoryName' => 'repositoryName',
+            'versionFilter' => '/^2\.0/',
+            'versions' => [
+                ['name' => '1.0.0'],
+                new ProjectVersion(['name' => '2.0.0']),
+            ],
+        ];
+
+        $expected = [
+            new ProjectVersion(['name' => '2.0.0']),
+        ];
+
+        $project = new Project();
+
+        $hydrator->hydrate($project, $propertyValues);
+
+        self::assertEquals($expected, $project->getVersions());
+    }
 }
