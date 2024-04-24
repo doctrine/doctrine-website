@@ -144,7 +144,11 @@ class Project implements LoadMetadataInterface
         return $this->keywords;
     }
 
-    /** @return ProjectVersion[] */
+    /**
+     * @phpstan-param Closure(ProjectVersion $version): bool $filter
+     *
+     * @return ProjectVersion[]
+     */
     public function getVersions(Closure|null $filter = null): array
     {
         if ($filter !== null) {

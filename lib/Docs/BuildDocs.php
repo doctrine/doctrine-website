@@ -134,8 +134,10 @@ final readonly class BuildDocs
     /** @return ProjectVersion[] */
     private function getProjectVersionsToBuild(Project $project, string $versionToBuild): array
     {
-        return array_filter($project->getVersions(), static function (ProjectVersion $version) use ($versionToBuild): bool {
+        $filter = static function (ProjectVersion $version) use ($versionToBuild): bool {
             return $versionToBuild === '' || $version->getSlug() === $versionToBuild;
-        });
+        };
+
+        return $project->getVersions($filter);
     }
 }

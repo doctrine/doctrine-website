@@ -9,6 +9,8 @@ use Doctrine\Website\Model\ProjectIntegrationType;
 use Doctrine\Website\Model\ProjectStats;
 use Doctrine\Website\Model\ProjectVersion;
 
+use function version_compare;
+
 /**
  * @property bool $active
  * @property bool $archived
@@ -64,9 +66,16 @@ final class ProjectHydrator extends ModelHydrator
         $versions = [];
 
         foreach ($data['versions'] as $version) {
-            $versions[] = $version instanceof ProjectVersion
+            $projectVersion = $version instanceof ProjectVersion
                 ? $version
                 : new ProjectVersion($version);
+
+            $tagVersion = $projectVersion->getLatestTag()?->getName();
+            if (isset($data['versionsGreaterThan']) && $tagVersion !== null && version_compare($data['versionsGreaterThan'], $tagVersion, '>')) {
+                continue;
+            }
+
+            $versions[] = $projectVersion;
         }
 
         $this->versions = $versions;
