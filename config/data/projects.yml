@@ -31,7 +31,10 @@ parameters:
         - repositoryName: migrations
         - repositoryName: mongodb-odm
         - repositoryName: orientdb-odm
-        - repositoryName: orm
+        -
+            repositoryName: orm
+            versionsGreaterThan: "2.9.99"
+
         - repositoryName: persistence
         - repositoryName: phpcr-odm
         - repositoryName: reflection
