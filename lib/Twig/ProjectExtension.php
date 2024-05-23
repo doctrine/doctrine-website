@@ -42,15 +42,10 @@ final class ProjectExtension extends AbstractExtension
 
         $otherVersionFile = $this->sourceDir . $otherVersionUrl;
 
-        if (! $this->fileExists($otherVersionFile)) {
+        if (! file_exists($otherVersionFile)) {
             return null;
         }
 
         return $otherVersionUrl;
-    }
-
-    protected function fileExists(string $file): bool
-    {
-        return file_exists($file);
     }
 }
