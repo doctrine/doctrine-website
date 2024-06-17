@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Doctrine\ORM\Configuration">
+            <factory class="Doctrine\ORM\ORMSetup" method="createAttributeMetadataConfiguration" />
+            <argument type="collection">
+                <argument type="string">lib/Model</argument>
+            </argument>
+        </service>
+
+        <service id="Doctrine\DBAL\Connection">
+            <factory class="Doctrine\DBAL\DriverManager" method="getConnection" />
+            <argument type="collection">
+                <argument key="driver" type="string">pdo_sqlite</argument>
+                <argument key="path" type="string">%doctrine.website.cache_dir%/doctrine-website.sqlite</argument>
+            </argument>
+        </service>
+
+        <service id="Doctrine\ORM\EntityManager">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <argument type="service" id="Doctrine\ORM\Configuration" />
+        </service>
+
+        <service alias="Doctrine\ORM\EntityManager" id="Doctrine\ORM\EntityManagerInterface" />
+    </services>
+</container>
