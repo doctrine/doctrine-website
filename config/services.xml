@@ -106,26 +106,8 @@
         </service>
 
         <service id="Doctrine\Website\Repositories\DoctrineUserRepository" autowire="false" public="true">
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-            <argument type="service">
-                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service">
-                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
-                            <argument>%doctrine.website.doctrine_users%</argument>
-                        </service>
-                    </argument>
-                    <argument>Doctrine\Website\Model\DoctrineUser</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
-            <argument type="service">
-                <service class="Doctrine\Website\Hydrators\DoctrineUserHydrator">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\Common\EventManager" />
-            <argument>Doctrine\Website\Model\DoctrineUser</argument>
+            <factory service="Doctrine\ORM\EntityManagerInterface" method="getRepository" />
+            <argument type="string">Doctrine\Website\Model\DoctrineUser</argument>
         </service>
 
         <service id="Doctrine\Website\Repositories\SponsorRepository" autowire="false" public="true">
@@ -216,11 +198,6 @@
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\BlogPost</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\BlogPostRepository" />
-            </call>
-
-            <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\DoctrineUser</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\DoctrineUserRepository" />
             </call>
 
             <call method="addObjectRepository">

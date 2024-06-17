@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
-use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
-use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Website\Repositories\DoctrineUserRepository;
 
-class DoctrineUser implements LoadMetadataInterface
+#[ORM\Entity(repositoryClass: DoctrineUserRepository::class)]
+readonly class DoctrineUser
 {
-    private string $name;
-
-    private string $url;
-
-    public static function loadMetadata(ClassMetadataInterface $metadata): void
-    {
-        $metadata->setIdentifier(['name']);
+    public function __construct(
+        #[ORM\Id]
+        #[ORM\Column(type: 'string')]
+        private string $name,
+        #[ORM\Column(type: 'string')]
+        private string $url,
+    ) {
     }
 
     public function getName(): string
