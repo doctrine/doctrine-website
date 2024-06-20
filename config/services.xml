@@ -22,6 +22,7 @@
             <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
             <bind key="$packagistUrlFormat">https://packagist.org/packages/%s.json</bind>
             <bind key="$dataBuilders" tag="doctrine.website.data_builder" type="tagged" />
+            <bind key="$dbPrefills" tag="doctrine.website.db_prefill" type="tagged" />
         </defaults>
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />
@@ -227,6 +228,18 @@
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectIdentityMap" />
             <argument type="service" id="Doctrine\SkeletonMapper\Mapping\ClassMetadataFactory" />
             <argument type="service" id="Doctrine\Common\EventManager" />
+        </service>
+
+        <service id="doctrine.website.data_sources.db_prefill.doctrine_user"
+                 class="Doctrine\Website\DataSources\DbPrefill\SimpleSource">
+            <argument type="string">Doctrine\Website\Model\DoctrineUser</argument>
+            <argument type="service">
+                <service class="Doctrine\Website\DataSources\ArrayDataSource">
+                    <argument>%doctrine.website.doctrine_users%</argument>
+                </service>
+            </argument>
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
+            <tag name="doctrine.website.db_prefill" />
         </service>
     </services>
 </container>
