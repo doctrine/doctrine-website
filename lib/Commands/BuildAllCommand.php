@@ -61,6 +61,7 @@ final class BuildAllCommand extends Command
 
         $buildDocsArgs = $buildSearchIndexes ? ['--search' => null] : [];
         $commands      = [
+            'build-database' => [],
             'sync-repositories' => [],
             'build-website-data' => [],
             'build-docs' => $buildDocsArgs,

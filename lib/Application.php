@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website;
 
 use Doctrine\Website\Commands\BuildAllCommand;
+use Doctrine\Website\Commands\BuildDatabaseCommand;
 use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
 use Doctrine\Website\Commands\BuildWebsiteDataCommand;
@@ -41,6 +42,7 @@ final readonly class Application
         BuildWebsiteDataCommand $buildWebsiteDataCommand,
         ClearBuildCacheCommand $clearBuildCacheCommand,
         SyncRepositoriesCommand $syncRepositoriesCommand,
+        BuildDatabaseCommand $buildDatabaseCommand,
     ) {
         $this->application->add($buildAllCommand);
         $this->application->add($buildDocsCommand);
@@ -48,6 +50,7 @@ final readonly class Application
         $this->application->add($buildWebsiteDataCommand);
         $this->application->add($clearBuildCacheCommand);
         $this->application->add($syncRepositoriesCommand);
+        $this->application->add($buildDatabaseCommand);
 
         $this->application->setHelperSet(new HelperSet([
             'question'      => new QuestionHelper(),
