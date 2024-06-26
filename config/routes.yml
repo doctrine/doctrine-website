@@ -29,7 +29,6 @@ parameters:
 
         sponsorship:
             path: /sponsorship.html
-            controller: Doctrine\Website\Controllers\SponsorshipController::index
             defaults:
                 title: Sponsorship
                 menuSlug: sponsorship

@@ -1,7 +1,6 @@
 imports:
     - { resource: data/partners.yml }
     - { resource: data/projects.yml }
-    - { resource: data/sponsors.yml }
 
 parameters:
     doctrine.website.algolia.app_id: 'YVYTFT9XMW'
