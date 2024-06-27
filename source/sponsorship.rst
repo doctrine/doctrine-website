@@ -15,7 +15,7 @@ Thanks to our sponsors for funding Doctrine development. If you are interested i
 look at how you can support the Doctrine project:
 
 * `OpenCollective <https://opencollective.com/doctrine>`_
-* `GitHub sponsor <https://github.com/sponsors/doctrine>`_
+* `GitHub Sponsors <https://github.com/sponsors/doctrine>`_
 
 OpenCollective
 ~~~~~~~~~~~~~~
