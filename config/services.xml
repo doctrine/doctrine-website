@@ -111,29 +111,6 @@
             <argument type="string">Doctrine\Website\Model\DoctrineUser</argument>
         </service>
 
-        <service id="Doctrine\Website\Repositories\SponsorRepository" autowire="false" public="true">
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-            <argument type="service">
-                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service">
-                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
-                            <argument>%doctrine.website.sponsors%</argument>
-                        </service>
-                    </argument>
-                    <argument>Doctrine\Website\Model\Sponsor</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
-            <argument type="service">
-                <service class="Doctrine\Website\Hydrators\SponsorHydrator">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\Common\EventManager" />
-            <argument>Doctrine\Website\Model\Sponsor</argument>
-        </service>
-
         <service id="Doctrine\Website\Repositories\PartnerRepository" autowire="false" public="true">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
             <argument type="service">
@@ -199,11 +176,6 @@
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\BlogPost</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\BlogPostRepository" />
-            </call>
-
-            <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\Sponsor</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\SponsorRepository" />
             </call>
 
             <call method="addObjectRepository">

@@ -58,7 +58,6 @@
                 <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
                 <argument type="service" id="Doctrine\Website\Controllers\PartnersController" />
                 <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
-                <argument type="service" id="Doctrine\Website\Controllers\SponsorshipController" />
                 <argument type="service" id="Doctrine\Website\Controllers\SitemapController" />
             </argument>
         </service>

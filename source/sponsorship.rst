@@ -8,33 +8,29 @@ funds for swag and travel costs when visiting conferences to support the project
 This page aims to document all the ways in which you can contribute to the project financially. Of course,
 if you can't contribute financially, consider `contributing with code </contribute/index.html>`_.
 
-Our Sponsors
-------------
+Become a sponsor
+----------------
 
-Thanks to the following sponsors for funding Doctrine development. If you are interested in becoming a sponsor, please take a look at the Doctrine `OpenCollective page <https://opencollective.com/doctrine>`_.
+Thanks to our sponsors for funding Doctrine development. If you are interested in becoming a sponsor, please take a
+look at how you can support the Doctrine project:
 
-.. raw:: html
-
-    <ul>
-    {% for sponsor in sponsors %}
-        <li><a href="{{ sponsor.urlWithUtmParameters({utm_medium:'sponsors-list'}) }}" target="_blank" rel="noopener noreferrer"{% if sponsor.highlighted %} class="font-weight-bold"{% endif %} data-ga-category="sponsors" data-ga-action="click" data-ga-label="{{ sponsor.name }}">{{ sponsor.name }}</a></li>
-    {% endfor %}
-    </ul>
+* `OpenCollective <https://opencollective.com/doctrine>`_
+* `GitHub Sponsors <https://github.com/sponsors/doctrine>`_
 
 OpenCollective
--------
+~~~~~~~~~~~~~~
 
 If you or your company uses Doctrine and would like to financially contribute to the project,
 you can do so through our `OpenCollective <https://opencollective.com/doctrine>`_.
 
 Corporate Sponsorships
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 If your company uses Doctrine and would like to financially contribute to the project, please
 e-mail `sponsorship@doctrine-project.org <mailto:sponsorship@doctrine-project.org>`_ to discuss further.
 
 Tidelift
---------
+~~~~~~~~
 
 Get professional support for Doctrine ORM through Tidelift. Available as part of the
 `Tidelift Subscription <https://tidelift.com/subscription/pkg/packagist-doctrine-orm?utm_source=packagist-doctrine-orm&utm_medium=website>`_.
