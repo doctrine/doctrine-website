@@ -5,18 +5,28 @@ declare(strict_types=1);
 namespace Doctrine\Website\Model;
 
 use DateTimeImmutable;
-use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
-use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Website\Repositories\SitemapPageRepository;
 
-class SitemapPage implements LoadMetadataInterface
+#[ORM\Entity(repositoryClass: SitemapPageRepository::class)]
+class SitemapPage
 {
-    public function __construct(private string $url, private DateTimeImmutable $date)
-    {
-    }
+    #[ORM\Column(type: 'datetime_immutable')]
+    private DateTimeImmutable $date;
 
-    public static function loadMetadata(ClassMetadataInterface $metadata): void
-    {
-        $metadata->setIdentifier(['url']);
+    public function __construct(
+        #[ORM\Id]
+        #[ORM\Column(type: 'string')]
+        private string $url,
+        DateTimeImmutable|null $date = null,
+    ) {
+        if ($date !== null) {
+            $this->date = $date;
+
+            return;
+        }
+
+        $this->date = new DateTimeImmutable();
     }
 
     public function getUrl(): string

@@ -154,22 +154,8 @@
         </service>
 
         <service id="Doctrine\Website\Repositories\SitemapPageRepository" autowire="false">
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-            <argument type="service">
-                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service" id="Doctrine\Website\DataSources\SitemapPages" />
-                    <argument>Doctrine\Website\Model\SitemapPage</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
-            <argument type="service">
-                <service class="Doctrine\Website\Hydrators\SitemapPageHydrator">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\Common\EventManager" />
-            <argument>Doctrine\Website\Model\SitemapPage</argument>
+            <factory service="Doctrine\ORM\EntityManagerInterface" method="getRepository" />
+            <argument type="string">Doctrine\Website\Model\SitemapPage</argument>
         </service>
 
         <service id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" autowire="false">
@@ -186,11 +172,6 @@
             <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\Project</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\ProjectRepository" />
-            </call>
-
-            <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\SitemapPage</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\SitemapPageRepository" />
             </call>
         </service>
 
@@ -210,6 +191,14 @@
                     <argument>%doctrine.website.doctrine_users%</argument>
                 </service>
             </argument>
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
+            <tag name="doctrine.website.db_prefill" />
+        </service>
+
+        <service id="doctrine.website.data_sources.db_prefill.sitemap_pages"
+                 class="Doctrine\Website\DataSources\DbPrefill\SimpleSource">
+            <argument type="string">Doctrine\Website\Model\SitemapPage</argument>
+            <argument type="service" id="Doctrine\Website\DataSources\SitemapPages" />
             <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
             <tag name="doctrine.website.db_prefill" />
         </service>
