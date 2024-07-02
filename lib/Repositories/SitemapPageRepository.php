@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Repositories;
 
-use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\Website\Model\SitemapPage;
 
 /**
  * @template T of SitemapPage
- * @template-extends BasicObjectRepository<T>
+ * @template-extends EntityRepository<T>
  */
-class SitemapPageRepository extends BasicObjectRepository
+class SitemapPageRepository extends EntityRepository
 {
-    /** @return SitemapPage[] */
+    /** @inheritDoc */
     public function findAll(): array
     {
-        /** @var SitemapPage[] $sitemapPages */
-        $sitemapPages = $this->findBy([], ['url' => 'asc']);
-
-        return $sitemapPages;
+        return $this->findBy([], ['url' => 'asc']);
     }
 }
