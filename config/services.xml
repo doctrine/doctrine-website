@@ -160,11 +160,6 @@
 
         <service id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" autowire="false">
             <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\BlogPost</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\BlogPostRepository" />
-            </call>
-
-            <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\Partner</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\PartnerRepository" />
             </call>
