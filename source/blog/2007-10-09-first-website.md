@@ -3,7 +3,7 @@ title: "New Website"
 authorName: jwage
 authorEmail:
 categories: []
-permalink: /2007/10/09/new-website.html
+permalink: /2007/10/09/first-website.html
 ---
 As you all may have noticed, we have put up an actual website. The
 manual, api documentation, and trac are now all available from the same

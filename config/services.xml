@@ -106,6 +106,11 @@
             <argument>Doctrine\Website\Model\BlogPost</argument>
         </service>
 
+        <service id="Doctrine\Website\Repositories\BlogPostRepository" autowire="false" public="true">
+            <factory service="Doctrine\ORM\EntityManagerInterface" method="getRepository" />
+            <argument type="string">Doctrine\Website\Model\BlogPost</argument>
+        </service>
+
         <service id="Doctrine\Website\Repositories\DoctrineUserRepository" autowire="false" public="true">
             <factory service="Doctrine\ORM\EntityManagerInterface" method="getRepository" />
             <argument type="string">Doctrine\Website\Model\DoctrineUser</argument>
@@ -160,11 +165,6 @@
 
         <service id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" autowire="false">
             <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\BlogPost</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\BlogPostRepository" />
-            </call>
-
-            <call method="addObjectRepository">
                 <argument>Doctrine\Website\Model\Partner</argument>
                 <argument type="service" id="Doctrine\Website\Repositories\PartnerRepository" />
             </call>
@@ -199,6 +199,14 @@
                  class="Doctrine\Website\DataSources\DbPrefill\SimpleSource">
             <argument type="string">Doctrine\Website\Model\SitemapPage</argument>
             <argument type="service" id="Doctrine\Website\DataSources\SitemapPages" />
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
+            <tag name="doctrine.website.db_prefill" />
+        </service>
+
+        <service id="doctrine.website.data_sources.db_prefill.blog_posts"
+                 class="Doctrine\Website\DataSources\DbPrefill\SimpleSource">
+            <argument type="string">Doctrine\Website\Model\BlogPost</argument>
+            <argument type="service" id="Doctrine\Website\DataSources\BlogPosts" />
             <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
             <tag name="doctrine.website.db_prefill" />
         </service>

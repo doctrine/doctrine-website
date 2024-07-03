@@ -4,26 +4,33 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataSources;
 
-use DateTimeImmutable;
-use Doctrine\Website\DataBuilder\BlogPostDataBuilder;
-use Doctrine\Website\DataBuilder\WebsiteDataReader;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
 
 final readonly class BlogPosts implements DataSource
 {
     public function __construct(
-        private WebsiteDataReader $dataReader,
+        private SourceFileFilesystemReader $sourceFileFilesystemReader,
     ) {
     }
 
     /** @return mixed[][] */
     public function getSourceRows(): array
     {
-        $blogPosts = $this->dataReader
-            ->read(BlogPostDataBuilder::DATA_FILE)
-            ->getData();
+        $sourceFiles = $this->sourceFileFilesystemReader
+            ->getSourceFiles()->in('/blog/');
 
-        foreach ($blogPosts as $key => $blogPost) {
-            $blogPosts[$key]['date'] = new DateTimeImmutable($blogPost['date']);
+        $blogPosts = [];
+
+        foreach ($sourceFiles as $sourceFile) {
+            $blogPosts[] = [
+                'url' => $sourceFile->getParameter('url'),
+                'slug' => $sourceFile->getParameter('slug'),
+                'title' => $sourceFile->getParameter('title'),
+                'authorName' => (string) $sourceFile->getParameter('authorName'),
+                'authorEmail' => (string) $sourceFile->getParameter('authorEmail'),
+                'contents' => $sourceFile->getContents(),
+                'date' => $sourceFile->getDate(),
+            ];
         }
 
         return $blogPosts;
