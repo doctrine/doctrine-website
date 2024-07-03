@@ -5,46 +5,49 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\DataSources;
 
 use DateTimeImmutable;
-use Doctrine\SkeletonMapper\DataSource\Sorter;
-use Doctrine\Website\DataBuilder\BlogPostDataBuilder;
-use Doctrine\Website\DataBuilder\WebsiteData;
-use Doctrine\Website\DataBuilder\WebsiteDataReader;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFile;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileParameters;
+use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\DataSources\BlogPosts;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
-use function usort;
-
 class BlogPostsTest extends TestCase
 {
-    private WebsiteDataReader&MockObject $dataReader;
+    private SourceFileFilesystemReader&MockObject $sourceFileFilesystemReader;
 
     private BlogPosts $blogPosts;
 
     public function testGetSourceRows(): void
     {
-        $data = [
-            ['date' => '2018-09-01'],
-            ['date' => '2018-09-02'],
-        ];
+        $parameters  = new SourceFileParameters([
+            'url' => 'blog/2161/01/01/new-doctrine.rst',
+            'slug' => 'new-doctrine.rst',
+            'title' => 'New Doctrine',
+            'authorName' => 'John Doe',
+            'authorEmail' => 'john.doe@doctrine-website.org',
+        ]);
+        $sourceFile  = new SourceFile(__DIR__ . '/blog/', 'Content, the final frontier', $parameters);
+        $sourceFiles = new SourceFiles([$sourceFile]);
 
-        $this->dataReader->expects(self::once())
-            ->method('read')
-            ->with(BlogPostDataBuilder::DATA_FILE)
-            ->willReturn(new WebsiteData('test', $data));
+        $this->sourceFileFilesystemReader->expects(self::once())
+            ->method('getSourceFiles')
+            ->with('')
+            ->willReturn($sourceFiles);
 
         $blogPostRows = $this->blogPosts->getSourceRows();
 
-        usort($blogPostRows, new Sorter(['date' => 'desc']));
-
         $expected = [
             [
-                'date' => new DateTimeImmutable('2018-09-02'),
+                'url' => 'blog/2161/01/01/new-doctrine.rst',
+                'slug' => 'new-doctrine.rst',
+                'title' => 'New Doctrine',
+                'authorName' => 'John Doe',
+                'authorEmail' => 'john.doe@doctrine-website.org',
+                'contents' => 'Content, the final frontier',
+                'date' => new DateTimeImmutable('2161-01-01'),
             ],
-            [
-                'date' => new DateTimeImmutable('2018-09-01'),
-            ],
-
         ];
 
         self::assertEquals($expected, $blogPostRows);
@@ -52,10 +55,10 @@ class BlogPostsTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->dataReader = $this->createMock(WebsiteDataReader::class);
+        $this->sourceFileFilesystemReader = $this->createMock(SourceFileFilesystemReader::class);
 
         $this->blogPosts = new BlogPosts(
-            $this->dataReader,
+            $this->sourceFileFilesystemReader,
         );
     }
 }
