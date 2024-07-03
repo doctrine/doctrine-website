@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Repositories;
 
-use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\Website\Model\BlogPost;
 use InvalidArgumentException;
 
 /**
  * @template T of BlogPost
- * @template-extends BasicObjectRepository<T>
+ * @template-extends EntityRepository<T>
  */
-class BlogPostRepository extends BasicObjectRepository
+class BlogPostRepository extends EntityRepository
 {
-    /** @return BlogPost[] */
+    /** @inheritDoc */
     public function findAll(): array
     {
         return $this->findBy([], ['date' => 'desc']);

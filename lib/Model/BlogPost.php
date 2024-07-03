@@ -5,25 +5,29 @@ declare(strict_types=1);
 namespace Doctrine\Website\Model;
 
 use DateTimeImmutable;
-use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
-use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Website\Repositories\BlogPostRepository;
 
-class BlogPost implements LoadMetadataInterface
+#[ORM\Entity(repositoryClass: BlogPostRepository::class)]
+class BlogPost
 {
     public function __construct(
+        #[ORM\Column(type: 'string')]
         private string $url,
+        #[ORM\Id]
+        #[ORM\Column(type: 'string')]
         private string $slug,
+        #[ORM\Column(type: 'string')]
         private string $title,
+        #[ORM\Column(type: 'string')]
         private string $authorName,
+        #[ORM\Column(type: 'string')]
         private string $authorEmail,
+        #[ORM\Column(type: 'text')]
         private string $contents,
+        #[ORM\Column(type: 'datetime_immutable')]
         private DateTimeImmutable $date,
     ) {
-    }
-
-    public static function loadMetadata(ClassMetadataInterface $metadata): void
-    {
-        $metadata->setIdentifier(['slug']);
     }
 
     public function getUrl(): string
