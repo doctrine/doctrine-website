@@ -8,6 +8,8 @@
             <factory class="Doctrine\ORM\ORMSetup" method="createAttributeMetadataConfiguration" />
             <argument type="collection">
                 <argument type="string">lib/Model</argument>
+                <argument type="string">lib/Git</argument>
+                <argument type="string">lib/Docs/RST</argument>
             </argument>
         </service>
 

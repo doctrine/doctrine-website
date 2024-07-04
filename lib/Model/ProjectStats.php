@@ -4,17 +4,34 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 final class ProjectStats
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private int|null $id = null;
+
     public function __construct(
+        #[ORM\Column(type: 'integer')]
         private int $githubStars = 0,
+        #[ORM\Column(type: 'integer')]
         private int $githubWatchers = 0,
+        #[ORM\Column(type: 'integer')]
         private int $githubForks = 0,
+        #[ORM\Column(type: 'integer')]
         private int $githubOpenIssues = 0,
+        #[ORM\Column(type: 'integer')]
         private int $dependents = 0,
+        #[ORM\Column(type: 'integer')]
         private int $suggesters = 0,
+        #[ORM\Column(type: 'integer')]
         private int $totalDownloads = 0,
+        #[ORM\Column(type: 'integer')]
         private int $monthlyDownloads = 0,
+        #[ORM\Column(type: 'integer')]
         private int $dailyDownloads = 0,
     ) {
     }

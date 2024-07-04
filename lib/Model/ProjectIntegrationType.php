@@ -4,20 +4,24 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class ProjectIntegrationType
 {
-    private string $name;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private int|null $id = null;
 
-    private string $url;
-
-    private string $icon;
-
-    /** @param mixed[] $projectIntegrationType */
-    public function __construct(array $projectIntegrationType)
-    {
-        $this->name = (string) ($projectIntegrationType['name'] ?? '');
-        $this->url  = (string) ($projectIntegrationType['url'] ?? '');
-        $this->icon = (string) ($projectIntegrationType['icon'] ?? '');
+    public function __construct(
+        #[ORM\Column(type: 'string')]
+        private string $name = '',
+        #[ORM\Column(type: 'string')]
+        private string $url = '',
+        #[ORM\Column(type: 'string')]
+        private string $icon = '',
+    ) {
     }
 
     public function getName(): string

@@ -4,11 +4,25 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs\RST;
 
-final readonly class RSTLanguage
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Website\Model\ProjectVersion;
+
+#[ORM\Entity]
+final class RSTLanguage
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private int|null $id = null;
+
+    #[ORM\ManyToOne(targetEntity: ProjectVersion::class, inversedBy: 'docsLanguages')]
+    private ProjectVersion $projectVersion;
+
     public function __construct(
-        private string $code,
-        private string $path,
+        #[ORM\Column(type: 'string')]
+        private readonly string $code,
+        #[ORM\Column(type: 'string')]
+        private readonly string $path,
     ) {
     }
 

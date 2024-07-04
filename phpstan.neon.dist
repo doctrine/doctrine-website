@@ -23,5 +23,4 @@ parameters:
         message: "#contains unresolvable type#"
         path: "tests/"
       -
-        message: "#Parameter \\#4 \\$metadataFactory#"
-        path: "tests/Hydrators/Hydrators.php"
+        message: "#::\\$id is never read, only written#"
