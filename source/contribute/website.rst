@@ -103,19 +103,6 @@ Now are you ready to start building the website! Build the documentation with th
 
     $ ./bin/console build-docs
 
-API Documentation
-~~~~~~~~~~~~~~~~~
-
-By default only the RST docs are built. You need to pass the ``--api``
-option to also generate the API docs:
-
-.. code-block:: console
-
-    $ ./bin/console build-docs --api
-
-We use `Sami <https://github.com/FriendsOfPHP/Sami>`_ for generating the
-PHP API documentation for each project.
-
 Search Indexes
 ~~~~~~~~~~~~~~
 
