@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,10 +11,8 @@ use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Git\Tag;
 use InvalidArgumentException;
 
-use function array_map;
 use function array_merge;
 use function count;
-use function end;
 use function sprintf;
 
 #[ORM\Entity]
@@ -44,16 +41,16 @@ class ProjectVersion
     private string $slug;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $current = false;
+    private bool $current;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $maintained = true;
+    private bool $maintained;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $upcoming = false;
+    private bool $upcoming;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $hasDocs = true;
+    private bool $hasDocs;
 
     /** @var Collection<int, RSTLanguage> */
     #[ORM\OneToMany(targetEntity: RSTLanguage::class, fetch: 'EAGER', mappedBy: 'projectVersion')]
@@ -77,16 +74,10 @@ class ProjectVersion
         $this->maintained = (bool) ($version['maintained'] ?? true);
         $this->upcoming   = (bool) ($version['upcoming'] ?? false);
         $this->hasDocs    = (bool) ($version['hasDocs'] ?? true);
+        $this->aliases    = $version['aliases'] ?? [];
 
-        $this->docsLanguages = new ArrayCollection(array_map(static function (array $language): RSTLanguage {
-            return new RSTLanguage($language['code'], $language['path']);
-        }, $version['docsLanguages'] ?? []));
-
-        $this->tags = new ArrayCollection(array_map(static function (array $tag): Tag {
-            return new Tag($tag['name'], new DateTimeImmutable($tag['date']));
-        }, $version['tags'] ?? []));
-
-        $this->aliases = $version['aliases'] ?? [];
+        $this->docsLanguages = new ArrayCollection();
+        $this->tags          = new ArrayCollection();
 
         if (! $this->current) {
             return;
@@ -147,6 +138,12 @@ class ProjectVersion
         return $this->hasDocs;
     }
 
+    public function addDocsLanguage(RSTLanguage $docsLanguage): void
+    {
+        $docsLanguage->setProjectVersion($this);
+        $this->docsLanguages->add($docsLanguage);
+    }
+
     /** @return RSTLanguage[] */
     public function getDocsLanguages(): array
     {
@@ -157,6 +154,12 @@ class ProjectVersion
     public function getAliases(): array
     {
         return $this->aliases;
+    }
+
+    public function addTag(Tag $tag): void
+    {
+        $tag->setProjectVersion($this);
+        $this->tags->add($tag);
     }
 
     /** @return Tag[] */
@@ -178,12 +181,12 @@ class ProjectVersion
 
     public function getFirstTag(): Tag|null
     {
-        return $this->tags[0] ?? null;
+        return $this->tags->first() ?: null;
     }
 
     public function getLatestTag(): Tag|null
     {
-        $latestTag = end($this->tags);
+        $latestTag = $this->tags->last();
 
         if ($latestTag === false) {
             return null;
@@ -236,5 +239,15 @@ class ProjectVersion
         $stability ??= $this->getStability();
 
         return $map[$stability] ?? 'secondary';
+    }
+
+    public function setProject(Project $project): void
+    {
+        $this->project = $project;
+    }
+
+    public function getProject(): Project
+    {
+        return $this->project;
     }
 }

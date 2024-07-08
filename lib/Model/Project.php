@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Doctrine\Website\Model;
 
 use Closure;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Website\Repositories\ProjectRepository;
@@ -16,7 +15,7 @@ use function array_values;
 use function sprintf;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
-readonly class Project
+class Project
 {
     /**
      * @param Collection<int, ProjectVersion> $versions
@@ -55,14 +54,17 @@ readonly class Project
         private string $description,
         #[ORM\OneToOne(targetEntity: ProjectIntegrationType::class, fetch: 'EAGER')]
         #[ORM\JoinColumn(name: 'projectIntegrationType', referencedColumnName: 'id', nullable: true)]
-        private ProjectIntegrationType|null $projectIntegrationType = null,
+        private ProjectIntegrationType|null $projectIntegrationType,
         #[ORM\Column(type: 'boolean')]
-        private bool $isIntegration = false,
+        private bool $integration,
         #[ORM\Column(type: 'simple_array')]
-        private array $keywords = [],
+        private array $keywords,
         #[ORM\OneToMany(targetEntity: ProjectVersion::class, fetch: 'EAGER', mappedBy: 'project')]
-        private Collection $versions = new ArrayCollection(),
+        private Collection $versions,
     ) {
+        foreach ($this->versions as $version) {
+            $version->setProject($this);
+        }
     }
 
     public function getProjectIntegrationType(): ProjectIntegrationType|null
@@ -117,7 +119,7 @@ readonly class Project
 
     public function isIntegration(): bool
     {
-        return $this->isIntegration;
+        return $this->integration;
     }
 
     public function getIntegrationFor(): string

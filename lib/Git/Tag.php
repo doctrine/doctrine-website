@@ -100,4 +100,14 @@ final class Tag
 
         return self::STABLE;
     }
+
+    public function setProjectVersion(ProjectVersion $version): void
+    {
+        $this->projectVersion = $version;
+    }
+
+    public function getProjectVersion(): ProjectVersion
+    {
+        return $this->projectVersion;
+    }
 }
