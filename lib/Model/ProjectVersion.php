@@ -57,7 +57,7 @@ class ProjectVersion
     private Collection $docsLanguages;
 
     /** @var string[] */
-    #[ORM\Column(type: 'simple_array')]
+    #[ORM\Column(type: 'simple_array', nullable: true)]
     private array $aliases;
 
     /** @var Collection<int, Tag> */
