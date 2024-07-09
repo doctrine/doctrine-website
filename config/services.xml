@@ -172,5 +172,12 @@
             <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
             <tag name="doctrine.website.db_prefill" />
         </service>
+
+        <service id="doctrine.website.data_sources.db_prefill.projects"
+                 class="Doctrine\Website\DataSources\DbPrefill\Projects">
+            <argument type="service" id="Doctrine\Website\DataSources\Projects" />
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
+            <tag name="doctrine.website.db_prefill" />
+        </service>
     </services>
 </container>
