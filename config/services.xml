@@ -120,7 +120,7 @@
             <argument>Doctrine\Website\Model\Partner</argument>
         </service>
 
-        <service id="Doctrine\Website\Repositories\ProjectRepository" autowire="false">
+        <service id="Doctrine\Website\Repositories\ProjectRepository" autowire="false" public="true">
             <factory service="Doctrine\ORM\EntityManagerInterface" method="getRepository" />
             <argument type="string">Doctrine\Website\Model\Project</argument>
         </service>

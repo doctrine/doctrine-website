@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
+use Doctrine\Website\Model\ProjectStats;
 use Doctrine\Website\Projects\GetTotalDownloads;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Tests\TestCase;
@@ -29,12 +30,7 @@ class GetTotalDownloadsTest extends TestCase
     private function createProjectData(int $totalDownloads): array
     {
         return [
-            'packagistData' => [
-                'package' => [
-                    'downloads' => ['total' => $totalDownloads],
-                ],
-            ],
-            'versions' => [],
+            'projectStats' => new ProjectStats(totalDownloads: $totalDownloads),
         ];
     }
 }

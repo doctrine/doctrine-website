@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Docs;
 
+use DateTimeImmutable;
 use Doctrine\Website\Docs\BuildDocs;
 use Doctrine\Website\Docs\RST\RSTBuilder;
+use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\SearchIndexer;
+use Doctrine\Website\Git\Tag;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Projects\ProjectGitSyncer;
@@ -48,15 +51,8 @@ class BuildDocsTest extends TestCase
     {
         $output = $this->createMock(OutputInterface::class);
 
-        $version = new ProjectVersion([
-            'branchName'    => '1.0',
-            'docsLanguages' => [
-                [
-                    'code'  => 'en',
-                    'path'  => '/en',
-                ],
-            ],
-        ]);
+        $version = new ProjectVersion(['branchName' => '1.0']);
+        $version->addDocsLanguage(new RSTLanguage('en', '/en'));
 
         $repositoryName = 'test-project';
 
@@ -111,6 +107,8 @@ class BuildDocsTest extends TestCase
                 ],
             ],
         ]);
+        $version->addDocsLanguage(new RSTLanguage('en', '/en'));
+        $version->addTag(new Tag('1.0.1', new DateTimeImmutable('2000-01-01')));
 
         $repositoryName = 'test-project';
 
@@ -152,14 +150,8 @@ class BuildDocsTest extends TestCase
     {
         $output = $this->createMock(OutputInterface::class);
 
-        $version = new ProjectVersion([
-            'docsLanguages' => [
-                [
-                    'code' => 'en',
-                    'path' => '/en',
-                ],
-            ],
-        ]);
+        $version = new ProjectVersion([]);
+        $version->addDocsLanguage(new RSTLanguage('en', '/en'));
 
         $repositoryName = 'test-project';
 

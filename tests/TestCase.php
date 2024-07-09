@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryInterface;
 use Doctrine\Website\Application;
 use Doctrine\Website\Model\Project;
-use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\Model\ProjectStats;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+
+use function array_merge;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -40,9 +43,29 @@ abstract class TestCase extends BaseTestCase
     /** @param mixed[] $data */
     protected function createProject(array $data): Project
     {
-        $project = $this->createModel(ProjectRepository::class, $data);
-        self::assertInstanceOf(Project::class, $project);
+        $default = [
+            'projectStats' => new ProjectStats(),
+            'active' => true,
+            'archived' => false,
+            'name' => '',
+            'shortName' => '',
+            'slug' => '',
+            'docsSlug' => '',
+            'composerPackageName' => '',
+            'repositoryName' => '',
+            'integrationFor' => '',
+            'docsRepositoryName' => '',
+            'docsPath' => '',
+            'codePath' => '',
+            'description' => '',
+            'projectIntegrationType' => null,
+            'integration' => true,
+            'keywords' => [],
+            'versions' => new ArrayCollection(),
+        ];
 
-        return $project;
+        $data = array_merge($default, $data);
+
+        return new Project(...$data);
     }
 }
