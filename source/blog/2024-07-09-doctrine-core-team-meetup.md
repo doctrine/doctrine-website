@@ -1,5 +1,5 @@
 ---
-title: "Doctrine Core Team Meetup in Bonn, Germany"
+title: "Doctrine Core Team Meetup 2024 in Bonn, Germany"
 authorName: Benjamin Eberlei
 authorEmail: kontakt@beberlei.de
 permalink: /2024/07/09/doctrine-core-team-meetup.html
