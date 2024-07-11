@@ -53,6 +53,11 @@ class Projects implements DbPrefill
         foreach ($projectData['versions'] ?? [] as $version) {
             $projectVersion = new ProjectVersion($version);
 
+            foreach ($version['tags'] ?? [] as $tag) {
+                $tag = new Tag($tag['name'], new DateTimeImmutable($tag['date']));
+                $projectVersion->addTag($tag);
+            }
+
             $tagVersion = $projectVersion->getLatestTag()?->getName();
             if (isset($projectData['versionsGreaterThan']) && $tagVersion !== null && version_compare($projectData['versionsGreaterThan'], $tagVersion, '>')) {
                 continue;
@@ -61,15 +66,6 @@ class Projects implements DbPrefill
             foreach ($version['docsLanguages'] ?? [] as $language) {
                 $rstLanguage = new RSTLanguage($language['code'], $language['path']);
                 $projectVersion->addDocsLanguage($rstLanguage);
-
-                $this->entityManager->persist($rstLanguage);
-            }
-
-            foreach ($version['tags'] ?? [] as $tag) {
-                $tag = new Tag($tag['name'], new DateTimeImmutable($tag['date']));
-                $projectVersion->addTag($tag);
-
-                $this->entityManager->persist($tag);
             }
 
             $this->entityManager->persist($projectVersion);

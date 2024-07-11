@@ -26,6 +26,6 @@
             <argument type="service" id="Doctrine\ORM\Configuration" />
         </service>
 
-        <service alias="Doctrine\ORM\EntityManager" id="Doctrine\ORM\EntityManagerInterface" />
+        <service alias="Doctrine\ORM\EntityManager" id="Doctrine\ORM\EntityManagerInterface" public="true" />
     </services>
 </container>
