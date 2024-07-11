@@ -53,7 +53,7 @@ class ProjectVersion
     private bool $hasDocs;
 
     /** @var Collection<int, RSTLanguage> */
-    #[ORM\OneToMany(targetEntity: RSTLanguage::class, fetch: 'EAGER', mappedBy: 'projectVersion')]
+    #[ORM\OneToMany(targetEntity: RSTLanguage::class, fetch: 'EAGER', mappedBy: 'projectVersion', orphanRemoval: true)]
     private Collection $docsLanguages;
 
     /** @var string[] */
@@ -61,7 +61,7 @@ class ProjectVersion
     private array $aliases;
 
     /** @var Collection<int, Tag> */
-    #[ORM\OneToMany(targetEntity: Tag::class, fetch: 'EAGER', mappedBy: 'projectVersion')]
+    #[ORM\OneToMany(targetEntity: Tag::class, fetch: 'EAGER', mappedBy: 'projectVersion', orphanRemoval: true)]
     private Collection $tags;
 
     /** @param mixed[] $version */

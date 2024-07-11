@@ -22,7 +22,7 @@ class Project
      * @param string[]                        $keywords
      */
     public function __construct(
-        #[ORM\OneToOne(targetEntity: ProjectStats::class, fetch: 'EAGER')]
+        #[ORM\OneToOne(targetEntity: ProjectStats::class, fetch: 'EAGER', orphanRemoval: true)]
         #[ORM\JoinColumn(name: 'projectStats', referencedColumnName: 'id')]
         private ProjectStats $projectStats,
         #[ORM\Column(type: 'boolean')]
@@ -52,14 +52,14 @@ class Project
         private string $codePath,
         #[ORM\Column(type: 'string')]
         private string $description,
-        #[ORM\OneToOne(targetEntity: ProjectIntegrationType::class, fetch: 'EAGER')]
+        #[ORM\OneToOne(targetEntity: ProjectIntegrationType::class, fetch: 'EAGER', orphanRemoval: true)]
         #[ORM\JoinColumn(name: 'projectIntegrationType', referencedColumnName: 'id', nullable: true)]
         private ProjectIntegrationType|null $projectIntegrationType,
         #[ORM\Column(type: 'boolean')]
         private bool $integration,
         #[ORM\Column(type: 'simple_array')]
         private array $keywords,
-        #[ORM\OneToMany(targetEntity: ProjectVersion::class, fetch: 'EAGER', mappedBy: 'project')]
+        #[ORM\OneToMany(targetEntity: ProjectVersion::class, fetch: 'EAGER', mappedBy: 'project', orphanRemoval: true)]
         private Collection $versions,
     ) {
         foreach ($this->versions as $version) {
