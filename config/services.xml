@@ -145,5 +145,12 @@
             <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
             <tag name="doctrine.website.db_prefill" />
         </service>
+
+        <service id="Doctrine\Website\Docs\RST\Guides" />
+        <service id="Doctrine\Website\Docs\RST\RSTBuilder">
+            <argument key="$builder" type="service" id="Doctrine\Website\Docs\RST\Guides" />
+        </service>
+        <service id="Psr\EventDispatcher\EventDispatcherInterface" class="Symfony\Component\EventDispatcher\EventDispatcher" />
+        <service id="Psr\Log\LoggerInterface" class="Doctrine\Website\Docs\RST\Logger" />
     </services>
 </container>
