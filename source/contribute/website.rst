@@ -73,35 +73,16 @@ your local web server. You will need to setup a virtual host in your web
 server and point the root directory at
 ``/data/doctrine-website/build-dev``.
 
-Sync Project Repositories
--------------------------
+Build static website
+--------------------
 
-First you need to checkout or update the repositories for each project.
-
-.. code-block:: console
-
-    $ ./bin/console sync-repositories
-
-Build Website Data
-------------------
-
-The website build process relies on data that is dynamically pulled from Git, GitHub API
-and YAML files in the ``config`` folder. To build the website data, run the ``build-website-data``
-command.
+To build the full website and its documentation you need to run the command
 
 .. code-block:: console
 
-    $ ./bin/console build-website-data
+    $ ./bin/console build-all
 
-Build Documentation
--------------------
-
-Now are you ready to start building the website! Build the documentation with the
-``build-docs`` command.
-
-.. code-block:: console
-
-    $ ./bin/console build-docs
+This will run several commands in the appropriate order to create the Doctrine website and its content.
 
 Search Indexes
 ~~~~~~~~~~~~~~
@@ -110,27 +91,21 @@ To build the Algolia search indexes pass the ``--search`` option:
 
 .. code-block:: console
 
-    $ ./bin/console build-docs --search
+    $ ./bin/console build-all --search
 
 You will need to have the ``doctrine.website.algolia.admin_api_key``
 parameter in ``config/local.yml`` in order to update the Algolia search
 indexes.
 
-Build the Website
------------------
-
-Now you are ready to build the website for the first time:
-
-.. code-block:: console
-
-    $ ./bin/console build-website
+Open the Doctrine website
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Go take a look at ``lcl.doctrine-project.org`` and the local website
 should render. The built code for the website is written to
 ``/data/doctrine-website/build-dev``.
 
 Watch Frontend Assets
--------------------
+---------------------
 
 After the initial build you can watch for frontend asset changes to update the stylesheets.
 
@@ -139,6 +114,37 @@ After the initial build you can watch for frontend asset changes to update the s
     $ npm run watch
 
 This process will run in the foreground and recompile the assets when a change is made to them. After refreshing the browser you should see the new assets loaded.
+
+Run tests
+---------
+
+The Doctrine website includes Unit Tests and some Integration Tests to cover its functionality and to keep it stable.
+
+JavaScript
+~~~~~~~~~~
+
+If some changes are provided for JavaScript then there have to be test written in `Jest <https://jestjs.io>`. You'll
+find the Jest tests in the ``jest`` directory of the Doctrine website project. The tests can be run with the following
+command:
+
+.. code-block:: console
+
+    $ yarn jest
+
+PHP
+~~~
+
+PHP tests are using `PHPUnit <https://phpunit.de>` to cover its code. If you want to run tests for PHP, you have to
+build the website with the ``test`` environment first.
+
+.. code-block:: console
+
+    $ ./bin/console --env=test build-all
+
+**Why using a different environment for tests?** A full build of the website is essential for running integration tests
+and the stability of the build. The Doctrine project has so many different projects with documentation, that it would take
+too much time, local or in GitHub Actions CI workflows, to finish a build. The ``test`` environment provides a minimal
+configuration to improve runtime while covering all the use cases a website build has.
 
 reStructuredText
 ----------------
