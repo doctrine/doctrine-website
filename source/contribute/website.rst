@@ -123,7 +123,7 @@ The Doctrine website includes Unit Tests and some Integration Tests to cover its
 JavaScript
 ~~~~~~~~~~
 
-If some changes are provided for JavaScript then there have to be test written in `Jest <https://jestjs.io>`. You'll
+If some changes are provided for JavaScript then there have to be tests written in `Jest <https://jestjs.io>`. You'll
 find the Jest tests in the ``jest`` directory of the Doctrine website project. The tests can be run with the following
 command:
 
@@ -134,7 +134,7 @@ command:
 PHP
 ~~~
 
-PHP tests are using `PHPUnit <https://phpunit.de>` to cover its code. If you want to run tests for PHP, you have to
+PHP tests are using `PHPUnit <https://phpunit.de>` to cover the website's PHP code. If you want to run tests for PHP, you have to
 build the website with the ``test`` environment first.
 
 .. code-block:: console
@@ -143,7 +143,7 @@ build the website with the ``test`` environment first.
 
 **Why using a different environment for tests?** A full build of the website is essential for running integration tests
 and the stability of the build. The Doctrine project has so many different projects with documentation, that it would take
-too much time, local or in GitHub Actions CI workflows, to finish a build. The ``test`` environment provides a minimal
+too much time, locally or in GitHub Actions CI workflows, to finish a build. The ``test`` environment provides a minimal
 configuration to improve runtime while covering all the use cases a website build has.
 
 reStructuredText
