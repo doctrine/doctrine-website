@@ -52,6 +52,10 @@
             <argument type="service" id="Doctrine\RST\Kernel" />
         </service>
 
+        <service id="Doctrine\Website\Docs\RST\DoctrineRSTBuilder" >
+             <argument type="service" id="Doctrine\RST\Builder" />
+        </service>
+
         <service id="Doctrine\Website\EventListener\NodeValue" autowire="false" />
         <service id="Doctrine\Website\EventListener\TableIncompatibility" autowire="false" />
 
