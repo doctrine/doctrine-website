@@ -26,12 +26,12 @@ class Projects implements DbPrefill
     public function populate(): void
     {
         foreach ($this->dataSource->getSourceRows() as $sourceRow) {
-            $this->createProject($sourceRow);
+            $this->buildAndSaveProject($sourceRow);
         }
     }
 
     /** @param mixed[] $projectData */
-    private function createProject(array $projectData): void
+    private function buildAndSaveProject(array $projectData): void
     {
         $active              = (bool) ($projectData['active'] ?? true);
         $archived            = (bool) ($projectData['archived'] ?? false);
