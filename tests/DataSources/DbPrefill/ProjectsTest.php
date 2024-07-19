@@ -29,7 +29,7 @@ class ProjectsTest extends TestCase
             return;
         }
 
-        self::markTestSkipped('This test requires ./bin/console build-website to have been ran.');
+        self::markTestSkipped('This test requires ./bin/console build-website to have been run.');
     }
 
     protected function tearDown(): void
