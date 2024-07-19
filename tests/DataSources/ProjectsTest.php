@@ -41,7 +41,7 @@ class ProjectsTest extends TestCase
             ->method('getProjectRepositoryNames')
             ->willReturn(['orm']);
 
-        $this->projectGitSyncer->expects(self::any())
+        $this->projectGitSyncer->expects(self::exactly(2))
             ->method('checkoutDefaultBranch')
             ->with('orm');
 
