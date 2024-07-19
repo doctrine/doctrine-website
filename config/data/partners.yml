@@ -57,7 +57,7 @@ parameters:
             name: 'Tideways'
             slug: 'tideways'
             url: 'https://tideways.com/'
-            logo: '/images/partners/tideways.svg'
+            logo: '/images/partners/tideways.png'
             bio: >
                 Your mission control center for PHP application performance. Tideways saves you
                 time by taking the guesswork out of your app's backend performance. Gain detailed
