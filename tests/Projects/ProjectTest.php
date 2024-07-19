@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
@@ -25,29 +26,29 @@ class ProjectTest extends TestCase
             'composerPackageName' => 'doctrine/test-project',
             'repositoryName' => 'test-project',
             'docsRepositoryName' => 'test-project',
-            'docsDir' => '/docs',
+            'docsPath' => '/docs',
             'codePath' => '/src',
             'description' => 'Test description.',
             'keywords' => ['keyword1', 'keyword2'],
-            'versions' => [
-                [
+            'versions' => new ArrayCollection([
+                new ProjectVersion([
                     'name' => 'master',
                     'branchName' => 'master',
                     'slug' => 'latest',
-                ],
-                [
+                ]),
+                new ProjectVersion([
                     'name' => '2.0',
                     'branchName' => '2.0',
                     'slug' => '2.0',
                     'current' => true,
-                ],
-                [
+                ]),
+                new ProjectVersion([
                     'name' => '1.0',
                     'branchName' => '1.0',
                     'slug' => '1.0',
                     'maintained' => false,
-                ],
-            ],
+                ]),
+            ]),
         ]);
     }
 

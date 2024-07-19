@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace Doctrine\Website\Git;
 
 use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Website\Model\ProjectVersion;
 
 use function ltrim;
 use function stripos;
 use function strpos;
 use function strtoupper;
 
-final readonly class Tag
+#[ORM\Entity]
+final class Tag
 {
     private const ALPHA  = 'alpha';
     private const BETA   = 'beta';
@@ -27,9 +30,19 @@ final readonly class Tag
 
     private const COMPOSER_EPOCH = '2011-09-25';
 
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private int|null $id = null;
+
+    #[ORM\ManyToOne(targetEntity: ProjectVersion::class, inversedBy: 'tags')]
+    private ProjectVersion $projectVersion;
+
     public function __construct(
-        private string $name,
-        private DateTimeImmutable $date,
+        #[ORM\Column(type: 'string')]
+        private readonly string $name,
+        #[ORM\Column(type: 'datetime_immutable')]
+        private readonly DateTimeImmutable $date,
     ) {
     }
 
@@ -86,5 +99,15 @@ final readonly class Tag
         }
 
         return self::STABLE;
+    }
+
+    public function setProjectVersion(ProjectVersion $version): void
+    {
+        $this->projectVersion = $version;
+    }
+
+    public function getProjectVersion(): ProjectVersion
+    {
+        return $this->projectVersion;
     }
 }

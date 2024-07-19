@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Repositories;
 
-use Doctrine\SkeletonMapper\ObjectRepository\BasicObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\Website\Model\Project;
 use InvalidArgumentException;
 
@@ -12,19 +12,10 @@ use function sprintf;
 
 /**
  * @template T of Project
- * @template-extends BasicObjectRepository<T>
+ * @template-extends EntityRepository<T>
  */
-class ProjectRepository extends BasicObjectRepository
+class ProjectRepository extends EntityRepository
 {
-    /** @return Project[] */
-    public function findAll(): array
-    {
-        /** @var Project[] $projects */
-        $projects = parent::findAll();
-
-        return $projects;
-    }
-
     public function findOneBySlug(string $slug): Project
     {
         $project = $this->findOneBy(['slug' => $slug]);

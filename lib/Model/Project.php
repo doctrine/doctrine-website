@@ -5,57 +5,66 @@ declare(strict_types=1);
 namespace Doctrine\Website\Model;
 
 use Closure;
-use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
-use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Website\Repositories\ProjectRepository;
 use InvalidArgumentException;
 
 use function array_filter;
 use function array_values;
 use function sprintf;
 
-class Project implements LoadMetadataInterface
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
+class Project
 {
-    private ProjectIntegrationType|null $projectIntegrationType = null;
-
-    private ProjectStats $projectStats;
-
-    private bool $active;
-
-    private bool $archived;
-
-    private string $name;
-
-    private string $shortName;
-
-    private string $slug;
-
-    private string $docsSlug;
-
-    private string $composerPackageName;
-
-    private string $repositoryName;
-
-    private bool $isIntegration = false;
-
-    private string $integrationFor;
-
-    private string $docsRepositoryName;
-
-    private string $docsPath;
-
-    private string $codePath;
-
-    private string $description;
-
-    /** @var string[] */
-    private array $keywords = [];
-
-    /** @var ProjectVersion[] */
-    private array $versions = [];
-
-    public static function loadMetadata(ClassMetadataInterface $metadata): void
-    {
-        $metadata->setIdentifier(['slug']);
+    /**
+     * @param Collection<int, ProjectVersion> $versions
+     * @param string[]                        $keywords
+     */
+    public function __construct(
+        #[ORM\OneToOne(targetEntity: ProjectStats::class, fetch: 'EAGER', orphanRemoval: true)]
+        #[ORM\JoinColumn(name: 'projectStats', referencedColumnName: 'id')]
+        private ProjectStats $projectStats,
+        #[ORM\Column(type: 'boolean')]
+        private bool $active,
+        #[ORM\Column(type: 'boolean')]
+        private bool $archived,
+        #[ORM\Column(type: 'string')]
+        private string $name,
+        #[ORM\Column(type: 'string')]
+        private string $shortName,
+        #[ORM\Id]
+        #[ORM\Column(type: 'string')]
+        private string $slug,
+        #[ORM\Column(type: 'string')]
+        private string $docsSlug,
+        #[ORM\Column(type: 'string')]
+        private string $composerPackageName,
+        #[ORM\Column(type: 'string')]
+        private string $repositoryName,
+        #[ORM\Column(type: 'string')]
+        private string $integrationFor,
+        #[ORM\Column(type: 'string')]
+        private string $docsRepositoryName,
+        #[ORM\Column(type: 'string')]
+        private string $docsPath,
+        #[ORM\Column(type: 'string')]
+        private string $codePath,
+        #[ORM\Column(type: 'string')]
+        private string $description,
+        #[ORM\OneToOne(targetEntity: ProjectIntegrationType::class, fetch: 'EAGER', orphanRemoval: true)]
+        #[ORM\JoinColumn(name: 'projectIntegrationType', referencedColumnName: 'id', nullable: true)]
+        private ProjectIntegrationType|null $projectIntegrationType,
+        #[ORM\Column(type: 'boolean')]
+        private bool $integration,
+        #[ORM\Column(type: 'simple_array')]
+        private array $keywords,
+        #[ORM\OneToMany(targetEntity: ProjectVersion::class, fetch: 'EAGER', mappedBy: 'project', orphanRemoval: true)]
+        private Collection $versions,
+    ) {
+        foreach ($this->versions as $version) {
+            $version->setProject($this);
+        }
     }
 
     public function getProjectIntegrationType(): ProjectIntegrationType|null
@@ -110,7 +119,7 @@ class Project implements LoadMetadataInterface
 
     public function isIntegration(): bool
     {
-        return $this->isIntegration;
+        return $this->integration;
     }
 
     public function getIntegrationFor(): string
@@ -151,11 +160,13 @@ class Project implements LoadMetadataInterface
      */
     public function getVersions(Closure|null $filter = null): array
     {
+        $versions = $this->versions->getValues();
+
         if ($filter !== null) {
-            return array_values(array_filter($this->versions, $filter));
+            return array_values(array_filter($versions, $filter));
         }
 
-        return $this->versions;
+        return $versions;
     }
 
     /** @return ProjectVersion[] */

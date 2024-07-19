@@ -43,7 +43,6 @@ class WebsiteBuilder
         private readonly SourceFileRepository $sourceFileRepository,
         private readonly SourceFilesBuilder $sourceFilesBuilder,
         private readonly string $rootDir,
-        private readonly string $cacheDir,
         private readonly string $webpackBuildDir,
     ) {
     }
@@ -71,8 +70,6 @@ class WebsiteBuilder
         }
 
         $this->createProjectVersionAliases($buildDir);
-
-        $this->copyWebsiteBuildData($output, $buildDir);
 
         $output->writeln(' - done');
     }
@@ -147,20 +144,6 @@ class WebsiteBuilder
                 }
             }
         }
-    }
-
-    private function copyWebsiteBuildData(OutputInterface $output, string $buildDir): void
-    {
-        $from = $this->cacheDir . '/data';
-        $to   = $buildDir . '/website-data';
-
-        $output->writeln(sprintf(
-            ' - copying website build data from <info>%s</info> to <info>%s</info>.',
-            $from,
-            $to,
-        ));
-
-        $this->filesystem->mirror($from, $to);
     }
 
     private function createDocsProjectVersionAlias(

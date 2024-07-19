@@ -1,0 +1,201 @@
+[
+    {
+        "active": true,
+        "archived": false,
+        "integration": false,
+        "name": "Testproject",
+        "repositoryName": "testproject",
+        "docsPath": "/docs",
+        "codePath": "/lib",
+        "slug": "testproject",
+        "versionsGreaterThan": "1.0.1",
+        "versions": [
+            {
+                "name": "2.0",
+                "branchName": "2.0.x",
+                "aliases": [
+                    "foo"
+                ],
+                "current": true,
+                "maintained": true,
+                "tags": [
+                    {
+                        "name": "2.0.0",
+                        "date": "2022-12-19 18:24:23"
+                    }
+                ],
+                "hasDocs": true,
+                "docsLanguages": [
+                    {
+                        "code": "en",
+                        "path": "projects/testproject/docs/en"
+                    }
+                ]
+            },
+            {
+                "name": "1.0",
+                "slug": "1.0",
+                "branchName": null,
+                "tags": [
+                    {
+                        "name": "v1.0",
+                        "date": "2013-01-12 20:26:03"
+                    }
+                ],
+                "maintained": false,
+                "hasDocs": false,
+                "docsLanguages": []
+            }
+        ],
+        "composerPackageName": "doctrine/testproject",
+        "description": "It's a testproject",
+        "keywords": [
+            "testproject",
+            "docblock",
+            "parser"
+        ],
+        "docsSlug": "doctrine-testproject",
+        "packagistData": {
+            "package": {
+                "name": "doctrine/testproject",
+                "description": "It's a testproject",
+                "time": "2013-01-12T19:24:37+00:00",
+                "maintainers": [
+                    {
+                        "name": "beberlei",
+                        "avatar_url": "https://www.gravatar.com/avatar/75f5fb3ddda052e46f1daed314ae69ab?d=identicon"
+                    }
+                ],
+                "versions": {
+                    "2.0.0": {
+                        "name": "doctrine/testproject",
+                        "description": "It's a testproject",
+                        "keywords": [
+                            "testproject",
+                            "parser",
+                            "docblock"
+                        ],
+                        "homepage": "https://www.doctrine-project.org/projects/testproject.html",
+                        "version": "2.0.0",
+                        "version_normalized": "2.0.0.0",
+                        "license": [
+                            "MIT"
+                        ],
+                        "authors": [
+                            {
+                                "name": "John Doe",
+                                "email": "john@doe.dev",
+                                "role": "Creator"
+                            }
+                        ],
+                        "source": {
+                            "url": "https://github.com/doctrine/testproject.git",
+                            "type": "git",
+                            "reference": "d02c9f3742044e17d5fa8d28d8402a2d95c33302"
+                        },
+                        "dist": {
+                            "url": "https://api.github.com/repos/doctrine/testproject/zipball/d02c9f3742044e17d5fa8d28d8402a2d95c33302",
+                            "type": "zip",
+                            "shasum": "",
+                            "reference": "d02c9f3742044e17d5fa8d28d8402a2d95c33302"
+                        },
+                        "type": "library",
+                        "support": {
+                            "issues": "https://github.com/doctrine/testproject/issues",
+                            "source": "https://github.com/doctrine/testproject/tree/2.0.0"
+                        },
+                        "funding": [],
+                        "time": "2022-12-19T18:17:20+00:00",
+                        "autoload": {
+                            "psr-4": {
+                                "Doctrine\\Common\\Testproject\\": "lib/Doctrine/Common/Testproject"
+                            }
+                        },
+                        "require": {
+                            "php": "^7.2 || ^8.0",
+                            "ext-tokenizer": "*",
+                            "doctrine/lexer": "^2 || ^3",
+                            "psr/cache": "^1 || ^2 || ^3"
+                        },
+                        "require-dev": {
+                            "doctrine/cache": "^2.0",
+                            "doctrine/coding-standard": "^10",
+                            "phpstan/phpstan": "^1.8.0",
+                            "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                            "symfony/cache": "^5.4 || ^6",
+                            "vimeo/psalm": "^4.10"
+                        },
+                        "suggest": {
+                            "php": "PHP 8.0 or higher comes with attributes, a native replacement for testproject"
+                        }
+                    },
+                    "v1.0": {
+                        "name": "doctrine/testproject",
+                        "description": "It's a testproject",
+                        "keywords": [
+                            "testproject",
+                            "parser",
+                            "docblock"
+                        ],
+                        "homepage": "http://www.doctrine-project.org",
+                        "version": "v1.0",
+                        "version_normalized": "1.0.0.0",
+                        "license": [
+                            "MIT"
+                        ],
+                        "authors": [
+                            {
+                                "name": "John Doe",
+                                "email": "john@doe.dev",
+                                "role": "Creator"
+                            }
+                        ],
+                        "source": {
+                            "url": "https://github.com/doctrine/testproject.git",
+                            "type": "git",
+                            "reference": "fae359b3efd908e407a0105ff8956b5c94ddca8e"
+                        },
+                        "dist": {
+                            "url": "https://api.github.com/repos/doctrine/testproject/zipball/fae359b3efd908e407a0105ff8956b5c94ddca8e",
+                            "type": "zip",
+                            "shasum": "",
+                            "reference": "fae359b3efd908e407a0105ff8956b5c94ddca8e"
+                        },
+                        "type": "library",
+                        "support": {
+                            "source": "https://github.com/doctrine/testproject/tree/v1.0"
+                        },
+                        "time": "2013-01-12T19:23:32+00:00",
+                        "autoload": {
+                            "psr-0": {
+                                "Doctrine\\Common\\Testproject\\": "lib/"
+                            }
+                        },
+                        "require": {
+                            "php": ">=5.3.2",
+                            "doctrine/lexer": "1.*"
+                        },
+                        "require-dev": {
+                            "doctrine/cache": "1.*"
+                        }
+                    }
+                },
+                "type": "library",
+                "repository": "https://github.com/doctrine/testproject",
+                "github_stars": 6729,
+                "github_watchers": 41,
+                "github_forks": 236,
+                "github_open_issues": 30,
+                "language": "PHP",
+                "dependents": 2349,
+                "suggesters": 74,
+                "downloads": {
+                    "total": 426454499,
+                    "monthly": 6487217,
+                    "daily": 260080
+                },
+                "favers": 6768
+            }
+        }
+    }
+]

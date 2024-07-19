@@ -35,7 +35,7 @@ class FunctionalTest extends TestCase
             return;
         }
 
-        self::markTestSkipped('This test requires ./bin/console build-website to have been ran.');
+        self::markTestSkipped('This test requires ./bin/console build-website to have been run.');
     }
 
     public function testProjectVersionsAndTags(): void

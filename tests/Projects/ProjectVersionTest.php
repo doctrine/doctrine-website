@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Projects;
 
+use DateTimeImmutable;
+use Doctrine\Website\Git\Tag;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
 
@@ -85,14 +87,8 @@ class ProjectVersionTest extends TestCase
 
         self::assertFalse($projectVersion->hasTags());
 
-        $projectVersion = new ProjectVersion([
-            'tags' => [
-                [
-                    'name' => '1.0',
-                    'date' => '2000-01-01',
-                ],
-            ],
-        ]);
+        $projectVersion = new ProjectVersion([]);
+        $projectVersion->addTag(new Tag('1.0', new DateTimeImmutable('2000-01-01')));
 
         self::assertTrue($projectVersion->hasTags());
     }

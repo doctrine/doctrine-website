@@ -29,8 +29,6 @@ class WebsiteBuilderTest extends TestCase
 
     private string $rootDir;
 
-    private string $cacheDir;
-
     private string $webpackBuildDir;
 
     private WebsiteBuilder&MockObject $websiteBuilder;
@@ -43,7 +41,6 @@ class WebsiteBuilderTest extends TestCase
         $this->sourceFileRepository = $this->createMock(SourceFileRepository::class);
         $this->sourceFilesBuilder   = $this->createMock(SourceFilesBuilder::class);
         $this->rootDir              = '/data/doctrine-website-build-staging';
-        $this->cacheDir             = '/data/doctrine-website-build-staging/cache';
         $this->webpackBuildDir      = '/data/doctrine-website-build-staging/.webpack-build';
 
         $this->websiteBuilder = $this->getMockBuilder(WebsiteBuilder::class)
@@ -54,7 +51,6 @@ class WebsiteBuilderTest extends TestCase
                 $this->sourceFileRepository,
                 $this->sourceFilesBuilder,
                 $this->rootDir,
-                $this->cacheDir,
                 $this->webpackBuildDir,
             ])
             ->onlyMethods(['filePutContents'])
@@ -92,6 +88,5 @@ class WebsiteBuilderTest extends TestCase
         $this->websiteBuilder->build($output, $buildDir, $env);
 
         self::assertSame($buildDir . '/frontend', $mirrored[$this->webpackBuildDir]);
-        self::assertSame($buildDir . '/website-data', $mirrored[$this->cacheDir . '/data']);
     }
 }

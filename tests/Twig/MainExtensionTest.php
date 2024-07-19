@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Twig;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
@@ -51,12 +52,12 @@ class MainExtensionTest extends TestCase
 
         $project = $this->createProject([
             'shortName' => 'ORM',
-            'versions' => [
-                [
+            'versions' => new ArrayCollection([
+                new ProjectVersion([
                     'slug' => 'latest',
                     'name' => '1.0',
-                ],
-            ],
+                ]),
+            ]),
         ]);
 
         $projectVersion = new ProjectVersion(['name' => '1.0']);
