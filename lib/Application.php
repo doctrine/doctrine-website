@@ -8,7 +8,6 @@ use Doctrine\Website\Commands\BuildAllCommand;
 use Doctrine\Website\Commands\BuildDatabaseCommand;
 use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
-use Doctrine\Website\Commands\BuildWebsiteDataCommand;
 use Doctrine\Website\Commands\ClearBuildCacheCommand;
 use Doctrine\Website\Commands\SyncRepositoriesCommand;
 use Symfony\Component\Config\FileLocator;
@@ -39,7 +38,6 @@ final readonly class Application
         BuildAllCommand $buildAllCommand,
         BuildDocsCommand $buildDocsCommand,
         BuildWebsiteCommand $buildWebsiteCommand,
-        BuildWebsiteDataCommand $buildWebsiteDataCommand,
         ClearBuildCacheCommand $clearBuildCacheCommand,
         SyncRepositoriesCommand $syncRepositoriesCommand,
         BuildDatabaseCommand $buildDatabaseCommand,
@@ -47,7 +45,6 @@ final readonly class Application
         $this->application->add($buildAllCommand);
         $this->application->add($buildDocsCommand);
         $this->application->add($buildWebsiteCommand);
-        $this->application->add($buildWebsiteDataCommand);
         $this->application->add($clearBuildCacheCommand);
         $this->application->add($syncRepositoriesCommand);
         $this->application->add($buildDatabaseCommand);

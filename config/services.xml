@@ -21,7 +21,6 @@
             <bind key="$webpackBuildDir">%doctrine.website.webpack_build_dir%</bind>
             <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
             <bind key="$packagistUrlFormat">https://packagist.org/packages/%s.json</bind>
-            <bind key="$dataBuilders" tag="doctrine.website.data_builder" type="tagged" />
             <bind key="$dbPrefills" tag="doctrine.website.db_prefill" type="tagged" />
         </defaults>
 
