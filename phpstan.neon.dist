@@ -13,9 +13,6 @@ parameters:
         message: "#While loop condition is always true#"
         path: "lib/Commands/BuildWebsiteCommand.php"
         count: 1
-      - # Will be removed once hydrators are completely gone
-        message: "#is never written, only read#"
-        path: "lib/Model/*.php"
       - # Temporary final classes in tests are covered by nunomaduro/mock-final-classes until the refactorings start
         message: "#has unresolvable native type#"
         path: "tests/"
@@ -24,5 +21,3 @@ parameters:
         path: "tests/"
       -
         message: "#::\\$id is never read, only written#"
-      - # Will be removed once hydrators are completely gone
-        message: "/Parameter #4 \\$metadataFactory/"
