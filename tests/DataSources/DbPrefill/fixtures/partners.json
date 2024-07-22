@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Name",
+        "slug": "testpartner",
+        "url": "https://testpartner.bird",
+        "utmParameters": {
+            "utm_source": "source",
+            "utm_campaign": "campaign",
+            "utm_medium": "medium"
+        },
+        "logo": "testpartner.svg",
+        "bio": "bio",
+        "details": {
+            "label": "Features",
+            "items": [
+                "Stuff",
+                "More Stuff"
+            ]
+        },
+        "featured": true
+    }
+]
