@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryInterface;
 use Doctrine\Website\Application;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectStats;
@@ -25,19 +24,6 @@ abstract class TestCase extends BaseTestCase
         }
 
         return self::$container;
-    }
-
-    /** @param mixed[] $data */
-    protected function createModel(string $repositoryClassName, array $data): object
-    {
-        $repository = $this->getContainer()->get($repositoryClassName);
-        self::assertInstanceOf(ObjectRepositoryInterface::class, $repository);
-
-        $object = $repository->create($repository->getClassName());
-
-        $repository->hydrate($object, $data);
-
-        return $object;
     }
 
     /** @param mixed[] $data */

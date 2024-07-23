@@ -97,26 +97,8 @@
         </service>
 
         <service id="Doctrine\Website\Repositories\PartnerRepository" autowire="false" public="true">
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-            <argument type="service">
-                <service class="Doctrine\SkeletonMapper\DataSource\DataSourceObjectDataRepository" autowire="false">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                    <argument type="service">
-                        <service class="Doctrine\Website\DataSources\ArrayDataSource">
-                            <argument>%doctrine.website.partners%</argument>
-                        </service>
-                    </argument>
-                    <argument>Doctrine\Website\Model\Partner</argument>
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\SkeletonMapper\ObjectFactory" />
-            <argument type="service">
-                <service class="Doctrine\Website\Hydrators\PartnerHydrator">
-                    <argument type="service" id="Doctrine\SkeletonMapper\ObjectManager" />
-                </service>
-            </argument>
-            <argument type="service" id="Doctrine\Common\EventManager" />
-            <argument>Doctrine\Website\Model\Partner</argument>
+            <factory service="Doctrine\ORM\EntityManagerInterface" method="getRepository" />
+            <argument type="string">Doctrine\Website\Model\Partner</argument>
         </service>
 
         <service id="Doctrine\Website\Repositories\ProjectRepository" autowire="false" public="true">
@@ -129,12 +111,7 @@
             <argument type="string">Doctrine\Website\Model\SitemapPage</argument>
         </service>
 
-        <service id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" autowire="false">
-            <call method="addObjectRepository">
-                <argument>Doctrine\Website\Model\Partner</argument>
-                <argument type="service" id="Doctrine\Website\Repositories\PartnerRepository" />
-            </call>
-        </service>
+        <service id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" autowire="false" />
 
         <service id="Doctrine\SkeletonMapper\ObjectManager" autowire="false">
             <argument type="service" id="Doctrine\SkeletonMapper\ObjectRepository\ObjectRepositoryFactory" />
@@ -175,6 +152,17 @@
         <service id="doctrine.website.data_sources.db_prefill.projects"
                  class="Doctrine\Website\DataSources\DbPrefill\Projects">
             <argument type="service" id="Doctrine\Website\DataSources\Projects" />
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
+            <tag name="doctrine.website.db_prefill" />
+        </service>
+
+        <service id="doctrine.website.data_sources.db_prefill.partners"
+                 class="Doctrine\Website\DataSources\DbPrefill\Partners">
+            <argument type="service">
+                <service class="Doctrine\Website\DataSources\ArrayDataSource">
+                    <argument>%doctrine.website.partners%</argument>
+                </service>
+            </argument>
             <argument type="service" id="Doctrine\ORM\EntityManagerInterface" />
             <tag name="doctrine.website.db_prefill" />
         </service>

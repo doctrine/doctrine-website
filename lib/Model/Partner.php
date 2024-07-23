@@ -4,30 +4,36 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Model;
 
-use Doctrine\SkeletonMapper\Mapping\ClassMetadataInterface;
-use Doctrine\SkeletonMapper\Mapping\LoadMetadataInterface;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Website\Repositories\PartnerRepository;
 
-final class Partner implements LoadMetadataInterface
+use function array_merge;
+use function http_build_query;
+
+#[ORM\Entity(repositoryClass: PartnerRepository::class)]
+final class Partner
 {
-    private string $name;
-
-    private string $slug;
-
-    private string $url;
-
-    private UtmParameters $utmParameters;
-
-    private string $logo;
-
-    private string $bio;
-
-    private PartnerDetails $details;
-
-    private bool $featured;
-
-    public static function loadMetadata(ClassMetadataInterface $metadata): void
-    {
-        $metadata->setIdentifier(['slug']);
+    /** @param array<string, scalar> $utmParameters */
+    public function __construct(
+        #[ORM\Column(type: 'string')]
+        private string $name,
+        #[ORM\Id]
+        #[ORM\Column(type: 'string')]
+        private string $slug,
+        #[ORM\Column(type: 'string')]
+        private string $url,
+        #[ORM\Column(type: 'json')]
+        private array $utmParameters,
+        #[ORM\Column(type: 'string')]
+        private string $logo,
+        #[ORM\Column(type: 'text')]
+        private string $bio,
+        #[ORM\OneToOne(targetEntity: PartnerDetails::class, fetch: 'EAGER', orphanRemoval: true)]
+        #[ORM\JoinColumn(name: 'details', referencedColumnName: 'id')]
+        private PartnerDetails $details,
+        #[ORM\Column(type: 'boolean')]
+        private bool $featured,
+    ) {
     }
 
     public function getName(): string
@@ -48,7 +54,13 @@ final class Partner implements LoadMetadataInterface
     /** @param string[] $parameters */
     public function getUrlWithUtmParameters(array $parameters = []): string
     {
-        return $this->utmParameters->buildUrl($this->url, $parameters);
+        return $this->buildUrl($this->url, $parameters);
+    }
+
+    /** @param string[] $parameters */
+    private function buildUrl(string $url, array $parameters = []): string
+    {
+        return $url . '?' . http_build_query(array_merge($this->utmParameters, $parameters));
     }
 
     public function getLogo(): string
