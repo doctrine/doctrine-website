@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea7150ae4230543e9ce3a6957ce0c0c4",
+    "content-hash": "ec98ddcba45e7d0d36d1ac29d8038f18",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -974,64 +974,6 @@
                 "source": "https://github.com/doctrine/rst-parser/tree/0.5.6"
             },
             "time": "2024-01-14T11:02:23+00:00"
-        },
-        {
-            "name": "doctrine/skeleton-mapper",
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/skeleton-mapper.git",
-                "reference": "8799bf8f677c3fbd2e16ac02a267a64c5ba035f7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/skeleton-mapper/zipball/8799bf8f677c3fbd2e16ac02a267a64c5ba035f7",
-                "reference": "8799bf8f677c3fbd2e16ac02a267a64c5ba035f7",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/collections": "^1.8|^2.2",
-                "doctrine/instantiator": "^1.5|^2.0",
-                "doctrine/persistence": "^3.1",
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "doctrine/coding-standard": "^12.0",
-                "phpstan/phpstan": "^1.11",
-                "phpstan/phpstan-deprecation-rules": "^1.2",
-                "phpstan/phpstan-phpunit": "^1.4",
-                "phpstan/phpstan-strict-rules": "^1.6",
-                "phpunit/phpunit": "~9.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\SkeletonMapper": "lib/",
-                    "Doctrine\\SkeletonMapper\\Tests": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonathan H. Wage",
-                    "email": "jonwage@gmail.com"
-                }
-            ],
-            "description": "The Doctrine SkeletonMapper is a skeleton object mapper where you are 100% responsible for implementing the guts of the persistence operations. This means you write plain old PHP code for the data repositories, object repositories, object hydrators and object persisters.",
-            "homepage": "https://www.doctrine-project.org/projects/skeleton-mapper.html",
-            "keywords": [
-                "database",
-                "object",
-                "persistence"
-            ],
-            "support": {
-                "issues": "https://github.com/doctrine/skeleton-mapper/issues",
-                "source": "https://github.com/doctrine/skeleton-mapper/tree/2.0.1"
-            },
-            "time": "2024-06-11T07:04:13+00:00"
         },
         {
             "name": "doctrine/static-website-generator",

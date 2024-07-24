@@ -17,7 +17,6 @@
         "doctrine/inflector": "^2.0",
         "doctrine/orm": "^3.2",
         "doctrine/rst-parser": "^0.5",
-        "doctrine/skeleton-mapper": "^2.0",
         "doctrine/static-website-generator": "^2.1",
         "erusev/parsedown": "^1.7",
         "knplabs/github-api": "^3.9",
