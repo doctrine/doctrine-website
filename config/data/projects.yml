@@ -39,7 +39,6 @@ parameters:
         - repositoryName: phpcr-odm
         - repositoryName: reflection
         - repositoryName: rst-parser
-        - repositoryName: skeleton-mapper
         -
             repositoryName: DoctrineBundle
             integration: true
