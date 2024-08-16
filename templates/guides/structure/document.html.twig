@@ -8,8 +8,11 @@ docsSourcePath: "/en/{{ node.filePath }}.rst"
 {% block sidebar %}
 {% endverbatim %}
 
-{{ renderNode(node.tocNodes) }}
-
+{% for id,value in node.documentPartNodes %}
+    {% if id == 'sidebar' %}
+        {{ renderNode(value) }}
+    {% endif %}
+{% endfor %}
 
 {% verbatim %}
 {% endblock %}{% block content %}{% verbatim %}
