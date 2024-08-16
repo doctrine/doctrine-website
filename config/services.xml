@@ -156,5 +156,9 @@
         </service>
         <service id="Psr\EventDispatcher\EventDispatcherInterface" class="Symfony\Component\EventDispatcher\EventDispatcher" />
         <service id="Psr\Log\LoggerInterface" class="Doctrine\Website\Docs\RST\Logger" />
+
+        <service id="Doctrine\Website\Guides\Renderer\CodeBlockRenderer">
+            <tag name="phpdoc.guides.noderenderer.html" />
+        </service>
     </services>
 </container>
