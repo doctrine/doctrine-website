@@ -160,5 +160,9 @@
         <service id="Doctrine\Website\Guides\Renderer\CodeBlockRenderer">
             <tag name="phpdoc.guides.noderenderer.html" />
         </service>
+
+        <service id="Doctrine\Website\Guides\Compiler\SidebarTransformer">
+            <tag name="phpdoc.guides.compiler.nodeTransformers" />
+        </service>
     </services>
 </container>
