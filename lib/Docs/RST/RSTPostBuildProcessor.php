@@ -37,6 +37,7 @@ class RSTPostBuildProcessor
 
     public function postRstBuild(Project $project, ProjectVersion $version, RSTLanguage $language): void
     {
+        return;
         $projectVersionDocsOutputPath = $project->getProjectVersionDocsOutputPath(
             $this->sourceDir,
             $version,

@@ -8,10 +8,13 @@ use Doctrine\Website\Assets\AssetIntegrityGenerator;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Parsedown;
+use phpDocumentor\Guides\Nodes\Menu\TocNode;
+use phpDocumentor\Guides\Nodes\Node;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
+use Twig\TwigTest;
 use function assert;
 use function file_get_contents;
 use function is_int;
@@ -51,8 +54,18 @@ final class MainExtension extends AbstractExtension
         return [
             new TwigFilter('markdown', [$this->parsedown, 'text'], ['is_safe' => ['html']]),
             new TwigFilter('truncate', [$this, 'truncate']),
+            new TwigFilter('yaml_encode', [$this, 'yamlEncode']),
         ];
     }
+
+    #[\Override]
+    public function getTests()
+    {
+        return [
+            new TwigTest('tocNode', [$this, 'isTocNode']),
+        ];
+    }
+
 
     public function getSearchBoxPlaceholder(Project|null $project = null, ProjectVersion|null $projectVersion = null): string
     {
@@ -102,5 +115,17 @@ final class MainExtension extends AbstractExtension
         assert(is_string($contents), sprintf('Failed to load the asset located at "%s"', $rootPath . '/' . $path));
 
         return substr(sha1($contents), 0, 6);
+    }
+
+    public function yamlEncode(mixed $value)
+    {
+        if (is_string($value)) {
+            return str_replace('\\', '\\\\', $value);
+        }
+    }
+
+    public function isTocNode(Node $node): bool
+    {
+        return $node instanceof TocNode;
     }
 }

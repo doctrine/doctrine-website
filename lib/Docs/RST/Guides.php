@@ -14,12 +14,14 @@ use phpDocumentor\Guides\Handlers\CompileDocumentsCommand;
 use phpDocumentor\Guides\Handlers\ParseDirectoryCommand;
 use phpDocumentor\Guides\Handlers\RenderCommand;
 use phpDocumentor\Guides\Nodes\ProjectNode;
+use phpDocumentor\Guides\Twig\Theme\ThemeManager;
 
 final class Guides implements BuilderInterface
 {
 
     public function __construct(
-        private readonly CommandBus $commandBus
+        private readonly CommandBus $commandBus,
+        private readonly ThemeManager $themeManager
     ) {
     }
 
@@ -46,6 +48,7 @@ final class Guides implements BuilderInterface
         );
 
         $destinationFileSystem = new Filesystem(new Local($targetDirectory));
+        $this->themeManager->useTheme('doctrine');
 
         $this->commandBus->handle(
             new RenderCommand(

@@ -1,0 +1,14 @@
+guides:
+  theme: doctrine
+  links_are_relative: true
+  themes:
+    doctrine: '%doctrine.website.root_dir%/templates/guides'
+
+code:
+  aliases:
+      html+php: php
+      html+jinja: html
+      php-annotations: php
+      php-attributes: php
+  languages:
+
