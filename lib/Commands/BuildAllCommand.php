@@ -42,7 +42,7 @@ final class BuildAllCommand extends Command
             )
             ->addOption(
                 'clear-build-cache',
-                null,
+                'c',
                 InputOption::VALUE_NONE,
                 'Clear the build cache before building everything.',
             )
@@ -73,7 +73,7 @@ final class BuildAllCommand extends Command
         assert(is_bool($clearBuildCache));
 
         if ($clearBuildCache) {
-            array_unshift($commands, 'clear-build-cache');
+            $commands = ['clear-build-cache' => [],  ... $commands];
         }
 
         foreach ($commands as $command => $arguments) {

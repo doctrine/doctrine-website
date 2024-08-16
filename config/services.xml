@@ -146,6 +146,10 @@
             <tag name="doctrine.website.db_prefill" />
         </service>
 
+        <service id="Doctrine\Website\Twig\MainExtension">
+            <tag name="twig.extension" />
+        </service>
+
         <service id="Doctrine\Website\Docs\RST\Guides" />
         <service id="Doctrine\Website\Docs\RST\RSTBuilder">
             <argument key="$builder" type="service" id="Doctrine\Website\Docs\RST\Guides" />

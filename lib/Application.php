@@ -90,6 +90,11 @@ final readonly class Application
         $container->setParameter('doctrine.website.send_grid.api_key', getenv('doctrine_website_send_grid_api_key') ?: '');
         $container->setParameter('vendor_dir', realpath(__DIR__ . '/../vendor'));
 
+        foreach ([new GuidesExtension(), new ReStructuredTextExtension(), new CodeExtension()] as $extension) {
+            $container->registerExtension($extension);
+            $container->loadFromExtension($extension->getAlias());
+        }
+
         $xmlConfigLoader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
         $xmlConfigLoader->load('services.xml');
 
@@ -97,16 +102,12 @@ final readonly class Application
         $yamlConfigLoader->load('routes.yml');
 
         $yamlConfigLoader->load(sprintf('config_%s.yml', $env));
+        $yamlConfigLoader->load('packages/guides.yml');
 
         $configDir = $container->getParameter('doctrine.website.config_dir');
         assert(is_string($configDir));
         if (file_exists($configDir . '/local.yml')) {
             $yamlConfigLoader->load('local.yml');
-        }
-
-        foreach ([new GuidesExtension(), new ReStructuredTextExtension(), new CodeExtension()] as $extension) {
-            $container->registerExtension($extension);
-            $container->loadFromExtension($extension->getAlias());
         }
 
         $container->compile();

@@ -91,7 +91,6 @@ final readonly class BuildDocs
 
                     $documents = $this->rstBuilder->buildRSTDocs($project, $version, $language);
 
-                    return;
                     if ($language->getCode() !== RSTLanguagesDetector::ENGLISH_LANGUAGE_CODE) {
                         continue;
                     }

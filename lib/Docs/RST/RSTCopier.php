@@ -56,6 +56,10 @@ class RSTCopier
             $files = $this->rstFileRepository->getSourceFiles($language->getPath());
 
             foreach ($files as $file) {
+                if (substr($file, strlen($language->getPath())+1) === 'sidebar.rst') {
+                    continue;
+                }
+
                 $this->copyFile(
                     $project,
                     $version,
