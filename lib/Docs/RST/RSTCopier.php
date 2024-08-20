@@ -19,12 +19,8 @@ use function str_replace;
 class RSTCopier
 {
     final public const RST_TEMPLATE = <<<'TEMPLATE'
-        SIDEBAR BEGIN
-        
         {{ sidebar }}
-        
-        CONTENT BEGIN
-        
+         
         {{ content }}
         TEMPLATE;
 
@@ -106,7 +102,7 @@ class RSTCopier
 
         // append the source file name to the content so we can parse it back out
         // for use in the build process
-        return $content . "\n\n" . sprintf('{{ DOCS_SOURCE_PATH : %s }}', $sourceFile);
+        return $content;
     }
 
     private function fixRSTSyntax(Project $project, string $content): string
