@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Doctrine\Website\Docs\RST;
 
 use Doctrine\RST\Builder;
+use Override;
+use phpDocumentor\Guides\Nodes\DocumentNode;
 
-final class DoctrineRSTBuilder implements BuilderInterface
+final class DoctrineRSTBuilder implements DocumentsBuilder
 {
     public function __construct(
         private Builder $builder,
     ) {
     }
 
-
-    #[\Override]
+    #[Override]
     public function build(string $directory, string $targetDirectory = 'output'): void
     {
         // we have to get a fresh builder due to how the RST parser works
@@ -28,7 +29,8 @@ final class DoctrineRSTBuilder implements BuilderInterface
         );
     }
 
-    #[\Override]
+    /** @return DocumentNode[] */
+    #[Override]
     public function getDocuments(): array
     {
         return $this->builder->getDocuments()->getAll();

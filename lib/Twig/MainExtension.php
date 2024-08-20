@@ -7,14 +7,15 @@ namespace Doctrine\Website\Twig;
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
+use Override;
 use Parsedown;
 use phpDocumentor\Guides\Nodes\Menu\TocNode;
 use phpDocumentor\Guides\Nodes\Node;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-
 use Twig\TwigTest;
+
 use function assert;
 use function file_get_contents;
 use function is_int;
@@ -22,6 +23,7 @@ use function is_string;
 use function realpath;
 use function sha1;
 use function sprintf;
+use function str_replace;
 use function strlen;
 use function strrpos;
 use function substr;
@@ -58,14 +60,14 @@ final class MainExtension extends AbstractExtension
         ];
     }
 
-    #[\Override]
-    public function getTests()
+    /** {@inheritDoc} */
+    #[Override]
+    public function getTests(): array
     {
         return [
             new TwigTest('tocNode', [$this, 'isTocNode']),
         ];
     }
-
 
     public function getSearchBoxPlaceholder(Project|null $project = null, ProjectVersion|null $projectVersion = null): string
     {
@@ -117,11 +119,13 @@ final class MainExtension extends AbstractExtension
         return substr(sha1($contents), 0, 6);
     }
 
-    public function yamlEncode(mixed $value)
+    public function yamlEncode(mixed $value): mixed
     {
         if (is_string($value)) {
             return str_replace('\\', '\\\\', $value);
         }
+
+        return $value;
     }
 
     public function isTocNode(Node $node): bool

@@ -15,7 +15,7 @@ class RSTBuilder
     public function __construct(
         private readonly RSTFileRepository $rstFileRepository,
         private readonly RSTCopier $rstCopier,
-        private readonly BuilderInterface $builder,
+        private readonly DocumentsBuilder $builder,
         private readonly RSTPostBuildProcessor $rstPostBuildProcessor,
         private readonly Filesystem $filesystem,
         private readonly string $sourceDir,

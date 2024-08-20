@@ -12,8 +12,9 @@ use function assert;
 use function file_exists;
 use function is_string;
 use function preg_replace;
-use function sprintf;
 use function str_replace;
+use function strlen;
+use function substr;
 
 /** @final */
 class RSTCopier
@@ -52,7 +53,7 @@ class RSTCopier
             $files = $this->rstFileRepository->getSourceFiles($language->getPath());
 
             foreach ($files as $file) {
-                if (substr($file, strlen($language->getPath())+1) === 'sidebar.rst') {
+                if (substr($file, strlen($language->getPath()) + 1) === 'sidebar.rst') {
                     continue;
                 }
 

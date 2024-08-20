@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Guides\Compiler;
 
 use Doctrine\RST\Nodes\TocNode;
+use Override;
 use phpDocumentor\Guides\Compiler\CompilerContext;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
 use phpDocumentor\Guides\Nodes\Node;
@@ -12,17 +13,16 @@ use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
 final class SidebarTransformer implements NodeTransformer
 {
-
-    #[\Override]
+    #[Override]
     public function enterNode(Node $node, CompilerContext $compilerContext): Node
     {
         return $node;
     }
 
-    #[\Override]
+    #[Override]
     public function leaveNode(Node $node, CompilerContext $compilerContext): Node|null
     {
-        $nodes = $compilerContext->getDocumentNode()->getDocumentPartNodes()['sidebar'] ?? [];
+        $nodes   = $compilerContext->getDocumentNode()->getDocumentPartNodes()['sidebar'] ?? [];
         $nodes[] = $node;
 
         $compilerContext->getDocumentNode()->addDocumentPart('sidebar', $nodes);
@@ -30,7 +30,7 @@ final class SidebarTransformer implements NodeTransformer
         return null;
     }
 
-    #[\Override]
+    #[Override]
     public function supports(Node $node): bool
     {
         if ($node instanceof GeneralDirectiveNode) {
@@ -40,7 +40,7 @@ final class SidebarTransformer implements NodeTransformer
         return $node instanceof TocNode;
     }
 
-    #[\Override]
+    #[Override]
     public function getPriority(): int
     {
         return 3000;

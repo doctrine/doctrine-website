@@ -13,7 +13,6 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use function array_merge;
-use function array_unshift;
 use function assert;
 use function is_array;
 use function is_bool;
@@ -73,7 +72,7 @@ final class BuildAllCommand extends Command
         assert(is_bool($clearBuildCache));
 
         if ($clearBuildCache) {
-            $commands = ['clear-build-cache' => [],  ... $commands];
+            $commands = ['clear-build-cache' => [], ...$commands];
         }
 
         foreach ($commands as $command => $arguments) {

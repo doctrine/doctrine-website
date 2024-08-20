@@ -7,10 +7,14 @@ namespace Doctrine\Website\Guides\Renderer;
 use Doctrine\Website\Docs\CodeBlockConsoleRenderer;
 use Doctrine\Website\Docs\CodeBlockLanguageDetector;
 use Doctrine\Website\Docs\CodeBlockWithLineNumbersRenderer;
+use Override;
 use phpDocumentor\Guides\NodeRenderers\NodeRenderer;
 use phpDocumentor\Guides\Nodes\CodeNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RenderContext;
+
+use function explode;
+use function in_array;
 
 final class CodeBlockRenderer implements NodeRenderer
 {
@@ -23,22 +27,20 @@ final class CodeBlockRenderer implements NodeRenderer
     ) {
     }
 
-    #[\Override]
+    #[Override]
     public function supports(string $nodeFqcn): bool
     {
         return $nodeFqcn === CodeNode::class;
     }
 
-    #[\Override]
+    #[Override]
     public function render(Node $node, RenderContext $renderContext): string
     {
-        $lines = explode("\n", $node->getValue());
+        $lines    = explode("\n", $node->getValue());
         $language = $this->codeBlockLanguageDetector->detectLanguage(
             $node->getLanguage(),
-            $lines
+            $lines,
         );
-
-
 
         if (in_array($language, self::CONSOLE_LANGUAGES, true)) {
             return $this->codeBlockConsoleRenderer->render($lines);
