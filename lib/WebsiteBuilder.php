@@ -103,17 +103,17 @@ class WebsiteBuilder
     {
         $output->writeln(sprintf(' - running <info>npm run %s</info> ', $isPublishableEnv ? 'build' : 'dev'));
 
-//        $this->filesystem->remove((array) glob($this->webpackBuildDir . '/*'));
+        $this->filesystem->remove((array) glob($this->webpackBuildDir . '/*'));
 
-//        $process = $this->processFactory->run(sprintf(
-//            'cd %s && npm run %s',
-//            $this->rootDir,
-//            $isPublishableEnv ? 'build' : 'dev',
-//        ));
-//
-//        if ($output->isVerbose()) {
-//            $output->write($process->getOutput());
-//        }
+        $process = $this->processFactory->run(sprintf(
+            'cd %s && npm run %s',
+            $this->rootDir,
+            $isPublishableEnv ? 'build' : 'dev',
+        ));
+
+        if ($output->isVerbose()) {
+            $output->write($process->getOutput());
+        }
 
         // Copy built assets if this is a publishable build
         if ($isPublishableEnv) {
