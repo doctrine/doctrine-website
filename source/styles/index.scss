@@ -267,7 +267,7 @@ pre code table.code-block-table tr:last-child td {
                                   supported by Chrome and Opera */
 }
 
-pre code table.code-block-table tr td.line-number {
+table.code-block-table tr td.line-number {
   background-color: #333;
   padding-left: 10px;
   padding-right: 10px;
@@ -275,11 +275,11 @@ pre code table.code-block-table tr td.line-number {
   color: #63606b;
 }
 
-pre code table.code-block-table tr td.line-number a {
+table.code-block-table tr td.line-number a {
   color: #63606b;
 }
 
-pre code table.code-block-table tr td.code-line {
+table.code-block-table tr td.code-line {
   padding-left: 15px;
   vertical-align: top;
   line-height: 23px;
@@ -447,6 +447,23 @@ div.jsactive div div {
 
 div.jsactive pre {
   margin: 0;
+}
+
+button[role='tab'] {
+  border-radius: 5px 5px 0 0;
+  border: 0;
+  font-weight: bold;
+  font-size: 90%;
+  text-transform: uppercase;
+
+  &[aria-selected='true'] {
+    background-color: #000;
+    color: #fff;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .bg-success {
