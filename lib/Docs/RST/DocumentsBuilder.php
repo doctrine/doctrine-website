@@ -6,7 +6,7 @@ namespace Doctrine\Website\Docs\RST;
 
 use Doctrine\RST\Nodes\DocumentNode;
 
-interface BuilderInterface
+interface DocumentsBuilder
 {
     public function build(string $directory, string $targetDirectory = 'output'): void;
 
