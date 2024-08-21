@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Docs\RST;
 
-use Doctrine\RST\Builder;
 use Doctrine\RST\Builder\Documents;
-use Doctrine\RST\Nodes\DocumentNode;
+use Doctrine\Website\Docs\RST\DocumentsBuilder;
 use Doctrine\Website\Docs\RST\RSTBuilder;
 use Doctrine\Website\Docs\RST\RSTCopier;
 use Doctrine\Website\Docs\RST\RSTFileRepository;
 use Doctrine\Website\Docs\RST\RSTLanguage;
-use Doctrine\Website\Docs\RST\RSTPostBuildProcessor;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Tests\TestCase;
+use phpDocumentor\Guides\Nodes\DocumentNode;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -23,9 +22,7 @@ class RSTBuilderTest extends TestCase
 
     private RSTCopier&MockObject $rstCopier;
 
-    private Builder&MockObject $builder;
-
-    private RSTPostBuildProcessor&MockObject $rstPostBuildProcessor;
+    private DocumentsBuilder&MockObject $builder;
 
     private Filesystem&MockObject $filesystem;
 
@@ -39,8 +36,7 @@ class RSTBuilderTest extends TestCase
     {
         $this->rstFileRepository     = $this->createMock(RSTFileRepository::class);
         $this->rstCopier             = $this->createMock(RSTCopier::class);
-        $this->builder               = $this->createMock(Builder::class);
-        $this->rstPostBuildProcessor = $this->createMock(RSTPostBuildProcessor::class);
+        $this->builder               = $this->createMock(DocumentsBuilder::class);
         $this->filesystem            = $this->createMock(Filesystem::class);
         $this->sourceDir             = '/source';
         $this->docsDir               = '/docs';
@@ -49,7 +45,6 @@ class RSTBuilderTest extends TestCase
             $this->rstFileRepository,
             $this->rstCopier,
             $this->builder,
-            $this->rstPostBuildProcessor,
             $this->filesystem,
             $this->sourceDir,
             $this->docsDir,
@@ -78,33 +73,20 @@ class RSTBuilderTest extends TestCase
             ->with(['/test1', '/test2']);
 
         $this->builder->expects(self::once())
-            ->method('recreate')
-            ->willReturn($this->builder);
-
-        $this->builder->expects(self::once())
             ->method('build')
             ->with(
                 '/docs/docs-slug/en/version-slug',
                 '/source/projects/docs-slug/en/version-slug',
             );
 
-        $this->rstPostBuildProcessor->expects(self::once())
-            ->method('postRstBuild')
-            ->with($project, $version);
-
-        $document1 = $this->createMock(DocumentNode::class);
-        $document2 = $this->createMock(DocumentNode::class);
+        $document1 = new DocumentNode('test1', 'test1');
+        $document2 = new DocumentNode('test2', 'test2');
 
         $documentsArray = [$document1, $document2];
-        $documents      = $this->createMock(Documents::class);
-
-        $documents->expects(self::once())
-            ->method('getAll')
-            ->willReturn($documentsArray);
 
         $this->builder->expects(self::once())
             ->method('getDocuments')
-            ->willReturn($documents);
+            ->willReturn($documentsArray);
 
         $english = new RSTLanguage('en', '/en');
 

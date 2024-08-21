@@ -16,7 +16,6 @@ class RSTBuilder
         private readonly RSTFileRepository $rstFileRepository,
         private readonly RSTCopier $rstCopier,
         private readonly DocumentsBuilder $builder,
-        private readonly RSTPostBuildProcessor $rstPostBuildProcessor,
         private readonly Filesystem $filesystem,
         private readonly string $sourceDir,
         private readonly string $docsDir,
@@ -31,9 +30,6 @@ class RSTBuilder
 
         // build the rst and prepare html for ./bin/console build-website
         $this->buildRst($project, $version, $language);
-
-        // process the built html and do extra things to the html
-        $this->rstPostBuildProcessor->postRstBuild($project, $version, $language);
 
         return $this->builder->getDocuments();
     }

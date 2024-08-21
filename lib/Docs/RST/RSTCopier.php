@@ -12,7 +12,6 @@ use function assert;
 use function file_exists;
 use function is_string;
 use function preg_replace;
-use function sprintf;
 use function str_replace;
 
 /** @final */
