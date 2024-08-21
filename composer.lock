@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db9fbeed65aeaab41437a2f44c6039b5",
+    "content-hash": "6009a56807bee47f1c2adad6ef19c53f",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -2618,42 +2618,6 @@
                 "source": "https://github.com/phpDocumentor/guides-core/tree/1.3.5"
             },
             "time": "2024-05-07T18:12:18+00:00"
-        },
-        {
-            "name": "phpdocumentor/guides-code",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/guides-code.git",
-                "reference": "f6aefca78d3a9b56d36202bfdbf8239a6d254b74"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-code/zipball/f6aefca78d3a9b56d36202bfdbf8239a6d254b74",
-                "reference": "f6aefca78d3a9b56d36202bfdbf8239a6d254b74",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1",
-                "scrivo/highlight.php": "^9.18.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "phpDocumentor\\Guides\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A library to provide code-related functionality to phpDocumentor's Guides",
-            "homepage": "https://www.phpdoc.org",
-            "support": {
-                "issues": "https://github.com/phpDocumentor/guides-code/issues",
-                "source": "https://github.com/phpDocumentor/guides-code/tree/1.0.0"
-            },
-            "time": "2024-03-03T20:57:20+00:00"
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
