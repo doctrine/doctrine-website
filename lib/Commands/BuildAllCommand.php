@@ -13,11 +13,8 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use function array_merge;
-use function array_unshift;
 use function assert;
-use function is_array;
 use function is_bool;
-use function is_string;
 use function sprintf;
 
 final class BuildAllCommand extends Command
@@ -73,13 +70,10 @@ final class BuildAllCommand extends Command
         assert(is_bool($clearBuildCache));
 
         if ($clearBuildCache) {
-            array_unshift($commands, 'clear-build-cache');
+            $commands = ['clear-build-cache' => []] + $commands;
         }
 
         foreach ($commands as $command => $arguments) {
-            assert(is_string($command));
-            assert(is_array($arguments));
-
             $output->writeln(sprintf('Executing <info>./doctrine %s</info>', $command));
 
             if ($this->runCommand($command, $arguments) === 1) {
