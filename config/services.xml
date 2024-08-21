@@ -6,7 +6,6 @@
     <imports>
         <import resource="services/orm.xml"/>
         <import resource="services/static-website-generator.xml"/>
-        <import resource="services/rst-parser.xml"/>
     </imports>
 
     <services>
