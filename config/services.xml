@@ -163,5 +163,9 @@
         <service id="Doctrine\Website\Guides\Compiler\SidebarTransformer">
             <tag name="phpdoc.guides.compiler.nodeTransformers" />
         </service>
+
+        <service id="Doctrine\Website\Guides\StaticWebsiteGenerator\GuidesRstConverter">
+            <argument key="$nodeRenderer" type="service" id="phpDocumentor\Guides\NodeRenderers\Html\DocumentNodeRenderer" />
+        </service>
     </services>
 </container>
