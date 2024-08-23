@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs\RST;
 
-use Doctrine\RST\Nodes\DocumentNode;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
+use phpDocumentor\Guides\Nodes\DocumentNode;
 use Symfony\Component\Filesystem\Filesystem;
 
 /** @final */

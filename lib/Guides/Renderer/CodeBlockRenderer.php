@@ -16,6 +16,7 @@ use phpDocumentor\Guides\RenderContext;
 use function explode;
 use function in_array;
 
+/** @implements NodeRenderer<CodeNode> */
 final class CodeBlockRenderer implements NodeRenderer
 {
     private const CONSOLE_LANGUAGES = ['terminal', 'bash', 'sh', 'console'];
@@ -38,7 +39,7 @@ final class CodeBlockRenderer implements NodeRenderer
     {
         $lines    = explode("\n", $node->getValue());
         $language = $this->codeBlockLanguageDetector->detectLanguage(
-            $node->getLanguage(),
+            $node->getLanguage() ?? 'php',
             $lines,
         );
 

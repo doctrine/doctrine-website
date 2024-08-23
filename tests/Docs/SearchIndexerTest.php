@@ -230,7 +230,7 @@ class SearchIndexerTest extends TestCase
             ->with(SearchIndexer::INDEX_NAME)
             ->willReturn($index);
 
-        $eventManager = new EventManager();
+        $eventManager  = new EventManager();
         $configuration = new Configuration();
         $configuration->setEventManager($eventManager);
         $configuration->setUseCachedMetas(false);

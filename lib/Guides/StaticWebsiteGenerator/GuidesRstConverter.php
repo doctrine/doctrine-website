@@ -10,12 +10,14 @@ use League\Flysystem\Adapter\NullAdapter;
 use League\Flysystem\Filesystem;
 use Override;
 use phpDocumentor\Guides\NodeRenderers\NodeRenderer;
+use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\ProjectNode;
 use phpDocumentor\Guides\Parser;
 use phpDocumentor\Guides\RenderContext;
 
-class GuidesRstConverter implements SourceFileConverter
+final readonly class GuidesRstConverter implements SourceFileConverter
 {
+    /** @param NodeRenderer<DocumentNode> $nodeRenderer */
     public function __construct(
         private Parser $parser,
         private NodeRenderer $nodeRenderer,

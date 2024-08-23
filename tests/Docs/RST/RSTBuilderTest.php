@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Docs\RST;
 
-use Doctrine\RST\Builder\Documents;
 use Doctrine\Website\Docs\RST\DocumentsBuilder;
 use Doctrine\Website\Docs\RST\RSTBuilder;
 use Doctrine\Website\Docs\RST\RSTCopier;
@@ -34,12 +33,12 @@ class RSTBuilderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->rstFileRepository     = $this->createMock(RSTFileRepository::class);
-        $this->rstCopier             = $this->createMock(RSTCopier::class);
-        $this->builder               = $this->createMock(DocumentsBuilder::class);
-        $this->filesystem            = $this->createMock(Filesystem::class);
-        $this->sourceDir             = '/source';
-        $this->docsDir               = '/docs';
+        $this->rstFileRepository = $this->createMock(RSTFileRepository::class);
+        $this->rstCopier         = $this->createMock(RSTCopier::class);
+        $this->builder           = $this->createMock(DocumentsBuilder::class);
+        $this->filesystem        = $this->createMock(Filesystem::class);
+        $this->sourceDir         = '/source';
+        $this->docsDir           = '/docs';
 
         $this->rstBuilder = new RSTBuilder(
             $this->rstFileRepository,

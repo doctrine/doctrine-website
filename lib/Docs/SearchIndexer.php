@@ -6,17 +6,15 @@ namespace Doctrine\Website\Docs;
 
 use Algolia\AlgoliaSearch\SearchClient;
 use Algolia\AlgoliaSearch\SearchIndex;
-use Doctrine\RST\Nodes\DocumentNode;
-use Doctrine\RST\Nodes\Node;
-use Doctrine\RST\Nodes\ParagraphNode;
-use Doctrine\RST\Nodes\TitleNode;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
+use phpDocumentor\Guides\Nodes\DocumentNode;
+use phpDocumentor\Guides\Nodes\Node;
+use phpDocumentor\Guides\Nodes\ParagraphNode;
+use phpDocumentor\Guides\Nodes\TitleNode;
 
-use function in_array;
 use function is_string;
 use function md5;
-use function preg_match;
 use function strip_tags;
 use function strpos;
 
@@ -76,10 +74,7 @@ class SearchIndexer
         Project $project,
         ProjectVersion $version,
     ): void {
-        $environment = $document->getEnvironment();
-
-        $slug        = $environment->getUrl();
-        $currentLink = $slug;
+        $currentLink = $slug = $document->getFilePath() . '.html';
 
         $current = [
             'h1' => null,
@@ -89,11 +84,7 @@ class SearchIndexer
             'h5' => null,
         ];
 
-        $nodeTypes = [TitleNode::class, ParagraphNode::class];
-
-        $nodes = $document->getNodes(static function (Node $node) use ($nodeTypes): bool {
-            return in_array($node::class, $nodeTypes, true);
-        });
+        $nodes = $document->getNodes(TitleNode::class);
 
         foreach ($nodes as $node) {
             $value = $this->renderNodeValue($node);
@@ -102,18 +93,10 @@ class SearchIndexer
                 continue;
             }
 
-            $html = $node->render();
-
-            if ($node instanceof TitleNode) {
-                preg_match('/<a id=\"([^\"]*)\">.*<\/a>/iU', $html, $match);
-
-                $currentLink = $slug . '.html' . (isset($match[1]) ? '#' . $match[1] : '');
-            }
-
             $records[] = $this->getNodeSearchRecord(
                 $node,
                 $current,
-                $currentLink,
+                $currentLink . '#' . $node->getId(),
                 $project,
                 $version,
             );
@@ -128,7 +111,7 @@ class SearchIndexer
     private function getNodeSearchRecord(
         Node $node,
         array &$current,
-        string &$currentLink,
+        string $currentLink,
         Project $project,
         ProjectVersion $version,
     ): array {

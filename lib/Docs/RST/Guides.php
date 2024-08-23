@@ -18,11 +18,11 @@ use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\ProjectNode;
 use phpDocumentor\Guides\Twig\Theme\ThemeManager;
 
-final class Guides implements DocumentsBuilder
+final readonly class Guides implements DocumentsBuilder
 {
     public function __construct(
-        private readonly CommandBus $commandBus,
-        private readonly ThemeManager $themeManager,
+        private CommandBus $commandBus,
+        private ThemeManager $themeManager,
     ) {
     }
 

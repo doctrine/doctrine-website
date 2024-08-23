@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs\RST;
 
-use Doctrine\RST\Nodes\DocumentNode;
+use phpDocumentor\Guides\Nodes\DocumentNode;
 
 interface DocumentsBuilder
 {

@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Guides\Compiler;
 
-use Doctrine\RST\Nodes\TocNode;
 use Override;
 use phpDocumentor\Guides\Compiler\CompilerContext;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
+use phpDocumentor\Guides\Nodes\Menu\TocNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
+/** @implements NodeTransformer<TocNode|GeneralDirectiveNode> */
 final class SidebarTransformer implements NodeTransformer
 {
     #[Override]
