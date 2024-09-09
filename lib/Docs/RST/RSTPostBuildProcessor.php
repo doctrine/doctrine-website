@@ -78,7 +78,9 @@ class RSTPostBuildProcessor
         string $contents,
     ): string {
         // parse out the source file that generated this file
-        preg_match('/<p>{{ DOCS_SOURCE_PATH : (.*) }}<\/p>/', $contents, $match);
+        $result = preg_match('/<p>{{ DOCS_SOURCE_PATH : (.*) }}<\/p>/', $contents, $match);
+
+        assert($result === 1);
 
         $docsSourcePath = $match[1];
 
