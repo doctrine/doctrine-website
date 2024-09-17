@@ -150,6 +150,7 @@
         </service>
 
         <service id="Doctrine\Website\Docs\RST\Guides" />
+        <service id="Doctrine\Website\Docs\RST\GuidesParser" public="true" />
         <service id="Doctrine\Website\Docs\RST\RSTBuilder">
             <argument key="$builder" type="service" id="Doctrine\Website\Docs\RST\Guides" />
         </service>
@@ -165,7 +166,13 @@
         </service>
 
         <service id="Doctrine\Website\Guides\StaticWebsiteGenerator\GuidesRstConverter">
-            <argument key="$nodeRenderer" type="service" id="phpDocumentor\Guides\NodeRenderers\Html\DocumentNodeRenderer" />
+            <argument key="$nodeRenderer" type="service" id="page_renderer" />
         </service>
+
+        <service id="page_renderer" class="phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer">
+            <argument key="$template" type="string">website-document.html.twig</argument>
+            <argument key="$nodeClass" type="string">phpDocumentor\Guides\Nodes\DocumentNode</argument>
+        </service>
+
     </services>
 </container>

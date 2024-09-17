@@ -8,15 +8,16 @@ use Algolia\AlgoliaSearch\SearchClient;
 use Algolia\AlgoliaSearch\SearchIndex;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
+use Generator;
+use phpDocumentor\Guides\Nodes\CompoundNode;
 use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\ParagraphNode;
 use phpDocumentor\Guides\Nodes\TitleNode;
 
-use function is_string;
 use function md5;
+use function str_replace;
 use function strip_tags;
-use function strpos;
 
 /**
  * Influenced by Laravel.com website code search indexes that also use Algolia.
@@ -61,20 +62,20 @@ class SearchIndexer
         $records = [];
 
         foreach ($documents as $document) {
-            $this->buildDocumentSearchRecords($document, $records, $project, $version);
+            foreach ($this->buildDocumentSearchRecords($document, $project, $version) as $record) {
+                $records[] = $record;
+            }
         }
 
         $this->getSearchIndex()->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
     }
 
-    /** @param mixed[][] $records */
     private function buildDocumentSearchRecords(
         DocumentNode $document,
-        array &$records,
         Project $project,
         ProjectVersion $version,
-    ): void {
-        $currentLink = $slug = $document->getFilePath() . '.html';
+    ): Generator {
+        $currentLink = $document->getFilePath() . '.html';
 
         $current = [
             'h1' => null,
@@ -84,22 +85,37 @@ class SearchIndexer
             'h5' => null,
         ];
 
-        $nodes = $document->getNodes(TitleNode::class);
+        yield from $this->iterateNodes($document, $current, $currentLink, $project, $version);
+    }
 
-        foreach ($nodes as $node) {
-            $value = $this->renderNodeValue($node);
+    /**
+     * @param array<string, string|null> $current
+     * @param CompoundNode<Node>         $node
+     *
+     * @return Generator<mixed[]>
+     */
+    private function iterateNodes(CompoundNode $node, array $current, string $currentLink, Project $project, ProjectVersion $version): Generator
+    {
+        foreach ($node->getChildren() as $child) {
+            if ($child instanceof TitleNode) {
+                yield $this->getNodeSearchRecord($child, $current, $currentLink, $project, $version);
 
-            if (strpos($value, '{{ DOCS_SOURCE_PATH') !== false) {
                 continue;
             }
 
-            $records[] = $this->getNodeSearchRecord(
-                $node,
-                $current,
-                $currentLink . '#' . $node->getId(),
-                $project,
-                $version,
-            );
+            if ($child instanceof ParagraphNode) {
+                yield $this->getNodeSearchRecord($child, $current, $currentLink, $project, $version);
+
+                continue;
+            }
+
+            if (! ($child instanceof CompoundNode)) {
+                continue;
+            }
+
+            foreach ($this->iterateNodes($child, $current, $currentLink, $project, $version) as $record) {
+                yield $record;
+            }
         }
     }
 
@@ -163,8 +179,8 @@ class SearchIndexer
 
         if ($node instanceof TitleNode) {
             $elementName = 'h' . $node->getLevel();
-        } elseif ($node instanceof ParagraphNode) {
-            $elementName = 'p';
+
+            return $ranks[$elementName];
         }
 
         return $ranks[$elementName];
@@ -172,17 +188,25 @@ class SearchIndexer
 
     private function renderNodeValue(Node $node): string
     {
-        $nodeValue = $node->getValue();
-
-        if ($nodeValue === null) {
-            return '';
+        if ($node instanceof TitleNode) {
+            return $this->stripContent($node->toString());
         }
 
-        if (is_string($nodeValue)) {
-            return $nodeValue;
+        if ($node instanceof ParagraphNode) {
+            $content = '';
+            foreach ($node->getChildren() as $child) {
+                $content .= $this->stripContent($child->toString());
+            }
+
+            return $content;
         }
 
-        return $nodeValue->render();
+        return '';
+    }
+
+    private function stripContent(string $content): string
+    {
+        return str_replace(['"', '\''], '', $content);
     }
 
     private function getSearchIndex(): SearchIndex
