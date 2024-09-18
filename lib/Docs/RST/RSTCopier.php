@@ -139,6 +139,7 @@ class RSTCopier
         // stuff from doctrine1 docs
         if ($project->getSlug() === 'doctrine1') {
             $content = preg_replace([
+                "/\n===\r\n/",
                 "/:code:(.*)\n/",
                 '/:php:(.*):`(.*)`/',
                 '/:file:`(.*)`/',
@@ -148,6 +149,7 @@ class RSTCopier
                 '/.. rubric:: Notes/',
                 "/.. sidebar:: (.*)\n/",
             ], [
+                "\n=== ===\r\n",
                 '$1',
                 '$2',
                 '$1',
