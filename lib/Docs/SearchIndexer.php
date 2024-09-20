@@ -22,6 +22,21 @@ use function strip_tags;
 /**
  * Influenced by Laravel.com website code search indexes that also use Algolia.
  *
+ * @phpstan-type headers = array{h1: string|null, h2: string|null, h3: string|null, h4: string|null, h5: string|null}
+ * @phpstan-type searchRecord = array{
+ *     objectID: string,
+ *     rank: int,
+ *     h1: string|null,
+ *     h2: string|null,
+ *     h3: string|null,
+ *     h4: string|null,
+ *     h5: string|null,
+ *     url: string,
+ *     content: string,
+ *     projectName: string,
+ *     _tags: string[],
+ * }
+ *
  * @final
  */
 class SearchIndexer
@@ -70,6 +85,9 @@ class SearchIndexer
         $this->getSearchIndex()->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
     }
 
+    /**
+     * @return Generator<searchRecord>
+     */
     private function buildDocumentSearchRecords(
         DocumentNode $document,
         Project $project,
@@ -89,10 +107,10 @@ class SearchIndexer
     }
 
     /**
-     * @param array<string, string|null> $current
+     * @param headers $current
      * @param CompoundNode<Node>         $node
      *
-     * @return Generator<mixed[]>
+     * @return Generator<searchRecord>
      */
     private function iterateNodes(CompoundNode $node, array $current, string $currentLink, Project $project, ProjectVersion $version): Generator
     {
@@ -120,9 +138,9 @@ class SearchIndexer
     }
 
     /**
-     * @param string[] $current
+     * @param headers $current
      *
-     * @return mixed[]
+     * @return searchRecord
      */
     private function getNodeSearchRecord(
         Node $node,
