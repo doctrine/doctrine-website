@@ -7,11 +7,19 @@ namespace Doctrine\Website\Guides\Compiler;
 use Override;
 use phpDocumentor\Guides\Compiler\CompilerContext;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
+use phpDocumentor\Guides\Nodes\Menu\MenuNode;
 use phpDocumentor\Guides\Nodes\Menu\TocNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
 
-/** @implements NodeTransformer<TocNode|GeneralDirectiveNode> */
+/**
+ * This class will move the menu and toc nodes to the sidebar.
+ *
+ * As the toc node and menus should be displayed in the sidebar, this transformer will move them to a separate
+ * documentPart. It will be removed from the main content of the document.
+ *
+ * @implements NodeTransformer<TocNode|GeneralDirectiveNode>
+ */
 final class SidebarTransformer implements NodeTransformer
 {
     #[Override]
@@ -38,7 +46,7 @@ final class SidebarTransformer implements NodeTransformer
             return $node->getName() === 'toc';
         }
 
-        return $node instanceof TocNode;
+        return $node instanceof TocNode || $node instanceof MenuNode;
     }
 
     #[Override]

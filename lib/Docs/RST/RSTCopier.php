@@ -24,7 +24,7 @@ class RSTCopier
         TEMPLATE;
 
     final public const DEFAULT_SIDEBAR = <<<'SIDEBAR'
-        .. toctree::
+        .. menu::
             :depth: 3
             :glob:
         
@@ -46,7 +46,7 @@ class RSTCopier
             // clear existing files before copying the rst over
             $this->filesystem->remove($this->rstFileRepository->findFiles($outputPath));
 
-            $sidebar = $this->getSidebarRST($language->getPath());
+            $sidebar = $this->fixRSTSyntax($project, $this->getSidebarRST($language->getPath()));
 
             $files = $this->rstFileRepository->getSourceFiles($language->getPath());
 
@@ -107,6 +107,7 @@ class RSTCopier
 
         // fix :maxdepth: to :depth:
         $content = str_replace(':maxdepth:', ':depth:', $content);
+        $content = str_replace('toctree::', 'menu::', $content);
 
         // get rid of .. include:: toc.rst
         $content = str_replace('.. include:: toc.rst', '', $content);
