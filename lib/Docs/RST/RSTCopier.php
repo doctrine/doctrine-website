@@ -97,11 +97,7 @@ class RSTCopier
         $rstTemplate = str_replace('{{ sidebar }}', $sidebar, self::RST_TEMPLATE);
 
         // put the content in the RST template
-        $content = str_replace('{{ content }}', $content, $rstTemplate);
-
-        // append the source file name to the content so we can parse it back out
-        // for use in the build process
-        return $content;
+        return str_replace('{{ content }}', $content, $rstTemplate);
     }
 
     private function fixRSTSyntax(Project $project, string $content): string
