@@ -12,7 +12,6 @@ use Override;
 use phpDocumentor\Guides\Handlers\RenderCommand;
 use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\ProjectNode;
-use phpDocumentor\Guides\Twig\Theme\ThemeManager;
 
 final class Guides implements DocumentsBuilder
 {
@@ -22,7 +21,6 @@ final class Guides implements DocumentsBuilder
     public function __construct(
         private CommandBus $commandBus,
         private GuidesParser $guidesParser,
-        private ThemeManager $themeManager,
     ) {
     }
 
@@ -36,7 +34,6 @@ final class Guides implements DocumentsBuilder
         $this->documents = $this->guidesParser->parse($directory, $projectNode);
 
         $destinationFileSystem = new Filesystem(new Local($targetDirectory));
-        $this->themeManager->useTheme('doctrine');
 
         $this->commandBus->handle(
             new RenderCommand(

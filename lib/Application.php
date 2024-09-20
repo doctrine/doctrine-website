@@ -10,6 +10,7 @@ use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
 use Doctrine\Website\Commands\ClearBuildCacheCommand;
 use Doctrine\Website\Commands\SyncRepositoriesCommand;
+use Doctrine\Website\Guides\DependencyInjection\ThemeCompilerPass;
 use phpDocumentor\Guides\DependencyInjection\GuidesExtension;
 use phpDocumentor\Guides\RestructuredText\DependencyInjection\ReStructuredTextExtension;
 use Symfony\Component\Config\FileLocator;
@@ -89,6 +90,7 @@ final readonly class Application
         $container->setParameter('doctrine.website.send_grid.api_key', getenv('doctrine_website_send_grid_api_key') ?: '');
         $container->setParameter('vendor_dir', realpath(__DIR__ . '/../vendor'));
 
+        $container->addCompilerPass(new ThemeCompilerPass());
         foreach ([new GuidesExtension(), new ReStructuredTextExtension()] as $extension) {
             $container->registerExtension($extension);
             $container->loadFromExtension($extension->getAlias());
