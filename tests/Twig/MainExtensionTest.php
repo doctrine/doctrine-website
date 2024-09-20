@@ -74,6 +74,6 @@ class MainExtensionTest extends TestCase
             'http://lcl.doctrine-project.org',
         );
 
-        self::assertStringStartsWith('http://lcl.doctrine-project.org/js/main.js', $url);
+        self::assertMatchesRegularExpression('#^http://lcl.doctrine-project.org/js/main.js\?[a-z0-9+]{6}$#', $url);
     }
 }

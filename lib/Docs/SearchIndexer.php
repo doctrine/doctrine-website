@@ -36,7 +36,6 @@ use function strip_tags;
  *     projectName: string,
  *     _tags: string[],
  * }
- *
  * @final
  */
 class SearchIndexer
@@ -85,9 +84,7 @@ class SearchIndexer
         $this->getSearchIndex()->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
     }
 
-    /**
-     * @return Generator<searchRecord>
-     */
+    /** @return Generator<searchRecord> */
     private function buildDocumentSearchRecords(
         DocumentNode $document,
         Project $project,
@@ -107,8 +104,8 @@ class SearchIndexer
     }
 
     /**
-     * @param headers $current
-     * @param CompoundNode<Node>         $node
+     * @param headers            $current
+     * @param CompoundNode<Node> $node
      *
      * @return Generator<searchRecord>
      */
