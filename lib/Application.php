@@ -10,6 +10,9 @@ use Doctrine\Website\Commands\BuildDocsCommand;
 use Doctrine\Website\Commands\BuildWebsiteCommand;
 use Doctrine\Website\Commands\ClearBuildCacheCommand;
 use Doctrine\Website\Commands\SyncRepositoriesCommand;
+use Doctrine\Website\Guides\DependencyInjection\ThemeCompilerPass;
+use phpDocumentor\Guides\DependencyInjection\GuidesExtension;
+use phpDocumentor\Guides\RestructuredText\DependencyInjection\ReStructuredTextExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Helper\HelperSet;
@@ -85,6 +88,13 @@ final readonly class Application
         $container->setParameter('doctrine.website.algolia.admin_api_key', getenv('doctrine_website_algolia_admin_api_key') ?: '1234');
         $container->setParameter('doctrine.website.stripe.secret_key', getenv('doctrine_website_stripe_secret_key') ?: '');
         $container->setParameter('doctrine.website.send_grid.api_key', getenv('doctrine_website_send_grid_api_key') ?: '');
+        $container->setParameter('vendor_dir', realpath(__DIR__ . '/../vendor'));
+
+        $container->addCompilerPass(new ThemeCompilerPass());
+        foreach ([new GuidesExtension(), new ReStructuredTextExtension()] as $extension) {
+            $container->registerExtension($extension);
+            $container->loadFromExtension($extension->getAlias());
+        }
 
         $xmlConfigLoader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
         $xmlConfigLoader->load('services.xml');
@@ -93,6 +103,7 @@ final readonly class Application
         $yamlConfigLoader->load('routes.yml');
 
         $yamlConfigLoader->load(sprintf('config_%s.yml', $env));
+        $yamlConfigLoader->load('packages/guides.yml');
 
         $configDir = $container->getParameter('doctrine.website.config_dir');
         assert(is_string($configDir));
