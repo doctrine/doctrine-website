@@ -1,0 +1,19 @@
+{% if node.type == 'versionadded' %}
+<div class="alert version-added bg-info text-white">
+    <p class="new-version font-weight-bold"><i class="fas fa-plus-square"></i> {{ node.versionLabel }}</p>
+    {% if (node.value) %}
+    <article>
+        {{ renderNode(node.value) }}
+    </article>
+    {% endif %}
+</div>
+{% elseif node.type == 'versionchanged' %}
+<div class="alert version-changed bg-info text-white">
+    <p class="new-version font-weight-bold"><i class="fas fa-plus-square"></i> {{ node.versionLabel }}</p>
+    {% if (node.value) %}
+        <article>
+            {{ renderNode(node.value) }}
+        </article>
+    {% endif %}
+</div>
+{% endif %}

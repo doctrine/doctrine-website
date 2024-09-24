@@ -7,7 +7,8 @@ namespace Doctrine\Website\Guides\Compiler;
 use Override;
 use phpDocumentor\Guides\Compiler\CompilerContext;
 use phpDocumentor\Guides\Compiler\NodeTransformer;
-use phpDocumentor\Guides\Nodes\Menu\MenuNode;
+use phpDocumentor\Guides\Nodes\DocumentNode;
+use phpDocumentor\Guides\Nodes\Menu\NavMenuNode;
 use phpDocumentor\Guides\Nodes\Menu\TocNode;
 use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\RestructuredText\Nodes\GeneralDirectiveNode;
@@ -31,6 +32,10 @@ final class SidebarTransformer implements NodeTransformer
     #[Override]
     public function leaveNode(Node $node, CompilerContext $compilerContext): Node|null
     {
+        if ($compilerContext->getShadowTree()->getParent()?->getNode() instanceof DocumentNode === false) {
+            return $node;
+        }
+
         $nodes   = $compilerContext->getDocumentNode()->getDocumentPartNodes()['sidebar'] ?? [];
         $nodes[] = $node;
 
@@ -46,12 +51,12 @@ final class SidebarTransformer implements NodeTransformer
             return $node->getName() === 'toc';
         }
 
-        return $node instanceof TocNode || $node instanceof MenuNode;
+        return $node instanceof NavMenuNode;
     }
 
     #[Override]
     public function getPriority(): int
     {
-        return 3000;
+        return 1;
     }
 }
