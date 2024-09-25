@@ -155,7 +155,6 @@
             <argument key="$builder" type="service" id="Doctrine\Website\Docs\RST\Guides" />
         </service>
         <service id="Psr\EventDispatcher\EventDispatcherInterface" class="Symfony\Component\EventDispatcher\EventDispatcher" />
-        <service id="Psr\Log\LoggerInterface" class="Doctrine\Website\Docs\RST\Logger" />
 
         <service id="Doctrine\Website\Guides\Renderer\CodeBlockRenderer">
             <tag name="phpdoc.guides.noderenderer.html" />
@@ -174,5 +173,15 @@
             <argument key="$nodeClass" type="string">phpDocumentor\Guides\Nodes\DocumentNode</argument>
         </service>
 
+        <service id="Psr\Log\LoggerInterface" alias="logger" />
+        <service id="logger" class="Monolog\Logger">
+            <argument key="$name">docs</argument>
+            <call method="pushHandler">
+                <argument type="service" id="Monolog\Handler\StreamHandler" />
+            </call>
+        </service>
+        <service id="Monolog\Handler\StreamHandler">
+            <argument type="constant">STDERR</argument>
+        </service>
     </services>
 </container>
