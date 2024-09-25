@@ -28,7 +28,7 @@ class RSTCopier
             :depth: 3
             :glob:
         
-            *
+            **
         SIDEBAR;
 
     public function __construct(
