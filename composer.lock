@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee0a29b539125a8fd4de75385911896b",
+    "content-hash": "c44272296c10f265ffc2149dc0e5a599",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -2670,16 +2670,16 @@
         },
         {
             "name": "phpdocumentor/guides",
-            "version": "1.3.10",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-core.git",
-                "reference": "a431f1d1f398687bf93e80ef525b83e21f75b15b"
+                "reference": "1f21f606ce030fd8989eb783f726cf32c44d61ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/a431f1d1f398687bf93e80ef525b83e21f75b15b",
-                "reference": "a431f1d1f398687bf93e80ef525b83e21f75b15b",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-core/zipball/1f21f606ce030fd8989eb783f726cf32c44d61ef",
+                "reference": "1f21f606ce030fd8989eb783f726cf32c44d61ef",
                 "shasum": ""
             },
             "require": {
@@ -2716,9 +2716,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-core/issues",
-                "source": "https://github.com/phpDocumentor/guides-core/tree/1.3.10"
+                "source": "https://github.com/phpDocumentor/guides-core/tree/1.4.1"
             },
-            "time": "2024-09-09T07:04:46+00:00"
+            "time": "2024-09-25T20:40:25+00:00"
         },
         {
             "name": "phpdocumentor/guides-restructured-text",
