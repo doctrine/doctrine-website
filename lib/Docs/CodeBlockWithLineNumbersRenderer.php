@@ -27,6 +27,7 @@ class CodeBlockWithLineNumbersRenderer
         'mysql',
         'postgres',
         'html+php',
+        'rst',
     ];
 
     private const LINE_NUMBER_TABLE_COLUMN_TEMPLATE = '<td class="line-number noselect"><a name="%s" class="line-number-anchor" /><a href="%s">%d</a></td>';

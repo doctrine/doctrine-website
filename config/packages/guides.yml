@@ -1,0 +1,6 @@
+guides:
+  theme: doctrine
+  links_are_relative: true
+  themes:
+    doctrine: '%doctrine.website.root_dir%/templates/guides'
+

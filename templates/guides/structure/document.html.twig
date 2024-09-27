@@ -1,0 +1,29 @@
+---
+title: "{{ node.pageTitle | yaml_encode }}"
+docsIndex: {% if node.filePath ends with 'index' %}true{% else %}false{% endif %}
+
+docsSourcePath: "/en/{{ node.filePath }}.rst"
+---
+{% verbatim %}
+{% block sidebar %}
+{% endverbatim %}
+
+{% for id,value in node.documentPartNodes %}
+    {% if id == 'sidebar' %}
+        {{ renderNode(value) }}
+    {% endif %}
+{% endfor %}
+
+{% verbatim %}
+{% endblock %}{% block content %}{% verbatim %}
+{% endverbatim %}
+    {% for child in node.children -%}
+        {% if child is not tocNode %}
+        {{ renderNode(child) }}
+        {% endif %}
+    {%~ endfor -%}
+
+{{ "{% endverbatim %}" }}
+{% verbatim %}
+    {% endblock %}
+{% endverbatim %}

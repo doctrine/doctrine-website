@@ -1,0 +1,30 @@
+{% if name == 'important' %}
+{% endif %}
+{% if name == 'note' %}
+    {% set admonitionClass='note' %}
+    {% set textClass='text-primary' %}
+    {% set icon='fa-sticky-note' %}
+{% endif %}
+{% if name == 'warning' or name == 'caution' %}
+    {% set admonitionClass='warning' %}
+    {% set textClass='text-warning' %}
+    {% set icon='fa-exclamation-circle' %}
+{% endif %}
+{% if name == 'tip' or name == 'hint' %}
+{% endif %}
+{% if name == 'seealso' %}
+{% endif %}
+<div class="alert {{ admonitionClass }}-admonition bg-light-yellow text-dark border {{ class ? (' '~class) }}{% if node.classes %} {{ node.classesString }}{% endif %}">
+    <table width="100%">
+        <tbody>
+        <tr>
+            <td width="10" class="align-top"><i class="fas {{ icon }} {{ textClass}} mr-2"></i></td>
+            <td>
+                {% if title and isTitled %}<p class="admonition-title">{{ renderNode(title) }}</p>{% endif %}
+                {% if title and not isTitled %}<p>{{ renderNode(title) }}</p>{% endif %}
+                {{ renderNode(node) }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
