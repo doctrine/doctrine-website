@@ -1,0 +1,13 @@
+{% verbatim %}
+{% block content %}{% verbatim %}
+{% endverbatim %}
+    {% for child in node.children -%}
+        {% if child is not tocNode %}
+        {{ renderNode(child) }}
+        {% endif %}
+    {%~ endfor -%}
+
+{{ "{% endverbatim %}" }}
+{% verbatim %}
+    {% endblock %}
+{% endverbatim %}

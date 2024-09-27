@@ -6,23 +6,36 @@ namespace Doctrine\Website\Docs;
 
 use Algolia\AlgoliaSearch\SearchClient;
 use Algolia\AlgoliaSearch\SearchIndex;
-use Doctrine\RST\Nodes\DocumentNode;
-use Doctrine\RST\Nodes\Node;
-use Doctrine\RST\Nodes\ParagraphNode;
-use Doctrine\RST\Nodes\TitleNode;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
+use Generator;
+use phpDocumentor\Guides\Nodes\CompoundNode;
+use phpDocumentor\Guides\Nodes\DocumentNode;
+use phpDocumentor\Guides\Nodes\Node;
+use phpDocumentor\Guides\Nodes\ParagraphNode;
+use phpDocumentor\Guides\Nodes\TitleNode;
 
-use function in_array;
-use function is_string;
 use function md5;
-use function preg_match;
+use function str_replace;
 use function strip_tags;
-use function strpos;
 
 /**
  * Influenced by Laravel.com website code search indexes that also use Algolia.
  *
+ * @phpstan-type headers = array{h1: string|null, h2: string|null, h3: string|null, h4: string|null, h5: string|null}
+ * @phpstan-type searchRecord = array{
+ *     objectID: string,
+ *     rank: int,
+ *     h1: string|null,
+ *     h2: string|null,
+ *     h3: string|null,
+ *     h4: string|null,
+ *     h5: string|null,
+ *     url: string,
+ *     content: string,
+ *     projectName: string,
+ *     _tags: string[],
+ * }
  * @final
  */
 class SearchIndexer
@@ -63,23 +76,21 @@ class SearchIndexer
         $records = [];
 
         foreach ($documents as $document) {
-            $this->buildDocumentSearchRecords($document, $records, $project, $version);
+            foreach ($this->buildDocumentSearchRecords($document, $project, $version) as $record) {
+                $records[] = $record;
+            }
         }
 
         $this->getSearchIndex()->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
     }
 
-    /** @param mixed[][] $records */
+    /** @return Generator<searchRecord> */
     private function buildDocumentSearchRecords(
         DocumentNode $document,
-        array &$records,
         Project $project,
         ProjectVersion $version,
-    ): void {
-        $environment = $document->getEnvironment();
-
-        $slug        = $environment->getUrl();
-        $currentLink = $slug;
+    ): Generator {
+        $currentLink = $document->getFilePath() . '.html';
 
         $current = [
             'h1' => null,
@@ -89,46 +100,49 @@ class SearchIndexer
             'h5' => null,
         ];
 
-        $nodeTypes = [TitleNode::class, ParagraphNode::class];
+        yield from $this->iterateNodes($document, $current, $currentLink, $project, $version);
+    }
 
-        $nodes = $document->getNodes(static function (Node $node) use ($nodeTypes): bool {
-            return in_array($node::class, $nodeTypes, true);
-        });
+    /**
+     * @param headers            $current
+     * @param CompoundNode<Node> $node
+     *
+     * @return Generator<searchRecord>
+     */
+    private function iterateNodes(CompoundNode $node, array $current, string $currentLink, Project $project, ProjectVersion $version): Generator
+    {
+        foreach ($node->getChildren() as $child) {
+            if ($child instanceof TitleNode) {
+                yield $this->getNodeSearchRecord($child, $current, $currentLink, $project, $version);
 
-        foreach ($nodes as $node) {
-            $value = $this->renderNodeValue($node);
-
-            if (strpos($value, '{{ DOCS_SOURCE_PATH') !== false) {
                 continue;
             }
 
-            $html = $node->render();
+            if ($child instanceof ParagraphNode) {
+                yield $this->getNodeSearchRecord($child, $current, $currentLink, $project, $version);
 
-            if ($node instanceof TitleNode) {
-                preg_match('/<a id=\"([^\"]*)\">.*<\/a>/iU', $html, $match);
-
-                $currentLink = $slug . '.html' . (isset($match[1]) ? '#' . $match[1] : '');
+                continue;
             }
 
-            $records[] = $this->getNodeSearchRecord(
-                $node,
-                $current,
-                $currentLink,
-                $project,
-                $version,
-            );
+            if (! ($child instanceof CompoundNode)) {
+                continue;
+            }
+
+            foreach ($this->iterateNodes($child, $current, $currentLink, $project, $version) as $record) {
+                yield $record;
+            }
         }
     }
 
     /**
-     * @param string[] $current
+     * @param headers $current
      *
-     * @return mixed[]
+     * @return searchRecord
      */
     private function getNodeSearchRecord(
         Node $node,
         array &$current,
-        string &$currentLink,
+        string $currentLink,
         Project $project,
         ProjectVersion $version,
     ): array {
@@ -180,8 +194,8 @@ class SearchIndexer
 
         if ($node instanceof TitleNode) {
             $elementName = 'h' . $node->getLevel();
-        } elseif ($node instanceof ParagraphNode) {
-            $elementName = 'p';
+
+            return $ranks[$elementName];
         }
 
         return $ranks[$elementName];
@@ -189,17 +203,25 @@ class SearchIndexer
 
     private function renderNodeValue(Node $node): string
     {
-        $nodeValue = $node->getValue();
-
-        if ($nodeValue === null) {
-            return '';
+        if ($node instanceof TitleNode) {
+            return $this->stripContent($node->toString());
         }
 
-        if (is_string($nodeValue)) {
-            return $nodeValue;
+        if ($node instanceof ParagraphNode) {
+            $content = '';
+            foreach ($node->getChildren() as $child) {
+                $content .= $this->stripContent($child->toString());
+            }
+
+            return $content;
         }
 
-        return $nodeValue->render();
+        return '';
+    }
+
+    private function stripContent(string $content): string
+    {
+        return str_replace(['"', '\''], '', $content);
     }
 
     private function getSearchIndex(): SearchIndex

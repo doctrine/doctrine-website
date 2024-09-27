@@ -13,11 +13,5 @@ parameters:
         message: "#While loop condition is always true#"
         path: "lib/Commands/BuildWebsiteCommand.php"
         count: 1
-      - # Temporary final classes in tests are covered by nunomaduro/mock-final-classes until the refactorings start
-        message: "#has unresolvable native type#"
-        path: "tests/"
-      - # Temporary final classes in tests are covered by nunomaduro/mock-final-classes until the refactorings start
-        message: "#contains unresolvable type#"
-        path: "tests/"
       -
         message: "#::\\$id is never read, only written#"

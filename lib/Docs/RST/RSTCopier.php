@@ -12,28 +12,23 @@ use function assert;
 use function file_exists;
 use function is_string;
 use function preg_replace;
-use function sprintf;
 use function str_replace;
 
 /** @final */
 class RSTCopier
 {
     final public const RST_TEMPLATE = <<<'TEMPLATE'
-        SIDEBAR BEGIN
-        
         {{ sidebar }}
-        
-        CONTENT BEGIN
-        
+         
         {{ content }}
         TEMPLATE;
 
     final public const DEFAULT_SIDEBAR = <<<'SIDEBAR'
-        .. toctree::
+        .. menu::
             :depth: 3
             :glob:
         
-            /*
+            **
         SIDEBAR;
 
     public function __construct(
@@ -51,7 +46,7 @@ class RSTCopier
             // clear existing files before copying the rst over
             $this->filesystem->remove($this->rstFileRepository->findFiles($outputPath));
 
-            $sidebar = $this->getSidebarRST($language->getPath());
+            $sidebar = $this->fixRSTSyntax($project, $this->getSidebarRST($language->getPath()));
 
             $files = $this->rstFileRepository->getSourceFiles($language->getPath());
 
@@ -102,11 +97,7 @@ class RSTCopier
         $rstTemplate = str_replace('{{ sidebar }}', $sidebar, self::RST_TEMPLATE);
 
         // put the content in the RST template
-        $content = str_replace('{{ content }}', $content, $rstTemplate);
-
-        // append the source file name to the content so we can parse it back out
-        // for use in the build process
-        return $content . "\n\n" . sprintf('{{ DOCS_SOURCE_PATH : %s }}', $sourceFile);
+        return str_replace('{{ content }}', $content, $rstTemplate);
     }
 
     private function fixRSTSyntax(Project $project, string $content): string
@@ -116,9 +107,18 @@ class RSTCopier
 
         // fix :maxdepth: to :depth:
         $content = str_replace(':maxdepth:', ':depth:', $content);
+        $content = str_replace('toctree::', 'menu::', $content);
 
         // get rid of .. include:: toc.rst
         $content = str_replace('.. include:: toc.rst', '', $content);
+
+        $content = preg_replace(
+            '/.. sectionauthor:: ([^\(]+) \(([^\)]+)\)/',
+            '.. sectionauthor:: $1 <$2>',
+            $content,
+        );
+
+        assert(is_string($content));
 
         // replace \n::\n with \n.. code-block::\n
         // this corrects code blocks that don't render properly.
@@ -144,6 +144,7 @@ class RSTCopier
         // stuff from doctrine1 docs
         if ($project->getSlug() === 'doctrine1') {
             $content = preg_replace([
+                "/\n===\r\n/",
                 "/:code:(.*)\n/",
                 '/:php:(.*):`(.*)`/',
                 '/:file:`(.*)`/',
@@ -153,6 +154,7 @@ class RSTCopier
                 '/.. rubric:: Notes/',
                 "/.. sidebar:: (.*)\n/",
             ], [
+                "\n=== ===\r\n",
                 '$1',
                 '$2',
                 '$1',

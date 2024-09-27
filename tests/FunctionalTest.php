@@ -203,10 +203,10 @@ class FunctionalTest extends TestCase
         self::assertStringContainsString('<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0 specification</a>', $crawler->html());
 
         $crawler = $this->assertValid('/projects/doctrine-inflector/en/1.3/index.html');
-        self::assertStringContainsString('<a href="index.html#classify">Classify</a>', $crawler->html());
+        self::assertStringContainsString('<a href="#classify">Classify</a>', $crawler->html());
 
         $crawler = $this->assertValid('/projects/doctrine-inflector/en/2.0/index.html');
-        self::assertStringContainsString('<a href="index.html#classify">Classify</a>', $crawler->html());
+        self::assertStringContainsString('<a href="#classify">Classify</a>', $crawler->html());
 
         $crawler = $this->assertValid('/projects/doctrine-inflector/en/2.0/index.html');
         self::assertStringContainsString('<a href="https://sourcemaking.com/design_patterns/null_object">Null Object design pattern</a>', $crawler->html());
@@ -268,7 +268,12 @@ class FunctionalTest extends TestCase
         $crawler = $this->assertValid('/contribute/index.html');
 
         self::assertStringContainsString('<div class="section" id="contribute">', $crawler->html());
-        self::assertStringContainsString('<h1>Contribute</h1>', $crawler->html());
+        self::assertStringContainsString('<h1 class="section-header ">
+    <a href="#contribute">
+        Contribute
+        <i class="fas fa-link"></i>
+    </a>
+</h1>', $crawler->html());
     }
 
     public function testContributeMaintainer(): void
@@ -276,7 +281,12 @@ class FunctionalTest extends TestCase
         $crawler = $this->assertValid('/contribute/maintainer/index.html');
 
         self::assertStringContainsString('<div class="section" id="maintainer-workflow">', $crawler->html());
-        self::assertStringContainsString('<h1>Maintainer Workflow</h1>', $crawler->html());
+        self::assertStringContainsString('<h1 class="section-header ">
+    <a href="#maintainer-workflow">
+        Maintainer Workflow
+        <i class="fas fa-link"></i>
+    </a>
+</h1>', $crawler->html());
     }
 
     public function testContributeWebsite(): void
@@ -284,7 +294,12 @@ class FunctionalTest extends TestCase
         $crawler = $this->assertValid('/contribute/website/index.html');
 
         self::assertStringContainsString('<div class="section" id="contribute-to-website">', $crawler->html());
-        self::assertStringContainsString('<h1>Contribute to Website</h1>', $crawler->html());
+        self::assertStringContainsString('<h1 class="section-header ">
+    <a href="#contribute-to-website">
+        Contribute to Website
+        <i class="fas fa-link"></i>
+    </a>
+</h1>', $crawler->html());
     }
 
     private function getFullPath(string $path): string
