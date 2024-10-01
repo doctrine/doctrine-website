@@ -123,6 +123,14 @@ h6 {
   color: #fff;
 }
 
+.sidebar-sticky .toc .caption {
+  padding: 8px;
+  font-size: 20px;
+  background-color: $doctrine-dark-blue;
+  margin-bottom: 0;
+  color: #fff;
+}
+
 /** 1st Level */
 .sidebar-sticky .toc ul {
   list-style-type: none;
