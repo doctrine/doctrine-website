@@ -1,6 +1,6 @@
 <div class="toc">
-    {% if node.caption %}
-        <p class="caption">{{ renderNode(node.caption) }}</p>
+    {% if node.hasOption('caption') %}
+        <p class="caption">{{ node.getOption('caption') }}</p>
     {% endif -%}
     {% include "body/menu/menu-level.html.twig" %}
 </div>
