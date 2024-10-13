@@ -88,15 +88,15 @@ You can also map Enums directly to MySQL enums and let Doctrine auto-detect al l
 ```
 class Subscription
 {
-	#[Column(type: Types::ENUM)]
-    public State $state;
+    #[Column(type: Types::ENUM)]
+    public State $state = State::FUTURE;
 }
 enum State : string
 {
     case FUTURE = 'future';
     case ACTIVE = 'active';
-	case CANCELLED = 'cancelled';
-	case EXPIRED = 'expired';
+    case CANCELLED = 'cancelled';
+    case EXPIRED = 'expired';
 }
 ```
 
