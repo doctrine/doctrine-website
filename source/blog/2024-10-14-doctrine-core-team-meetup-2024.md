@@ -18,12 +18,12 @@ deprecation reversals and a discussion of our upcoming roadmap.
 We want to thank all our sponsors on
 [OpenCollective](https://opencollective.com/doctrine) and
 [GitHub](https://github.com/sponsors/doctrine) for contributing towards making
-this in-person team meetup possible. If you are not, [please consider becoming
-a sponsor of Doctrine](https://www.doctrine-project.org/sponsorship.html).
+this in-person team meetup possible. If you are not a sponsor of Doctrine already,
+[please consider becoming one](https://www.doctrine-project.org/sponsorship.html).
 
 ## Undeprecation of PARTIAL Object Hydration
 
-Starting with ORM 3.3.0 you can use SELECT PARTIAL DQL syntax again and with
+Starting with ORM 3.3.0 you can use `SELECT PARTIAL` DQL syntax again and with
 ORM 2.20 you will not get a deprecation message for using that anymore. If your
 application uses partial objects with DQL, you can migrate from 2.20 to 3.3.0
 now without having to change their use. Partial objects have exactly the same
@@ -46,18 +46,18 @@ We hope to add this behavior to ORM 3.4 in the next months.
 
 ## Support for PHP 8.4 and Property Hooks
 
-Doctrine support PHP 8.4 starting with ORM 2.20.0 and 3.3.0, DBAL 4 and 3.
+Doctrine supports PHP 8.4 starting with ORM 2.20.0 and 3.3.0, DBAL 4 and 3.
 
 There are caveats though. You cannot use property hooks in entities yet. This
 is because we need to rework internally how we read and write property values
-(ReflectionProperty::setValue vs setRawValue and ReflectionProperty::getValue
-and getRawValue). For now, if you try to create a property hook on an entity,
+(`ReflectionProperty::setValue()` vs `setRawValue()` and `ReflectionProperty::getValue()`
+and `getRawValue()`). For now, if you try to create a property hook on an entity,
 Doctrine will throw an exception. We plan to address this with an upcoming ORM
 3.4 release, hopefully before PHP 8.4 is released itself, otherwise shortly
 after.
 
-For MongoDB ODM, PHP 8.4 support depends on a to be completed migration from
-proxy manager to symfony/var-exporter. 
+For MongoDB ODM, PHP 8.4 support depends on a to-be-completed migration from
+ProxyManager to `symfony/var-exporter`. 
 
 ## Lazy Objects and PHP 8.4 requirement in ORM 4
 
@@ -106,7 +106,7 @@ non-default types.
 
 ## Query Cache and Pagination Variables
 
-If you have used setFirstResult and setMaxResults with DQL queries then up
+If you have used `setFirstResult()` and `setMaxResults()` with DQL queries then up
 until 2.20.x of Doctrine, each combination of first result and max results lead
 to their own DQL quer parsing cache entry. This could easily balloon the query
 cache size out of control.
@@ -117,12 +117,12 @@ cached result with the LIMIT query part (or other database equivalent).
 
 This is a bigger internal change, and we hope that we thought of all the edge
 cases, but it might be possible that especially in combination with the
-Paginator abstraction and collection fetch joins, that there are some cases
+Paginator abstraction and collection fetch joins, there are some cases
 where this change could lead to breaks on upgrading to 2.20 from 2.19.
 
 ## DQL: Nested DTOs and Named Arguments
 
-Starting with ORM 3.3 you can now create nested DTOs with the NEW syntax and
+Starting with ORM 3.3 you can now create nested DTOs with the `NEW` syntax and
 furthermore, use a short named arguments syntax to populate the constructor of
 a DTO. This feature was contributed by GitHub user
 [eltharin](https://github.com/eltharin) over the last few months and builds
@@ -130,8 +130,8 @@ upon previous work.
 
 ## Psalm and PHPStan going forward
 
-After along discussion we have decided to only use one static analysis tool
-going forward and Doctrine projects will use PHPStan going forward. For now
+After a long discussion we have decided to only use one static analysis tool
+and Doctrine projects will use PHPStan going forward. For now
 Psalm checks will be removed from repositories over the next weeks.
 
 This is mainly because PHPStan has outpaced Psalm in depth and quality in the
