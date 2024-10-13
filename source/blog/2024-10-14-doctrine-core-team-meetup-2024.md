@@ -59,15 +59,17 @@ after.
 For MongoDB ODM, PHP 8.4 support depends on a to be completed migration from
 proxy manager to symfony/var-exporter. 
 
-## Lazy Objects and PHP 8.4 requirement in ORM 4 The lazy objects RFC in PHP
-8.4 changes everything for the better in Doctrine ORM internally. This is why
-we decided that ORM 4 will be mainly a decision about exclusively using lazy
-objects and therefore will require PHP 8.4.
+## Lazy Objects and PHP 8.4 requirement in ORM 4
 
-## Support for ENUM Database types DBAL 4.2 now supports a new Enum type that
-is mainly useful for introspection of database schemas that contain enums. All
-values of the enum are parsed out of the type and are available to the schema
-abstraction layer.
+The lazy objects RFC in PHP 8.4 changes everything for the better in Doctrine
+ORM internally. This is why we decided that ORM 4 will be mainly a decision
+about exclusively using lazy objects and therefore will require PHP 8.4.
+
+## Support for ENUM Database types
+
+DBAL 4.2 now supports a new Enum type that is mainly useful for introspection
+of database schemas that contain enums. All values of the enum are parsed out
+of the type and are available to the schema abstraction layer.
 
 Although we do not recommend the enum type in MySQL/MariaDB due to its quirky
 implementation details, you can also use this type to directly map columns to
@@ -122,9 +124,9 @@ where this change could lead to breaks on upgrading to 2.20 from 2.19.
 
 Starting with ORM 3.3 you can now create nested DTOs with the NEW syntax and
 furthermore, use a short named arguments syntax to populate the constructor of
-a DTO. This feature was contributed by GitHub user [eltharin -
-Overview](https://github.com/eltharin) over the last few months and builds upon
-previous work.
+a DTO. This feature was contributed by GitHub user
+[eltharin](https://github.com/eltharin) over the last few months and builds
+upon previous work.
 
 ## Psalm and PHPStan going forward
 
