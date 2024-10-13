@@ -1,19 +1,19 @@
 ---
-title: "Doctrine Core Team Meetup, ORM 2.19.8, 2.20.0, 3.2.3, 3.3.0 Releases, DBAL 4.2.0"
+title: "Doctrine Core Team Meetup, ORM 2.19.8, 2.20.0, 3.3.0 Releases, DBAL 4.2.0"
 authorName: Benjamin Eberlei
 authorEmail: kontakt@beberlei.de
 permalink: /2024/10/14/doctrine-core-team-meetup-2024.html
 ---
 
 Last week, we meet with the Doctrine ORM and MongoDB Core Teams for 3 days in
-Bonn, Germany. A few immediate releases followed from that, including some
+Bonn, Germany. A few releases followed immediately from that, including some
 deprecation reversals and a discussion of our upcoming roadmap.
 
 * [Doctrine ORM 3.3.0](https://github.com/doctrine/orm/releases/tag/3.3.0)
-* [Doctrine DBAL 4.2.0](https://github.com/doctrine/dbal/releases/tag/4.2.0)
 * [Doctrine ORM 2.20.0](https://github.com/doctrine/orm/releases/tag/2.20.0)
-* [Doctrine ORM 3.2.3](https://github.com/doctrine/orm/releases/tag/3.2.3)
 * [Doctrine ORM 2.19.8](https://github.com/doctrine/orm/releases/tag/2.19.8)
+* [Doctrine DBAL 4.2.0](https://github.com/doctrine/dbal/releases/tag/4.2.0)
+* [Doctrine Migrations 3.8.2](https://github.com/doctrine/migrations/releases/tag/3.8.2)
 
 We want to thank all our sponsors on
 [OpenCollective](https://opencollective.com/doctrine) and
@@ -127,6 +127,14 @@ furthermore, use a short named arguments syntax to populate the constructor of
 a DTO. This feature was contributed by GitHub user
 [eltharin](https://github.com/eltharin) over the last few months and builds
 upon previous work.
+
+## Migrations: Fixing a decade old schema comparison bug with PostgreSQL
+
+When you used Doctrine Migrations with the ORM the down migration included a
+statement to drop the public schema for the better part of a decade.
+
+This bug has finally been fixed and you won't see this drop schema statement in
+newly created migrations for PostgreSQL anymore.
 
 ## Psalm and PHPStan going forward
 
