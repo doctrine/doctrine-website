@@ -108,7 +108,7 @@ non-default types.
 
 If you have used `setFirstResult()` and `setMaxResults()` with DQL queries then up
 until 2.20.x of Doctrine, each combination of first result and max results lead
-to their own DQL quer parsing cache entry. This could easily balloon the query
+to their own DQL query parsing cache entry. This could easily balloon the query
 cache size out of control.
 
 Starting with 2.20, the DQL parser is now running in a two-step process, where
