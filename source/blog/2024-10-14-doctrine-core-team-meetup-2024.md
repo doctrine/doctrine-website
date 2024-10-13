@@ -83,7 +83,7 @@ class Subscription
 }
 ```
 
-You can also map Enums directly to MySQL enums and let Doctrine auto-detect al lthe configuration:
+You can also map Enums directly to MySQL enums and let Doctrine auto-detect all the configuration:
 
 ```
 class Subscription
