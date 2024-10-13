@@ -15,8 +15,11 @@ deprecation reversals and a discussion of our upcoming roadmap.
 * [Doctrine ORM 3.2.3](https://github.com/doctrine/orm/releases/tag/3.2.3)
 * [Doctrine ORM 2.19.8](https://github.com/doctrine/orm/releases/tag/2.19.8)
 
-We want to thank all our sponsors on OpenCollective and GitHub for contributing
-towards making this in-person team meetup possible. 
+We want to thank all our sponsors on
+[OpenCollective](https://opencollective.com/doctrine) and
+[GitHub](https://github.com/sponsors/doctrine) for contributing towards making
+this in-person team meetup possible. If you are not, [please consider becoming
+a sponsor of Doctrine](https://www.doctrine-project.org/sponsorship.html).
 
 ## Undeprecation of PARTIAL Object Hydration
 
