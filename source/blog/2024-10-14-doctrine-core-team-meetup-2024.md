@@ -2,7 +2,7 @@
 title: "Doctrine Core Team Meetup, ORM 2.19.8, 2.20.0, 3.2.3, 3.3.0 Releases, DBAL 4.2.0"
 authorName: Benjamin Eberlei
 authorEmail: kontakt@beberlei.de
-permalink: /2024/10/14/doctrine-core-team-meetup.html
+permalink: /2024/10/14/doctrine-core-team-meetup-2024.html
 ---
 
 Last week, we meet with the Doctrine ORM and MongoDB Core Teams for 3 days in
