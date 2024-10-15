@@ -16,3 +16,7 @@ parameters:
         count: 1
       -
         message: "#::\\$id is never read, only written#"
+      -
+        message: "#::\\$id \\(int\\|null\\) is never assigned int#"
+      -
+        message: "#GlobMenuFixerTransformer::leaveNode\\(\\) never returns null so it can be removed from the return type#"
