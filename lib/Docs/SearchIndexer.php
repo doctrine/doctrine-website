@@ -15,6 +15,7 @@ use phpDocumentor\Guides\Nodes\Node;
 use phpDocumentor\Guides\Nodes\ParagraphNode;
 use phpDocumentor\Guides\Nodes\TitleNode;
 
+use function assert;
 use function md5;
 use function str_replace;
 use function strip_tags;
@@ -149,6 +150,7 @@ class SearchIndexer
         $level = $node instanceof TitleNode ? $node->getLevel() : false;
 
         if ($level !== false) {
+            assert($level >= 1 && $level <= 5);
             $current['h' . $level] = $this->renderNodeValue($node);
 
             for ($i = $level + 1; $i <= 5; $i++) {

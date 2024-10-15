@@ -26,7 +26,7 @@ class SimpleSourceTest extends TestCase
                 $foo1 = new Foo(1, 'foo1');
                 $foo2 = new Foo(2, 'foo2');
                 // phpcs:ignoreFile
-                if (($foo == $foo1 || $foo == $foo2)) {
+                if (($foo->equals($foo1) || $foo->equals($foo2))) {
                     return;
                 }
 
