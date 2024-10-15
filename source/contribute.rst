@@ -546,7 +546,7 @@ Maintainer Workflow
 -------------------
 
 You can learn more about the maintainer workflow
-`here </maintainer/>`_. Continue reading if you are
+`here </maintainer/index.html>`_. Continue reading if you are
 interested in learning more about how to get started with your first
 contribution.
 
@@ -556,4 +556,4 @@ Website
 The `doctrine-project.org <https://www.doctrine-project.org/>`_ website
 is completely open source! If you want to learn how to contribute to the
 Doctrine website and documentation you can read more about it
-`here </website/>`_.
+`here <website/index.html>`_.
