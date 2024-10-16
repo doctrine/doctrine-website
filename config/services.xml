@@ -11,7 +11,6 @@
     <services>
         <defaults autowire="true" autoconfigure="true" public="false">
             <bind key="$rootDir">%doctrine.website.root_dir%</bind>
-            <bind key="$cacheDir">%doctrine.website.cache_dir%</bind>
             <bind key="$env">%doctrine.website.env%</bind>
             <bind key="$projectsDir">%doctrine.website.projects_dir%</bind>
             <bind key="$docsDir">%doctrine.website.docs_dir%</bind>
