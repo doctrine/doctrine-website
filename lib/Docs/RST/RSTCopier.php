@@ -12,6 +12,7 @@ use function assert;
 use function file_exists;
 use function is_string;
 use function preg_replace;
+use function str_ends_with;
 use function str_replace;
 
 /** @final */
@@ -52,6 +53,11 @@ class RSTCopier
 
             foreach ($files as $file) {
                 if ($file === $language->getPath() . '/sidebar.rst') {
+                    continue;
+                }
+
+                if (! str_ends_with($file, '.rst')) {
+                    $this->filesystem->copy($file, $outputPath . str_replace($language->getPath(), '', $file));
                     continue;
                 }
 

@@ -58,7 +58,7 @@ class RSTFileRepository
 
         $finder = $this->getFilesFinder($path);
 
-        $finder->name('*.rst');
+        $finder->name('*.*');
         $finder->notName('toc.rst');
 
         return $this->finderToArray($finder);
