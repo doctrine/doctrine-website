@@ -222,7 +222,6 @@ class FunctionalTest extends TestCase
 
         $lines = explode("\n", $xmlString);
 
-        self::assertTrue(isset($lines[0]));
         self::assertSame('<?xml version="1.0" encoding="UTF-8"?>', $lines[0]);
 
         $xml = simplexml_load_string($xmlString);
@@ -240,7 +239,6 @@ class FunctionalTest extends TestCase
 
         $lines = explode("\n", $xmlString);
 
-        self::assertTrue(isset($lines[0]));
         self::assertSame('<?xml version="1.0" encoding="utf-8"?>', $lines[0]);
 
         $xml = simplexml_load_string($xmlString);

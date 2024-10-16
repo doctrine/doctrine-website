@@ -7,6 +7,7 @@ namespace Doctrine\Website\Cache;
 use Symfony\Component\Filesystem\Filesystem;
 
 use function array_filter;
+use function file_exists;
 use function glob;
 use function sprintf;
 
@@ -57,6 +58,8 @@ final readonly class CacheClearer
     /** @return string[] */
     protected function glob(string $pattern): array
     {
-        return array_filter((array) glob($pattern));
+        $matches = (array) glob($pattern);
+
+        return array_filter($matches, static fn (string|false $file): bool => $file !== false && file_exists($file));
     }
 }

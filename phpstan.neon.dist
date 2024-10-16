@@ -1,6 +1,7 @@
 includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
     level: 8
@@ -15,3 +16,7 @@ parameters:
         count: 1
       -
         message: "#::\\$id is never read, only written#"
+      -
+        message: "#::\\$id \\(int\\|null\\) is never assigned int#"
+      -
+        message: "#GlobMenuFixerTransformer::leaveNode\\(\\) never returns null so it can be removed from the return type#"
