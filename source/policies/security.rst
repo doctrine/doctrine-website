@@ -12,7 +12,7 @@ issue tracker in GitHub and don't publish it publicly. Instead, all security iss
 must be sent to `security@doctrine-project.org <mailto:security@doctrine-project.org>`_.
 Emails sent to this address are forwarded to the Doctrine core team private mailing-list.
 
-.. notice::
+.. note::
 
     While we are working on a patch, please do not reveal the issue publicly. The resolution can take
     anywhere between a couple of days, a month or an indefinite amount of time depending on its complexity.
