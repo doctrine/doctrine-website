@@ -112,7 +112,6 @@ class RSTCopier
         $content = str_replace('.. Note::', '.. note::', $content);
 
         // fix :maxdepth: to :depth:
-        $content = str_replace(':maxdepth:', ':depth:', $content);
         $content = str_replace('toctree::', 'menu::', $content);
 
         // get rid of .. include:: toc.rst
@@ -140,9 +139,6 @@ class RSTCopier
         ], $content);
 
         assert(is_string($content));
-
-        // replace .. code:: with .. code-block::
-        $content = str_replace('.. code::', '.. code-block::', $content);
 
         // fix list syntax
         $content = str_replace("\n- \n", "\n- ", $content);
@@ -175,11 +171,6 @@ class RSTCopier
             $content = str_replace('.. productionlist::', '', $content);
             $content = str_replace('.. sidebar::', '', $content);
         }
-
-        // we don't support :term:`*` syntax
-        $content = preg_replace('/:term:`(.*)`/', '$1', $content);
-
-        assert(is_string($content));
 
         return $content;
     }
