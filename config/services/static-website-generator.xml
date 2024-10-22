@@ -20,8 +20,8 @@
             <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRenderer" />
             <argument type="service" id="Symfony\Component\Filesystem\Filesystem" />
             <argument type="collection">
-                <argument type="service" id="Doctrine\StaticWebsiteGenerator\SourceFile\Converters\MarkdownConverter" />
                 <argument type="service" id="Doctrine\Website\Guides\StaticWebsiteGenerator\GuidesRstConverter" />
+                <argument type="service" id="Doctrine\Website\Guides\StaticWebsiteGenerator\GuidesMarkdownConverter" />
             </argument>
             <argument type="collection">
                 <argument>/\/api\//</argument>
