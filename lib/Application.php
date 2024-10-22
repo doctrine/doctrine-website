@@ -12,6 +12,7 @@ use Doctrine\Website\Commands\ClearBuildCacheCommand;
 use Doctrine\Website\Commands\SyncRepositoriesCommand;
 use Doctrine\Website\Guides\DependencyInjection\ThemeCompilerPass;
 use phpDocumentor\Guides\DependencyInjection\GuidesExtension;
+use phpDocumentor\Guides\Markdown\DependencyInjection\MarkdownExtension;
 use phpDocumentor\Guides\RestructuredText\DependencyInjection\ReStructuredTextExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application as BaseApplication;
@@ -91,7 +92,7 @@ final readonly class Application
         $container->setParameter('vendor_dir', realpath(__DIR__ . '/../vendor'));
 
         $container->addCompilerPass(new ThemeCompilerPass());
-        foreach ([new GuidesExtension(), new ReStructuredTextExtension()] as $extension) {
+        foreach ([new GuidesExtension(), new ReStructuredTextExtension(), new MarkdownExtension()] as $extension) {
             $container->registerExtension($extension);
             $container->loadFromExtension($extension->getAlias());
         }
