@@ -75,7 +75,7 @@ Although we do not recommend the enum type in MySQL/MariaDB due to its quirky
 implementation details, you can also use this type to directly map columns to
 enums in the database via the ORM as of 3.3.0:
 
-```
+```php
 class Subscription
 {
     #[Column(type: "enum", options: ['values' => ['future', 'active, 'cancelled', 'expired']))]
@@ -85,7 +85,7 @@ class Subscription
 
 You can also map Enums directly to MySQL enums and let Doctrine auto-detect all the configuration:
 
-```
+```php
 class Subscription
 {
     #[Column(type: Types::ENUM)]
