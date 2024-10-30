@@ -34,7 +34,7 @@ hydration, because of the many edge cases they produced. This plan was in
 effect and shipped for 3.0 - 3.2, where the syntax and feature was completely
 removed. In discussion with our users we found a lot of use-cases and ideas
 that are powerful with partial objects, but were firm on our goal to remove
-partial objects. 
+partial objects.
 
 This all changes with PHP 8.4 and its lazy object feature. With this feature we
 will be able to implement partial objects transparently to PHP. That means it
@@ -57,7 +57,7 @@ Doctrine will throw an exception. We plan to address this with an upcoming ORM
 after.
 
 For MongoDB ODM, PHP 8.4 support depends on a to-be-completed migration from
-ProxyManager to `symfony/var-exporter`. 
+ProxyManager to `symfony/var-exporter`.
 
 ## Lazy Objects and PHP 8.4 requirement in ORM 4
 
@@ -75,7 +75,7 @@ Although we do not recommend the enum type in MySQL/MariaDB due to its quirky
 implementation details, you can also use this type to directly map columns to
 enums in the database via the ORM as of 3.3.0:
 
-```
+```php
 class Subscription
 {
     #[Column(type: "enum", options: ['values' => ['future', 'active, 'cancelled', 'expired']))]
@@ -85,7 +85,7 @@ class Subscription
 
 You can also map Enums directly to MySQL enums and let Doctrine auto-detect all the configuration:
 
-```
+```php
 class Subscription
 {
     #[Column(type: Types::ENUM)]
