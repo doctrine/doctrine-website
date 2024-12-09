@@ -1,0 +1,84 @@
+{
+    "name": "Config",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "A schema for the .doctrine-project.json files of every Doctrine repository",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Name of the project"
+        },
+        "active": {
+            "description": "Indicates if the project is actively maintained",
+            "type": "boolean"
+        },
+        "shortName": {
+            "type": "string",
+            "description": "A short name handle"
+        },
+        "slug": {
+            "type": "string",
+            "description": "A unique identifier for the project"
+        },
+        "docsSlug": {
+            "type": "string",
+            "description": "A unique identifier for the docs"
+        },
+        "versions": {
+            "type": "array",
+            "description": "A list of branches used for generating different versions in the docs",
+            "items": {
+                "type": "object",
+                "minItems": 1,
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Major and minor version",
+                        "pattern": "^\\d+\\.\\d+$"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "description": "Unique version. Usually major and minor version (X.Y) or something like 'latest'"
+                    },
+                    "branchName": {
+                        "type": "string",
+                        "description": "Name of the branch that handles the given version. If omitted, the latest tag will be used on docs build"
+                    },
+                    "current": {
+                        "type": "boolean",
+                        "description": "Causes this version to be aliased as 'curent' and 'stable'",
+                        "default": false
+                    },
+                    "maintained": {
+                        "type": "boolean",
+                        "description": "Indicates if this is a maintained version",
+                        "default": true
+                    },
+                    "upcoming": {
+                        "type": "boolean",
+                        "description": "Indicates that this is an upcoming version",
+                        "default": false
+                    },
+                    "aliases": {
+                        "type": "array",
+                        "description": "Aliases for a version",
+                        "default": [],
+                        "items": {
+                            "minItems": 0,
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": ["name", "slug"]
+            },
+            "contains": {
+                "properties": {
+                    "current": { "const": true }
+                },
+                "maxContains": 1
+            }
+        }
+    },
+    "required": ["name", "active", "slug", "versions"]
+} 
