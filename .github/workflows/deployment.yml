@@ -63,7 +63,7 @@ jobs:
 
     - name: "Deploy to ${{ inputs.environment }}"
       if: "! inputs.search-index-only"
-      uses: "cpina/github-action-push-to-another-repository@v1.3"
+      uses: "cpina/github-action-push-to-another-repository@v1.7"
       env:
         API_TOKEN_GITHUB: "${{ secrets.doctrine_website_deployment_token }}"
       with:
