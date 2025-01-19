@@ -78,7 +78,7 @@ enums in the database via the ORM as of 3.3.0:
 ```php
 class Subscription
 {
-    #[Column(type: "enum", options: ['values' => ['future', 'active, 'cancelled', 'expired']))]
+    #[Column(type: "enum", options: ['values' => ['future', 'active', 'cancelled', 'expired']))]
     public string $state = 'future';
 }
 ```
