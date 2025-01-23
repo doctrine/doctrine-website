@@ -49,8 +49,6 @@ class Project
         #[ORM\Column(type: 'string')]
         private string $docsPath,
         #[ORM\Column(type: 'string')]
-        private string $codePath,
-        #[ORM\Column(type: 'string')]
         private string $description,
         #[ORM\OneToOne(targetEntity: ProjectIntegrationType::class, fetch: 'EAGER', orphanRemoval: true)]
         #[ORM\JoinColumn(name: 'projectIntegrationType', referencedColumnName: 'id', nullable: true)]
@@ -135,11 +133,6 @@ class Project
     public function getDocsPath(): string
     {
         return $this->docsPath;
-    }
-
-    public function getCodePath(): string
-    {
-        return $this->codePath;
     }
 
     public function getDescription(): string

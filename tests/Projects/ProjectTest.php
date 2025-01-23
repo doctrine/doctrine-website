@@ -27,7 +27,6 @@ class ProjectTest extends TestCase
             'repositoryName' => 'test-project',
             'docsRepositoryName' => 'test-project',
             'docsPath' => '/docs',
-            'codePath' => '/src',
             'description' => 'Test description.',
             'keywords' => ['keyword1', 'keyword2'],
             'versions' => new ArrayCollection([
@@ -90,11 +89,6 @@ class ProjectTest extends TestCase
     public function testGetDocsPath(): void
     {
         self::assertSame('/docs', $this->project->getDocsPath());
-    }
-
-    public function testGetCodePath(): void
-    {
-        self::assertSame('/src', $this->project->getCodePath());
     }
 
     public function testGetDescription(): void

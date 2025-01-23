@@ -45,7 +45,6 @@ class Projects implements DbPrefill
         $integrationFor      = (string) ($projectData['integrationFor'] ?? '');
         $docsRepositoryName  = (string) ($projectData['docsRepositoryName'] ?? $repositoryName);
         $docsPath            = (string) ($projectData['docsPath'] ?? '/docs');
-        $codePath            = (string) ($projectData['codePath'] ?? '/lib');
         $description         = (string) ($projectData['description'] ?? '');
         $keywords            = $projectData['keywords'] ?? [];
 
@@ -106,7 +105,6 @@ class Projects implements DbPrefill
             $integrationFor,
             $docsRepositoryName,
             $docsPath,
-            $codePath,
             $description,
             $projectIntegrationType,
             $integration,

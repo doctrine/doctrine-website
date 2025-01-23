@@ -42,7 +42,6 @@ abstract class TestCase extends BaseTestCase
             'integrationFor' => '',
             'docsRepositoryName' => '',
             'docsPath' => '',
-            'codePath' => '',
             'description' => '',
             'projectIntegrationType' => null,
             'integration' => true,
