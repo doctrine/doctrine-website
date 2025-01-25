@@ -6,7 +6,6 @@
         "name": "Testproject",
         "repositoryName": "testproject",
         "docsPath": "/docs",
-        "codePath": "/lib",
         "slug": "testproject",
         "versionsGreaterThan": "1.0.1",
         "versions": [

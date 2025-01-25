@@ -87,7 +87,6 @@ class ProjectDataReader
             'name' => $repositoryName,
             'repositoryName' => $repositoryName,
             'docsPath' => $this->detectDocsPath($repositoryName),
-            'codePath' => $this->detectCodePath($repositoryName),
             'slug' => $slug,
             'versions' => [
                 [
@@ -118,11 +117,6 @@ class ProjectDataReader
     private function detectDocsPath(string $repositoryName): string|null
     {
         return $this->detectPath($repositoryName, ['/docs', '/doc', '/Resources/doc', '/source'], null);
-    }
-
-    private function detectCodePath(string $repositoryName): string|null
-    {
-        return $this->detectPath($repositoryName, ['/src', '/lib'], '/');
     }
 
     /** @param string[] $pathsToCheck */

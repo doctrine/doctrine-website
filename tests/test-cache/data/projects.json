@@ -6,7 +6,6 @@
         "name": "Object Relational Mapper",
         "repositoryName": "orm",
         "docsPath": "/docs",
-        "codePath": "/lib",
         "slug": "orm",
         "versions": [
             {
@@ -390,7 +389,6 @@
         "name": "Database Abstraction Layer",
         "repositoryName": "dbal",
         "docsPath": "/docs",
-        "codePath": "/src",
         "slug": "dbal",
         "versions": [
             {
@@ -713,7 +711,6 @@
         "name": "Annotations",
         "repositoryName": "annotations",
         "docsPath": "/docs",
-        "codePath": "/lib",
         "slug": "annotations",
         "versions": [
             {

@@ -79,7 +79,6 @@ class ProjectsTest extends TestCase
         self::assertSame('doctrine-testproject', $project->getDocsSlug());
         self::assertSame('testproject', $project->getDocsRepositoryName());
         self::assertSame('/docs', $project->getDocsPath());
-        self::assertSame('/lib', $project->getCodePath());
         self::assertSame('doctrine/testproject', $project->getComposerPackageName());
         self::assertSame('testproject', $project->getRepositoryName());
         self::assertFalse($project->isIntegration());
