@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Docs;
 
-use Algolia\AlgoliaSearch\SearchClient;
-use Algolia\AlgoliaSearch\SearchIndex;
+use Algolia\AlgoliaSearch\Api\SearchClient;
 use Doctrine\Website\Application;
 use Doctrine\Website\Docs\RST\GuidesParser;
 use Doctrine\Website\Docs\SearchIndexer;
@@ -33,16 +32,9 @@ class SearchIndexerTest extends TestCase
 
     public function testInitSearchIndex(): void
     {
-        $index = $this->createMock(SearchIndex::class);
-
         $this->client->expects(self::once())
-            ->method('initIndex')
-            ->with(SearchIndexer::INDEX_NAME)
-            ->willReturn($index);
-
-        $index->expects(self::once())
             ->method('setSettings')
-            ->with([
+            ->with(SearchIndexer::INDEX_NAME, [
                 'attributesToIndex' => ['projectName', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'content'],
                 'customRanking' => ['asc(rank)'],
                 'ranking' => ['words', 'typo', 'attribute', 'proximity', 'custom'],
@@ -55,7 +47,7 @@ class SearchIndexerTest extends TestCase
                 'removeWordsIfNoResults' => 'allOptional',
             ]);
 
-        $index->expects(self::once())
+        $this->client->expects(self::once())
             ->method('clearObjects');
 
         $this->searchIndexer->initSearchIndex();
@@ -69,13 +61,6 @@ class SearchIndexerTest extends TestCase
             'slug' => 'orm',
         ]);
         $version = new ProjectVersion(['slug' => '1.0']);
-
-        $index = $this->createMock(SearchIndex::class);
-
-        $this->client->expects(self::once())
-            ->method('initIndex')
-            ->with(SearchIndexer::INDEX_NAME)
-            ->willReturn($index);
 
         $documents = $this->buildDocuments(__DIR__ . '/resources/search-indexer');
 
@@ -199,9 +184,9 @@ class SearchIndexerTest extends TestCase
             ],
         ];
 
-        $index->expects(self::once())
+        $this->client->expects(self::once())
             ->method('saveObjects')
-            ->with($expectedRecords, ['autoGenerateObjectIDIfNotExist' => true]);
+            ->with(SearchIndexer::INDEX_NAME, $expectedRecords, ['autoGenerateObjectIDIfNotExist' => true]);
 
         $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
     }
@@ -214,13 +199,6 @@ class SearchIndexerTest extends TestCase
             'slug' => 'orm',
         ]);
         $version = new ProjectVersion(['slug' => '1.0']);
-
-        $index = $this->createMock(SearchIndex::class);
-
-        $this->client->expects(self::once())
-            ->method('initIndex')
-            ->with(SearchIndexer::INDEX_NAME)
-            ->willReturn($index);
 
         $documents = $this->buildDocuments(__DIR__ . '/resources/search-indexer-with-quotes');
 
@@ -266,9 +244,9 @@ class SearchIndexerTest extends TestCase
             ],
         ];
 
-        $index->expects(self::once())
+        $this->client->expects(self::once())
             ->method('saveObjects')
-            ->with($expectedRecords, ['autoGenerateObjectIDIfNotExist' => true]);
+            ->with(SearchIndexer::INDEX_NAME, $expectedRecords, ['autoGenerateObjectIDIfNotExist' => true]);
 
         $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
     }
