@@ -42,7 +42,7 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^11.1",
-        "symfony/css-selector": "^6.4",
+        "symfony/css-selector": "^7.2",
         "symfony/dom-crawler": "^6.4",
         "symfony/error-handler": "^6.4",
         "symfony/var-dumper": "^6.4"
