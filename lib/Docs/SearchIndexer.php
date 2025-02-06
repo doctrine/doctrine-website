@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs;
 
-use Algolia\AlgoliaSearch\SearchClient;
-use Algolia\AlgoliaSearch\SearchIndex;
+use Algolia\AlgoliaSearch\Api\SearchClient;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Generator;
@@ -50,9 +49,7 @@ class SearchIndexer
 
     public function initSearchIndex(): void
     {
-        $index = $this->getSearchIndex();
-
-        $index->setSettings([
+        $this->client->setSettings(self::INDEX_NAME, [
             'attributesToIndex' => ['projectName', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'content'],
             'customRanking' => ['asc(rank)'],
             'ranking' => ['words', 'typo', 'attribute', 'proximity', 'custom'],
@@ -65,7 +62,7 @@ class SearchIndexer
             'removeWordsIfNoResults' => 'allOptional',
         ]);
 
-        $index->clearObjects();
+        $this->client->clearObjects(self::INDEX_NAME);
     }
 
     /** @param DocumentNode[] $documents */
@@ -82,7 +79,7 @@ class SearchIndexer
             }
         }
 
-        $this->getSearchIndex()->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
+        $this->client->saveObjects(self::INDEX_NAME, $records, ['autoGenerateObjectIDIfNotExist' => true]);
     }
 
     /** @return Generator<searchRecord> */
@@ -224,10 +221,5 @@ class SearchIndexer
     private function stripContent(string $content): string
     {
         return str_replace(['"', '\''], '', $content);
-    }
-
-    private function getSearchIndex(): SearchIndex
-    {
-        return $this->client->initIndex(self::INDEX_NAME);
     }
 }

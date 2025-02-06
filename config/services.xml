@@ -56,7 +56,7 @@
             <argument>%doctrine.website.send_grid.api_key%</argument>
         </service>
 
-        <service id="Algolia\AlgoliaSearch\SearchClient" autowire="false">
+        <service id="Algolia\AlgoliaSearch\Api\SearchClient" autowire="false">
             <factory method="create"/>
             <argument>%doctrine.website.algolia.app_id%</argument>
             <argument>%doctrine.website.algolia.admin_api_key%</argument>
