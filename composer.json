@@ -32,7 +32,7 @@
         "scrivo/highlight.php": "^9.18",
         "symfony/cache": "^7.2",
         "symfony/config": "^6.4",
-        "symfony/console": "^6.4",
+        "symfony/console": "^7.2",
         "symfony/dependency-injection": "^7.2",
         "symfony/filesystem": "^6.4",
         "symfony/finder": "^6.4",
