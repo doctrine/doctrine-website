@@ -49,8 +49,8 @@ In addition to that, we've maintained comprehensive documentation about
 every change, deprecation and BC break to facilitate a smooth transition
 to ORM 3.0 and DBAL 4.0.
 
-- [Upgrade to Doctrine ORM 3.0](https://github.com/doctrine/orm/blob/3.0.x/UPGRADE.md)
-- [Upgrade to Doctrine DBAL 4.0](https://github.com/doctrine/dbal/blob/4.0.x/UPGRADE.md)
+- [Upgrade to Doctrine ORM 3.0](https://github.com/doctrine/orm/blob/HEAD/UPGRADE.md)
+- [Upgrade to Doctrine DBAL 4.0](https://github.com/doctrine/dbal/blob/HEAD/UPGRADE.md)
 
 ## The Future of Doctrine ORM 2
 
