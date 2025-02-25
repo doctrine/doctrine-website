@@ -122,7 +122,9 @@
                                                 {% if version.hasDocs %}
                                                     {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
 
-                                                    <a class="project-version-switcher dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">
+                                                    <a class="project-version-switcher dropdown-item
+                                                        {%- if version.slug == page.docsVersion %} active{% endif -%}
+                                                        {%- if versionUrl is null %} disabled{% endif -%}" href="{{ versionUrl }}">
                                                         {{ version.displayName }}
 
                                                         {% if version.current %}
@@ -144,7 +146,9 @@
                                                 {% if version.hasDocs %}
                                                     {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
 
-                                                    <a class="dropdown-item{% if version.slug == page.docsVersion %} active{% endif %}" href="{{ versionUrl }}">{{ version.name }}</a>
+                                                    <a class="dropdown-item
+                                                        {%- if version.slug == page.docsVersion %} active{% endif -%}
+                                                        {%- if versionUrl is null %} disabled{% endif -%}" href="{{ versionUrl }}">{{ version.name }}</a>
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
