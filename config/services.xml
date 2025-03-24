@@ -175,6 +175,10 @@
             <argument key="$nodeRenderer" type="service" id="page_renderer" />
         </service>
 
+        <service id="Doctrine\Website\Guides\StaticWebsiteGenerator\GuidesMarkdownConverter">
+            <argument key="$nodeRenderer" type="service" id="page_renderer" />
+        </service>
+
         <service id="page_renderer" class="phpDocumentor\Guides\NodeRenderers\TemplateNodeRenderer">
             <argument key="$template" type="string">website-document.html.twig</argument>
             <argument key="$nodeClass" type="string">phpDocumentor\Guides\Nodes\DocumentNode</argument>
