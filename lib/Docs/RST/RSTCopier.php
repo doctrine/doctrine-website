@@ -18,13 +18,13 @@ use function str_replace;
 /** @final */
 class RSTCopier
 {
-    final public const RST_TEMPLATE = <<<'TEMPLATE'
+    final public const string RST_TEMPLATE = <<<'TEMPLATE'
         {{ sidebar }}
          
         {{ content }}
         TEMPLATE;
 
-    final public const DEFAULT_SIDEBAR = <<<'SIDEBAR'
+    final public const string DEFAULT_SIDEBAR = <<<'SIDEBAR'
         .. menu::
             :depth: 3
             :glob:

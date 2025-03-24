@@ -34,8 +34,8 @@ use function sprintf;
 
 final readonly class Application
 {
-    public const ENV_PROD    = 'prod';
-    public const ENV_STAGING = 'staging';
+    public const string ENV_PROD    = 'prod';
+    public const string ENV_STAGING = 'staging';
 
     public function __construct(
         private BaseApplication $application,

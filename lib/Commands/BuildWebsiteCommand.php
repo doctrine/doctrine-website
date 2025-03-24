@@ -28,7 +28,7 @@ use function time;
 
 final class BuildWebsiteCommand extends Command
 {
-    private const WATCH_DIRS = [
+    private const array WATCH_DIRS = [
         'config',
         'data',
         'lib',

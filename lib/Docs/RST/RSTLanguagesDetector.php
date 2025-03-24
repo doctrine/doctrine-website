@@ -20,7 +20,7 @@ use function strlen;
 /** @final */
 class RSTLanguagesDetector
 {
-    final public const ENGLISH_LANGUAGE_CODE = 'en';
+    final public const string ENGLISH_LANGUAGE_CODE = 'en';
 
     /** @return RSTLanguage[] */
     public function detectLanguages(string $docsDir): array

@@ -24,9 +24,9 @@ use const JSON_ERROR_NONE;
 /** @final */
 class ProjectDataReader
 {
-    private const DOCTRINE_PROJECT_JSON_FILE_NAME = '.doctrine-project.json';
+    private const string DOCTRINE_PROJECT_JSON_FILE_NAME = '.doctrine-project.json';
 
-    private const COMPOSER_JSON_FILE_NAME = 'composer.json';
+    private const string COMPOSER_JSON_FILE_NAME = 'composer.json';
 
     private readonly Inflector $inflector;
 

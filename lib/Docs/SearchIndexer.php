@@ -40,7 +40,7 @@ use function strip_tags;
  */
 class SearchIndexer
 {
-    final public const INDEX_NAME = 'pages';
+    final public const string INDEX_NAME = 'pages';
 
     public function __construct(
         private readonly SearchClient $client,

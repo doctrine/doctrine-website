@@ -18,9 +18,9 @@ use function sprintf;
 #[ORM\Entity]
 class ProjectVersion
 {
-    private const UPCOMING     = 'upcoming';
-    private const STABLE       = 'stable';
-    private const UNMAINTAINED = 'unmaintained';
+    private const string UPCOMING     = 'upcoming';
+    private const string STABLE       = 'stable';
+    private const string UNMAINTAINED = 'unmaintained';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

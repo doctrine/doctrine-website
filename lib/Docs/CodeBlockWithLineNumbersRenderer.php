@@ -22,7 +22,7 @@ class CodeBlockWithLineNumbersRenderer
     /**
      * These languages exist in our docs but can't be highlighted by the library we're using.
      */
-    private const LANGUAGES_NOT_TO_HIGHLIGHT = [
+    private const array LANGUAGES_NOT_TO_HIGHLIGHT = [
         'text',
         'mysql',
         'postgres',
@@ -30,11 +30,11 @@ class CodeBlockWithLineNumbersRenderer
         'rst',
     ];
 
-    private const LINE_NUMBER_TABLE_COLUMN_TEMPLATE = '<td class="line-number noselect"><a name="%s" class="line-number-anchor" /><a href="%s">%d</a></td>';
+    private const string LINE_NUMBER_TABLE_COLUMN_TEMPLATE = '<td class="line-number noselect"><a name="%s" class="line-number-anchor" /><a href="%s">%d</a></td>';
 
-    private const CODE_LINE_TABLE_COLUMN_TEMPLATE = '<td class="code-line" rowspan="%d">{{ RENDERED_CODE }}</td>';
+    private const string CODE_LINE_TABLE_COLUMN_TEMPLATE = '<td class="code-line" rowspan="%d">{{ RENDERED_CODE }}</td>';
 
-    private const CODE_BLOCK_TABLE_TEMPLATE = <<<'TEMPLATE'
+    private const string CODE_BLOCK_TABLE_TEMPLATE = <<<'TEMPLATE'
         <pre class="code-block-table">
             <code class="%s">
                 <button

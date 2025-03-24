@@ -25,12 +25,12 @@ use function sprintf;
 /** @final */
 class WebsiteBuilder
 {
-    public const PUBLISHABLE_ENVS = [Application::ENV_PROD, Application::ENV_STAGING];
+    public const array PUBLISHABLE_ENVS = [Application::ENV_PROD, Application::ENV_STAGING];
 
-    private const URL_PRODUCTION = 'www.doctrine-project.org';
-    private const URL_STAGING    = 'staging.doctrine-project.org';
+    private const string URL_PRODUCTION = 'www.doctrine-project.org';
+    private const string URL_STAGING    = 'staging.doctrine-project.org';
 
-    private const PUBLISHABLE_ENV_URLS = [
+    private const array PUBLISHABLE_ENV_URLS = [
         Application::ENV_PROD    => self::URL_PRODUCTION,
         Application::ENV_STAGING => self::URL_STAGING,
     ];

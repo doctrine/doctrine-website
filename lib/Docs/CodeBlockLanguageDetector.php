@@ -15,7 +15,7 @@ final readonly class CodeBlockLanguageDetector
      * We use some language aliases not supported by our highlighter library
      * so we manage a mapping layer here.
      */
-    private const ALIASES = [
+    private const array ALIASES = [
         'html+php' => 'php',
         'html+jinja' => 'html',
         'php-annotations' => 'php',
