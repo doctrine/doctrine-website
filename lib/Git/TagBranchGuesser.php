@@ -15,7 +15,7 @@ use function sprintf;
 /** @final */
 class TagBranchGuesser
 {
-    private const COMMAND = 'cd %s && git branch -a';
+    private const string COMMAND = 'cd %s && git branch -a';
 
     public function __construct(
         private ProcessFactory $processFactory,

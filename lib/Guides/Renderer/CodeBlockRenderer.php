@@ -19,7 +19,7 @@ use function in_array;
 /** @implements NodeRenderer<CodeNode> */
 final class CodeBlockRenderer implements NodeRenderer
 {
-    private const CONSOLE_LANGUAGES = ['terminal', 'bash', 'sh', 'console'];
+    private const array CONSOLE_LANGUAGES = ['terminal', 'bash', 'sh', 'console'];
 
     public function __construct(
         private CodeBlockLanguageDetector $codeBlockLanguageDetector,

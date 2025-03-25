@@ -16,7 +16,7 @@ use function usort;
 /** @final */
 class TagReader
 {
-    private const COMMAND = "cd %s && git tag -l --format='refname: %%(refname) creatordate: %%(creatordate)'";
+    private const string COMMAND = "cd %s && git tag -l --format='refname: %%(refname) creatordate: %%(creatordate)'";
 
     public function __construct(
         private readonly ProcessFactory $processFactory,

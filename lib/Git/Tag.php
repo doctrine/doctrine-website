@@ -16,19 +16,19 @@ use function strtoupper;
 #[ORM\Entity]
 final class Tag
 {
-    private const ALPHA  = 'alpha';
-    private const BETA   = 'beta';
-    private const RC     = 'rc';
-    private const DEV    = 'dev';
-    private const STABLE = 'stable';
+    private const string ALPHA  = 'alpha';
+    private const string BETA   = 'beta';
+    private const string RC     = 'rc';
+    private const string DEV    = 'dev';
+    private const string STABLE = 'stable';
 
-    private const TAG_STABILITIES = [
+    private const array TAG_STABILITIES = [
         self::ALPHA,
         self::BETA,
         self::RC,
     ];
 
-    private const COMPOSER_EPOCH = '2011-09-25';
+    private const string COMPOSER_EPOCH = '2011-09-25';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

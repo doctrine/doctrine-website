@@ -23,7 +23,7 @@ use function usort;
 
 final readonly class Projects implements DataSource
 {
-    private const DEFAULTS = [
+    private const array DEFAULTS = [
         'active'        => true,
         'archived'      => false,
         'integration'   => false,
