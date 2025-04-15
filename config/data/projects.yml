@@ -22,6 +22,7 @@ parameters:
         -
             repositoryName: dbal
             versionsGreaterThan: "2.99.0"
+            sortOrder: 2
 
         - repositoryName: doctrine1
         - repositoryName: event-manager
@@ -29,11 +30,14 @@ parameters:
         - repositoryName: instantiator
         - repositoryName: lexer
         - repositoryName: migrations
-        - repositoryName: mongodb-odm
+        -
+            repositoryName: mongodb-odm
+            sortOrder: 3
         - repositoryName: orientdb-odm
         -
             repositoryName: orm
             versionsGreaterThan: "2.9.99"
+            sortOrder: 1
 
         - repositoryName: persistence
         - repositoryName: phpcr-odm

@@ -85,6 +85,7 @@ class ProjectsTest extends TestCase
         self::assertSame('', $project->getIntegrationFor());
         self::assertSame('It\'s a testproject', $project->getDescription());
         self::assertSame(['testproject', 'docblock', 'parser'], $project->getKeywords());
+        self::assertSame(42, $project->sortOrder);
         $this->assertProjectStats($project->getProjectStats());
 
         $versions = $project->getVersions();

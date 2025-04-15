@@ -44,7 +44,7 @@ class ProjectRepository extends EntityRepository
         return $this->findBy([
             'active' => true,
             'integration' => false,
-        ], ['name' => 'asc']);
+        ], ['sortOrder' => 'asc', 'name' => 'asc']);
     }
 
     /** @return Project[] */
@@ -71,7 +71,7 @@ class ProjectRepository extends EntityRepository
         return $this->findBy([
             'active' => true,
             'integration' => true,
-        ], ['name' => 'asc']);
+        ], ['sortOrder' => 'asc', 'name' => 'asc']);
     }
 
     /** @return Project[] */
@@ -80,6 +80,6 @@ class ProjectRepository extends EntityRepository
         return $this->findBy([
             'integration' => true,
             'integrationFor' => $project->getSlug(),
-        ], ['name' => 'asc']);
+        ], ['sortOrder' => 'asc', 'name' => 'asc']);
     }
 }
