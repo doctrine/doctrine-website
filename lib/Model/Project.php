@@ -59,6 +59,8 @@ class Project
         private array $keywords,
         #[ORM\OneToMany(targetEntity: ProjectVersion::class, fetch: 'EAGER', mappedBy: 'project', orphanRemoval: true)]
         private Collection $versions,
+        #[ORM\Column(type: 'integer')]
+        public readonly int $sortOrder,
     ) {
         foreach ($this->versions as $version) {
             $version->setProject($this);

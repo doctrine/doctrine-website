@@ -47,6 +47,7 @@ abstract class TestCase extends BaseTestCase
             'integration' => true,
             'keywords' => [],
             'versions' => new ArrayCollection(),
+            'sortOrder' => 999,
         ];
 
         $data = array_merge($default, $data);

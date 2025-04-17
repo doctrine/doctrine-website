@@ -47,6 +47,7 @@ class Projects implements DbPrefill
         $docsPath            = (string) ($projectData['docsPath'] ?? '/docs');
         $description         = (string) ($projectData['description'] ?? '');
         $keywords            = $projectData['keywords'] ?? [];
+        $sortOrder           = $projectData['sortOrder'] ?? 999;
 
         $versions = new ArrayCollection();
         foreach ($projectData['versions'] ?? [] as $version) {
@@ -110,6 +111,7 @@ class Projects implements DbPrefill
             $integration,
             $keywords,
             $versions,
+            $sortOrder,
         );
 
         $this->entityManager->persist($project);
