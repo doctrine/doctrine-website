@@ -79,7 +79,7 @@ class SearchIndexer
             }
         }
 
-        $this->client->saveObjects(self::INDEX_NAME, $records, ['autoGenerateObjectIDIfNotExist' => true]);
+        $this->client->saveObjects(self::INDEX_NAME, $records, requestOptions: ['autoGenerateObjectIDIfNotExist' => true]);
     }
 
     /** @return Generator<searchRecord> */

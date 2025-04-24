@@ -186,7 +186,7 @@ class SearchIndexerTest extends TestCase
 
         $this->client->expects(self::once())
             ->method('saveObjects')
-            ->with(SearchIndexer::INDEX_NAME, $expectedRecords, ['autoGenerateObjectIDIfNotExist' => true]);
+            ->with(SearchIndexer::INDEX_NAME, $expectedRecords, false, 1000, ['autoGenerateObjectIDIfNotExist' => true]);
 
         $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
     }
@@ -246,7 +246,7 @@ class SearchIndexerTest extends TestCase
 
         $this->client->expects(self::once())
             ->method('saveObjects')
-            ->with(SearchIndexer::INDEX_NAME, $expectedRecords, ['autoGenerateObjectIDIfNotExist' => true]);
+            ->with(SearchIndexer::INDEX_NAME, $expectedRecords, false, 1000, ['autoGenerateObjectIDIfNotExist' => true]);
 
         $this->searchIndexer->buildSearchIndexes($project, $version, $documents);
     }
