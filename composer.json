@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": "8.3.*",
+        "php": "8.4.*",
         "algolia/algoliasearch-client-php": "^4",
         "doctrine/collections": "^2",
         "doctrine/dbal": "^4.0",
@@ -60,7 +60,7 @@
             "php-http/discovery": true
         },
         "platform": {
-            "php": "8.3.0"
+            "php": "8.4.0"
         },
         "sort-packages": true
     },
