@@ -20,7 +20,7 @@ it to a directory like ``/data``:
 .. code-block:: console
 
     $ cd /data
-    $ git clone git@github.com:username/doctrine-website.git
+    $ git clone git@github.com:&lt;your-github-name&gt;/doctrine-website.git
 
 Next run ``composer install && yarn install`` to install all of the dependencies.
 
