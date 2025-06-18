@@ -1,0 +1,32 @@
+{% set language = code_block_language(node.language, node.value) %}
+{% if language == "console" %}
+    <div class="console">
+        <pre><code class="console">{{ node.value }}</code></pre>
+    </div>
+{% else %}
+    {% if node.caption %}
+        <div class="code-block-caption">
+            <span class="caption-text">{{ renderNode(node.caption) }}</span>
+        </div>
+    {%- endif -%}
+
+    {% apply spaceless %}
+    <pre class="code-block-table" id="{{ node.value | hash }}">
+        <button
+                type="button"
+                class="copy-to-clipboard"
+                data-copy-element-id="{{ node.value | hash }}"
+                title="Copy to Clipboard"
+        >
+                    <i class="fas fa-copy"></i>
+                </button>
+        <code class="empty"></code>
+    {% endapply %}
+        {%- for line in node.value | split("\n") -%}
+            <code class="line language-{{ language }}">{{ line | highlight(language) }}</code>
+        {%- endfor -%}
+    {% apply spaceless %}
+        <code class="empty"></code>
+    </pre>
+    {% endapply %}
+{%~ endif -%}

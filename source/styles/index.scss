@@ -642,3 +642,25 @@ a img.card-img-top {
 
 @import 'railscasts';
 @import 'carbonads';
+
+pre.code-block-table{
+  counter-reset: line;
+}
+code.line{
+  counter-increment: line;
+}
+
+code.empty:before, code.line:before{
+  content: " ";
+  display: inline-block;
+  width: 38px;
+  background: #333;
+  text-align: right;
+  color: #63606b;
+  padding: 0 10px 0 10px;
+  margin-right: 15px;
+}
+
+code.line:before {
+  content: counter(line);
+}
