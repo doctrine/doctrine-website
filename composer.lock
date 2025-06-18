@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5921543ca6a3eef834dbe62d0e6add4",
+    "content-hash": "0485ddc9c4da109c17be66e5b39f45cd",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -3188,6 +3188,47 @@
                 "source": "https://github.com/phpDocumentor/guides-core/tree/1.8.0"
             },
             "time": "2025-03-16T11:29:49+00:00"
+        },
+        {
+            "name": "phpdocumentor/guides-code",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/guides-code.git",
+                "reference": "0f828b349a649bd6e1187a3b4e82eab37271278c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-code/zipball/0f828b349a649bd6e1187a3b4e82eab37271278c",
+                "reference": "0f828b349a649bd6e1187a3b4e82eab37271278c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "scrivo/highlight.php": "^9.18.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Guides\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A library to provide code-related functionality to phpDocumentor's Guides",
+            "homepage": "https://www.phpdoc.org",
+            "support": {
+                "issues": "https://github.com/phpDocumentor/guides-code/issues",
+                "source": "https://github.com/phpDocumentor/guides-code/tree/1.7.0"
+            },
+            "time": "2025-01-29T20:10:47+00:00"
         },
         {
             "name": "phpdocumentor/guides-markdown",
@@ -8931,5 +8972,5 @@
     "platform-overrides": {
         "php": "8.4.0"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

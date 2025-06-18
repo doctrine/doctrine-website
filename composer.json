@@ -27,6 +27,7 @@
         "phpdocumentor/filesystem": "^1.7",
         "phpdocumentor/flyfinder": "^1",
         "phpdocumentor/guides": "^1.7",
+        "phpdocumentor/guides-code": "^1.7",
         "phpdocumentor/guides-markdown": "^1.7",
         "phpdocumentor/guides-restructured-text": "^1.7",
         "psr/cache": "^3",
