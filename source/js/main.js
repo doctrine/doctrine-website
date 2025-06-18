@@ -34,17 +34,15 @@ export default function () {
         tabContent.show();
     });
 
-    $('button.copy-to-clipboard').on('click', function () {
-      var copyElementId = $(this).data('copy-element-id');
+    $('button.copy-to-clipboard').on('click', async function () {
+      const copyElementId = $(this).data('copy-element-id');
+      const copyText = $('#' + copyElementId).textContent;
 
-      var copyText = $('#' + copyElementId + ' .code-line').text();
-
-      var element = document.createElement('textarea');
-      element.value = copyText;
-      document.body.appendChild(element);
-      element.select();
-      document.execCommand('copy');
-      document.body.removeChild(element);
+      try {
+        await navigator.clipboard.writeText(copyText);
+      } catch (error) {
+        console.error(error.message);
+      }
     });
 
     if (window.ga && window.ga.create) {
