@@ -155,10 +155,6 @@
         </service>
         <service id="Psr\EventDispatcher\EventDispatcherInterface" class="Symfony\Component\EventDispatcher\EventDispatcher" />
 
-        <service id="Doctrine\Website\Guides\Renderer\CodeBlockRenderer">
-            <tag name="phpdoc.guides.noderenderer.html" />
-        </service>
-
         <service id="Doctrine\Website\Guides\ReferenceResolver\HtmlResolver">
             <tag name="phpdoc.guides.reference_resolver" />
         </service>
