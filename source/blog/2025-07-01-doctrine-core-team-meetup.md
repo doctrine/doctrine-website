@@ -9,6 +9,9 @@ We are organizing another Doctrine Core Team Meetup in Paris, France from
 Tuesday, 7.10.2025 to Thursday, 09.10.2025. We are happy that
 [JoliCode](https://jolicode.com/) will open their offices for us to meet. 
 
+The event is organized and hosted by [Tideways GmbH](https://tideways.com) to
+allow our international contributors the visit to the European Union.
+
 The goal is to get the current team together, discuss and work on Doctrine
 DBAL, ORM and ODM.
 
