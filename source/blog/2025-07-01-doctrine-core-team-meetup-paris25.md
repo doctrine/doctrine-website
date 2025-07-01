@@ -2,7 +2,7 @@
 title: "Doctrine Core Team Meetup 2025 in Paris, France"
 authorName: Benjamin Eberlei
 authorEmail: kontakt@beberlei.de
-permalink: /2025/07/01/doctrine-core-team-meetup.html
+permalink: /2025/07/01/doctrine-core-team-meetup-paris25.html
 ---
 
 We are organizing another Doctrine Core Team Meetup in Paris, France from
