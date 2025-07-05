@@ -34,17 +34,25 @@ export default function () {
         tabContent.show();
     });
 
-    $('button.copy-to-clipboard').on('click', function () {
-      var copyElementId = $(this).data('copy-element-id');
+    $('button.copy-to-clipboard').on('click', async function () {
+      const copyElementId = $(this).data('copyElementId');
+      const copyElement = document.getElementById(copyElementId);
 
-      var copyText = $('#' + copyElementId + ' .code-line').text();
+      // Collect text from each child, separated by newlines
+      let copyText = '';
+      if (copyElement) {
+        const children = Array.from(copyElement.childNodes);
+        copyText = children.map(node => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            return node.textContent;
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            return node.textContent;
+          }
+          return '';
+        }).filter(Boolean).join('\n');
+      }
 
-      var element = document.createElement('textarea');
-      element.value = copyText;
-      document.body.appendChild(element);
-      element.select();
-      document.execCommand('copy');
-      document.body.removeChild(element);
+      await navigator.clipboard.writeText(copyText);
     });
 
     if (window.ga && window.ga.create) {

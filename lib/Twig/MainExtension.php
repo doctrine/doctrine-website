@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\Twig;
 
 use Doctrine\Website\Assets\AssetIntegrityGenerator;
+use Doctrine\Website\Docs\CodeBlockLanguageDetector;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Override;
@@ -17,6 +18,7 @@ use Twig\TwigFunction;
 use Twig\TwigTest;
 
 use function assert;
+use function explode;
 use function file_get_contents;
 use function is_int;
 use function is_string;
@@ -35,6 +37,7 @@ final class MainExtension extends AbstractExtension
         private readonly AssetIntegrityGenerator $assetIntegrityGenerator,
         private readonly string $sourceDir,
         private readonly string $webpackBuildDir,
+        private readonly CodeBlockLanguageDetector $codeBlockLanguageDetector,
     ) {
     }
 
@@ -47,6 +50,7 @@ final class MainExtension extends AbstractExtension
             new TwigFunction('get_webpack_asset_url', [$this, 'getWebpackAssetUrl']),
             new TwigFunction('get_asset_integrity', [$this->assetIntegrityGenerator, 'getAssetIntegrity']),
             new TwigFunction('get_webpack_asset_integrity', [$this->assetIntegrityGenerator, 'getWebpackAssetIntegrity']),
+            new TwigFunction('code_block_language', [$this, 'detectCodeBlockLanguage']),
         ];
     }
 
@@ -57,6 +61,7 @@ final class MainExtension extends AbstractExtension
             new TwigFilter('markdown', [$this->parsedown, 'text'], ['is_safe' => ['html']]),
             new TwigFilter('truncate', [$this, 'truncate']),
             new TwigFilter('yaml_encode', [$this, 'yamlEncode']),
+            new TwigFilter('hash', static fn (string $value): string => sha1($value), ['is_safe' => ['html']]),
         ];
     }
 
@@ -131,5 +136,13 @@ final class MainExtension extends AbstractExtension
     public function isTocNode(Node $node): bool
     {
         return $node instanceof TocNode;
+    }
+
+    public function detectCodeBlockLanguage(string|null $language, string|null $code): string
+    {
+        return $this->codeBlockLanguageDetector->detectLanguage(
+            $language ?? 'php',
+            $code !== null ? explode("\n", $code) : [],
+        );
     }
 }
