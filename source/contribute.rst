@@ -64,8 +64,8 @@ ambiguous, we will add two explicit names for remote Git repositories:
 
 .. code-block:: console
     $ [`cd` into the directory created by `git clone ...`]
-    $ git remote add doctrine git@github.com:doctrine/<name-of-project>.git
-    $ git remote add fork git@github.com:<your-github-name>/<name-of-project>.git
+    $ git remote add doctrine git@github.com:doctrine/&lt;name-of-project&gt;.git
+    $ git remote add fork git@github.com:&lt;your-github-name&gt;/&lt;name-of-project&gt;.git
 
 Choosing the right branch
 -------------------------
@@ -540,13 +540,13 @@ issues as easily doable before asking for a review.
 Security Disclosures
 --------------------
 
-You can read more about how to report security issues in our `Security Policy <https://www.doctrine-project.org/policies/security.html>`_.
+You can read more about how to report security issues in our `Security Policy </policies/security.html>`_.
 
 Maintainer Workflow
 -------------------
 
 You can learn more about the maintainer workflow
-`here </maintainer/index.html>`_. Continue reading if you are
+`here </contribute/maintainer/index.html>`_. Continue reading if you are
 interested in learning more about how to get started with your first
 contribution.
 
