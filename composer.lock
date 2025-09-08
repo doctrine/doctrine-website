@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
-            "version": "4.26.0",
+            "version": "4.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-client-php.git",
-                "reference": "08ccaa16a5f710f4cb7e4f8ca3c4f896f1205e3f"
+                "reference": "b2b2838e789a2e25292ba2ea12a9b220d9194583"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/08ccaa16a5f710f4cb7e4f8ca3c4f896f1205e3f",
-                "reference": "08ccaa16a5f710f4cb7e4f8ca3c4f896f1205e3f",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/b2b2838e789a2e25292ba2ea12a9b220d9194583",
+                "reference": "b2b2838e789a2e25292ba2ea12a9b220d9194583",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
                 "psr/simple-cache": "^1.0 || ^2.0 || ^3.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.0 || ^3.5.0",
+                "friendsofphp/php-cs-fixer": "^3.80.0",
                 "phpstan/phpstan": "^1.12",
                 "phpunit/phpunit": "^11.0",
                 "vlucas/phpdotenv": "^5.4"
@@ -69,9 +69,9 @@
             ],
             "support": {
                 "issues": "https://github.com/algolia/algoliasearch-client-php/issues",
-                "source": "https://github.com/algolia/algoliasearch-client-php/tree/4.26.0"
+                "source": "https://github.com/algolia/algoliasearch-client-php/tree/4.28.0"
             },
-            "time": "2025-07-29T14:33:37+00:00"
+            "time": "2025-09-03T10:56:32+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -1359,16 +1359,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.7.1",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "c2270caaabe631b3b44c85f99e5a04bbb8060d16"
+                "reference": "21dc724a0583619cd1652f673303492272778051"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c2270caaabe631b3b44c85f99e5a04bbb8060d16",
-                "reference": "c2270caaabe631b3b44c85f99e5a04bbb8060d16",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/21dc724a0583619cd1652f673303492272778051",
+                "reference": "21dc724a0583619cd1652f673303492272778051",
                 "shasum": ""
             },
             "require": {
@@ -1384,7 +1384,7 @@
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.8.2",
                 "http-interop/http-factory-tests": "0.9.0",
-                "phpunit/phpunit": "^8.5.39 || ^9.6.20"
+                "phpunit/phpunit": "^8.5.44 || ^9.6.25"
             },
             "suggest": {
                 "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
@@ -1455,7 +1455,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.7.1"
+                "source": "https://github.com/guzzle/psr7/tree/2.8.0"
             },
             "funding": [
                 {
@@ -1471,7 +1471,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-03-27T12:30:47+00:00"
+            "time": "2025-08-23T21:21:41+00:00"
         },
         {
             "name": "knplabs/github-api",
