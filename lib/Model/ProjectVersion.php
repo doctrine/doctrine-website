@@ -198,7 +198,6 @@ class ProjectVersion
     /**
      * @phpstan-assert-if-true !null $this->getLatestTag()
      * @phpstan-assert-if-true !null $this->getFirstTag()
-     * @phpstan-assert-if-true !null $this->getTags()
      */
     public function hasTags(): bool
     {
