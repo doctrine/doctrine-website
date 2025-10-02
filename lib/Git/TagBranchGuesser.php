@@ -34,6 +34,10 @@ class TagBranchGuesser
 
         $tagBranchName = $this->generateTagBranchSlug($tag);
 
+        if ($tagBranchName === null) {
+            return null;
+        }
+
         $guesses = [
             $tagBranchName,
             sprintf('%s.x', $tagBranchName),
