@@ -540,13 +540,13 @@ issues as easily doable before asking for a review.
 Security Disclosures
 --------------------
 
-You can read more about how to report security issues in our `Security Policy <https://www.doctrine-project.org/policies/security.html>`_.
+You can read more about how to report security issues in our `Security Policy </policies/security.html>`_.
 
 Maintainer Workflow
 -------------------
 
 You can learn more about the maintainer workflow
-`here </maintainer/index.html>`_. Continue reading if you are
+`here </contribute/maintainer/index.html>`_. Continue reading if you are
 interested in learning more about how to get started with your first
 contribution.
 
