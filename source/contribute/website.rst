@@ -149,7 +149,7 @@ configuration to improve runtime while covering all the use cases a website buil
 reStructuredText
 ----------------
 
-The Doctrine documentation is written in a markup language called ``reStructuredText`` (RST). It is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system. The syntax is parsed by the `doctrine/rst-parser <https://www.doctrine-project.org/projects/rst-parser.html>`_ library.
+The Doctrine documentation is written in a markup language called ``reStructuredText`` (RST). It is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system. The syntax is parsed by the `phpdocumentor <https://docs.phpdoc.org>`_ library.
 
 You can see examples of RST `here <https://www.doctrine-project.org/rst-examples.html>`_.
 
