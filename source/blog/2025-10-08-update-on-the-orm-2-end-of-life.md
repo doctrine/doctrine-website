@@ -11,7 +11,7 @@ ORM 3 was released almost 2 years ago, and we initially planned with the ORM 2 E
 
 So far adoption of ORM 3 is about 25-30% of ORM 2 based on Packagist installation numbers, which is not a big enough number. DBAL adoption of major 3 is much higher at roughly 60%.
 
-Therefore we are going to push out the ORM 2 End of Life to at least February 2027, but we will restrict what kind of changes are eligible for the 2.0 branch further.
+Therefore we are going to push out the ORM 2 End of Life to at least February 2027, but we will restrict what kind of changes are eligible for the 2.x branch further.
 
 Starting March 2026, we will only merge changes of the following kind into 2.x branches:
 
@@ -19,7 +19,7 @@ Starting March 2026, we will only merge changes of the following kind into 2.x b
 * Security fixes
 * Improving forward compatibility with ORM 3
 
-But we would recommend that you take this next year to plan the upgrade for your applications.
+But we recommend that you take this next year to plan the upgrade for your applications.
 
 We have made the upgrade smoother, by taking back some deprecations since the initial 3.0 release (namely partial objects), and improved the upgrade path for others. We also improved the [upgrade guides to DBAL 3](https://github.com/doctrine/dbal/blob/3.10.x/UPGRADE.md) and [upgrade guides to ORM 3](https://github.com/doctrine/orm/blob/3.5.x/UPGRADE.md) with further information.
 
