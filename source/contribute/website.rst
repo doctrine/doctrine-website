@@ -91,7 +91,7 @@ the following options:
 
     $ ./bin/console --env=dev build --project=orm --libversion=3.4
 
-The ``--project`` "orm" is the name of the repository name of the Doctrine project you want to build and ``--libversion``
+The ``--project`` option is the name of the repository name of the Doctrine project you want to build and ``--libversion``
 is the version you would like to build. The version has to be in the ``major.minor`` format.
 
 Search Indexes
