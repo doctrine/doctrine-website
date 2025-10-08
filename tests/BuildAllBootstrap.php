@@ -15,7 +15,7 @@ use function strpos;
 
 final class BuildAllBootstrap
 {
-    private const string COMMAND = 'build-all';
+    private const string COMMAND = 'build';
 
     public function __invoke(): void
     {

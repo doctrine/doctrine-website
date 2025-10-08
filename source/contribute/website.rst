@@ -80,9 +80,19 @@ To build the full website and its documentation you need to run the command
 
 .. code-block:: console
 
-    $ ./bin/console build-all
+    $ ./bin/console --env=dev build
 
 This will run several commands in the appropriate order to create the Doctrine website and its content.
+
+If you want to build the website just for one project and project version, for example ORM in version 3.4, you can run the build command with
+the following options:
+
+.. code-block:: console
+
+    $ ./bin/console --env=dev build --project=orm --libversion=3.4
+
+The ``--project`` "orm" is the name of the repository name of the Doctrine project you want to build and ``--libversion``
+is the version you would like to build. The version has to be in the ``major.minor`` format.
 
 Search Indexes
 ~~~~~~~~~~~~~~
@@ -91,7 +101,7 @@ To build the Algolia search indexes pass the ``--search`` option:
 
 .. code-block:: console
 
-    $ ./bin/console build-all --search
+    $ ./bin/console --env=dev build --search
 
 You will need to have the ``doctrine.website.algolia.admin_api_key``
 parameter in ``config/local.yml`` in order to update the Algolia search
@@ -139,7 +149,7 @@ build the website with the ``test`` environment first.
 
 .. code-block:: console
 
-    $ ./bin/console --env=test build-all
+    $ ./bin/console --env=test build
 
 **Why using a different environment for tests?** A full build of the website is essential for running integration tests
 and the stability of the build. The Doctrine project has so many different projects with documentation, that it would take
