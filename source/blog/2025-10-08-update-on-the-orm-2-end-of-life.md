@@ -23,4 +23,4 @@ But we recommend that you take this next year to plan the upgrade for your appli
 
 We have made the upgrade smoother, by taking back some deprecations since the initial 3.0 release (namely partial objects), and improved the upgrade path for others. We also improved the [upgrade guides to DBAL 3](https://github.com/doctrine/dbal/blob/3.10.x/UPGRADE.md) and [upgrade guides to ORM 3](https://github.com/doctrine/orm/blob/3.5.x/UPGRADE.md) with further information.
 
-We also ask you to help us understand and improve forward compatbility by answering this discusison [What is blocking you from upgrading from ORM 2 to ORM 3? · doctrine orm · Discussion \#12193](https://github.com/doctrine/orm/discussions/12193)
+We also ask you to help us understand and improve forward compatibility by participating in this discussion [What is blocking you from upgrading from ORM 2 to ORM 3? \#12193](https://github.com/doctrine/orm/discussions/12193)
