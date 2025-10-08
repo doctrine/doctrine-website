@@ -39,11 +39,17 @@ class ProjectsTest extends TestCase
     {
         $this->projectDataRepository->expects(self::once())
             ->method('getProjectRepositoryNames')
-            ->willReturn(['orm']);
+            ->willReturn(['orm', 'foo']);
 
         $this->projectGitSyncer->expects(self::exactly(2))
             ->method('checkoutDefaultBranch')
             ->with('orm');
+        $this->projectGitSyncer->expects(self::exactly(2))
+            ->method('isRepositoryInitialized')
+            ->willReturnMap([
+                ['orm', true],
+                ['foo', false],
+            ]);
 
         $this->projectDataReader->expects(self::once())
             ->method('read')

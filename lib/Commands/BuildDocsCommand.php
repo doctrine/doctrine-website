@@ -35,7 +35,7 @@ final class BuildDocsCommand extends Command
                 '',
             )
             ->addOption(
-                'v',
+                'libversion',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'The project version to build the docs for.',
@@ -54,7 +54,7 @@ final class BuildDocsCommand extends Command
         $projectToBuild = $input->getOption('project');
         assert(is_string($projectToBuild));
 
-        $versionToBuild = $input->getOption('v');
+        $versionToBuild = $input->getOption('libversion');
         assert(is_string($versionToBuild));
 
         $buildSearchIndexes = $input->getOption('search');

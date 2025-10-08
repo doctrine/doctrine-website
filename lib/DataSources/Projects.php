@@ -43,17 +43,17 @@ final readonly class Projects implements DataSource
     /** @return mixed[][] */
     public function getSourceRows(): array
     {
-        $repositoryNames = $this->projectDataRepository->getProjectRepositoryNames();
+        $repositoryNames       = $this->projectDataRepository->getProjectRepositoryNames();
+        $clonedRepositoryNames = array_filter($repositoryNames, fn (string $repositoryName): bool => $this->projectGitSyncer->isRepositoryInitialized($repositoryName));
 
         return array_map(function (string $repositoryName): array {
             return $this->buildProjectData($repositoryName);
-        }, $repositoryNames);
+        }, $clonedRepositoryNames);
     }
 
     /** @return mixed[] */
     private function buildProjectData(string $repositoryName): array
     {
-        // checkout master branch
         $this->projectGitSyncer->checkoutDefaultBranch($repositoryName);
 
         $projectData = array_replace(

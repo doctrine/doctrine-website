@@ -15,6 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use function array_merge;
 use function assert;
 use function is_bool;
+use function is_string;
 use function sprintf;
 
 final class BuildAllCommand extends Command
@@ -29,7 +30,8 @@ final class BuildAllCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('build-all')
+            ->setName('build')
+            ->setAliases(['build-all'])
             ->setDescription('Build all website components.')
             ->addArgument(
                 'build-dir',
@@ -44,6 +46,20 @@ final class BuildAllCommand extends Command
                 'Clear the build cache before building everything.',
             )
             ->addOption(
+                'project',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The project to build the docs for.',
+                '',
+            )
+            ->addOption(
+                'libversion',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The project version to build the docs for. Only usable in combination with --project option',
+                '',
+            )
+            ->addOption(
                 'search',
                 null,
                 InputOption::VALUE_NONE,
@@ -55,10 +71,22 @@ final class BuildAllCommand extends Command
     {
         $buildSearchIndexes = $input->getOption('search');
         assert(is_bool($buildSearchIndexes));
+        $buildProject = $input->getOption('project');
+        assert(is_string($buildProject));
+        $buildVersion = $input->getOption('libversion');
+        assert(is_string($buildVersion));
 
-        $buildDocsArgs = $buildSearchIndexes ? ['--search' => null] : [];
-        $commands      = [
-            'sync-repositories' => [],
+        if ($buildVersion !== '' && $buildProject === '') {
+            $output->writeln('<error>--libversion can only be used together with the --project option.</error>');
+
+            return 1;
+        }
+
+        $buildDocsArgs                 = $buildSearchIndexes ? ['--search' => null] : [];
+        $buildDocsArgs['--project']    = $buildProject;
+        $buildDocsArgs['--libversion'] = $buildVersion;
+        $commands                      = [
+            'sync-repositories' => ['--project' => $buildProject],
             'build-database' => [],
             'build-docs' => $buildDocsArgs,
             'build-website' => [

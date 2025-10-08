@@ -8,6 +8,7 @@ use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use function sprintf;
@@ -25,12 +26,20 @@ final class SyncRepositoriesCommand extends Command
     {
         $this
             ->setName('sync-repositories')
-            ->setDescription('Initialize or update all project repositories.');
+            ->setDescription('Initialize or update all project repositories.')
+            ->addOption(
+                'project',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The project to build the docs for.',
+                '',
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $repositoryNames = $this->projectDataRepository->getProjectRepositoryNames();
+        $project         = $input->getOption('project');
+        $repositoryNames = $project === '' ? $this->projectDataRepository->getProjectRepositoryNames() : [$project];
 
         foreach ($repositoryNames as $repositoryName) {
             if ($this->projectGitSyncer->isRepositoryInitialized($repositoryName)) {
