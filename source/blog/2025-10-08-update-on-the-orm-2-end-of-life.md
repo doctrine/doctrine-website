@@ -11,9 +11,10 @@ ORM 3 was released almost 2 years ago, and we initially planned with the ORM 2 E
 
 So far adoption of ORM 3 is about 25-30% of ORM 2 based on Packagist installation numbers, which is not a big enough number. DBAL adoption of major 3 is much higher at roughly 60%.
 
-Therefore we are going to push out the ORM 2 End of Life to at least February 2027, but we will restrict what kind of changes are eligable for the 2.0 branch further. 
+Therefore we are going to push out the ORM 2 End of Life to at least February 2027, but we will restrict what kind of changes are eligible for the 2.0 branch further.
 
-Starting now, we will only merge changes of the following kind into 2.x branches:
+Starting March 2026, we will only merge changes of the following kind into 2.x branches:
+
 * PHP version compatibility, lets say support for PHP 8.5, 8.6 or 9.0
 * Security fixes
 * Improving forward compatibility with ORM 3
