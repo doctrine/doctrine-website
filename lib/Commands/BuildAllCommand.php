@@ -30,7 +30,8 @@ final class BuildAllCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('build-all')
+            ->setName('build')
+            ->setAliases(['build-all'])
             ->setDescription('Build all website components.')
             ->addArgument(
                 'build-dir',
@@ -55,7 +56,7 @@ final class BuildAllCommand extends Command
                 'libversion',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'The project version to build the docs for.',
+                'The project version to build the docs for. Only usable in combination with --project option',
                 '',
             )
             ->addOption(
@@ -74,6 +75,12 @@ final class BuildAllCommand extends Command
         assert(is_string($buildProject));
         $buildVersion = $input->getOption('libversion');
         assert(is_string($buildVersion));
+
+        if ($buildVersion !== '' && $buildProject === '') {
+            $output->writeln('<error>--libversion can only be used together with the --project option.</error>');
+
+            return 1;
+        }
 
         $buildDocsArgs                 = $buildSearchIndexes ? ['--search' => null] : [];
         $buildDocsArgs['--project']    = $buildProject;
