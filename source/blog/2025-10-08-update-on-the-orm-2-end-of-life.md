@@ -15,7 +15,7 @@ Therefore we are going to push out the ORM 2 End of Life to at least February 20
 
 Starting March 2026, we will only merge changes of the following kind into 2.x branches:
 
-* PHP version compatibility, lets say support for PHP 8.5, 8.6 or 9.0
+* PHP version compatibility, let's say support for PHP 8.5, 8.6 or 9.0
 * Security fixes
 * Improving forward compatibility with ORM 3
 
