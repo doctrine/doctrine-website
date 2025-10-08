@@ -55,11 +55,11 @@ jobs:
 
     - name: "Prepare Website files"
       if: "! inputs.search-index-only"
-      run: "bin/console --env=${{ inputs.environment }} build-all"
+      run: "bin/console --env=${{ inputs.environment }} build"
 
     - name: "Build search index"
       if: "inputs.search-index-only"
-      run: "bin/console --env=${{ inputs.environment }} build-all --search"
+      run: "bin/console --env=${{ inputs.environment }} build --search"
 
     - name: "Deploy to ${{ inputs.environment }}"
       if: "! inputs.search-index-only"
