@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\Requests;
 
-use Doctrine\StaticWebsiteGenerator\Request\ArrayRequestCollection;
 use Doctrine\Website\Model\Partner;
 use Doctrine\Website\Model\PartnerDetails;
 use Doctrine\Website\Repositories\PartnerRepository;
 use Doctrine\Website\Requests\PartnerRequests;
+use Doctrine\Website\StaticGenerator\Request\ArrayRequestCollection;
 use Doctrine\Website\Tests\TestCase;
 
 class PartnerRequestsTest extends TestCase

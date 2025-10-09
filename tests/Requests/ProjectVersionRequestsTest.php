@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\Requests;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\StaticWebsiteGenerator\Request\ArrayRequestCollection;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
 use Doctrine\Website\Requests\ProjectVersionRequests;
+use Doctrine\Website\StaticGenerator\Request\ArrayRequestCollection;
 use Doctrine\Website\Tests\TestCase;
 
 class ProjectVersionRequestsTest extends TestCase

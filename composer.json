@@ -17,7 +17,6 @@
         "doctrine/dbal": "^4.0",
         "doctrine/inflector": "^2.0",
         "doctrine/orm": "^3.2",
-        "doctrine/static-website-generator": "^2.1",
         "erusev/parsedown": "^1.7",
         "knplabs/github-api": "^3.9",
         "league/flysystem": "^1",
@@ -38,7 +37,9 @@
         "symfony/dependency-injection": "^7.2",
         "symfony/filesystem": "^6.4",
         "symfony/finder": "^6.4",
+        "symfony/http-kernel": "^6.4",
         "symfony/process": "^7.2",
+        "symfony/routing": "^6.4",
         "symfony/yaml": "^6.4",
         "twig/twig": "^3.7"
     },

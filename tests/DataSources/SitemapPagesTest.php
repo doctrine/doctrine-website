@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests\DataSources;
 
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFile;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileParameters;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\DataSources\SitemapPages;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFile;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileParameters;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileRepository;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 

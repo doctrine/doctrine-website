@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Doctrine\Website\Tests\DataSources;
 
 use DateTimeImmutable;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFile;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileParameters;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\DataSources\BlogPosts;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFile;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileFilesystemReader;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileParameters;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFiles;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 

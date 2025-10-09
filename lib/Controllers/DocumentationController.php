@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\StaticGenerator\Controller\Response;
 
 final readonly class DocumentationController
 {

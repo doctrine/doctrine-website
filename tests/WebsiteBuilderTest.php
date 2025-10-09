@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Tests;
 
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\ProcessFactory;
 use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileRepository;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\WebsiteBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Console\Output\OutputInterface;
