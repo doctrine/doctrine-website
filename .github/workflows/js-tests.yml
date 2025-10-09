@@ -27,7 +27,7 @@ jobs:
     - name: "Installation of node"
       uses: "actions/setup-node@v5"
       with:
-        node-version: '20.5.1'
+        node-version: '22'
 
     - name: "yarn install"
       run: "yarn install"
