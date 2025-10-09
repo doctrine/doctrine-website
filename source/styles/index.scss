@@ -664,3 +664,12 @@ code.empty:before, code.line:before{
 code.line:before {
   content: counter(line);
 }
+
+.footnote-label, .footnote-content {
+    display: inline;
+}
+
+.footnote-label {
+    vertical-align: super;
+    font-size: .75em;
+}
