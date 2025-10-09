@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\DataSources;
 
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileFilesystemReader;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileFilesystemReader;
 
 final readonly class BlogPosts implements DataSource
 {

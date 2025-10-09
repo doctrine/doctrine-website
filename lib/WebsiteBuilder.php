@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Doctrine\Website;
 
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFilesBuilder;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Model\ProjectVersion;
 use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileRepository;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFilesBuilder;
 use RuntimeException;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;

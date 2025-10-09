@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Requests;
 
-use Doctrine\StaticWebsiteGenerator\Request\ArrayRequestCollection;
-use Doctrine\StaticWebsiteGenerator\Request\RequestCollection;
 use Doctrine\Website\Model\Project;
 use Doctrine\Website\Repositories\ProjectRepository;
+use Doctrine\Website\StaticGenerator\Request\ArrayRequestCollection;
+use Doctrine\Website\StaticGenerator\Request\RequestCollection;
 
 final readonly class ProjectVersionRequests
 {

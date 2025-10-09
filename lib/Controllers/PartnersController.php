@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Controllers;
 
-use Doctrine\StaticWebsiteGenerator\Controller\Response;
 use Doctrine\Website\Model\Partner;
 use Doctrine\Website\Repositories\PartnerRepository;
+use Doctrine\Website\StaticGenerator\Controller\Response;
 
 final readonly class PartnersController
 {

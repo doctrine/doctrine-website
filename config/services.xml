@@ -5,7 +5,6 @@
 
     <imports>
         <import resource="services/orm.xml"/>
-        <import resource="services/static-website-generator.xml"/>
     </imports>
 
     <services>
@@ -20,9 +19,63 @@
             <bind key="$projectIntegrationTypes">%doctrine.website.project_integration.types%</bind>
             <bind key="$packagistUrlFormat">https://packagist.org/packages/%s.json</bind>
             <bind key="$dbPrefills" tag="doctrine.website.db_prefill" type="tagged" />
+            <bind key="$templatesDir">%doctrine.website.templates_dir%</bind>
+            <bind key="$routes">%doctrine.website.routes%</bind>
         </defaults>
 
         <prototype namespace="Doctrine\Website\" resource="../lib/*" />
+
+        <service id="Doctrine\Website\StaticGenerator\SourceFile\SourceFileBuilder">
+            <argument type="service" id="Doctrine\Website\StaticGenerator\SourceFile\SourceFileRenderer" />
+            <argument type="service" id="Symfony\Component\Filesystem\Filesystem" />
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Guides\StaticWebsiteGenerator\GuidesRstConverter" />
+                <argument type="service" id="Doctrine\Website\Guides\StaticWebsiteGenerator\GuidesMarkdownConverter" />
+            </argument>
+            <argument type="collection">
+                <argument>/\/api\//</argument>
+            </argument>
+        </service>
+
+        <service id="Doctrine\Website\StaticGenerator\Twig\StringTwigRenderer" autowire="false">
+            <argument>%doctrine.website.templates_dir%</argument>
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Twig\MainExtension" />
+                <argument type="service" id="Doctrine\Website\Twig\ProjectExtension" />
+                <argument type="service" id="Doctrine\Website\StaticGenerator\Twig\RoutingExtension" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\Website\StaticGenerator\Twig\TwigRenderer" alias="Doctrine\Website\StaticGenerator\Twig\StringTwigRenderer" />
+
+        <service id="Doctrine\Website\StaticGenerator\SourceFile\SourceFileRepository">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\StaticGenerator\SourceFile\SourceFileFilesystemReader" />
+                <argument type="service" id="Doctrine\Website\StaticGenerator\SourceFile\SourceFileRouteReader" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\Website\StaticGenerator\Controller\ControllerProvider">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Controllers\AtomController" />
+                <argument type="service" id="Doctrine\Website\Controllers\BlogController" />
+                <argument type="service" id="Doctrine\Website\Controllers\DocumentationController" />
+                <argument type="service" id="Doctrine\Website\Controllers\HomepageController" />
+                <argument type="service" id="Doctrine\Website\Controllers\PartnersController" />
+                <argument type="service" id="Doctrine\Website\Controllers\ProjectController" />
+                <argument type="service" id="Doctrine\Website\Controllers\SitemapController" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\Website\StaticGenerator\Request\RequestCollectionProvider">
+            <argument type="collection">
+                <argument type="service" id="Doctrine\Website\Requests\PartnerRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\ProjectRequests" />
+                <argument type="service" id="Doctrine\Website\Requests\ProjectVersionRequests" />
+            </argument>
+        </service>
+
+        <service id="Doctrine\Website\StaticGenerator\Site" alias="Doctrine\Website\Site" />
 
         <service id="Doctrine\Website\Application" autowire="true" public="true" />
 

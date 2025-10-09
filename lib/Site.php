@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website;
 
-use Doctrine\StaticWebsiteGenerator\Site as BaseSite;
+use Doctrine\Website\StaticGenerator\Site as BaseSite;
 
 final class Site extends BaseSite
 {

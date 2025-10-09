@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Doctrine\Website\DataSources;
 
 use DateTimeImmutable;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileRepository;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileRepository;
 
 final readonly class SitemapPages implements DataSource
 {

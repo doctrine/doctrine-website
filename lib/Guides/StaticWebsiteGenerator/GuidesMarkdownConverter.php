@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Guides\StaticWebsiteGenerator;
 
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFile;
-use Doctrine\StaticWebsiteGenerator\SourceFile\SourceFileConverter;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFile;
+use Doctrine\Website\StaticGenerator\SourceFile\SourceFileConverter;
 use League\Flysystem\Adapter\NullAdapter;
 use League\Flysystem\Filesystem;
 use Override;
