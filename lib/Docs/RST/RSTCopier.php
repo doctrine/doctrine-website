@@ -143,35 +143,6 @@ class RSTCopier
         // fix list syntax
         $content = str_replace("\n- \n", "\n- ", $content);
 
-        // stuff from doctrine1 docs
-        if ($project->getSlug() === 'doctrine1') {
-            $content = preg_replace([
-                "/\n===\r\n/",
-                "/:code:(.*)\n/",
-                '/:php:(.*):`(.*)`/',
-                '/:file:`(.*)`/',
-                '/:code:`(.*)`/',
-                '/:literal:`(.*)`/',
-                '/:token:`(.*)`/',
-                '/.. rubric:: Notes/',
-                "/.. sidebar:: (.*)\n/",
-            ], [
-                "\n=== ===\r\n",
-                '$1',
-                '$2',
-                '$1',
-                '$1',
-                '$1',
-                '$1',
-                '$1',
-            ], $content);
-
-            assert(is_string($content));
-
-            $content = str_replace('.. productionlist::', '', $content);
-            $content = str_replace('.. sidebar::', '', $content);
-        }
-
         return $content;
     }
 

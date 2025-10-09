@@ -24,7 +24,6 @@ parameters:
             versionsGreaterThan: "2.99.0"
             sortOrder: 2
 
-        - repositoryName: doctrine1
         - repositoryName: event-manager
         - repositoryName: inflector
         - repositoryName: instantiator
