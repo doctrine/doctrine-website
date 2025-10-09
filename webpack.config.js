@@ -79,6 +79,7 @@ module.exports = {
                         loader: "sass-loader",
                         options: {
                             sassOptions: {
+                                quietDeps: true,
                                 loadPaths: [
                                     path.join(__dirname, 'node_modules'),
                                 ]
