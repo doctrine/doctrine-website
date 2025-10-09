@@ -1,11 +1,11 @@
-@import '../../node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 $fa-font-path: '../../node_modules/@fortawesome/fontawesome-free/webfonts';
-@import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
-@import '../../node_modules/@fortawesome/fontawesome-free/scss/brands';
-@import '../../node_modules/@fortawesome/fontawesome-free/scss/regular';
-@import '../../node_modules/@fortawesome/fontawesome-free/scss/solid';
-@import '../../node_modules/instantsearch.css/themes/satellite.css';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import 'instantsearch.css/themes/satellite.css';
 
 $doctrine-orange: #fa6a3c;
 $doctrine-light-blue: #2e6bc8;
