@@ -80,6 +80,7 @@ module.exports = {
                         options: {
                             sassOptions: {
                                 quietDeps: true,
+                                silenceDeprecations: ['import'], // TODO remove this when migrating to Sass modules
                                 loadPaths: [
                                     path.join(__dirname, 'node_modules'),
                                 ]
