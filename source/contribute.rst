@@ -320,7 +320,7 @@ look like on A:
     $ git rebase --continue # resume the rebase
 
 You should be able to apply the example above with any tool we use in
-our CI pipelines, such as PHPUnit, PHPStan or Psalm.
+our CI pipelines, such as PHPUnit or PHPStan.
 
 ``git rebase --interactive`` is a really powerful tool and we barely
 scratched the tip of the iceberg here. If you want to learn more about
@@ -447,27 +447,23 @@ them manually.
 Static analysis
 ~~~~~~~~~~~~~~~
 
-We use two different static analysis tools, that can be complementary:
+We use `PHPStan <https://phpstan.org/>`_ for static analysis.
 
-- `Psalm <https://psalm.dev/>`_
-- `PHPStan <https://phpstan.org/>`_
-
-Here is how to run both tools:
+Here is how to run it locally:
 
 .. code-block:: console
 
-    $ vendor/bin/psalm
     $ vendor/bin/phpstan
 
 It might happen that these tools report false positives. In that case,
 we try to report the false positives upstream, and then we ignore them
-in ``psalm.xml`` or ``phpstan.neon``, along with a link to the bug
-report.
+in ``phpstan.neon`` or with a special comment, along with a link to the
+bug report.
 
-When things get overwhelming, for instance when upgrading Psalm or
-PHPStan, we use baseline files, but as a last resort: it's better to
-have new code pass analysis with the latest version of the tools than to
-block the ugprade until every single issue is addressed.
+When things get overwhelming, for instance when upgrading PHPStan, we
+use baseline files, but as a last resort: it's better to have new code
+pass analysis with the latest version of the tools than to block the
+ugprade until every single issue is addressed.
 
 If you are looking for something to contribute, you can try to
 reduce the baseline files in repositories that have them.
@@ -475,14 +471,10 @@ This might happen accidentally when working on code, and both tools are
 configured to let you know when you should remove lines from the
 baseline.
 
-We never rely on ``@psalm-suppress`` except in some Symfony bundles. We
-are aware of this inconsistency, and might resolve it someday. Until
-then, try to be consistent with the repository you are contributing to.
-
 Both tools understand most of each other annotations, and we use
-``@psalm-``-prefixed annotations and let PHPStan do the translation. We
-use prefixed annotations for advanced features that are not understood
-by all IDEs yet.
+``@phpstan-``-prefixed annotations and let PHPStan do the translation.
+We use prefixed annotations for advanced features that are not
+understood by all IDEs yet.
 
 Tests
 ~~~~~
@@ -510,7 +502,6 @@ with the following content:
     set -e
     echo ''|vendor/bin/phpcs
     vendor/bin/phpstan
-    vendor/bin/psalm
     vendor/bin/phpunit
 
 Getting your PR reviewed
