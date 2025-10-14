@@ -12,12 +12,14 @@ use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectVersionsReader;
+use RuntimeException;
 
 use function array_filter;
 use function array_map;
 use function array_replace;
 use function count;
 use function end;
+use function sprintf;
 use function strnatcmp;
 use function usort;
 
@@ -185,6 +187,16 @@ final readonly class Projects implements DataSource
 
         foreach ($projectVersions as $key => $projectVersion) {
             if (! isset($projectVersion['branchName'])) {
+                if (! isset($projectVersion['tags'])) {
+                    throw new RuntimeException(sprintf(
+                        <<<'EXCEPTION'
+                        Project version "%s" of project "%s" has no branch name and does not have any tags, cannot checkout!
+                        EXCEPTION,
+                        $projectVersion['name'],
+                        $repositoryName,
+                    ));
+                }
+
                 $this->projectGitSyncer->checkoutTag(
                     $docsRepositoryName,
                     end($projectVersion['tags'])->getName(),
