@@ -40,7 +40,7 @@
         "symfony/http-kernel": "^6.4",
         "symfony/process": "^7.2",
         "symfony/routing": "^7.3",
-        "symfony/yaml": "^6.4",
+        "symfony/yaml": "^7.3",
         "twig/twig": "^3.7"
     },
     "require-dev": {
