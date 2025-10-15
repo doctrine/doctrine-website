@@ -673,3 +673,12 @@ code.line:before {
     vertical-align: super;
     font-size: .75em;
 }
+
+div.row table:not([width]) {
+  border: 1px solid #dee2e6;
+
+  td, th {
+    padding: 0.5em;
+    border: 1px solid #dee2e6;
+  }
+}
