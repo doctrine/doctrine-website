@@ -32,7 +32,7 @@ class SourceFileParametersFactory
 
         if (preg_match('/^\s*(?:---[\s]*[\r\n]+)(.*?)(?:---[\s]*[\r\n]+)(.*?)$/s', $contents, $matches) > 0) {
             if (preg_match('/^(\s*[-]+\s*|\s*)$/', $matches[1]) === 0) {
-                $parameters = Yaml::parse($matches[1], 1);
+                $parameters = Yaml::parse($matches[1]);
             }
         }
 
