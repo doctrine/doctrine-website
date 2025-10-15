@@ -16,6 +16,7 @@ use Doctrine\Website\Projects\ProjectGitSyncer;
 use Doctrine\Website\Projects\ProjectVersionsReader;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use RuntimeException;
 
 class ProjectsTest extends TestCase
 {
@@ -193,6 +194,51 @@ class ProjectsTest extends TestCase
         ];
 
         self::assertSame($expected, $data);
+    }
+
+    public function testItThrowsWhenAProjectVersionHasNoBranchNameAndNoTags(): void
+    {
+        $this->projectDataRepository->expects(self::once())
+            ->method('getProjectRepositoryNames')
+            ->willReturn(['persistence']);
+
+        $this->projectGitSyncer->expects(self::once())
+            ->method('checkoutDefaultBranch')
+            ->with('persistence');
+        $this->projectGitSyncer->expects(self::once())
+            ->method('isRepositoryInitialized')
+            ->willReturn(true);
+
+        $this->projectDataReader->expects(self::once())
+            ->method('read')
+            ->with('persistence')
+            ->willReturn([
+                'composerPackageName' => 'doctrine/persistence',
+                'repositoryName' => 'persistence',
+                'docsPath' => '/docs',
+                'versions' => [
+                    [
+                        'name' => '1.4',
+                        'branchName' => null,
+                    ],
+                ],
+            ]);
+
+        $this->projectVersionsReader->expects(self::once())
+            ->method('readProjectVersions')
+            ->with('/path/to/projects/persistence')
+            ->willReturn([
+                [
+                    'name' => '1.4',
+                    'branchName' => null,
+                    'tags' => [],
+                ],
+            ]);
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Project version "1.4" of project "persistence" has no branch name and does not have any tags, cannot checkout!');
+
+        $this->dataSource->getSourceRows();
     }
 
     protected function setUp(): void
