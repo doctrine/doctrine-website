@@ -10,7 +10,13 @@ use InvalidArgumentException;
 
 class ProjectDataReaderTest extends TestCase
 {
-    /** @var string[][] */
+    /**
+     * @var array<string, array{
+     *    name: string,
+     *    url: string,
+     *    icon: string
+     * }>
+     */
     private array $projectIntegrationTypes;
 
     private ProjectDataReader $projectDataReader;
@@ -74,6 +80,7 @@ class ProjectDataReaderTest extends TestCase
     {
         $projectData = $this->projectDataReader->read('test-integration-project');
 
+        self::assertArrayHasKey('integrationType', $projectData);
         self::assertSame($this->projectIntegrationTypes['symfony'], $projectData['integrationType']);
     }
 

@@ -31,8 +31,8 @@ class ProjectDataReader
     private readonly Inflector $inflector;
 
     /**
-     * @param mixed[] $projectsData
-     * @param mixed[] $projectIntegrationTypes
+     * @param list<array{repositoryName: string, versionsGreaterThan?: string, sortOrder?: int, integration?: bool, integrationFor?: string, integrationType?: string}> $projectsData
+     * @param mixed[]                                                                                                                                                   $projectIntegrationTypes
      */
     public function __construct(
         private readonly string $projectsDir,
@@ -42,7 +42,30 @@ class ProjectDataReader
         $this->inflector = InflectorFactory::create()->build();
     }
 
-    /** @return mixed[] */
+    /**
+     * @return array{
+     *     name: string,
+     *     repositoryName: string,
+     *     docsPath: string|null,
+     *     slug: string,
+     *     versions: list<array{
+     *         name: string,
+     *         branchName: string,
+     *         slug: string,
+     *         aliases: list<string>
+     *     }>,
+     *     composerPackageName: string,
+     *     description?: string,
+     *     keywords?: list<string>,
+     *     shortName?: string,
+     *     docsSlug: string,
+     *     versionsGreaterThan?: string,
+     *     sortOrder?: int,
+     *     integration?: bool,
+     *     integrationFor?: string,
+     *     integrationType?: array{name: string, url: string, icon: string}
+     * }
+     */
     public function read(string $repositoryName): array
     {
         $projectData = array_replace(
@@ -75,10 +98,27 @@ class ProjectDataReader
             $projectData['docsSlug'] = $projectData['slug'];
         }
 
+        /** @phpstan-ignore return.type (PHPStan loses type information with the call to array_replace) */
         return $projectData;
     }
 
-    /** @return mixed[] */
+    /**
+     * @return array{
+     *     name: string,
+     *     repositoryName: string,
+     *     docsPath: string|null,
+     *     slug: string,
+     *     versions: array{array{
+     *         name: 'master',
+     *         branchName: 'master',
+     *         slug: 'latest',
+     *         aliases: array{'current', 'stable'}
+     *     }},
+     *     composerPackageName?: string,
+     *     description?: string,
+     *     keywords?: list<string>
+     * }
+     */
     private function createDefaultProjectData(string $repositoryName): array
     {
         $slug = str_replace('_', '-', $this->inflector->tableize($repositoryName));
@@ -133,7 +173,7 @@ class ProjectDataReader
         return $default;
     }
 
-    /** @return mixed[] */
+    /** @return array{composerPackageName?: string, description?: string, keywords?:list<string>} */
     private function readComposerData(string $repositoryName): array
     {
         $data = $this->readJsonFile($repositoryName, self::COMPOSER_JSON_FILE_NAME);
