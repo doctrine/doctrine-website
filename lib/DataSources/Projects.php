@@ -76,17 +76,16 @@ final readonly class Projects implements DataSource
     }
 
     /**
-     * @param mixed[] $projectData
+     * @param array{versions: list<array{name:string, branchName?: string|null}>} $projectData
      *
      * @return mixed[]
      */
     private function buildProjectVersions(string $repositoryName, array $projectData): array
     {
         $projectVersions = $this->readProjectVersionsFromGit($repositoryName);
+        $projectVersions = $this->applyConfiguredProjectVersions($projectVersions, $projectData);
 
-        $this->applyConfiguredProjectVersions($projectVersions, $projectData);
-
-        $this->sortProjectVersions($projectVersions);
+        $projectVersions = $this->sortProjectVersions($projectVersions);
 
         $this->prepareProjectVersions(
             $repositoryName,
@@ -97,7 +96,7 @@ final readonly class Projects implements DataSource
         return $projectVersions;
     }
 
-    /** @return mixed[] */
+    /** @return list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}> */
     private function readProjectVersionsFromGit(string $repositoryName): array
     {
         $repositoryPath = $this->projectsDir . '/' . $repositoryName;
@@ -105,19 +104,30 @@ final readonly class Projects implements DataSource
         $projectVersions = $this->projectVersionsReader->readProjectVersions($repositoryPath);
 
         // fix this, we shouldn't have null branch names at this point. Fix it further upstream
+
+        /** @phpstan-ignore return.type */
         return array_filter($projectVersions, static function (array $projectVersion): bool {
             return count($projectVersion['tags']) > 0;
         });
     }
 
     /**
-     * @param mixed[] $projectVersions
-     * @param mixed[] $projectData
+     * @param list<array{name: string, slug: string, branchName: string|null, tags: list<Tag>}> $projectVersions
+     * @param array{versions: list<array{name:string, branchName?: string|null}>}               $projectData
      *
-     * @return mixed[]
+     * @return list<array{
+     *             name: string,
+     *             branchName?: string|null
+     *         }|array{
+     *             name: string,
+     *             slug: string,
+     *             branchName: string|null,
+     *             tags: non-empty-list<Tag>,
+     *             maintained?: false
+     *         }>
      */
     private function applyConfiguredProjectVersions(
-        array &$projectVersions,
+        array $projectVersions,
         array $projectData,
     ): array {
         foreach ($projectVersions as $key => $projectVersion) {
@@ -154,8 +164,8 @@ final readonly class Projects implements DataSource
     }
 
     /**
-     * @param mixed[] $a
-     * @param mixed[] $b
+     * @param array{name: string, slug: string, branchName: string|null, tags: list<Tag>} $a
+     * @param array{name: string, branchName?: string|null}                               $b
      */
     private function containsSameProjectVersion(array $a, array $b): bool
     {
@@ -171,8 +181,8 @@ final readonly class Projects implements DataSource
     }
 
     /**
-     * @param mixed[] $projectVersions
-     * @param mixed[] $projectData
+     * @param list<array{name: string, branchName?: string|null}|array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>, maintained?: false}> $projectVersions
+     * @param mixed[]                                                                                                                                                       $projectData
      *
      * @return mixed[]
      */
@@ -236,12 +246,21 @@ final readonly class Projects implements DataSource
         return $projectVersions;
     }
 
-    /** @param mixed[] $projectVersions */
-    private function sortProjectVersions(array &$projectVersions): void
+    /**
+     * @param T $projectVersions
+     *
+     * @return T
+     *
+     * @template T of mixed[]
+     */
+    private function sortProjectVersions(array $projectVersions): array
     {
         // sort by name so newest versions are first
         usort($projectVersions, static function (array $a, array $b): int {
             return strnatcmp($b['name'], $a['name']);
         });
+
+        /** @phpstan-ignore return.type */
+        return $projectVersions;
     }
 }

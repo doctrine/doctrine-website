@@ -20,7 +20,7 @@ class ProjectVersionsReader
     ) {
     }
 
-    /** @return mixed[] */
+    /** @return list<array{name: string, slug: string, branchName: string|null, tags: list<Tag>}> */
     public function readProjectVersions(string $repositoryPath): array
     {
         $tags = $this->getProjectTags($repositoryPath);
@@ -60,7 +60,7 @@ class ProjectVersionsReader
         return array_values($versions);
     }
 
-    /** @return mixed[] */
+    /** @return Tag[] */
     private function getProjectTags(string $repositoryPath): array
     {
         $tags = $this->tagReader->getRepositoryTags($repositoryPath);
