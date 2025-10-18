@@ -83,10 +83,9 @@ final readonly class Projects implements DataSource
     private function buildProjectVersions(string $repositoryName, array $projectData): array
     {
         $projectVersions = $this->readProjectVersionsFromGit($repositoryName);
+        $projectVersions = $this->applyConfiguredProjectVersions($projectVersions, $projectData);
 
-        $this->applyConfiguredProjectVersions($projectVersions, $projectData);
-
-        $this->sortProjectVersions($projectVersions);
+        $projectVersions = $this->sortProjectVersions($projectVersions);
 
         $this->prepareProjectVersions(
             $repositoryName,
@@ -117,7 +116,7 @@ final readonly class Projects implements DataSource
      * @return mixed[]
      */
     private function applyConfiguredProjectVersions(
-        array &$projectVersions,
+        array $projectVersions,
         array $projectData,
     ): array {
         foreach ($projectVersions as $key => $projectVersion) {
@@ -236,12 +235,21 @@ final readonly class Projects implements DataSource
         return $projectVersions;
     }
 
-    /** @param mixed[] $projectVersions */
-    private function sortProjectVersions(array &$projectVersions): void
+    /**
+     * @param T $projectVersions
+     *
+     * @return T
+     *
+     * @template T of mixed[]
+     */
+    private function sortProjectVersions(array $projectVersions): array
     {
         // sort by name so newest versions are first
         usort($projectVersions, static function (array $a, array $b): int {
             return strnatcmp($b['name'], $a['name']);
         });
+
+        /** @phpstan-ignore return.type */
+        return $projectVersions;
     }
 }
