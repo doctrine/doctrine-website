@@ -123,7 +123,7 @@
                                                     {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
 
                                                     <a class="project-version-switcher dropdown-item
-                                                        {%- if version.slug == page.docsVersion %} active{% endif -%}
+                                                        {%- if version.slug same as page.docsVersion %} active{% endif -%}
                                                         {%- if versionUrl is null %} disabled{% endif -%}" href="{{ versionUrl }}">
                                                         {{ version.displayName }}
 
