@@ -33,7 +33,7 @@ jobs:
       doctrine_website_send_grid_api_key: "${{ secrets.doctrine_website_send_grid_api_key }}"
 
     steps:
-    - uses: "actions/checkout@v5"
+    - uses: "actions/checkout@v6"
 
     - name: "Setup PHP Action"
       uses: "shivammathur/setup-php@v2"
