@@ -59,9 +59,11 @@ readonly class CodeBlockLanguageDetector
     private function registerHighlighter(): void
     {
         $phpHighlightPath = sprintf('%s/vendor/scrivo/highlight.php/Highlight/languages/php.json', $this->rootDir);
+        $rstHighlightPath = sprintf('%s/vendor/scrivo/highlight.php/Highlight/languages/plaintext.json', $this->rootDir);
         Highlighter::registerLanguage('annotation', $phpHighlightPath);
         Highlighter::registerLanguage('php-annotations', $phpHighlightPath);
         Highlighter::registerLanguage('attribute', $phpHighlightPath);
         Highlighter::registerLanguage('php-attributes', $phpHighlightPath);
+        Highlighter::registerLanguage('rst', $rstHighlightPath);
     }
 }
