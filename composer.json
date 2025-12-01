@@ -31,7 +31,7 @@
         "phpdocumentor/guides-restructured-text": "^1.7",
         "psr/cache": "^3",
         "scrivo/highlight.php": "^9.18",
-        "symfony/cache": "^7.2",
+        "symfony/cache": "^8.0",
         "symfony/config": "^7.3",
         "symfony/console": "^7.2",
         "symfony/dependency-injection": "^7.2",
