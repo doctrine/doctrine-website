@@ -77,6 +77,14 @@ class ProjectsTest extends TestCase
             ->with('/path/to/projects/orm')
             ->willReturn([
                 [
+                    'name' => '0.9',
+                    'branchName' => null,
+                    'tags' => [
+                        new Tag('0.9.0', new DateTimeImmutable('2019-08-01')),
+                        new Tag('0.9.1', new DateTimeImmutable('2019-08-02')),
+                    ],
+                ],
+                [
                     'name' => '1.0',
                     'branchName' => null,
                     'tags' => [

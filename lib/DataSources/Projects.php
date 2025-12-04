@@ -17,8 +17,10 @@ use RuntimeException;
 use function array_filter;
 use function array_map;
 use function array_replace;
+use function array_values;
 use function count;
 use function end;
+use function in_array;
 use function sprintf;
 use function strnatcmp;
 use function usort;
@@ -83,6 +85,7 @@ final readonly class Projects implements DataSource
     private function buildProjectVersions(string $repositoryName, array $projectData): array
     {
         $projectVersions = $this->readProjectVersionsFromGit($repositoryName);
+        $projectVersions = $this->removeUnwantedVersions($projectVersions, $projectData);
         $projectVersions = $this->applyConfiguredProjectVersions($projectVersions, $projectData);
 
         $projectVersions = $this->sortProjectVersions($projectVersions);
@@ -94,6 +97,20 @@ final readonly class Projects implements DataSource
         );
 
         return $projectVersions;
+    }
+
+    /**
+     * @param list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}> $projectVersions
+     * @param array{versions: list<array{name:string, branchName?: string|null}>}                         $projectData
+     *
+     * @return list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}>
+     */
+    private function removeUnwantedVersions(array $projectVersions, array $projectData): array
+    {
+        $allowedVersions = array_map(static fn (array $versions) => $versions['name'], $projectData['versions']);
+        $projectVersions = array_filter($projectVersions, static fn (array $version): bool => in_array($version['name'], $allowedVersions, true));
+
+        return array_values($projectVersions);
     }
 
     /** @return list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}> */
