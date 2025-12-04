@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests\DataSources;
 
 use DateTimeImmutable;
 use Doctrine\Website\DataSources\Projects;
+use Doctrine\Website\DataSources\ProjectVersions;
 use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Git\Tag;
@@ -259,14 +260,19 @@ class ProjectsTest extends TestCase
         $this->getProjectPackagistData = $this->createMock(GetProjectPackagistData::class);
         $this->projectsDir             = '/path/to/projects';
 
+        $projectVersions = new ProjectVersions(
+            $this->projectGitSyncer,
+            $this->projectVersionsReader,
+            $this->rstLanguagesDetector,
+            $this->projectsDir,
+        );
+
         $this->dataSource = new Projects(
             $this->projectDataRepository,
             $this->projectGitSyncer,
             $this->projectDataReader,
-            $this->projectVersionsReader,
-            $this->rstLanguagesDetector,
             $this->getProjectPackagistData,
-            $this->projectsDir,
+            $projectVersions,
         );
     }
 }
