@@ -11,6 +11,9 @@
                 <argument type="string">lib/Git</argument>
                 <argument type="string">lib/Docs/RST</argument>
             </argument>
+            <call method="enableNativeLazyObjects">
+                <argument type="constant">true</argument>
+            </call>
         </service>
 
         <service id="Doctrine\DBAL\Connection">
