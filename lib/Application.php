@@ -22,7 +22,7 @@ use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use function assert;
@@ -98,8 +98,8 @@ final readonly class Application
             $container->loadFromExtension($extension->getAlias());
         }
 
-        $xmlConfigLoader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
-        $xmlConfigLoader->load('services.xml');
+        $xmlConfigLoader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../config'));
+        $xmlConfigLoader->load('services.php');
 
         $yamlConfigLoader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
         $yamlConfigLoader->load('routes.yml');
