@@ -6,6 +6,7 @@ namespace Doctrine\Website\Tests\DataSources;
 
 use DateTimeImmutable;
 use Doctrine\Website\DataSources\Projects;
+use Doctrine\Website\DataSources\ProjectVersions;
 use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Git\Tag;
@@ -76,6 +77,14 @@ class ProjectsTest extends TestCase
             ->method('readProjectVersions')
             ->with('/path/to/projects/orm')
             ->willReturn([
+                [
+                    'name' => '0.9',
+                    'branchName' => null,
+                    'tags' => [
+                        new Tag('0.9.0', new DateTimeImmutable('2019-08-01')),
+                        new Tag('0.9.1', new DateTimeImmutable('2019-08-02')),
+                    ],
+                ],
                 [
                     'name' => '1.0',
                     'branchName' => null,
@@ -251,14 +260,19 @@ class ProjectsTest extends TestCase
         $this->getProjectPackagistData = $this->createMock(GetProjectPackagistData::class);
         $this->projectsDir             = '/path/to/projects';
 
+        $projectVersions = new ProjectVersions(
+            $this->projectGitSyncer,
+            $this->projectVersionsReader,
+            $this->rstLanguagesDetector,
+            $this->projectsDir,
+        );
+
         $this->dataSource = new Projects(
             $this->projectDataRepository,
             $this->projectGitSyncer,
             $this->projectDataReader,
-            $this->projectVersionsReader,
-            $this->rstLanguagesDetector,
             $this->getProjectPackagistData,
-            $this->projectsDir,
+            $projectVersions,
         );
     }
 }
