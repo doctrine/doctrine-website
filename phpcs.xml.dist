@@ -10,6 +10,7 @@
     <arg value="nps"/>
 
     <file>lib</file>
+    <file>config</file>
     <file>tests</file>
 
     <rule ref="Doctrine"/>
