@@ -8,6 +8,7 @@ parameters:
     paths:
       - lib
       - tests
+      - config
     ignoreErrors:
       - "#Short ternary operator is not allowed#"
       - # Refactor class and remove this error
