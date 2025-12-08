@@ -35,7 +35,7 @@
         "symfony/config": "^7.3",
         "symfony/console": "^7.2",
         "symfony/dependency-injection": "^7.2",
-        "symfony/filesystem": "^7.3",
+        "symfony/filesystem": "^8.0",
         "symfony/finder": "^8.0",
         "symfony/http-kernel": "^7.3",
         "symfony/process": "^7.2",
