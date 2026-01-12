@@ -39,7 +39,7 @@
         "symfony/filesystem": "^8.0",
         "symfony/finder": "^8.0",
         "symfony/http-kernel": "^7.3",
-        "symfony/process": "^7.2",
+        "symfony/process": "^8.0",
         "symfony/routing": "^8.0",
         "symfony/yaml": "^7.3",
         "twig/twig": "^3.7"
