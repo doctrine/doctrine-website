@@ -47,12 +47,12 @@ final readonly class Application
         SyncRepositoriesCommand $syncRepositoriesCommand,
         BuildDatabaseCommand $buildDatabaseCommand,
     ) {
-        $this->application->add($buildAllCommand);
-        $this->application->add($buildDocsCommand);
-        $this->application->add($buildWebsiteCommand);
-        $this->application->add($clearBuildCacheCommand);
-        $this->application->add($syncRepositoriesCommand);
-        $this->application->add($buildDatabaseCommand);
+        $this->application->addCommand($buildAllCommand);
+        $this->application->addCommand($buildDocsCommand);
+        $this->application->addCommand($buildWebsiteCommand);
+        $this->application->addCommand($clearBuildCacheCommand);
+        $this->application->addCommand($syncRepositoriesCommand);
+        $this->application->addCommand($buildDatabaseCommand);
 
         $this->application->setHelperSet(new HelperSet([
             'question'      => new QuestionHelper(),
