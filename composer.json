@@ -38,7 +38,7 @@
         "symfony/dependency-injection": "^8.0",
         "symfony/filesystem": "^8.0",
         "symfony/finder": "^8.0",
-        "symfony/http-kernel": "^7.3",
+        "symfony/http-kernel": "^8.0",
         "symfony/process": "^8.0",
         "symfony/routing": "^8.0",
         "symfony/yaml": "^8.0",
@@ -54,8 +54,8 @@
         "phpunit/phpunit": "^12.0",
         "symfony/css-selector": "^8.0",
         "symfony/dom-crawler": "^8.0",
-        "symfony/error-handler": "^6.4",
-        "symfony/var-dumper": "^6.4"
+        "symfony/error-handler": "^8.0",
+        "symfony/var-dumper": "^8.0"
     },
     "config": {
         "allow-plugins": {
