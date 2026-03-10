@@ -22,8 +22,8 @@ export default function (projectSlug, versionSlug, searchBoxSettings) {
     poweredBy: false,
     reset: false,
     searchClient: algoliasearch(
-        'YVYTFT9XMW',
-        'a6dada5f33f148586b92cc3afefeaaf6'
+      'YVYTFT9XMW',
+      'a6dada5f33f148586b92cc3afefeaaf6',
     ),
     searchFunction: function (helper) {
       if (helper.state.query === '') {
