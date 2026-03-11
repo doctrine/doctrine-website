@@ -21,17 +21,23 @@ export default function () {
 
   $(document).ready(function () {
     $('button[role="tab"]').on('click', function () {
-        const tabId = $(this).attr('aria-controls');
-        const tabContent = $('#' + tabId);
+      const tabId = $(this).attr('aria-controls');
+      const tabContent = $('#' + tabId);
 
-        $(this).closest('[role=tablist]').find('button[role="tab"]')
-            .attr('data-active', null)
-            .attr('aria-selected', 'false');
+      $(this)
+        .closest('[role=tablist]')
+        .find('button[role="tab"]')
+        .attr('data-active', null)
+        .attr('aria-selected', 'false');
 
-        $(this).attr('data-active', 'true').attr('aria-selected', 'true');
+      $(this).attr('data-active', 'true').attr('aria-selected', 'true');
 
-        $(this).closest('[role=tablist]').parent().find('div[role="tabpanel"]').hide();
-        tabContent.show();
+      $(this)
+        .closest('[role=tablist]')
+        .parent()
+        .find('div[role="tabpanel"]')
+        .hide();
+      tabContent.show();
     });
 
     $('button.copy-to-clipboard').on('click', async function () {
@@ -42,14 +48,17 @@ export default function () {
       let copyText = '';
       if (copyElement) {
         const children = Array.from(copyElement.childNodes);
-        copyText = children.map(node => {
-          if (node.nodeType === Node.TEXT_NODE) {
-            return node.textContent;
-          } else if (node.nodeType === Node.ELEMENT_NODE) {
-            return node.textContent;
-          }
-          return '';
-        }).filter(Boolean).join('\n');
+        copyText = children
+          .map((node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+              return node.textContent;
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+              return node.textContent;
+            }
+            return '';
+          })
+          .filter(Boolean)
+          .join('\n');
       }
 
       await navigator.clipboard.writeText(copyText);

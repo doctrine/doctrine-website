@@ -1,7 +1,9 @@
 module.exports = {
     verbose: true,
     rootDir: './',
-    testURL: 'http://localhost/',
+    testEnvironmentOptions: {
+        url: 'http://localhost/'
+    },
     testMatch: ['**/jest/**/*.test.js'],
     "transform": {
         "^.+\\.js$": "babel-jest",

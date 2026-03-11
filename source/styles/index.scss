@@ -643,15 +643,16 @@ a img.card-img-top {
 @import 'railscasts';
 @import 'carbonads';
 
-pre.code-block-table{
+pre.code-block-table {
   counter-reset: line;
 }
-code.line{
+code.line {
   counter-increment: line;
 }
 
-code.empty:before, code.line:before{
-  content: " ";
+code.empty:before,
+code.line:before {
+  content: ' ';
   display: inline-block;
   width: 38px;
   background: #333;
@@ -665,19 +666,21 @@ code.line:before {
   content: counter(line);
 }
 
-.footnote-label, .footnote-content {
-    display: inline;
+.footnote-label,
+.footnote-content {
+  display: inline;
 }
 
 .footnote-label {
-    vertical-align: super;
-    font-size: .75em;
+  vertical-align: super;
+  font-size: 0.75em;
 }
 
 div.row table:not([width]) {
   border: 1px solid #dee2e6;
 
-  td, th {
+  td,
+  th {
     padding: 0.5em;
     border: 1px solid #dee2e6;
   }
