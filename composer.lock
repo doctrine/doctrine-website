@@ -3102,16 +3102,16 @@
         },
         {
             "name": "phpdocumentor/guides-graphs",
-            "version": "1.9.5",
+            "version": "1.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-graphs.git",
-                "reference": "85a7849dd982ca63a07a9086a1d9df8fd93c4c5d"
+                "reference": "580ffeb50d12363973b09a24109fb4d7a198efdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-graphs/zipball/85a7849dd982ca63a07a9086a1d9df8fd93c4c5d",
-                "reference": "85a7849dd982ca63a07a9086a1d9df8fd93c4c5d",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-graphs/zipball/580ffeb50d12363973b09a24109fb4d7a198efdd",
+                "reference": "580ffeb50d12363973b09a24109fb4d7a198efdd",
                 "shasum": ""
             },
             "require": {
@@ -3144,9 +3144,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-graphs/issues",
-                "source": "https://github.com/phpDocumentor/guides-graphs/tree/1.9.5"
+                "source": "https://github.com/phpDocumentor/guides-graphs/tree/1.9.6"
             },
-            "time": "2026-01-04T12:15:25+00:00"
+            "time": "2026-01-18T19:20:03+00:00"
         },
         {
             "name": "phpdocumentor/guides-markdown",
