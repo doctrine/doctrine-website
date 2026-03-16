@@ -41,7 +41,7 @@ jobs:
         php-version: "8.5"
 
     - name: "Install dependencies with Composer"
-      uses: "ramsey/composer-install@v3"
+      uses: "ramsey/composer-install@v4"
       with:
         composer-options: "--no-progress --no-suggest --no-dev"
 
