@@ -3062,21 +3062,21 @@
         },
         {
             "name": "phpdocumentor/guides-code",
-            "version": "1.7.0",
+            "version": "1.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/guides-code.git",
-                "reference": "0f828b349a649bd6e1187a3b4e82eab37271278c"
+                "reference": "83ea1942ec8c882e3762e6637670f78c352c9665"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/guides-code/zipball/0f828b349a649bd6e1187a3b4e82eab37271278c",
-                "reference": "0f828b349a649bd6e1187a3b4e82eab37271278c",
+                "url": "https://api.github.com/repos/phpDocumentor/guides-code/zipball/83ea1942ec8c882e3762e6637670f78c352c9665",
+                "reference": "83ea1942ec8c882e3762e6637670f78c352c9665",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
-                "scrivo/highlight.php": "^9.18.0"
+                "scrivo/highlight.php": "^9.18.1.10"
             },
             "type": "library",
             "extra": {
@@ -3097,9 +3097,9 @@
             "homepage": "https://www.phpdoc.org",
             "support": {
                 "issues": "https://github.com/phpDocumentor/guides-code/issues",
-                "source": "https://github.com/phpDocumentor/guides-code/tree/1.7.0"
+                "source": "https://github.com/phpDocumentor/guides-code/tree/1.9.6"
             },
-            "time": "2025-01-29T20:10:47+00:00"
+            "time": "2026-02-23T19:56:40+00:00"
         },
         {
             "name": "phpdocumentor/guides-graphs",
