@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
-            "version": "4.39.1",
+            "version": "4.40.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-client-php.git",
-                "reference": "665123b47369a7836e661e55c2d88f4399958d1d"
+                "reference": "b58d7edb115f825fba24ecfaeedeeb6a2a245c07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/665123b47369a7836e661e55c2d88f4399958d1d",
-                "reference": "665123b47369a7836e661e55c2d88f4399958d1d",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/b58d7edb115f825fba24ecfaeedeeb6a2a245c07",
+                "reference": "b58d7edb115f825fba24ecfaeedeeb6a2a245c07",
                 "shasum": ""
             },
             "require": {
@@ -69,9 +69,9 @@
             ],
             "support": {
                 "issues": "https://github.com/algolia/algoliasearch-client-php/issues",
-                "source": "https://github.com/algolia/algoliasearch-client-php/tree/4.39.1"
+                "source": "https://github.com/algolia/algoliasearch-client-php/tree/4.40.0"
             },
-            "time": "2026-03-09T16:30:34+00:00"
+            "time": "2026-03-24T19:30:06+00:00"
         },
         {
             "name": "clue/stream-filter",
