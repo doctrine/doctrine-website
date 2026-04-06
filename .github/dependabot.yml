@@ -6,6 +6,10 @@ updates:
       interval: "weekly"
     labels:
       - "dependencies"
+    groups:
+      symfony:
+        patterns:
+          - "symfony/*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
