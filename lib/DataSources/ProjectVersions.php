@@ -231,7 +231,6 @@ readonly class ProjectVersions
             return strnatcmp($b['name'], $a['name']);
         });
 
-        /** @phpstan-ignore return.type */
         return $projectVersions;
     }
 }
