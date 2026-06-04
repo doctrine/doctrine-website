@@ -32,9 +32,15 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param array{versions: list<array{name:string, branchName?: string|null}>} $projectData
+     * @param array{
+     *     versions: list<array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>}>,
+     *     repositoryName: string,
+     *     docsPath: string|null,
+     *     docsRepositoryName?: string,
+     *     ...
+     * } $projectData
      *
-     * @return mixed[]
+     * @return array<int, array<string, mixed>>
      */
     public function buildProjectVersions(string $repositoryName, array $projectData): array
     {
@@ -54,10 +60,10 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}> $projectVersions
-     * @param array{versions: list<array{name:string, branchName?: string|null}>}                         $projectData
+     * @param list<array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false}> $projectVersions
+     * @param array{versions: list<array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>}>, ...} $projectData
      *
-     * @return list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}>
+     * @return list<array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false}>
      */
     private function removeUnwantedVersions(array $projectVersions, array $projectData): array
     {
@@ -67,7 +73,7 @@ readonly class ProjectVersions
         return array_values($projectVersions);
     }
 
-    /** @return list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}> */
+    /** @return list<array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false}> */
     private function readProjectVersionsFromGit(string $repositoryName): array
     {
         $repositoryPath = $this->projectsDir . '/' . $repositoryName;
@@ -83,19 +89,10 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param list<array{name: string, slug: string, branchName: string|null, tags: list<Tag>}> $projectVersions
-     * @param array{versions: list<array{name:string, branchName?: string|null}>}               $projectData
+     * @param list<array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false}> $projectVersions
+     * @param array{versions: list<array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>}>, ...} $projectData
      *
-     * @return list<array{
-     *             name: string,
-     *             branchName?: string|null
-     *         }|array{
-     *             name: string,
-     *             slug: string,
-     *             branchName: string|null,
-     *             tags: non-empty-list<Tag>,
-     *             maintained?: false
-     *         }>
+     * @return list<array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>}|array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false}>
      */
     private function applyConfiguredProjectVersions(
         array $projectVersions,
@@ -135,8 +132,8 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param array{name: string, slug: string, branchName: string|null, tags: list<Tag>} $a
-     * @param array{name: string, branchName?: string|null}                               $b
+     * @param array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false} $a
+     * @param array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>}                                               $b
      */
     private function containsSameProjectVersion(array $a, array $b): bool
     {
@@ -152,10 +149,12 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param list<array{name: string, branchName?: string|null}|array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>, maintained?: false}> $projectVersions
-     * @param mixed[]                                                                                                                                                       $projectData
+     * @param list<array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>}|array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false}> $projectVersions
+     * @param array{repositoryName: string, docsPath: string|null, docsRepositoryName?: string, ...} $projectData
      *
-     * @return mixed[]
+     * @return array<int, array<string, mixed>>
+     *
+     * @param-out array<int, array<string, mixed>> $projectVersions
      */
     private function prepareProjectVersions(
         string $repositoryName,
