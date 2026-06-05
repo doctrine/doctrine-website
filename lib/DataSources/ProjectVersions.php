@@ -21,6 +21,13 @@ use function sprintf;
 use function strnatcmp;
 use function usort;
 
+/**
+ * @phpstan-type ConfiguredProjectVersion array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>}
+ * @phpstan-type GitProjectVersion array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false}
+ * @phpstan-type ProjectVersionBeforePrepare ConfiguredProjectVersion|GitProjectVersion
+ * @phpstan-type ProjectDataWithVersions array{versions: list<ConfiguredProjectVersion>, ...}
+ * @phpstan-type ProjectDataForPrepare array{repositoryName: string, docsPath: string|null, docsRepositoryName?: string, ...}
+ */
 readonly class ProjectVersions
 {
     public function __construct(
@@ -32,9 +39,9 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param array{versions: list<array{name:string, branchName?: string|null}>} $projectData
+     * @param ProjectDataWithVersions&ProjectDataForPrepare $projectData
      *
-     * @return mixed[]
+     * @return array<int, array<string, mixed>>
      */
     public function buildProjectVersions(string $repositoryName, array $projectData): array
     {
@@ -54,10 +61,10 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}> $projectVersions
-     * @param array{versions: list<array{name:string, branchName?: string|null}>}                         $projectData
+     * @param list<GitProjectVersion> $projectVersions
+     * @param ProjectDataWithVersions $projectData
      *
-     * @return list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}>
+     * @return list<GitProjectVersion>
      */
     private function removeUnwantedVersions(array $projectVersions, array $projectData): array
     {
@@ -67,7 +74,7 @@ readonly class ProjectVersions
         return array_values($projectVersions);
     }
 
-    /** @return list<array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>}> */
+    /** @return list<GitProjectVersion> */
     private function readProjectVersionsFromGit(string $repositoryName): array
     {
         $repositoryPath = $this->projectsDir . '/' . $repositoryName;
@@ -83,19 +90,10 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param list<array{name: string, slug: string, branchName: string|null, tags: list<Tag>}> $projectVersions
-     * @param array{versions: list<array{name:string, branchName?: string|null}>}               $projectData
+     * @param list<GitProjectVersion> $projectVersions
+     * @param ProjectDataWithVersions $projectData
      *
-     * @return list<array{
-     *             name: string,
-     *             branchName?: string|null
-     *         }|array{
-     *             name: string,
-     *             slug: string,
-     *             branchName: string|null,
-     *             tags: non-empty-list<Tag>,
-     *             maintained?: false
-     *         }>
+     * @return list<ProjectVersionBeforePrepare>
      */
     private function applyConfiguredProjectVersions(
         array $projectVersions,
@@ -135,8 +133,8 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param array{name: string, slug: string, branchName: string|null, tags: list<Tag>} $a
-     * @param array{name: string, branchName?: string|null}                               $b
+     * @param GitProjectVersion        $a
+     * @param ConfiguredProjectVersion $b
      */
     private function containsSameProjectVersion(array $a, array $b): bool
     {
@@ -152,10 +150,12 @@ readonly class ProjectVersions
     }
 
     /**
-     * @param list<array{name: string, branchName?: string|null}|array{name: string, slug: string, branchName: string|null, tags: non-empty-list<Tag>, maintained?: false}> $projectVersions
-     * @param mixed[]                                                                                                                                                       $projectData
+     * @param list<ProjectVersionBeforePrepare> $projectVersions
+     * @param ProjectDataForPrepare             $projectData
      *
-     * @return mixed[]
+     * @return array<int, array<string, mixed>>
+     *
+     * @param-out array<int, array<string, mixed>> $projectVersions
      */
     private function prepareProjectVersions(
         string $repositoryName,
