@@ -57,3 +57,43 @@ the ``use-next-minor-as-default-branch`` switch for the
     $ git switch --create 2.0.x 2.0.0
     Switched to a new branch "2.0.x"
     $ git push doctrine 2.0.x
+
+Tagging a release
+-----------------
+
+We use ``laminas/automatic-releases`` to make releasing as easy as
+closing a milestone. Before closing a milestone, one should check that
+it is complete. If not, they should unassign issues and pull requests,
+or close them / merge them as appropriate. It is also a good idea to
+check which pull requests were merged since the last release on the
+relevant branch, and to make sure each one is properly labelled and
+assigned to the milestone.
+
+Labels are used to generate the release notes, and we should strive to
+provide a consistent experience accross repositories. Here are labels
+that we recommend adding on every repository:
+
+BC Break
+  Changes or removals that may require changes or actions from the user
+  before the package can be used again.
+
+Improvement
+  Additions to the feature set or API of the package that are backward
+  compatible
+
+Bugfix
+  Changes that fix an issue affecting the user of the package.
+
+Documentation
+  Includes changes to rst files, markdown files as well as code
+  comments.
+
+Deprecation
+  For pull requests that *introduce* a new deprecation (as opposed to
+  addressing deprecations from another package, or removing deprecated
+  code paths)
+
+Internal
+  Changes that do not impact the end user, but might impact contributors
+  or maintainers, such as improvements to the CI, bugfixes for the test
+  suite, etc.
