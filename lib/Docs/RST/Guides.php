@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\Website\Docs\RST;
 
+use Doctrine\Website\Model\ProjectVersion;
 use Flyfinder\Finder;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
@@ -25,12 +26,12 @@ final class Guides implements DocumentsBuilder
     }
 
     #[Override]
-    public function build(string $directory, string $targetDirectory = 'output'): void
+    public function build(ProjectVersion $version, string $directory, string $targetDirectory = 'output'): void
     {
         $sourceFileSystem = new Filesystem(new Local($directory));
         $sourceFileSystem->addPlugin(new Finder());
 
-        $projectNode     = new ProjectNode();
+        $projectNode     = new ProjectNode($version->getProject()->getName(), $version->getName());
         $this->documents = $this->guidesParser->parse($directory, $projectNode);
 
         $destinationFileSystem = new Filesystem(new Local($targetDirectory));
@@ -38,6 +39,16 @@ final class Guides implements DocumentsBuilder
         $this->commandBus->handle(
             new RenderCommand(
                 'html',
+                $this->documents,
+                $sourceFileSystem,
+                $destinationFileSystem,
+                $projectNode,
+            ),
+        );
+
+        $this->commandBus->handle(
+            new RenderCommand(
+                'interlink',
                 $this->documents,
                 $sourceFileSystem,
                 $destinationFileSystem,
