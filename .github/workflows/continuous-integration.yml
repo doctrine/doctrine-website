@@ -27,7 +27,7 @@ jobs:
         composer-options: "--prefer-dist --no-progress --no-suggest"
 
     - name: "Installation of node"
-      uses: "actions/setup-node@v6"
+      uses: "actions/setup-node@v7"
       with:
         node-version: '22'
 
