@@ -492,17 +492,24 @@ Running checks before pushing
 
 Rather than starting many containers on a remote infrastructure to
 figure what is wrong with your code, running some of the checks locally
-before pushing is never a bad idea. You can do so by creating a
-``.git/hooks/pre-push`` file or even a ``.git/hooks/pre-commit`` file
-with the following content:
+before pushing is never a bad idea. You can do so by creating
+``pre-push`` or even ``pre-commit`` hooks. Here is an example with
+``pre-push`` hooks:
 
-.. code-block:: bash
+.. code-block:: console
 
-    #!/bin/bash
-    set -e
-    echo ''|vendor/bin/phpcs
-    vendor/bin/phpstan
-    vendor/bin/phpunit
+    $ git config hook.jobs 3
+    $ git config hook.phpcs.event pre-push
+    $ git config hook.phpcs.command "sh -c \"echo ''|vendor/bin/phpcs\""
+    $ git config hook.phpcs.parallel true
+    $ git config hook.phpstan.event pre-push
+    $ git config hook.phpstan.command "sh -c 'vendor/bin/phpstan'"
+    $ git config hook.phpstan.parallel true
+    $ git config hook.phpunit.event pre-push
+    $ git config hook.phpunit.command "sh -c 'vendor/bin/phpunit'"
+    $ git config hook.phpunit.parallel true
+
+Note that you cannot use parallelism with ``pre-commit`` hooks.
 
 Getting your PR reviewed
 ------------------------
