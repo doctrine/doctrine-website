@@ -32,12 +32,13 @@ Next run ``composer install && yarn install`` to install all of the dependencies
 Coding Standards
 ----------------
 
-Copy the ``pre-commit`` hook to ``.git/hooks/pre-commit`` to ensure
-coding standards are maintained:
+Configure the ``pre-commit`` script has a hook to ensure coding
+standards are maintained:
 
 .. code-block:: console
 
-    $ cp pre-commit .git/hooks/pre-commit
+    $ git config hooks.pre-commit.event pre-commit
+    $ git config hooks.pre-commit.command pre-commit
 
 Configuration
 -------------
