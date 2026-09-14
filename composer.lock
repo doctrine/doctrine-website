@@ -8,23 +8,23 @@
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
-            "version": "4.47.0",
+            "version": "4.49.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-client-php.git",
-                "reference": "d2ad9378c66681536d49f29134717a1d4cd66b6c"
+                "reference": "0e8832da117e60ca2d8bfe0ee9d3271ea9471019"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/d2ad9378c66681536d49f29134717a1d4cd66b6c",
-                "reference": "d2ad9378c66681536d49f29134717a1d4cd66b6c",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/0e8832da117e60ca2d8bfe0ee9d3271ea9471019",
+                "reference": "0e8832da117e60ca2d8bfe0ee9d3271ea9471019",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "guzzlehttp/psr7": "^2.0",
+                "guzzlehttp/psr7": "^2.0 || ^3.0",
                 "php": ">=8.1 !=8.3.0",
                 "psr/http-message": "^1.1 || ^2.0",
                 "psr/log": "^1.0 || ^2.0 || ^3.0",
@@ -32,6 +32,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.91.3",
+                "guzzlehttp/guzzle": "^7.0 || ^8.0",
                 "phpstan/phpstan": "^1.12",
                 "phpunit/phpunit": "^10.0",
                 "vlucas/phpdotenv": "^5.4"
@@ -69,9 +70,9 @@
             ],
             "support": {
                 "issues": "https://github.com/algolia/algoliasearch-client-php/issues",
-                "source": "https://github.com/algolia/algoliasearch-client-php/tree/4.47.0"
+                "source": "https://github.com/algolia/algoliasearch-client-php/tree/4.49.0"
             },
-            "time": "2026-08-18T12:43:34+00:00"
+            "time": "2026-09-09T15:24:38+00:00"
         },
         {
             "name": "clue/stream-filter",
