@@ -13,7 +13,7 @@
     "require": {
         "php": "8.5.*",
         "algolia/algoliasearch-client-php": "^4",
-        "doctrine/collections": "^2",
+        "doctrine/collections": "^3",
         "doctrine/dbal": "^4.0",
         "doctrine/inflector": "^2.0",
         "doctrine/orm": "^3.2",
