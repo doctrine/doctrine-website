@@ -42,6 +42,7 @@ class RSTBuilder
         $this->filesystem->remove($this->rstFileRepository->findFiles($outputPath));
 
         $this->builder->build(
+            $version,
             $project->getProjectVersionDocsPath($this->docsDir, $version, $language->getCode()),
             $outputPath,
         );
