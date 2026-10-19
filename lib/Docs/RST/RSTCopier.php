@@ -47,7 +47,7 @@ class RSTCopier
             // clear existing files before copying the rst over
             $this->filesystem->remove($this->rstFileRepository->findFiles($outputPath));
 
-            $sidebar = $this->fixRSTSyntax($project, $this->getSidebarRST($language->getPath()));
+            $sidebar = $this->fixRSTSyntax($this->getSidebarRST($language->getPath()));
 
             $files = $this->rstFileRepository->getSourceFiles($language->getPath());
 
@@ -62,8 +62,6 @@ class RSTCopier
                 }
 
                 $this->copyFile(
-                    $project,
-                    $version,
                     $language,
                     $file,
                     $outputPath,
@@ -74,8 +72,6 @@ class RSTCopier
     }
 
     private function copyFile(
-        Project $project,
-        ProjectVersion $version,
         RSTLanguage $language,
         string $file,
         string $outputPath,
@@ -85,19 +81,16 @@ class RSTCopier
 
         $fileContents = $this->rstFileRepository->getFileContents($file);
 
-        $fixedRst = $this->fixRSTSyntax($project, $fileContents);
+        $fixedRst = $this->fixRSTSyntax($fileContents);
 
-        $path       = str_replace('/' . $language->getCode(), '', $language->getPath());
-        $sourceFile = str_replace($path, '', $file);
-
-        $rstTemplate = $this->prepareRSTTemplate($fixedRst, $sidebar, $sourceFile);
+        $rstTemplate = $this->prepareRSTTemplate($fixedRst, $sidebar);
 
         $writePath = $outputPath . $filePath;
 
         $this->filesystem->dumpFile($writePath, $rstTemplate);
     }
 
-    private function prepareRSTTemplate(string $content, string $sidebar, string $sourceFile): string
+    private function prepareRSTTemplate(string $content, string $sidebar): string
     {
         // replace the sidebar in the RST template
         $rstTemplate = str_replace('{{ sidebar }}', $sidebar, self::RST_TEMPLATE);
@@ -106,7 +99,7 @@ class RSTCopier
         return str_replace('{{ content }}', $content, $rstTemplate);
     }
 
-    private function fixRSTSyntax(Project $project, string $content): string
+    private function fixRSTSyntax(string $content): string
     {
         // fix incorrect casing of note
         $content = str_replace('.. Note::', '.. note::', $content);

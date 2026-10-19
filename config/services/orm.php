@@ -12,8 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMSetup;
 
 return static function (ContainerConfigurator $container): void {
-    $services   = $container->services();
-    $parameters = $container->parameters();
+    $services = $container->services();
 
     $services->set(Configuration::class)
         ->args([['lib/Model', 'lib/Git', 'lib/Docs/RST']])
