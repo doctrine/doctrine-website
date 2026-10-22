@@ -73,8 +73,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
 
 return static function (ContainerConfigurator $container): void {
-    $services   = $container->services();
-    $parameters = $container->parameters();
+    $services = $container->services();
     $container->import('services/orm.php');
 
     $services->defaults()
