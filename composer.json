@@ -16,7 +16,7 @@
         "doctrine/collections": "^3",
         "doctrine/dbal": "^4.0",
         "doctrine/inflector": "^2.0",
-        "doctrine/lexer": "3.0.2",
+        "doctrine/lexer": "3.0.3",
         "doctrine/orm": "^3.2",
         "erusev/parsedown": "^1.7",
         "knplabs/github-api": "^3.9",
