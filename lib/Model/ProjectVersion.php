@@ -21,6 +21,7 @@ class ProjectVersion
     private const string UPCOMING     = 'upcoming';
     private const string STABLE       = 'stable';
     private const string UNMAINTAINED = 'unmaintained';
+    private const string LIFE_SUPPORT = 'life support';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -50,6 +51,9 @@ class ProjectVersion
     private bool $upcoming;
 
     #[ORM\Column(type: 'boolean')]
+    private bool $lifeSupport;
+
+    #[ORM\Column(type: 'boolean')]
     private bool $hasDocs;
 
     /** @var Collection<int, RSTLanguage> */
@@ -67,14 +71,15 @@ class ProjectVersion
     /** @param mixed[] $version */
     public function __construct(array $version)
     {
-        $this->name       = (string) ($version['name'] ?? '');
-        $this->branchName = $version['branchName'] ?? null;
-        $this->slug       = (string) ($version['slug'] ?? $this->name);
-        $this->current    = (bool) ($version['current'] ?? false);
-        $this->maintained = (bool) ($version['maintained'] ?? true);
-        $this->upcoming   = (bool) ($version['upcoming'] ?? false);
-        $this->hasDocs    = (bool) ($version['hasDocs'] ?? true);
-        $this->aliases    = $version['aliases'] ?? [];
+        $this->name        = (string) ($version['name'] ?? '');
+        $this->branchName  = $version['branchName'] ?? null;
+        $this->slug        = (string) ($version['slug'] ?? $this->name);
+        $this->current     = (bool) ($version['current'] ?? false);
+        $this->maintained  = (bool) ($version['maintained'] ?? true);
+        $this->upcoming    = (bool) ($version['upcoming'] ?? false);
+        $this->lifeSupport = (bool) ($version['lifeSupport'] ?? false);
+        $this->hasDocs     = (bool) ($version['hasDocs'] ?? true);
+        $this->aliases     = $version['aliases'] ?? [];
 
         $this->docsLanguages = new ArrayCollection();
         $this->tags          = new ArrayCollection();
@@ -131,6 +136,11 @@ class ProjectVersion
     public function isUpcoming(): bool
     {
         return $this->upcoming;
+    }
+
+    public function isOnLifeSupport(): bool
+    {
+        return $this->lifeSupport;
     }
 
     public function hasDocs(): bool
@@ -210,6 +220,10 @@ class ProjectVersion
             return self::UNMAINTAINED;
         }
 
+        if ($this->lifeSupport) {
+            return self::LIFE_SUPPORT;
+        }
+
         $latestTag = $this->getLatestTag();
 
         if ($latestTag !== null) {
@@ -232,6 +246,7 @@ class ProjectVersion
             'rc' => 'warning',
             'stable' => 'primary',
             'unmaintained' => 'danger',
+            'life support' => 'warning',
             'dev' => 'primary',
         ];
 

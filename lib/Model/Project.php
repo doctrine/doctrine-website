@@ -168,7 +168,15 @@ class Project
     public function getMaintainedVersions(): array
     {
         return $this->getVersions(static function (ProjectVersion $version): bool {
-            return $version->isMaintained();
+            return $version->isMaintained() && ! $version->isOnLifeSupport();
+        });
+    }
+
+    /** @return ProjectVersion[] */
+    public function getLifeSupportVersions(): array
+    {
+        return $this->getVersions(static function (ProjectVersion $version): bool {
+            return $version->isMaintained() && $version->isOnLifeSupport();
         });
     }
 

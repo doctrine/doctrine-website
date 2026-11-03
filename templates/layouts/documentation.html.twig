@@ -139,6 +139,20 @@
                                             {% endfor %}
                                         {% endif %}
 
+                                        {% if project.lifeSupportVersions %}
+                                            <h6 class="dropdown-header">Life support</h6>
+
+                                            {% for version in project.lifeSupportVersions %}
+                                                {% if version.hasDocs %}
+                                                    {% set versionUrl = get_url_version(version, page.url, page.docsVersion) %}
+
+                                                    <a class="project-version-switcher dropdown-item
+                                                        {%- if version.slug is same as page.docsVersion %} active{% endif -%}
+                                                        {%- if versionUrl is null %} disabled{% endif -%}" href="{{ versionUrl }}">{{ version.name }}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+
                                         {% if project.unmaintainedVersions %}
                                             <h6 class="dropdown-header">Unmaintained</h6>
 

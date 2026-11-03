@@ -42,6 +42,12 @@ class ProjectTest extends TestCase
                     'current' => true,
                 ]),
                 new ProjectVersion([
+                    'name' => '1.1',
+                    'branchName' => '1.1',
+                    'slug' => '1.1',
+                    'lifeSupport' => true,
+                ]),
+                new ProjectVersion([
                     'name' => '1.0',
                     'branchName' => '1.0',
                     'slug' => '1.0',
@@ -103,7 +109,7 @@ class ProjectTest extends TestCase
 
     public function testGetVersions(): void
     {
-        self::assertCount(3, $this->project->getVersions());
+        self::assertCount(4, $this->project->getVersions());
     }
 
     public function testGetVersionsWithFilter(): void
@@ -120,6 +126,14 @@ class ProjectTest extends TestCase
         $maintainedVersions = $this->project->getMaintainedVersions();
 
         self::assertCount(2, $maintainedVersions);
+    }
+
+    public function testGetLifeSupportVersions(): void
+    {
+        $lifeSupportVersions = $this->project->getLifeSupportVersions();
+
+        self::assertCount(1, $lifeSupportVersions);
+        self::assertSame('1.1', $lifeSupportVersions[0]->getName());
     }
 
     public function testGetUnmaintainedVersions(): void

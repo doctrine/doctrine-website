@@ -60,6 +60,11 @@
                         "description": "Indicates that this is an upcoming version",
                         "default": false
                     },
+                    "lifeSupport": {
+                        "type": "boolean",
+                        "description": "Indicates that this version is on life support",
+                        "default": false
+                    },
                     "aliases": {
                         "type": "array",
                         "description": "Aliases for a version",
@@ -70,7 +75,20 @@
                         }
                     }
                 },
-                "required": ["name", "slug"]
+                "required": ["name", "slug"],
+                "if": {
+                    "properties": {
+                        "lifeSupport": { "const": true }
+                    },
+                    "required": ["lifeSupport"]
+                },
+                "then": {
+                    "properties": {
+                        "maintained": { "const": true },
+                        "current": { "const": false },
+                        "upcoming": { "const": false }
+                    }
+                }
             },
             "contains": {
                 "properties": {

@@ -64,10 +64,46 @@ class ProjectVersionTest extends TestCase
         self::assertSame('1.0', $projectVersion->getSlug());
         self::assertFalse($projectVersion->isCurrent());
         self::assertFalse($projectVersion->isUpcoming());
+        self::assertFalse($projectVersion->isOnLifeSupport());
         self::assertTrue($projectVersion->hasDocs());
         self::assertEmpty($projectVersion->getTags());
         self::assertEmpty($projectVersion->getDocsLanguages());
         self::assertEmpty($projectVersion->getAliases());
+    }
+
+    public function testLifeSupport(): void
+    {
+        $projectVersion = new ProjectVersion([
+            'name' => '1.0',
+            'lifeSupport' => true,
+        ]);
+        $projectVersion->addTag(new Tag('1.0.0', new DateTimeImmutable('2000-01-01')));
+
+        self::assertTrue($projectVersion->isOnLifeSupport());
+        self::assertSame('life support', $projectVersion->getStability());
+        self::assertSame('warning', $projectVersion->getStabilityColor());
+    }
+
+    public function testLifeSupportOverridesPreReleaseTagStability(): void
+    {
+        $projectVersion = new ProjectVersion([
+            'name' => '1.0',
+            'lifeSupport' => true,
+        ]);
+        $projectVersion->addTag(new Tag('1.0.0-RC1', new DateTimeImmutable('2000-01-01')));
+
+        self::assertSame('life support', $projectVersion->getStability());
+    }
+
+    public function testUnmaintainedTakesPrecedenceOverLifeSupport(): void
+    {
+        $projectVersion = new ProjectVersion([
+            'name' => '1.0',
+            'maintained' => false,
+            'lifeSupport' => true,
+        ]);
+
+        self::assertSame('unmaintained', $projectVersion->getStability());
     }
 
     public function testHasBranchName(): void
