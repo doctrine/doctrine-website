@@ -6,9 +6,8 @@ namespace Doctrine\Website\Guides\StaticWebsiteGenerator;
 
 use Doctrine\Website\StaticGenerator\SourceFile\SourceFile;
 use Doctrine\Website\StaticGenerator\SourceFile\SourceFileConverter;
-use League\Flysystem\Adapter\NullAdapter;
-use League\Flysystem\Filesystem;
 use Override;
+use phpDocumentor\FileSystem\FlySystemAdapter;
 use phpDocumentor\Guides\NodeRenderers\NodeRenderer;
 use phpDocumentor\Guides\Nodes\DocumentNode;
 use phpDocumentor\Guides\Nodes\ProjectNode;
@@ -39,8 +38,8 @@ final readonly class GuidesRstConverter implements SourceFileConverter
         $renderContext = RenderContext::forDocument(
             $document,
             [$document],
-            new Filesystem(new NullAdapter()),
-            new Filesystem(new NullAdapter()),
+            FlySystemAdapter::createInMemory(),
+            FlySystemAdapter::createInMemory(),
             '/',
             'html',
             new ProjectNode(),
