@@ -67,6 +67,10 @@
         </table>
     </div>
 
+    {% if project.lifeSupportVersions %}
+        {% include "project-life-support.html.twig" %}
+    {% endif %}
+
     <h2>Statistics</h2>
 
     <div class="border-left border-right border-bottom rounded mb-4">
