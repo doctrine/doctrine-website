@@ -84,3 +84,6 @@ parameters:
         -
             name: Contao
             url: https://contao.org
+        -
+            name: Dotkernel API
+            url: https://www.dotkernel.com/api/
