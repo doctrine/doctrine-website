@@ -141,8 +141,9 @@ final class ProjectVersionDeriver
             $isUpcoming            = $version['upcoming'] === true;
             $isMaintainedOverride  = $version['maintained'] === true && ! $isCurrent && ! $isUpcoming;
             $isMetadataFileVersion = ! isset($gitVersionsByName[$version['name']]);
+            $isLatest              = ($version['slug'] ?? null) === 'latest';
 
-            if ($isCurrent || $isUpcoming || $isMaintainedOverride || $isMetadataFileVersion) {
+            if ($isCurrent || $isUpcoming || $isMaintainedOverride || $isMetadataFileVersion || $isLatest) {
                 $kept[] = $version;
 
                 continue;

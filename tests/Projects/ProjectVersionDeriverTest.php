@@ -203,6 +203,26 @@ class ProjectVersionDeriverTest extends TestCase
         ], $this->summarize($versions));
     }
 
+    public function testLatestVersionIsAlwaysKept(): void
+    {
+        $versions = $this->deriver->derive(
+            [
+                $this->gitVersion('1.0', '1.0.0'),
+                $this->gitVersion('1.1', '1.1.0'),
+            ],
+            [
+                ['name' => '1.0', 'current' => true],
+                ['name' => '1.1'],
+            ],
+            0,
+        );
+
+        self::assertSame([
+            $this->summary('1.1', 'latest', false, false, false, false),
+            $this->summary('1.0', '1.0', true, false, true, false),
+        ], $this->summarize($versions));
+    }
+
     public function testZeroMinorVersionsKeepsOnlyCurrentAndUpcoming(): void
     {
         $versions = $this->deriver->derive(
