@@ -137,4 +137,5 @@ Values that are not set are derived from git:
   true to keep an older version supported during a migration period.
 
 Set ``lifeSupport`` on an old major version that only receives security fixes.
-It forces ``maintained`` to true and clears ``current`` and ``upcoming``.
+It forces ``maintained`` to true and clears ``upcoming``. A ``lifeSupport``
+version can still be ``current``.

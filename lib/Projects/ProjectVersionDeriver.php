@@ -89,7 +89,7 @@ final class ProjectVersionDeriver
                 'name' => $version['name'],
                 'slug' => $slug,
                 'branchName' => $version['branchName'],
-                'current' => $isCurrent && ! $lifeSupport,
+                'current' => $isCurrent,
                 'upcoming' => $isUpcoming && ! $lifeSupport,
                 'maintained' => $override['maintained'] ?? ($isCurrent || $isUpcoming),
                 'lifeSupport' => $lifeSupport,
@@ -98,7 +98,6 @@ final class ProjectVersionDeriver
 
             if ($lifeSupport) {
                 $versionData['maintained'] = true;
-                $versionData['current']    = false;
                 $versionData['upcoming']   = false;
             }
 

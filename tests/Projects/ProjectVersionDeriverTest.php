@@ -152,6 +152,18 @@ class ProjectVersionDeriverTest extends TestCase
         ], $this->summarize($versions));
     }
 
+    public function testCurrentVersionCanBeOnLifeSupport(): void
+    {
+        $versions = $this->deriver->derive(
+            [$this->gitVersion('1.0', '1.0.0')],
+            [['name' => '1.0', 'lifeSupport' => true]],
+        );
+
+        self::assertSame([
+            $this->summary('1.0', 'latest', true, false, true, true),
+        ], $this->summarize($versions));
+    }
+
     public function testKeepsTheTwoMostRecentMinorVersions(): void
     {
         $versions = $this->deriver->derive(
