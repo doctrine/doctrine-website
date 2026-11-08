@@ -88,12 +88,13 @@ Website metadata
 ----------------
 
 A project repository can contain a ``.doctrine-project.json`` file at its
-root. The file is optional. The website derives the current version, the
-upcoming versions and the version slugs from the git tags and branches.
+root. The file is optional. It lists the versions the website publishes and
+provides explicit overrides for the values derived from git.
 
-The ``versions`` list contains the versions the website builds. Add one entry
-per version you want to publish, then override a value only when the derived
-one is wrong, for example to keep an older major version on life support.
+The ``versions`` list is the list of versions the website builds. Add one
+entry per release line you want to publish. Patch, minor and major releases
+inside an existing line do not require any change. A new ``X.Y`` line must be
+added to the list.
 
 Add the ``$schema`` key so your editor validates the file:
 
@@ -109,20 +110,37 @@ Add the ``$schema`` key so your editor validates the file:
                 "lifeSupport": true
             },
             {
-                "name": "3.7",
-                "maintained": true
+                "name": "3.7"
+            },
+            {
+                "name": "3.8"
+            },
+            {
+                "name": "4.0"
             }
         ]
     }
 
+The other versions of the file are omitted from this excerpt.
+
 Values that are not set are derived from git:
 
+- ``branchName``: the branch guessed from the release tags. Set it explicitly
+  only when git has no matching version.
 - ``slug``: the highest version uses ``latest``, the other versions use their
   name.
-- ``branchName``: the branch guessed from the release tags.
-- ``current``: the highest version with a stable tag.
-- ``upcoming``: versions above the current one without a stable tag.
+- ``current``: the highest version with a stable release. A stable release is
+  a tag without ``alpha``, ``beta``, ``rc`` or ``dev-``. Releases in the
+  ``0.x`` series count as stable for this rule. The current version
+  automatically gets the ``current`` and ``stable`` aliases.
+- ``upcoming``: a version above ``current`` without a stable release. This
+  covers the next minor and the next major branch, including repositories
+  whose default branch is the next unreleased minor.
 - ``maintained``: the current and upcoming versions. Set ``maintained`` to
-  true to keep an older version maintained during a migration period.
+  true to keep an older version supported during a migration period.
 
 Set ``lifeSupport`` on an old major version that only receives security fixes.
+It forces ``maintained`` to true and clears ``current`` and ``upcoming``.
+
+Versions that are not in ``X.Y`` form, such as legacy ``master`` entries,
+stay maintained.
