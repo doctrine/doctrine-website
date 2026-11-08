@@ -323,6 +323,11 @@ class ProjectVersionDeriverTest extends TestCase
         ], $this->summarize($versions));
     }
 
+    protected function setUp(): void
+    {
+        $this->deriver = new ProjectVersionDeriver();
+    }
+
     /** @return array{name: string, slug: string, branchName: string, tags: list<Tag>} */
     private function gitVersion(string $name, string ...$tags): array
     {
@@ -371,10 +376,5 @@ class ProjectVersionDeriverTest extends TestCase
             'maintained' => $maintained,
             'lifeSupport' => $lifeSupport,
         ];
-    }
-
-    protected function setUp(): void
-    {
-        $this->deriver = new ProjectVersionDeriver();
     }
 }

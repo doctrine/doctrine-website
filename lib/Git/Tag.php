@@ -100,6 +100,16 @@ final class Tag
         return ! $this->isDev() && $this->findPrereleaseStability() === null;
     }
 
+    public function setProjectVersion(ProjectVersion $version): void
+    {
+        $this->projectVersion = $version;
+    }
+
+    public function getProjectVersion(): ProjectVersion
+    {
+        return $this->projectVersion;
+    }
+
     private function findPrereleaseStability(): string|null
     {
         foreach (self::TAG_STABILITIES as $stability) {
@@ -109,15 +119,5 @@ final class Tag
         }
 
         return null;
-    }
-
-    public function setProjectVersion(ProjectVersion $version): void
-    {
-        $this->projectVersion = $version;
-    }
-
-    public function getProjectVersion(): ProjectVersion
-    {
-        return $this->projectVersion;
     }
 }
