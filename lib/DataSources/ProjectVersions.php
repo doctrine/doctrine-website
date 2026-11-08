@@ -18,10 +18,32 @@ use function end;
 use function sprintf;
 
 /**
- * @phpstan-type ConfiguredProjectVersion array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>, current?: bool, upcoming?: bool, maintained?: bool, lifeSupport?: bool}
- * @phpstan-type GitProjectVersion array{name: string, slug?: string, branchName: string|null, tags: list<Tag>}
- * @phpstan-type ProjectDataWithVersions array{versions?: list<ConfiguredProjectVersion>, ...}
- * @phpstan-type ProjectDataForPrepare array{repositoryName: string, docsPath: string|null, docsRepositoryName?: string, ...}
+ * @phpstan-type ConfiguredProjectVersion array{
+ *     name: string,
+ *     branchName?: string|null,
+ *     slug?: string,
+ *     aliases?: list<string>,
+ *     current?: bool,
+ *     upcoming?: bool,
+ *     maintained?: bool,
+ *     lifeSupport?: bool
+ * }
+ * @phpstan-type GitProjectVersion array{
+ *     name: string,
+ *     slug?: string,
+ *     branchName: string|null,
+ *     tags: list<Tag>
+ * }
+ * @phpstan-type ProjectDataWithVersions array{
+ *     versions?: list<ConfiguredProjectVersion>,
+ *     ...
+ * }
+ * @phpstan-type ProjectDataForPrepare array{
+ *     repositoryName: string,
+ *     docsPath: string|null,
+ *     docsRepositoryName?: string,
+ *     ...
+ * }
  */
 readonly class ProjectVersions
 {
