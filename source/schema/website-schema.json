@@ -85,7 +85,6 @@
                 "then": {
                     "properties": {
                         "maintained": { "const": true },
-                        "current": { "const": false },
                         "upcoming": { "const": false }
                     }
                 }
@@ -99,4 +98,4 @@
         }
     },
     "required": ["name", "active", "slug", "versions"]
-} 
+}
