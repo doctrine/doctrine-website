@@ -98,4 +98,4 @@
         }
     },
     "required": ["name", "active", "slug", "versions"]
-} 
+}
