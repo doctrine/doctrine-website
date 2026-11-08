@@ -30,7 +30,7 @@
         },
         "versions": {
             "type": "array",
-            "description": "A list of versions to build. Add one entry per published version. The values of an entry are derived from git and only need to be set to override a derived value.",
+            "description": "Optional overrides for the versions discovered from the git tags and branches. Add an entry only to override a derived value.",
             "items": {
                 "type": "object",
                 "minItems": 1,
@@ -92,5 +92,5 @@
             }
         }
     },
-    "required": ["name", "active", "slug", "versions"]
+    "required": ["name", "slug"]
 } 

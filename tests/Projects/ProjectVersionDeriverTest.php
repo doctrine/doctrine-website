@@ -136,6 +136,45 @@ class ProjectVersionDeriverTest extends TestCase
         ], $this->summarize($versions));
     }
 
+    public function testVersionWithoutOverrideIsIncluded(): void
+    {
+        $versions = $this->deriver->derive(
+            [
+                $this->gitVersion('1.0', '1.0.0'),
+                $this->gitVersion('1.1', '1.1.0'),
+            ],
+            [
+                ['name' => '1.0'],
+            ],
+        );
+
+        self::assertSame([
+            $this->summary('1.1', 'latest', true, false, true, false),
+            $this->summary('1.0', '1.0', false, false, false, false),
+        ], $this->summarize($versions));
+    }
+
+    public function testBranchWithoutTagsIsUpcoming(): void
+    {
+        $versions = $this->deriver->derive(
+            [
+                $this->gitVersion('3.7', '3.7.0'),
+                [
+                    'name' => '3.8',
+                    'slug' => '3.8',
+                    'branchName' => '3.8.x',
+                    'tags' => [],
+                ],
+            ],
+            [],
+        );
+
+        self::assertSame([
+            $this->summary('3.8', 'latest', false, true, true, false),
+            $this->summary('3.7', '3.7', true, false, true, false),
+        ], $this->summarize($versions));
+    }
+
     public function testVersionMissingFromGitIsKept(): void
     {
         $versions = $this->deriver->derive(

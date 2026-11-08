@@ -12,19 +12,15 @@ use Doctrine\Website\Projects\ProjectVersionDeriver;
 use Doctrine\Website\Projects\ProjectVersionsReader;
 use RuntimeException;
 
-use function array_column;
-use function array_filter;
-use function array_flip;
 use function array_map;
-use function array_values;
 use function count;
 use function end;
 use function sprintf;
 
 /**
  * @phpstan-type ConfiguredProjectVersion array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>, current?: bool, upcoming?: bool, maintained?: bool, lifeSupport?: bool}
- * @phpstan-type GitProjectVersion array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>}
- * @phpstan-type ProjectDataWithVersions array{versions: list<ConfiguredProjectVersion>, ...}
+ * @phpstan-type GitProjectVersion array{name: string, slug?: string, branchName: string|null, tags: list<Tag>}
+ * @phpstan-type ProjectDataWithVersions array{versions?: list<ConfiguredProjectVersion>, ...}
  * @phpstan-type ProjectDataForPrepare array{repositoryName: string, docsPath: string|null, docsRepositoryName?: string, ...}
  */
 readonly class ProjectVersions
@@ -46,8 +42,7 @@ readonly class ProjectVersions
     public function buildProjectVersions(string $repositoryName, array $projectData): array
     {
         $projectVersions = $this->readProjectVersionsFromGit($repositoryName);
-        $projectVersions = $this->removeUnwantedVersions($projectVersions, $projectData);
-        $projectVersions = $this->projectVersionDeriver->derive($projectVersions, $projectData['versions']);
+        $projectVersions = $this->projectVersionDeriver->derive($projectVersions, $projectData['versions'] ?? []);
 
         $this->prepareProjectVersions(
             $repositoryName,
@@ -58,35 +53,12 @@ readonly class ProjectVersions
         return $projectVersions;
     }
 
-    /**
-     * @param list<GitProjectVersion> $projectVersions
-     * @param ProjectDataWithVersions $projectData
-     *
-     * @return list<GitProjectVersion>
-     */
-    private function removeUnwantedVersions(array $projectVersions, array $projectData): array
-    {
-        $allowedVersions = array_flip(array_column($projectData['versions'], 'name'));
-
-        return array_values(array_filter(
-            $projectVersions,
-            static fn (array $version): bool => isset($allowedVersions[$version['name']]),
-        ));
-    }
-
     /** @return list<GitProjectVersion> */
     private function readProjectVersionsFromGit(string $repositoryName): array
     {
         $repositoryPath = $this->projectsDir . '/' . $repositoryName;
 
-        $projectVersions = $this->projectVersionsReader->readProjectVersions($repositoryPath);
-
-        // fix this, we shouldn't have null branch names at this point. Fix it further upstream
-
-        /** @phpstan-ignore return.type */
-        return array_filter($projectVersions, static function (array $projectVersion): bool {
-            return count($projectVersion['tags']) > 0;
-        });
+        return $this->projectVersionsReader->readProjectVersions($repositoryPath);
     }
 
     /**

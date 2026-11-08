@@ -88,14 +88,12 @@ Website metadata
 ----------------
 
 A project repository can contain a ``.doctrine-project.json`` file at its
-root. The file is optional. It lists the versions the website publishes and
-provides explicit overrides for the values derived from git.
+root. The file is optional. It provides explicit overrides for the values
+derived from git.
 
-The ``versions`` list is the list of versions the website builds. Add one
-entry per release line you want to publish. A new ``X.Y`` line must be added
-to the list when its branch is created. Releases inside an existing line do
-not require any change, and an entry is never renamed when a newer version
-becomes current.
+The website discovers the versions from the release tags and the ``X.Y.x``
+branches. A new ``X.Y`` branch is picked up automatically, without editing the
+file. A release inside an existing line also requires no change.
 
 Add the ``$schema`` key so your editor validates the file:
 
@@ -110,32 +108,14 @@ Add the ``$schema`` key so your editor validates the file:
         "active": true,
         "versions": [
             {
-                "name": "4.0"
-            },
-            {
-                "name": "3.8"
-            },
-            {
-                "name": "3.7"
-            },
-            {
-                "name": "3.6"
-            },
-            {
                 "name": "2.20",
                 "lifeSupport": true
-            },
-            {
-                "name": "2.19"
-            },
-            {
-                "name": "2.15"
-            },
-            {
-                "name": "2.14"
             }
         ]
     }
+
+The ``versions`` list only contains overrides. In this example, the ``2.20``
+line is kept on life support. Every other version is discovered from git.
 
 Values that are not set are derived from git:
 

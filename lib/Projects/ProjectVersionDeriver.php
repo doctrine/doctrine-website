@@ -125,14 +125,27 @@ final class ProjectVersionDeriver
 
         $versions = [];
 
+        foreach ($gitVersions as $gitVersion) {
+            $override = $overrides[$gitVersion['name']] ?? ['name' => $gitVersion['name']];
+
+            $versions[] = [
+                'name' => $gitVersion['name'],
+                // The branch guessed from git takes precedence over the configured branch.
+                'branchName' => $gitVersion['branchName'] ?? $override['branchName'] ?? null,
+                'tags' => $gitVersion['tags'],
+                'override' => $override,
+            ];
+        }
+
         foreach ($overrides as $name => $override) {
-            $gitVersion = $gitVersionsByName[$name] ?? null;
+            if (isset($gitVersionsByName[$name])) {
+                continue;
+            }
 
             $versions[] = [
                 'name' => $name,
-                // The branch guessed from git takes precedence over the configured branch.
-                'branchName' => $gitVersion !== null ? $gitVersion['branchName'] : ($override['branchName'] ?? null),
-                'tags' => $gitVersion['tags'] ?? null,
+                'branchName' => $override['branchName'] ?? null,
+                'tags' => null,
                 'override' => $override,
             ];
         }

@@ -10,6 +10,7 @@ use Doctrine\Website\Git\TagReader;
 
 use function array_filter;
 use function array_values;
+use function preg_match;
 
 /** @final */
 class ProjectVersionsReader
@@ -54,6 +55,25 @@ class ProjectVersionsReader
                 'slug' => $branchSlug,
                 'branchName' => $branchName,
                 'tags' => [$tag],
+            ];
+        }
+
+        foreach ($this->tagBranchGuesser->getBranchNames($repositoryPath) as $branchName) {
+            if (preg_match('/^(\d+\.\d+)(?:\.x)?$/', $branchName, $matches) !== 1) {
+                continue;
+            }
+
+            $versionName = $matches[1];
+
+            if (isset($versions[$versionName])) {
+                continue;
+            }
+
+            $versions[$versionName] = [
+                'name' => $versionName,
+                'slug' => $versionName,
+                'branchName' => $branchName,
+                'tags' => [],
             ];
         }
 
