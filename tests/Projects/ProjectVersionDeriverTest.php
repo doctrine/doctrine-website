@@ -152,6 +152,65 @@ class ProjectVersionDeriverTest extends TestCase
         ], $this->summarize($versions));
     }
 
+    public function testKeepsTheTwoMostRecentMinorVersions(): void
+    {
+        $versions = $this->deriver->derive(
+            [
+                $this->gitVersion('1.0', '1.0.0'),
+                $this->gitVersion('1.1', '1.1.0'),
+                $this->gitVersion('1.2', '1.2.0'),
+                $this->gitVersion('1.3', '1.3.0'),
+                $this->gitVersion('1.4', '1.4.0'),
+            ],
+            [],
+        );
+
+        self::assertSame([
+            $this->summary('1.4', 'latest', true, false, true, false),
+            $this->summary('1.3', '1.3', false, false, false, false),
+            $this->summary('1.2', '1.2', false, false, false, false),
+        ], $this->summarize($versions));
+    }
+
+    public function testZeroMinorVersionsKeepsOnlyCurrentAndUpcoming(): void
+    {
+        $versions = $this->deriver->derive(
+            [
+                $this->gitVersion('1.0', '1.0.0'),
+                $this->gitVersion('1.1', '1.1.0'),
+            ],
+            [],
+            0,
+        );
+
+        self::assertSame([
+            $this->summary('1.1', 'latest', true, false, true, false),
+        ], $this->summarize($versions));
+    }
+
+    public function testExplicitMaintainedVersionIsKeptOutsideTheWindow(): void
+    {
+        $versions = $this->deriver->derive(
+            [
+                $this->gitVersion('1.0', '1.0.0'),
+                $this->gitVersion('1.1', '1.1.0'),
+                $this->gitVersion('1.2', '1.2.0'),
+                $this->gitVersion('1.3', '1.3.0'),
+                $this->gitVersion('1.4', '1.4.0'),
+            ],
+            [
+                ['name' => '1.0', 'maintained' => true],
+            ],
+        );
+
+        self::assertSame([
+            $this->summary('1.4', 'latest', true, false, true, false),
+            $this->summary('1.3', '1.3', false, false, false, false),
+            $this->summary('1.2', '1.2', false, false, false, false),
+            $this->summary('1.0', '1.0', false, false, true, false),
+        ], $this->summarize($versions));
+    }
+
     public function testVersionWithoutOverrideIsIncluded(): void
     {
         $versions = $this->deriver->derive(

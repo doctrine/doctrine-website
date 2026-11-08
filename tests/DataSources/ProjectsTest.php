@@ -115,7 +115,7 @@ class ProjectsTest extends TestCase
             ->method('checkoutBranch')
             ->with('orm', '1.1');
 
-        $this->rstLanguagesDetector->expects(self::exactly(4))
+        $this->rstLanguagesDetector->expects(self::exactly(3))
             ->method('detectLanguages')
             ->with('/path/to/projects/orm/docs')
             ->willReturnOnConsecutiveCalls(
@@ -124,13 +124,11 @@ class ProjectsTest extends TestCase
                 ],
                 [],
                 [],
-                [],
             );
 
-        $this->projectGitSyncer->expects(self::exactly(3))
+        $this->projectGitSyncer->expects(self::exactly(2))
             ->method('checkoutTag')
             ->willReturnMap([
-                ['orm', '0.9.1', null],
                 ['orm', '1.0.1', null],
                 ['orm', '1.2.0', null],
             ]);
@@ -218,28 +216,6 @@ class ProjectsTest extends TestCase
                         'hasDocs' => false,
                         'docsLanguages' => [],
                     ],
-                    [
-                        'name' => '0.9',
-                        'slug' => '0.9',
-                        'branchName' => null,
-                        'current' => false,
-                        'upcoming' => false,
-                        'maintained' => false,
-                        'lifeSupport' => false,
-                        'aliases' => [],
-                        'tags' => [
-                            [
-                                'name' => '0.9.0',
-                                'date' => '2019-08-01 00:00:00',
-                            ],
-                            [
-                                'name' => '0.9.1',
-                                'date' => '2019-08-02 00:00:00',
-                            ],
-                        ],
-                        'hasDocs' => false,
-                        'docsLanguages' => [],
-                    ],
                 ],
                 'packagistData' => ['package' => []],
             ],
@@ -302,6 +278,7 @@ class ProjectsTest extends TestCase
             $this->projectVersionsReader,
             $this->rstLanguagesDetector,
             new ProjectVersionDeriver(),
+            2,
             $this->projectsDir,
         );
 

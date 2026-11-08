@@ -47,8 +47,11 @@ final class ProjectVersionDeriver
      *
      * @return list<array<string, mixed>>
      */
-    public function derive(array $gitVersions, array $overrides): array
-    {
+    public function derive(
+        array $gitVersions,
+        array $overrides,
+        int $minorVersionsToKeep = 2,
+    ): array {
         $overridesByName = [];
         foreach ($overrides as $override) {
             $overridesByName[$override['name']] = $override;
@@ -106,7 +109,55 @@ final class ProjectVersionDeriver
             $derived[] = $versionData;
         }
 
-        return $derived;
+        return $this->keepVersionsToBuild($derived, $gitVersions, $minorVersionsToKeep);
+    }
+
+    /**
+     * Keep the versions that the website builds.
+     *
+     * A version is built when it is current, upcoming, explicitly maintained,
+     * only defined in the metadata file, or among the most recent minor
+     * versions below current.
+     *
+     * @param list<array<string, mixed>> $versions
+     * @param list<GitProjectVersion>    $gitVersions
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function keepVersionsToBuild(
+        array $versions,
+        array $gitVersions,
+        int $minorVersionsToKeep,
+    ): array {
+        $gitVersionsByName = [];
+        foreach ($gitVersions as $gitVersion) {
+            $gitVersionsByName[$gitVersion['name']] = true;
+        }
+
+        $kept              = [];
+        $minorVersionsKept = 0;
+
+        foreach ($versions as $version) {
+            $isCurrent             = $version['current'] === true;
+            $isUpcoming            = $version['upcoming'] === true;
+            $isMaintainedOverride  = $version['maintained'] === true && ! $isCurrent && ! $isUpcoming;
+            $isMetadataFileVersion = ! isset($gitVersionsByName[$version['name']]);
+
+            if ($isCurrent || $isUpcoming || $isMaintainedOverride || $isMetadataFileVersion) {
+                $kept[] = $version;
+
+                continue;
+            }
+
+            if ($minorVersionsKept >= $minorVersionsToKeep) {
+                continue;
+            }
+
+            $kept[] = $version;
+            $minorVersionsKept++;
+        }
+
+        return $kept;
     }
 
     /**

@@ -22,6 +22,7 @@ use function sprintf;
  * @phpstan-import-type ProjectVersionOverride from ProjectVersionDeriver
  * @phpstan-type ProjectDataWithVersions array{
  *     versions?: list<ProjectVersionOverride>,
+ *     minorVersionsToKeep?: int,
  *     ...
  * }
  * @phpstan-type ProjectDataForPrepare array{
@@ -38,6 +39,7 @@ readonly class ProjectVersions
         private ProjectVersionsReader $projectVersionsReader,
         private RSTLanguagesDetector $rstLanguagesDetector,
         private ProjectVersionDeriver $projectVersionDeriver,
+        private int $minorVersionsToKeep,
         private string $projectsDir,
     ) {
     }
@@ -50,7 +52,11 @@ readonly class ProjectVersions
     public function buildProjectVersions(string $repositoryName, array $projectData): array
     {
         $projectVersions = $this->readProjectVersionsFromGit($repositoryName);
-        $projectVersions = $this->projectVersionDeriver->derive($projectVersions, $projectData['versions'] ?? []);
+        $projectVersions = $this->projectVersionDeriver->derive(
+            $projectVersions,
+            $projectData['versions'] ?? [],
+            $projectData['minorVersionsToKeep'] ?? $this->minorVersionsToKeep,
+        );
 
         $this->prepareProjectVersions(
             $repositoryName,

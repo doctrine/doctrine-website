@@ -95,6 +95,10 @@ The website discovers the versions from the release tags and the ``X.Y.x``
 branches. A new ``X.Y`` branch is picked up automatically, without editing the
 file. A release inside an existing line also requires no change.
 
+The website builds the current version, the upcoming versions, the versions
+with an explicit ``lifeSupport`` or ``maintained`` override, and the two most
+recent minor versions below the current one.
+
 Add the ``$schema`` key so your editor validates the file:
 
 .. code-block:: json
@@ -128,8 +132,7 @@ Values that are not set are derived from git:
   ``0.x`` series count as stable for this rule. The current version
   automatically gets the ``current`` and ``stable`` aliases.
 - ``upcoming``: a version above ``current`` without a stable release. This
-  covers the next minor and the next major branch, including repositories
-  whose default branch is the next unreleased minor.
+  covers the next minor and the next major branch.
 - ``maintained``: the current and upcoming versions. Set ``maintained`` to
   true to keep an older version supported during a migration period.
 

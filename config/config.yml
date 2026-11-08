@@ -11,6 +11,8 @@ parameters:
     doctrine.website.source_dir: '%doctrine.website.root_dir%/source'
     doctrine.website.templates_dir: '%doctrine.website.root_dir%/templates'
 
+    doctrine.website.minor_versions_to_keep: 2
+
     doctrine.website.title: Doctrine
     doctrine.website.subtitle: PHP Open Source Project
     doctrine.website.url: https://lcl.doctrine-project.org
