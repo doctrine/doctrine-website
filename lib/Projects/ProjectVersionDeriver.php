@@ -89,7 +89,7 @@ final class ProjectVersionDeriver
                 'branchName' => $version['branchName'],
                 'current' => $isCurrent && ! $lifeSupport,
                 'upcoming' => $isUpcoming && ! $lifeSupport,
-                'maintained' => $override['maintained'] ?? ($isCurrent || $isUpcoming || ! $isStandard || $lifeSupport),
+                'maintained' => $override['maintained'] ?? ($isCurrent || $isUpcoming),
                 'lifeSupport' => $lifeSupport,
                 'aliases' => $override['aliases'] ?? [],
             ];

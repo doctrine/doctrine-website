@@ -135,6 +135,3 @@ Values that are not set are derived from git:
 
 Set ``lifeSupport`` on an old major version that only receives security fixes.
 It forces ``maintained`` to true and clears ``current`` and ``upcoming``.
-
-Versions that are not in ``X.Y`` form, such as legacy ``master`` entries,
-stay maintained.

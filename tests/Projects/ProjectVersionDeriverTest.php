@@ -191,7 +191,7 @@ class ProjectVersionDeriverTest extends TestCase
                 'branchName' => 'master',
                 'current' => false,
                 'upcoming' => false,
-                'maintained' => true,
+                'maintained' => false,
                 'lifeSupport' => false,
                 'aliases' => ['current', 'stable'],
             ],
