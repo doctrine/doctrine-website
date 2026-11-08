@@ -83,3 +83,46 @@ release.
 You might then want to rework the release notes, using a more sensible
 ordering showing the most user-facing changes first, and making e.g.
 "Bugfix" plural.
+
+Website metadata
+----------------
+
+A project repository can contain a ``.doctrine-project.json`` file at its
+root. The file is optional. The website derives the current version, the
+upcoming versions and the version slugs from the git tags and branches.
+
+The ``versions`` list contains the versions the website builds. Add one entry
+per version you want to publish, then override a value only when the derived
+one is wrong, for example to keep an older major version on life support.
+
+Add the ``$schema`` key so your editor validates the file:
+
+.. code-block:: json
+
+    {
+        "$schema": "https://www.doctrine-project.org/schema/website-schema.json",
+        "name": "Object Relational Mapper",
+        "shortName": "ORM",
+        "versions": [
+            {
+                "name": "2.20",
+                "lifeSupport": true
+            },
+            {
+                "name": "3.7",
+                "maintained": true
+            }
+        ]
+    }
+
+Values that are not set are derived from git:
+
+- ``slug``: the highest version uses ``latest``, the other versions use their
+  name.
+- ``branchName``: the branch guessed from the release tags.
+- ``current``: the highest version with a stable tag.
+- ``upcoming``: versions above the current one without a stable tag.
+- ``maintained``: the current and upcoming versions. Set ``maintained`` to
+  true to keep an older version maintained during a migration period.
+
+Set ``lifeSupport`` on an old major version that only receives security fixes.

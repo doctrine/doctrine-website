@@ -4,6 +4,10 @@
     "additionalProperties": false,
     "description": "A schema for the .doctrine-project.json files of every Doctrine repository",
     "properties": {
+        "$schema": {
+            "type": "string",
+            "description": "URI of this schema, used by editors to validate the file"
+        },
         "name": {
             "type": "string",
             "description": "Name of the project"
@@ -26,7 +30,7 @@
         },
         "versions": {
             "type": "array",
-            "description": "A list of branches used for generating different versions in the docs",
+            "description": "A list of versions to build. Add one entry per published version. The values of an entry are derived from git and only need to be set to override a derived value.",
             "items": {
                 "type": "object",
                 "minItems": 1,
@@ -39,35 +43,31 @@
                     },
                     "slug": {
                         "type": "string",
-                        "description": "Unique version. Usually major and minor version (X.Y) or something like 'latest'"
+                        "description": "Unique version, usually the major and minor version (X.Y) or 'latest'. Derived from git when omitted: the highest version uses 'latest', the other versions use their name"
                     },
                     "branchName": {
                         "type": "string",
-                        "description": "Name of the branch that handles the given version. If omitted, the latest tag will be used on docs build"
+                        "description": "Name of the branch that handles the given version. Derived from git when omitted. If no branch exists, the latest tag is used on docs build"
                     },
                     "current": {
                         "type": "boolean",
-                        "description": "Causes this version to be aliased as 'curent' and 'stable'",
-                        "default": false
+                        "description": "Causes this version to be aliased as 'current' and 'stable'. Derived from git when omitted: the highest version with a stable release is current"
                     },
                     "maintained": {
                         "type": "boolean",
-                        "description": "Indicates if this is a maintained version",
-                        "default": true
+                        "description": "Indicates if this is a maintained version. Derived from git when omitted: current and upcoming versions are maintained. Set true to keep an older version maintained during a migration period"
                     },
                     "upcoming": {
                         "type": "boolean",
-                        "description": "Indicates that this is an upcoming version",
-                        "default": false
+                        "description": "Indicates that this is an upcoming version. Derived from git when omitted: versions above current without a stable release are upcoming"
                     },
                     "lifeSupport": {
                         "type": "boolean",
-                        "description": "Indicates that this version is on life support",
-                        "default": false
+                        "description": "Indicates that this version is on life support, an old major that only receives security fixes. This cannot be derived from git, set it explicitly"
                     },
                     "aliases": {
                         "type": "array",
-                        "description": "Aliases for a version",
+                        "description": "Aliases for a version. The current version automatically gets 'current' and 'stable'; set this to add an extra alias",
                         "default": [],
                         "items": {
                             "minItems": 0,
@@ -75,7 +75,7 @@
                         }
                     }
                 },
-                "required": ["name", "slug"],
+                "required": ["name"],
                 "if": {
                     "properties": {
                         "lifeSupport": { "const": true }
@@ -89,12 +89,6 @@
                         "upcoming": { "const": false }
                     }
                 }
-            },
-            "contains": {
-                "properties": {
-                    "current": { "const": true }
-                },
-                "maxContains": 1
             }
         }
     },

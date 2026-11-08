@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Website\Model\ProjectVersion;
 
 use function ltrim;
+use function str_starts_with;
 use function stripos;
-use function strpos;
 use function strtoupper;
 
 #[ORM\Entity]
@@ -78,12 +78,12 @@ final class Tag
 
     public function isDev(): bool
     {
-        return strpos($this->name, 'dev-') === 0;
+        return str_starts_with($this->name, 'dev-');
     }
 
     public function isMajorReleaseZero(): bool
     {
-        return strpos($this->getComposerRequireVersionString(), '0.') === 0;
+        return str_starts_with($this->getComposerRequireVersionString(), '0.');
     }
 
     public function getStability(): string
@@ -92,13 +92,23 @@ final class Tag
             return self::DEV;
         }
 
+        return $this->findPrereleaseStability() ?? self::STABLE;
+    }
+
+    public function isStableRelease(): bool
+    {
+        return ! $this->isDev() && $this->findPrereleaseStability() === null;
+    }
+
+    private function findPrereleaseStability(): string|null
+    {
         foreach (self::TAG_STABILITIES as $stability) {
             if (stripos($this->name, $stability) !== false) {
                 return $stability;
             }
         }
 
-        return self::STABLE;
+        return null;
     }
 
     public function setProjectVersion(ProjectVersion $version): void

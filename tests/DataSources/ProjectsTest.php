@@ -14,6 +14,7 @@ use Doctrine\Website\Projects\GetProjectPackagistData;
 use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
+use Doctrine\Website\Projects\ProjectVersionDeriver;
 use Doctrine\Website\Projects\ProjectVersionsReader;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -150,13 +151,19 @@ class ProjectsTest extends TestCase
                 'versions' => [
                     [
                         'name' => '1.2',
+                        'slug' => 'latest',
+                        'branchName' => null,
+                        'current' => true,
+                        'upcoming' => false,
+                        'maintained' => true,
+                        'lifeSupport' => false,
+                        'aliases' => [],
                         'tags' => [
                             [
                                 'name' => '1.2.0',
                                 'date' => '2019-09-05 00:00:00',
                             ],
                         ],
-                        'branchName' => null,
                         'hasDocs' => true,
                         'docsLanguages' => [
                             [
@@ -167,7 +174,13 @@ class ProjectsTest extends TestCase
                     ],
                     [
                         'name' => '1.1',
+                        'slug' => '1.1',
                         'branchName' => '1.1',
+                        'current' => false,
+                        'upcoming' => false,
+                        'maintained' => false,
+                        'lifeSupport' => false,
+                        'aliases' => [],
                         'tags' => [
                             [
                                 'name' => '1.1.0',
@@ -183,7 +196,13 @@ class ProjectsTest extends TestCase
                     ],
                     [
                         'name' => '1.0',
+                        'slug' => '1.0',
                         'branchName' => null,
+                        'current' => false,
+                        'upcoming' => false,
+                        'maintained' => false,
+                        'lifeSupport' => false,
+                        'aliases' => [],
                         'tags' => [
                             [
                                 'name' => '1.0.0',
@@ -264,6 +283,7 @@ class ProjectsTest extends TestCase
             $this->projectGitSyncer,
             $this->projectVersionsReader,
             $this->rstLanguagesDetector,
+            new ProjectVersionDeriver(),
             $this->projectsDir,
         );
 
