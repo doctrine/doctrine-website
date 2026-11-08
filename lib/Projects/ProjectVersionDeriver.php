@@ -7,7 +7,6 @@ namespace Doctrine\Website\Projects;
 use Doctrine\Website\Git\Tag;
 
 use function preg_match;
-use function strnatcmp;
 use function usort;
 use function version_compare;
 
@@ -162,7 +161,7 @@ final class ProjectVersionDeriver
     {
         usort(
             $versions,
-            static fn (array $a, array $b): int => strnatcmp($b['name'], $a['name']),
+            static fn (array $a, array $b): int => version_compare($b['name'], $a['name']),
         );
 
         return $versions;

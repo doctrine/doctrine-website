@@ -98,6 +98,22 @@ class ProjectVersionDeriverTest extends TestCase
         ], $this->summarize($versions));
     }
 
+    public function testSortsMultiDigitMinorVersions(): void
+    {
+        $versions = $this->deriver->derive(
+            [
+                $this->gitVersion('2.9', '2.9.0'),
+                $this->gitVersion('2.10', '2.10.0'),
+            ],
+            [],
+        );
+
+        self::assertSame([
+            $this->summary('2.10', 'latest', true, false, true, false),
+            $this->summary('2.9', '2.9', false, false, false, false),
+        ], $this->summarize($versions));
+    }
+
     public function testExplicitLatestSlugWins(): void
     {
         $versions = $this->deriver->derive(
