@@ -179,8 +179,8 @@ final class ProjectVersionDeriver
 
             $versions[] = [
                 'name' => $gitVersion['name'],
-                // The branch guessed from git takes precedence over the configured branch.
-                'branchName' => $gitVersion['branchName'] ?? $override['branchName'] ?? null,
+                // The configured branch takes precedence over the branch guessed from git.
+                'branchName' => $override['branchName'] ?? $gitVersion['branchName'],
                 'tags' => $gitVersion['tags'],
                 'override' => $override,
             ];

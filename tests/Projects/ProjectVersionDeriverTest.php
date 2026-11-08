@@ -152,6 +152,25 @@ class ProjectVersionDeriverTest extends TestCase
         ], $this->summarize($versions));
     }
 
+    public function testConfiguredBranchNameTakesPrecedence(): void
+    {
+        $versions = $this->deriver->derive(
+            [
+                [
+                    'name' => '1.0',
+                    'slug' => '1.0',
+                    'branchName' => '1.0.x',
+                    'tags' => [new Tag('1.0.0', new DateTimeImmutable())],
+                ],
+            ],
+            [
+                ['name' => '1.0', 'branchName' => 'legacy-1.0'],
+            ],
+        );
+
+        self::assertSame('legacy-1.0', $versions[0]['branchName']);
+    }
+
     public function testCurrentVersionCanBeOnLifeSupport(): void
     {
         $versions = $this->deriver->derive(
