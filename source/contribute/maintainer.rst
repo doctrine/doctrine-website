@@ -92,9 +92,10 @@ root. The file is optional. It lists the versions the website publishes and
 provides explicit overrides for the values derived from git.
 
 The ``versions`` list is the list of versions the website builds. Add one
-entry per release line you want to publish. Patch, minor and major releases
-inside an existing line do not require any change. A new ``X.Y`` line must be
-added to the list.
+entry per release line you want to publish. A new ``X.Y`` line must be added
+to the list when its branch is created. Releases inside an existing line do
+not require any change, and an entry is never renamed when a newer version
+becomes current.
 
 Add the ``$schema`` key so your editor validates the file:
 
@@ -104,24 +105,37 @@ Add the ``$schema`` key so your editor validates the file:
         "$schema": "https://www.doctrine-project.org/schema/website-schema.json",
         "name": "Object Relational Mapper",
         "shortName": "ORM",
+        "slug": "orm",
+        "docsSlug": "doctrine-orm",
+        "active": true,
         "versions": [
             {
-                "name": "2.20",
-                "lifeSupport": true
-            },
-            {
-                "name": "3.7"
+                "name": "4.0"
             },
             {
                 "name": "3.8"
             },
             {
-                "name": "4.0"
+                "name": "3.7"
+            },
+            {
+                "name": "3.6"
+            },
+            {
+                "name": "2.20",
+                "lifeSupport": true
+            },
+            {
+                "name": "2.19"
+            },
+            {
+                "name": "2.15"
+            },
+            {
+                "name": "2.14"
             }
         ]
     }
-
-The other versions of the file are omitted from this excerpt.
 
 Values that are not set are derived from git:
 
