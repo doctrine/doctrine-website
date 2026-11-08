@@ -86,6 +86,7 @@ return static function (ContainerConfigurator $container): void {
         ->bind('$docsDir', '%doctrine.website.docs_dir%')
         ->bind('$sourceDir', '%doctrine.website.source_dir%')
         ->bind('$projectsData', '%doctrine.website.projects_data%')
+        ->bind('$minorVersionsToKeep', '%doctrine.website.minor_versions_to_keep%')
         ->bind('$webpackBuildDir', '%doctrine.website.webpack_build_dir%')
         ->bind('$projectIntegrationTypes', '%doctrine.website.project_integration.types%')
         ->bind('$packagistUrlFormat', 'https://packagist.org/packages/%s.json')

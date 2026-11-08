@@ -58,6 +58,11 @@ class ProjectVersionsReaderTest extends TestCase
                 [$repositoryPath, $tag6, null],
             ]);
 
+        $this->tagBranchGuesser->expects(self::once())
+            ->method('getBranchNames')
+            ->with($repositoryPath)
+            ->willReturn(['2.0', '3.0', '0.1', '4.0.x', 'master']);
+
         $versions = $this->projectVersionsReader->readProjectVersions(
             $repositoryPath,
         );
@@ -80,6 +85,12 @@ class ProjectVersionsReaderTest extends TestCase
                 'slug' => '0.1',
                 'branchName' => '0.1',
                 'tags' => [$tag5],
+            ],
+            [
+                'name' => '4.0',
+                'slug' => '4.0',
+                'branchName' => '4.0.x',
+                'tags' => [],
             ],
         ];
 
@@ -111,6 +122,11 @@ class ProjectVersionsReaderTest extends TestCase
             ->method('guessTagBranchName')
             ->with($repositoryPath, $tag2)
             ->willReturn('2.0');
+
+        $this->tagBranchGuesser->expects(self::once())
+            ->method('getBranchNames')
+            ->with($repositoryPath)
+            ->willReturn([]);
 
         $versions = $this->projectVersionsReader->readProjectVersions(
             $repositoryPath,

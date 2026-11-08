@@ -8,9 +8,13 @@ use Doctrine\Website\ProcessFactory;
 
 use function array_map;
 use function explode;
+use function in_array;
 use function ltrim;
 use function preg_match_all;
 use function sprintf;
+use function str_starts_with;
+use function strlen;
+use function substr;
 
 /** @final */
 class TagBranchGuesser
@@ -24,19 +28,13 @@ class TagBranchGuesser
 
     public function guessTagBranchName(string $repositoryPath, Tag $tag): string|null
     {
-        $command = sprintf(self::COMMAND, $repositoryPath);
-
-        $process = $this->processFactory->run($command);
-
-        $output = $process->getOutput();
-
-        $lines = array_map('trim', explode("\n", $output));
-
         $tagBranchName = $this->generateTagBranchSlug($tag);
 
         if ($tagBranchName === null) {
             return null;
         }
+
+        $branchNames = $this->getBranchNames($repositoryPath);
 
         $guesses = [
             $tagBranchName,
@@ -44,14 +42,34 @@ class TagBranchGuesser
         ];
 
         foreach ($guesses as $branchName) {
-            foreach ($lines as $line) {
-                if ($line === 'remotes/origin/' . $branchName) {
-                    return $branchName;
-                }
+            if (in_array($branchName, $branchNames, true)) {
+                return $branchName;
             }
         }
 
         return null;
+    }
+
+    /** @return list<string> */
+    public function getBranchNames(string $repositoryPath): array
+    {
+        $command = sprintf(self::COMMAND, $repositoryPath);
+
+        $process = $this->processFactory->run($command);
+
+        $lines = array_map('trim', explode("\n", $process->getOutput()));
+
+        $branchNames = [];
+
+        foreach ($lines as $line) {
+            if (! str_starts_with($line, 'remotes/origin/')) {
+                continue;
+            }
+
+            $branchNames[] = substr($line, strlen('remotes/origin/'));
+        }
+
+        return $branchNames;
     }
 
     public function generateTagBranchSlug(Tag $tag): string|null

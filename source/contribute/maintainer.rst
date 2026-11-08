@@ -83,3 +83,59 @@ release.
 You might then want to rework the release notes, using a more sensible
 ordering showing the most user-facing changes first, and making e.g.
 "Bugfix" plural.
+
+Website metadata
+----------------
+
+A project repository can contain a ``.doctrine-project.json`` file at its
+root. The file is optional. It provides explicit overrides for the values
+derived from git.
+
+The website discovers the versions from the release tags and the ``X.Y.x``
+branches. A new ``X.Y`` branch is picked up automatically, without editing the
+file. A release inside an existing line also requires no change.
+
+The website builds the current version, the upcoming versions, the versions
+with an explicit ``lifeSupport`` or ``maintained`` override, and the two most
+recent minor versions below the current one.
+
+Add the ``$schema`` key so your editor validates the file:
+
+.. code-block:: json
+
+    {
+        "$schema": "https://www.doctrine-project.org/schema/website-schema.json",
+        "name": "Object Relational Mapper",
+        "shortName": "ORM",
+        "slug": "orm",
+        "docsSlug": "doctrine-orm",
+        "active": true,
+        "versions": [
+            {
+                "name": "2.20",
+                "lifeSupport": true
+            }
+        ]
+    }
+
+The ``versions`` list only contains overrides. In this example, the ``2.20``
+line is kept on life support. Every other version is discovered from git.
+
+Values that are not set are derived from git:
+
+- ``branchName``: the branch guessed from the release tags. Set it explicitly
+  only when git has no matching version.
+- ``slug``: the highest version uses ``latest``, the other versions use their
+  name.
+- ``current``: the highest version with a stable release. A stable release is
+  a tag without ``alpha``, ``beta``, ``rc`` or ``dev-``. Releases in the
+  ``0.x`` series count as stable for this rule. The current version
+  automatically gets the ``current`` and ``stable`` aliases.
+- ``upcoming``: a version above ``current`` without a stable release. This
+  covers the next minor and the next major branch.
+- ``maintained``: the current and upcoming versions. Set ``maintained`` to
+  true to keep an older version supported during a migration period.
+
+Set ``lifeSupport`` on an old major version that only receives security fixes.
+It forces ``maintained`` to true and clears ``upcoming``. A ``lifeSupport``
+version can still be ``current``.

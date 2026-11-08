@@ -52,14 +52,14 @@ class FunctionalTest extends TestCase
         $firstVersion = end($versions);
         self::assertInstanceOf(ProjectVersion::class, $firstVersion);
 
-        self::assertSame('1.0', $firstVersion->getName());
+        self::assertSame('1.4', $firstVersion->getName());
 
         $tags = $firstVersion->getTags();
 
-        self::assertCount(2, $tags);
+        self::assertCount(5, $tags);
 
-        self::assertSame('v1.0.1', $firstVersion->getLatestTag()?->getName());
-        self::assertSame('v1.0', $firstVersion->getFirstTag()?->getName());
+        self::assertSame('1.4.4', $firstVersion->getLatestTag()?->getName());
+        self::assertSame('1.4.0', $firstVersion->getFirstTag()?->getName());
     }
 
     public function testHomepageEditLink(): void
@@ -92,21 +92,21 @@ class FunctionalTest extends TestCase
 
     public function testDocumentationEditLink(): void
     {
-        $crawler = $this->assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
+        $crawler = $this->assertValid('/projects/doctrine-annotations/en/2.0/custom.html');
 
         $editLink = $crawler->filter('.layout-edit-button a')->last();
 
         self::assertSame('Edit', $editLink->text());
 
         self::assertSame(
-            'https://github.com/doctrine/annotations/edit/1.6/docs/en/custom.rst',
+            'https://github.com/doctrine/annotations/edit/2.0.x/docs/en/custom.rst',
             $editLink->attr('href'),
         );
     }
 
     public function testDocumentationPageBreadcrumbs(): void
     {
-        $crawler = $this->assertValid('/projects/doctrine-annotations/en/1.6/custom.html');
+        $crawler = $this->assertValid('/projects/doctrine-annotations/en/2.0/custom.html');
 
         $lastLi = $crawler->filter('.breadcrumbs ol li')->last();
 
@@ -196,7 +196,7 @@ class FunctionalTest extends TestCase
 
     public function testLinks(): void
     {
-        $crawler = $this->assertValid('/projects/doctrine-annotations/en/1.6/annotations.html');
+        $crawler = $this->assertValid('/projects/doctrine-annotations/en/2.0/annotations.html');
         self::assertStringContainsString('<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0 specification</a>', $crawler->html());
 
         $crawler = $this->assertValid('/projects/doctrine-annotations/en/1.10/annotations.html');
@@ -256,9 +256,9 @@ class FunctionalTest extends TestCase
 
         self::assertStringContainsString("placeholder: 'Search Annotations'", $crawler->html());
 
-        $crawler = $this->assertValid('/projects/doctrine-annotations/en/1.6/index.html');
+        $crawler = $this->assertValid('/projects/doctrine-annotations/en/2.0/index.html');
 
-        self::assertStringContainsString("placeholder: 'Search Annotations 1.6'", $crawler->html());
+        self::assertStringContainsString("placeholder: 'Search Annotations 2.0'", $crawler->html());
     }
 
     public function testContribute(): void

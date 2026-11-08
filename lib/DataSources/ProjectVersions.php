@@ -8,25 +8,29 @@ use Doctrine\Website\Docs\RST\RSTLanguage;
 use Doctrine\Website\Docs\RST\RSTLanguagesDetector;
 use Doctrine\Website\Git\Tag;
 use Doctrine\Website\Projects\ProjectGitSyncer;
+use Doctrine\Website\Projects\ProjectVersionDeriver;
 use Doctrine\Website\Projects\ProjectVersionsReader;
 use RuntimeException;
 
-use function array_filter;
 use function array_map;
-use function array_values;
 use function count;
 use function end;
-use function in_array;
 use function sprintf;
-use function strnatcmp;
-use function usort;
 
 /**
- * @phpstan-type ConfiguredProjectVersion array{name: string, branchName?: string|null, slug?: string, aliases?: list<string>}
- * @phpstan-type GitProjectVersion array{name: string, slug?: string, branchName: string|null, tags: non-empty-list<Tag>, aliases?: list<string>, maintained?: false}
- * @phpstan-type ProjectVersionBeforePrepare ConfiguredProjectVersion|GitProjectVersion
- * @phpstan-type ProjectDataWithVersions array{versions: list<ConfiguredProjectVersion>, ...}
- * @phpstan-type ProjectDataForPrepare array{repositoryName: string, docsPath: string|null, docsRepositoryName?: string, ...}
+ * @phpstan-import-type GitProjectVersion from ProjectVersionDeriver
+ * @phpstan-import-type ProjectVersionOverride from ProjectVersionDeriver
+ * @phpstan-type ProjectDataWithVersions array{
+ *     versions?: list<ProjectVersionOverride>,
+ *     minorVersionsToKeep?: int,
+ *     ...
+ * }
+ * @phpstan-type ProjectDataForPrepare array{
+ *     repositoryName: string,
+ *     docsPath: string|null,
+ *     docsRepositoryName?: string,
+ *     ...
+ * }
  */
 readonly class ProjectVersions
 {
@@ -34,6 +38,8 @@ readonly class ProjectVersions
         private ProjectGitSyncer $projectGitSyncer,
         private ProjectVersionsReader $projectVersionsReader,
         private RSTLanguagesDetector $rstLanguagesDetector,
+        private ProjectVersionDeriver $projectVersionDeriver,
+        private int $minorVersionsToKeep,
         private string $projectsDir,
     ) {
     }
@@ -46,10 +52,11 @@ readonly class ProjectVersions
     public function buildProjectVersions(string $repositoryName, array $projectData): array
     {
         $projectVersions = $this->readProjectVersionsFromGit($repositoryName);
-        $projectVersions = $this->removeUnwantedVersions($projectVersions, $projectData);
-        $projectVersions = $this->applyConfiguredProjectVersions($projectVersions, $projectData);
-
-        $projectVersions = $this->sortProjectVersions($projectVersions);
+        $projectVersions = $this->projectVersionDeriver->derive(
+            $projectVersions,
+            $projectData['versions'] ?? [],
+            $projectData['minorVersionsToKeep'] ?? $this->minorVersionsToKeep,
+        );
 
         $this->prepareProjectVersions(
             $repositoryName,
@@ -60,102 +67,21 @@ readonly class ProjectVersions
         return $projectVersions;
     }
 
-    /**
-     * @param list<GitProjectVersion> $projectVersions
-     * @param ProjectDataWithVersions $projectData
-     *
-     * @return list<GitProjectVersion>
-     */
-    private function removeUnwantedVersions(array $projectVersions, array $projectData): array
-    {
-        $allowedVersions = array_map(static fn (array $versions) => $versions['name'], $projectData['versions']);
-        $projectVersions = array_filter($projectVersions, static fn (array $version): bool => in_array($version['name'], $allowedVersions, true));
-
-        return array_values($projectVersions);
-    }
-
     /** @return list<GitProjectVersion> */
     private function readProjectVersionsFromGit(string $repositoryName): array
     {
         $repositoryPath = $this->projectsDir . '/' . $repositoryName;
 
-        $projectVersions = $this->projectVersionsReader->readProjectVersions($repositoryPath);
-
-        // fix this, we shouldn't have null branch names at this point. Fix it further upstream
-
-        /** @phpstan-ignore return.type */
-        return array_filter($projectVersions, static function (array $projectVersion): bool {
-            return count($projectVersion['tags']) > 0;
-        });
+        return $this->projectVersionsReader->readProjectVersions($repositoryPath);
     }
 
     /**
-     * @param list<GitProjectVersion> $projectVersions
-     * @param ProjectDataWithVersions $projectData
-     *
-     * @return list<ProjectVersionBeforePrepare>
-     */
-    private function applyConfiguredProjectVersions(
-        array $projectVersions,
-        array $projectData,
-    ): array {
-        foreach ($projectVersions as $key => $projectVersion) {
-            $configured = false;
-
-            foreach ($projectData['versions'] as $k => $version) {
-                if ($this->containsSameProjectVersion($projectVersion, $version)) {
-                    $version['tags'] = $projectVersion['tags'];
-
-                    $version['branchName'] = $projectVersion['branchName'];
-
-                    $projectVersions[$key] = $version;
-
-                    unset($projectData['versions'][$k]);
-
-                    $configured = true;
-
-                    break;
-                }
-            }
-
-            if ($configured !== false) {
-                continue;
-            }
-
-            $projectVersions[$key]['maintained'] = false;
-        }
-
-        foreach ($projectData['versions'] as $projectVersion) {
-            $projectVersions[] = $projectVersion;
-        }
-
-        return $projectVersions;
-    }
-
-    /**
-     * @param GitProjectVersion        $a
-     * @param ConfiguredProjectVersion $b
-     */
-    private function containsSameProjectVersion(array $a, array $b): bool
-    {
-        if ($a['name'] === $b['name']) {
-            return true;
-        }
-
-        if (! isset($b['branchName'])) {
-            return false;
-        }
-
-        return $a['branchName'] === $b['branchName'];
-    }
-
-    /**
-     * @param list<ProjectVersionBeforePrepare> $projectVersions
-     * @param ProjectDataForPrepare             $projectData
+     * @param list<array<string, mixed>> $projectVersions
+     * @param ProjectDataForPrepare      $projectData
      *
      * @return array<int, array<string, mixed>>
      *
-     * @param-out array<int, array<string, mixed>> $projectVersions
+     * @param-out list<array<string, mixed>> $projectVersions
      */
     private function prepareProjectVersions(
         string $repositoryName,
@@ -213,23 +139,6 @@ readonly class ProjectVersions
 
         // switch back to master
         $this->projectGitSyncer->checkoutDefaultBranch($repositoryName);
-
-        return $projectVersions;
-    }
-
-    /**
-     * @param T $projectVersions
-     *
-     * @return T
-     *
-     * @template T of mixed[]
-     */
-    private function sortProjectVersions(array $projectVersions): array
-    {
-        // sort by name so newest versions are first
-        usort($projectVersions, static function (array $a, array $b): int {
-            return strnatcmp($b['name'], $a['name']);
-        });
 
         return $projectVersions;
     }

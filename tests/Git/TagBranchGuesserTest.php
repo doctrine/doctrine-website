@@ -93,6 +93,27 @@ class TagBranchGuesserTest extends TestCase
         self::assertNull($branchName);
     }
 
+    public function testGetBranchNames(): void
+    {
+        $repositoryPath = '/repo/path';
+
+        $process = $this->createMock(Process::class);
+
+        $this->processFactory->expects(self::once())
+            ->method('run')
+            ->with('cd /repo/path && git branch -a')
+            ->willReturn($process);
+
+        $process->expects(self::once())
+            ->method('getOutput')
+            ->willReturn("  remotes/origin/2.0.x\n  remotes/origin/master\n* main");
+
+        self::assertSame(
+            ['2.0.x', 'master'],
+            $this->tagBranchGuesser->getBranchNames($repositoryPath),
+        );
+    }
+
     public function testGenerateTagBranchSlug(): void
     {
         $tag = new Tag('v2.0.0-alpha1', new DateTimeImmutable());

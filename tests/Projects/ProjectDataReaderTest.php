@@ -28,17 +28,6 @@ class ProjectDataReaderTest extends TestCase
             'repositoryName' => 'test-project',
             'docsPath' => '/docs',
             'slug' => 'test-project',
-            'versions' => [
-                [
-                    'name' => 'master',
-                    'branchName' => 'master',
-                    'slug' => 'latest',
-                    'aliases' => [
-                        'current',
-                        'stable',
-                    ],
-                ],
-            ],
             'composerPackageName' => 'doctrine/test-project',
             'description' => 'Test description',
             'keywords' => ['keyword1', 'keyword2'],
@@ -54,17 +43,6 @@ class ProjectDataReaderTest extends TestCase
             'name' => 'no-project-json',
             'docsPath' => null,
             'slug' => 'no-project-json',
-            'versions' => [
-                [
-                    'name' => 'master',
-                    'branchName' => 'master',
-                    'slug' => 'latest',
-                    'aliases' => [
-                        'current',
-                        'stable',
-                    ],
-                ],
-            ],
             'docsSlug' => 'no-project-json',
         ], $this->projectDataReader->read('no-project-json'));
     }

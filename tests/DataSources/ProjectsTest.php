@@ -14,6 +14,7 @@ use Doctrine\Website\Projects\GetProjectPackagistData;
 use Doctrine\Website\Projects\ProjectDataReader;
 use Doctrine\Website\Projects\ProjectDataRepository;
 use Doctrine\Website\Projects\ProjectGitSyncer;
+use Doctrine\Website\Projects\ProjectVersionDeriver;
 use Doctrine\Website\Projects\ProjectVersionsReader;
 use Doctrine\Website\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -150,13 +151,19 @@ class ProjectsTest extends TestCase
                 'versions' => [
                     [
                         'name' => '1.2',
+                        'slug' => 'latest',
+                        'branchName' => null,
+                        'current' => true,
+                        'upcoming' => false,
+                        'maintained' => true,
+                        'lifeSupport' => false,
+                        'aliases' => [],
                         'tags' => [
                             [
                                 'name' => '1.2.0',
                                 'date' => '2019-09-05 00:00:00',
                             ],
                         ],
-                        'branchName' => null,
                         'hasDocs' => true,
                         'docsLanguages' => [
                             [
@@ -167,7 +174,13 @@ class ProjectsTest extends TestCase
                     ],
                     [
                         'name' => '1.1',
+                        'slug' => '1.1',
                         'branchName' => '1.1',
+                        'current' => false,
+                        'upcoming' => false,
+                        'maintained' => false,
+                        'lifeSupport' => false,
+                        'aliases' => [],
                         'tags' => [
                             [
                                 'name' => '1.1.0',
@@ -183,7 +196,13 @@ class ProjectsTest extends TestCase
                     ],
                     [
                         'name' => '1.0',
+                        'slug' => '1.0',
                         'branchName' => null,
+                        'current' => false,
+                        'upcoming' => false,
+                        'maintained' => false,
+                        'lifeSupport' => false,
+                        'aliases' => [],
                         'tags' => [
                             [
                                 'name' => '1.0.0',
@@ -236,13 +255,7 @@ class ProjectsTest extends TestCase
         $this->projectVersionsReader->expects(self::once())
             ->method('readProjectVersions')
             ->with('/path/to/projects/persistence')
-            ->willReturn([
-                [
-                    'name' => '1.4',
-                    'branchName' => null,
-                    'tags' => [],
-                ],
-            ]);
+            ->willReturn([]);
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Project version "1.4" of project "persistence" has no branch name and does not have any tags, cannot checkout!');
@@ -264,6 +277,8 @@ class ProjectsTest extends TestCase
             $this->projectGitSyncer,
             $this->projectVersionsReader,
             $this->rstLanguagesDetector,
+            new ProjectVersionDeriver(),
+            2,
             $this->projectsDir,
         );
 

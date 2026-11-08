@@ -48,12 +48,6 @@ class ProjectDataReader
      *     repositoryName: string,
      *     docsPath: string|null,
      *     slug: string,
-     *     versions: list<array{
-     *         name: string,
-     *         branchName: string,
-     *         slug: string,
-     *         aliases: list<string>
-     *     }>,
      *     composerPackageName: string,
      *     description?: string,
      *     keywords?: list<string>,
@@ -108,12 +102,6 @@ class ProjectDataReader
      *     repositoryName: string,
      *     docsPath: string|null,
      *     slug: string,
-     *     versions: array{array{
-     *         name: 'master',
-     *         branchName: 'master',
-     *         slug: 'latest',
-     *         aliases: array{'current', 'stable'}
-     *     }},
      *     composerPackageName?: string,
      *     description?: string,
      *     keywords?: list<string>
@@ -128,17 +116,6 @@ class ProjectDataReader
             'repositoryName' => $repositoryName,
             'docsPath' => $this->detectDocsPath($repositoryName),
             'slug' => $slug,
-            'versions' => [
-                [
-                    'name' => 'master',
-                    'branchName' => 'master',
-                    'slug' => 'latest',
-                    'aliases' => [
-                        'current',
-                        'stable',
-                    ],
-                ],
-            ],
         ];
     }
 
