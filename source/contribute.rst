@@ -113,22 +113,33 @@ With that in mind, things that can go on the patch release branch
 include:
 
 - bugfixes;
+- addressing deprecations from dependencies;
 - adding tests, especially for bugs that were fixed;
 - updates, corrections or improvements to non-code assets like
   documentation, build scripts or tooling configuration;
 - fixes to incorrect phpdoc comments (docblock type declarations, etc.);
 - updates, corrections or improvements to code comments that are not
   phpdoc comments;
+- _development_ dependency bumps (regular dependencies should not be
+  bumped).
 
 .. note::
 
    When phpdoc comments are imprecise but not wrong technically, target
    the next minor release branch instead.
 
+.. note::
+
+   When addressing a deprecation notice from a dependency, make sure not
+   to bump any version constraint, so as to keep the patch release
+   obtainable without upgrading any other dependencies. You may use
+   feature detection (calls to ``class_exists()`` and such) to do so.
+
 The next minor version branch may include:
 
 - refactorings, unless they are necessary for a bugfix. This is to avoid
   unnecessary risks.
+- dependency bumps if they lead to code simplifications;
 - new deprecations - read our :ref:`Dedicated policy
   <./policies/deprecation>` to figure out
   how to contribute those.
