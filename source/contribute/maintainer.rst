@@ -83,3 +83,42 @@ release.
 You might then want to rework the release notes, using a more sensible
 ordering showing the most user-facing changes first, and making e.g.
 "Bugfix" plural.
+
+Publishing a patch release
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some repositories have 2 patch branches:
+
+- a legacy or life support patch branch;
+- a current patch branch.
+
+In this case, merge the legacy branch into the current patch branch
+first, so that any conflicts are resolved before releasing anything.
+
+Then publish the legacy patch branch, followed by the current patch
+branch. Publish both within a short time frame, so that projects
+upgrading from the legacy branch to the current one do not hit a
+regression. Once the release notes are generated, include a link to the
+legacy release notes in the current release notes.
+
+Publishing a minor release
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before publishing a minor release, make sure no patch release is worth
+publishing on a lower branch, and that the previous minor branch is
+fully merged up into the next minor branch.
+
+Once the minor release is published, change the default branch of the
+repository on GitHub to the next minor branch. Open a pull request to
+update ``.doctrine-project.json`` and, in some projects, other files
+such as ``README.md`` or, in the case of Symfony bundles,
+``.symfony.bundle.yaml``.
+
+Then create a new release branch for the next minor release,
+retarget open pull requests targeting the former minor branch to the new
+minor branch, and retarget open pull requests targeting the former patch
+branch to the new patch branch.
+
+And finally delete the former current branch, once the pull request is
+merged as well as GitHub milestones corresponding to it that might
+remain.
