@@ -503,7 +503,7 @@ before pushing is never a bad idea. You can do so by creating
     $ git config hook.phpcs.command "sh -c \"echo ''|vendor/bin/phpcs\""
     $ git config hook.phpcs.parallel true
     $ git config hook.phpstan.event pre-push
-    $ git config hook.phpstan.command "sh -c 'vendor/bin/phpstan'"
+    $ git config hook.phpstan.command "sh -c 'vendor/bin/phpstan --ansi'"
     $ git config hook.phpstan.parallel true
     $ git config hook.phpunit.event pre-push
     $ git config hook.phpunit.command "sh -c 'vendor/bin/phpunit'"
